@@ -1,4 +1,3 @@
-
 @import "config";
 @import "utils";
 @import "anims";
@@ -6,27 +5,13 @@
 @import "colorGrading";
 @import "specific";
 
-// @font-face {
-// 	font-family: "FK";
-// 	src: url("../../fonts/FKScreamerTrial-Black.otf");
-// 	font-weight: 200;
-// 	text-rendering: optimizeLegibility;
-// }
 
+//Font config
 // @font-face {
-// 	font-family: "Opposit";
-// 	src: url("../../fonts/Opposit-SemiBold.otf")format("otf");
-// 	font-weight: 200;
-// 	text-rendering: optimizeLegibility;
+//   font-family: 'FK';
+//   src: url('../../assets/fonts/NeueHaasGrotDisp-55Roman.otf') format("otf");
+//   text-rendering: optimizeLegibility;
 // }
-
-// @font-face {
-// 	font-family: "Molde";
-// 	src: url("./assets/fonts/Molde.otf")format("otf");
-// 	font-weight: 200;
-// 	text-rendering: optimizeLegibility;
-// }
-
 
 * {
 	box-sizing: border-box;
@@ -34,7 +19,10 @@
 	padding: 0;
 }
 
-html, body, #root, .App {
+html,
+body,
+#root,
+.App {
 	height: 100%;
 	color: $dark;
 }
@@ -43,15 +31,6 @@ html, body, #root, .App {
 	z-index: 999999;
 }
 
-h1,
-h2 {
-	font-family: "FK";
-	font-weight: lighter;
-}
-
-p {
-	font-family: "Opposit";
-}
 
 .scroll-wrapper,
 .content-wrapper {
@@ -79,12 +58,11 @@ p {
 
 body {
 	min-height: 100vh;
-	font-family: "NeueMtl";
+
 	cursor: none !important;
 	position: relative;
 	position: relative;
 }
-
 
 .char-wrapper {
 	display: inline-block;
@@ -98,7 +76,7 @@ body {
 }
 
 section {
-	height: 100vh;
+	min-height: 100vh;
 	width: 100%;
 }
 
@@ -114,7 +92,6 @@ section {
 		overflow: hidden;
 		font-size: 10vw;
 		line-height: 12vw;
-		font-family: "Opposit";
 		white-space: nowrap;
 		position: absolute;
 		top: 50%;

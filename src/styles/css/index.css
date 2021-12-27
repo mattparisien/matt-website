@@ -1,5 +1,4 @@
 .-p-large {
-  font-family: "Opposit";
   font-size: clamp(2.5rem, 6vw, 10rem);
 }
 
@@ -21,13 +20,13 @@
 
 @media screen and (min-width: 320px) {
   .-headingLarge {
-    font-size: 20vw;
+    font-size: 30vw;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .-headingLarge {
-    font-size: 15rem;
+    font-size: 20rem;
   }
 }
 
@@ -38,12 +37,12 @@
 }
 
 .-hasPaddingLarge {
-  padding: 15% 10%;
+  padding: 15% 10% 0% 10%;
 }
 
 @media screen and (max-width: 1440px) {
   .-hasPaddingLarge {
-    padding: 20% 5%;
+    padding: 20% 5% 0% 5%;
   }
 }
 
@@ -131,7 +130,7 @@
 }
 
 .section-about {
-  background-color: #5088a1;
+  background-color: #5b487c;
   color: #f1b9b8;
 }
 
@@ -161,23 +160,16 @@
   padding: 0;
 }
 
-html, body, #root, .App {
+html,
+body,
+#root,
+.App {
   height: 100%;
   color: #181818;
 }
 
 #bounce-scene {
   z-index: 999999;
-}
-
-h1,
-h2 {
-  font-family: "FK";
-  font-weight: lighter;
-}
-
-p {
-  font-family: "Opposit";
 }
 
 .scroll-wrapper,
@@ -206,7 +198,6 @@ p {
 
 body {
   min-height: 100vh;
-  font-family: "NeueMtl";
   cursor: none !important;
   position: relative;
   position: relative;
@@ -224,7 +215,7 @@ body {
 }
 
 section {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
 }
 
@@ -241,7 +232,6 @@ section {
   overflow: hidden;
   font-size: 10vw;
   line-height: 12vw;
-  font-family: "Opposit";
   white-space: nowrap;
   position: absolute;
   top: 50%;

@@ -1,8 +1,13 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import classNames from "classnames";
+import SectionWave from "./SectionWave";
 
-function Section(props) {
-	return <section className={props.classes}>{props.children}</section>;
+function Section(props, ref) {
+	return (<section className={props.classes} ref={ref}>
+		{props.hasWave && <SectionWave ref={ref}/>}
+		{props.children}
+		</section>)
+	;
 }
 
-export default Section;
+export default forwardRef(Section);

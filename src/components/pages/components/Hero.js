@@ -26,20 +26,15 @@ function Hero(props) {
 	useEffect(() => {
 		//If there's a scroll trigger ref, set timelines with trigger
 		if (trigger) {
-			scrollTl.current = gsap.timeline({
-				scrollTrigger: {
-					trigger: trigger,
-					start: "top top",
-					scrub: !0,
-					pin: true,
-				},
-			});
+	
 			heroTitleTl.current = gsap.timeline({
 				scrollTrigger: {
 					trigger: trigger,
 					start: "top top",
+					end: "+=1000",
 					scrub: !0,
 					pin: true,
+					pinSpacing: true
 				},
 			});
 		}
@@ -48,10 +43,10 @@ function Hero(props) {
 		if (
 			words.current &&
 			blob.current &&
-			heroTitleTl.current &&
-			scrollTl.current
+			heroTitleTl.current
 		) {
-			const timelines = [heroTitle.current, scrollTl.current];
+			const timelines = [heroTitleTl.current];
+			console.log(timelines);
 			heroAnim(words.current, blob.current, timelines);
 		}
 	}, [heroTitleTl, scrollTl, blob, words, trigger]);
@@ -64,7 +59,7 @@ function Hero(props) {
 	}, [stickySection]);
 
 	return (
-		<Section classNames={"section-hero"}>
+		<Section classes={"section-hero"}>
 			<div className='title -isFull -flexCenterAll'>
 				<h1
 					className='title_heading -isRelative -headingLarge'
