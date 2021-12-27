@@ -1,12 +1,21 @@
 .title_heading {
-  span:not(:nth-of-type(1)) {
-    opacity: 0;
-  }
+	span:not(:nth-of-type(1)) {
+		opacity: 0;
+	}
 }
 
 .entry-screen {
 	h2 {
-		font-size: 8vw;
+		@media screen and (min-width: $mobileL) {
+			font-size: 3rem;
+		}
+
+		@media screen and (min-width: $mobileS) {
+			font-size: 2rem;
+		}
+		@media screen and (min-width: $laptop) {
+			font-size: 3.6rem;
+		}
 	}
 }
 
@@ -31,4 +40,13 @@
 	path {
 		height: 100%;
 	}
+}
+
+
+#cursor-follower {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: $light;
+	opacity: 0.8;
 }

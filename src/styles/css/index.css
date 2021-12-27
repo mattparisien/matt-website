@@ -21,6 +21,7 @@
   display: block;
   left: 0;
   top: 0;
+  text-align: center;
 }
 
 .-isFixed {
@@ -234,8 +235,22 @@
   opacity: 0;
 }
 
-.entry-screen h2 {
-  font-size: 8vw;
+@media screen and (min-width: 425px) {
+  .entry-screen h2 {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .entry-screen h2 {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .entry-screen h2 {
+    font-size: 3.6rem;
+  }
 }
 
 .cursor {
@@ -259,6 +274,14 @@
 
 #transition-clipPath__clip path {
   height: 100%;
+}
+
+#cursor-follower {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #f4f1eb;
+  opacity: 0.8;
 }
 
 * {
