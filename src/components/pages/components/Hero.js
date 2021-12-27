@@ -20,9 +20,7 @@ function Hero(props) {
 	};
 
 	//Declare hero animation timelines
-
 	const heroTitleTl = useRef(null);
-
 	const scrollTl = useRef(null);
 
 	useEffect(() => {
