@@ -16,6 +16,9 @@ export default function heroAnim(words, blob, timelines, trigger) {
 		"M33.2,-47C42,-39.2,47.6,-28.3,52,-16.5C56.4,-4.7,59.5,7.8,57.9,20.7C56.3,33.6,49.9,46.7,39.5,52.8C29,58.9,14.5,57.9,-1.4,59.9C-17.3,61.8,-34.7,66.7,-45.4,60.7C-56.1,54.7,-60.1,37.8,-61,22.7C-61.8,7.7,-59.6,-5.5,-57.8,-21.1C-55.9,-36.8,-54.5,-54.9,-44.9,-62.4C-35.3,-69.9,-17.7,-66.8,-2.8,-63C12.2,-59.3,24.3,-54.7,33.2,-47Z",
 	];
 
+	console.log(words[4])
+
+
 	heroTitleTl
 		.to(words[1], {
 			scale: 1.5,
@@ -30,6 +33,14 @@ export default function heroAnim(words, blob, timelines, trigger) {
 			opacity: 0,
 		})
 		.to(words[3], {
+			scale: 1.25,
+			opacity: 1,
+		})
+		.to(words[3], {
+			scale: 1.5,
+			opacity: 0,
+		})
+		.to(words[4], {
 			scale: 1.5,
 			opacity: 1,
 		})

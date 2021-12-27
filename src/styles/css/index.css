@@ -35,7 +35,7 @@
 
 @media screen and (min-width: 320px) {
   .-headingLarge {
-    font-size: 30vw;
+    font-size: 20vw;
   }
 }
 
@@ -70,7 +70,7 @@
 .-isTiny {
   font-size: 1.5rem;
   line-height: 1.5rem;
-  font-family: 'Kobe';
+  font-family: "Kobe";
 }
 
 .-isFlex {
@@ -82,7 +82,6 @@
 }
 
 .-isAbsolute__centered {
-  position: absolute;
   width: 100%;
   top: 50%;
   left: 50%;
@@ -128,9 +127,11 @@
 
 .entry-screen {
   z-index: 999;
+  clip-path: url(#transition-clipPath__clip);
 }
 
 .entry-screen .entry-screen__text {
+  width: 100%;
   height: 200px;
 }
 
@@ -206,7 +207,7 @@
 }
 
 .entry-screen {
-  background-color: #f1b9b8;
+  background-color: #f9e3e3;
   color: #e76435;
 }
 
@@ -246,6 +247,18 @@
   top: 0;
   z-index: 99999;
   transform: translate(-50%, -50%);
+}
+
+.transition-clipPath {
+  position: absolute;
+}
+
+#transition-clipPath__clip {
+  transform: scale(0.00105, 0.0019);
+}
+
+#transition-clipPath__clip path {
+  height: 100%;
 }
 
 * {

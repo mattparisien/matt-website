@@ -1,21 +1,21 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import useSplit from "../helpers/hooks/useSplit";
 import classNames from "classnames";
 import gsap from "gsap/all";
 import $ from "jquery";
+import ClipPathTransition from "./ClipPathTransition";
 
 function EntryScreen(props) {
 	const entryScreenClass = classNames(
-		"entry-screen -isFixed -isFull -flexCenterAll",
-		{
-			isActive: props.isActive,
-			isOff: !props.isActive,
-		}
+		"entry-screen -isFixed -isFull -flexCenterAll"
 	);
+
+	const [isTransitioning, setIsTransitioning] = useState(false);
 
 	const splitRefs = useRef([]);
 	const tl = useRef(gsap.timeline());
 	const container = useRef(null);
+	const card = useRef(null);
 
 	const addToRefs = el => {
 		if (splitRefs.current && !splitRefs.current.includes(el)) {
@@ -26,7 +26,7 @@ function EntryScreen(props) {
 	const [isSplit, chars, splitCount] = useSplit(splitRefs.current, {
 		type: "chars, lines",
 		charsClass: "char",
-    linesClass: "line"
+		linesClass: "line",
 	});
 
 	useEffect(() => {
@@ -38,60 +38,97 @@ function EntryScreen(props) {
 				const charsLinesTwo = $(splitRefs.current[1]).find(".char");
 				const charsLinesThree = $(splitRefs.current[2]).find(".char");
 
-				tl.current.to(charsLinesOne, {
-					y: 0,
-					opacity: 1,
-					duration: 0.5,
-					stagger: 0.01,
-				})
-				.to(charsLinesOne, {
-					y: "-100%",
-					opacity: 0,
-					duration: 0.5,
-					stagger: 0.01,
-				}, 2)
-				.to(charsLinesTwo, {
-					y: "0",
-					opacity: 1,
-					duration: 0.5,
-					stagger: 0.01,
-				}, 3)
-				.to(charsLinesTwo, {
-					y: "-100%",
-					opacity: 0,
-					duration: 0.5,
-					stagger: 0.01,
-				}, 5)
-				.to(charsLinesThree, {
-					y: "0",
-					opacity: 1,
-					duration: 0.5,
-					stagger: 0.01,
-				}, 7)
-				.to(charsLinesThree, {
-					y: "-100%",
-					opacity: 0,
-					duration: 0.5,
-					stagger: 0.01,
-				}, 9)
+				tl.current
+					.to(charsLinesOne, {
+						y: 0,
+						opacity: 1,
+						duration: 0.5,
+						stagger: 0.01,
+					})
+					.to(
+						charsLinesOne,
+						{
+							y: "-100%",
+							opacity: 0,
+							duration: 0.5,
+							stagger: 0.01,
+						},
+						2
+					)
+					.to(
+						charsLinesTwo,
+						{
+							y: "0",
+							opacity: 1,
+							duration: 0.5,
+							stagger: 0.01,
+						},
+						3
+					)
+					.to(
+						charsLinesTwo,
+						{
+							y: "-100%",
+							opacity: 0,
+							duration: 0.5,
+							stagger: 0.01,
+						},
+						5
+					)
+					.to(
+						charsLinesThree,
+						{
+							y: "0",
+							opacity: 1,
+							duration: 0.5,
+							stagger: 0.01,
+						},
+						7
+					)
+					.to(
+						charsLinesThree,
+						{
+							y: "-100%",
+							opacity: 0,
+							duration: 0.5,
+							stagger: 0.01,
+							onComplete: () => setIsTransitioning(true),
+						},
+						9
+					);
 			}
 		}
 	}, [isSplit, splitRefs, container]);
 
 	return (
-		<div className={entryScreenClass}>
-			<h2 className='entry-screen__text -isRelative -flexCenterAll' ref={container}>
-				<div className='entry-screen__text__part' ref={addToRefs}>
-					One sec... just getting ready
-				</div>
-				<div className='entry-screen__text__part -isAbsolute__centered' ref={addToRefs}>
-          Almost ready...
-        </div>
-				<div className='entry-screen__text__part -isAbsolute__centered' ref={addToRefs}>
-          Oki come in
-        </div>
-			</h2>
-		</div>
+		<ClipPathTransition
+			isTransitioning={isTransitioning}
+			container={card.current}
+			setTransitioning={setIsTransitioning}
+		>
+			<div className={entryScreenClass} ref={card}>
+				<h2
+					className='entry-screen__text -isRelative -flexCenterAll'
+					ref={container}
+				>
+					<div className='entry-screen__text__part' ref={addToRefs}>
+						One sec... just getting ready
+					</div>
+					<div
+						className='entry-screen__text__part -isAbsolute -isAbsolute__centered'
+						ref={addToRefs}
+					>
+						Almost ready...
+					</div>
+					<div
+						className='entry-screen__text__part -isAbsolute -isAbsolute__centered'
+						ref={addToRefs}
+					>
+						Oki come in
+					</div>
+				</h2>
+			</div>
+		</ClipPathTransition>
 	);
 }
 

@@ -20,3 +20,15 @@
 	z-index: 99999;
 	transform: translate(-50%, -50%);
 }
+
+.transition-clipPath {
+	position: absolute;
+}
+
+#transition-clipPath__clip {
+	transform: scale(0.00105, 0.0019);
+
+	path {
+		height: 100%;
+	}
+}

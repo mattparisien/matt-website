@@ -69,7 +69,7 @@ function Hero(props) {
           '
 						ref={addToRefs}
 					>
-						TELL
+						MAKE
 					</span>
 					<span
 						className='
@@ -78,7 +78,7 @@ function Hero(props) {
           '
 						ref={addToRefs}
 					>
-						GOOD
+						REALLY
 					</span>
 					<span
 						className='
@@ -87,7 +87,16 @@ function Hero(props) {
           '
 						ref={addToRefs}
 					>
-						STORIES
+						GOOD
+					</span>
+					<span
+						className='
+            title-heading__part title-heading__four
+            -isAbsolute -isAbsolute__centered
+          '
+						ref={addToRefs}
+					>
+						CONTENT
 					</span>
 				</h1>
 			</div>

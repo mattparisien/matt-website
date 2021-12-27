@@ -24,7 +24,7 @@
 	font-size: 15rem;
 
 	@media screen and (min-width: $mobileS) {
-		font-size: 30vw;
+		font-size: 20vw;
 	}
 	@media screen and (min-width: $laptop) {
 		font-size: 20rem;
@@ -52,11 +52,11 @@
 .-isTiny {
 	font-size: 1.5rem;
 	line-height: 1.5rem;
-	font-family: 'Kobe';
+	font-family: "Kobe";
 }
 
 .-isFlex {
-display: flex;
+	display: flex;
 }
 
 .-flexColumn {
@@ -64,7 +64,6 @@ display: flex;
 }
 
 .-isAbsolute__centered {
-	position: absolute;
 	width: 100%;
 	top: 50%;
 	left: 50%;

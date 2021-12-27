@@ -1,8 +1,9 @@
 .entry-screen {
 	z-index: 999;
+	clip-path: url(#transition-clipPath__clip);
 
 .entry-screen__text {
-	
+	width: 100%;
 	height: 200px;
 }
 

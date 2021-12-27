@@ -31,13 +31,14 @@ function useSplit(arrayOfElements, options) {
 		}
 	}, [arrayOfElements]);
 
-	useEffect(() => {
-		if (splitText) {
-			setSplitText(splitText.revert().split());
-			$(splitText.lines).wrap('<div class="line-wrapper"></div>');
-			setSplitCount(prev => prev + 1);
-		}
-	}, [windowWidth]);
+	// useEffect(() => {
+	// 	if (splitText) {
+	// 		console.log('asasasaS', splitText)
+	// 		setSplitText(splitText.revert().split());
+	// 		// $(splitText.lines).wrap('<div class="line-wrapper"></div>');
+	// 		setSplitCount(prev => prev + 1);
+	// 	}
+	// }, [windowWidth]);
 
 	return [isSplit, chars, splitCount];
 }
