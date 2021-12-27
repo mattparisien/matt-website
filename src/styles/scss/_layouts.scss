@@ -1,0 +1,28 @@
+
+
+.blobOne {
+  position: absolute;
+
+
+  .blobOne__path {
+    transform: scale(0.002);
+    transform-origin: center;
+  }
+}
+
+#blobOne__clip {
+  transform: scale(0.0049, 0.0050)
+}
+
+.sticky-wrapper {
+  position: relative;
+  
+  
+  .section-about {
+    clip-path: url(#blobOne__clip);
+    position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 1;
+  }
+}

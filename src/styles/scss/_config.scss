@@ -1,0 +1,30 @@
+$orange: rgb(231, 100, 53);
+$light: rgb(244, 241, 235);
+$dark: rgb(24, 24, 24);
+$pink: #f1b9b8;
+$blue: rgb(80, 136, 161);
+$yellow: rgb(230, 211, 74);
+$green: #14704a;
+$red: #e63e2c;
+$bubbleGum: #fa83bc;
+$purple: #5c4e74;
+ 
+//Breakpoints
+$mobileS: "320px";
+$mobileM: "375px";
+$mobileL: "425px";
+$tablet: "768px";
+$laptop: "1024px";
+$laptopL: "1440px";
+$desktop: "1800px";
+$desktopL: "2560px";
+
+//Media templates
+$mediaMobileS: "min-width: #{mobileS}px";
+$mediaMobileM: "min-width: #{mobileM}px";
+$mediaMobileL: "min-width: #{mobileL}px";
+$mediaTablet: "min-width: #{tablet}px";
+$mediaLaptop: "min-width: #{laptop}px";
+$mediaLaptopL: "min-width: #{laptopL}px";
+$mediaDesktop: "min-width: #{desktop}px";
+$mediaDesktopL: "min-width: #{desktopL}px";
