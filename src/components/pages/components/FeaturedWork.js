@@ -4,8 +4,12 @@ import { useIntersect } from "../../../helpers/hooks/useIntersect";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import waveAnimation from "../motion/sectionWave";
+import ImageGallery from "../../ImageGallery/ImageGallery";
+import useFetch from "../../../helpers/hooks/useFetch";
 
 function FeaturedWork() {
+
+	/***** WAVE ANIMATION *****/
 	const waveAnim = useRef(null);
 	const waveSection = useRef(null);
 	const wavePath = useRef(null);
@@ -35,6 +39,17 @@ function FeaturedWork() {
 		}
 	}, [waveSection, isIntersecting, wavePath]);
 
+
+	/***** IMAGE DATA REQUEST *****/	
+
+	const [data, error, loading] = useFetch('/api/photos?populate=*');
+
+
+	useEffect(() => {
+		console.log(data)
+	}, [data])
+
+
 	return (
 		<Section
 			classes={"section-featuredWork -hasWave"}
@@ -46,7 +61,9 @@ function FeaturedWork() {
 						: (wavePath.current = el);
 				}
 			}}
-		></Section>
+		>
+			{/* <ImageGallery data={data}/> */}
+		</Section>
 	);
 }
 

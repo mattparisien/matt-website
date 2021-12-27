@@ -1,5 +1,10 @@
 // Section bg colors
 
+.entry-screen {
+  background-color: $pink;
+  color: $orange;
+}
+
 .section-hero {
   background-color: $pink;
   color: $orange;
@@ -13,6 +18,10 @@
 
 
 .section-featuredWork {
-  background-color: $dark;
+  background-color: $yellow;
   color: $light;
+
+  .wave path {
+    fill: $purple;
+  }
 }

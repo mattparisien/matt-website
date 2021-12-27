@@ -26,7 +26,6 @@ function Hero(props) {
 	useEffect(() => {
 		//If there's a scroll trigger ref, set timelines with trigger
 		if (trigger) {
-	
 			heroTitleTl.current = gsap.timeline({
 				scrollTrigger: {
 					trigger: trigger,
@@ -34,17 +33,13 @@ function Hero(props) {
 					end: "+=1000",
 					scrub: !0,
 					pin: true,
-					pinSpacing: true
+					pinSpacing: true,
 				},
 			});
 		}
 
 		//If all refs are rendered, call heroAnim
-		if (
-			words.current &&
-			blob.current &&
-			heroTitleTl.current
-		) {
+		if (words.current && blob.current && heroTitleTl.current) {
 			const timelines = [heroTitleTl.current];
 			console.log(timelines);
 			heroAnim(words.current, blob.current, timelines);
@@ -60,7 +55,7 @@ function Hero(props) {
 
 	return (
 		<Section classes={"section-hero"}>
-			<div className='title -isFull -flexCenterAll'>
+			<div className='title -isFull -flexCenterAll -flexColumn'>
 				<h1
 					className='title_heading -isRelative -headingLarge'
 					data-scroll
@@ -96,6 +91,7 @@ function Hero(props) {
 					</span>
 				</h1>
 			</div>
+			<span className='scrollCta -isTiny'>Scroll</span>
 			<HeroClipPath ref={blob} />
 		</Section>
 	);

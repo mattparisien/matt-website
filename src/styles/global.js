@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import FKScreamer from "../fonts/FKScreamer.otf";
+import Haas from "../fonts/Haas.otf";
 
 
 export const GlobalStyle = createGlobalStyle`
@@ -9,6 +10,11 @@ export const GlobalStyle = createGlobalStyle`
     src: url(${FKScreamer}) format('woff');
   }
 
+  @font-face {
+    font-family: 'Haas';
+    src: url(${Haas}) format('otf');
+  }
+
   h1, h2 {
     font-family: 'FK';
   }
@@ -16,4 +22,6 @@ export const GlobalStyle = createGlobalStyle`
   p {
     font-family: 'Opposit';
   }
+
+  
 `
