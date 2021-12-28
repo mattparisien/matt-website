@@ -29,7 +29,7 @@ function FeaturedWork() {
 				scrollTrigger: {
 					trigger: trigger,
 					start: "top bottom",
-					end: `+=${waveSection.current.getBoundingClientRect().height + 500}`,
+					end: `+=2000`,
 					scrub: !0,
 				},
 			});

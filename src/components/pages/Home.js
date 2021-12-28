@@ -5,6 +5,9 @@ import Sticky from "../Sticky";
 import Section from "../Section";
 import FeaturedWork from "./components/FeaturedWork";
 
+
+
+
 function Home() {
 	//Declare refs needed for animation
 	const stickySection = useRef(null);
@@ -16,6 +19,7 @@ function Home() {
 				<About />
 			</Sticky>
 			<FeaturedWork />
+		
 		</>
 	);
 }

@@ -16,6 +16,9 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 
+  button, a {
+    cursor: pointer;
+  }
   
   h1, h2 {
     font-family: 'FK';
