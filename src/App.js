@@ -5,7 +5,7 @@ import { GlobalStyle } from "./styles/global";
 import EntryScreen from "./components/EntryScreen";
 import { useState, useRef, useEffect } from "react";
 import $ from "jquery";
-import Button from "./components/Button";
+import Button from "./components/Button/Button";
 import Pencil from "./components/Vector/Pencil";
 import Modal from "./components/Modals/Modal";
 
@@ -53,6 +53,7 @@ function App() {
 				style={"circle"}
 				id={"contactCta"}
 				onClick={toggleModalVisibility}
+				bg={"Orange"}
 			>
 				<Pencil classes={"contactCta__pencil"} />
 			</Button>
