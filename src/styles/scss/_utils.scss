@@ -93,3 +93,23 @@
 		transform: rotate(180deg);
 	}
 }
+
+.-isBgOrange {
+	background-color: $orange;
+}
+
+.-isBgBlue {
+	background-color: $blue;
+}
+
+.-isBgYellow {
+	background-color: $yellow;
+}
+
+.-isTextLight {
+	color: $light;
+}
+
+.-isTextDark {
+	color: $dark;
+}

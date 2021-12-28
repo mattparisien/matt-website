@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "./Button";
+import Button from "../Button";
 
 function Form() {
 	const [state, setState] = useState({
@@ -13,13 +13,18 @@ function Form() {
 		setState(prev => ({ ...prev, [e.target.name]: e.target.value }));
 	};
 
+	const handleSubmit = e => {
+		e.preventDefault();
+		console.log(this.state);
+	};
+
 	return (
 		<div className='form-container'>
-			<form>
+			<form onSubmit={handleSubmit}>
 				<input
 					type='text'
 					name='firstName'
-          value={state.firstName}
+					value={state.firstName}
 					placeholder='First name'
 					onChange={handleChange}
 				></input>
@@ -27,14 +32,14 @@ function Form() {
 					type='text'
 					name='lastName'
 					placeholder='Last name'
-          value={state.value}
+					value={state.value}
 					onChange={handleChange}
 				></input>
 				<input
 					type='text'
 					name='email'
 					placeholder='Email'
-          value={state.email}
+					value={state.email}
 					onChange={handleChange}
 				></input>
 				<textarea
@@ -42,10 +47,12 @@ function Form() {
 					id='form-message'
 					cols='30'
 					rows='10'
-          value={state.message}
-          onChange={handleChange}
+					value={state.message}
+					onChange={handleChange}
 				></textarea>
-				<Button type={"submit"} style={"rectangle"} />
+				<Button type={"submit"} style={"regular"} bg={"orange"} textColor={"light"}>
+					Submit
+				</Button>
 			</form>
 		</div>
 	);

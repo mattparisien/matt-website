@@ -1,0 +1,26 @@
+button.btn-regular {
+	text-transform: uppercase;
+	border: 0px;
+
+	@media screen and (max-width: $tablet) {
+		width: 6.5rem;
+		height: 3rem;
+		border: 0px;
+		font-size: 1rem;
+	}
+
+	@media screen and (min-width: $tablet) {
+		width: 9rem;
+		height: 4rem;
+		border: 0px;
+		font-size: 1.3rem;
+	}
+
+	@media screen and (min-width: $laptop) {
+		width: 10.8rem;
+		height: 4.3rem;
+		border: 0px;
+		font-size: 1.3rem;
+		text-transform: uppercase;
+	}
+}

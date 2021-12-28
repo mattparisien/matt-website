@@ -111,6 +111,26 @@
   transform: rotate(180deg);
 }
 
+.-isBgOrange {
+  background-color: #e76435;
+}
+
+.-isBgBlue {
+  background-color: #5088a1;
+}
+
+.-isBgYellow {
+  background-color: #e6d34a;
+}
+
+.-isTextLight {
+  color: #f4f1eb;
+}
+
+.-isTextDark {
+  color: #181818;
+}
+
 .rotating-item {
   display: inline;
   height: auto;
@@ -396,6 +416,39 @@
   background-color: #f4f1eb;
   z-index: 9999;
   display: none;
+}
+
+button.btn-regular {
+  text-transform: uppercase;
+  border: 0px;
+}
+
+@media screen and (max-width: 768px) {
+  button.btn-regular {
+    width: 6.5rem;
+    height: 3rem;
+    border: 0px;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  button.btn-regular {
+    width: 9rem;
+    height: 4rem;
+    border: 0px;
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  button.btn-regular {
+    width: 10.8rem;
+    height: 4.3rem;
+    border: 0px;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+  }
 }
 
 * {

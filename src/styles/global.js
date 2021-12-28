@@ -19,6 +19,10 @@ export const GlobalStyle = createGlobalStyle`
   button, a {
     cursor: pointer;
   }
+
+  button {
+    font-family: 'Opposit';
+  }
   
   h1, h2 {
     font-family: 'FK';

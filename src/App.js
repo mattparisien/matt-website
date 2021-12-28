@@ -52,7 +52,7 @@ function App() {
 			<Button
 				style={"circle"}
 				id={"contactCta"}
-				showModal={toggleModalVisibility}
+				onClick={toggleModalVisibility}
 			>
 				<Pencil classes={"contactCta__pencil"} />
 			</Button>
