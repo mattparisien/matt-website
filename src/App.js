@@ -14,14 +14,16 @@ function App() {
 	const cursor = useRef(null);
 
 	return (
-		<div className='App'>
-			<EntryScreen isActive={state.entryScreenActive} setState={setState} />
-			<main className='content-wrapper'>
-				<GlobalStyle scrollDisabled={state.entryScreenActive} />
-				<Home />
-			</main>
-			<CursorFollower ref={cursor} />
-		</div>
+		
+			<div className='App'>
+				{/* <EntryScreen isActive={state.entryScreenActive} setState={setState} /> */}
+				<main className='content-wrapper'>
+					<GlobalStyle scrollDisabled={state.entryScreenActive} />
+					<Home />
+				</main>
+				<CursorFollower ref={cursor} />
+			</div>
+		
 	);
 }
 

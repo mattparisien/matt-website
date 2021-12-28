@@ -16,9 +16,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 
-  body {
-    overflow: ${(props) => props.scrollDisabled ? 'hidden' : 'scroll'};
-  }
   
   h1, h2 {
     font-family: 'FK';

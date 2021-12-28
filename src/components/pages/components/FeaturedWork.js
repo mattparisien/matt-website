@@ -8,7 +8,6 @@ import ImageGallery from "../../ImageGallery/ImageGallery";
 import useFetch from "../../../helpers/hooks/useFetch";
 
 function FeaturedWork() {
-
 	/***** WAVE ANIMATION *****/
 	const waveAnim = useRef(null);
 	const waveSection = useRef(null);
@@ -30,7 +29,7 @@ function FeaturedWork() {
 				scrollTrigger: {
 					trigger: trigger,
 					start: "top bottom",
-					end: "+=1000",
+					end: `+=${waveSection.current.getBoundingClientRect().height + 500}`,
 					scrub: !0,
 				},
 			});
@@ -39,16 +38,13 @@ function FeaturedWork() {
 		}
 	}, [waveSection, isIntersecting, wavePath]);
 
+	/***** IMAGE DATA REQUEST *****/
 
-	/***** IMAGE DATA REQUEST *****/	
-
-	const [data, error, loading] = useFetch('/api/photos?populate=*');
-
+	const [data, error, loading] = useFetch("/api/photos?populate=*");
 
 	useEffect(() => {
-		console.log(data)
-	}, [data])
-
+		console.log(data);
+	}, [data]);
 
 	return (
 		<Section
@@ -62,7 +58,7 @@ function FeaturedWork() {
 				}
 			}}
 		>
-			{/* <ImageGallery data={data}/> */}
+			<ImageGallery data={data}/>
 		</Section>
 	);
 }
