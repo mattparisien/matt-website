@@ -303,7 +303,7 @@
 }
 
 .section-featuredWork {
-  background-color: #e6d34a;
+  background-color: #cfcfcf;
   color: #f4f1eb;
 }
 
@@ -362,6 +362,27 @@
   border-radius: 50%;
   background-color: #f4f1eb;
   opacity: 0.8;
+}
+
+form {
+  padding: 0 4rem;
+  width: 90vw;
+  max-width: 950px;
+}
+
+form input {
+  height: 3em;
+  padding: 1em;
+}
+
+form input, form textarea {
+  font-family: 'Opposit';
+  margin-bottom: 2rem;
+  border: 0px;
+}
+
+form input:focus, form textarea:focus {
+  outline: none;
 }
 
 #contactCta {

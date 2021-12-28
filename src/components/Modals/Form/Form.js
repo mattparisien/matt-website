@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Button from "../Button";
+import Button from "../../Button";
+
 
 function Form() {
 	const [state, setState] = useState({
@@ -14,25 +15,33 @@ function Form() {
 	};
 
 	const handleSubmit = e => {
+		console.log('jas ben submited!')
 		e.preventDefault();
-		console.log(this.state);
+		setState({
+			firstName: "",
+			lastName: "",
+			email: "",
+			message: "",
+		})
 	};
 
 	return (
-		<div className='form-container'>
-			<form onSubmit={handleSubmit}>
-				<input
+		<div className='form-container -isAbsolute -isAbsolute__centered -flexCenterAll'>
+				<form onSubmit={handleSubmit} action="mailto:hello@matthewparisien.com" className="-isFlex -flexColumn">
+	 			<input
 					type='text'
 					name='firstName'
 					value={state.firstName}
 					placeholder='First name'
 					onChange={handleChange}
+					autoFocus
 				></input>
+        
 				<input
 					type='text'
 					name='lastName'
 					placeholder='Last name'
-					value={state.value}
+					value={state.lastName}
 					onChange={handleChange}
 				></input>
 				<input
@@ -53,9 +62,10 @@ function Form() {
 				<Button type={"submit"} style={"regular"} bg={"orange"} textColor={"light"}>
 					Submit
 				</Button>
-			</form>
+				</form>
 		</div>
 	);
+	
 }
 
 export default Form;

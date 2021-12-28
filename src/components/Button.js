@@ -22,8 +22,8 @@ function Button(props) {
 		"btn-circle": props.style === "circle",
 		"btn-regular": props.style === "regular",
 		[`-isBg${props.bg && capitalizeFirstLetter(props.bg)}`]: props.bg,
-		[`-isText${props.textColor && capitalizeFirstLetter(props.textColor)}`]: props.textColor,
-		
+		[`-isText${props.textColor && capitalizeFirstLetter(props.textColor)}`]:
+			props.textColor,
 	});
 
 	const handleMouseEnter = () => {
@@ -41,12 +41,11 @@ function Button(props) {
 			type={props.type}
 			onClick={() => props.onClick()}
 		>
-			{props.style === "circle" && (
-				<div
-					className='btn__circle -isAbsolute -isAbsolute__centered'
-					style={circleStyle}
-				></div>
-			)}
+			<div
+				className='btn__circle -isAbsolute -isAbsolute__centered'
+				style={circleStyle}
+			></div>
+
 			<div
 				className='btn__content__inner -isFull -flexCenterAll'
 				onMouseEnter={handleMouseEnter}
