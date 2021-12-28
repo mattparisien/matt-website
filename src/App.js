@@ -13,29 +13,6 @@ function App() {
 
 	const cursor = useRef(null);
 
-	// useEffect(() => {
-	// 	console.log("cursor", cursor);
-
-	// 	const handleMouseMove = e => {
-
-	// 		$(cursor.current).animate({
-	// 			left: e.clientX,
-	// 			top: e.clientY,
-	// 		}, 0.3);
-	// 	};
-
-	// 	if (cursor.current) {
-
-	// 		$(window).on("mousemove", (e) => {
-	// 			handleMouseMove(e);
-	// 		});
-	// 	}
-
-	// 	return () => {
-	// 		window.removeEventListener("mousemove", handleMouseMove)
-	// 	};
-	// }, [cursor]);
-
 	return (
 		<div className='App'>
 			<EntryScreen isActive={state.entryScreenActive} setState={setState} />
