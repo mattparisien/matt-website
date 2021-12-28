@@ -92,7 +92,13 @@ function EntryScreen(props) {
 							opacity: 0,
 							duration: 0.5,
 							stagger: 0.01,
-							onComplete: () => setIsTransitioning(true),
+							onComplete: () => {
+								setIsTransitioning(true);
+								props.setState(prev => ({
+									...prev,
+									entryScreenActive: false,
+								}));
+							},
 						},
 						9
 					);

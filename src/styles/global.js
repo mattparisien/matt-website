@@ -15,6 +15,11 @@ export const GlobalStyle = createGlobalStyle`
     src: url(${Haas}) format('otf');
   }
 
+
+  body {
+    overflow: ${(props) => props.scrollDisabled ? 'hidden' : 'scroll'};
+  }
+  
   h1, h2 {
     font-family: 'FK';
   }

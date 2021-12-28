@@ -4,7 +4,7 @@ import { useEffect } from "react/cjs/react.development";
 import { isCompositeComponentWithType } from "react-dom/cjs/react-dom-test-utils.development";
 
 function ClipPathTransition(props, ref) {
-	const { isTransitioning, setIsTransitioning, container } = props;
+	const { isTransitioning, setIsTransitioning, container, setState } = props;
 
 	const morphPath = useRef(null);
 	const morphAnimation = useRef(gsap.timeline());

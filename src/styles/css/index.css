@@ -298,6 +298,10 @@ body,
   color: #181818;
 }
 
+body {
+  cursor: url("../../assets/images/cursor.svg");
+}
+
 #bounce-scene {
   z-index: 999999;
 }
@@ -328,7 +332,6 @@ body,
 
 body {
   min-height: 100vh;
-  cursor: none !important;
   position: relative;
   position: relative;
 }

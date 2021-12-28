@@ -13,32 +13,34 @@ function App() {
 
 	const cursor = useRef(null);
 
-	useEffect(() => {
-		console.log("cursor", cursor);
+	// useEffect(() => {
+	// 	console.log("cursor", cursor);
 
-		const handleMouseMove = e => {
-			$(cursor.current).css({
-				left: e.clientX,
-				top: e.clientY,
-			});
-		};
+	// 	const handleMouseMove = e => {
 
-		if (cursor.current) {
-			$(window).on("mousemove", (e) => {
-				handleMouseMove(e);
-			});
-		}
+	// 		$(cursor.current).animate({
+	// 			left: e.clientX,
+	// 			top: e.clientY,
+	// 		}, 0.3);
+	// 	};
 
-		return () => {
-			window.removeEventListener("mousemove", handleMouseMove)
-		};
-	}, [cursor]);
+	// 	if (cursor.current) {
+
+	// 		$(window).on("mousemove", (e) => {
+	// 			handleMouseMove(e);
+	// 		});
+	// 	}
+
+	// 	return () => {
+	// 		window.removeEventListener("mousemove", handleMouseMove)
+	// 	};
+	// }, [cursor]);
 
 	return (
 		<div className='App'>
 			<EntryScreen isActive={state.entryScreenActive} setState={setState} />
 			<main className='content-wrapper'>
-				<GlobalStyle />
+				<GlobalStyle scrollDisabled={state.entryScreenActive} />
 				<Home />
 			</main>
 			<CursorFollower ref={cursor} />
