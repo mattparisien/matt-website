@@ -475,8 +475,8 @@ button.btn-regular {
 
 @media screen and (min-width: 1024px) {
   button.btn-regular {
-    width: 10.8rem;
-    height: 4.3rem;
+    width: 13rem;
+    height: 5rem;
     border: 0px;
     font-size: 1.3rem;
     text-transform: uppercase;

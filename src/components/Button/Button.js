@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import ButtonCircle from "./ButtonCircle";
+import ButtonRegular from "./ButtonRegular";
 
 function Button(props) {
 	const [scale, setScale] = useState(false);
@@ -13,14 +14,14 @@ function Button(props) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
 	}
 
-	const handleMouseEnter = () => {
-		setScale(!scale);
-	};
-	const handleMouseLeave = () => {
-		setScale(!scale);
-	};
 
-	return props.style === "circle" && <ButtonCircle {...props}/>;
+	return (
+		<>
+		{props.style === "circle" && <ButtonCircle {...props}/>};
+		{props.style === "regular" && <ButtonRegular {...props}/>};
+		</>
+		
+	)
 }
 
 export default Button;
