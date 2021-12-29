@@ -53,12 +53,13 @@
 form {
 	padding: 0 4rem;
 	width: 90vw;
-	max-width: 950px;
+	
 
 
 	input {
-		height: 3em;
+		height: 2em;
 		padding: 1em;
+		
 
 	}
 
@@ -66,6 +67,11 @@ form {
 		font-family: 'Opposit';
 		margin-bottom: 2rem;
 		border: 0px;
+		background: transparent;
+		border-bottom: 1px solid $light;
+		color: $light;
+		font-size: 3rem;
+		padding: 0;
 
 		&:focus {
 			outline: none;
@@ -86,11 +92,15 @@ form {
 		width: 100%;
 		height: 100%;
 		z-index: -1;
-		border-radius: 50%;
 	}
 
-	.contactCta__pencil {
+	.contactCta__pencil, .contactCta__close {
 		z-index: 2;
+		transition: 300ms ease;
+	}
+
+	.contactCta__close {
+		fill: $light;
 	}
 
 	@media screen and (min-width: $mobileL) {
@@ -108,6 +118,10 @@ form {
 		.contactCta__pencil {
 			width: 30px;
 		}
+
+		.contactCta__close {
+			width: 40px;
+		}
 	}
 
 	@media screen and (min-width: $desktop) {
@@ -117,7 +131,30 @@ form {
 }
 
 #modal {
-	background-color: $light;
 	z-index: 9999;
 	display: none;
+}
+
+.modal__contact__heading {
+	font-size: 4rem;
+	letter-spacing: 0.1rem;
+}
+
+.modal__contact__info-wrapper {
+	
+	.info-group__location {
+		font-size: 16vw;
+		line-height: 13vw;
+		
+		
+
+		span {
+			font-family: 'FK';
+			display: block;
+			width: 100%;
+		
+
+		}
+	}
+
 }

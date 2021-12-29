@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import classNames from "classnames";
 
-function ButtonCircle(props) {
+function ButtonCircle(props, ref) {
 	const [scale, setScale] = useState(false);
 
 	const circleStyle = {
@@ -29,6 +29,7 @@ function ButtonCircle(props) {
 			type={props.type}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
+			ref={ref}
 		>
 			{props.children}
 			<div className='btn-circle' style={circleStyle} className={circleClass}></div>
@@ -36,4 +37,4 @@ function ButtonCircle(props) {
 	);
 }
 
-export default ButtonCircle;
+export default forwardRef(ButtonCircle);

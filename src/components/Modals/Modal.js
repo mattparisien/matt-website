@@ -3,15 +3,15 @@ import gsap from "gsap";
 import ClipPathTransition from "../ClipPathTransition";
 import Contact from "./Contact";
 
-function Modal({ hideModal, isActive, startPoint }) {
+function Modal({ hideModal, isActive, inner, startPoint }) {
 	const modalStyle = {
 		display: isActive ? "block" : "none",
 	};
 
 	return (
-		<ClipPathTransition startPoint={startPoint}>
+		<ClipPathTransition>
 			<div
-				className='modal-container -isFixed -isFull'
+				className='modal-container -isFixed -isFull -isBgBlue'
 				id='modal'
 				style={modalStyle}
 			>

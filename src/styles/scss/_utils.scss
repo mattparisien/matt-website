@@ -2,6 +2,10 @@
 	font-size: clamp(2.5rem, 6vw, 10rem);
 }
 
+.-isLSectionOne {
+	@include sectionLayoutOne;
+}
+
 .title_heading {
 	width: 100%;
 	height: 200px;
@@ -35,6 +39,11 @@
 		font-size: 25rem;
 	}
 }
+
+
+
+
+
 
 .-hasPaddingLarge {
 	padding: 15% 10% 0% 10%;
@@ -80,6 +89,19 @@
 	height: 100%;
 }
 
+
+.-isOpposit {
+	font-family: 'Opposit';
+}
+
+.-isUppercase {
+	text-transform: uppercase;
+}
+
+.-headingMedium {
+	font-size: 20vw;
+}
+
 .-hasWave {
 	position: relative;
 	overflow: hidden;
@@ -98,6 +120,10 @@
 	overflow: hidden;
 }
 
+.-isBgLight {
+	background-color: $light;
+}
+
 .-isBgOrange {
 	background-color: $orange;
 }
@@ -110,8 +136,28 @@
 	background-color: $yellow;
 }
 
+.-isBgPink {
+	background-color: $pink;
+}
+
 .-isTextLight {
 	color: $light;
+}
+
+.-textAlignLeft {
+	text-align: left;
+}
+
+.-textAlignRight {
+	text-align: right;
+}
+
+.-textAlignCenter {
+	text-align: center;
+}
+
+.-isTextPink {
+	color: $pink;
 }
 
 .-isTextDark {

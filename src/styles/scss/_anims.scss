@@ -1,9 +1,6 @@
-.rotating-item {
+.rotating-el {
   display: inline;
-  height: auto;
-  display: flex;
-  // animation: rotate 10s linear infinite;
-  // transform-origin: 50% 50%;
+  animation: rotate 5s linear infinite;
 }
 
 @keyframes rotate {

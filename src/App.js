@@ -7,14 +7,15 @@ import { useState, useRef, useEffect } from "react";
 import $ from "jquery";
 import Button from "./components/Button/Button";
 import Pencil from "./components/Vector/Pencil";
+import Close from "./components/Vector/Close";
 import Modal from "./components/Modals/Modal";
 
 function App() {
 	const [state, setState] = useState({
 		entryScreenActive: true,
 		modal: {
-			isActive: false
-		}
+			isActive: false,
+		},
 	});
 
 	const scrollContainer = useRef(null);
@@ -53,9 +54,13 @@ function App() {
 				style={"circle"}
 				id={"contactCta"}
 				onClick={toggleModalVisibility}
-				bg={"Orange"}
+				bg={state.modal.isActive ? "Pink" : "Light"}
 			>
-				<Pencil classes={"contactCta__pencil"} />
+				{state.modal.isActive ? (
+					<Close classes={"contactCta__close"} />
+				) : (
+					<Pencil classes={"contactCta__pencil"} />
+				)}
 			</Button>
 		</div>
 	);

@@ -5,7 +5,6 @@
 	z-index: -1;
 }
 
-
 button.btn-regular {
 	text-transform: uppercase;
 	border: 0px;
@@ -25,8 +24,8 @@ button.btn-regular {
 	}
 
 	@media screen and (min-width: $laptop) {
-		width: 13rem;
-		height: 5rem;
+		width: 18rem;
+		height: 6rem;
 		border: 0px;
 		font-size: 1.3rem;
 		text-transform: uppercase;
@@ -37,5 +36,45 @@ button.btn-regular {
 	bottom: 0;
 	right: 0;
 	position: fixed;
+}
 
+
+.btn-group {
+	margin-top: 2rem;
+
+	button:nth-of-type(1) {
+		margin-right: 2rem;
+	}
+}
+
+button .mouseOver-circle {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	background-color: $yellow;
+	z-index: -1;
+	top: 20%;
+	left: 0;
+	transform: scale(0.2);
+	border-radius: 50%;
+	filter: blur(10px);
+}
+
+.btn-regular {
+	overflow: hidden;
+	position: relative;
+}
+
+button {
+	z-index: 0;
+}
+
+.button-link {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
 }

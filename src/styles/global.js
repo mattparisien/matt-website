@@ -15,14 +15,21 @@ export const GlobalStyle = createGlobalStyle`
     src: url(${Haas}) format('otf');
   }
 
+  body {
+    font-family: 'FK';
+    
+  }
+
 
   button, a {
     cursor: pointer;
-  }
+    text-decoration: none;
+    color: inherit;
+  };
 
   button {
     font-family: 'Opposit';
-  }
+  };
   
   h1, h2 {
     font-family: 'FK';
