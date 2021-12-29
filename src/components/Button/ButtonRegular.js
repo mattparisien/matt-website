@@ -13,17 +13,7 @@ function ButtonRegular(props, ref) {
 	const mouseOverCircle = useRef(null);
 	const button = useRef(null);
 
-	// useEffect(() => {
-	// 	if (mouseOverCircle.current) {
-	// 		$(window).on("mousemove", function (e) {
-	// 			$(mouseOverCircle.current).css({
-	// 				transform: `translate3d(${
-	// 					e.offsetX - $(mouseOverCircle.current).width() / 2
-	// 				}px, ${e.offsetY - $(mouseOverCircle.current).height() / 2}px, 0px)`,
-	// 			});
-	// 		});
-	// 	}
-	// });
+
 
 
 
@@ -31,11 +21,11 @@ function ButtonRegular(props, ref) {
 		<button
 			className={buttonClass}
 			ref={button}
-			// onMouseMove={handleMouseEnter}
-			// onMouseLeave={handleMouseLeave}
+			
+			
 		>
 			{props.children}
-			{/* <div className='mouseOver-circle' ref={mouseOverCircle}></div> */}
+			<div className='mouseOver-circle' ref={mouseOverCircle}></div>
 		</button>
 	);
 }
