@@ -287,6 +287,7 @@
 
 .image-gallery-container .image-gallery__item:nth-of-type(4) {
   grid-column: 1/span 1;
+  transform: translate(10vw, -10vw);
 }
 
 .image-gallery-container .image-gallery__item:nth-of-type(5) {
@@ -303,6 +304,7 @@
 
 .image-gallery-container .image-gallery__item:nth-of-type(8) {
   grid-column: 4/span 1;
+  transform: translateY(-10vw);
 }
 
 .image-gallery-container .image-gallery__item:nth-of-type(9) {
@@ -357,7 +359,7 @@
 }
 
 .section-featuredWork {
-  background-color: #cfcfcf;
+  background-color: #faf281;
   color: #f4f1eb;
 }
 
@@ -607,6 +609,23 @@ button {
   justify-content: center;
   width: 100%;
   height: 100%;
+}
+
+.app-footer {
+  height: 100vh;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background-color: #5b487c;
+  z-index: -1;
+  padding: 10rem;
+  color: #f1b9b8;
+}
+
+main {
+  position: sticky;
+  margin-bottom: 100vh;
 }
 
 * {

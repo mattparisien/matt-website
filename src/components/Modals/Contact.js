@@ -10,11 +10,11 @@ function Contact() {
 
 	return (
 		<div className='modal__contact  -isLSectionOne -hasPaddingSmall -isTextPink'>
-			<h4
+			{/* <h4
 				className='modal__contact__heading -isTextPink -isUppercase -textAlignLeft'
 				ref={headingRef}
 			>
-				Get in touch
+				Get in touch!
 			</h4>
 			<div className='modal__contact__info-wrapper -isFull -isFlex -flexColumn'>
 				<div className='info-group__location'>
@@ -41,8 +41,8 @@ function Contact() {
 						Call me
 					</Button>
 				</div>
-			</div>
-			{/* <Form /> */}
+			</div> */}
+			<Form />
 		</div>
 	);
 }

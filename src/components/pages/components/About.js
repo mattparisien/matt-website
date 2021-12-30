@@ -6,13 +6,9 @@ function About() {
 		<Section classes={"section-about -p-large -hasPaddingLarge"}>
 			<p class='fade-up-lines'>
 				Hey, I'm Matt. I'm a dreamer, bagel-lover & software engineer based in
-				Montréal, Canada.
+				Montréal, Canada. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut iusto rerum esse molestiae, vitae perspiciatis repudiandae quas error velit odit, blanditiis nihil recusandae? Eius dicta id quasi vitae ad. Laboriosam!
 			</p>
-			<br />
-			<p class='fade-up-lines'>
-				I'm obsessed with digital products and passionate about interactive
-				digital experiences.
-			</p>
+			
 		</Section>
 	);
 }

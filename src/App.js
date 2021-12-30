@@ -10,6 +10,7 @@ import Pencil from "./components/Vector/Pencil";
 import Close from "./components/Vector/Close";
 import Modal from "./components/Modals/Modal";
 import { Helmet } from "react-helmet";
+import Footer from "./components/Footer";
 
 function App() {
 	const [state, setState] = useState({
@@ -38,8 +39,10 @@ function App() {
 		<div className='App' ref={scrollContainer}>
 			<Helmet>
 				<title>Matthew Parisien</title>
-				<meta name="description" content="Web Developer, Photographer & Graphic Designer" />
-
+				<meta
+					name='description'
+					content='Web Developer, Photographer & Graphic Designer'
+				/>
 			</Helmet>
 			<Modal
 				isActive={state.modal.isActive}
@@ -64,6 +67,7 @@ function App() {
 					<Pencil classes={"contactCta__pencil"} />
 				)}
 			</Button>
+			<Footer />
 		</div>
 	);
 }

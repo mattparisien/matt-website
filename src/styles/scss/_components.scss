@@ -83,3 +83,20 @@ button {
 	width: 100%;
 	height: 100%;
 }
+
+.app-footer {
+	height: 100vh;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100vw;
+	background-color: $purple;
+	z-index: -1;
+	padding: 10rem;
+	color: $pink;
+}
+
+main {
+	position: sticky;
+	margin-bottom: 100vh;
+}

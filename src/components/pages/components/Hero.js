@@ -36,11 +36,21 @@ function Hero(props) {
 					pinSpacing: true,
 				},
 			});
+			scrollTl.current = gsap.timeline({
+				scrollTrigger: {
+					trigger: trigger,
+					start: "top top",
+					end: "+=1000",
+					scrub: !0,
+					pin: true,
+					pinSpacing: true,
+				},
+			});
 		}
 
 		//If all refs are rendered, call heroAnim
 		if (words.current && blob.current && heroTitleTl.current) {
-			const timelines = [heroTitleTl.current];
+			const timelines = [heroTitleTl.current, scrollTl.current];
 			console.log(timelines);
 			heroAnim(words.current, blob.current, timelines);
 		}
