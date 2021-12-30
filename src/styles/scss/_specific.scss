@@ -133,6 +133,7 @@ form {
 #modal {
 	z-index: 9999;
 	display: none;
+	clip-path: url(#transition-clipPath__clip);
 }
 
 .modal__contact__heading {
