@@ -7,7 +7,7 @@ import TransitionClip from "./TransitionClip";
 
 function Modal({ hideModal, isActive, hasBeenActive }) {
 	const modalStyle = {
-		display: isActive ? "block" : "none",
+		display: isActive ? "block" : !isActive && !hasBeenActive ? "none" : "",
 	};
 
 	const container = useRef(null);
@@ -42,7 +42,7 @@ function Modal({ hideModal, isActive, hasBeenActive }) {
 				"isEnd"
 			);
 		}
-	}, [isActive, transitionTl, container, pathRef]);
+	}, [isActive, hasBeenActive, transitionTl, container, pathRef]);
 
 	return (
 		<div

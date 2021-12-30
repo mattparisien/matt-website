@@ -9,7 +9,6 @@ export const pageTransitionAnimation = (
 	const container = transitionCard.current;
 	const path = morphPath.current;
 
-	tl.set(container, { display: "block" });
 	tl.set(path, { attr: { d: "M1031.55,768.1H75.16v-1.24l956.39.39Z" } })
 		.addLabel(">", "isStart")
 		.to(path, {
@@ -23,7 +22,7 @@ export const pageTransitionAnimation = (
 			duration: 0.5,
 			ease: "power3.out",
 		})
-		.addLabel(">", "isHalfway")
+		.addLabel("<", "isHalfway")
 		.to(path, {
 			morphSVG:
 				"M1031.55,588.51c-325.63-357-644.29-358.79-956.39,0V190.8h956.39Z",
