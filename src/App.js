@@ -9,6 +9,7 @@ import Button from "./components/Button/Button";
 import Pencil from "./components/Vector/Pencil";
 import Close from "./components/Vector/Close";
 import Modal from "./components/Modals/Modal";
+import { Helmet } from "react-helmet";
 
 function App() {
 	const [state, setState] = useState({
@@ -23,25 +24,23 @@ function App() {
 
 	const cursor = useRef(null);
 
-	// useEffect(() => {
-	// 	const scroll = new locomotiveScroll({
-	// 		el: scrollContainer.current,
-	// 		smooth: true
-	// 	})
-	// }, [scrollContainer])
-
 	const toggleModalVisibility = () => {
 		setState(prev => ({
 			...prev,
 			modal: {
 				isActive: !state.modal.isActive,
-				hasBeenActive: true
+				hasBeenActive: true,
 			},
 		}));
 	};
 
 	return (
 		<div className='App' ref={scrollContainer}>
+			<Helmet>
+				<title>Matthew Parisien</title>
+				<meta name="description" content="Web Developer, Photographer & Graphic Designer" />
+
+			</Helmet>
 			<Modal
 				isActive={state.modal.isActive}
 				hasBeenActive={state.modal.hasBeenActive}

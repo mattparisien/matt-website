@@ -9,6 +9,7 @@ ReactDOM.render(
 		<ParallaxProvider>
 			<App />
 		</ParallaxProvider>
+		
 	</React.StrictMode>,
 	document.getElementById("root")
 );
