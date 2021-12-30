@@ -1,11 +1,11 @@
-import React, { useEffect, setState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ClipPathTransition from "../ClipPathTransition";
 import Contact from "./Contact";
 import { pageTransitionAnimation } from "../Transition/motion";
 import TransitionClip from "./TransitionClip";
 
-function Modal({ hideModal, isActive, inner, startPoint }) {
+function Modal({ hideModal, isActive, hasBeenActive }) {
 	const modalStyle = {
 		display: isActive ? "block" : "none",
 	};
@@ -16,6 +16,7 @@ function Modal({ hideModal, isActive, inner, startPoint }) {
 
 	//Modal transition animation
 	useEffect(() => {
+		//If modal is opening
 		if (
 			isActive &&
 			transitionTl.current &&
@@ -25,6 +26,20 @@ function Modal({ hideModal, isActive, inner, startPoint }) {
 			pageTransitionAnimation(transitionTl, container, pathRef).tweenFromTo(
 				"isStart",
 				"isHalfway"
+			);
+		}
+
+		//If modal is closing (use hasBeenActive to avoid clipPath animation on first render)
+		if (
+			hasBeenActive &&
+			!isActive &&
+			transitionTl.current &&
+			container.current &&
+			pathRef.current
+		) {
+			pageTransitionAnimation(transitionTl, container, pathRef).tweenFromTo(
+				"isHalfway",
+				"isEnd"
 			);
 		}
 	}, [isActive, transitionTl, container, pathRef]);

@@ -9,8 +9,6 @@ export const pageTransitionAnimation = (
 	const container = transitionCard.current;
 	const path = morphPath.current;
 
-	
-
 	tl.set(container, { display: "block" });
 	tl.set(path, { attr: { d: "M1031.55,768.1H75.16v-1.24l956.39.39Z" } })
 		.addLabel(">", "isStart")
@@ -48,7 +46,8 @@ export const pageTransitionAnimation = (
 		)
 		.set(container, {
 			display: "none",
-		});
+		})
+		.addLabel(">", "isEnd");
 
 	return tl;
 };

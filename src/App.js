@@ -15,6 +15,7 @@ function App() {
 		entryScreenActive: true,
 		modal: {
 			isActive: false,
+			hasBeenActive: false,
 		},
 	});
 
@@ -34,6 +35,7 @@ function App() {
 			...prev,
 			modal: {
 				isActive: !state.modal.isActive,
+				hasBeenActive: true
 			},
 		}));
 	};
@@ -42,6 +44,7 @@ function App() {
 		<div className='App' ref={scrollContainer}>
 			<Modal
 				isActive={state.modal.isActive}
+				hasBeenActive={state.modal.hasBeenActive}
 				hideModal={toggleModalVisibility}
 			/>
 			{/* <EntryScreen isActive={state.entryScreenActive} setState={setState} /> */}
