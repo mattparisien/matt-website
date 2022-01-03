@@ -343,30 +343,6 @@
   grid-column: 4/span 1;
 }
 
-.entry-screen {
-  background-color: #f9e3e3;
-  color: #e76435;
-}
-
-.section-hero {
-  background-color: #f1b9b8;
-  color: #e76435;
-}
-
-.section-about {
-  background-color: #5b487c;
-  color: #f1b9b8;
-}
-
-.section-featuredWork {
-  background-color: #faf281;
-  color: #f4f1eb;
-}
-
-.section-featuredWork .wave path {
-  fill: #5b487c;
-}
-
 .title_heading span:not(:nth-of-type(1)) {
   opacity: 0;
 }

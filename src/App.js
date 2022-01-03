@@ -11,15 +11,55 @@ import Close from "./components/Vector/Close";
 import Modal from "./components/Modals/Modal";
 import { Helmet } from "react-helmet";
 import Footer from "./components/Footer";
+import useScroll from "./helpers/useScroll";
 
 function App() {
+	//Themes
+	const themes = {
+		colors: {
+			light: "rgb(244, 241, 235)",
+			dark: "rgb(24, 24, 24)",
+			lighterDark: "#111111",
+			red: "#DF181F",
+			green: "#039924s",
+			blue: "rgb(78, 140, 162)",
+			yellow: "#faf281",
+			pink: "#f1b9b8",
+			orange: "rgb(231, 100, 53)",
+			grey: "rgb(207, 207, 207)",
+			purple: "#5b487c",
+		},
+	};
+
 	const [state, setState] = useState({
 		entryScreenActive: true,
 		modal: {
 			isActive: false,
 			hasBeenActive: false,
 		},
+		sectionColors: {
+			home: {
+				heroSection: {
+					background: themes.colors.pink,
+					foreground: themes.colors.orange,
+				},
+				aboutSection: {
+					background: themes.colors.purple,
+					foreground: themes.colors.pink,
+				},
+				featuredWorkSection: {
+					background: themes.colors.yellow,
+					foreground: themes.colors.pink,
+				},
+			},
+			footer: {
+				background: themes.colors.purple,
+				foreground: themes.colors.pink,
+			},
+		},
 	});
+
+	const [isScrolling, scrollDirection, scrollTop] = useScroll();
 
 	const scrollContainer = useRef(null);
 
@@ -34,6 +74,13 @@ function App() {
 			},
 		}));
 	};
+
+	const changeSectionColor = () => {};
+
+	/***** CHANGE SECTION COLORS ON SCROLL ****/
+	useEffect(() => {
+		scrollTop === 2200 && changeSectionColor();
+	}, [scrollTop]);
 
 	return (
 		<div className='App' ref={scrollContainer}>
@@ -52,7 +99,7 @@ function App() {
 			{/* <EntryScreen isActive={state.entryScreenActive} setState={setState} /> */}
 			<main className='content-wrapper'>
 				<GlobalStyle scrollDisabled={state.entryScreenActive} />
-				<Home />
+				<Home colors={state.sectionColors.home} />
 			</main>
 			<CursorFollower ref={cursor} />
 			<Button

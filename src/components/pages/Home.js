@@ -4,23 +4,22 @@ import Hero from "./components/Hero";
 import Sticky from "../Sticky";
 import Section from "../Section";
 import FeaturedWork from "./components/FeaturedWork";
+import { StyledHome } from "./styles/StyledHome";
 
-
-
-
-function Home() {
+function Home(props) {
 	//Declare refs needed for animation
 	const stickySection = useRef(null);
 
+	
+
 	return (
-		<>
+		<StyledHome colors={props.colors}>
 			<Sticky ref={stickySection}>
 				<Hero stickySection={stickySection} />
 				<About />
 			</Sticky>
 			<FeaturedWork />
-		
-		</>
+		</StyledHome>
 	);
 }
 

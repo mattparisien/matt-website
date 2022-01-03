@@ -6,6 +6,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import waveAnimation from "../motion/sectionWave";
 import ImageGallery from "../../ImageGallery/ImageGallery";
 import useFetch from "../../../helpers/hooks/useFetch";
+import useScroll from "../../../helpers/useScroll";
 
 function FeaturedWork() {
 	/***** WAVE ANIMATION *****/
@@ -14,8 +15,10 @@ function FeaturedWork() {
 	const wavePath = useRef(null);
 	const [trigger, setTrigger] = useState(null);
 	const [isIntersecting, target] = useIntersect([trigger], {
-		threshold: 0.1,
+		threshold: [0.1, 0.3]
 	});
+
+
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -38,13 +41,17 @@ function FeaturedWork() {
 		}
 	}, [waveSection, isIntersecting, wavePath]);
 
+
+		/***** CHANGE SECTION COLOR *****/
+
+
+	
+
+
 	/***** IMAGE DATA REQUEST *****/
 
 	const [data, error, loading] = useFetch("/api/photos?populate=*");
 
-	useEffect(() => {
-		console.log(data);
-	}, [data]);
 
 	return (
 		<Section
