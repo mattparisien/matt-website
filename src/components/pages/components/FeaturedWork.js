@@ -7,6 +7,8 @@ import waveAnimation from "../motion/sectionWave";
 import ImageGallery from "../../ImageGallery/ImageGallery";
 import useFetch from "../../../helpers/hooks/useFetch";
 import useScroll from "../../../helpers/useScroll";
+import { StyledFeaturedWork } from "./styles/StyledFeaturedWork";
+import Balls from "./Balls";
 
 function FeaturedWork() {
 	/***** WAVE ANIMATION *****/
@@ -22,30 +24,6 @@ function FeaturedWork() {
 
 	gsap.registerPlugin(ScrollTrigger);
 
-	useEffect(() => {
-		if (waveSection.current && !trigger) {
-			setTrigger(waveSection.current);
-		}
-
-		if (isIntersecting && wavePath.current && waveSection.current) {
-			waveAnim.current = gsap.timeline({
-				scrollTrigger: {
-					trigger: trigger,
-					start: "top bottom",
-					end: `+=2000`,
-					scrub: !0,
-				},
-			});
-
-			waveAnimation(waveAnim.current, wavePath.current);
-		}
-	}, [waveSection, isIntersecting, wavePath]);
-
-
-		/***** CHANGE SECTION COLOR *****/
-
-
-	
 
 
 	/***** IMAGE DATA REQUEST *****/
@@ -54,9 +32,9 @@ function FeaturedWork() {
 
 
 	return (
+		<StyledFeaturedWork>
 		<Section
 			classes={"section-featuredWork -hasWave"}
-			hasWave
 			ref={el => {
 				if (el) {
 					return el.tagName === "SECTION"
@@ -66,7 +44,11 @@ function FeaturedWork() {
 			}}
 		>
 			<ImageGallery data={data}/>
+			
+			
+			
 		</Section>
+		</StyledFeaturedWork>
 	);
 }
 

@@ -14,10 +14,7 @@ function Home(props) {
 
 	return (
 		<StyledHome colors={props.colors}>
-			<Sticky ref={stickySection}>
-				<Hero stickySection={stickySection} />
-				<About />
-			</Sticky>
+			
 			<FeaturedWork />
 		</StyledHome>
 	);

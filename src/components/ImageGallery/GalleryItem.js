@@ -1,14 +1,18 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useRef } from "react";
 import { Parallax } from "react-scroll-parallax";
+import { useEffect } from "react/cjs/react.development";
+import { useIntersect } from "../../helpers/hooks/useIntersect";
 
 function GalleryItem(props, ref) {
-	const imageStyle = {
-		backgroundImage: `url(${process.env.REACT_APP_STRAPI_URL + props.image})`,
-	};
-
 	return (
-		<div className='image-gallery__item'>
-			<Parallax className='image-gallery__item__image-wrapper -isFull'  y={[-30, 20]}>
+		<div
+			className={`image-gallery__item ${props.isVisible ? "is-visible" : ""}`}
+			ref={ref}
+		>
+			<Parallax
+				className='image-gallery__item__image-wrapper -isFull'
+				y={[-30, 20]}
+			>
 				<img
 					className='image-gallery__item__image'
 					src={`${process.env.REACT_APP_STRAPI_URL + props.image}`}
@@ -19,4 +23,4 @@ function GalleryItem(props, ref) {
 	);
 }
 
-export default GalleryItem;
+export default forwardRef(GalleryItem);

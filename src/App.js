@@ -12,6 +12,9 @@ import Modal from "./components/Modals/Modal";
 import { Helmet } from "react-helmet";
 import Footer from "./components/Footer";
 import useScroll from "./helpers/useScroll";
+import Preloader from "./components/Preloader";
+import Header from "./components/Header";
+import gsap from "gsap/all";
 
 function App() {
 	//Themes
@@ -31,32 +34,19 @@ function App() {
 		},
 	};
 
+	const [colorHasChanged, setColorHasChanged] = useState(false);
+
 	const [state, setState] = useState({
 		entryScreenActive: true,
 		modal: {
 			isActive: false,
 			hasBeenActive: false,
 		},
-		sectionColors: {
-			home: {
-				heroSection: {
-					background: themes.colors.pink,
-					foreground: themes.colors.orange,
-				},
-				aboutSection: {
-					background: themes.colors.purple,
-					foreground: themes.colors.pink,
-				},
-				featuredWorkSection: {
-					background: themes.colors.yellow,
-					foreground: themes.colors.pink,
-				},
-			},
-			footer: {
-				background: themes.colors.purple,
-				foreground: themes.colors.pink,
-			},
+		colors: {
+			backgroundColor: themes.colors.light,
+			foregroundColor: themes.colors.dark,
 		},
+		isLoading: true,
 	});
 
 	const [isScrolling, scrollDirection, scrollTop] = useScroll();
@@ -75,12 +65,28 @@ function App() {
 		}));
 	};
 
-	const changeSectionColor = () => {};
+	const titleRef = useRef(null);
+	const mainContentRef = useRef(null);
+	const revealContentTl = useRef(gsap.timeline());
+
+	//Reveal content on load
+	useEffect(() => {
+		if (!state.isLoading) {
+			revealContentTl.current.to(titleRef.current, {
+				opacity: 1,
+				delay: 0.2,
+				duration: 2
+			})
+			.to(mainContentRef.current, {
+				opacity: 1,
+				y: 0,
+				duration: 0.1
+			}, 1)
+	
+		}
+	}, [state.isLoading])
 
 	/***** CHANGE SECTION COLORS ON SCROLL ****/
-	useEffect(() => {
-		scrollTop === 2200 && changeSectionColor();
-	}, [scrollTop]);
 
 	return (
 		<div className='App' ref={scrollContainer}>
@@ -97,24 +103,19 @@ function App() {
 				hideModal={toggleModalVisibility}
 			/>
 			{/* <EntryScreen isActive={state.entryScreenActive} setState={setState} /> */}
-			<main className='content-wrapper'>
-				<GlobalStyle scrollDisabled={state.entryScreenActive} />
-				<Home colors={state.sectionColors.home} />
+			<Header ref={titleRef}/>
+			<main className='content-wrapper' ref={mainContentRef}>
+				<GlobalStyle
+					scrollDisabled={state.entryScreenActive}
+					theme={themes}
+					contentOpacity={state.isLoading}
+				/>
+				<Home colors={state.colors} />
 			</main>
 			<CursorFollower ref={cursor} />
-			<Button
-				style={"circle"}
-				id={"contactCta"}
-				onClick={toggleModalVisibility}
-				bg={state.modal.isActive ? "Pink" : "Light"}
-			>
-				{state.modal.isActive ? (
-					<Close classes={"contactCta__close"} />
-				) : (
-					<Pencil classes={"contactCta__pencil"} />
-				)}
-			</Button>
-			<Footer />
+
+			{/* <Footer /> */}
+			<Preloader setLoading={setState} />
 		</div>
 	);
 }

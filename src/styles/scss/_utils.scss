@@ -26,13 +26,15 @@
 }
 
 .-headingLarge {
-	font-size: 15rem;
+	font-family: 'Konnect';
+	letter-spacing: -1.2rem;
+	font-size: 20rem;
 
 	@media screen and (min-width: $mobileS) {
 		font-size: 20vw;
 	}
 	@media screen and (min-width: $laptop) {
-		font-size: 20rem;
+		font-size: 25rem;
 	}
 
 	@media screen and (min-width: $desktop) {
@@ -52,6 +54,8 @@
 		padding: 20% 5% 0% 5%;
 	}
 }
+
+
 
 .-flexCenterAll {
 	display: flex;

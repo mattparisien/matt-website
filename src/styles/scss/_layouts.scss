@@ -54,7 +54,6 @@
 	grid-template-columns: repeat(4, 1fr);
   grid-gap: $gutter;
 	padding: $gutter;
-  margin-top: 30vw;
 	
 
 	.image-gallery__item {
@@ -93,6 +92,7 @@
 
 		&:nth-of-type(5) {
 			grid-column: 3/span 2;
+			margin-top: 35vw;
 			
 		}
 
@@ -104,23 +104,27 @@
 
 		&:nth-of-type(7) {
 			grid-column: 2/span 1;
+			transform: translate(-8vw, -8vw)
 		}
 
 		&:nth-of-type(8) {
 			grid-column: 4/span 1;
-			transform: translateY(-10vw);
+			
 		}
 
 		&:nth-of-type(9) {
 			grid-column: 2/span 1;
+			margin-top: 20vw;
 		}
 
 		&:nth-of-type(10) {
 			grid-column: 3/span 1;
+			margin-top: 20vw;
 		}
 
 		&:nth-of-type(11) {
 			grid-column: 4/span 1;
+			margin-top: 20vw;
 		}
 
 		&:nth-of-type(12) {
