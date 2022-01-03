@@ -6,8 +6,12 @@ import Konnect from "../fonts/Konnect.woff";
 
 export const GlobalStyle = createGlobalStyle`
 
+  body {
+    overflow-y: ${(props) => props.isScrollDisabled ? 'hidden' : 'scroll'};
+  }
+
   .App {
-    background-color: ${(props) => props.theme.colors.light};
+    background-color: ${(props) => props.colors.backgroundColor};
 
 
     header .title, main {

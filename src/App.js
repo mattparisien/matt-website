@@ -106,8 +106,9 @@ function App() {
 			<Header ref={titleRef}/>
 			<main className='content-wrapper' ref={mainContentRef}>
 				<GlobalStyle
-					scrollDisabled={state.entryScreenActive}
+					isScrollDisabled={state.isLoading}
 					theme={themes}
+					colors={state.colors}
 					contentOpacity={state.isLoading}
 				/>
 				<Home colors={state.colors} />
