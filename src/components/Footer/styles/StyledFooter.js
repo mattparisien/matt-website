@@ -20,12 +20,12 @@ export const StyledFooter = styled.footer`
 		left: 0;
 		
 		.footer-cards__wrapper {
-			margin: 0 auto;
+			
 			height: 100%;
 			display: flex;
 			align-items: flex-end;
 			justify-content: center;
-
+			
 			
 		}
 		
@@ -38,6 +38,8 @@ export const StyledFooter = styled.footer`
 				width: 20vw;
         padding: 3rem;
         color ${({ theme }) => theme.colors.dark};
+
+			
 
 		
 
@@ -73,7 +75,7 @@ export const StyledFooter = styled.footer`
 					}
 
           .card-cta__text {
-            font-size: 1.4rem;
+            font-size: 2vw;
           }
 
 
@@ -95,9 +97,10 @@ export const StyledFooter = styled.footer`
 
         .card-greeting {
           
-          font-size: 3rem;
+          font-size: 4vw;
+					
           letter-spacing: -0.1rem;
-          line-height: 2.4rem;
+          line-height: 3vw;
           height: 40%;
           text-align: center;
         }

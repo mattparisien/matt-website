@@ -15,7 +15,7 @@ function Form() {
 	};
 
 	const handleSubmit = e => {
-		console.log('jas ben submited!')
+		
 		e.preventDefault();
 		setState({
 			firstName: "",

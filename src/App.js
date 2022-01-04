@@ -11,6 +11,7 @@ import Preloader from "./components/Preloader";
 import Header from "./components/Header";
 import gsap from "gsap/all";
 import LocomotiveScroll from "locomotive-scroll";
+import locomotiveScroll from "locomotive-scroll";
 
 function App() {
 	//Themes
@@ -29,8 +30,6 @@ function App() {
 			purple: "#5b487c",
 		},
 	};
-
-	const scrollRef = useRef(null);
 
 	const [colorHasChanged, setColorHasChanged] = useState(false);
 
@@ -51,8 +50,22 @@ function App() {
 
 	const scrollContainer = useRef(null);
 
-	const cursor = useRef(null);
+	useEffect(() => {
+		if (scrollContainer.current) {
+			const scroll = new locomotiveScroll({
+				el: scrollContainer.current,
+				smooth: true,
+				getDirection: true,
+				smoothMobile: false,
+			});
 
+			return () => {
+				scroll.destroy();
+			};
+		}
+	}, [scrollContainer]);
+
+	const cursor = useRef(null);
 
 	const toggleModalVisibility = () => {
 		setState(prev => ({
@@ -92,7 +105,7 @@ function App() {
 	/***** CHANGE SECTION COLORS ON SCROLL ****/
 
 	return (
-		<div className='App' >
+		<div className='App' ref={scrollContainer}>
 			<ThemeProvider theme={themes}>
 				<Helmet>
 					<title>Matthew Parisien</title>

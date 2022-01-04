@@ -18,7 +18,6 @@ function ImageGallery(props) {
 
 	useEffect(() => {
 		if (imageRefs.current) {
-			console.log(imageRefs.current);
 			const handleIntersection = entries => {
 				entries.forEach(entry => {
 					setVisible(entry.isIntersecting);
@@ -38,7 +37,6 @@ function ImageGallery(props) {
 	const images =
 		data &&
 		data.map(post => {
-			console.log("post", post);
 			return post.attributes.Photo.data.map((image, index) => {
 				return (
 					<GalleryItem

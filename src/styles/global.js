@@ -6,9 +6,6 @@ import KobeBold from "../fonts/KobeBold.woff"
 
 export const GlobalStyle = createGlobalStyle`
 
-  body {
-    overflow-y: ${props => (props.isScrollDisabled ? "hidden" : "scroll")};
-  }
 
  
 

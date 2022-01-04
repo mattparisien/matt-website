@@ -16,9 +16,7 @@ function FeaturedWork() {
 	const waveSection = useRef(null);
 	const wavePath = useRef(null);
 	const [trigger, setTrigger] = useState(null);
-	const [isIntersecting, target] = useIntersect([trigger], {
-		threshold: [0.1, 0.3]
-	});
+
 
 
 
