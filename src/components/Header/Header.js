@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useRef } from "react";
 import Section from "../Section";
 import { StyledHeader } from "./styles/StyledHeader";
 
