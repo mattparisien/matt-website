@@ -1,17 +1,18 @@
 import styled from "styled-components";
 import { shuffleColors } from "../../../helpers/shuffleColors";
-
-const cardYOffset = "350px";
+import { device, deviceSize } from "../../../styles/breakpoints";
 
 export const StyledFooter = styled.footer`
 	color: blue;
 	
+	@media only screen and (max-width: ${deviceSize.laptop}px) {
+		height: 80vh;
+	}
 
 	.footer-cards {
 		
 		
 		margin: 0;
-		
     font-family: 'Kobe Bold';
 		position: absolute;
 		width: 100%;
@@ -19,27 +20,33 @@ export const StyledFooter = styled.footer`
 		left: 0;
 		
 		.footer-cards__wrapper {
-			width: 80%;
 			margin: 0 auto;
 			height: 100%;
 			display: flex;
 			align-items: flex-end;
 			justify-content: center;
+
+			
 		}
 		
 
 
 			.footer-cards__card {
 				display: inline-block;
-			
 				bottom: 0;
-				height: 400px;
-				width: 300px;
+				height: 27vw;
+				width: 20vw;
         padding: 3rem;
         color ${({ theme }) => theme.colors.dark};
 
+		
+
 				&:not(:first-of-type) {
-					margin-left: -165px;
+					margin-left: -14vw;
+
+					@media only screen and (max-width: ${deviceSize.laptopL}px) {
+						margin-left: -29vw;
+					}
 				}
 				
 				
@@ -52,6 +59,8 @@ export const StyledFooter = styled.footer`
           bottom: 0;
           left: 0;
           width: 100%;
+
+					
           
 
 
@@ -72,6 +81,12 @@ export const StyledFooter = styled.footer`
             width: 3rem;
             transform: rotate(-35deg);
             transform-origin: center;
+						transition:  300ms ease;
+
+						&:hover {
+							transform: rotate(-35deg)translateX(15px);
+							
+						}
             path {
               fill: ${({ theme }) => theme.colors.dark};
             }
@@ -85,10 +100,6 @@ export const StyledFooter = styled.footer`
           line-height: 2.4rem;
           height: 40%;
           text-align: center;
-          
-
-      
-
         }
 				
 

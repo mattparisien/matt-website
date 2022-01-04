@@ -59,8 +59,8 @@ function Cards(props) {
 	return (
 		<div className={"footer-cards"} ref={container}>
 			<div className='footer-cards__wrapper'>
-				{cardData.map(card => {
-					return <Card greeting={card.greeting} ref={addToRefs} />;
+				{cardData.map((card, i) => {
+					return <Card greeting={card.greeting} ref={addToRefs} key={i}/>;
 				})}
 			</div>
 		</div>

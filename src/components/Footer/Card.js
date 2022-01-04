@@ -1,8 +1,10 @@
-import React, {forwardRef} from "react";
+import React, { forwardRef, useRef } from "react";
 import Arrow from "../Vector/Arrow";
-
+import gsap from "gsap";
+import $ from "jquery";
 
 function Card(props, ref) {
+
 	return (
 		<div
 			className='footer-cards__card'
