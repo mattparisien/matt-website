@@ -33,16 +33,29 @@ export const StyledFooter = styled.footer`
           bottom: 0;
           left: 0;
           width: 100%;
-          height: 2rem;
-          align-items: center;
-          justify-content: space-between;
-          display: flex;
-          padding: inherit;
+          
+
+
+					a {
+						align-items: center;
+						justify-content: space-between;
+						display: flex;
+						height: 100px;
+						padding: 0 2rem;
+					}
+
+          .card-cta__text {
+            font-size: 1.4rem;
+          }
+
 
           .arrow-svg {
             width: 3rem;
             transform: rotate(-35deg);
             transform-origin: center;
+            path {
+              fill: ${({theme}) => theme.colors.dark};
+            }
           }
         }
 
