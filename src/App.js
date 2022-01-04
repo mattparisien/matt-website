@@ -8,9 +8,8 @@ import { Helmet } from "react-helmet";
 import Footer from "./components/Footer/Footer";
 import useScroll from "./helpers/useScroll";
 import Preloader from "./components/Preloader";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import gsap from "gsap/all";
-import LocomotiveScroll from "locomotive-scroll";
 import locomotiveScroll from "locomotive-scroll";
 
 function App() {
@@ -119,7 +118,7 @@ function App() {
 					hasBeenActive={state.modal.hasBeenActive}
 					hideModal={toggleModalVisibility}
 				/>
-				{/* <EntryScreen isActive={state.entryScreenActive} setState={setState} /> */}
+				
 				<Header ref={titleRef} />
 				<main className='content-wrapper' ref={mainContentRef}>
 					<GlobalStyle

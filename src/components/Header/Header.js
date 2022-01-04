@@ -1,16 +1,10 @@
-import React, {forwardRef} from "react";
-import Section from "./Section";
+import React, { forwardRef } from "react";
+import Section from "../Section";
+import { StyledHeader } from "./styles/StyledHeader";
 
 function Header(props, ref) {
-
-
-  const headerStyles = {
-    padding: '2rem',
-    height: '50vh',
-  }
-
 	return (
-		<header style={headerStyles}>
+		<StyledHeader>
 			<div className='title -isFull' ref={ref}>
 				<h1
 					className='title_heading -isRelative -headingLarge -hasPaddingSmall'
@@ -20,7 +14,7 @@ function Header(props, ref) {
 					Matt
 				</h1>
 			</div>
-		</header>
+		</StyledHeader>
 	);
 }
 
