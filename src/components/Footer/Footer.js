@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useRef} from "react";
 import Cards from "./Cards";
 import { StyledFooter } from "./styles/StyledFooter";
 
@@ -8,13 +8,16 @@ function Footer(props) {
 		color: props.foregroundColor,
 	};
 
+	const footerRef = useRef(null);
+
+
 	return (
-		<StyledFooter className='app-footer' style={footerStyle}>
+		<StyledFooter className='app-footer' style={footerStyle} ref={footerRef}>
 			<div className='heading-wrapper'>
 				<h1>Ok, let's chat.</h1>
 				<span>hello@matthewparisien.com</span>
 			</div>
-			<Cards/>
+			<Cards footerRef={footerRef.current}/>
 
 			{/* <div className='footer-bottom'>
 				<div className="email">

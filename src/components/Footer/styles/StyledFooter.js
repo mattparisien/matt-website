@@ -1,22 +1,19 @@
 import styled from "styled-components";
 import { shuffleColors } from "../../../helpers/shuffleColors";
 
+const cardYOffset = "350px";
+
 export const StyledFooter = styled.footer`
 	color: blue;
 
 	.footer-cards {
-		width: 65%;
-		height: 35%;
-		position: absolute;
+		
+		height: 100%;
+		margin: 0;
+		width: 100%;
     font-family: 'Kobe Bold';
-		bottom: 0;
-		left: 50%;
-		transform: translateX(-50%);
+		margin-bottom: -20rem;
 
-		.footer-cards__inner {
-			height: 100%;
-			width: 100%;
-			position: relative;
 
 			.footer-cards__card {
 				display: block;
@@ -26,7 +23,11 @@ export const StyledFooter = styled.footer`
 				height: 400px;
 				width: 300px;
         padding: 3rem;
-        color ${({theme}) => theme.colors.dark};
+        color ${({ theme }) => theme.colors.dark};
+				
+
+			
+				
 
         .card-cta {
           position: absolute;
@@ -54,7 +55,7 @@ export const StyledFooter = styled.footer`
             transform: rotate(-35deg);
             transform-origin: center;
             path {
-              fill: ${({theme}) => theme.colors.dark};
+              fill: ${({ theme }) => theme.colors.dark};
             }
           }
         }
@@ -73,17 +74,14 @@ export const StyledFooter = styled.footer`
         }
 				
 
-        &:hover {
-          cursor: pointer;
-        }
 
 				&:nth-of-type(1) {
-					background-color: ${({theme}) => theme.colors.blue};
+					background-color: ${({ theme }) => theme.colors.blue};
 					transform: rotate(20deg);
 				}
 
 				&:nth-of-type(2) {
-          background-color: ${({theme}) => theme.colors.yellow};
+          background-color: ${({ theme }) => theme.colors.yellow};
 					left: 10%;
 					z-index: 99;
 					
@@ -93,45 +91,45 @@ export const StyledFooter = styled.footer`
 				&:nth-of-type(3) {
 					left: 20%;
 					z-index: 99;
-					background-color: ${({theme}) => theme.colors.grey};
+					background-color: ${({ theme }) => theme.colors.grey};
 					transform: rotate(4deg);
 				}
 
 				&:nth-of-type(4) {
 					left: 30%;
 					z-index: 99;
-					background-color: ${({theme}) => theme.colors.red};
+					background-color: ${({ theme }) => theme.colors.red};
 					transform: rotate(-20deg);
 				}
 
 				&:nth-of-type(5) {
 					left: 40%;
 					z-index: 99;
-					background-color: ${({theme}) => theme.colors.orange};
+					background-color: ${({ theme }) => theme.colors.orange};
 					transform: rotate(20deg);
 				}
 
 				&:nth-of-type(6) {
 					left: 50%;
 					z-index: 99;
-					background-color: ${({theme}) => theme.colors.pink};
+					background-color: ${({ theme }) => theme.colors.pink};
 					transform: rotate(-3deg);
 				}
 
 				&:nth-of-type(7) {
 					left: 60%;
 					z-index: 99;
-					background-color: ${({theme}) => theme.colors.green};
+					background-color: ${({ theme }) => theme.colors.green};
 					transform: rotate(-20deg);
 				}
 
 				&:nth-of-type(8) {
 					left: 60%;
 					z-index: 99;
-					background-color: ${({theme}) => theme.colors.purple};
+					background-color: ${({ theme }) => theme.colors.purple};
 					transform: rotate(5deg);
 				}
 			}
-		}
+		
 	}
 `;

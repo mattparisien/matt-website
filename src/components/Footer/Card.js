@@ -1,9 +1,15 @@
-import React from "react";
+import React, {forwardRef} from "react";
 import Arrow from "../Vector/Arrow";
 
-function Card(props) {
+
+function Card(props, ref) {
 	return (
-		<div className='footer-cards__card'>
+		<div
+			className='footer-cards__card'
+			onMouseEnter={props.onMouseEnter}
+			onMouseLeave={props.handleMouseLeave}
+			ref={ref}
+		>
 			<div className='card-greeting'>{props.greeting}</div>
 			<div className='card-cta'>
 				<a href={`mailto:hello@matthewparisien.com?subject=${props.greeting}`}>
@@ -15,4 +21,4 @@ function Card(props) {
 	);
 }
 
-export default Card;
+export default forwardRef(Card);
