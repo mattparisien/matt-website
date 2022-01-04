@@ -2,18 +2,18 @@ import { createGlobalStyle } from "styled-components";
 import FKScreamer from "../fonts/FKScreamer.otf";
 import Haas from "../fonts/Haas.otf";
 import Konnect from "../fonts/Konnect.woff";
-
+import KobeBold from "../fonts/KobeBold.woff"
 
 export const GlobalStyle = createGlobalStyle`
 
   body {
-    overflow-y: ${(props) => props.isScrollDisabled ? 'hidden' : 'scroll'};
+    overflow-y: ${props => (props.isScrollDisabled ? "hidden" : "scroll")};
   }
 
  
 
   .App {
-    background-color: ${(props) => props.colors.backgroundColor};
+    background-color: ${props => props.colors.backgroundColor};
 
 
     header .title, main {
@@ -36,8 +36,8 @@ export const GlobalStyle = createGlobalStyle`
    position: fixed;
    top: 0;
    left: 0;
-   background-color: ${(props) => props.theme.colors.dark};
-   color: ${(props) => props.theme.colors.light};
+   background-color: ${props => props.theme.colors.dark};
+   color: ${props => props.theme.colors.light};
    padding: 2rem;
    font-family: 'Kobe';
    font-size: 4rem;
@@ -62,7 +62,7 @@ export const GlobalStyle = createGlobalStyle`
      position: absolute;
      top: 0;
      left: 0;
-     background-color: ${(props) => props.theme.colors.light};
+     background-color: ${props => props.theme.colors.light};
      width: 100%;
      height: 100%;
      transform: scale(0.0001);
@@ -84,6 +84,11 @@ export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Konnect';
     src: url(${Konnect}) format('woff');
+  }
+
+  @font-face {
+    font-family: 'Kobe Bold';
+    src: url(${KobeBold}) format('woff');
   }
 
   body {
@@ -111,4 +116,4 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   
-`
+`;

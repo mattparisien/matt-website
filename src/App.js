@@ -1,16 +1,12 @@
-import * as styles from "./styles/css/index.css";
 import Home from "./components/pages/Home";
 import CursorFollower from "./components/CursorFollower";
 import { GlobalStyle } from "./styles/global";
-import EntryScreen from "./components/EntryScreen";
+
 import { useState, useRef, useEffect } from "react";
-import $ from "jquery";
-import Button from "./components/Button/Button";
-import Pencil from "./components/Vector/Pencil";
-import Close from "./components/Vector/Close";
+import { ThemeProvider } from "styled-components";
 import Modal from "./components/Modals/Modal";
 import { Helmet } from "react-helmet";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
 import useScroll from "./helpers/useScroll";
 import Preloader from "./components/Preloader";
 import Header from "./components/Header";
@@ -24,7 +20,7 @@ function App() {
 			dark: "rgb(24, 24, 24)",
 			lighterDark: "#111111",
 			red: "#DF181F",
-			green: "#039924s",
+			green: "#1c8c53",
 			blue: "rgb(78, 140, 162)",
 			yellow: "#faf281",
 			pink: "#f1b9b8",
@@ -94,6 +90,7 @@ function App() {
 
 	return (
 		<div className='App' ref={scrollContainer}>
+			<ThemeProvider theme={themes}>
 			<Helmet>
 				<title>Matthew Parisien</title>
 				<meta
@@ -124,6 +121,7 @@ function App() {
 				foregroundColor={themes.colors.light}
 			/>
 			<Preloader setLoading={setState} />
+			</ThemeProvider>
 		</div>
 	);
 }

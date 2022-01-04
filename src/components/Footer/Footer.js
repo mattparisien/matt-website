@@ -1,4 +1,6 @@
 import React from "react";
+import Cards from "./Cards";
+import { StyledFooter } from "./styles/StyledFooter";
 
 function Footer(props) {
 	const footerStyle = {
@@ -7,13 +9,14 @@ function Footer(props) {
 	};
 
 	return (
-		<footer className='app-footer' style={footerStyle}>
+		<StyledFooter className='app-footer' style={footerStyle}>
 			<div className='heading-wrapper'>
 				<h1>Ok, let's chat.</h1>
 				<span>hello@matthewparisien.com</span>
 			</div>
+			<Cards/>
 
-			<div className='footer-bottom'>
+			{/* <div className='footer-bottom'>
 				<div className="email">
 					<a href="mailto:hello@matthewparisien.com">hello@matthewparisien.com</a>
 					</div>
@@ -28,8 +31,8 @@ function Footer(props) {
 						<a href='/'>GitHub</a>
 					</li>
 				</ul>
-			</div>
-		</footer>
+			</div> */}
+		</StyledFooter>
 	);
 }
 
