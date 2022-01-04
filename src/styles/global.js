@@ -10,6 +10,8 @@ export const GlobalStyle = createGlobalStyle`
     overflow-y: ${(props) => props.isScrollDisabled ? 'hidden' : 'scroll'};
   }
 
+ 
+
   .App {
     background-color: ${(props) => props.colors.backgroundColor};
 
@@ -20,8 +22,11 @@ export const GlobalStyle = createGlobalStyle`
 
     main {
       transform: translateY(15vw);
+      
     }
   }
+
+
 
   
  

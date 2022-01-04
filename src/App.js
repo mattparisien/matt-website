@@ -72,19 +72,23 @@ function App() {
 	//Reveal content on load
 	useEffect(() => {
 		if (!state.isLoading) {
-			revealContentTl.current.to(titleRef.current, {
-				opacity: 1,
-				delay: 0.2,
-				duration: 2
-			})
-			.to(mainContentRef.current, {
-				opacity: 1,
-				y: 0,
-				duration: 0.1
-			}, 1)
-	
+			revealContentTl.current
+				.to(titleRef.current, {
+					opacity: 1,
+					delay: 0.2,
+					duration: 2,
+				})
+				.to(
+					mainContentRef.current,
+					{
+						opacity: 1,
+						y: 0,
+						duration: 0.1,
+					},
+					1
+				);
 		}
-	}, [state.isLoading])
+	}, [state.isLoading]);
 
 	/***** CHANGE SECTION COLORS ON SCROLL ****/
 
@@ -103,7 +107,7 @@ function App() {
 				hideModal={toggleModalVisibility}
 			/>
 			{/* <EntryScreen isActive={state.entryScreenActive} setState={setState} /> */}
-			<Header ref={titleRef}/>
+			<Header ref={titleRef} />
 			<main className='content-wrapper' ref={mainContentRef}>
 				<GlobalStyle
 					isScrollDisabled={state.isLoading}
@@ -115,7 +119,10 @@ function App() {
 			</main>
 			<CursorFollower ref={cursor} />
 
-			{/* <Footer /> */}
+			<Footer
+				backgroundColor={themes.colors.dark}
+				foregroundColor={themes.colors.light}
+			/>
 			<Preloader setLoading={setState} />
 		</div>
 	);

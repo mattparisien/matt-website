@@ -45,28 +45,10 @@ function Preloader({ setLoading }) {
 						duration: 0.2,
 						stagger: 0.1,
 					},
-					0.6
+					0.8
 				)
 				.to(
 					lineTwoWords,
-					{
-						opacity: 1,
-						duration: 0.2,
-						stagger: 0.1,
-					},
-					0.9
-				)
-				.to(
-					lineTwoWords,
-					{
-						opacity: 0,
-						duration: 0.2,
-						stagger: 0.1,
-					},
-					1.3
-				)
-				.to(
-					lineThreeWords,
 					{
 						opacity: 1,
 						duration: 0.2,
@@ -75,13 +57,31 @@ function Preloader({ setLoading }) {
 					1.6
 				)
 				.to(
+					lineTwoWords,
+					{
+						opacity: 0,
+						duration: 0.2,
+						stagger: 0.1,
+					},
+					2.4
+				)
+				.to(
+					lineThreeWords,
+					{
+						opacity: 1,
+						duration: 0.2,
+						stagger: 0.1,
+					},
+					3.2
+				)
+				.to(
 					lineThreeWords,
 					{
 						opacity: 0,
 						duration: 0.2,
 						stagger: 0.1,
 					},
-					2
+					4
 				)
 				.to(
 					lineFourWords,
@@ -90,7 +90,7 @@ function Preloader({ setLoading }) {
 						duration: 0.2,
 						stagger: 0.1,
 					},
-					2.3
+					4.8
 				)
 				.to(
 					lineFourWords,
@@ -99,7 +99,7 @@ function Preloader({ setLoading }) {
 						duration: 0.2,
 						stagger: 0.1,
 					},
-					2.7
+					5.6
 				)
 				.to(frameRef.current, {
 					scale: 1,

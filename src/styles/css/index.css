@@ -309,10 +309,6 @@
 }
 
 .image-gallery-container .image-gallery__item:nth-of-type(9) {
-  grid-column: 2 / span 1;
-}
-
-.image-gallery-container .image-gallery__item:nth-of-type(10) {
   grid-column: 3 / span 1;
 }
 
@@ -325,7 +321,8 @@
 }
 
 .image-gallery-container .image-gallery__item:nth-of-type(13) {
-  grid-column: 4 / span 1;
+  grid-column: 2 / span 1;
+  transform: translate(20vw, -50vw);
 }
 
 .image-gallery-container .image-gallery__item:nth-of-type(17) {
@@ -593,11 +590,49 @@ button {
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   background-color: #5b487c;
   z-index: -1;
-  padding: 10rem;
   color: #f1b9b8;
+  padding: 2rem;
+}
+
+.app-footer h1 {
+  font-family: "Konnect";
+  font-size: 14vw;
+  letter-spacing: -0.3vw;
+  line-height: 12vw;
+}
+
+.app-footer .footer-bottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Kobe';
+  font-size: 3rem;
+}
+
+.app-footer .footer-bottom .email {
+  margin: 2rem;
+}
+
+.app-footer .footer-bottom .footer-ul-socials {
+  display: flex;
+  list-style-type: none;
+  align-items: flex-start;
+  margin: 2rem;
+}
+
+.app-footer .footer-bottom .footer-ul-socials li {
+  text-align: left;
+}
+
+.app-footer .footer-bottom .footer-ul-socials li:not(:first-of-type) {
+  margin-left: 2rem;
 }
 
 main {
