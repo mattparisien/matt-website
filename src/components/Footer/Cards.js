@@ -30,6 +30,9 @@ function Cards(props) {
 		{
 			greeting: "Quit talking and being doing.",
 		},
+		{
+			greeting: "Quit talking and being doing.",
+		},
 	];
 
 	const addToRefs = el => {
@@ -55,9 +58,11 @@ function Cards(props) {
 
 	return (
 		<div className={"footer-cards"} ref={container}>
-			{cardData.map(card => {
-				return <Card greeting={card.greeting} ref={addToRefs} />;
-			})}
+			<div className='footer-cards__wrapper'>
+				{cardData.map(card => {
+					return <Card greeting={card.greeting} ref={addToRefs} />;
+				})}
+			</div>
 		</div>
 	);
 }
