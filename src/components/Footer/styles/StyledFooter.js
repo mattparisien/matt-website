@@ -5,14 +5,19 @@ const cardYOffset = "350px";
 
 export const StyledFooter = styled.footer`
 	color: blue;
+	
 
 	.footer-cards {
 		
-		height: 100%;
+		
 		margin: 0;
-		width: 100%;
+		
     font-family: 'Kobe Bold';
-		margin-bottom: -20rem;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		bottom: -300px;
+		
 
 
 			.footer-cards__card {
