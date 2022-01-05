@@ -1,5 +1,5 @@
 import Home from "./components/pages/Home";
-import CursorFollower from "./components/CursorFollower";
+import CursorFollower from "./components/Cursor/Cursor";
 import { GlobalStyle } from "./styles/global";
 import { useState, useRef, useEffect } from "react";
 import { ThemeProvider } from "styled-components";
@@ -11,6 +11,7 @@ import Preloader from "./components/Preloader";
 import Header from "./components/Header/Header";
 import gsap from "gsap/all";
 import locomotiveScroll from "locomotive-scroll";
+import Cursor from "./components/Cursor/Cursor";
 
 function App() {
 	//Themes
@@ -48,21 +49,6 @@ function App() {
 	const [isScrolling, scrollDirection, scrollTop] = useScroll();
 
 	const scrollContainer = useRef(null);
-
-	useEffect(() => {
-		if (scrollContainer.current) {
-			const scroll = new locomotiveScroll({
-				el: scrollContainer.current,
-				smooth: true,
-				getDirection: true,
-				smoothMobile: false,
-			});
-
-			return () => {
-				scroll.destroy();
-			};
-		}
-	}, [scrollContainer]);
 
 	const cursor = useRef(null);
 
@@ -105,6 +91,7 @@ function App() {
 
 	return (
 		<div className='App' ref={scrollContainer}>
+			
 			<ThemeProvider theme={themes}>
 				<Helmet>
 					<title>Matthew Parisien</title>
@@ -118,7 +105,7 @@ function App() {
 					hasBeenActive={state.modal.hasBeenActive}
 					hideModal={toggleModalVisibility}
 				/>
-				
+
 				<Header ref={titleRef} />
 				<main className='content-wrapper' ref={mainContentRef}>
 					<GlobalStyle
@@ -135,6 +122,7 @@ function App() {
 					backgroundColor={themes.colors.dark}
 					foregroundColor={themes.colors.light}
 				/>
+				<Cursor />
 				<Preloader setLoading={setState} />
 			</ThemeProvider>
 		</div>

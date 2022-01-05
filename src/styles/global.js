@@ -3,11 +3,19 @@ import FKScreamer from "../fonts/FKScreamer.otf";
 import Haas from "../fonts/Haas.otf";
 import Konnect from "../fonts/Konnect.woff";
 import KobeBold from "../fonts/KobeBold.woff"
+import { device } from "./breakpoints";
+import DefaultCursor from "../assets/images/cursor-default-01.svg";
 
 export const GlobalStyle = createGlobalStyle`
 
+* {
+  cursor: none;
+}
 
- 
+  body {
+    overflow-y: ${(props) => props.isScrollDisabled ? 'hidden' : 'scroll'};
+    cursor: url(${DefaultCursor});
+  }
 
   .App {
     background-color: ${props => props.colors.backgroundColor};
@@ -19,6 +27,12 @@ export const GlobalStyle = createGlobalStyle`
 
     main {
       transform: translateY(15vw);
+      margin-bottom: 80vh;
+
+      @media ${device.laptop} {
+        margin-bottom: 100vh;
+      }
+
       
     }
   }
