@@ -96,20 +96,6 @@ section {
 	min-height: 100vh;
 	transition: 300ms ease;
 
-	.title {
-		overflow: hidden;
-		font-size: 10vw;
-		line-height: 12vw;
-		white-space: nowrap;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-
-		.title_name {
-			text-align: center;
-		}
-	}
 }
 
 .line-wrapper {

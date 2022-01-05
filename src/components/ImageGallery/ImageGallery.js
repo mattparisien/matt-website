@@ -1,8 +1,9 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, forwardRef } from "react";
 import GalleryItem from "./GalleryItem";
 import { useIntersect } from "../../helpers/hooks/useIntersect";
+import { StyledGallery } from "./styles/StyledGallery";
 
-function ImageGallery(props) {
+function ImageGallery(props, ref) {
 	const { data } = props;
 	const containerRef = useRef(null);
 	const [isVisible, setVisible] = useState(false);
@@ -54,11 +55,7 @@ function ImageGallery(props) {
 			});
 		});
 
-	return (
-		<div ref={containerRef} className='image-gallery-container -isFull'>
-			{images}
-		</div>
-	);
+	return <StyledGallery ref={(containerRef, ref)} className="gallery-wrapper">{images}</StyledGallery>;
 }
 
-export default ImageGallery;
+export default forwardRef(ImageGallery);

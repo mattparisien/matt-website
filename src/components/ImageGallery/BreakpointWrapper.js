@@ -1,10 +1,10 @@
 import React from "react";
 import { Parallax } from "react-scroll-parallax";
 
-function BreakpointWrapper({ breakpoint, children }) {
+function BreakpointWrapper({ isMobile, children }) {
 	return (
 		<>
-			{!breakpoint ? (
+			{!isMobile ? (
 				<Parallax className='image-gallery__item__image-wrapper' y={[-30, 20]}>
 					{children}
 				</Parallax>

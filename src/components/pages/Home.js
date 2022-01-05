@@ -1,12 +1,13 @@
-import React, { useRef } from "react";
+import React, { useRef, forwardRef } from "react";
 import About from "./components/About";
 import Hero from "./components/Hero";
 import Sticky from "../Sticky";
 import Section from "../Section";
 import FeaturedWork from "./components/FeaturedWork";
+
 import { StyledHome } from "./styles/StyledHome";
 
-function Home(props) {
+function Home(props, ref) {
 	//Declare refs needed for animation
 	const stickySection = useRef(null);
 
@@ -14,10 +15,9 @@ function Home(props) {
 
 	return (
 		<StyledHome colors={props.colors}>
-			
-			<FeaturedWork />
+			<FeaturedWork ref={ref}/>
 		</StyledHome>
 	);
 }
 
-export default Home;
+export default forwardRef(Home);

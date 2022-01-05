@@ -36,7 +36,7 @@ function GalleryItem(props, ref) {
 			className={`image-gallery__item ${props.isVisible ? "is-visible" : ""}`}
 			ref={ref}
 		>
-			<BreakpointWrapper breakpoint={isMobileBreakpoint}>
+			<BreakpointWrapper isMobile={isMobileBreakpoint}>
 				{images}
 				{videos}
 			</BreakpointWrapper>

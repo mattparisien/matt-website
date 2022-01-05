@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, forwardRef } from "react";
 import Section from "../../Section";
 import { useIntersect } from "../../../helpers/hooks/useIntersect";
 import gsap from "gsap";
@@ -10,7 +10,7 @@ import useScroll from "../../../helpers/useScroll";
 import { StyledFeaturedWork } from "./styles/StyledFeaturedWork";
 import Balls from "./Balls";
 
-function FeaturedWork() {
+function FeaturedWork(props, ref) {
 	/***** WAVE ANIMATION *****/
 	const waveAnim = useRef(null);
 	const waveSection = useRef(null);
@@ -41,7 +41,7 @@ function FeaturedWork() {
 				}
 			}}
 		>
-			<ImageGallery data={data}/>
+			<ImageGallery data={data} ref={ref}/>
 			
 			
 			
@@ -50,4 +50,4 @@ function FeaturedWork() {
 	);
 }
 
-export default FeaturedWork;
+export default forwardRef(FeaturedWork);

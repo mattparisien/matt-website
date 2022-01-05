@@ -12,6 +12,8 @@ import Header from "./components/Header/Header";
 import gsap from "gsap/all";
 import locomotiveScroll from "locomotive-scroll";
 import Cursor from "./components/Cursor/Cursor";
+import Title from "./components/pages/components/Title";
+
 
 function App() {
 	//Themes
@@ -63,11 +65,12 @@ function App() {
 	};
 
 	const titleRef = useRef(null);
-	const mainContentRef = useRef(null);
+	const galleryRef = useRef(null);
 	const revealContentTl = useRef(gsap.timeline());
 
 	//Reveal content on load
 	useEffect(() => {
+		console.log(galleryRef.current);
 		if (!state.isLoading) {
 			revealContentTl.current
 				.to(titleRef.current, {
@@ -76,7 +79,7 @@ function App() {
 					duration: 2,
 				})
 				.to(
-					mainContentRef.current,
+					galleryRef.current,
 					{
 						opacity: 1,
 						y: 0,
@@ -87,10 +90,8 @@ function App() {
 		}
 	}, [state.isLoading]);
 
-	/***** CHANGE SECTION COLORS ON SCROLL ****/
-
 	return (
-		<div className='App' ref={scrollContainer}>
+		<div className='App'>
 			<ThemeProvider theme={themes}>
 				<Helmet>
 					<title>Matthew Parisien</title>
@@ -105,22 +106,24 @@ function App() {
 					hideModal={toggleModalVisibility}
 				/>
 
-				<Header ref={titleRef} />
-				<main className='content-wrapper' ref={mainContentRef}>
+				<Header />
+
+				<main className='content-wrapper'>
 					<GlobalStyle
 						isScrollDisabled={state.isLoading}
 						theme={themes}
 						colors={state.colors}
 						contentOpacity={state.isLoading}
 					/>
-					<Home colors={state.colors} />
+					<Title ref={titleRef} />
+					<Home colors={state.colors} ref={galleryRef} />
 				</main>
 
 				<Footer
 					backgroundColor={themes.colors.dark}
 					foregroundColor={themes.colors.light}
 				/>
-				
+
 				<Preloader setLoading={setState} />
 			</ThemeProvider>
 		</div>

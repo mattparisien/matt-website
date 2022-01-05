@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import FKScreamer from "../fonts/FKScreamer.otf";
 import Haas from "../fonts/Haas.otf";
 import Konnect from "../fonts/Konnect.woff";
-import KobeBold from "../fonts/KobeBold.woff"
+import KobeBold from "../fonts/KobeBold.woff";
 import { device } from "./breakpoints";
 import DefaultCursor from "../assets/images/cursor-default-01.svg";
 
@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 }
 
   body {
-    overflow-y: ${(props) => props.isScrollDisabled ? 'hidden' : 'scroll'};
+    
     cursor: url(${DefaultCursor});
   }
 
@@ -21,11 +21,11 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${props => props.colors.backgroundColor};
 
 
-    header .title, main {
+    .title, .gallery-wrapper {
       opacity: 0;
     }
 
-    main {
+   .gallery-wrapper {
       transform: translateY(15vw);
       margin-bottom: 80vh;
 
@@ -52,9 +52,15 @@ export const GlobalStyle = createGlobalStyle`
    padding: 2rem;
    font-family: 'Kobe';
    font-size: 9vw;
+   padding: 0.8rem;
    
    @media ${device.tablet} {
      font-size: 4rem;
+   };
+
+
+   @media ${device.mobileL} {
+    padding: 2rem;
    };
 
    h3 {
