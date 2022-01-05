@@ -1,7 +1,8 @@
-import React, { forwardRef, useRef } from "react";
+import React, { forwardRef, useRef, useState } from "react";
 import Section from "../Section";
 import { StyledHeader } from "./styles/StyledHeader";
 import UnorderedList from "../UnorderedList/UnorderedList";
+import { useEffect } from "react/cjs/react.development";
 
 function Header(props, ref) {
 	const listInfo = [
@@ -22,9 +23,17 @@ function Header(props, ref) {
 		},
 	];
 
+
+
+
 	return (
-		<StyledHeader>
-			<UnorderedList listInfo={listInfo}/>
+		<StyledHeader headerHeight={props.headerHeight} ref={ref}>
+			<UnorderedList
+				listInfo={listInfo}
+				orientation={"horizontal"}
+				justifyContent={"flex-end"}
+				alignItems={"center"}
+			/>
 		</StyledHeader>
 	);
 }

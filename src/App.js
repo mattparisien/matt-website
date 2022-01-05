@@ -14,7 +14,6 @@ import locomotiveScroll from "locomotive-scroll";
 import Cursor from "./components/Cursor/Cursor";
 import Title from "./components/pages/components/Title";
 
-
 function App() {
 	//Themes
 	const themes = {
@@ -45,6 +44,7 @@ function App() {
 			backgroundColor: themes.colors.light,
 			foregroundColor: themes.colors.dark,
 		},
+		headerHeight: null,
 		isLoading: true,
 	});
 
@@ -67,6 +67,7 @@ function App() {
 	const titleRef = useRef(null);
 	const galleryRef = useRef(null);
 	const revealContentTl = useRef(gsap.timeline());
+	const headerRef = useRef(null);
 
 	//Reveal content on load
 	useEffect(() => {
@@ -90,6 +91,14 @@ function App() {
 		}
 	}, [state.isLoading]);
 
+	//Calculate header height
+	useEffect(() => {
+		if (headerRef.current) {
+			const headerHeight = headerRef.current.getBoundingClientRect().height;
+			setState(prev => ({ ...prev, headerHeight: headerHeight }));
+		}
+	}, [headerRef]);
+
 	return (
 		<div className='App'>
 			<ThemeProvider theme={themes}>
@@ -106,9 +115,12 @@ function App() {
 					hideModal={toggleModalVisibility}
 				/>
 
-				<Header />
+				<Header ref={headerRef} />
 
-				<main className='content-wrapper'>
+				<main
+					className='content-wrapper'
+					style={{ marginTop: state.headerHeight && state.headerHeight }}
+				>
 					<GlobalStyle
 						isScrollDisabled={state.isLoading}
 						theme={themes}
