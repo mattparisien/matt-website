@@ -91,7 +91,6 @@ function App() {
 
 	return (
 		<div className='App' ref={scrollContainer}>
-			
 			<ThemeProvider theme={themes}>
 				<Helmet>
 					<title>Matthew Parisien</title>
@@ -116,7 +115,6 @@ function App() {
 					/>
 					<Home colors={state.colors} />
 				</main>
-				<CursorFollower ref={cursor} />
 
 				<Footer
 					backgroundColor={themes.colors.dark}

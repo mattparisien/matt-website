@@ -1,8 +1,10 @@
-import React, { useRef } from "react";
-import { StyledCursor } from "./styles/StyledCursor";
+import React, { useRef, useEffect } from "react";
+import { StyledCursorRing, StyledCursorDot } from "./styles/StyledCursor";
 import useMouseMove from "../../helpers/hooks/useMouseMove";
+import $ from "jquery";
 
 function Cursor() {
+	const cursorWrapper = useRef(null);
 	const cursorRing = useRef(null);
 	const cursorDot = useRef(null);
 	const delay = 18;
@@ -16,14 +18,27 @@ function Cursor() {
 
 	const [location] = useMouseMove();
 
+	useEffect(() => {
+		if (cursorRing.current) {
+			$(cursorRing.current).css({
+				top: location.pageY,
+				left: location.pageX,
+			});
+		}
+
+		if (cursorDot.current) {
+			$(cursorDot.current).css({
+				top: location.pageY,
+				left: location.pageX,
+			});
+		}
+	}, [location, cursorRing, cursorDot]);
+
 	return (
-		<StyledCursor id='cursor' className='cursor-wrapper'>
-			<div className='cursor-inner'>
-				<div className='cursor-ring' ref={cursorRing}>
-					<div className='cursor-dot' ref={cursorDot}></div>
-				</div>
-			</div>
-		</StyledCursor>
+		<>
+			<StyledCursorDot id="cursor-dot" ref={cursorDot}></StyledCursorDot>
+			<StyledCursorRing id="cursor-ring" ref={cursorRing}></StyledCursorRing>
+		</>
 	);
 }
 
