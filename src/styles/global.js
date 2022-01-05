@@ -51,7 +51,11 @@ export const GlobalStyle = createGlobalStyle`
    color: ${props => props.theme.colors.light};
    padding: 2rem;
    font-family: 'Kobe';
-   font-size: 4rem;
+   font-size: 9vw;
+   
+   @media ${device.tablet} {
+     font-size: 4rem;
+   };
 
    h3 {
      position: relative;

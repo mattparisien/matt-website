@@ -19,25 +19,40 @@ function Cursor() {
 	const [location] = useMouseMove();
 
 	useEffect(() => {
-		if (cursorRing.current) {
+		endX.current = location.pageX;
+		endY.current = location.pageY;
+
+		const animateFollower = () => {
+			_x.current += (endX.current - _x.current) / delay;
+			_y.current += (endY.current - _y.current) / delay;
+			console.log(endX.current)
+
 			$(cursorRing.current).css({
-				top: location.pageY,
-				left: location.pageX,
+				top: `${_y.current}px`,
+				left: `${_x.current}px`,
 			});
-		}
+
+			requestRef.current = requestAnimationFrame(animateFollower);
+		};
+
+		animateFollower();
 
 		if (cursorDot.current) {
 			$(cursorDot.current).css({
-				top: location.pageY,
-				left: location.pageX,
+				top: `${endY.current}px`,
+				left: `${endX.current}px`,
 			});
 		}
-	}, [location, cursorRing, cursorDot]);
+
+		return () => {
+			cancelAnimationFrame(requestRef.current);
+		};
+	}, [location, cursorRing, cursorDot, requestRef]);
 
 	return (
 		<>
-			<StyledCursorDot id="cursor-dot" ref={cursorDot}></StyledCursorDot>
-			<StyledCursorRing id="cursor-ring" ref={cursorRing}></StyledCursorRing>
+			<StyledCursorDot id='cursor-dot' ref={cursorDot}></StyledCursorDot>
+			<StyledCursorRing id='cursor-ring' ref={cursorRing}></StyledCursorRing>
 		</>
 	);
 }
