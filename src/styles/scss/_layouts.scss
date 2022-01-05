@@ -53,7 +53,7 @@
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	grid-gap: $gutter;
-	padding: $gutter;
+	
 
 	.image-gallery__item {
 		overflow: hidden;
@@ -68,8 +68,10 @@
 			}
 		}
 
+	
+
 		&:nth-of-type(1) {
-			grid-column: 1 / span 1;
+			grid-column: 1 / span 4;
 		}
 
 		&:nth-of-type(2) {
@@ -133,6 +135,17 @@
 		}
 		&:nth-of-type(24) {
 			grid-column: 4 / span 1;
+		}
+
+		@media only screen and (max-width: $tablet) {
+			grid-column: 1/5 !important;
+			transform: none !important;
+			
+
+			
+			
+
+			;
 		}
 	}
 }

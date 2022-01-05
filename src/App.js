@@ -120,7 +120,7 @@ function App() {
 					backgroundColor={themes.colors.dark}
 					foregroundColor={themes.colors.light}
 				/>
-				<Cursor />
+				
 				<Preloader setLoading={setState} />
 			</ThemeProvider>
 		</div>
