@@ -7,6 +7,7 @@ function Title(props, ref) {
 					className='title_heading -isRelative -headingLarge'
 					data-scroll
 					data-scroll-speed='6'
+					style={{textAlign: 'center'}}
 				>
 					Matt
 				</h1>

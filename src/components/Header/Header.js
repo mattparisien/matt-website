@@ -23,16 +23,17 @@ function Header(props, ref) {
 		},
 	];
 
-
+	const { currentPath, headerHeight } = props;
 
 
 	return (
-		<StyledHeader headerHeight={props.headerHeight} ref={ref}>
+		<StyledHeader headerHeight={headerHeight} ref={ref}>
 			<UnorderedList
 				listInfo={listInfo}
 				orientation={"horizontal"}
 				justifyContent={"flex-end"}
 				alignItems={"center"}
+				currentPath={currentPath}
 			/>
 		</StyledHeader>
 	);

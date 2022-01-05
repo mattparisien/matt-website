@@ -9,9 +9,13 @@ export const StyledUnorderedList = styled.ul`
   font-family: 'Kobe';
   font-size: 1.3rem;
 
-  li {
+  .list-item {
     color: ${({theme}) => theme.colors.grey};
     transition: 300ms ease;
+
+    &:nth-of-type(${(props) => props.activeLink}) {
+      color: ${({theme}) => theme.colors.dark};
+    }
 
     &:hover {
       color: ${({theme}) => theme.colors.dark};

@@ -13,6 +13,7 @@ import gsap from "gsap/all";
 import locomotiveScroll from "locomotive-scroll";
 import Cursor from "./components/Cursor/Cursor";
 import Title from "./components/pages/components/Title";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
 	//Themes
@@ -68,6 +69,7 @@ function App() {
 	const galleryRef = useRef(null);
 	const revealContentTl = useRef(gsap.timeline());
 	const headerRef = useRef(null);
+	const location = useLocation();
 
 	//Reveal content on load
 	useEffect(() => {
@@ -115,11 +117,11 @@ function App() {
 					hideModal={toggleModalVisibility}
 				/>
 
-				<Header ref={headerRef} />
+				<Header ref={headerRef} currentPath={location.pathname}/>
 
 				<main
 					className='content-wrapper'
-					style={{ marginTop: state.headerHeight && state.headerHeight }}
+					style={{ paddingTop: state.headerHeight && state.headerHeight }}
 				>
 					<GlobalStyle
 						isScrollDisabled={state.isLoading}
@@ -128,7 +130,17 @@ function App() {
 						contentOpacity={state.isLoading}
 					/>
 					<Title ref={titleRef} />
-					<Home colors={state.colors} ref={galleryRef} />
+					<Routes>
+						<Route
+							path='/'
+							element={
+								<Home
+									colors={state.colors}
+									ref={galleryRef}
+								/>
+							}
+						/>
+					</Routes>
 				</main>
 
 				<Footer

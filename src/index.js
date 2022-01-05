@@ -4,12 +4,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ParallaxProvider } from "react-scroll-parallax";
 import * as CSS from "./styles/css/index.css";
+import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
 	<React.StrictMode>
-		<ParallaxProvider>
-			<App />
-		</ParallaxProvider>
+		<Router>
+			<ParallaxProvider>
+				<App />
+			</ParallaxProvider>
+		</Router>
 	</React.StrictMode>,
 	document.getElementById("root")
 );
