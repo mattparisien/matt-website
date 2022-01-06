@@ -16,12 +16,14 @@ function useSplit(arrayOfElements, options) {
 	useEffect(() => {
 		gsap.registerPlugin(SplitText);
 		
-
-		if (!arrayOfElements.length) {
+		
+		if (!arrayOfElements.length || !arrayOfElements[0]) {
+			
 			return;
 		}
 
 		if (arrayOfElements.length >= 0 && !isSplit) {
+			console.log(arrayOfElements)
 			const mySplitText = new SplitText(arrayOfElements, options);
 			$(mySplitText.lines).wrap('<div class="line-wrapper"></div>');
 			setIsSplit(true);

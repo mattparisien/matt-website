@@ -10,7 +10,9 @@ export const StyledMenu = styled.div`
 	height: 100vh;
 	padding: 2rem;
 	background-color: ${({ theme }) => theme.colors.dark};
+	transform: translateY(-100vh);
 	display: none;
+	
 
 	@media only screen and (max-width: ${deviceSize.tablet}px) {
 		padding: 1rem;
@@ -47,6 +49,13 @@ export const StyledMenu = styled.div`
 
 		li {
 			display: inline-block;
+			overflow: hidden;
+
+			a {
+				display: block;
+				transform: translateY(100%);
+				opacity: 0;
+			}
 
 			&:last-of-type {
 				display: block;

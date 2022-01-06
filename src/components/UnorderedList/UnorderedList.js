@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react/cjs/react.development";
 import { StyledUnorderedList } from "./styles/StyledUnorderedList";
 
 function UnorderedList(
-	{ listInfo, orientation, alignItems, justifyContent, currentPath },
+	{ listInfo, orientation, alignItems, justifyContent, currentPath, addToRefs },
 	ref
 ) {
 	const activeLink = useRef(null);
@@ -27,6 +27,7 @@ function UnorderedList(
 						<a
 							href={listItem.url}
 							target={listItem.openNewTab ? "_blank" : "_self"}
+							ref={addToRefs}
 						>
 							{listItem.title}
 						</a>

@@ -9,17 +9,16 @@ import Nav from "./Nav";
 import MenuLink from "./Menu/MenuLink";
 
 function Header(props, ref) {
-	const { currentPath, headerHeight } = props;
-
-	const handleMenuBtnClick = (e) => {
-		e.preventDefault();
-	}
+	const { currentPath, headerHeight, menuTriggerHandler, isMenuActive } = props;
 
 	return (
-		<StyledHeader headerHeight={headerHeight} ref={ref}>
-			<Title isHomePage={currentPath === '/'}/>
-			<MenuLink onClickHandler={handleMenuBtnClick}/>
-		
+		<StyledHeader headerHeight={headerHeight} ref={ref} isMenuActive={isMenuActive}>
+			<Title isHomePage={currentPath === "/"} />
+			<MenuLink
+				onClickHandler={menuTriggerHandler}
+				isMenuActive={isMenuActive}
+			/>
+
 			{/* <Nav currentPath={currentPath} /> */}
 		</StyledHeader>
 	);

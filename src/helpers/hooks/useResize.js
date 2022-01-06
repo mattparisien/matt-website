@@ -4,12 +4,15 @@ import { useEffect } from "react/cjs/react.development";
 
 export default function useResize() {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+	const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 	const [isResized, setResized] = useState(false);
 
 	useEffect(() => {
 		const handleResize = function (e) {
 			const innerWidth = window.innerWidth;
+			const innerHeight = window.innerHeight;
 			setWindowWidth(innerWidth);
+			setWindowHeight(innerHeight);
 			setResized(true);
 		};
 
@@ -20,5 +23,5 @@ export default function useResize() {
 			setResized(false);
 		};
 	}, []);
-	return [windowWidth, isResized];
+	return [windowWidth, windowHeight, isResized];
 }

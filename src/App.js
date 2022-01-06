@@ -34,7 +34,6 @@ function App() {
 			grey: "rgb(207, 207, 207)",
 			purple: "#5b487c",
 		},
-	
 	};
 
 	const [colorHasChanged, setColorHasChanged] = useState(false);
@@ -51,6 +50,7 @@ function App() {
 		},
 		headerHeight: null,
 		footerHeight: null,
+		menuActive: false,
 		isLoading: true,
 	});
 
@@ -85,7 +85,7 @@ function App() {
 
 		if (!state.isLoading) {
 			revealContentTl.current
-			.set(headerRef.current, { display: "flex" })
+				.set(headerRef.current, { display: "flex" })
 				.to(headerTitle, {
 					opacity: 1,
 					delay: 0.2,
@@ -126,6 +126,10 @@ function App() {
 		}
 	}, [headerRef, footerRef]);
 
+	const toggleMenuActivity = () => {
+		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
+	};
+
 	return (
 		<div className='App'>
 			<ThemeProvider theme={themes}>
@@ -142,7 +146,12 @@ function App() {
 					hideModal={toggleModalVisibility}
 				/>
 
-				<Header ref={headerRef} currentPath={location.pathname} />
+				<Header
+					ref={headerRef}
+					currentPath={location.pathname}
+					menuTriggerHandler={toggleMenuActivity}
+					isMenuActive={state.menuActive}
+				/>
 
 				<ContentWrapper
 					headerOffset={state.headerHeight}
@@ -168,7 +177,7 @@ function App() {
 					foregroundColor={themes.colors.light}
 					ref={footerRef}
 				/>
-				<Menu currentPath={location.pathname}/>
+				<Menu currentPath={location.pathname} isOpen={state.menuActive} />
 				<Preloader setLoading={setState} />
 			</ThemeProvider>
 		</div>
