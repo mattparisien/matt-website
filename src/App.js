@@ -79,20 +79,19 @@ function App() {
 	//Reveal content on load
 	useEffect(() => {
 		const headerTitle = $(headerRef.current).find(".title");
-		const navLinks = $(headerRef.current).find(".list-item");
-
-		const staggerNavItems = [headerTitle, navLinks];
+		const menuTrigger = $(headerRef.current).find(".menu-trigger");
 
 		if (!state.isLoading) {
 			revealContentTl.current
-				.to(titleRef.current, {
+			.set(headerRef.current, { display: "flex" })
+				.to(headerTitle, {
 					opacity: 1,
 					delay: 0.2,
 					duration: 2,
 				})
 
 				.to(
-					staggerNavItems,
+					menuTrigger,
 					{
 						opacity: 1,
 						stagger: 0.1,
