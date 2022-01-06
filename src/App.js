@@ -70,12 +70,15 @@ function App() {
 	const galleryRef = useRef(null);
 	const revealContentTl = useRef(gsap.timeline());
 	const headerRef = useRef(null);
-	const navLinkRefs = useRef([]);
+
 	const location = useLocation();
 
 	//Reveal content on load
 	useEffect(() => {
+		const headerTitle = $(headerRef.current).find(".header-title");
 		const navLinks = $(headerRef.current).find(".list-item");
+
+		const staggerNavItems = [headerTitle, navLinks];
 
 		if (!state.isLoading) {
 			revealContentTl.current
@@ -84,11 +87,16 @@ function App() {
 					delay: 0.2,
 					duration: 2,
 				})
-				.to(navLinks, {
-					opacity: 1,
-					stagger: 0.1,
-					duration: 0.5,
-				}, 0.5)
+
+				.to(
+					staggerNavItems,
+					{
+						opacity: 1,
+						stagger: 0.1,
+						duration: 0.5,
+					},
+					0.5
+				)
 				.to(
 					galleryRef.current,
 					{
@@ -108,12 +116,6 @@ function App() {
 			setState(prev => ({ ...prev, headerHeight: headerHeight }));
 		}
 	}, [headerRef]);
-
-	const addToRefs = el => {
-		if (el && !navLinkRefs.current.includes(el)) {
-			navLinkRefs.current.push(el);
-		}
-	};
 
 	return (
 		<div className='App'>

@@ -17,6 +17,7 @@ export const StyledHeader = styled.header`
 	.header-title, .list-item {
 		font-family: 'Kobe';
 		font-size: 1.3rem;
+		opacity: 0;
 	}
 
 	h1 {
@@ -24,8 +25,5 @@ export const StyledHeader = styled.header`
 		margin-left: -2vw;
 	}
 
-	.list-item {
-		opacity: 0;
-	}
 	
 `;
