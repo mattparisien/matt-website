@@ -28,8 +28,8 @@
 .-headingLarge {
 	font-family: 'Konnect';
 	letter-spacing: -1.2vw;
-	font-size: 20rem;
-	height: 100%;
+	font-size: 18rem;
+	text-align: left !important;
 
 	@media screen and (min-width: $mobileS) {
 		font-size: 25vw;
@@ -37,7 +37,7 @@
 	
 
 	@media screen and (min-width: $laptop) {
-		font-size: 40vw;
+		font-size: 30vw;
 		letter-spacing: -1.4rem;
 	}
 }

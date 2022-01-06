@@ -8,8 +8,6 @@
 @import "specific";
 @import "components";
 
-
-
 //Font config
 // @font-face {
 //   font-family: 'FK';
@@ -39,12 +37,6 @@ body {
 	z-index: 999999;
 }
 
-
-.scroll-wrapper,
-.content-wrapper {
-	height: 100%;
-}
-
 .line-wrapper {
 	overflow: hidden;
 
@@ -67,7 +59,6 @@ body {
 body {
 	min-height: 100vh;
 
-	
 	position: relative;
 	position: relative;
 }
@@ -90,12 +81,6 @@ section {
 
 .section-hero {
 	position: relative;
-}
-
-.content-wrapper {
-	min-height: 100vh;
-	transition: 300ms ease;
-
 }
 
 .line-wrapper {

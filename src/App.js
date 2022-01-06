@@ -12,7 +12,8 @@ import Header from "./components/Header/Header";
 import gsap from "gsap/all";
 import locomotiveScroll from "locomotive-scroll";
 import Cursor from "./components/Cursor/Cursor";
-import Title from "./components/pages/components/Title";
+import ContentWrapper from "./components/ContentWrapper/ContentWrapper";
+
 import { Routes, Route, useLocation } from "react-router-dom";
 import $ from "jquery";
 
@@ -47,6 +48,7 @@ function App() {
 			foregroundColor: themes.colors.dark,
 		},
 		headerHeight: null,
+		footerHeight: null,
 		isLoading: true,
 	});
 
@@ -70,12 +72,13 @@ function App() {
 	const galleryRef = useRef(null);
 	const revealContentTl = useRef(gsap.timeline());
 	const headerRef = useRef(null);
+	const footerRef = useRef(null);
 
 	const location = useLocation();
 
 	//Reveal content on load
 	useEffect(() => {
-		const headerTitle = $(headerRef.current).find(".header-title");
+		const headerTitle = $(headerRef.current).find(".title");
 		const navLinks = $(headerRef.current).find(".list-item");
 
 		const staggerNavItems = [headerTitle, navLinks];
@@ -111,11 +114,16 @@ function App() {
 
 	//Calculate header height
 	useEffect(() => {
-		if (headerRef.current) {
+		if (headerRef.current && footerRef.current) {
 			const headerHeight = headerRef.current.getBoundingClientRect().height;
-			setState(prev => ({ ...prev, headerHeight: headerHeight }));
+			const footerHeight = footerRef.current.getBoundingClientRect().height;
+			setState(prev => ({
+				...prev,
+				headerHeight: headerHeight,
+				footerHeight: footerHeight,
+			}));
 		}
-	}, [headerRef]);
+	}, [headerRef, footerRef]);
 
 	return (
 		<div className='App'>
@@ -135,9 +143,9 @@ function App() {
 
 				<Header ref={headerRef} currentPath={location.pathname} />
 
-				<main
-					className='content-wrapper'
-					style={{ paddingTop: state.headerHeight && state.headerHeight }}
+				<ContentWrapper
+					headerOffset={state.headerHeight}
+					footerOffset={state.footerHeight}
 				>
 					<GlobalStyle
 						isScrollDisabled={state.isLoading}
@@ -145,18 +153,19 @@ function App() {
 						colors={state.colors}
 						contentOpacity={state.isLoading}
 					/>
-					<Title ref={titleRef} />
+
 					<Routes>
 						<Route
 							path='/'
 							element={<Home colors={state.colors} ref={galleryRef} />}
 						/>
 					</Routes>
-				</main>
+				</ContentWrapper>
 
 				<Footer
 					backgroundColor={themes.colors.dark}
 					foregroundColor={themes.colors.light}
+					ref={footerRef}
 				/>
 
 				<Preloader setLoading={setState} />

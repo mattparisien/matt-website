@@ -17,11 +17,15 @@ export const GlobalStyle = createGlobalStyle`
     cursor: url(${DefaultCursor});
   }
 
+  span, p, a:not(li a) {
+    font-family: 'Kobe';
+  }
+
   .App {
     background-color: ${props => props.colors.backgroundColor};
 
 
-    .title, .gallery-wrapper {
+    .gallery-wrapper {
       opacity: 0;
     }
 

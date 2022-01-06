@@ -1,8 +1,8 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, forwardRef} from "react";
 import Cards from "./Cards";
 import { StyledFooter } from "./styles/StyledFooter";
 
-function Footer(props) {
+function Footer(props, ref) {
 	const footerStyle = {
 		backgroundColor: props.backgroundColor,
 		color: props.foregroundColor,
@@ -12,7 +12,7 @@ function Footer(props) {
 
 
 	return (
-		<StyledFooter className='app-footer' style={footerStyle} ref={footerRef}>
+		<StyledFooter className='app-footer' style={footerStyle} ref={footerRef, ref}>
 			<div className='heading-wrapper'>
 				<h1>Ok, let's chat.</h1>
 				<span>hello@matthewparisien.com</span>
@@ -39,4 +39,4 @@ function Footer(props) {
 	);
 }
 
-export default Footer;
+export default forwardRef(Footer);
