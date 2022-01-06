@@ -3,7 +3,7 @@ import UnorderedList from "./UnorderedList";
 import { InstagramIcon, GitHubIcon, LinkedInIcon } from "../Vector/Socials";
 import { StyledSocialList } from "./styles/StyledSocialList";
 
-function SocialList({ orientation }) {
+function SocialList({ orientation, addToRefs }) {
 	const listInfo = [
 		{
 			url: "https://instagram.com/parisien.photo",
@@ -26,12 +26,13 @@ function SocialList({ orientation }) {
 	];
 
 	return (
-		<StyledSocialList className={"SocialList"}>
+		<StyledSocialList className={"SocialList"} isDefaultHidden>
 			<UnorderedList
 				listInfo={listInfo}
 				orientation={orientation}
 				justifyContent={"flex-start"}
 				alignItems={"flex-start"}
+				addToRefs={addToRefs}
 			/>
 		</StyledSocialList>
 	);

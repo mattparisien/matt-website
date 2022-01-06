@@ -18,7 +18,7 @@ export const StyledMenu = styled.div`
 		padding: 1rem;
 	}
 
-	ul {
+	ul:not(.SocialList ul) {
 		font-family: "Konnect";
 		font-size: 7rem;
 		display: block;

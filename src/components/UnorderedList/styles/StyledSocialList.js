@@ -1,11 +1,22 @@
 import styled from "styled-components";
 
 export const StyledSocialList = styled.div`
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: inherit;
+
 	ul {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		padding: inherit;
+
+		li {
+			overflow: hidden;
+
+			a {
+				transform: translateY(100%);
+				display: block;
+				opacity: 0;
+			}
+		}
 
 		li:not(:last-of-type) {
 			margin-bottom: 1rem;

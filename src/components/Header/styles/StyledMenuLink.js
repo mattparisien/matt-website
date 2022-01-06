@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledMenuLink = styled.a`
 	align-self: flex-start;
-	font-size: 1.4rem;
+	font-size: 1rem;
 	position: fixed;
 	top: 0;
 	right: 0;

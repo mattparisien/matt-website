@@ -3,6 +3,7 @@ import { StyledMenu } from "./styles/StyledMenu";
 import UnorderedList from "../UnorderedList/UnorderedList";
 import useResize from "../../helpers/hooks/useResize";
 import gsap from "gsap";
+import SocialList from "../UnorderedList/SocialList";
 
 function Menu(props) {
 	const listInfo = [
@@ -33,7 +34,6 @@ function Menu(props) {
 	};
 
 	useEffect(() => {
-		
 		if (isOpen) {
 			menuAnim.current.play();
 			menuAnim.current
@@ -55,9 +55,8 @@ function Menu(props) {
 				);
 		}
 
-		console.log(menuAnim.current.progress())
+		console.log(menuAnim.current.progress());
 		if (!isOpen && menuAnim.current.progress() !== 0) {
-			
 			menuAnim.current.reverse();
 		}
 	}, [isOpen, menuRef, navItems]);
@@ -69,6 +68,7 @@ function Menu(props) {
 				currentPath={currentPath}
 				addToRefs={addToRefs}
 			/>
+			<SocialList addToRefs={addToRefs}/>
 		</StyledMenu>
 	);
 }
