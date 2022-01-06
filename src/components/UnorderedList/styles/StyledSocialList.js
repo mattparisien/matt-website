@@ -7,14 +7,14 @@ export const StyledSocialList = styled.div`
 	padding: inherit;
 
 	ul {
-
 		li {
 			overflow: hidden;
 
 			a {
-				transform: translateY(100%);
+				transform: ${({ isDefaultHidden }) =>
+					isDefaultHidden ? "translateY(100%)" : "none"};
+				opacity: ${({ isDefaultHidden }) => (isDefaultHidden ? "0" : "1")};
 				display: block;
-				opacity: 0;
 			}
 		}
 

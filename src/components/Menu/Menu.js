@@ -55,7 +55,6 @@ function Menu(props) {
 				);
 		}
 
-		console.log(menuAnim.current.progress());
 		if (!isOpen && menuAnim.current.progress() !== 0) {
 			menuAnim.current.reverse();
 		}
@@ -68,7 +67,7 @@ function Menu(props) {
 				currentPath={currentPath}
 				addToRefs={addToRefs}
 			/>
-			<SocialList addToRefs={addToRefs}/>
+			<SocialList addToRefs={addToRefs} isDefaultHidden/>
 		</StyledMenu>
 	);
 }
