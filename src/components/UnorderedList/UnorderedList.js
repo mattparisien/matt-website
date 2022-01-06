@@ -2,18 +2,11 @@ import React from "react";
 import { useEffect, useRef } from "react/cjs/react.development";
 import { StyledUnorderedList } from "./styles/StyledUnorderedList";
 
-function UnorderedList({
-	listInfo,
-	orientation,
-	alignItems,
-	justifyContent,
-	currentPath,
-}) {
+function UnorderedList(
+	{ listInfo, orientation, alignItems, justifyContent, currentPath },
+	ref
+) {
 	const activeLink = useRef(null);
-
-	useEffect(() => {
-		console.log(activeLink);
-	});
 
 	return (
 		<StyledUnorderedList

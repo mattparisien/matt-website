@@ -14,6 +14,7 @@ import locomotiveScroll from "locomotive-scroll";
 import Cursor from "./components/Cursor/Cursor";
 import Title from "./components/pages/components/Title";
 import { Routes, Route, useLocation } from "react-router-dom";
+import $ from "jquery";
 
 function App() {
 	//Themes
@@ -69,11 +70,13 @@ function App() {
 	const galleryRef = useRef(null);
 	const revealContentTl = useRef(gsap.timeline());
 	const headerRef = useRef(null);
+	const navLinkRefs = useRef([]);
 	const location = useLocation();
 
 	//Reveal content on load
 	useEffect(() => {
-		console.log(galleryRef.current);
+		const navLinks = $(headerRef.current).find(".list-item");
+
 		if (!state.isLoading) {
 			revealContentTl.current
 				.to(titleRef.current, {
@@ -81,6 +84,11 @@ function App() {
 					delay: 0.2,
 					duration: 2,
 				})
+				.to(navLinks, {
+					opacity: 1,
+					stagger: 0.1,
+					duration: 0.5,
+				}, 0.5)
 				.to(
 					galleryRef.current,
 					{
@@ -101,6 +109,12 @@ function App() {
 		}
 	}, [headerRef]);
 
+	const addToRefs = el => {
+		if (el && !navLinkRefs.current.includes(el)) {
+			navLinkRefs.current.push(el);
+		}
+	};
+
 	return (
 		<div className='App'>
 			<ThemeProvider theme={themes}>
@@ -117,7 +131,7 @@ function App() {
 					hideModal={toggleModalVisibility}
 				/>
 
-				<Header ref={headerRef} currentPath={location.pathname}/>
+				<Header ref={headerRef} currentPath={location.pathname} />
 
 				<main
 					className='content-wrapper'
@@ -133,12 +147,7 @@ function App() {
 					<Routes>
 						<Route
 							path='/'
-							element={
-								<Home
-									colors={state.colors}
-									ref={galleryRef}
-								/>
-							}
+							element={<Home colors={state.colors} ref={galleryRef} />}
 						/>
 					</Routes>
 				</main>

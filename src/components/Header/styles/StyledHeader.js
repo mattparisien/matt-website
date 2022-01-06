@@ -9,12 +9,23 @@ export const StyledHeader = styled.header`
 	top: 0;
 	left: 0;	
 	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 
 
+	.header-title, .list-item {
+		font-family: 'Kobe';
+		font-size: 1.3rem;
+	}
 
 	h1 {
 		text-align: left;
 		margin-left: -2vw;
+	}
+
+	.list-item {
+		opacity: 0;
 	}
 	
 `;
