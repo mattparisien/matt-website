@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-
-
-
 export const StyledMenuLink = styled.a`
 	align-self: flex-start;
 	font-size: 1.4rem;
@@ -10,12 +7,13 @@ export const StyledMenuLink = styled.a`
 	top: 0;
 	right: 0;
 	padding: 2rem;
-	font-family: "Kobe Bold";
+	font-family: "Haas";
 	z-index: 9999999;
-	color: ${({theme, isMenuActive}) => isMenuActive ? theme.colors.light : theme.colors.dark};
+	color: ${({ theme, isMenuActive, isFooterIntersecting }) =>
+		isMenuActive || isFooterIntersecting ? theme.colors.light : theme.colors.dark};
 	transition: 300ms ease;
-	transition-delay: 300ms;
-	
+	transition-delay: ${({ isMenuActive }) =>
+		!isMenuActive ? "0ms" : "300ms"};
 
 	.menu-trigger__inner {
 		position: relative;
@@ -38,7 +36,4 @@ export const StyledMenuLink = styled.a`
 			transform: translateY(100%);
 		}
 	}
-
-
-
 `;

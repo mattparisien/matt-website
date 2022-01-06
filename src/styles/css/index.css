@@ -81,12 +81,6 @@
   justify-content: center;
 }
 
-.-isTiny {
-  font-size: 1.5rem;
-  line-height: 1.5rem;
-  font-family: "Kobe";
-}
-
 .-isFlex {
   display: flex;
 }
@@ -519,7 +513,6 @@ button {
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  font-family: 'Kobe';
   font-size: 3rem;
 }
 

@@ -10,16 +10,15 @@ import DefaultCursor from "../assets/images/cursor-default-01.svg";
 export const GlobalStyle = createGlobalStyle`
 
 * {
-  cursor: none;
+cursor: ${({ isCursorWait }) => (isCursorWait ? "wait" : "")}
 }
 
   body {
-    
     cursor: url(${DefaultCursor});
   }
 
   span, p, a:not(li a) {
-    font-family: 'Kobe';
+    font-family: 'Haas';
   }
 
   .App {
@@ -105,7 +104,7 @@ export const GlobalStyle = createGlobalStyle`
 
   @font-face {
     font-family: 'Haas';
-    src: url(${Haas}) format('otf');
+    src: url(${Haas}) format('woff');
   }
 
   @font-face {
@@ -113,10 +112,7 @@ export const GlobalStyle = createGlobalStyle`
     src: url(${Konnect}) format('woff');
   }
 
-  @font-face {
-    font-family: 'Kobe Bold';
-    src: url(${KobeBold}) format('woff');
-  }
+ 
 
   @font-face {
     font-family: 'FuturaCEB';

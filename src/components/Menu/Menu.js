@@ -33,7 +33,7 @@ function Menu(props) {
 	};
 
 	useEffect(() => {
-		console.log(navItems);
+		
 		if (isOpen) {
 			menuAnim.current.play();
 			menuAnim.current

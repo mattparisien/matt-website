@@ -9,10 +9,10 @@ import Nav from "./Nav";
 import MenuLink from "./Menu/MenuLink";
 
 function Header(props, ref) {
-	const { currentPath, headerHeight, menuTriggerHandler, isMenuActive } = props;
+	const { currentPath, headerOffset, menuTriggerHandler, isMenuActive } = props;
 
 	return (
-		<StyledHeader headerHeight={headerHeight} ref={ref} isMenuActive={isMenuActive}>
+		<StyledHeader headerHeight={headerOffset} ref={ref} isMenuActive={isMenuActive}>
 			<Title isHomePage={currentPath === "/"} />
 		</StyledHeader>
 	);

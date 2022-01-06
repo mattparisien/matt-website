@@ -1,6 +1,8 @@
-import React, {useState, useRef, forwardRef} from "react";
+import React, { useState, useRef, forwardRef } from "react";
 import Cards from "./Cards";
 import { StyledFooter } from "./styles/StyledFooter";
+import UnorderedList from "../UnorderedList/UnorderedList";
+import { InstagramIcon, LinkedInIcon, GitHubIcon } from "../Vector/Socials";
 
 function Footer(props, ref) {
 	const footerStyle = {
@@ -10,14 +12,44 @@ function Footer(props, ref) {
 
 	const footerRef = useRef(null);
 
+	const listInfo = [
+		{
+			url: "https://instagram.com/parisien.photo",
+			title: null,
+			vector: <InstagramIcon />,
+			openNewTab: true,
+		},
+		{
+			url: "https://www.linkedin.com/in/matthew-parisien-365572130/",
+			title: null,
+			vector: <LinkedInIcon />,
+			openNewTab: true,
+		},
+		{
+			url: "https://github.com/mattparisien?tab=repositories",
+			title: null,
+			vector: <GitHubIcon />,
+			openNewTab: true,
+		},
+	];
 
 	return (
-		<StyledFooter className='app-footer' style={footerStyle} ref={footerRef, ref}>
+		<StyledFooter
+			className='app-footer'
+			style={footerStyle}
+			ref={(footerRef, ref)}
+		>
 			<div className='heading-wrapper'>
-				<h1>Ok, let's chat.</h1>
-				<span>hello@matthewparisien.com</span>
+				<h1>Talk to me.</h1>
 			</div>
-			<Cards footerRef={footerRef.current}/>
+			<div className='footer-copyright'>© Matthew Parisien</div>
+			<UnorderedList
+				listInfo={listInfo}
+				orientation={"vertical"}
+				justifyContent={"flex-start"}
+				alignItems={"flex-start"}
+			/>
+			<Cards footerRef={footerRef.current} />
 
 			{/* <div className='footer-bottom'>
 				<div className="email">

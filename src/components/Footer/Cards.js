@@ -16,16 +16,16 @@ function Cards(props) {
 			greeting: "Let's have a coffee?",
 		},
 		{
-			greeting: "Quit talking and being doing.",
+			greeting: "Let's talk about mental health.",
 		},
 		{
-			greeting: "Quit talking and being doing.",
+			greeting: "Let's have a fucking photoshoot.",
 		},
 		{
-			greeting: "Quit talking and being doing.",
+			greeting: "What's your favorite movie?",
 		},
 		{
-			greeting: "Quit talking and being doing.",
+			greeting: "Can I have your spotify playlist?",
 		},
 		{
 			greeting: "Quit talking and being doing.",

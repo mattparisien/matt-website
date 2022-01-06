@@ -1,10 +1,10 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, forwardRef } from "react";
 import useSplit from "../../../helpers/hooks/useSplit";
 import gsap from "gsap";
 import $ from "jquery";
 import { StyledMenuLink } from "../styles/StyledMenuLink";
 
-function MenuLink({ onClickHandler, isMenuActive }) {
+function MenuLink({ onClickHandler, isMenuActive, isFooterIntersecting }, ref) {
 	const openRef = useRef(null);
 	const closeRef = useRef(null);
 	const tl = useRef(gsap.timeline());
@@ -27,20 +27,22 @@ function MenuLink({ onClickHandler, isMenuActive }) {
 					opacity: 0,
 					ease: "power3.in",
 				})
-				.to(closeChars, {
-					y: "0",
-					stagger: 0.1,
-					opacity: 1,
-					duration: 0.5,
-					ease: "power3.in",
-				}, 0);
+				.to(
+					closeChars,
+					{
+						y: "0",
+						stagger: 0.1,
+						opacity: 1,
+						duration: 0.5,
+						ease: "power3.in",
+					},
+					0
+				);
 		}
 
-		if (!isMenuActive && tl.current.progress() === 1) {
+		if (!isMenuActive && tl.current.progress() !== 0) {
 			tl.current.reverse();
 		}
-
-
 	}, [isMenuActive, openRef, closeRef]);
 
 	return (
@@ -48,6 +50,8 @@ function MenuLink({ onClickHandler, isMenuActive }) {
 			className='menu-trigger'
 			onClick={onClickHandler}
 			isMenuActive={isMenuActive}
+			isFooterIntersecting={isFooterIntersecting}
+			ref={ref}
 		>
 			<div className='menu-trigger__inner'>
 				<div id='menu' ref={openRef}>
@@ -61,4 +65,4 @@ function MenuLink({ onClickHandler, isMenuActive }) {
 	);
 }
 
-export default MenuLink;
+export default forwardRef(MenuLink);

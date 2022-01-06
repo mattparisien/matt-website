@@ -4,6 +4,43 @@ import { device, deviceSize } from "../../../styles/breakpoints";
 
 export const StyledFooter = styled.footer`
 	color: blue;
+
+	ul {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			padding: inherit;
+
+			li:not(:last-of-type) {
+				margin-bottom: 1rem;
+			}
+
+			.SocialIcon {
+				height: 20px;
+				width: 20px;
+				fill: ${({ theme }) => theme.colors.light};
+				transition: 300ms ease;
+
+				&:hover {
+					opacity: 0.7;
+				}
+			}
+	}
+
+	ul, .footer-copyright {
+		font-size: 1rem;
+		z-index: 2;
+	}
+	
+	.footer-copyright {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		padding: inherit;
+		font-family: 'Haas';
+	}
+
+	
 	
 	@media only screen and (max-width: ${deviceSize.laptop}px) {
 		height: 80vh;
@@ -13,7 +50,7 @@ export const StyledFooter = styled.footer`
 		
 		
 		margin: 0;
-    font-family: 'Kobe Bold';
+    font-family: 'Haas';
 		position: absolute;
 		width: 100%;
 		height: 100%;
@@ -28,7 +65,8 @@ export const StyledFooter = styled.footer`
 			
 			
 		}
-		
+
+	
 
 
 			.footer-cards__card {
@@ -36,7 +74,8 @@ export const StyledFooter = styled.footer`
 				bottom: 0;
 				height: 27vw;
 				width: 20vw;
-        padding: 3rem;
+        padding: 1.5rem;
+				border-radius: 10px;
         color ${({ theme }) => theme.colors.dark};
 
 			
@@ -71,11 +110,12 @@ export const StyledFooter = styled.footer`
 						justify-content: space-between;
 						display: flex;
 						height: 100px;
-						padding: 0 2rem;
+						padding: 1.5rem;
 					}
 
           .card-cta__text {
-            font-size: 2vw;
+            font-size: 1.4vw;
+						align-self: flex-end;
           }
 
 
@@ -84,6 +124,7 @@ export const StyledFooter = styled.footer`
             transform: rotate(-35deg);
             transform-origin: center;
 						transition:  300ms ease;
+						
 
 						&:hover {
 							transform: rotate(-35deg)translateX(15px);
@@ -97,9 +138,9 @@ export const StyledFooter = styled.footer`
 
         .card-greeting {
           
-          font-size: 4vw;
+          font-size: 3vw;
 					
-          letter-spacing: -0.1rem;
+          letter-spacing: -0.08rem;
           line-height: 3vw;
           height: 40%;
           text-align: center;

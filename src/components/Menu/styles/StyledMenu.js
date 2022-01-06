@@ -19,7 +19,7 @@ export const StyledMenu = styled.div`
 	}
 
 	ul {
-		font-family: "FuturaCEB";
+		font-family: "Konnect";
 		font-size: 7rem;
 		display: block;
 

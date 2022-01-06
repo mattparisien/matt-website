@@ -31,8 +31,6 @@ function Cursor() {
 				top: `${_y.current}px`,
 				left: `${_x.current}px`,
 			});
-
-			requestRef.current = requestAnimationFrame(animateFollower);
 		};
 
 		animateFollower();

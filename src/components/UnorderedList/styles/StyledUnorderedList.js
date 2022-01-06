@@ -3,12 +3,11 @@ import styled from "styled-components";
 export const StyledUnorderedList = styled.ul`
   list-style-type: none;
   display: flex;
-  flex-directon: ${(props) => props.flexColumn && 'flex-column'};
+  flex-direction: ${(props) => props.flexColumn && 'column'};
   align-items: ${(props) => props.alignItems};
   justify-content: ${(props) => props.justifyContent};
-  font-family: 'Kobe';
+  font-family: 'Haas';
   font-size: 1.3rem;
-  flex-wrap: wrap;
 
   .list-item {
     color: ${({theme}) => theme.colors.grey};

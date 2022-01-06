@@ -20,6 +20,7 @@ function useIntersect(arrayOfRefs, options) {
 		}
 		const handleIntersection = entries => {
 			entries.forEach(entry => {
+			
 				const isIntersecting = entry.isIntersecting;
 
 				if (isIntersecting && !state.isIntersecting) {

@@ -1,16 +1,17 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { StyledContent } from "./styles/StyledContentWrapper";
 
-function ContentWrapper({ headerOffset, footerOffset, children }) {
+function ContentWrapper({ headerOffset, footerOffset, children }, ref) {
 	return (
 		<StyledContent
 			paddingTop={headerOffset}
 			marginBottom={footerOffset}
 			className='content-wrapper'
+			ref={ref}
 		>
 			{children}
 		</StyledContent>
 	);
 }
 
-export default ContentWrapper;
+export default forwardRef(ContentWrapper);

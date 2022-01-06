@@ -15,6 +15,7 @@ import Cursor from "./components/Cursor/Cursor";
 import ContentWrapper from "./components/ContentWrapper/ContentWrapper";
 import Menu from "./components/Menu/Menu";
 import MenuLink from "./components/Header/Menu/MenuLink";
+import { useIntersect } from "./helpers/hooks/useIntersect";
 
 import { Routes, Route, useLocation } from "react-router-dom";
 import $ from "jquery";
@@ -51,6 +52,7 @@ function App() {
 		},
 		headerHeight: null,
 		footerHeight: null,
+		isFooterIntersecting: false,
 		menuActive: false,
 		isLoading: true,
 	});
@@ -76,8 +78,13 @@ function App() {
 	const revealContentTl = useRef(gsap.timeline());
 	const headerRef = useRef(null);
 	const footerRef = useRef(null);
+	const contentWrapperRef = useRef(null);
+	const menuTriggerRef = useRef(null);
 
 	const location = useLocation();
+	const [isIntersect, target] = useIntersect([contentWrapperRef.current], {
+		rootMargin: "0px 0px -100%",
+	});
 
 	//Reveal content on load
 	useEffect(() => {
@@ -132,8 +139,9 @@ function App() {
 	};
 
 	return (
+		<ThemeProvider theme={themes}>
 		<div className='App'>
-			<ThemeProvider theme={themes}>
+			
 				<Helmet>
 					<title>Matthew Parisien</title>
 					<meta
@@ -157,9 +165,11 @@ function App() {
 				<ContentWrapper
 					headerOffset={state.headerHeight}
 					footerOffset={state.footerHeight}
+					ref={contentWrapperRef}
 				>
 					<GlobalStyle
 						isScrollDisabled={state.isLoading}
+						isCursorWait={state.isLoading}
 						theme={themes}
 						colors={state.colors}
 						contentOpacity={state.isLoading}
@@ -181,11 +191,18 @@ function App() {
 				<MenuLink
 					onClickHandler={toggleMenuActivity}
 					isMenuActive={state.menuActive}
+					isFooterIntersecting={state.isFooterIntersecting}
+					ref={menuTriggerRef}
 				/>
+
 				<Menu currentPath={location.pathname} isOpen={state.menuActive} />
+
 				<Preloader setLoading={setState} />
-			</ThemeProvider>
+				
+			
 		</div>
+		
+		</ThemeProvider>
 	);
 }
 

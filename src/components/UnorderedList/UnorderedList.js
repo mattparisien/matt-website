@@ -30,6 +30,7 @@ function UnorderedList(
 							ref={addToRefs}
 						>
 							{listItem.title}
+							{listItem.vector}
 						</a>
 					</li>
 				);

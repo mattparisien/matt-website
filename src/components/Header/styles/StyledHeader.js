@@ -24,11 +24,6 @@ export const StyledHeader = styled.header`
 
 	.title {
 		display: inline-block;
-
-		svg {
-			width: 60vw;
-			fill: ${({ theme }) => theme.colors.dark};
-		}
 	}
 
 	display: none;
