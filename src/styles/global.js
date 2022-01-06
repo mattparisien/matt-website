@@ -3,6 +3,7 @@ import FKScreamer from "../fonts/FKScreamer.otf";
 import Haas from "../fonts/Haas.otf";
 import Konnect from "../fonts/Konnect.woff";
 import KobeBold from "../fonts/KobeBold.woff";
+import FuturaCEB from "../fonts/Futura.otf";
 import { device } from "./breakpoints";
 import DefaultCursor from "../assets/images/cursor-default-01.svg";
 
@@ -40,6 +41,7 @@ export const GlobalStyle = createGlobalStyle`
       
     }
   }
+
 
 
 
@@ -115,6 +117,13 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Kobe Bold';
     src: url(${KobeBold}) format('woff');
   }
+
+  @font-face {
+    font-family: 'FuturaCEB';
+    src: url(${FuturaCEB}) format('woff');
+  }
+
+  
 
   body {
     font-family: 'FK';

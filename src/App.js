@@ -13,6 +13,7 @@ import gsap from "gsap/all";
 import locomotiveScroll from "locomotive-scroll";
 import Cursor from "./components/Cursor/Cursor";
 import ContentWrapper from "./components/ContentWrapper/ContentWrapper";
+import Menu from "./components/Menu/Menu";
 
 import { Routes, Route, useLocation } from "react-router-dom";
 import $ from "jquery";
@@ -33,6 +34,7 @@ function App() {
 			grey: "rgb(207, 207, 207)",
 			purple: "#5b487c",
 		},
+	
 	};
 
 	const [colorHasChanged, setColorHasChanged] = useState(false);
@@ -166,7 +168,7 @@ function App() {
 					foregroundColor={themes.colors.light}
 					ref={footerRef}
 				/>
-
+				<Menu currentPath={location.pathname}/>
 				<Preloader setLoading={setState} />
 			</ThemeProvider>
 		</div>

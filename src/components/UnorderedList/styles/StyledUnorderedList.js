@@ -8,21 +8,22 @@ export const StyledUnorderedList = styled.ul`
   justify-content: ${(props) => props.justifyContent};
   font-family: 'Kobe';
   font-size: 1.3rem;
+  flex-wrap: wrap;
 
   .list-item {
     color: ${({theme}) => theme.colors.grey};
     transition: 300ms ease;
 
     &:nth-of-type(${(props) => props.activeLink}) {
-      color: ${({theme}) => theme.colors.dark};
+      color: ${({theme}) => theme.colors.green};
     }
 
     &:hover {
-      color: ${({theme}) => theme.colors.dark};
+      color: ${({theme}) => theme.colors.green};
     }
 
     &:not(:last-of-type) {
-      margin-right: 5rem;
+      margin-right: 2rem;
     }
   }
 
