@@ -14,6 +14,7 @@ import locomotiveScroll from "locomotive-scroll";
 import Cursor from "./components/Cursor/Cursor";
 import ContentWrapper from "./components/ContentWrapper/ContentWrapper";
 import Menu from "./components/Menu/Menu";
+import MenuLink from "./components/Header/Menu/MenuLink";
 
 import { Routes, Route, useLocation } from "react-router-dom";
 import $ from "jquery";
@@ -23,7 +24,7 @@ function App() {
 	const themes = {
 		colors: {
 			light: "rgb(244, 241, 235)",
-			dark: "rgb(24, 24, 24)",
+			dark: "#141414",
 			lighterDark: "#111111",
 			red: "#DF181F",
 			green: "#1c8c53",
@@ -176,6 +177,10 @@ function App() {
 					backgroundColor={themes.colors.dark}
 					foregroundColor={themes.colors.light}
 					ref={footerRef}
+				/>
+				<MenuLink
+					onClickHandler={toggleMenuActivity}
+					isMenuActive={state.menuActive}
 				/>
 				<Menu currentPath={location.pathname} isOpen={state.menuActive} />
 				<Preloader setLoading={setState} />

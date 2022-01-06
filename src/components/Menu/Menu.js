@@ -35,6 +35,7 @@ function Menu(props) {
 	useEffect(() => {
 		console.log(navItems);
 		if (isOpen) {
+			menuAnim.current.play();
 			menuAnim.current
 				.set(menuRef.current, { display: "block" })
 				.to(menuRef.current, {
@@ -52,6 +53,12 @@ function Menu(props) {
 					},
 					0.6
 				);
+		}
+
+		console.log(menuAnim.current.progress())
+		if (!isOpen && menuAnim.current.progress() !== 0) {
+			
+			menuAnim.current.reverse();
 		}
 	}, [isOpen, menuRef, navItems]);
 

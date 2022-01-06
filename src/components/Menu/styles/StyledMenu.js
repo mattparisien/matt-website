@@ -5,7 +5,7 @@ export const StyledMenu = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: 999999;
+	z-index: 9999;
 	width: 100vw;
 	height: 100vh;
 	padding: 2rem;
@@ -50,6 +50,10 @@ export const StyledMenu = styled.div`
 		li {
 			display: inline-block;
 			overflow: hidden;
+
+			&:last-of-type{
+				margin-top: -2vw;
+			}
 
 			a {
 				display: block;

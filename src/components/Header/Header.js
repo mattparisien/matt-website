@@ -14,12 +14,6 @@ function Header(props, ref) {
 	return (
 		<StyledHeader headerHeight={headerHeight} ref={ref} isMenuActive={isMenuActive}>
 			<Title isHomePage={currentPath === "/"} />
-			<MenuLink
-				onClickHandler={menuTriggerHandler}
-				isMenuActive={isMenuActive}
-			/>
-
-			{/* <Nav currentPath={currentPath} /> */}
 		</StyledHeader>
 	);
 }
