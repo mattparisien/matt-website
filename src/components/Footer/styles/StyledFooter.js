@@ -5,27 +5,7 @@ import { device, deviceSize } from "../../../styles/breakpoints";
 export const StyledFooter = styled.footer`
 	color: blue;
 
-	ul {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			padding: inherit;
-
-			li:not(:last-of-type) {
-				margin-bottom: 1rem;
-			}
-
-			.SocialIcon {
-				height: 20px;
-				width: 20px;
-				fill: ${({ theme }) => theme.colors.light};
-				transition: 300ms ease;
-
-				&:hover {
-					opacity: 0.7;
-				}
-			}
-	}
+	
 
 	ul, .footer-copyright {
 		font-size: 1rem;
