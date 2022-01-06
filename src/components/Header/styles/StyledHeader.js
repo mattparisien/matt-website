@@ -31,6 +31,10 @@ width: 100vw;
 	.menu-trigger {
 		align-self: flex-start;
 		font-size: 1.4rem;
+		position: fixed;
+		top: 0;
+		right: 0;
+		padding: inherit;
 	}
 
 
