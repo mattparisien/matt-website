@@ -225,7 +225,9 @@ function App() {
 					isOpen={state.menuActive}
 					isLoading={state.isLoading}
 					hideContent={toggleContentVisibility}
+					hideMenu={toggleMenuActivity}
 					setLoading={toggleLoadingState}
+
 				/>
 
 				<Preloader setLoading={setState} />

@@ -21,7 +21,7 @@ function Menu(props) {
 		},
 	];
 
-	const { currentPath, isOpen, hideContent, setLoading, isLoading } = props;
+	const { currentPath, isOpen, hideMenu, hideContent, setLoading, isLoading } = props;
 
 	const menuRef = useRef(null);
 	const menuAnim = useRef(
@@ -64,7 +64,7 @@ function Menu(props) {
 
 	const handleClick = () => {
 		hideContent();
-		menuAnim.current.reverse(0.93);
+		hideMenu();
 		setLoading();
 	};
 
