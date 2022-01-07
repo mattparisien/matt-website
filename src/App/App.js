@@ -92,8 +92,6 @@ function App() {
 		const headerTitleChars = $(headerRef.current).find(".title .char");
 		const isPreloaderComplete = state.isContentHidden && !state.isLoading;
 
-
-
 		if (isPreloaderComplete) {
 			revealContentTl.current
 				.set(headerRef.current, { display: "flex" })
@@ -146,6 +144,13 @@ function App() {
 
 	const toggleMenuActivity = () => {
 		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
+	};
+
+	const toggleContentVisibility = () => {
+		setState(prev => ({
+			...prev,
+			isContentHidden: state.isContentHidden ? false : true,
+		}));
 	};
 
 	return (
@@ -208,7 +213,11 @@ function App() {
 					ref={menuTriggerRef}
 				/>
 
-				<Menu currentPath={location.pathname} isOpen={state.menuActive} />
+				<Menu
+					currentPath={location.pathname}
+					isOpen={state.menuActive}
+					hideContent={toggleContentVisibility}
+				/>
 
 				<Preloader setLoading={setState} />
 			</div>

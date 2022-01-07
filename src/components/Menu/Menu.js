@@ -21,7 +21,7 @@ function Menu(props) {
 		},
 	];
 
-	const { currentPath, isOpen } = props;
+	const { currentPath, isOpen, hideContent } = props;
 
 	const menuRef = useRef(null);
 	const menuAnim = useRef(gsap.timeline());
@@ -66,6 +66,8 @@ function Menu(props) {
 				listInfo={listInfo}
 				currentPath={currentPath}
 				addToRefs={addToRefs}
+				onClick={hideContent}
+				hasRouterLinks
 			/>
 			<SocialList addToRefs={addToRefs} alignItems={"center"} isDefaultHidden/>
 		</StyledMenu>

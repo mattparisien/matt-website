@@ -1,12 +1,18 @@
 import React from "react";
 import { useEffect, useRef } from "react/cjs/react.development";
 import { StyledUnorderedList } from "./styles/StyledUnorderedList";
-import { Link } from "react-router-dom";
+import AnchorLink from "../AnchorLink/AnchorLink";
 
-function UnorderedList(
-	{ listInfo, isVertical, alignItems, justifyContent, currentPath, addToRefs },
-	ref
-) {
+function UnorderedList({
+	listInfo,
+	isVertical,
+	alignItems,
+	justifyContent,
+	currentPath,
+	addToRefs,
+	hasRouterLinks,
+	onClick,
+}) {
 	const activeLink = useRef(null);
 
 	return (
@@ -25,14 +31,16 @@ function UnorderedList(
 							listItem.url === currentPath ? (activeLink.current = i + 1) : null
 						}
 					>
-						<Link
+						<AnchorLink
 							to={listItem.url}
 							target={listItem.openNewTab ? "_blank" : "_self"}
-							ref={addToRefs}
+							addToRefs={addToRefs}
+							onClick={onClick}
+							isRouterLink={hasRouterLinks}
 						>
 							{listItem.title}
 							{listItem.vector}
-						</Link>
+						</AnchorLink>
 					</li>
 				);
 			})}
