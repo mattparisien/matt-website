@@ -94,6 +94,7 @@ function App() {
 		
 
 		if (!state.isLoading) {
+			
 			revealContentTl.current
 				.set(headerRef.current, { display: "flex" })
 				.set(menuTriggerRef.current, { display: "block" })
