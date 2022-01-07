@@ -67,7 +67,7 @@ function Menu(props) {
 				currentPath={currentPath}
 				addToRefs={addToRefs}
 			/>
-			<SocialList addToRefs={addToRefs} isDefaultHidden/>
+			<SocialList addToRefs={addToRefs} alignItems={"center"} isDefaultHidden/>
 		</StyledMenu>
 	);
 }

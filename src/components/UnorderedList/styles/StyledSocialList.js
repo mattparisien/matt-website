@@ -18,7 +18,7 @@ export const StyledSocialList = styled.div`
 				transform: ${({ isDefaultHidden }) =>
 					isDefaultHidden ? "translateY(100%)" : "none"};
 				opacity: ${({ isDefaultHidden }) => (isDefaultHidden ? "0" : "1")};
-				display: block;
+				display: flex;
 			}
 		}
 
