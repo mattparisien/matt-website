@@ -75,7 +75,6 @@ export default function animatePreloader(timeline, refs, setLoading, setHasVisit
 		.set(refs.containerRef, {
 			display: "none",
 			onComplete: () => {
-				setHasVisited()
 				setLoading(prev => ({ ...prev, isLoading: false }));
 			},
 		});

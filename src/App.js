@@ -38,16 +38,6 @@ function App() {
 		},
 	};
 
-	const [cookies, setCookie] = useCookies([]);
-
-	useEffect(() => {
-		if (cookies.hasVisited) {
-			return;
-		} else {
-			setCookie("hasVisited", false);
-		}
-	}, []);
-
 	const [colorHasChanged, setColorHasChanged] = useState(false);
 
 	const [state, setState] = useState({
@@ -64,7 +54,7 @@ function App() {
 		footerHeight: null,
 		isFooterIntersecting: false,
 		menuActive: false,
-		isLoading: false,
+		isLoading: true,
 	});
 
 	const [isScrolling, scrollDirection, scrollTop] = useScroll();
@@ -149,10 +139,6 @@ function App() {
 		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
 	};
 
-	const setHasVisited = () => {
-		setCookie("hasVisited", true, { path: "/" });
-	};
-
 	return (
 		<ThemeProvider theme={themes}>
 			<div className='App'>
@@ -192,7 +178,12 @@ function App() {
 					<Routes>
 						<Route
 							path='/'
-							element={<Home colors={state.colors} ref={galleryRef} />}
+							element={
+								<Home
+									colors={state.colors}
+									ref={galleryRef}
+								/>
+							}
 						/>
 						<Route path='/about' element={<About />} />
 						<Route path='/contact' element={<Contact />} />
@@ -213,9 +204,7 @@ function App() {
 
 				<Menu currentPath={location.pathname} isOpen={state.menuActive} />
 
-				{!cookies.hasVisited && (
-					<Preloader setLoading={setState} setHasVisited={setHasVisited} />
-				)}
+				<Preloader setLoading={setState} />
 			</div>
 		</ThemeProvider>
 	);

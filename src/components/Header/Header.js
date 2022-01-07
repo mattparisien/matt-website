@@ -9,7 +9,7 @@ import Nav from "./Nav";
 import MenuLink from "./Menu/MenuLink";
 
 function Header(props, ref) {
-	const { currentPath, headerOffset, isMenuActive } = props;
+	const { currentPath, headerOffset, isMenuActive, hasVisited } = props;
 
 	return (
 		<StyledHeader
@@ -17,7 +17,7 @@ function Header(props, ref) {
 			ref={ref}
 			isMenuActive={isMenuActive}
 		>
-			<Title isHomePage={currentPath === "/"} />
+			<Title isHomePage={currentPath === "/"} hasVisited={hasVisited} />
 		</StyledHeader>
 	);
 }

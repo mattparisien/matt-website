@@ -26,7 +26,7 @@ function Preloader({ setLoading, setHasVisited, isActive }) {
 
 	useEffect(() => {
 		//Set loading to true initially
-		setLoading(prev => ({ ...prev, setLoading: true }));
+		
 
 		if (frameRef.current && sentenceRefs.current && isSplit) {
 			const q = gsap.utils.selector(wordsContainer.current);
