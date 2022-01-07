@@ -7,7 +7,7 @@ function Title(props, ref) {
 
 	return (
 		<div className='title'>
-			{isHomePage && <Logo isDefaultHidden/>}
+			{isHomePage && <Logo />}
 		</div>
 	);
 }

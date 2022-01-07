@@ -12,7 +12,11 @@ function Header(props, ref) {
 	const { currentPath, headerOffset, isMenuActive } = props;
 
 	return (
-		<StyledHeader headerHeight={headerOffset} ref={ref} isMenuActive={isMenuActive}>
+		<StyledHeader
+			headerHeight={headerOffset}
+			ref={ref}
+			isMenuActive={isMenuActive}
+		>
 			<Title isHomePage={currentPath === "/"} />
 		</StyledHeader>
 	);
