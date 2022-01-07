@@ -89,11 +89,14 @@ function App() {
 	//Reveal content on load
 	useEffect(() => {
 		const headerTitleChars = $(headerRef.current).find(".title .char")
-		const menuTrigger = $(headerRef.current).find(".menu-trigger");
+		
+
+		
 
 		if (!state.isLoading) {
 			revealContentTl.current
 				.set(headerRef.current, { display: "flex" })
+				.set(menuTriggerRef.current, { display: "block" })
 				.to(headerTitleChars, {
 					opacity: 1,
 					y: 0,
@@ -103,10 +106,9 @@ function App() {
 					ease: 'power3.out'
 				})
 				.to(
-					menuTrigger,
+					menuTriggerRef.current,
 					{
 						opacity: 1,
-						stagger: 0.1,
 						duration: 0.5,
 					},
 					0.5

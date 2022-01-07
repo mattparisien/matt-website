@@ -17,7 +17,7 @@ cursor: ${({ isCursorWait }) => (isCursorWait ? "wait" : "")}
     cursor: url(${DefaultCursor});
   }
 
-  span, p, a:not(li a) {
+  p, a:not(li a) {
     font-family: 'Haas';
   }
 
@@ -55,7 +55,7 @@ cursor: ${({ isCursorWait }) => (isCursorWait ? "wait" : "")}
    background-color: ${props => props.theme.colors.dark};
    color: ${props => props.theme.colors.light};
    padding: 2rem;
-   font-family: 'Kobe';
+   font-family: 'Konnect';
    font-size: 9vw;
    padding: 0.8rem;
    

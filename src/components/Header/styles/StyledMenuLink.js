@@ -10,10 +10,13 @@ export const StyledMenuLink = styled.a`
 	font-family: "Haas";
 	z-index: 9999999;
 	color: ${({ theme, isMenuActive, isFooterIntersecting }) =>
-		isMenuActive || isFooterIntersecting ? theme.colors.light : theme.colors.dark};
+		isMenuActive || isFooterIntersecting
+			? theme.colors.light
+			: theme.colors.dark};
 	transition: 300ms ease;
-	transition-delay: ${({ isMenuActive }) =>
-		!isMenuActive ? "0ms" : "300ms"};
+	transition-delay: ${({ isMenuActive }) => (!isMenuActive ? "0ms" : "300ms")};
+	opacity: 0;
+	display: none;
 
 	.menu-trigger__inner {
 		position: relative;
