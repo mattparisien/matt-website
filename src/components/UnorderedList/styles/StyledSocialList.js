@@ -5,8 +5,12 @@ export const StyledSocialList = styled.div`
 	bottom: 0;
 	left: 0;
 	padding: inherit;
+	z-index: 999;
 
 	ul {
+
+		
+
 		li {
 			overflow: hidden;
 
@@ -18,10 +22,7 @@ export const StyledSocialList = styled.div`
 			}
 		}
 
-		li:not(:last-of-type) {
-			margin-bottom: 1rem;
-		}
-
+	
 		.SocialIcon {
 			height: 20px;
 			width: 20px;

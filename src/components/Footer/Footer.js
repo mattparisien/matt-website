@@ -23,7 +23,7 @@ function Footer(props, ref) {
 				<h1>Talk to me.</h1>
 			</div>
 			<div className='footer-copyright'>© Matthew Parisien</div>
-			<SocialList orientation={"vertical"}/>
+			<SocialList isVertical alignItems={"flex-end"}/>
 			<Cards footerRef={footerRef.current} />
 
 			{/* <div className='footer-bottom'>

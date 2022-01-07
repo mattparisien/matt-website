@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
-import useSplit from "../helpers/hooks/useSplit";
+import useSplit from "../../helpers/hooks/useSplit";
 import $ from "jquery";
+import animatePreloader from "./motion";
+import { StyledPreloader } from "./StyledPreloader";
 
-function Preloader({ setLoading }) {
+function Preloader({ setLoading, setHasVisited, isActive }) {
 	const container = useRef(null);
 	const frameRef = useRef(null);
 	const sentenceRefs = useRef([]);
@@ -23,6 +25,9 @@ function Preloader({ setLoading }) {
 	};
 
 	useEffect(() => {
+		//Set loading to true initially
+		setLoading(prev => ({ ...prev, setLoading: true }));
+
 		if (frameRef.current && sentenceRefs.current && isSplit) {
 			const q = gsap.utils.selector(wordsContainer.current);
 
@@ -31,91 +36,25 @@ function Preloader({ setLoading }) {
 			const lineTwoWords = $(lines[1]).find(".word");
 			const lineThreeWords = $(lines[2]).find(".word");
 			const lineFourWords = $(lines[3]).find(".word");
+			const containerRef = container.current;
+			const frame = frameRef.current;
 
-			tl.current
-				.to(lineOneWords, {
-					opacity: 1,
-					duration: 0.2,
-					stagger: 0.1,
-				})
-				.to(
-					lineOneWords,
-					{
-						opacity: 0,
-						duration: 0.2,
-						stagger: 0.1,
-					},
-					0.8
-				)
-				.to(
-					lineTwoWords,
-					{
-						opacity: 1,
-						duration: 0.2,
-						stagger: 0.1,
-					},
-					1.6
-				)
-				.to(
-					lineTwoWords,
-					{
-						opacity: 0,
-						duration: 0.2,
-						stagger: 0.1,
-					},
-					2.4
-				)
-				.to(
-					lineThreeWords,
-					{
-						opacity: 1,
-						duration: 0.2,
-						stagger: 0.1,
-					},
-					3.2
-				)
-				.to(
-					lineThreeWords,
-					{
-						opacity: 0,
-						duration: 0.2,
-						stagger: 0.1,
-					},
-					4
-				)
-				.to(
-					lineFourWords,
-					{
-						opacity: 1,
-						duration: 0.2,
-						stagger: 0.1,
-					},
-					4.8
-				)
-				.to(
-					lineFourWords,
-					{
-						opacity: 0,
-						duration: 0.2,
-						stagger: 0.1,
-					},
-					5.6
-				)
-				.to(frameRef.current, {
-					scale: 1,
-					duration: 0.3,
-				})
-				.set(container.current, {
-					display: "none",
-					onComplete: () => {
-						setLoading(prev => ({ ...prev, isLoading: false }));
-					},
-				});
+			const refs = {
+				lines,
+				lineOneWords,
+				lineTwoWords,
+				lineThreeWords,
+				lineFourWords,
+				containerRef,
+				frame,
+			};
+
+			animatePreloader(tl.current, refs, setLoading, setHasVisited);
 		}
 	}, [frameRef, sentenceRefs, isSplit, wordsContainer, container]);
 
 	return (
-		<div className='preloader' id='preloader' ref={container}>
+		<StyledPreloader id='preloader' className='preloader' ref={container}>
 			<div className='loading-sentence-container'>
 				<h3 ref={wordsContainer}>
 					<span ref={addToRefs}>Just getting ready...</span>
@@ -125,7 +64,7 @@ function Preloader({ setLoading }) {
 				</h3>
 			</div>
 			<div className='preloader__frame' ref={frameRef}></div>
-		</div>
+		</StyledPreloader>
 	);
 }
 

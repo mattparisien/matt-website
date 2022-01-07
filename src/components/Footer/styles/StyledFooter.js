@@ -21,10 +21,6 @@ export const StyledFooter = styled.footer`
 	}
 
 	
-	
-	@media only screen and (max-width: ${deviceSize.laptop}px) {
-		height: 80vh;
-	}
 
 	.footer-cards {
 		
