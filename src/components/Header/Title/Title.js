@@ -7,9 +7,12 @@ function Title(props, ref) {
 
 	return (
 		<div className='title'>
-			<AnchorLink to={"/"} isRouterLink target={"_self"}>
-				{isHomePage && <Logo isContentHidden={isContentHidden} />}
-			</AnchorLink>
+			{isHomePage && (
+				<AnchorLink to={"/"} isRouterLink target={"_self"}>
+					{" "}
+					<Logo isContentHidden={isContentHidden} />{" "}
+				</AnchorLink>
+			)}
 		</div>
 	);
 }
