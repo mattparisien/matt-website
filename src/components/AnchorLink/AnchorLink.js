@@ -1,10 +1,15 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useRef } from "react";
 import { Link } from "react-router-dom";
 
-function AnchorLink(
-	{ isRouterLink, to, target, className, children, onClick },
-	ref
-) {
+function AnchorLink({
+	isRouterLink,
+	to,
+	target,
+	className,
+	children,
+	onClick,
+	addToRefs,
+}, ref) {
 	return (
 		<>
 			{isRouterLink ? (
@@ -12,7 +17,7 @@ function AnchorLink(
 					to={to}
 					target={target}
 					className={className}
-					ref={ref}
+					ref={addToRefs}
 					onClick={onClick}
 				>
 					{children}
@@ -22,7 +27,7 @@ function AnchorLink(
 					href={to}
 					target={target}
 					className={className}
-					ref={ref}
+					ref={addToRefs}
 					onClick={onClick}
 				>
 					{children}
