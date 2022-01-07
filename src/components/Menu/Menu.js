@@ -56,7 +56,7 @@ function Menu(props) {
 		}
 
 		if (!isOpen && menuAnim.current.progress() !== 0) {
-			menuAnim.current.reverse();
+			menuAnim.current.reverse(0.93);
 		}
 	}, [isOpen, menuRef, navItems]);
 
