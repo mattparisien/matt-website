@@ -3,7 +3,7 @@ import { StyledLogo } from "../styles/StyledLogo";
 import useSplit from "../../../helpers/hooks/useSplit";
 
 
-function Logo({ hasVisited }) {
+function Logo({ isContentHidden }) {
 	const logoRef = useRef(null);
 
 	const [isSplit, chars, splitCount] = useSplit([logoRef.current], {
@@ -11,12 +11,9 @@ function Logo({ hasVisited }) {
 		charsClass: "char",
 	});
 
-	useEffect(() => {
-		console.log(hasVisited)
-	}, [])
 
 	return (
-		<StyledLogo className='-headingLarge' ref={logoRef} hasVisited={hasVisited}>
+		<StyledLogo className='-headingLarge' ref={logoRef} isContentHidden={isContentHidden}>
 			Matt
 		</StyledLogo>
 	);

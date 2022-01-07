@@ -3,11 +3,11 @@ import Logo from "./Logo";
 
 function Title(props, ref) {
 
-	const { isHomePage, hasVisited } = props;
+	const { isHomePage, isContentHidden } = props;
 
 	return (
 		<div className='title'>
-			{isHomePage && <Logo hasVisited={hasVisited}/>}
+			{isHomePage && <Logo isContentHidden={isContentHidden}/>}
 		</div>
 	);
 }

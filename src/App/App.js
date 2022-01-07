@@ -1,20 +1,20 @@
-import Home from "./components/pages/Home";
-import About from "./components/pages/About";
-import Contact from "./components/pages/Contact";
-import { GlobalStyle } from "./styles/global";
+import Home from "../components/pages/Home";
+import About from "../components/pages/About";
+import Contact from "../components/pages/Contact";
+import { GlobalStyle } from "../styles/global";
 import { useState, useRef, useEffect } from "react";
 import { ThemeProvider } from "styled-components";
-import Modal from "./components/Modals/Modal";
+import Modal from "../components/Modals/Modal";
 import { Helmet } from "react-helmet";
-import Footer from "./components/Footer/Footer";
-import useScroll from "./helpers/useScroll";
-import Preloader from "./components/Preloader/Preloader";
-import Header from "./components/Header/Header";
+import Footer from "../components/Footer/Footer";
+import useScroll from "../helpers/useScroll";
+import Preloader from "../components/Preloader/Preloader";
+import Header from "../components/Header/Header";
 import gsap from "gsap/all";
-import ContentWrapper from "./components/ContentWrapper/ContentWrapper";
-import Menu from "./components/Menu/Menu";
-import MenuLink from "./components/Header/Menu/MenuLink";
-import { useIntersect } from "./helpers/hooks/useIntersect";
+import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
+import Menu from "../components/Menu/Menu";
+import MenuLink from "../components/Header/Menu/MenuLink";
+import { useIntersect } from "../helpers/hooks/useIntersect";
 import { Routes, Route, useLocation } from "react-router-dom";
 import $ from "jquery";
 import { useCookies } from "react-cookie";
@@ -55,6 +55,7 @@ function App() {
 		isFooterIntersecting: false,
 		menuActive: false,
 		isLoading: true,
+		isContentHidden: true,
 	});
 
 	const [isScrolling, scrollDirection, scrollTop] = useScroll();
@@ -89,8 +90,11 @@ function App() {
 	//Reveal content on load
 	useEffect(() => {
 		const headerTitleChars = $(headerRef.current).find(".title .char");
+		const isPreloaderComplete = state.isContentHidden && !state.isLoading;
 
-		if (!state.isLoading) {
+
+
+		if (isPreloaderComplete) {
 			revealContentTl.current
 				.set(headerRef.current, { display: "flex" })
 				.set(menuTriggerRef.current, { display: "block" })
@@ -116,6 +120,11 @@ function App() {
 						opacity: 1,
 						y: 0,
 						duration: 0.1,
+						onComplete: () => {
+							setTimeout(() => {
+								setState(prev => ({ ...prev, isContentHidden: false }));
+							}, 300);
+						},
 					},
 					1
 				);
@@ -160,12 +169,14 @@ function App() {
 					currentPath={location.pathname}
 					menuTriggerHandler={toggleMenuActivity}
 					isMenuActive={state.menuActive}
+					isDefaultContentHidden={state.isContentHidden}
 				/>
 
 				<ContentWrapper
 					headerOffset={state.headerHeight}
 					footerOffset={state.footerHeight}
 					ref={contentWrapperRef}
+					isDefaultContentHidden={state.isContentHidden}
 				>
 					<GlobalStyle
 						isScrollDisabled={state.isLoading}
@@ -178,12 +189,7 @@ function App() {
 					<Routes>
 						<Route
 							path='/'
-							element={
-								<Home
-									colors={state.colors}
-									ref={galleryRef}
-								/>
-							}
+							element={<Home colors={state.colors} ref={galleryRef} />}
 						/>
 						<Route path='/about' element={<About />} />
 						<Route path='/contact' element={<Contact />} />

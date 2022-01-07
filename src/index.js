@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import App from "./App/App";
 import reportWebVitals from "./reportWebVitals";
 import { ParallaxProvider } from "react-scroll-parallax";
 import * as CSS from "./styles/css/index.css";

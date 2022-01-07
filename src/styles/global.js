@@ -25,18 +25,10 @@ cursor: ${({ isCursorWait }) => (isCursorWait ? "wait" : "")}
     background-color: ${props => props.colors.backgroundColor};
 
 
-    .gallery-wrapper {
-      opacity: 0;
-    }
+  
 
    .gallery-wrapper {
-      transform: translateY(15vw);
-      margin-bottom: 80vh;
-
-      @media ${device.laptop} {
-        margin-bottom: 100vh;
-      }
-
+      margin-bottom: 100vh;
       
     }
   }
