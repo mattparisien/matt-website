@@ -93,6 +93,9 @@ function App() {
 		const isPreloaderComplete = state.isContentHidden && !state.isLoading;
 
 		if (isPreloaderComplete) {
+
+			
+			console.log('this should only get called once')
 			revealContentTl.current
 				.set(headerRef.current, { display: "flex" })
 				.set(menuTriggerRef.current, { display: "block" })
@@ -127,7 +130,7 @@ function App() {
 					1
 				);
 		}
-	}, [state.isLoading]);
+	}, [state.isLoading, state.isContentHidden]);
 
 	//Calculate header height
 	useEffect(() => {
