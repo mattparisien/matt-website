@@ -2,7 +2,7 @@ import Home from "../components/pages/Home";
 import About from "../components/pages/About";
 import Contact from "../components/pages/Contact";
 import { GlobalStyle } from "../styles/global";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useLayoutEffect } from "react";
 import { ThemeProvider } from "styled-components";
 import Modal from "../components/Modals/Modal";
 import { Helmet } from "react-helmet";
@@ -88,7 +88,7 @@ function App() {
 	});
 
 	//Reveal content on load
-	useEffect(() => {
+	useLayoutEffect(() => {
 		const headerTitleChars = $(headerRef.current).find(".title .char");
 		const isPreloaderComplete = state.isContentHidden && !state.isLoading;
 

@@ -15,7 +15,7 @@ export const StyledPreloader = styled.div`
 	padding: 0.8rem;
 
 	@media ${device.tablet} {
-		font-size: 4rem;
+		font-size: 2.3rem;
 	}
 
 	@media ${device.mobileL} {
