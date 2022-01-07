@@ -25,9 +25,9 @@ export const StyledUnorderedList = styled.ul`
 			${({ flexColumn }) => {
 				return flexColumn
 					? `
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.5rem;
           `
-					: `margin-left: 1.8rem`;
+					: `margin-left: 1.5rem`;
 			}}
 		}
 	}
