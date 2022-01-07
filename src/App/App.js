@@ -153,6 +153,13 @@ function App() {
 		}));
 	};
 
+	const toggleLoadingState = () => {
+		setState(prev => ({
+			...prev,
+			isLoading: state.isLoading ? false : true,
+		}));
+	};
+
 	return (
 		<ThemeProvider theme={themes}>
 			<div className='App'>
@@ -216,7 +223,9 @@ function App() {
 				<Menu
 					currentPath={location.pathname}
 					isOpen={state.menuActive}
+					isLoading={state.isLoading}
 					hideContent={toggleContentVisibility}
+					setLoading={toggleLoadingState}
 				/>
 
 				<Preloader setLoading={setState} />

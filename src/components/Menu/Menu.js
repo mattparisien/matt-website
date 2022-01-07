@@ -21,10 +21,12 @@ function Menu(props) {
 		},
 	];
 
-	const { currentPath, isOpen, hideContent } = props;
+	const { currentPath, isOpen, hideContent, setLoading, isLoading } = props;
 
 	const menuRef = useRef(null);
-	const menuAnim = useRef(gsap.timeline());
+	const menuAnim = useRef(
+		gsap.timeline({ onReverseComplete: () => isLoading && setLoading() })
+	);
 	const navItems = useRef([]);
 
 	const addToRefs = el => {
@@ -60,16 +62,22 @@ function Menu(props) {
 		}
 	}, [isOpen, menuRef, navItems]);
 
+	const handleClick = () => {
+		hideContent();
+		menuAnim.current.reverse(0.93);
+		setLoading();
+	};
+
 	return (
 		<StyledMenu isOpen={isOpen} ref={menuRef}>
 			<UnorderedList
 				listInfo={listInfo}
 				currentPath={currentPath}
 				addToRefs={addToRefs}
-				onClick={hideContent}
+				onClick={handleClick}
 				hasRouterLinks
 			/>
-			<SocialList addToRefs={addToRefs} alignItems={"center"} isDefaultHidden/>
+			<SocialList addToRefs={addToRefs} alignItems={"center"} isDefaultHidden />
 		</StyledMenu>
 	);
 }
