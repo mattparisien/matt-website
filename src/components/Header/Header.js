@@ -11,6 +11,9 @@ import MenuLink from "./Menu/MenuLink";
 function Header(props, ref) {
 	const { currentPath, headerOffset, isMenuActive, isDefaultContentHidden } = props;
 
+
+	
+
 	return (
 		<StyledHeader
 			headerHeight={headerOffset}
