@@ -88,18 +88,20 @@ function App() {
 
 	//Reveal content on load
 	useEffect(() => {
-		const headerTitle = $(headerRef.current).find(".title");
+		const headerTitleChars = $(headerRef.current).find(".title .char")
 		const menuTrigger = $(headerRef.current).find(".menu-trigger");
 
 		if (!state.isLoading) {
 			revealContentTl.current
 				.set(headerRef.current, { display: "flex" })
-				.to(headerTitle, {
+				.to(headerTitleChars, {
 					opacity: 1,
+					y: 0,
 					delay: 0.2,
-					duration: 2,
+					stagger: 0.04,
+					duration: 0.8,
+					ease: 'power3.out'
 				})
-
 				.to(
 					menuTrigger,
 					{
@@ -140,8 +142,7 @@ function App() {
 
 	return (
 		<ThemeProvider theme={themes}>
-		<div className='App'>
-			
+			<div className='App'>
 				<Helmet>
 					<title>Matthew Parisien</title>
 					<meta
@@ -198,10 +199,7 @@ function App() {
 				<Menu currentPath={location.pathname} isOpen={state.menuActive} />
 
 				<Preloader setLoading={setState} />
-				
-			
-		</div>
-		
+			</div>
 		</ThemeProvider>
 	);
 }

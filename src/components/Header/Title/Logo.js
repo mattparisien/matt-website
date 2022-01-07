@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useRef } from "react";
+import { StyledLogo } from "../styles/StyledLogo";
+import useSplit from "../../../helpers/hooks/useSplit";
 
 function Logo() {
+	const logoRef = useRef(null);
+
+	const [isSplit, chars, splitCount] = useSplit([logoRef.current], {
+		type: "chars",
+		charsClass: "char",
+	});
+
 	return (
-	<h1 className="-headingLarge" style={{lineHeight: '23vw', marginLeft: '-2vw'}}>Matt</h1>
+		<StyledLogo className='-headingLarge' ref={logoRef}>
+			Matt
+		</StyledLogo>
 	);
 }
 

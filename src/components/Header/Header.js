@@ -9,7 +9,7 @@ import Nav from "./Nav";
 import MenuLink from "./Menu/MenuLink";
 
 function Header(props, ref) {
-	const { currentPath, headerOffset, menuTriggerHandler, isMenuActive } = props;
+	const { currentPath, headerOffset, isMenuActive } = props;
 
 	return (
 		<StyledHeader headerHeight={headerOffset} ref={ref} isMenuActive={isMenuActive}>
