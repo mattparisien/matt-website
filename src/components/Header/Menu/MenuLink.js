@@ -4,14 +4,14 @@ import gsap from "gsap";
 import $ from "jquery";
 import { StyledMenuLink } from "../styles/StyledMenuLink";
 
-function MenuLink({ onClickHandler, isMenuActive, isFooterIntersecting }, ref) {
+function MenuLink({ onClickHandler, isMenuActive }, ref) {
 	const openRef = useRef(null);
 	const closeRef = useRef(null);
 	const tl = useRef(gsap.timeline());
-	const [isSplit, chars, splitCount] = useSplit(
-		[openRef.current, closeRef.current],
-		{ type: "chars", charsClass: "char" }
-	);
+	// const [isSplit, chars, splitCount] = useSplit(
+	// 	[openRef.current, closeRef.current],
+	// 	{ type: "chars", charsClass: "char" }
+	// );
 
 	// useEffect(() => {
 	// 	if (isMenuActive) {
@@ -50,16 +50,12 @@ function MenuLink({ onClickHandler, isMenuActive, isFooterIntersecting }, ref) {
 			className='menu-trigger'
 			onClick={onClickHandler}
 			isMenuActive={isMenuActive}
-			isFooterIntersecting={isFooterIntersecting}
 			ref={ref}
 		>
 			<div className='menu-trigger__inner'>
 				<div id='menu' ref={openRef}>
 					{isMenuActive ? "Close" : "Menu"}
 				</div>
-				{/* <div id='close' ref={closeRef}>
-					Close
-				</div> */}
 			</div>
 		</StyledMenuLink>
 	);
