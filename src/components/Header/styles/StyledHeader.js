@@ -25,6 +25,4 @@ export const StyledHeader = styled.header`
 	.title {
 		display: inline-block;
 	}
-
-	display: none;
 `;

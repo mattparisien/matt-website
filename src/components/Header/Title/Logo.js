@@ -11,13 +11,10 @@ function Logo({ isContentHidden }) {
 		charsClass: "char",
 	});
 
-	useEffect(() => {
-		
-	}, [isContentHidden])
 
 
 	return (
-		<StyledLogo className='-headingLarge' ref={logoRef} isContentHidden={isContentHidden}>
+		<StyledLogo className='-headingLarge' ref={logoRef}>
 			Matt
 		</StyledLogo>
 	);

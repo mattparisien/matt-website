@@ -10,7 +10,7 @@ function Title(props, ref) {
 			{isHomePage && (
 				<AnchorLink to={"/"} isRouterLink target={"_self"}>
 					{" "}
-					<Logo isContentHidden={isContentHidden} />{" "}
+					<Logo />{" "}
 				</AnchorLink>
 			)}
 		</div>

@@ -15,8 +15,7 @@ export const StyledMenuLink = styled.a`
 			: theme.colors.dark};
 	transition: 300ms ease;
 	transition-delay: ${({ isMenuActive }) => (!isMenuActive ? "0ms" : "300ms")};
-	opacity: 0;
-	display: none;
+	
 
 	.menu-trigger__inner {
 		position: relative;
@@ -33,10 +32,5 @@ export const StyledMenuLink = styled.a`
 		display: flex;
 		align-items: center;
 		justify-content: center;
-
-		.char {
-			opacity: 0;
-			transform: translateY(100%);
-		}
 	}
 `;

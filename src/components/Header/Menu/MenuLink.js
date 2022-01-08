@@ -13,37 +13,37 @@ function MenuLink({ onClickHandler, isMenuActive, isFooterIntersecting }, ref) {
 		{ type: "chars", charsClass: "char" }
 	);
 
-	useEffect(() => {
-		if (isMenuActive) {
-			const openChars = $(openRef.current).find(".char");
-			const closeChars = $(closeRef.current).find(".char");
+	// useEffect(() => {
+	// 	if (isMenuActive) {
+	// 		const openChars = $(openRef.current).find(".char");
+	// 		const closeChars = $(closeRef.current).find(".char");
 
-			tl.current.play();
-			tl.current
-				.to(openChars, {
-					y: "-100%",
-					duration: 0.5,
-					stagger: 0.1,
-					opacity: 0,
-					ease: "power3.in",
-				})
-				.to(
-					closeChars,
-					{
-						y: "0",
-						stagger: 0.1,
-						opacity: 1,
-						duration: 0.5,
-						ease: "power3.in",
-					},
-					0
-				);
-		}
+	// 		tl.current.play();
+	// 		tl.current
+	// 			.to(openChars, {
+	// 				y: "-100%",
+	// 				duration: 0.5,
+	// 				stagger: 0.1,
+	// 				opacity: 0,
+	// 				ease: "power3.in",
+	// 			})
+	// 			.to(
+	// 				closeChars,
+	// 				{
+	// 					y: "0",
+	// 					stagger: 0.1,
+	// 					opacity: 1,
+	// 					duration: 0.5,
+	// 					ease: "power3.in",
+	// 				},
+	// 				0
+	// 			);
+	// 	}
 
-		if (!isMenuActive && tl.current.progress() !== 0) {
-			tl.current.reverse();
-		}
-	}, [isMenuActive, openRef, closeRef]);
+	// 	if (!isMenuActive && tl.current.progress() !== 0) {
+	// 		tl.current.reverse();
+	// 	}
+	// }, [isMenuActive, openRef, closeRef]);
 
 	return (
 		<StyledMenuLink
@@ -55,11 +55,11 @@ function MenuLink({ onClickHandler, isMenuActive, isFooterIntersecting }, ref) {
 		>
 			<div className='menu-trigger__inner'>
 				<div id='menu' ref={openRef}>
-					Menu
+					{isMenuActive ? "Close" : "Menu"}
 				</div>
-				<div id='close' ref={closeRef}>
+				{/* <div id='close' ref={closeRef}>
 					Close
-				</div>
+				</div> */}
 			</div>
 		</StyledMenuLink>
 	);

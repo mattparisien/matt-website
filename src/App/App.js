@@ -19,6 +19,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import $ from "jquery";
 import { useCookies } from "react-cookie";
 import { TextureEncoding } from "three";
+import animateContentEntry from "./motion";
 
 function App() {
 	//Themes
@@ -55,7 +56,6 @@ function App() {
 		isFooterIntersecting: false,
 		menuActive: false,
 		isLoading: true,
-		isContentHidden: true,
 	});
 
 	const [isScrolling, scrollDirection, scrollTop] = useScroll();
@@ -74,60 +74,41 @@ function App() {
 		}));
 	};
 
-	const titleRef = useRef(null);
+	/***** ANIMATE CONTENT ENTRY ON LOAD  *****/
+
 	const galleryRef = useRef(null);
-	const revealContentTl = useRef(gsap.timeline());
+	const revealContentTl = useRef(gsap.timeline({ paused: true }));
 	const headerRef = useRef(null);
 	const footerRef = useRef(null);
 	const contentWrapperRef = useRef(null);
 	const menuTriggerRef = useRef(null);
 
 	const location = useLocation();
-	const [isIntersect, target] = useIntersect([contentWrapperRef.current], {
-		rootMargin: "0px 0px -100%",
-	});
 
-	//Reveal content on load
-	useLayoutEffect(() => {
-		const headerTitleChars = $(headerRef.current).find(".title .char");
-		const isPreloaderComplete = state.isContentHidden && !state.isLoading;
+	// useEffect(() => {
+	// 	if (!state.isLoading) {
+	// 		//If not loading, animate content in
 
-		if (isPreloaderComplete) {
-			revealContentTl.current
-				.set(headerRef.current, { display: "flex" })
-				.set(menuTriggerRef.current, { display: "block" })
-				.to(headerTitleChars, {
-					opacity: 1,
-					y: 0,
-					delay: 0.2,
-					stagger: 0.04,
-					duration: 0.8,
-					ease: "power3.out",
-				})
-				.to(
-					menuTriggerRef.current,
-					{
-						opacity: 1,
-						duration: 0.5,
-					},
-					0.5
-				)
-				.to(
-					galleryRef.current,
-					{
-						opacity: 1,
-						y: 0,
-						duration: 0.1,
-						onComplete: () => {
-							setTimeout(() => {
-								setState(prev => ({ ...prev, isContentHidden: false }));
-							}, 300);
-						},
-					},
-					1
-				);
-		}
-	}, [state.isLoading, state.isContentHidden]);
+	// 		const headerTitleChars = $(headerRef.current).find(".char");
+	// 		const header = headerRef.current;
+	// 		const mainContent = galleryRef.current;
+	// 		const menuBtn = menuTriggerRef.current;
+	// 		const titleChars = headerTitleChars;
+	// 		const timeline = revealContentTl.current;
+
+	// 		const refs = {
+	// 			header,
+	// 			mainContent,
+	// 			titleChars,
+	// 			menuBtn,
+	// 		};
+
+	// 		animateContentEntry(timeline, refs).play();
+	// 	} else {
+	// 		const titleChars = $(headerRef.current).find(".char");
+	// 		// revealContentTl.current.set(titleChars, { clearProps: "all" });
+	// 	}
+	// }, [headerRef, state.isLoading]);
 
 	//Calculate header height
 	useEffect(() => {
@@ -181,14 +162,12 @@ function App() {
 					currentPath={location.pathname}
 					menuTriggerHandler={toggleMenuActivity}
 					isMenuActive={state.menuActive}
-					isDefaultContentHidden={state.isContentHidden}
 				/>
 
 				<ContentWrapper
 					headerOffset={state.headerHeight}
 					footerOffset={state.footerHeight}
 					ref={contentWrapperRef}
-					isDefaultContentHidden={state.isContentHidden}
 				>
 					<GlobalStyle
 						isScrollDisabled={state.isLoading}
@@ -227,7 +206,6 @@ function App() {
 					hideContent={toggleContentVisibility}
 					hideMenu={toggleMenuActivity}
 					setLoading={toggleLoadingState}
-
 				/>
 
 				<Preloader setLoading={setState} />
