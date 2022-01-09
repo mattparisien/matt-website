@@ -19,6 +19,7 @@ import $ from "jquery";
 import Scene from "../components/Scene/Scene";
 
 
+
 function App() {
 	//Themes
 	const themes = {
@@ -154,7 +155,7 @@ function App() {
 						isMenuActive={state.menuActive}
 					/>
 
-					<Scene/>
+					<Scene />
 
 					<ContentWrapper
 						headerOffset={state.headerHeight}

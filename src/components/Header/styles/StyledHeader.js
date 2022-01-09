@@ -5,6 +5,8 @@ export const StyledHeader = styled.header`
 	height: ${(props) => props.headerHeight && props.headerHeight}px;
 	box-sizing: initial;
 	padding: 2rem;
+	z-index: -1;
+	color: orange;
 
 	.menu-trigger {
 		opacity: 0;
