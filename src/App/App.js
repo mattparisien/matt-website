@@ -16,10 +16,8 @@ import MenuLink from "../components/Header/Menu/MenuLink";
 import { useIntersect } from "../helpers/hooks/useIntersect";
 import { Routes, Route, useLocation } from "react-router-dom";
 import $ from "jquery";
-import { useCookies } from "react-cookie";
-import { TextureEncoding } from "three";
-import animateContentEntry from "./motion";
 import Scene from "../components/Scene/Scene";
+
 
 function App() {
 	//Themes
@@ -55,7 +53,7 @@ function App() {
 		footerHeight: null,
 		isFooterIntersecting: false,
 		menuActive: false,
-		isLoading: true,
+		isLoading: false,
 	});
 
 	const scrollContainer = useRef(null);
@@ -148,40 +146,44 @@ function App() {
 					hideModal={toggleModalVisibility}
 				/>
 
-				<Header
-					ref={headerRef}
-					currentPath={location.pathname}
-					headerOffset={state.headerHeight}
-					isMenuActive={state.menuActive}
-				/>
-
-				<ContentWrapper
-					headerOffset={state.headerHeight}
-					footerOffset={state.footerHeight}
-					ref={contentWrapperRef}
-				>
-					<GlobalStyle
-						isScrollDisabled={state.isLoading}
-						isCursorWait={state.isLoading}
-						theme={themes}
-						colors={state.colors}
+				
+					<Header
+						ref={headerRef}
+						currentPath={location.pathname}
+						headerOffset={state.headerHeight}
+						isMenuActive={state.menuActive}
 					/>
 
-					<Routes>
-						<Route
-							path='/'
-							element={<Home colors={state.colors} ref={galleryRef} />}
-						/>
-						<Route path='/about' element={<About />} />
-						<Route path='/contact' element={<Contact />} />
-					</Routes>
-				</ContentWrapper>
+					<Scene/>
 
-				<Footer
-					backgroundColor={themes.colors.dark}
-					foregroundColor={themes.colors.light}
-					ref={footerRef}
-				/>
+					<ContentWrapper
+						headerOffset={state.headerHeight}
+						footerOffset={state.footerHeight}
+						ref={contentWrapperRef}
+					>
+						<GlobalStyle
+							isScrollDisabled={state.isLoading}
+							isCursorWait={state.isLoading}
+							theme={themes}
+							colors={state.colors}
+						/>
+
+						<Routes>
+							<Route
+								path='/'
+								element={<Home colors={state.colors} ref={galleryRef} />}
+							/>
+							<Route path='/about' element={<About />} />
+							<Route path='/contact' element={<Contact />} />
+						</Routes>
+					</ContentWrapper>
+
+					<Footer
+						backgroundColor={themes.colors.dark}
+						foregroundColor={themes.colors.light}
+						ref={footerRef}
+					/>
+				
 				<MenuLink
 					onClickHandler={toggleMenuActivity}
 					isMenuActive={state.menuActive}
@@ -197,7 +199,7 @@ function App() {
 					setLoading={toggleLoadingState}
 				/>
 
-				<Preloader setLoading={setState} />
+				
 			</div>
 		</ThemeProvider>
 	);

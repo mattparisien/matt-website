@@ -15,8 +15,6 @@ function Title(props, ref) {
 						<Logo />{" "}
 					</AnchorLink>
 				)}
-				{location === "/about" && "About,"}
-				{location === "/contact" && "Contact,"}
 			</h1>
 			</StyledTitle>
 	);

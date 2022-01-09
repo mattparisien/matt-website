@@ -4,7 +4,7 @@ import Haas from "../fonts/Haas.otf";
 import Konnect from "../fonts/Konnect.woff";
 
 import FuturaCEB from "../fonts/Futura.otf";
-
+import NeueMtl from "../fonts/NeueMtl.otf"
 import DefaultCursor from "../assets/images/cursor-default-01.svg";
 
 export const GlobalStyle = createGlobalStyle`
@@ -35,6 +35,11 @@ cursor: ${({ isCursorWait }) => (isCursorWait ? "wait" : "")}
 
   @font-face {
     font-family: 'FK';
+    src: url(${FKScreamer}) format('woff');
+  }
+
+  @font-face {
+    font-family: 'NeueMtl';
     src: url(${FKScreamer}) format('woff');
   }
 
