@@ -4,7 +4,7 @@ import { device, deviceSize } from "../../../styles/breakpoints";
 
 export const StyledFooter = styled.footer`
 	color: blue;
-
+	overflow: hidden;
 	
 
 	ul, .footer-copyright {
@@ -27,7 +27,7 @@ export const StyledFooter = styled.footer`
 		
 		margin: 0;
     font-family: 'Haas';
-		position: absolute;
+		
 		width: 100%;
 		height: 100%;
 		left: 0;

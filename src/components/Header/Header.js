@@ -17,25 +17,16 @@ function Header(props, ref) {
 
 	const title = useRef(null);
 
-	useEffect(() => {
-		console.log(windowWidth)
-		if (title.current) {
-			console.log('in here!')
-			const titleHeight = title.current.getBoundingClientRect().height;
-			setInnerHeight(titleHeight);
-		}
-	}, [windowWidth, title]);
+
 
 	return (
 		<StyledHeader
 			headerHeight={headerOffset}
 			ref={ref}
-			isMenuActive={isMenuActive}
 			height={innerHeight}
 		>
 			<Title
 				location={currentPath}
-				isContentHidden={isDefaultContentHidden}
 				titleRef={title}
 			/>
 		</StyledHeader>

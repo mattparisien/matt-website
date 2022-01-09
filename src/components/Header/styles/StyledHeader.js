@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { device } from "../../../styles/breakpoints";
 
 export const StyledHeader = styled.header`
-	height: ${(props) => props.height && props.height}px;
+	height: ${(props) => props.headerHeight && props.headerHeight}px;
 	box-sizing: initial;
 	padding: 2rem;
 
@@ -11,6 +11,6 @@ export const StyledHeader = styled.header`
 	}
 	top: 0;
 	z-index: 999;
-	width: 100vw;
+	width: calc(100vw - 2rem);
 	position: relative;
 `;

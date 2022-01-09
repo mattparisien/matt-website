@@ -7,7 +7,6 @@ import { ThemeProvider } from "styled-components";
 import Modal from "../components/Modals/Modal";
 import { Helmet } from "react-helmet";
 import Footer from "../components/Footer/Footer";
-import useScroll from "../helpers/useScroll";
 import Preloader from "../components/Preloader/Preloader";
 import Header from "../components/Header/Header";
 import gsap from "gsap/all";
@@ -20,6 +19,7 @@ import $ from "jquery";
 import { useCookies } from "react-cookie";
 import { TextureEncoding } from "three";
 import animateContentEntry from "./motion";
+import Scene from "../components/Scene/Scene";
 
 function App() {
 	//Themes
@@ -57,8 +57,6 @@ function App() {
 		menuActive: false,
 		isLoading: true,
 	});
-
-	const [isScrolling, scrollDirection, scrollTop] = useScroll();
 
 	const scrollContainer = useRef(null);
 
@@ -113,7 +111,7 @@ function App() {
 	//Calculate header height
 	useEffect(() => {
 		if (headerRef.current && footerRef.current) {
-			const headerHeight = headerRef.current.getBoundingClientRect().height;
+			const headerHeight = $(headerRef.current).find("h1").height();
 			const footerHeight = footerRef.current.getBoundingClientRect().height;
 			setState(prev => ({
 				...prev,
@@ -125,13 +123,6 @@ function App() {
 
 	const toggleMenuActivity = () => {
 		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
-	};
-
-	const toggleContentVisibility = () => {
-		setState(prev => ({
-			...prev,
-			isContentHidden: state.isContentHidden ? false : true,
-		}));
 	};
 
 	const toggleLoadingState = () => {
@@ -160,7 +151,7 @@ function App() {
 				<Header
 					ref={headerRef}
 					currentPath={location.pathname}
-					menuTriggerHandler={toggleMenuActivity}
+					headerOffset={state.headerHeight}
 					isMenuActive={state.menuActive}
 				/>
 
@@ -174,7 +165,6 @@ function App() {
 						isCursorWait={state.isLoading}
 						theme={themes}
 						colors={state.colors}
-						contentOpacity={state.isLoading}
 					/>
 
 					<Routes>
@@ -203,7 +193,6 @@ function App() {
 					currentPath={location.pathname}
 					isOpen={state.menuActive}
 					isLoading={state.isLoading}
-					hideContent={toggleContentVisibility}
 					hideMenu={toggleMenuActivity}
 					setLoading={toggleLoadingState}
 				/>

@@ -20,7 +20,7 @@ export const StyledMenu = styled.div`
 
 	ul:not(.SocialList ul) {
 		font-family: "Konnect";
-		font-size: 7rem;
+		font-size: 6rem;
 		display: block;
 
 		@media ${device.desktop} {

@@ -6,7 +6,6 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import waveAnimation from "../motion/sectionWave";
 import ImageGallery from "../../ImageGallery/ImageGallery";
 import useFetch from "../../../helpers/hooks/useFetch";
-import useScroll from "../../../helpers/useScroll";
 import { StyledFeaturedWork } from "./styles/StyledFeaturedWork";
 import Balls from "./Balls";
 

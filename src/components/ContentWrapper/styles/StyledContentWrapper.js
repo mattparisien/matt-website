@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledContent = styled.main`
-	margin-bottom: 100vh;
 	
 
 	${({ hideContentDefault }) => {

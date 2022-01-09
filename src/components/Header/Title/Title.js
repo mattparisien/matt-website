@@ -4,7 +4,7 @@ import AnchorLink from "../../AnchorLink/AnchorLink";
 import { StyledTitle } from "../styles/StyledTitle";
 
 function Title(props, ref) {
-	const { location, isContentHidden, titleRef } = props;
+	const { location, titleRef } = props;
 
 	return (
 		<StyledTitle className={"title"} isLogo={props.location === '/'}>

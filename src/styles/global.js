@@ -27,10 +27,7 @@ cursor: ${({ isCursorWait }) => (isCursorWait ? "wait" : "")}
 
   
 
-   .gallery-wrapper {
-      margin-bottom: 100vh;
-      
-    }
+   
   }
 
 

@@ -488,13 +488,9 @@ button {
 
 .app-footer {
   height: 100vh;
-  position: fixed;
-  bottom: 0;
-  left: 0;
   width: 100%;
   background-color: #5b487c;
   z-index: -1;
-  color: #f1b9b8;
   padding: 2rem;
 }
 

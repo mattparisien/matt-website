@@ -21,12 +21,11 @@ function Menu(props) {
 		},
 	];
 
-	const { currentPath, isOpen, hideMenu, hideContent, setLoading, isLoading } = props;
+	const { currentPath, isOpen, hideMenu, hideContent, setLoading, isLoading } =
+		props;
 
 	const menuRef = useRef(null);
-	const menuAnim = useRef(
-		gsap.timeline({ onReverseComplete: () => isLoading && setLoading() })
-	);
+	const menuAnim = useRef(gsap.timeline());
 	const navItems = useRef([]);
 
 	const addToRefs = el => {

@@ -86,13 +86,9 @@ button {
 
 .app-footer {
 	height: 100vh;
-	position: fixed;
-	bottom: 0;
-	left: 0;
 	width: 100%;
 	background-color: $purple;
 	z-index: -1;
-	color: $pink;
 	padding: 2rem;
 
 	h1 {
