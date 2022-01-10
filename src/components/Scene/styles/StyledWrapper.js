@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const StyledWrapper = styled.div`
   overflow: hidden;
-  
   position: relative;
   z-index: 999;
 

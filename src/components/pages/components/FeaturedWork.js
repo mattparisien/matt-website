@@ -8,6 +8,7 @@ import ImageGallery from "../../ImageGallery/ImageGallery";
 import useFetch from "../../../helpers/hooks/useFetch";
 import { StyledFeaturedWork } from "./styles/StyledFeaturedWork";
 import Balls from "./Balls";
+import Scene from "../../Scene/Scene";
 
 function FeaturedWork(props, ref) {
 	/***** WAVE ANIMATION *****/
@@ -40,6 +41,7 @@ function FeaturedWork(props, ref) {
 				}
 			}}
 		>
+			<div className="scene-"></div>
 			<ImageGallery data={data} ref={ref}/>
 			
 			
