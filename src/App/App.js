@@ -47,8 +47,8 @@ function App() {
 			hasBeenActive: false,
 		},
 		colors: {
-			backgroundColor: themes.colors.orange,
-			foregroundColor: themes.colors.pink,
+			backgroundColor: themes.colors.dark,
+			foregroundColor: themes.colors.light,
 		},
 		headerHeight: null,
 		footerHeight: null,
@@ -179,11 +179,6 @@ function App() {
 						</Routes>
 					</ContentWrapper>
 
-					<Footer
-						backgroundColor={themes.colors.dark}
-						foregroundColor={themes.colors.light}
-						ref={footerRef}
-					/>
 				
 				<MenuLink
 					onClickHandler={toggleMenuActivity}
