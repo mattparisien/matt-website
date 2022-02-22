@@ -23,11 +23,6 @@ cursor: ${({ isCursorWait }) => (isCursorWait ? "wait" : "")}
 
   .App {
     background-color: ${props => props.colors.backgroundColor};
-
-
-  
-
-   
   }
 
 

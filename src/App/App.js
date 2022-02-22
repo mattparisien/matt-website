@@ -24,7 +24,7 @@ function App() {
 	//Themes
 	const themes = {
 		colors: {
-			light: "rgb(244, 241, 235)",
+			light: "#ffff",
 			dark: "#141414",
 			lighterDark: "#111111",
 			red: "#DF181F",
@@ -47,8 +47,8 @@ function App() {
 			hasBeenActive: false,
 		},
 		colors: {
-			backgroundColor: themes.colors.light,
-			foregroundColor: themes.colors.dark,
+			backgroundColor: themes.colors.orange,
+			foregroundColor: themes.colors.pink,
 		},
 		headerHeight: null,
 		footerHeight: null,
@@ -155,7 +155,7 @@ function App() {
 						isMenuActive={state.menuActive}
 					/>
 
-					<Scene />
+					
 
 					<ContentWrapper
 						headerOffset={state.headerHeight}

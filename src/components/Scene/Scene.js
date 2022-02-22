@@ -16,10 +16,7 @@ import Mesh from "./Mesh";
 
 function Scene() {
 	return (
-		<StyledScene
-			className='scene-wrapper'
-			style={{ backgroundColor: "purple" }}
-		>
+		<StyledScene className='scene-wrapper'>
 			<Canvas
 				className='canvas'
 				colorManagement
@@ -32,28 +29,15 @@ function Scene() {
 					depth: false,
 				}}
 			>
-				<color attach='background' args={["#050505"]} />
-				<fog color='#161616' attach='fog' near={8} far={30} />
 
+				<color  color={"fffff"}></color>
+				
+				<pointLight position={[10, 10, 10]} />
+				<ambientLight intensity={2} />
 				<Suspense fallback={null}>
-					<Mesh />
+					<Glossier/>
 				</Suspense>
-				<EffectComposer multisampling={0} disableNormalPass={true}>
-        <DepthOfField
-          focusDistance={0}
-          focalLength={0.02}
-          bokehScale={2}
-          height={480}
-        />
-        <Bloom
-          luminanceThreshold={0}
-          luminanceSmoothing={0.9}
-          height={300}
-          opacity={3}
-        />
-        <Noise opacity={0.025} />
-        <Vignette eskil={false} offset={0.1} darkness={1.1} />
-      </EffectComposer>
+				
 			</Canvas>
 		</StyledScene>
 	);

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { device } from "../../../styles/breakpoints";
 
 export const StyledHeader = styled.header`
-	height: ${(props) => props.headerHeight && props.headerHeight}px;
+	height: 100px;
 	box-sizing: initial;
 	padding: 2rem;
 	z-index: -1;

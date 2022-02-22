@@ -1,10 +1,25 @@
 import styled from "styled-components";
+import { device } from "../../../styles/breakpoints";
 
 export const StyledParagraph = styled.p`
-  font-family: 'Haas';
-  font-size: 1.9rem;
-  line-height: 2.7rem;
-  width: 55%;
-  margin-right: auto;
-  text-indent: 10rem;
+  font-family: 'Kobe';
+  
+  font-size: 5vw;
+  line-height: 6vw;
+  
+  .line-wrapper {
+    overflow: hidden;
+    justify-content: flex-start;
+  }
+
+  .char {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  
+  @media ${device.laptop} {
+    font-size: 6rem;
+    line-height: 6rem;
+  }
+  
 `

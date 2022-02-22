@@ -17,19 +17,12 @@ function Header(props, ref) {
 
 	const title = useRef(null);
 
-
-
 	return (
 		<StyledHeader
 			headerHeight={headerOffset}
 			ref={ref}
 			height={innerHeight}
-		>
-			<Title
-				location={currentPath}
-				titleRef={title}
-			/>
-		</StyledHeader>
+		></StyledHeader>
 	);
 }
 
