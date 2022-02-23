@@ -38,10 +38,6 @@ export const StyledParagraph = styled.p`
 		justify-content: flex-start;
 	}
 
-	.char {
-		transform: translateY(100%);
-		opacity: 0;
-	}
 
 	.accent {
 		animation: ${colorAnimation} 5s ease;
@@ -52,7 +48,21 @@ export const StyledParagraph = styled.p`
 	}
 
 	@media ${device.laptop} {
-		font-size: 7vw;
-		line-height: 7vw;
+		font-size: 6rem;
+		line-height: 6rem;
 	}
+
+	@media ${device.laptopL} {
+		font-size: 7rem;
+		line-height: 7rem;
+	}
+
+	@media ${device.desktop} {
+		font-size: 9rem;
+		line-height: 9rem;
+	}
+
+	
+
+
 `;

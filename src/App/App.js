@@ -159,7 +159,7 @@ function App() {
 						isMenuActive={state.menuActive}
 					/>
 
-					<div className='scroll-container' ref={scrollRef}>
+					<div className='scroll-container' ref={scrollRef} data-scroll-container>
 						<ContentWrapper
 							headerOffset={state.headerHeight}
 							footerOffset={state.footerHeight}
