@@ -194,21 +194,6 @@ function App() {
 									<Route path='/' element={<Construction />} />
 								</Routes>
 							</ContentWrapper>
-
-							<MenuLink
-								onClickHandler={toggleMenuActivity}
-								isMenuActive={state.menuActive}
-								isFooterIntersecting={state.isFooterIntersecting}
-								ref={menuTriggerRef}
-							/>
-
-							<Menu
-								currentPath={location.pathname}
-								isOpen={state.menuActive}
-								isLoading={state.isLoading}
-								hideMenu={toggleMenuActivity}
-								setLoading={toggleLoadingState}
-							/>
 						</div>
 					</div>
 				</LocomotiveScrollProvider>

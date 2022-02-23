@@ -9,7 +9,9 @@ import DefaultCursor from "../assets/images/cursor-default-01.svg";
 export const GlobalStyle = createGlobalStyle`
 
 * {
-cursor: ${({ isCursorWait }) => (isCursorWait ? "wait" : "")}
+cursor: ${({ isCursorWait }) => (isCursorWait ? "wait" : "")};
+
+
 }
 
   body {
@@ -21,6 +23,8 @@ cursor: ${({ isCursorWait }) => (isCursorWait ? "wait" : "")}
   }
 
   .App {
+    background-color: ${({theme}) => theme.colors.dark};
+    color: ${({ foregroundColor, theme }) => theme.colors.light};
     background-color: ${({ backgroundColor, theme }) =>
 			theme.colors[backgroundColor]};
     color: ${({ foregroundColor, theme }) => theme.colors[foregroundColor]};
