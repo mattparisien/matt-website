@@ -4,8 +4,10 @@ import { SplitText } from "gsap/all";
 import gsap from "gsap";
 import $ from "jquery";
 import useResize from "../../helpers/hooks/useResize";
+import InView from "react-intersection-observer";
 
 function Paragraph(props) {
+	const [intersecting, setIntersecting] = useState(null);
 	const [isSplit, setIsSplit] = useState(false);
 	const [splitText, setSplitText] = useState(null);
 	const paragraph = useRef(null);
@@ -25,8 +27,8 @@ function Paragraph(props) {
 			setSplitText(mySplitText);
 		}
 
-		if (isSplit) {
-			const lines = $(paragraph.current).find(".line");
+		if (isSplit && intersecting) {
+			const lines = $(intersecting).find(".line");
 
 			lines.each((index, el) => {
 				const chars = $(el).find(".char");
@@ -48,21 +50,26 @@ function Paragraph(props) {
 				});
 			});
 		}
-	}, [isSplit, windowWidth]);
+	}, [isSplit, windowWidth, intersecting]);
 
 	useEffect(() => {
 		splitText && splitText.revert().split();
 	}, [windowWidth]);
 
 	return (
-		<StyledParagraph
-			className='Paragraph is-initial-hidden'
-			{...props}
-			isResized={isResized}
-			ref={paragraph}
+		<InView
+			className='paragraph-view-wrapper'
+			onChange={(inView, entry) => inView && setIntersecting(entry.target)}
 		>
-			{props.children}
-		</StyledParagraph>
+			<StyledParagraph
+				className='Paragraph is-initial-hidden'
+				{...props}
+				isResized={isResized}
+				ref={paragraph}
+			>
+				{props.children}
+			</StyledParagraph>
+		</InView>
 	);
 }
 
