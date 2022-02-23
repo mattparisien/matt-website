@@ -19,7 +19,7 @@ function Construction() {
 		<StyledWrapper className='Construction'>
 			<StyledConstructionHeading>
 				Hey. I'm currently working very hard to make this website the best it
-				can be. Check back soon.
+				can be. Check back soon or contact me.
 			</StyledConstructionHeading>
 		</StyledWrapper>
 	);
