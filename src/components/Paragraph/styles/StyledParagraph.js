@@ -26,6 +26,10 @@ const colorAnimation = keyframes`
 export const StyledParagraph = styled.p`
 	font-family: "Kobe";
 
+	${({ margin }) => {
+		return margin ? `margin: ${margin}` : "";
+	}};
+
 	font-size: 5vw;
 	line-height: 6vw;
 

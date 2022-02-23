@@ -4,7 +4,7 @@ import { SplitText } from "gsap/all";
 import gsap from "gsap";
 import $ from "jquery";
 
-function Paragraph({ children }) {
+function Paragraph(props) {
 	const [isSplit, setIsSplit] = useState(false);
 	const [splitText, setSplitText] = useState(null);
 	const paragraph = useRef(null);
@@ -27,7 +27,7 @@ function Paragraph({ children }) {
 
 			lines.each((index, el) => {
 				const chars = $(el).find(".char");
-        let delay = 0
+				let delay = 0;
 
 				gsap.to(chars, {
 					y: 0,
@@ -35,15 +35,15 @@ function Paragraph({ children }) {
 					stagger: 0.02,
 					duration: 2,
 					ease: "expo.inOut",
-          delay: delay + (index / 4)
+					delay: delay + index / 4,
 				});
 			});
 		}
 	}, [isSplit]);
 
 	return (
-		<StyledParagraph className='Paragraph' ref={paragraph}>
-			{children}
+		<StyledParagraph className='Paragraph' {...props} ref={paragraph}>
+			{props.children}
 		</StyledParagraph>
 	);
 }

@@ -17,17 +17,17 @@ function Home(props, ref) {
 
 	const { revealContent, colors } = props;
 
-	const containerStyles = { maxWidth: 2000, margin: "10vw auto" };
+	const containerStyles = { maxWidth: 2000, margin: "0 auto" };
 
 	return (
 		<StyledHome colors={colors}>
 			<Box className='container' sx={containerStyles}>
 				<Paragraph>
-					Hey, my name is Matt. I'm a full-stack web developer & graphic
+					Hey, my name is Matt. I'm a full-stack software developer & graphic
 					designer obsessed with digital products and passionate about building
-					great user interfaces.
+					fantastic user interfaces.
 				</Paragraph>
-				<Paragraph>
+				<Paragraph margin={"10vw 0"}>
 					Skilled in ReactJS & HTLM5, modern Javascript (ES6), Strapi CMS,
 					CSS/SASS, Styled Components, GSAP, REST APIs, UI testing,
 					Nodejs/Express and SQL.
