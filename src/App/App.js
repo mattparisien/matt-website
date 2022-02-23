@@ -2,7 +2,7 @@ import Home from "../components/pages/Home";
 import About from "../components/pages/About";
 import Contact from "../components/pages/Contact";
 import { GlobalStyle } from "../styles/global";
-import { useState, useRef, useEffect, useLayoutEffect } from "react";
+import { useState, useRef, useEffect, createContext } from "react";
 import { ThemeProvider } from "styled-components";
 import Modal from "../components/Modals/Modal";
 import { Helmet } from "react-helmet";
@@ -17,6 +17,9 @@ import { useIntersect } from "../helpers/hooks/useIntersect";
 import { Routes, Route, useLocation } from "react-router-dom";
 import $ from "jquery";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
+import Construction from "../components/pages/Construction";
+
+export const ColorContext = createContext();
 
 function App() {
 	//Themes
@@ -37,7 +40,6 @@ function App() {
 	};
 
 	const scrollRef = useRef(null);
-	const [colorHasChanged, setColorHasChanged] = useState(false);
 
 	const [state, setState] = useState({
 		entryScreenActive: true,
@@ -130,75 +132,87 @@ function App() {
 		}));
 	};
 
+	const changeColors = (bg, fg) => {
+		console.log(bg, fg);
+		setState(prev => ({
+			...prev,
+			colors: {
+				backgroundColor: bg,
+				foregroundColor: fg,
+			},
+		}));
+	};
+
+	const colorContextControls = {
+		changeColors,
+	};
+
 	return (
 		<ThemeProvider theme={themes}>
-			<LocomotiveScrollProvider
-				options={{
-					smooth: true,
-				}}
-				containerRef={scrollRef}
-			>
-				<div className='App'>
-					<Helmet>
-						<title>Matthew Parisien</title>
-						<meta
-							name='description'
-							content='Web Developer, Photographer & Graphic Designer'
-						/>
-					</Helmet>
-					<Modal
-						isActive={state.modal.isActive}
-						hasBeenActive={state.modal.hasBeenActive}
-						hideModal={toggleModalVisibility}
-					/>
+			<ColorContext.Provider value={colorContextControls}>
+				<LocomotiveScrollProvider
+					options={{
+						smooth: true,
+					}}
+					containerRef={scrollRef}
+				>
+					<div className='App'>
+						<Helmet>
+							<title>Matthew Parisien</title>
+							<meta
+								name='description'
+								content='Web Developer, Photographer & Graphic Designer'
+							/>
+						</Helmet>
 
-					<Header
-						ref={headerRef}
-						currentPath={location.pathname}
-						headerOffset={state.headerHeight}
-						isMenuActive={state.menuActive}
-					/>
-
-					<div className='scroll-container' ref={scrollRef} data-scroll-container>
-						<ContentWrapper
+						{/* <Header
+							ref={headerRef}
+							currentPath={location.pathname}
 							headerOffset={state.headerHeight}
-							footerOffset={state.footerHeight}
-							ref={contentWrapperRef}
+							isMenuActive={state.menuActive}
+						/> */}
+
+						<div
+							className='scroll-container'
+							ref={scrollRef}
+							data-scroll-container
 						>
-							<GlobalStyle
-								isScrollDisabled={state.isLoading}
-								isCursorWait={state.isLoading}
-								theme={themes}
-								colors={state.colors}
+							<ContentWrapper
+								headerOffset={state.headerHeight}
+								footerOffset={state.footerHeight}
+								ref={contentWrapperRef}
+							>
+								<GlobalStyle
+									isScrollDisabled={state.isLoading}
+									isCursorWait={state.isLoading}
+									theme={themes}
+									backgroundColor={state.colors.backgroundColor}
+									foregroundColor={state.colors.foregroundColor}
+								/>
+
+								<Routes>
+									<Route path='/' element={<Construction />} />
+								</Routes>
+							</ContentWrapper>
+
+							<MenuLink
+								onClickHandler={toggleMenuActivity}
+								isMenuActive={state.menuActive}
+								isFooterIntersecting={state.isFooterIntersecting}
+								ref={menuTriggerRef}
 							/>
 
-							<Routes>
-								<Route
-									path='/'
-									element={<Home colors={state.colors} ref={galleryRef} />}
-								/>
-								<Route path='/about' element={<About />} />
-								<Route path='/contact' element={<Contact />} />
-							</Routes>
-						</ContentWrapper>
-
-						<MenuLink
-							onClickHandler={toggleMenuActivity}
-							isMenuActive={state.menuActive}
-							isFooterIntersecting={state.isFooterIntersecting}
-							ref={menuTriggerRef}
-						/>
-
-						<Menu
-							currentPath={location.pathname}
-							isOpen={state.menuActive}
-							isLoading={state.isLoading}
-							hideMenu={toggleMenuActivity}
-							setLoading={toggleLoadingState}
-						/>
+							<Menu
+								currentPath={location.pathname}
+								isOpen={state.menuActive}
+								isLoading={state.isLoading}
+								hideMenu={toggleMenuActivity}
+								setLoading={toggleLoadingState}
+							/>
+						</div>
 					</div>
-				</div>
-			</LocomotiveScrollProvider>
+				</LocomotiveScrollProvider>
+			</ColorContext.Provider>
 		</ThemeProvider>
 	);
 }

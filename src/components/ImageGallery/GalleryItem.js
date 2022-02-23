@@ -1,5 +1,4 @@
 import React, { forwardRef, useRef, useState, useEffect } from "react";
-import { Parallax } from "react-scroll-parallax";
 import { useIntersect } from "../../helpers/hooks/useIntersect";
 import useResize from "../../helpers/hooks/useResize";
 import { device, deviceSize } from "../../styles/breakpoints";

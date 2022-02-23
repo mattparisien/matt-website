@@ -2,29 +2,22 @@ import styled from "styled-components";
 import { device } from "../../../styles/breakpoints";
 import { keyframes } from "styled-components";
 
-const colorAnimation = keyframes`
+const rotateAnimation = keyframes`
   0% {
-    color: ${({ theme }) => theme.colors.orange};
+    transform: rotate(0deg);
   }
-  20% {
-    color: ${({ theme }) => theme.colors.pink};
-  }
-  40% {
-    color: ${({ theme }) => theme.colors.light};
-  }
-  60% {
-    color: ${({ theme }) => theme.colors.purple};
-  }
-  80% {
-    color: ${({ theme }) => theme.colors.yellow};
-  }
-  80% {
-    color: ${({ theme }) => theme.colors.grey};
-  }
+  
+	100% {
+		transform: rotate(360deg);
+	}
 `;
 
 export const StyledParagraph = styled.p`
 	font-family: "Kobe";
+
+	.accent {
+		color: pink;
+	}
 
 	${({ margin }) => {
 		return margin ? `margin: ${margin}` : "";
@@ -38,11 +31,6 @@ export const StyledParagraph = styled.p`
 		justify-content: flex-start;
 	}
 
-
-	.accent {
-		animation: ${colorAnimation} 5s ease;
-	}
-
 	a {
 		font-family: "Kobe";
 	}
@@ -52,6 +40,8 @@ export const StyledParagraph = styled.p`
 		line-height: 6rem;
 	}
 
+
+
 	@media ${device.laptopL} {
 		font-size: 7rem;
 		line-height: 7rem;
@@ -59,10 +49,6 @@ export const StyledParagraph = styled.p`
 
 	@media ${device.desktop} {
 		font-size: 9rem;
-		line-height: 9rem;
+		line-height: 10rem;
 	}
-
-	
-
-
 `;

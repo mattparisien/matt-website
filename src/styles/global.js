@@ -2,7 +2,6 @@ import { createGlobalStyle } from "styled-components";
 import FKScreamer from "../fonts/FKScreamer.otf";
 import Haas from "../fonts/Haas.otf";
 import Konnect from "../fonts/Konnect.woff";
-
 import FuturaCEB from "../fonts/Futura.otf";
 import NeueMtl from "../fonts/NeueMtl.otf";
 import DefaultCursor from "../assets/images/cursor-default-01.svg";
@@ -22,7 +21,10 @@ cursor: ${({ isCursorWait }) => (isCursorWait ? "wait" : "")}
   }
 
   .App {
-    background-color: ${props => props.colors.backgroundColor};
+    background-color: ${({ backgroundColor, theme }) =>
+			theme.colors[backgroundColor]};
+    color: ${({ foregroundColor, theme }) => theme.colors[foregroundColor]};
+    transition: 500ms ease;
   }
 
 

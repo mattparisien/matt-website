@@ -7,7 +7,20 @@ export const StyledHome = styled.div`
 
 	min-height: 100vh;
 
-	@media ${device.mobileL} {
-		padding: 2rem;
+	.self-image-container {
+		width: 300px;
+		height: 300px;
+		overflow: hidden;
+		object-fit: cover;
+		position: absolute;
+		top: 0;
+		right: 0;
+		border-radius: 10px;
+
+		img {
+			width: 100%;
+			object-fit: cover;
+		}
 	}
+
 `;

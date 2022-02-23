@@ -9,14 +9,8 @@ function Balls() {
 	const [windowWidth, isResized] = useResize();
 	const ballRef = useRef(null);
 
-
-
 	return (
-		<StyledBalls
-			className={"floating-items-wrapper -isAbsolute -isFull'"}
-			
-			
-		>
+		<StyledBalls className={"floating-items-wrapper -isAbsolute -isFull'"}>
 			<div className='floating-item' ref={ballRef}></div>
 			<div className='floating-item'></div>
 		</StyledBalls>
