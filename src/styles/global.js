@@ -15,6 +15,7 @@ cursor: ${({ isCursorWait }) => (isCursorWait ? "wait" : "")};
 
   body {
     cursor: url(${DefaultCursor});
+    margin: 0;
   }
 
   p, a:not(li a) {
@@ -22,7 +23,7 @@ cursor: ${({ isCursorWait }) => (isCursorWait ? "wait" : "")};
   }
 
   .App {
-    background-color: ${({theme}) => theme.colors.dark};
+    background-color: ${({ theme }) => theme.colors.dark};
     color: ${({ foregroundColor, theme }) => theme.colors.light};
     background-color: ${({ backgroundColor, theme }) =>
 			theme.colors[backgroundColor]};
