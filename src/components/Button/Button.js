@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
-import classNames from "classnames";
+import React, { useRef, useState } from "react";
 import ButtonCircle from "./ButtonCircle";
-import ButtonRegular from "./ButtonRegular";
 import ButtonLink from "./ButtonLink";
+import ButtonRegular from "./ButtonRegular";
 
 
 function Button(props) {
@@ -12,7 +11,6 @@ function Button(props) {
 		padding: props.padding,
 	};
 
-	const buttonRef = useRef([]);
 
 	function capitalizeFirstLetter(string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);

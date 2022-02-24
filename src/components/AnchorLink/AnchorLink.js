@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef } from "react";
+import React, { forwardRef } from "react";
 import { Link } from "react-router-dom";
 
 function AnchorLink({
@@ -9,7 +9,7 @@ function AnchorLink({
 	children,
 	onClick,
 	addToRefs,
-}, ref) {
+}) {
 	return (
 		<>
 			{isRouterLink ? (

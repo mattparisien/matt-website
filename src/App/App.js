@@ -1,23 +1,13 @@
-import Home from "../components/pages/Home";
-import About from "../components/pages/About";
-import Contact from "../components/pages/Contact";
-import { GlobalStyle } from "../styles/global";
-import { useState, useRef, useEffect, createContext } from "react";
-import { ThemeProvider } from "styled-components";
-import Modal from "../components/Modals/Modal";
-import { Helmet } from "react-helmet";
-import Footer from "../components/Footer/Footer";
-import Preloader from "../components/Preloader/Preloader";
-import Header from "../components/Header/Header";
 import gsap from "gsap/all";
-import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
-import Menu from "../components/Menu/Menu";
-import MenuLink from "../components/Header/Menu/MenuLink";
-import { useIntersect } from "../helpers/hooks/useIntersect";
-import { Routes, Route, useLocation } from "react-router-dom";
 import $ from "jquery";
+import { createContext, useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
 import Construction from "../components/pages/Construction";
+import { GlobalStyle } from "../styles/global";
 
 export const ColorContext = createContext();
 
