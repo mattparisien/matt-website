@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-
+import { useState } from "react";
 import { useEffect } from "react/cjs/react.development";
+
 
 export default function useResize() {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);

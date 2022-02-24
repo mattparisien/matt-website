@@ -1,16 +1,6 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { device } from "../../../styles/breakpoints";
-import { keyframes } from "styled-components";
 
-const rotateAnimation = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-  
-	100% {
-		transform: rotate(360deg);
-	}
-`;
 
 export const StyledParagraph = styled.p`
 	font-family: "Kobe";

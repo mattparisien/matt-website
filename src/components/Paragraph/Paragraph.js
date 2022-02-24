@@ -12,7 +12,7 @@ function Paragraph(props) {
 	const [splitText, setSplitText] = useState(null);
 	const paragraph = useRef(null);
 	const [windowWidth, isResized] = useResize();
-	const timeline = useRef(gsap.timeline());
+	// const timeline = useRef(gsap.timeline());
 
 	useEffect(() => {
 		if (!isSplit && paragraph.current) {
@@ -54,7 +54,7 @@ function Paragraph(props) {
 
 	useEffect(() => {
 		splitText && splitText.revert().split();
-	}, [windowWidth]);
+	}, [windowWidth, splitText]);
 
 	return (
 		<InView

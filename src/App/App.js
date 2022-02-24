@@ -48,30 +48,26 @@ function App() {
 		isLoading: false,
 	});
 
-	const scrollContainer = useRef(null);
-
-	const cursor = useRef(null);
-
-	const toggleModalVisibility = () => {
-		setState(prev => ({
-			...prev,
-			modal: {
-				isActive: !state.modal.isActive,
-				hasBeenActive: true,
-			},
-		}));
-	};
+	// const toggleModalVisibility = () => {
+	// 	setState(prev => ({
+	// 		...prev,
+	// 		modal: {
+	// 			isActive: !state.modal.isActive,
+	// 			hasBeenActive: true,
+	// 		},
+	// 	}));
+	// };
 
 	/***** ANIMATE CONTENT ENTRY ON LOAD  *****/
 
-	const galleryRef = useRef(null);
-	const revealContentTl = useRef(gsap.timeline({ paused: true }));
+	// const galleryRef = useRef(null);
+	// const revealContentTl = useRef(gsap.timeline({ paused: true }));
 	const headerRef = useRef(null);
 	const footerRef = useRef(null);
 	const contentWrapperRef = useRef(null);
-	const menuTriggerRef = useRef(null);
+	// const menuTriggerRef = useRef(null);
 
-	const location = useLocation();
+	// const location = useLocation();
 
 	// useEffect(() => {
 	// 	if (!state.isLoading) {
@@ -111,16 +107,16 @@ function App() {
 		}
 	}, [headerRef, footerRef]);
 
-	const toggleMenuActivity = () => {
-		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
-	};
+	// const toggleMenuActivity = () => {
+	// 	setState(prev => ({ ...prev, menuActive: !state.menuActive }));
+	// };
 
-	const toggleLoadingState = () => {
-		setState(prev => ({
-			...prev,
-			isLoading: state.isLoading ? false : true,
-		}));
-	};
+	// const toggleLoadingState = () => {
+	// 	setState(prev => ({
+	// 		...prev,
+	// 		isLoading: state.isLoading ? false : true,
+	// 	}));
+	// };
 
 	const changeColors = (bg, fg) => {
 		console.log(bg, fg);

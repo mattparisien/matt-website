@@ -1,10 +1,9 @@
 import { createGlobalStyle } from "styled-components";
+import DefaultCursor from "../assets/images/cursor-default-01.svg";
 import FKScreamer from "../fonts/FKScreamer.otf";
+import FuturaCEB from "../fonts/Futura.otf";
 import Haas from "../fonts/Haas.otf";
 import Konnect from "../fonts/Konnect.woff";
-import FuturaCEB from "../fonts/Futura.otf";
-import NeueMtl from "../fonts/NeueMtl.otf";
-import DefaultCursor from "../assets/images/cursor-default-01.svg";
 
 export const GlobalStyle = createGlobalStyle`
 
