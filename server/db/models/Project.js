@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+mongoose.set('debug', true);
+
 
 const projectSchema = new mongoose.Schema({
 	name: String,

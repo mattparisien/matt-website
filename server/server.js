@@ -17,20 +17,10 @@ const fs = require("fs");
 //Express config
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json());
-
 app.use(cors());
 app.use(express.static("public"));
 require("dotenv").config();
 app.use(methodOverride("_method"));
-
-//Mongo config
-// const conn = mongoose.connect(
-// 	process.env.MONGO_URI,
-// 	() => {
-// 		console.log("Connected");
-// 	},
-// 	e => console.log(e)
-// );
 
 const conn = mongoose.createConnection(process.env.MONGO_URI);
 const Project = require("./db/models/Project");
@@ -69,16 +59,18 @@ const upload = multer({ storage });
 app.use("/api", router);
 
 router.get("/projects", (req, res) => {
+	res.send("hi");
 	Project.find({}, (err, projects) => {
-		console.log(project)
-    // var userMap = {};
+		if (err) console.log(err);
+		// res.json({ projects: projects });
+		// var userMap = {};
 
-    // users.forEach(function(user) {
-    //   userMap[user._id] = user;
-    // });
+		// users.forEach(function(user) {
+		//   userMap[user._id] = user;
+		// });
 
-    // res.send(userMap);  
-  });
+		// res.send(userMap);
+	});
 });
 
 router.post("/upload", upload.single("image"), (req, res) => {
