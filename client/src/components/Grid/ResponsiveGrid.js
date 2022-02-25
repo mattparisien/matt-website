@@ -19,13 +19,13 @@ function ResponsiveGrid({ items }) {
 			id: 2,
 			xs: 6,
 			md: 4,
-			height: "30rem",
+			height: "35rem",
 		},
 		{
 			id: 3,
 			xs: 6,
 			md: 4,
-			height: "25rem",
+			height: "35vw",
 		},
 		{
 			id: 4,
@@ -61,7 +61,9 @@ function ResponsiveGrid({ items }) {
 								sx={{ position: "relative", padding: 0 }}
 								height={itemSizes[index].height}
 							>
-								<img src={item.featureImage} style={imageStyle}></img>
+								<a href={item.url}>
+									<img src={item.featureImage} style={imageStyle}></img>
+								</a>
 							</Item>
 						</Grid>
 					);
