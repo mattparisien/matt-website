@@ -21,6 +21,7 @@ mongoose.connect(
 	},
 	e => console.log(e)
 );
+const Project = require("./db/models/Project");
 
 //Routing config
 app.use("/api", router);
