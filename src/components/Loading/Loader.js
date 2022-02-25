@@ -1,10 +1,12 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import { Box } from "@mui/material";
 import gsap from "gsap";
 import { useTheme } from "styled-components";
+import { LoadingContext } from "../../App/App";
 
 function Loader({ isActive }) {
 	const theme = useTheme();
+	const { toggleLoading } = useContext(LoadingContext);
 
 	const loaderStyle = {
 		position: "fixed",
@@ -58,6 +60,9 @@ function Loader({ isActive }) {
 					y: "-100%",
 					ease: "expo.inOut",
 					duration: 0.9,
+					onComplete: () => {
+						toggleLoading();
+					},
 				})
 				.set(container.current, { clearProps: "all" });
 

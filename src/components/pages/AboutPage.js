@@ -4,20 +4,13 @@ import ContainerFluid from "../Containers/ContainerFluid";
 import Section from "../Containers/Section";
 import { Box } from "@mui/material";
 import styled from "styled-components";
-import Loader from "../Loading/Loader";
 import Button from "../Button/Button";
-import { Divider } from "@mui/material";
-import { LoadingContext } from "../../App/App";
+import Line from "../Divider/Line";
 
 const margin = 4;
 
 const StyledFromHeading = styled(Paragraph)`
 	margin-bottom: ${margin}rem;
-`;
-
-const StyledDivider = styled(Divider)`
-	border-bottom-width: 1spx;
-	background-color: ${({ theme }) => theme.colors.dark};
 `;
 
 function About() {
@@ -26,7 +19,6 @@ function About() {
 		alignItems: "flex-start",
 		flexDirection: "column",
 	};
-
 
 	return (
 		<>
@@ -45,7 +37,8 @@ function About() {
 						</Paragraph>
 					</Box>
 					<Box sx={{ marginTop: `${margin * 2}rem` }}>
-						<StyledDivider />
+						<Line />
+						{/* <StyledDivider /> */}
 						<Button align='left' $href='mailto:hello@matthewparisien.com'>
 							Get in touch
 						</Button>
