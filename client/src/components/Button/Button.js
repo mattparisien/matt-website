@@ -76,9 +76,10 @@ function Button(props) {
 		<StyledLink href={props.$href} {...props}></StyledLink>
 	) : (
 		<StyledButton
+			onClick={props.onClickHandler}
 			type='button'
 			{...props}
-			onClick={props.$to ? handleClick : ""}
+			onClick={props.$to ? handleClick : props.onClick ? props.onClick : ""}
 		></StyledButton>
 	);
 }

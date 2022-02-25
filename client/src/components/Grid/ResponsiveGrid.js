@@ -1,14 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import styled from "styled-components";
 import { Box } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 
 const Item = styled(Box)`
 	background-color: blue;
 	min-height: 20vw;
+	background-color: ${({ theme }) => theme.colors.grey};
 `;
 
-function ResponsiveGrid({ items }) {
+const LoadingOverlay = styled(Box)`
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: ${({ theme }) => theme.colors.grey};
+	display: flex;
+	align-items: center;
+	justify-content: center;
+`;
+
+function ResponsiveGrid({ items, isItemLoading }) {
 	const itemSizes = [
 		{
 			column: "span 6",
@@ -27,10 +41,11 @@ function ResponsiveGrid({ items }) {
 			column: "span 4",
 		},
 		{
-			column: "span 8",
+			column: "span 12",
+			row: "span 2",
 		},
 		{
-			column: "span 4",
+			column: "span 12",
 		},
 	];
 
@@ -52,6 +67,7 @@ function ResponsiveGrid({ items }) {
 						<Box
 							gridColumn={itemSizes[index].column}
 							gridRow={itemSizes[index].row}
+							sx={{ position: "relative" }}
 						>
 							<Item
 								sx={{
@@ -61,8 +77,17 @@ function ResponsiveGrid({ items }) {
 									backgroundSize: "cover",
 								}}
 							>
-								<a href={item.url} style={linkStyle}></a>
+								<a
+									style={{ display: "block" }}
+									href={item.url}
+									style={linkStyle}
+								></a>
 							</Item>
+							{isItemLoading && (
+								<LoadingOverlay className='gridItem-loading-overlay'>
+									<CircularProgress color='inherit' />
+								</LoadingOverlay>
+							)}
 						</Box>
 					);
 				})}
