@@ -1,15 +1,11 @@
-import React, { useRef, forwardRef, useContext } from "react";
-import About from "./components/About";
-import Hero from "./components/Hero";
-import Sticky from "../Sticky";
-import Section from "../Section";
-import FeaturedWork from "./components/FeaturedWork";
-import Paragraph from "../Paragraph/Paragraph";
-import { StyledHome } from "./styles/StyledHome";
 import { Box } from "@mui/material";
+import React, { forwardRef, useContext, useRef } from "react";
 import { ColorContext } from "../../App/App";
 import ColorTrigger from "../ColorTrigger/ColorTrigger";
 import Line from "../Line/Line";
+import Paragraph from "../Paragraph/Paragraph";
+import { StyledHome } from "./styles/StyledHome";
+import { Link } from "react-router-dom";
 
 function Home(props, ref) {
 	//Declare refs needed for animation
@@ -58,6 +54,7 @@ function Home(props, ref) {
 							CSS/SASS, Styled Components, GSAP, REST APIs, UI testing,
 							Nodejs/Express and SQL.
 						</Paragraph>
+
 						<Paragraph>
 							Interested <span className='accent'>?</span>{" "}
 							<a href='#'>View work</a>

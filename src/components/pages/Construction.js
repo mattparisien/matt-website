@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Paragraph from "../Paragraph/Paragraph";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { LoadingContext } from "../../App/App";
+import { useNavigate } from "react-router-dom";
+import Button from "../Button/Button";
 
 const StyledConstructionHeading = styled(Paragraph)``;
 
@@ -15,12 +19,16 @@ const StyledWrapper = styled.div`
 `;
 
 function Construction() {
+	
+	
+	
 	return (
 		<StyledWrapper className='Construction'>
 			<StyledConstructionHeading>
 				Hey. I'm currently working very hard to make this website the best it
 				can be. Check back soon or contact me.
 			</StyledConstructionHeading>
+			<Button $to={"/about"}>Chnage routes!</Button>
 		</StyledWrapper>
 	);
 }

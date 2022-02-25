@@ -27,11 +27,6 @@ function About() {
 		flexDirection: "column",
 	};
 
-	const { isLoading, toggleLoading } = useContext(LoadingContext);
-
-	useEffect(() => {
-		toggleLoading();
-	}, []);
 
 	return (
 		<>

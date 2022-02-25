@@ -1,5 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { LoadingContext } from "../../App/App";
 
 const StyledButton = styled.button`
 	background-color: ${({ theme }) => theme.colors.red};
@@ -58,6 +60,16 @@ const StyledLink = styled.a`
 `;
 
 function Button(props) {
+	const navigate = useNavigate();
+	const { toggleLoading } = useContext(LoadingContext);
+
+	const handleClick = () => {
+		toggleLoading();
+		setTimeout(() => {
+			navigate(props.$to);
+		}, 700);
+	};
+
 	return props.$href ? (
 		<StyledLink
 			href={props.$href}
@@ -71,6 +83,7 @@ function Button(props) {
 			{...props}
 			data-scroll
 			data-scroll-speed={3}
+			onClick={props.$to ? handleClick : ""}
 		></StyledButton>
 	);
 }
