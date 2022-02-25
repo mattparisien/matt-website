@@ -7,11 +7,7 @@ import Konnect from "../fonts/Konnect.woff";
 
 export const GlobalStyle = createGlobalStyle`
 
-* {
-cursor: ${({ isCursorWait }) => (isCursorWait ? "wait" : "")};
 
-
-}
 
   body {
     cursor: url(${DefaultCursor});
@@ -21,6 +17,13 @@ cursor: ${({ isCursorWait }) => (isCursorWait ? "wait" : "")};
   p, a:not(li a) {
     font-family: 'Haas';
   }
+
+  main {
+    min-height: 100vh;
+  }
+
+
+
 
   .App {
     background-color: ${({ theme }) => theme.colors.dark};
@@ -67,6 +70,7 @@ cursor: ${({ isCursorWait }) => (isCursorWait ? "wait" : "")};
     font-family: 'FK';
     
   }
+
 
 
   button, a {

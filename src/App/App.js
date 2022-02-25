@@ -8,6 +8,7 @@ import { ThemeProvider } from "styled-components";
 import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
 import Construction from "../components/pages/Construction";
 import { GlobalStyle } from "../styles/global";
+import AboutPage from "../components/pages/AboutPage";
 
 export const ColorContext = createContext();
 
@@ -178,6 +179,7 @@ function App() {
 
 								<Routes>
 									<Route path='/' element={<Construction />} />
+									<Route path='/about' element={<AboutPage />} />
 								</Routes>
 							</ContentWrapper>
 						</div>

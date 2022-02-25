@@ -10,7 +10,7 @@ export default function useResize() {
 	useEffect(() => {
 		const handleResize = function (e) {
 			const innerWidth = window.innerWidth;
-			constinnerHeight = window.innerHeight;
+			const innerHeight = window.innerHeight;
 			setWindowWidth(innerWidth);
 			setWindowHeight(innerHeight);
 			setResized(true);

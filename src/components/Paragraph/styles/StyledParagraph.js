@@ -1,20 +1,50 @@
 import styled from "styled-components";
 import { device } from "../../../styles/breakpoints";
 
+const paragraphFontSizes = {
+	standard: {
+		desktopL: {
+			fontSize: "5rem",
+			lineHeight: "1.5rem",
+		},
+		desktop: {
+			fontSize: "4.4rem",
+			lineHeight: "5rem",
+		},
+		laptopL: {
+			fontSize: "2rem",
+			lineHeight: "1.5rem",
+		},
+		laptop: {
+			fontSize: "2rem",
+			lineHeight: "2rem",
+		},
+		tablet: {
+			fontSize: "1.5rem",
+			lineHeight: "1.5rem",
+		},
+		mobileL: {
+			fontSize: "2.4rem",
+			lineHeight: "2.5rem",
+		},
+		mobileM: {
+			fontSize: "4rem",
+			lineHeight: "4rem",
+		},
+		mobileS: {
+			fontSize: "4rem",
+			lineHeight: "4rem",
+		},
+	},
+};
 
 export const StyledParagraph = styled.p`
 	font-family: "Kobe";
+	margin: 0;
 
 	.accent {
 		color: pink;
 	}
-
-	${({ margin }) => {
-		return margin ? `margin: ${margin}` : "";
-	}};
-
-	font-size: 5vw;
-	line-height: 6vw;
 
 	.line-wrapper {
 		overflow: hidden;
@@ -24,21 +54,13 @@ export const StyledParagraph = styled.p`
 	a {
 		font-family: "Kobe";
 	}
+`;
 
-	@media ${device.laptop} {
-		font-size: 6rem;
-		line-height: 6rem;
-	}
-
-
-
-	@media ${device.laptopL} {
-		font-size: 7rem;
-		line-height: 7rem;
-	}
-
-	@media ${device.desktop} {
-		font-size: 9rem;
-		line-height: 10rem;
-	}
+export const StyledStandardParagraph = styled(StyledParagraph)`
+	${Object.keys(paragraphFontSizes.standard).reverse().map(size => {
+		return `@media ${device[size]} {
+				font-size: ${paragraphFontSizes.standard[size].fontSize};
+				line-height: ${paragraphFontSizes.standard[size].lineHeight};
+			}`;
+	})};
 `;

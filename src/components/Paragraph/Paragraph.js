@@ -5,6 +5,8 @@ import gsap from "gsap";
 import $ from "jquery";
 import useResize from "../../helpers/hooks/useResize";
 import InView from "react-intersection-observer";
+import styled from "styled-components";
+import { StyledStandardParagraph } from "./styles/StyledParagraph";
 
 function Paragraph(props) {
 	const [intersecting, setIntersecting] = useState(null);
@@ -56,19 +58,21 @@ function Paragraph(props) {
 		splitText && splitText.revert().split();
 	}, [windowWidth, splitText]);
 
+	const paragraphClass = 'Paragraph'
+
 	return (
 		<InView
 			className='paragraph-view-wrapper'
 			onChange={(inView, entry) => inView && setIntersecting(entry.target)}
 		>
-			<StyledParagraph
-				className='Paragraph is-initial-hidden'
+			<StyledStandardParagraph
+				className={paragraphClass}
 				{...props}
 				isResized={isResized}
 				ref={paragraph}
 			>
 				{props.children}
-			</StyledParagraph>
+			</StyledStandardParagraph>
 		</InView>
 	);
 }
