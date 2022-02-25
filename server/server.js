@@ -3,20 +3,25 @@ const PORT = 8080;
 const app = express();
 const router = require("express").Router();
 const bodyParser = require("body-parser");
+const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const { GridFsStorage } = require("multer-gridfs-storage");
 const Grid = require("gridfs-stream");
+const crypto = require("crypto");
+const methodOverride = require("method-override");
 
 const fs = require("fs");
 
 //Express config
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json());
+
 app.use(cors());
 app.use(express.static("public"));
 require("dotenv").config();
+app.use(methodOverride("_method"));
 
 //Mongo config
 // const conn = mongoose.connect(
@@ -40,7 +45,6 @@ conn.once("open", () => {
 });
 
 //Create storage object
-
 const storage = new GridFsStorage({
 	url: process.env.MONGO_URI,
 	file: (req, file) => {
@@ -70,10 +74,16 @@ router.get("/projects", (req, res) => {
 	});
 });
 
+router.post("/upload", upload.single("image"), (req, res) => {
+	//Upload photography route and stores in db
+
+	res.json({ file: req.file });
+});
+
 router.get("/photography", (req, res) => {
 	Image.find({}).toArray((err, result) => {
 		const imgArray = result.map(el => el._id);
-		console.log(imgArray);
+
 		if (err) console.log(err);
 
 		res.send(imgArray);

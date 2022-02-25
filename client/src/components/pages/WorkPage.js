@@ -8,6 +8,7 @@ import styled from "styled-components";
 import ResponsiveGrid from "../Grid/ResponsiveGrid";
 import { DataContext } from "../../App/App";
 import Line from "../Divider/Line";
+import axios from "axios";
 
 function WorkPage() {
 	const StyledCategoryBtn = styled(Button)`
@@ -24,9 +25,17 @@ function WorkPage() {
 		setItemLoading(!itemLoading);
 	};
 
-	const handleFile = e => {
-		console.log(e.target.value);
-	};
+	// const handleSubmit = e => {
+	// 	e.preventDefault();
+	// 	const image = e.target[0].files[0];
+
+	// 	console.log(image)
+
+	// 	axios
+	// 		.post(`${process.env.REACT_APP_API_URL}/upload`, image)
+	// 		.then(res => console.log(res))
+	// 		.catch(err => console.log(err));
+	// };
 
 	return (
 		<>
@@ -47,7 +56,15 @@ function WorkPage() {
 						</StyledCategoryBtn>
 					</ButtonGroup>
 					<Line />
-					<input type='file' accept='image/*' multiple onChange={handleFile} />
+					<form
+						action={`${process.env.REACT_APP_API_URL}/upload`}
+						method='POST'
+						encType='multipart/form-data'
+						onSubmit={handleSubmit}
+					>
+						<input name='image' type='file' accept='image/*' />
+						<input type='submit' value='Submit' />
+					</form>
 				</Box>
 
 				<ResponsiveGrid
