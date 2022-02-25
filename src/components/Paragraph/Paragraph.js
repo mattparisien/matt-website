@@ -19,12 +19,12 @@ function Paragraph(props) {
 	useEffect(() => {
 		if (!isSplit && paragraph.current) {
 			const mySplitText = new SplitText(paragraph.current, {
-				type: "lines, chars",
+				type: "lines, chars, words",
 				linesClass: "line",
 				charsClass: "char",
 			});
 
-			$(mySplitText.lines).wrap("<div class='line-wrapper'></div>");
+			$(mySplitText.lines).wrap("<div className='line-wrapper'></div>");
 			setIsSplit(true);
 			setSplitText(mySplitText);
 		}
@@ -58,7 +58,7 @@ function Paragraph(props) {
 		splitText && splitText.revert().split();
 	}, [windowWidth, splitText]);
 
-	const paragraphClass = 'Paragraph'
+	const paragraphClass = "Paragraph";
 
 	return (
 		<InView

@@ -21,9 +21,6 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Haas';
   }
 
-  main {
-    min-height: 100vh;
-  }
 
 
 

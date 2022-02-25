@@ -1,18 +1,16 @@
 import styled from "styled-components";
 
 export const StyledContent = styled.main`
-	padding: 0 2rem;
-	
-
+	min-height: 100vh;
 
 	${({ hideContentDefault }) => {
-		return (
-			hideContentDefault ? `
+		return hideContentDefault
+			? `
 			.gallery-wrapper {
 				transform: translateY(100%);
 				opacity: 0;
 			}
-			` : ''
-		)
+			`
+			: "";
 	}}
 `;

@@ -50,7 +50,26 @@ export const StyledParagraph = styled.p`
 		overflow: hidden;
 		justify-content: flex-start;
 	}
-	
+
+	${({ indent }) => {
+		return indent
+			? `.line:nth-of-type(1) {
+				padding-left: 14.4rem;
+				position: relative;
+			}`
+			: "";
+	}};
+
+	${({ indentHeading }) => {
+		return indentHeading
+			? `.line:nth-of-type(1)::after {
+				content: 'About';
+				font-size: 1.2rem;
+				position: absolute;
+				left: 0;
+			}`
+			: "";
+	}};
 
 	a {
 		font-family: "Haas";
@@ -58,10 +77,12 @@ export const StyledParagraph = styled.p`
 `;
 
 export const StyledStandardParagraph = styled(StyledParagraph)`
-	${Object.keys(paragraphFontSizes.standard).reverse().map(size => {
-		return `@media ${device[size]} {
+	${Object.keys(paragraphFontSizes.standard)
+		.reverse()
+		.map(size => {
+			return `@media ${device[size]} {
 				font-size: ${paragraphFontSizes.standard[size].fontSize};
 				line-height: ${paragraphFontSizes.standard[size].lineHeight};
 			}`;
-	})};
+		})};
 `;
