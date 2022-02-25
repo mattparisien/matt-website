@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { Box } from "@mui/material";
 
 const Item = styled(Box)`
-	padding: 2rem;
 	background-color: blue;
 `;
 
@@ -14,27 +13,33 @@ function ResponsiveGrid({ items }) {
 			id: 1,
 			xs: 6,
 			md: 8,
-			height: "5rem",
+			height: "30rem",
 		},
 		{
 			id: 2,
 			xs: 6,
 			md: 4,
-			height: "5rem",
+			height: "30rem",
 		},
 		{
 			id: 3,
 			xs: 6,
 			md: 4,
-			height: "5rem",
+			height: "25rem",
 		},
 		{
 			id: 4,
 			xs: 6,
 			md: 8,
-			height: "5rem",
+			height: "10rem",
 		},
 	];
+
+	const imageStyle = {
+		objectFit: "cover",
+		width: "100%",
+		height: "100%",
+	};
 
 	useEffect(() => {
 		console.log(items);
@@ -50,9 +55,13 @@ function ResponsiveGrid({ items }) {
 							xs={itemSizes[(index += 1)].xs}
 							md={itemSizes[(index += 1)].md}
 							key={index}
+							sx={{ padding: 0 }}
 						>
-							<Item sx={{height: "10rem"}}>
-								{item.name}
+							<Item
+								sx={{ position: "relative", padding: 0 }}
+								height={itemSizes[index].height}
+							>
+								<img src={item.featureImage} style={imageStyle}></img>
 							</Item>
 						</Grid>
 					);
