@@ -26,7 +26,11 @@ const Project = require("./db/models/Project");
 //Routing config
 app.use("/api", router);
 
-router.get("/projects", (req, res) => {});
+router.get("/projects", (req, res) => {
+	Project.find({}, (err, projects) => {
+		res.send(projects);
+	});
+});
 
 app.listen(PORT, () => {
 	console.log(`Server listening on port ${PORT} 😎😎😎`);
