@@ -23,8 +23,6 @@ function Paragraph(props) {
 				linesClass: "line",
 				charsClass: "char",
 			});
-
-			$(mySplitText.lines).wrap("<div className='line-wrapper'></div>");
 			setIsSplit(true);
 			setSplitText(mySplitText);
 		}
@@ -52,7 +50,11 @@ function Paragraph(props) {
 				});
 			});
 		}
-	}, [isSplit, windowWidth, intersecting]);
+
+		if (splitText) {
+			$(splitText.lines).wrap("<div class='line-wrapper'></div>");
+		}
+	}, [isSplit, windowWidth, intersecting, splitText]);
 
 	useEffect(() => {
 		splitText && splitText.revert().split();

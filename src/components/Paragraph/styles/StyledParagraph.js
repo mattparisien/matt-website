@@ -53,7 +53,7 @@ export const StyledParagraph = styled.p`
 
 	${({ indent }) => {
 		return indent
-			? `.line:nth-of-type(1) {
+			? `.line-wrapper:nth-of-type(1) {
 				padding-left: 14.4rem;
 				position: relative;
 			}`
@@ -62,7 +62,7 @@ export const StyledParagraph = styled.p`
 
 	${({ indentHeading }) => {
 		return indentHeading
-			? `.line:nth-of-type(1)::after {
+			? `.line-wrapper:nth-of-type(1)::after {
 				content: 'About';
 				font-size: 1.2rem;
 				position: absolute;

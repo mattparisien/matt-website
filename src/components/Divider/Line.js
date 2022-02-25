@@ -5,12 +5,12 @@ import InView from "react-intersection-observer";
 
 const StyledDivider = styled(Divider)`
 	border-bottom-width: 1px;
-  transition: 2s ease;
+	transition: 2s ease;
 	width: ${({ intersecting }) => (intersecting ? "100%" : "0%")};
 	background-color: ${({ theme }) => theme.colors.dark};
 `;
 
-function Line({ id }) {
+function Line() {
 	const [intersecting, setIntersecting] = useState(null);
 
 	return (
