@@ -9,7 +9,7 @@ const paragraphFontSizes = {
 		},
 		desktop: {
 			fontSize: "4.4rem",
-			lineHeight: "5rem",
+			lineHeight: "4.4rem",
 		},
 		laptopL: {
 			fontSize: "2rem",
@@ -39,7 +39,7 @@ const paragraphFontSizes = {
 };
 
 export const StyledParagraph = styled.p`
-	font-family: "Kobe";
+	font-family: "Haas";
 	margin: 0;
 
 	.accent {
@@ -50,9 +50,10 @@ export const StyledParagraph = styled.p`
 		overflow: hidden;
 		justify-content: flex-start;
 	}
+	
 
 	a {
-		font-family: "Kobe";
+		font-family: "Haas";
 	}
 `;
 

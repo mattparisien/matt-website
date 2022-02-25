@@ -7,6 +7,9 @@ import Konnect from "../fonts/Konnect.woff";
 
 export const GlobalStyle = createGlobalStyle`
 
+ * {
+-webkit-font-smoothing: antialiased;
+ }
 
 
   body {

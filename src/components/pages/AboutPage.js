@@ -17,11 +17,11 @@ function About() {
 	};
 
 	return (
-		<Section>
-			<ContainerFluid>
+		<Section bg="light">
+			<ContainerFluid >
 				<Box sx={flexStyle}>
-					<Box sx={{ marginBottom: "5rem" }}>
-						<Paragraph>Made in Montreal</Paragraph>
+					<Box sx={{ margin: "5rem 0" }}>
+						<Paragraph>Made in Montreal,</Paragraph>
 						<Paragraph>Quebec, Canada</Paragraph>
 					</Box>
 					<Paragraph indent>
