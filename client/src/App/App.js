@@ -12,9 +12,11 @@ import AboutPage from "../components/pages/AboutPage";
 import Header from "../components/Header/Header";
 import Loader from "../components/Loading/Loader";
 import WorkPage from "../components/pages/WorkPage";
+import axios from "axios";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();
+export const DataContext = createContext();
 
 function App() {
 	//Themes
@@ -46,12 +48,28 @@ function App() {
 			backgroundColor: themes.colors.dark,
 			foregroundColor: themes.colors.light,
 		},
+		data: {},
 		headerHeight: null,
 		footerHeight: null,
 		isFooterIntersecting: false,
 		menuActive: false,
 		isLoading: false,
 	});
+
+	useEffect(() => {
+		//Get essential data
+		axios
+			.get(`${process.env.REACT_APP_API_URL}/projects`)
+			.then(res => {
+				if (res.data) {
+					setState(prev => ({
+						...prev,
+						data: { ...prev.data, projects: res.data },
+					}));
+				}
+			})
+			.catch(err => console.log(err));
+	}, []);
 
 	// const toggleModalVisibility = () => {
 	// 	setState(prev => ({
@@ -135,52 +153,54 @@ function App() {
 	};
 
 	return (
-		<ThemeProvider theme={themes}>
-			<ColorContext.Provider value={colorContextControls}>
-				<LoadingContext.Provider value={loadingControls}>
-					<LocomotiveScrollProvider
-						options={{
-							smooth: true,
-						}}
-						containerRef={scrollRef}
-					>
-						<div className='App'>
-							<Helmet>
-								<title>Matthew Parisien</title>
-								<meta
-									name='description'
-									content='Web Developer, Photographer & Graphic Designer'
-								/>
-							</Helmet>
-							<Loader isActive={state.isLoading}/>
-							<Header ref={headerRef} isMenuActive={state.menuActive} />
-							
-							<div
-								className='scroll-container'
-								ref={scrollRef}
-								data-scroll-container
-							>
-								<ContentWrapper ref={contentWrapperRef}>
-									<GlobalStyle
-										isScrollDisabled={state.isLoading}
-										isCursorWait={state.isLoading}
-										theme={themes}
-										backgroundColor={state.colors.backgroundColor}
-										foregroundColor={state.colors.foregroundColor}
+		<DataContext.Provider value={state.data}>
+			<ThemeProvider theme={themes}>
+				<ColorContext.Provider value={colorContextControls}>
+					<LoadingContext.Provider value={loadingControls}>
+						<LocomotiveScrollProvider
+							options={{
+								smooth: true,
+							}}
+							containerRef={scrollRef}
+						>
+							<div className='App'>
+								<Helmet>
+									<title>Matthew Parisien</title>
+									<meta
+										name='description'
+										content='Web Developer, Photographer & Graphic Designer'
 									/>
+								</Helmet>
+								<Loader isActive={state.isLoading} />
+								<Header ref={headerRef} isMenuActive={state.menuActive} />
 
-									<Routes>
-										<Route path='/' element={<Construction />} />
-										<Route path='/about' element={<AboutPage />} />
-										<Route path='/work' element={<WorkPage />} />
-									</Routes>
-								</ContentWrapper>
+								<div
+									className='scroll-container'
+									ref={scrollRef}
+									data-scroll-container
+								>
+									<ContentWrapper ref={contentWrapperRef}>
+										<GlobalStyle
+											isScrollDisabled={state.isLoading}
+											isCursorWait={state.isLoading}
+											theme={themes}
+											backgroundColor={state.colors.backgroundColor}
+											foregroundColor={state.colors.foregroundColor}
+										/>
+
+										<Routes>
+											<Route path='/' element={<Construction />} />
+											<Route path='/about' element={<AboutPage />} />
+											<Route path='/work' element={<WorkPage />} />
+										</Routes>
+									</ContentWrapper>
+								</div>
 							</div>
-						</div>
-					</LocomotiveScrollProvider>
-				</LoadingContext.Provider>
-			</ColorContext.Provider>
-		</ThemeProvider>
+						</LocomotiveScrollProvider>
+					</LoadingContext.Provider>
+				</ColorContext.Provider>
+			</ThemeProvider>
+		</DataContext.Provider>
 	);
 }
 

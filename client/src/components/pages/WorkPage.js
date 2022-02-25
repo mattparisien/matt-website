@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Layout from "../Containers/Layout";
 import Paragraph from "../Paragraph/Paragraph";
 import { Box } from "@mui/material";
@@ -6,11 +6,15 @@ import Button from "../Button/Button";
 import { ButtonGroup } from "@material-ui/core";
 import styled from "styled-components";
 import ResponsiveGrid from "../Grid/ResponsiveGrid";
+import { DataContext } from "../../App/App";
+import { useEffect } from "react";
 
 function WorkPage() {
 	const StyledCategoryBtn = styled(Button)`
 		margin-right: 4rem;
 	`;
+
+	const { projects } = useContext(DataContext);
 
 	return (
 		<>
@@ -27,7 +31,7 @@ function WorkPage() {
 						<StyledCategoryBtn naked>Photography</StyledCategoryBtn>
 					</ButtonGroup>
 				</Box>
-				<ResponsiveGrid />
+				<ResponsiveGrid items={projects} />
 			</Layout>
 		</>
 	);
