@@ -5,8 +5,8 @@ const router = require("express").Router();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const upload = require("./multer");
-const cloudinary = require("./cloudinary");
+const multer = require("multer");
+
 const fs = require("fs");
 
 //Express config
@@ -25,6 +25,7 @@ mongoose.connect(
 	e => console.log(e)
 );
 const Project = require("./db/models/Project");
+const Image = require("./db/models/Image");
 
 //Routing config
 app.use("/api", router);
@@ -32,6 +33,16 @@ app.use("/api", router);
 router.get("/projects", (req, res) => {
 	Project.find({}, (err, projects) => {
 		res.send(projects);
+	});
+});
+
+router.get("/photography", (req, res) => {
+	Image.find({}).toArray((err, result) => {
+		const imgArray = result.map(el => el._id);
+		console.log(imgArray);
+		if (err) console.log(err);
+
+		res.send(imgArray);
 	});
 });
 

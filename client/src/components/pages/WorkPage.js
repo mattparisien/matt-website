@@ -15,7 +15,7 @@ function WorkPage() {
 	`;
 
 	const [itemLoading, setItemLoading] = useState(false);
-	const [category, setCategory] = useState('software')
+	const [category, setCategory] = useState("software");
 
 	const { projects, photography } = useContext(DataContext);
 
@@ -23,6 +23,10 @@ function WorkPage() {
 		e.preventDefault();
 		setItemLoading(!itemLoading);
 	};
+
+	const handleFile = (e) => {
+		console.log(e.target.value)
+	}
 
 	return (
 		<>
@@ -43,10 +47,11 @@ function WorkPage() {
 						</StyledCategoryBtn>
 					</ButtonGroup>
 					<Line />
+					<input type='file' accept='image/*' multiple onChange={handleFile}/>
 				</Box>
 
 				<ResponsiveGrid
-					items={category === 'software' ? projects : photography}
+					items={category === "software" ? projects : photography}
 					isItemLoading={itemLoading}
 					setItemLoading={() => setItemLoading(!itemLoading)}
 				/>
