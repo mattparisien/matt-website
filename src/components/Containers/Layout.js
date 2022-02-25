@@ -4,7 +4,7 @@ import ContainerFluid from "./ContainerFluid";
 
 function Layout(props) {
 	return (
-		<Section bg={props.bg}>
+		<Section bg={props.bg} height={props.height}>
 			<ContainerFluid>{props.children}</ContainerFluid>
 		</Section>
 	);

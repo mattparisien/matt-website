@@ -4,14 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { LoadingContext } from "../../App/App";
 
 const StyledButton = styled.button`
-	background-color: ${({ theme }) => theme.colors.red};
-	color: ${({ theme }) => theme.colors.light};
+	background-color: ${({ theme, naked }) => (naked ? "none" : theme.colors.red)};
+	background: transparent;
+	color: ${({ theme, naked }) =>
+		naked ? theme.colors.dark : theme.colors.light};
 	font-family: "Haas";
 	text-decoration: none;
 	outline: none;
 	border: 0px;
 	font-size: 1.4rem;
-	padding: 2rem 4rem;
+	padding: ${({ naked }) => (naked ? "0" : "2rem 4rem")}
 	display: flex;
 	transition: 300ms ease;
 	position: relative;
@@ -46,7 +48,6 @@ const StyledLink = styled.a`
 	align-items: center;
 	justify-content: center;
 
-	
 	&:hover {
 		opacity: 0.8;
 	}

@@ -5,13 +5,9 @@ import { useTheme } from "styled-components";
 function Section(props) {
 	const theme = useTheme();
 
-	useEffect(() => {
-		console.log('...', props.bg);
-	}, []);
-
 	const sectionStyle = {
 		width: "100%",
-		height: "100vh",
+		height: props.height ? props.height : "100vh",
 		position: "relative",
 		backgroundColor: props.bg ? theme.colors[props.bg] : "black",
 		color: props.bg
