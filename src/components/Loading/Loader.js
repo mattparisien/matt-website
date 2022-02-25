@@ -48,16 +48,18 @@ function Loader({ isActive }) {
 			const speed = 0.2;
 			const ease = "linear.easeNone";
 
-			translateTimeline.current.to(container.current, {
-				x: 0,
-				ease: "expo.inOut",
-				duration: 0.9,
-			})
-			.to(container.current, {
-				y: "-100%",
-				ease: "expo.inOut",
-				duration: 0.9,
-			})
+			translateTimeline.current
+				.to(container.current, {
+					x: 0,
+					ease: "expo.inOut",
+					duration: 0.9,
+				})
+				.to(container.current, {
+					y: "-100%",
+					ease: "expo.inOut",
+					duration: 0.9,
+				})
+				.set(container.current, { clearProps: "all" });
 
 			const fadeIn = () => {
 				fadeInTimeline.current
