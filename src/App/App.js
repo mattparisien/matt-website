@@ -11,6 +11,7 @@ import { GlobalStyle } from "../styles/global";
 import AboutPage from "../components/pages/AboutPage";
 import Header from "../components/Header/Header";
 import Loader from "../components/Loading/Loader";
+import WorkPage from "../components/pages/WorkPage";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();
@@ -171,6 +172,7 @@ function App() {
 									<Routes>
 										<Route path='/' element={<Construction />} />
 										<Route path='/about' element={<AboutPage />} />
+										<Route path='/work' element={<WorkPage />} />
 									</Routes>
 								</ContentWrapper>
 							</div>

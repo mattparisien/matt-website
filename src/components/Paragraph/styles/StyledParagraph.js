@@ -63,10 +63,11 @@ export const StyledParagraph = styled.p`
 	${({ indentHeading }) => {
 		return indentHeading
 			? `.line-wrapper:nth-of-type(1)::after {
-				content: 'About';
+				content: '${indentHeading}';
 				font-size: 1.2rem;
 				position: absolute;
 				left: 0;
+				top: 0;
 			}`
 			: "";
 	}};

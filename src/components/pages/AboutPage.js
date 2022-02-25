@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Button from "../Button/Button";
 import Line from "../Divider/Line";
 import SocialList from "../Lists/SocialList";
+import Layout from "../Containers/Layout";
 
 const margin = 4;
 
@@ -23,39 +24,49 @@ function About() {
 
 	return (
 		<>
-			<Section bg='light'>
-				<ContainerFluid>
-					<Box sx={flexStyle}>
-						<Box sx={{ margin: "5rem 0" }}>
-							<Paragraph indent>Made in Montreal,</Paragraph>
-							<Paragraph indent>Quebec, Canada</Paragraph>
-						</Box>
-						<Paragraph indent indentHeading={"About"}>
-							Hey, I'm Matt - full-stack web developer & photographer and
-							graphic designer obsessed with digital products and passionate
-							about interactive digital experiences. I work hard and deliver
-							results.
-						</Paragraph>
+			<Layout bg='light'>
+				<Box sx={flexStyle}>
+					<Box sx={{ marginBottom: "5rem" }}>
+						<Paragraph indent>Made in Montreal,</Paragraph>
+						<Paragraph indent>Quebec, Canada</Paragraph>
 					</Box>
-					<Box sx={{ marginTop: `${margin * 2}rem` }}>
-						<Line />
-						{/* <StyledDivider /> */}
-						<Button align='left' $href='mailto:hello@matthewparisien.com'>
-							Get in touch
-						</Button>
-						<SocialList orientation="horizontal" />
-					</Box>
-				</ContainerFluid>
-			</Section>
-			<Section>
-				<ContainerFluid>
 					<Paragraph indent indentHeading={"About"}>
 						Hey, I'm Matt - full-stack web developer & photographer and graphic
 						designer obsessed with digital products and passionate about
-						interactive digital experiences. I work hard and deliver results.
+						interactive digital experiences. I work hard and consistently
+						deliver results.
 					</Paragraph>
-				</ContainerFluid>
-			</Section>
+				</Box>
+				<Box sx={{ marginTop: `${margin * 2}rem` }}>
+					<Line />
+					{/* <StyledDivider /> */}
+					<Box
+						className='contact-bar'
+						sx={{
+							display: "flex",
+							flexDirection: "row-reverse",
+							alignItems: "center",
+							marginTop: `${margin}rem`,
+						}}
+					>
+						<Button align='left' $href='mailto:hello@matthewparisien.com'>
+							Get in touch
+						</Button>
+						<SocialList orientation='horizontal' />
+					</Box>
+				</Box>
+			</Layout>
+			{/* </ContainerFluid>
+			</Section> */}
+			{/* // <Section>
+			// 	<ContainerFluid>
+			// 		<Paragraph indent indentHeading={"About"}>
+			// 			Hey, I'm Matt - full-stack web developer & photographer and graphic
+			// 			designer obsessed with digital products and passionate about
+			// 			interactive digital experiences. I work hard and deliver results.
+			// 		</Paragraph>
+			// 	</ContainerFluid>
+			// </Section> */}
 		</>
 	);
 }

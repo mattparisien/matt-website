@@ -24,15 +24,25 @@ const SocialItems = [
 ];
 
 const StyledSocialList = styled.ul`
-	display: block;
+	padding: 0;
 	color: blue;
 	display: flex;
 	flex-direction: ${({ orientation }) =>
 		orientation === "vertical" ? "column" : "row"};
 
 	li {
+		margin-right: 2rem;
 		text-decoration: none;
 		list-style-type: none;
+
+		&:hover svg {
+			opacity: 0.8;
+		}
+
+		svg {
+			transition: 300ms ease;
+			fill: ${({theme}) => theme.colors.dark};
+		}
 	}
 `;
 
