@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const multer = require("multer");
+const { GridFsStorage } = require("multer-gridfs-storage");
+const Grid = require("gridfs-stream");
 
 const fs = require("fs");
 
@@ -17,15 +19,47 @@ app.use(express.static("public"));
 require("dotenv").config();
 
 //Mongo config
-mongoose.connect(
-	process.env.MONGO_URI,
-	() => {
-		console.log("Connected");
-	},
-	e => console.log(e)
-);
+// const conn = mongoose.connect(
+// 	process.env.MONGO_URI,
+// 	() => {
+// 		console.log("Connected");
+// 	},
+// 	e => console.log(e)
+// );
+
+const conn = mongoose.createConnection(process.env.MONGO_URI);
 const Project = require("./db/models/Project");
 const Image = require("./db/models/Image");
+
+//Init gfs
+let gfs;
+conn.once("open", () => {
+	//Init stream
+	gfs = Grid(conn.db, mongoose.mongo);
+	gfs.collection("uploads");
+});
+
+//Create storage object
+
+const storage = new GridFsStorage({
+	url: process.env.MONGO_URI,
+	file: (req, file) => {
+		return new Promise((resolve, reject) => {
+			crypto.randomBytes(16, (err, buf) => {
+				if (err) {
+					return reject(err);
+				}
+				const filename = buf.toString("hex") + path.extname(file.originalname);
+				const fileInfo = {
+					filename: filename,
+					bucketName: "uploads",
+				};
+				resolve(fileInfo);
+			});
+		});
+	},
+});
+const upload = multer({ storage });
 
 //Routing config
 app.use("/api", router);

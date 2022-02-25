@@ -24,9 +24,9 @@ function WorkPage() {
 		setItemLoading(!itemLoading);
 	};
 
-	const handleFile = (e) => {
-		console.log(e.target.value)
-	}
+	const handleFile = e => {
+		console.log(e.target.value);
+	};
 
 	return (
 		<>
@@ -47,7 +47,7 @@ function WorkPage() {
 						</StyledCategoryBtn>
 					</ButtonGroup>
 					<Line />
-					<input type='file' accept='image/*' multiple onChange={handleFile}/>
+					<input type='file' accept='image/*' multiple onChange={handleFile} />
 				</Box>
 
 				<ResponsiveGrid
