@@ -9,8 +9,11 @@ import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
 import Construction from "../components/pages/Construction";
 import { GlobalStyle } from "../styles/global";
 import AboutPage from "../components/pages/AboutPage";
+import Header from "../components/Header/Header";
+import Loader from "../components/Loading/Loader";
 
 export const ColorContext = createContext();
+export const LoadingContext = createContext();
 
 function App() {
 	//Themes
@@ -95,19 +98,6 @@ function App() {
 	// 	}
 	// }, [headerRef, state.isLoading]);
 
-	//Calculate header height
-	useEffect(() => {
-		if (headerRef.current && footerRef.current) {
-			const headerHeight = $(headerRef.current).find("h1").height();
-			const footerHeight = footerRef.current.getBoundingClientRect().height;
-			setState(prev => ({
-				...prev,
-				headerHeight: headerHeight,
-				footerHeight: footerHeight,
-			}));
-		}
-	}, [headerRef, footerRef]);
-
 	// const toggleMenuActivity = () => {
 	// 	setState(prev => ({ ...prev, menuActive: !state.menuActive }));
 	// };
@@ -130,61 +120,63 @@ function App() {
 		}));
 	};
 
+	const toggleLoading = () => {
+		setState(prev => ({ ...prev, isLoading: !state.isLoading }));
+	};
+
 	const colorContextControls = {
 		changeColors,
+	};
+
+	const loadingControls = {
+		isLoading: state.isLoading,
+		toggleLoading,
 	};
 
 	return (
 		<ThemeProvider theme={themes}>
 			<ColorContext.Provider value={colorContextControls}>
-				<LocomotiveScrollProvider
-					options={{
-						smooth: true,
-					}}
-					containerRef={scrollRef}
-				>
-					<div className='App'>
-						<Helmet>
-							<title>Matthew Parisien</title>
-							<meta
-								name='description'
-								content='Web Developer, Photographer & Graphic Designer'
-							/>
-						</Helmet>
-
-						{/* <Header
-							ref={headerRef}
-							currentPath={location.pathname}
-							headerOffset={state.headerHeight}
-							isMenuActive={state.menuActive}
-						/> */}
-
-						<div
-							className='scroll-container'
-							ref={scrollRef}
-							data-scroll-container
-						>
-							<ContentWrapper
-								headerOffset={state.headerHeight}
-								footerOffset={state.footerHeight}
-								ref={contentWrapperRef}
-							>
-								<GlobalStyle
-									isScrollDisabled={state.isLoading}
-									isCursorWait={state.isLoading}
-									theme={themes}
-									backgroundColor={state.colors.backgroundColor}
-									foregroundColor={state.colors.foregroundColor}
+				<LoadingContext.Provider value={loadingControls}>
+					<LocomotiveScrollProvider
+						options={{
+							smooth: true,
+						}}
+						containerRef={scrollRef}
+					>
+						<div className='App'>
+							<Helmet>
+								<title>Matthew Parisien</title>
+								<meta
+									name='description'
+									content='Web Developer, Photographer & Graphic Designer'
 								/>
+							</Helmet>
+							<Loader isActive={state.isLoading}/>
+							<Header ref={headerRef} isMenuActive={state.menuActive} />
+							
+							<div
+								className='scroll-container'
+								ref={scrollRef}
+								data-scroll-container
+							>
+								<ContentWrapper ref={contentWrapperRef}>
+									<GlobalStyle
+										isScrollDisabled={state.isLoading}
+										isCursorWait={state.isLoading}
+										theme={themes}
+										backgroundColor={state.colors.backgroundColor}
+										foregroundColor={state.colors.foregroundColor}
+									/>
 
-								<Routes>
-									<Route path='/' element={<Construction />} />
-									<Route path='/about' element={<AboutPage />} />
-								</Routes>
-							</ContentWrapper>
+									<Routes>
+										<Route path='/' element={<Construction />} />
+										<Route path='/about' element={<AboutPage />} />
+									</Routes>
+								</ContentWrapper>
+							</div>
 						</div>
-					</div>
-				</LocomotiveScrollProvider>
+					</LocomotiveScrollProvider>
+				</LoadingContext.Provider>
 			</ColorContext.Provider>
 		</ThemeProvider>
 	);

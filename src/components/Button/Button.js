@@ -1,41 +1,77 @@
 import React, { useRef, useState } from "react";
-import ButtonCircle from "./ButtonCircle";
-import ButtonLink from "./ButtonLink";
-import ButtonRegular from "./ButtonRegular";
+import styled from "styled-components";
 
+const StyledButton = styled.button`
+	background-color: ${({ theme }) => theme.colors.red};
+	color: ${({ theme }) => theme.colors.light};
+	font-family: "Haas";
+	text-decoration: none;
+	outline: none;
+	border: 0px;
+	font-size: 1.4rem;
+	padding: 2rem 4rem;
+	display: flex;
+	transition: 300ms ease;
+	position: relative;
 
-function Button(props) {
-	const [scale, setScale] = useState(false);
-
-	const buttonStyle = {
-		padding: props.padding,
-	};
-
-
-	function capitalizeFirstLetter(string) {
-		return string.charAt(0).toUpperCase() + string.slice(1);
+	&:hover {
+		opacity: 0.8;
 	}
 
+	${({ align }) => {
+		return align
+			? `
+				margin-${align}: auto;
+			`
+			: ``;
+	}}
+`;
 
-	const inner =
-		props.linkTo || props.mailTo ? (
-			<ButtonLink linkTo={props.linkTo} mailTo={props.mailTo}>{props.children}</ButtonLink>
-		) : (
-			props.children
-		);
+const StyledLink = styled.a`
+	background-color: ${({ theme }) => theme.colors.red};
+	color: ${({ theme }) => theme.colors.light};
+	font-family: "Haas";
+	text-decoration: none;
+	outline: none;
+	border: 0px;
+	font-size: 1.4rem;
+	padding: 2rem 4rem;
+	display: flex;
+	transition: 300ms ease;
+	display: block;
+	width: 8rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
+	&:hover {
+		opacity: 0.8;
+	}
 
-	return (
-		<>
-			{props.style === "circle" && (
-				<ButtonCircle {...props} >{inner}</ButtonCircle>
-			)}
-			;
-			{props.style === "regular" && (
-				<ButtonRegular {...props}>{inner}</ButtonRegular>
-			)}
-			;
-		</>
+	${({ align }) => {
+		return align
+			? `
+				margin-${align}: auto;
+			`
+			: ``;
+	}}
+`;
+
+function Button(props) {
+	return props.$href ? (
+		<StyledLink
+			href={props.$href}
+			{...props}
+			data-scroll
+			data-scroll-speed={3}
+		></StyledLink>
+	) : (
+		<StyledButton
+			type='button'
+			{...props}
+			data-scroll
+			data-scroll-speed={3}
+		></StyledButton>
 	);
 }
 

@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import gsap from "gsap";
 import { useTheme } from "styled-components";
 
-function Loader() {
+function Loader({ isActive }) {
 	const theme = useTheme();
 
 	const loaderStyle = {
@@ -16,12 +16,12 @@ function Loader() {
 		backgroundColor: theme.colors.dark,
 		color: theme.colors.light,
 		fontFamily: "Haas",
-		display: "flex",
+		display: isActive ? "flex" : "none",
 		alignItems: "center",
 		justifyContent: "center",
 		flexDirection: "column",
 		fontSize: "15vw",
-    display: "none"
+		transform: "translateX(-100%)",
 	};
 
 	const wordStyle = {
@@ -31,14 +31,28 @@ function Loader() {
 	const word1 = useRef(null);
 	const word2 = useRef(null);
 	const word3 = useRef(null);
+	const container = useRef(null);
 	const fadeInTimeline = useRef(gsap.timeline());
 	const fadeOutTimeline = useRef(gsap.timeline());
 	const masterTimeline = useRef(gsap.timeline());
+	const translateTimeline = useRef(gsap.timeline());
 
 	useEffect(() => {
-		if (word1.current && word2.current && word3.current) {
+		if (
+			word1.current &&
+			word2.current &&
+			word3.current &&
+			container.current &&
+			isActive
+		) {
 			const speed = 0.2;
 			const ease = "linear.easeNone";
+
+			translateTimeline.current.to(container.current, {
+				x: 0,
+				ease: "expo.inOut",
+				duration: 1,
+			});
 
 			const fadeIn = () => {
 				fadeInTimeline.current
@@ -104,10 +118,10 @@ function Loader() {
 
 			masterTimeline.current.add(fadeIn()).add(fadeOut(), "-=0.5");
 		}
-	}, [word1, word2, word3]);
+	}, [word1, word2, word3, container, isActive]);
 
 	return (
-		<Box sx={loaderStyle} component='div'>
+		<Box sx={loaderStyle} component='div' ref={container} className='Loader'>
 			<span ref={word1} style={wordStyle}>
 				Work hard
 			</span>
