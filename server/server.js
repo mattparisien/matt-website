@@ -80,13 +80,14 @@ router.post("/upload", upload.single("image"), (req, res) => {
 	res.json({ file: req.file });
 });
 
+//Fetch photo files
 router.get("/photography", (req, res) => {
-	Image.find({}).toArray((err, result) => {
-		const imgArray = result.map(el => el._id);
-
-		if (err) console.log(err);
-
-		res.send(imgArray);
+	gfs.files.find().toArray((err, files) => {
+		if (!files || files.length === 0) {
+			return res.status(404).json({ error: "No files exist" });
+		}
+		//Files exist
+		return res.json(files);
 	});
 });
 
