@@ -5,44 +5,32 @@ import { Box } from "@mui/material";
 
 const Item = styled(Box)`
 	background-color: blue;
+	min-height: 20vw;
 `;
 
 function ResponsiveGrid({ items }) {
 	const itemSizes = [
 		{
-			xs: 6,
-			md: 8,
-			height: "50vw",
+			column: "span 6",
+			row: "span 2",
 		},
 		{
-			xs: 6,
-			md: 4,
-			height: "20vw",
+			column: "span 6",
 		},
 		{
-			xs: 6,
-			md: 4,
-			height: "10vw",
+			column: "span 6",
 		},
 		{
-			xs: 6,
-			md: 8,
-			height: "50vw",
+			column: "span 8",
 		},
 		{
-			xs: 6,
-			md: 8,
-			height: "10vw",
+			column: "span 4",
 		},
 		{
-			xs: 6,
-			md: 4,
-			height: "10vw",
+			column: "span 8",
 		},
 		{
-			xs: 6,
-			md: 4,
-			height: "10vw",
+			column: "span 4",
 		},
 	];
 
@@ -52,20 +40,22 @@ function ResponsiveGrid({ items }) {
 	};
 
 	return (
-		<Grid container spacing={2}>
+		<Box
+			display='grid'
+			gridTemplateColumns='repeat(12, 1fr)'
+			gridTemplateRows='repeat(6, 1fr)'
+			gap={2}
+		>
 			{items &&
 				items.slice(0, 6).map((item, index) => {
 					return (
-						<Grid
-							item
-							xs={itemSizes[index].md}
-							md={itemSizes[index].md}
-							key={index}
-							sx={{ padding: 0 }}
+						<Box
+							gridColumn={itemSizes[index].column}
+							gridRow={itemSizes[index].row}
 						>
 							<Item
-								height={itemSizes[index].height}
 								sx={{
+									height: "100%",
 									backgroundImage: `url(${item.featureImage})`,
 									backgroundPosition: "center",
 									backgroundSize: "cover",
@@ -73,10 +63,10 @@ function ResponsiveGrid({ items }) {
 							>
 								<a href={item.url} style={linkStyle}></a>
 							</Item>
-						</Grid>
+						</Box>
 					);
 				})}
-		</Grid>
+		</Box>
 	);
 }
 
