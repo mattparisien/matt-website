@@ -51,8 +51,13 @@ function Loader({ isActive }) {
 			translateTimeline.current.to(container.current, {
 				x: 0,
 				ease: "expo.inOut",
-				duration: 1,
-			});
+				duration: 0.9,
+			})
+			.to(container.current, {
+				y: "-100%",
+				ease: "expo.inOut",
+				duration: 0.9,
+			})
 
 			const fadeIn = () => {
 				fadeInTimeline.current
