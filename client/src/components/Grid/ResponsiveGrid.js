@@ -10,60 +10,68 @@ const Item = styled(Box)`
 function ResponsiveGrid({ items }) {
 	const itemSizes = [
 		{
-			id: 1,
 			xs: 6,
 			md: 8,
-			height: "30rem",
+			height: "50vw",
 		},
 		{
-			id: 2,
 			xs: 6,
 			md: 4,
-			height: "35rem",
+			height: "20vw",
 		},
 		{
-			id: 3,
 			xs: 6,
 			md: 4,
-			height: "35vw",
+			height: "10vw",
 		},
 		{
-			id: 4,
 			xs: 6,
 			md: 8,
-			height: "10rem",
+			height: "50vw",
+		},
+		{
+			xs: 6,
+			md: 8,
+			height: "10vw",
+		},
+		{
+			xs: 6,
+			md: 4,
+			height: "10vw",
+		},
+		{
+			xs: 6,
+			md: 4,
+			height: "10vw",
 		},
 	];
 
-	const imageStyle = {
-		objectFit: "cover",
-		width: "100%",
+	const linkStyle = {
 		height: "100%",
+		width: "100%",
 	};
-
-	useEffect(() => {
-		console.log(items);
-	}, [items]);
 
 	return (
 		<Grid container spacing={2}>
 			{items &&
-				items.map((item, index) => {
+				items.slice(0, 6).map((item, index) => {
 					return (
 						<Grid
 							item
-							xs={itemSizes[(index += 1)].xs}
-							md={itemSizes[(index += 1)].md}
+							xs={itemSizes[index].md}
+							md={itemSizes[index].md}
 							key={index}
 							sx={{ padding: 0 }}
 						>
 							<Item
-								sx={{ position: "relative", padding: 0 }}
 								height={itemSizes[index].height}
+								sx={{
+									backgroundImage: `url(${item.featureImage})`,
+									backgroundPosition: "center",
+									backgroundSize: "cover",
+								}}
 							>
-								<a href={item.url}>
-									<img src={item.featureImage} style={imageStyle}></img>
-								</a>
+								<a href={item.url} style={linkStyle}></a>
 							</Item>
 						</Grid>
 					);
