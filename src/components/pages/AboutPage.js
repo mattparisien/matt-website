@@ -6,6 +6,7 @@ import { Box } from "@mui/material";
 import styled from "styled-components";
 import Button from "../Button/Button";
 import Line from "../Divider/Line";
+import SocialList from "../Lists/SocialList";
 
 const margin = 4;
 
@@ -42,10 +43,19 @@ function About() {
 						<Button align='left' $href='mailto:hello@matthewparisien.com'>
 							Get in touch
 						</Button>
+						<SocialList orientation="horizontal" />
 					</Box>
 				</ContainerFluid>
 			</Section>
-			<Section></Section>
+			<Section>
+				<ContainerFluid>
+					<Paragraph indent indentHeading={"About"}>
+						Hey, I'm Matt - full-stack web developer & photographer and graphic
+						designer obsessed with digital products and passionate about
+						interactive digital experiences. I work hard and deliver results.
+					</Paragraph>
+				</ContainerFluid>
+			</Section>
 		</>
 	);
 }

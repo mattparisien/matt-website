@@ -46,6 +46,7 @@ const StyledLink = styled.a`
 	align-items: center;
 	justify-content: center;
 
+	
 	&:hover {
 		opacity: 0.8;
 	}
@@ -71,18 +72,11 @@ function Button(props) {
 	};
 
 	return props.$href ? (
-		<StyledLink
-			href={props.$href}
-			{...props}
-			data-scroll
-			data-scroll-speed={3}
-		></StyledLink>
+		<StyledLink href={props.$href} {...props}></StyledLink>
 	) : (
 		<StyledButton
 			type='button'
 			{...props}
-			data-scroll
-			data-scroll-speed={3}
 			onClick={props.$to ? handleClick : ""}
 		></StyledButton>
 	);
