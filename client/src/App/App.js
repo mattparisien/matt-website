@@ -58,17 +58,36 @@ function App() {
 
 	useEffect(() => {
 		//Get essential data
-		axios
-			.get(`${process.env.REACT_APP_API_URL}/projects`)
-			.then(res => {
-				if (res.data) {
-					setState(prev => ({
-						...prev,
-						data: { ...prev.data, projects: res.data },
-					}));
-				}
+
+		const basePath = process.env.REACT_APP_API_URL;
+		const fetchURL = url => axios.get(url);
+
+		const urls = [`${basePath}/photography`];
+
+		const promiseArray = [...urls].map(fetchURL);
+
+		Promise.all(promiseArray)
+			.then(data => {
+				const photography = data[0].data;
+
+				setState(prev => ({
+					...prev,
+					data: { ...prev.data, photography: {} },
+				}));
 			})
 			.catch(err => console.log(err));
+
+		// axios
+		// 	.get(`${process.env.REACT_APP_API_URL}/projects`)
+		// 	.then(res => {
+		// 		if (res.data) {
+		// 			setState(prev => ({
+		// 				...prev,
+		// 				data: { ...prev.data, projects: res.data },
+		// 			}));
+		// 		}
+		// 	})
+		// 	.catch(err => console.log(err));
 	}, []);
 
 	// const toggleModalVisibility = () => {

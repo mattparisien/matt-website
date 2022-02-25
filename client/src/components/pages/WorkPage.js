@@ -60,7 +60,6 @@ function WorkPage() {
 						action={`${process.env.REACT_APP_API_URL}/upload`}
 						method='POST'
 						encType='multipart/form-data'
-						onSubmit={handleSubmit}
 					>
 						<input name='image' type='file' accept='image/*' />
 						<input type='submit' value='Submit' />

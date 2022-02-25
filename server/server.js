@@ -70,8 +70,15 @@ app.use("/api", router);
 
 router.get("/projects", (req, res) => {
 	Project.find({}, (err, projects) => {
-		res.send(projects);
-	});
+		console.log(project)
+    // var userMap = {};
+
+    // users.forEach(function(user) {
+    //   userMap[user._id] = user;
+    // });
+
+    // res.send(userMap);  
+  });
 });
 
 router.post("/upload", upload.single("image"), (req, res) => {
@@ -83,6 +90,8 @@ router.post("/upload", upload.single("image"), (req, res) => {
 //Fetch photo files
 router.get("/photography", (req, res) => {
 	gfs.files.find().toArray((err, files) => {
+		if (err) console.log(er);
+
 		if (!files || files.length === 0) {
 			return res.status(404).json({ error: "No files exist" });
 		}
