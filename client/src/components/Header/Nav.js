@@ -4,16 +4,16 @@ import UnorderedList from "../Lists/UnorderedList";
 function Nav(props, ref) {
 	const listInfo = [
 		{
-			title: "Work",
+			title: "Home",
 			href: "/",
+		},
+		{
+			title: "Work",
+			href: "/work",
 		},
 		{
 			title: "About",
 			href: "/about",
-		},
-		{
-			title: "Contact",
-			href: "/contact",
 		},
 	];
 

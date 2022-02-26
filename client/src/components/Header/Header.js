@@ -20,15 +20,7 @@ function Header(props, ref) {
 					setHeaderHidden(false);
 				}
 			});
-
-		return () => {
-			scroll && scroll.destroy();
-		};
 	}, [scroll]);
-
-	useEffect(() => {
-		console.log(isHeaderHidden);
-	}, [isHeaderHidden]);
 
 	return (
 		<StyledHeader
