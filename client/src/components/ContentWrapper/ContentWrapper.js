@@ -1,5 +1,6 @@
 import React, { forwardRef } from "react";
 import { StyledContent } from "./styles/StyledContentWrapper";
+import { Box } from "@material-ui/core";
 
 function ContentWrapper(
 	{ headerOffset, footerOffset, children, isDefaultContentHidden },
@@ -10,7 +11,7 @@ function ContentWrapper(
 			paddingTop={headerOffset}
 			marginBottom={footerOffset}
 			hideContentDefault={isDefaultContentHidden}
-			className='content-wrapper'
+			className='ContentWrapper'
 			ref={ref}
 		>
 			{children}
