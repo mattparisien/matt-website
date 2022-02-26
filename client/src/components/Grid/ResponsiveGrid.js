@@ -10,6 +10,9 @@ const Item = styled(Box)`
 	min-height: 20vw;
 	background-color: ${({ theme }) => theme.colors.grey};
 	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
 	a {
 		width: 100%;
@@ -22,18 +25,6 @@ const Item = styled(Box)`
 			object-fit: cover;
 		}
 	}
-`;
-
-const LoadingOverlay = styled(Box)`
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: ${({ theme }) => theme.colors.grey};
-	display: flex;
-	align-items: center;
-	justify-content: center;
 `;
 
 function ResponsiveGrid({ items, isItemLoading }) {
@@ -125,7 +116,7 @@ function ResponsiveGrid({ items, isItemLoading }) {
 												<img src={sourceLoaded[item.id]}></img>
 											</a>
 										) : (
-											<CircularProgress color="inherit"/>
+											<CircularProgress color='inherit' />
 										)}
 									</Item>
 								</Box>
