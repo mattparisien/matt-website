@@ -168,6 +168,7 @@ function App() {
 						<LocomotiveScrollProvider
 							options={{
 								smooth: true,
+								getDirection: true
 							}}
 							containerRef={scrollRef}
 						>
