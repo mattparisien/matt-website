@@ -4,8 +4,8 @@ import { device } from "../../../styles/breakpoints";
 const paragraphFontSizes = {
 	standard: {
 		desktopL: {
-			fontSize: "5rem",
-			lineHeight: "1.5rem",
+			fontSize: "4.4rem",
+			lineHeight: "4.4rem",
 		},
 		desktop: {
 			fontSize: "4.4rem",

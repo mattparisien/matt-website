@@ -12,6 +12,7 @@ function Paragraph(props) {
 	const [intersecting, setIntersecting] = useState(null);
 	const [isSplit, setIsSplit] = useState(false);
 	const [splitText, setSplitText] = useState(null);
+	const [splitWrap, setSplitWrap] = useState(null);
 	const paragraph = useRef(null);
 	const [windowWidth, isResized] = useResize();
 	// const timeline = useRef(gsap.timeline());
@@ -23,8 +24,13 @@ function Paragraph(props) {
 				linesClass: "line",
 				charsClass: "char",
 			});
+			const splitTextWrap = new SplitText(paragraph.current, {
+				type: "lines",
+				linesClass: "line-wrapper",
+			});
 			setIsSplit(true);
 			setSplitText(mySplitText);
+			setSplitWrap(splitTextWrap);
 		}
 
 		if (isSplit && intersecting) {
@@ -51,13 +57,14 @@ function Paragraph(props) {
 			});
 		}
 
-		if (splitText) {
-			$(splitText.lines).wrap("<div class='line-wrapper'></div>");
-		}
+		// if (splitText) {
+		// 	$(splitText.lines).wrap("<div class='line-wrapper'></div>");
+		// }
 	}, [isSplit, windowWidth, intersecting, splitText]);
 
 	useEffect(() => {
-		splitText && splitText.revert().split();
+		splitText && setSplitText(splitText.revert().split());
+		splitText && setSplitWrap(splitWrap.revert().split());
 	}, [windowWidth, splitText]);
 
 	const paragraphClass = "Paragraph";
@@ -66,7 +73,7 @@ function Paragraph(props) {
 		<InView
 			className='paragraph-view-wrapper'
 			onChange={(inView, entry) => inView && setIntersecting(entry.target)}
-			style={{width: "100%"}}
+			style={{ width: "100%" }}
 		>
 			<StyledStandardParagraph
 				className={paragraphClass}
