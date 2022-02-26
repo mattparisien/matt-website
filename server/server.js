@@ -30,9 +30,15 @@ const Image = require("./db/models/Image");
 let gfs;
 conn.once("open", () => {
 	//Init stream
+	gridFsBucket = new mongoose.mongo.GridFSBucket(conn.db, {
+		bucketName: "uploads",
+	});
 	gfs = Grid(conn.db, mongoose.mongo);
 	gfs.collection("uploads");
 });
+
+//Models
+const ProjectModel = conn.model("Project", require("./db/models/Project"));
 
 //Create storage object
 const storage = new GridFsStorage({
@@ -58,30 +64,22 @@ const upload = multer({ storage });
 //Routing config
 app.use("/api", router);
 
-router.get("/projects", (req, res) => {
-	res.send("hi");
-	Project.find({}, (err, projects) => {
+router.get("/software", (req, res) => {
+	ProjectModel.find({}, (err, projects) => {
 		if (err) console.log(err);
-		// res.json({ projects: projects });
-		// var userMap = {};
-
-		// users.forEach(function(user) {
-		//   userMap[user._id] = user;
-		// });
-
-		// res.send(userMap);
+		res.json({ projects: projects });
 	});
 });
 
 router.post("/upload", upload.single("image"), (req, res) => {
 	//Upload photography route and stores in db
-
 	res.json({ file: req.file });
 });
 
-//Fetch photo files
+//Fetch photo JSON data
 router.get("/photography", (req, res) => {
 	gfs.files.find().toArray((err, files) => {
+		console.log(files);
 		if (err) console.log(er);
 
 		if (!files || files.length === 0) {
@@ -89,6 +87,30 @@ router.get("/photography", (req, res) => {
 		}
 		//Files exist
 		return res.json(files);
+	});
+});
+
+//Display images
+router.get("/images/:filename", (req, res) => {
+	gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+		if (err) console.log("err", err);
+
+		//Check if file
+		if (!file || file.length === 0) {
+			return res.status(404).json({
+				error: "No file exists",
+			});
+		}
+		//Check if images
+		if (file.contentType === "image/jpeg" || file.contentType === "image/png") {
+			//Read output to browser
+			const readStream = gridFsBucket.openDownloadStreamByName(file.filename);
+			readStream.pipe(res);
+		} else {
+			res.status(404).json({
+				error: "Not a valid image type",
+			});
+		}
 	});
 });
 

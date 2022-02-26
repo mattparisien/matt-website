@@ -1,28 +1,25 @@
-import React, { forwardRef, useRef, useState, useEffect } from "react";
-import Section from "../Section";
-import { StyledHeader } from "./styles/StyledHeader";
-import UnorderedList from "../UnorderedList/UnorderedList";
-
+import React, { forwardRef, useState } from "react";
 import { Link } from "react-router-dom";
-import Title from "./Title/Title";
+import ContainerFluid from "../Containers/ContainerFluid";
 import Nav from "./Nav";
-import MenuLink from "./Menu/MenuLink";
-import useResize from "../../helpers/hooks/useResize";
+import { StyledHeader } from "./styles/StyledHeader";
+import styled from "styled-components";
 
 function Header(props, ref) {
-	const { currentPath, headerOffset, isMenuActive, isDefaultContentHidden } =
-		props;
+	const { headerOffset, isMenuActive, isDefaultContentHidden } = props;
 	const [innerHeight, setInnerHeight] = useState(null);
-	const [windowWidth] = useResize();
 
-	const title = useRef(null);
 
 	return (
-		<StyledHeader
-			headerHeight={headerOffset}
-			ref={ref}
-			height={innerHeight}
-		></StyledHeader>
+		<StyledHeader headerHeight={headerOffset} ref={ref} height={innerHeight}>
+			<ContainerFluid flex>
+				<div className='header-logo'>
+					<Link to='/'>Matt Parisien</Link>
+					<span className='copyright-symbol'>©</span>
+				</div>
+				<Nav />
+			</ContainerFluid>
+		</StyledHeader>
 	);
 }
 

@@ -6,7 +6,7 @@ export const StyledHeader = styled.header`
 	box-sizing: border-box;
 	padding: 2rem;
 	z-index: -1;
-	color: orange;
+	color: ${({theme}) => theme.colors.dark};
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -18,5 +18,26 @@ export const StyledHeader = styled.header`
 	top: 0;
 	z-index: 999;
 
+	.header-logo {
+		position: relative;
+		display: inline;
+
+		a {
+			margin-right: 0.8rem;
+		}
+
+		.copyright-symbol {
+			position: absolute;
+			right: 0;
+			top: 0;
+			display: block;
+			font-size: 0.7rem;
+			font-family: 'Haas';
+			
+	
+		}
+	}
+
+	
 	
 `;
