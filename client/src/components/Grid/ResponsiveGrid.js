@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
-
+import { Box, CircularProgress } from "@mui/material";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { Box } from "@mui/material";
-import { CircularProgress } from "@mui/material";
 import { useProgressiveImage } from "../../helpers/hooks/useProgressiveImage";
 import { device } from "../../styles/breakpoints";
+import gsap from "gsap";
+import InView from "react-intersection-observer";
+import $ from "jquery";
 
 const Item = styled(Box)`
 	background-color: blue;
@@ -14,6 +15,8 @@ const Item = styled(Box)`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	transform: translateY(300px);
+	opacity: 0;
 
 	a {
 		width: 100%;
@@ -69,6 +72,31 @@ const Item = styled(Box)`
 
 function ResponsiveGrid({ items, isItemLoading }) {
 	const sourceLoaded = useProgressiveImage(items);
+
+	const itemRef = useState(null);
+
+	const revealTimeline = useRef(gsap.timeline());
+
+	const [intersecting, setIntersecting] = useState(null);
+	const [hasFadeUp, setHasFadeUp] = useState(null);
+
+	useEffect(() => {
+		if (intersecting) {
+			gsap.to($(intersecting).children(), {
+				y: 0,
+				opacity: 1,
+				duration: 0.5,
+				stagger: 0.2,
+			});
+			setHasFadeUp(true);
+		}
+	}, [intersecting, hasFadeUp]);
+
+	// const addToRefs = el => {
+	// 	if (el && !itemRefs.current.includes(el)) {
+	// 		itemRefs.current.push(el);
+	// 	}
+	// };
 
 	const itemSizes = [
 		{
@@ -144,28 +172,37 @@ function ResponsiveGrid({ items, isItemLoading }) {
 									sx={{ position: "relative" }}
 									key={i}
 								>
-									<Item
-										sx={{
-											height: "100%",
-											backgroundPosition: "center",
-											backgroundSize: "cover",
-										}}
+									<InView
+										as='div'
+										style={{ width: "100%", height: "100%" }}
+										onChange={(inView, entry) =>
+											inView && setIntersecting(entry.target)
+										}
 									>
-										{sourceLoaded && sourceLoaded[item.id] ? (
-											<a
-												href={item.url || item.href}
-												style={linkStyle}
-												target='_blank'
-											>
-												<img src={sourceLoaded[item.id]}></img>
-												{item.name && (
-													<Box className='title-overlay'>{item.name}</Box>
-												)}
-											</a>
-										) : (
-											<CircularProgress color='inherit' />
-										)}
-									</Item>
+										<Item
+											id={i}
+											sx={{
+												height: "100%",
+												backgroundPosition: "center",
+												backgroundSize: "cover",
+											}}
+										>
+											{sourceLoaded && sourceLoaded[item.id] ? (
+												<a
+													href={item.url || item.href}
+													style={linkStyle}
+													target='_blank'
+												>
+													<img src={sourceLoaded[item.id]}></img>
+													{item.name && (
+														<Box className='title-overlay'>{item.name}</Box>
+													)}
+												</a>
+											) : (
+												<CircularProgress color='inherit' />
+											)}
+										</Item>
+									</InView>
 								</Box>
 							);
 						})}
