@@ -182,7 +182,7 @@ function App() {
 										content='Web Developer, Photographer & Graphic Designer'
 									/>
 								</Helmet>
-								<Loader isActive={state.isLoading} />
+								<Loader isActive={true} />
 								<Header ref={headerRef} isMenuActive={state.menuActive} />
 
 								<div
