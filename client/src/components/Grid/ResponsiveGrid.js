@@ -45,7 +45,20 @@ function ResponsiveGrid({ items, isItemLoading }) {
 			row: "span 2",
 		},
 		{
-			column: "span 12",
+			column: "span 6",
+			row: "span 1",
+		},
+		{
+			column: "span 6",
+			row: "span 2",
+		},
+		{
+			column: "span 6",
+			row: "span 2",
+		},
+		{
+			column: "span 6",
+			row: "span 2",
 		},
 	];
 
@@ -54,43 +67,45 @@ function ResponsiveGrid({ items, isItemLoading }) {
 		width: "100%",
 	};
 
+	const renderGridItems = () => {
+		return (
+			items &&
+			items.data.slice(0, 10).map((item, index) => {
+				return (
+					<Box
+						gridColumn={itemSizes[index].column}
+						gridRow={itemSizes[index].row}
+						sx={{ position: "relative" }}
+						key={index}
+					>
+						<Item
+							sx={{
+								height: "100%",
+								backgroundImage: `url(${item.src})`,
+								backgroundPosition: "center",
+								backgroundSize: "cover",
+							}}
+						>
+							<a
+								style={{ display: "block" }}
+								href={item.url}
+								style={linkStyle}
+							></a>
+						</Item>
+					</Box>
+				);
+			})
+		);
+	};
+
 	return (
 		<Box
 			display='grid'
 			gridTemplateColumns='repeat(12, 1fr)'
-			gridTemplateRows='repeat(6, 1fr)'
+			gridTemplateRows='repeat(8, 1fr)'
 			gap={2}
 		>
-			{items &&
-				items.slice(0, 6).map((item, index) => {
-					return (
-						<Box
-							gridColumn={itemSizes[index].column}
-							gridRow={itemSizes[index].row}
-							sx={{ position: "relative" }}
-						>
-							<Item
-								sx={{
-									height: "100%",
-									backgroundImage: `url(${item.featureImage})`,
-									backgroundPosition: "center",
-									backgroundSize: "cover",
-								}}
-							>
-								<a
-									style={{ display: "block" }}
-									href={item.url}
-									style={linkStyle}
-								></a>
-							</Item>
-							{isItemLoading && (
-								<LoadingOverlay className='gridItem-loading-overlay'>
-									<CircularProgress color='inherit' />
-								</LoadingOverlay>
-							)}
-						</Box>
-					);
-				})}
+			{renderGridItems()}
 		</Box>
 	);
 }

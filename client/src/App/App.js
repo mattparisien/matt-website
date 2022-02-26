@@ -69,10 +69,9 @@ function App() {
 		Promise.all(promiseArray)
 			.then(data => {
 				const photography = data[0].data;
-
 				setState(prev => ({
 					...prev,
-					data: { ...prev.data, photography: {} },
+					data: { ...prev.data, photography: photography },
 				}));
 			})
 			.catch(err => console.log(err));

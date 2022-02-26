@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Layout from "../Containers/Layout";
 import Paragraph from "../Paragraph/Paragraph";
 import { Box } from "@mui/material";
@@ -16,6 +16,7 @@ function WorkPage() {
 	`;
 
 	const [itemLoading, setItemLoading] = useState(false);
+	const [gridData, setGridData] = useState(null);
 	const [category, setCategory] = useState("software");
 
 	const { projects, photography } = useContext(DataContext);
@@ -36,6 +37,22 @@ function WorkPage() {
 	// 		.then(res => console.log(res))
 	// 		.catch(err => console.log(err));
 	// };
+
+	useEffect(() => {
+		if (photography) {
+			const sourceArray = photography.map(image => {
+				return {
+					id: image._id,
+					src: `${process.env.REACT_APP_API_URL}/images/${image.filename}`,
+				};
+			});
+
+			setGridData(prev => ({
+				...prev,
+				data: sourceArray,
+			}));
+		}
+	}, [photography]);
 
 	return (
 		<>
@@ -67,7 +84,7 @@ function WorkPage() {
 				</Box>
 
 				<ResponsiveGrid
-					items={category === "software" ? projects : photography}
+					items={gridData}
 					isItemLoading={itemLoading}
 					setItemLoading={() => setItemLoading(!itemLoading)}
 				/>
