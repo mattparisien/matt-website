@@ -85,7 +85,7 @@ function ResponsiveGrid({ items, isItemLoading }) {
 	const renderGridItems = () => {
 		if (items) {
 			const divided = divideArray(items.data, 10);
-
+			console.log(divided);
 			return divided.map((subArray, index) => {
 				return (
 					<Box
@@ -112,7 +112,7 @@ function ResponsiveGrid({ items, isItemLoading }) {
 										}}
 									>
 										{sourceLoaded && sourceLoaded[item.id] ? (
-											<a href={item.url} style={linkStyle}>
+											<a href={item.url || item.href} style={linkStyle} target="_blank">
 												<img src={sourceLoaded[item.id]}></img>
 											</a>
 										) : (

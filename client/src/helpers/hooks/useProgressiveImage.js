@@ -5,15 +5,15 @@ export const useProgressiveImage = sources => {
 
 	useEffect(() => {
 		if (sources) {
-			const array = sources.data;
+			const array = sources.data || sources;
 
 			array.forEach(image => {
 				const img = new Image();
-				img.src = image.src;
+				img.src = image.src || image.featureImage;
 				img.onload = () =>
 					setSourceLoaded(prev => ({
 						...prev,
-						[image.id]: image.src,
+						[image.id]: image.featureImage || image.src,
 					}));
 			});
 		}

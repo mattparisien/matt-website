@@ -52,7 +52,16 @@ function WorkPage() {
 				data: sourceArray,
 			}));
 		} else if (category === "software" && software) {
-			setGridData(() => ({ data: software }));
+			const array = software.map(project => {
+				return {
+					id: project._id,
+					featureImage: project.featureImage,
+					description: project.description,
+					href: project.url,
+				};
+			});
+
+			setGridData(() => ({ data: array }));
 		}
 	}, [photography, software, category]);
 
