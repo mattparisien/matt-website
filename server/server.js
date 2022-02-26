@@ -79,7 +79,7 @@ router.post("/upload", upload.single("image"), (req, res) => {
 	res.json({ file: req.file });
 });
 
-//Fetch photo files
+//Fetch photo JSON data
 router.get("/photography", (req, res) => {
 	gfs.files.find().toArray((err, files) => {
 		if (err) console.log(er);
@@ -91,6 +91,22 @@ router.get("/photography", (req, res) => {
 		return res.json(files);
 	});
 });
+
+//Display images
+router.get("/images/:filename", (req, res) => {
+	gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+		//Check if file
+		if (!file || file.length === 0) {
+			return res.status(404).json({
+				error: 'No file exists'
+			})
+		}
+		//Check if images
+		if (file.contentType === 'image/jpeg' || file.contentType === 'image/png' ) {
+			
+		}
+	})
+})
 
 router.get("/seeding", (req, res) => {
 	const projects = [
