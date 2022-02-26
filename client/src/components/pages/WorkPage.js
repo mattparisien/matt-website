@@ -66,6 +66,11 @@ function WorkPage() {
 			<Layout bg='light' height='auto'>
 				<Box className='categories-bar' sx={{ marginBottom: "4rem" }}>
 					<UnorderedList
+						clickHandlers={{
+							software: () => setCategory("software"),
+							photography: () => setCategory("photography")
+						}}
+						noTransition
 						negativeOffset='left'
 						listItems={[
 							{

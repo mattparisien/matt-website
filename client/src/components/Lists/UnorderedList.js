@@ -3,10 +3,11 @@ import styled from "styled-components";
 
 import TransitionTrigger from "../Transition/TransitionTrigger";
 import { addHeaderSpacing } from "../../styles/global";
+import Link from "../Link/Link";
 
 const StyledUl = styled.ul`
 	${addHeaderSpacing("height")};
-	
+
 	top: 0;
 	right: 0;
 	padding: 0;
@@ -44,9 +45,21 @@ function UnorderedList(props) {
 	return (
 		<StyledUl className='UnorderedList' {...props}>
 			{props.listItems.map(item => {
+				console.log(item.title);
 				return (
 					<li className='UnorderedList__item'>
-						<TransitionTrigger to={item.href}>{item.title}</TransitionTrigger>
+						{!props.noTransition ? (
+							<TransitionTrigger to={item.href}>{item.title}</TransitionTrigger>
+						) : (
+							<Link
+								to={item.href}
+								onClick={
+									props.onClick || props.clickHandlers[item.title.toLowerCase()]
+								}
+							>
+								{item.title}
+							</Link>
+						)}
 					</li>
 				);
 			})}
