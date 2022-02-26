@@ -27,18 +27,6 @@ function WorkPage() {
 		setCategory(e.target.id);
 	};
 
-	// const handleSubmit = e => {
-	// 	e.preventDefault();
-	// 	const image = e.target[0].files[0];
-
-	// 	console.log(image)
-
-	// 	axios
-	// 		.post(`${process.env.REACT_APP_API_URL}/upload`, image)
-	// 		.then(res => console.log(res))
-	// 		.catch(err => console.log(err));
-	// };
-
 	useEffect(() => {
 		if (category === "photography" && photography) {
 			const sourceArray = photography.map(image => {
@@ -55,6 +43,7 @@ function WorkPage() {
 			const array = software.map(project => {
 				return {
 					id: project._id,
+					name: project.name,
 					featureImage: project.featureImage,
 					description: project.description,
 					href: project.url,

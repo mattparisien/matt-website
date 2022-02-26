@@ -73,7 +73,6 @@ router.get("/software", (req, res) => {
 
 router.post("/upload", upload.single("image"), (req, res) => {
 	//Upload photography route and stores in db
-	console.log("hello!", req.file);
 	res.json({ file: req.file });
 });
 

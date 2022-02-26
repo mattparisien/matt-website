@@ -28,11 +28,9 @@ export const GlobalStyle = createGlobalStyle`
 
 
   .App {
-    background-color: ${({ theme }) => theme.colors.dark};
+    
     color: ${({ foregroundColor, theme }) => theme.colors.light};
-    background-color: ${({ backgroundColor, theme }) =>
-			theme.colors[backgroundColor]};
-    color: ${({ foregroundColor, theme }) => theme.colors[foregroundColor]};
+    
     transition: 500ms ease;
   }
 

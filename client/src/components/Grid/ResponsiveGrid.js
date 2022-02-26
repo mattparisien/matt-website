@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "@mui/material";
+
 import styled from "styled-components";
 import { Box } from "@mui/material";
 import { CircularProgress } from "@mui/material";
 import { useProgressiveImage } from "../../helpers/hooks/useProgressiveImage";
+import { device } from "../../styles/breakpoints";
 
 const Item = styled(Box)`
 	background-color: blue;
@@ -23,6 +24,45 @@ const Item = styled(Box)`
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
+		}
+	}
+
+	&:hover .title-overlay {
+		opacity: 1;
+	}
+
+	.title-overlay {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		font-family: Haas;
+		transform: translate(-50%, -50%);
+		font-size: 4vw;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: ${({ theme }) => theme.colors.light};
+		z-index: 1;
+		transition: 300ms ease;
+		opacity: 0;
+		text-transform: capitalize;
+
+		@media ${device.tablet} {
+			font-size: 5rem;
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: black;
+			z-index: -1;
+			opacity: 0.4;
 		}
 	}
 `;
@@ -112,8 +152,15 @@ function ResponsiveGrid({ items, isItemLoading }) {
 										}}
 									>
 										{sourceLoaded && sourceLoaded[item.id] ? (
-											<a href={item.url || item.href} style={linkStyle} target="_blank">
+											<a
+												href={item.url || item.href}
+												style={linkStyle}
+												target='_blank'
+											>
 												<img src={sourceLoaded[item.id]}></img>
+												{item.name && (
+													<Box className='title-overlay'>{item.name}</Box>
+												)}
 											</a>
 										) : (
 											<CircularProgress color='inherit' />
