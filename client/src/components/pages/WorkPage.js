@@ -19,11 +19,12 @@ function WorkPage() {
 	const [gridData, setGridData] = useState(null);
 	const [category, setCategory] = useState("software");
 
-	const { projects, photography } = useContext(DataContext);
+	const { software, photography } = useContext(DataContext);
 
 	const handleCategoryClick = e => {
 		e.preventDefault();
 		setItemLoading(!itemLoading);
+		setCategory(e.target.id);
 	};
 
 	// const handleSubmit = e => {
@@ -39,7 +40,7 @@ function WorkPage() {
 	// };
 
 	useEffect(() => {
-		if (photography) {
+		if (category === "photography" && photography) {
 			const sourceArray = photography.map(image => {
 				return {
 					id: image._id,
@@ -48,11 +49,12 @@ function WorkPage() {
 			});
 
 			setGridData(prev => ({
-				...prev,
 				data: sourceArray,
 			}));
+		} else if (category === "software" && software) {
+			setGridData(() => ({ data: software }));
 		}
-	}, [photography]);
+	}, [photography, software, category]);
 
 	return (
 		<>
@@ -65,22 +67,30 @@ function WorkPage() {
 			<Layout bg='light' height='auto'>
 				<Box className='categories-bar' sx={{ marginBottom: "4rem" }}>
 					<ButtonGroup style={{ marginBottom: "2rem" }}>
-						<StyledCategoryBtn naked onClick={handleCategoryClick}>
+						<StyledCategoryBtn
+							naked
+							onClick={handleCategoryClick}
+							id='software'
+						>
 							Software
 						</StyledCategoryBtn>
-						<StyledCategoryBtn naked onClick={handleCategoryClick}>
+						<StyledCategoryBtn
+							naked
+							onClick={handleCategoryClick}
+							id='photography'
+						>
 							Photography
 						</StyledCategoryBtn>
 					</ButtonGroup>
 					<Line />
-					<form
+					{/* <form
 						action={`${process.env.REACT_APP_API_URL}/upload`}
 						method='POST'
 						encType='multipart/form-data'
 					>
 						<input name='image' type='file' accept='image/*' />
 						<input type='submit' value='Submit' />
-					</form>
+					</form> */}
 				</Box>
 
 				<ResponsiveGrid

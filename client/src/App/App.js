@@ -62,31 +62,21 @@ function App() {
 		const basePath = process.env.REACT_APP_API_URL;
 		const fetchURL = url => axios.get(url);
 
-		const urls = [`${basePath}/photography`];
+		const urls = [`${basePath}/photography`, `${basePath}/software`];
 
 		const promiseArray = [...urls].map(fetchURL);
 
 		Promise.all(promiseArray)
 			.then(data => {
+				console.log(data);
 				const photography = data[0].data;
+				const software = data[1].data.projects;
 				setState(prev => ({
 					...prev,
-					data: { ...prev.data, photography: photography },
+					data: { ...prev.data, photography: photography, software: software },
 				}));
 			})
 			.catch(err => console.log(err));
-
-		// axios
-		// 	.get(`${process.env.REACT_APP_API_URL}/projects`)
-		// 	.then(res => {
-		// 		if (res.data) {
-		// 			setState(prev => ({
-		// 				...prev,
-		// 				data: { ...prev.data, projects: res.data },
-		// 			}));
-		// 		}
-		// 	})
-		// 	.catch(err => console.log(err));
 	}, []);
 
 	// const toggleModalVisibility = () => {

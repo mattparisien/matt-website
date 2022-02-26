@@ -9,4 +9,4 @@ const projectSchema = new mongoose.Schema({
 	featureImage: String,
 });
 
-module.exports = mongoose.model("Project", projectSchema);
+module.exports = projectSchema;

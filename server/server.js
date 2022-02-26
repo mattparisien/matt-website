@@ -37,6 +37,9 @@ conn.once("open", () => {
 	gfs.collection("uploads");
 });
 
+//Models
+const ProjectModel = conn.model("Project", require("./db/models/Project"));
+
 //Create storage object
 const storage = new GridFsStorage({
 	url: process.env.MONGO_URI,
@@ -61,18 +64,10 @@ const upload = multer({ storage });
 //Routing config
 app.use("/api", router);
 
-router.get("/projects", (req, res) => {
-	res.send("hi");
-	Project.find({}, (err, projects) => {
+router.get("/software", (req, res) => {
+	ProjectModel.find({}, (err, projects) => {
 		if (err) console.log(err);
-		// res.json({ projects: projects });
-		// var userMap = {};
-
-		// users.forEach(function(user) {
-		//   userMap[user._id] = user;
-		// });
-
-		// res.send(userMap);
+		res.json({ projects: projects });
 	});
 });
 
