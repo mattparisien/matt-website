@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import gsap from "gsap";
 
@@ -39,7 +39,13 @@ export default function LinkCircle() {
 				onMouseLeave={handleMouseLeave}
 			>
 				<path
-					style={{ fill: "none", strokeWidth: "1px", stroke: "black" }}
+					style={{
+						fill: "none",
+						strokeWidth: "1px",
+						stroke: "black",
+						strokeDashoffset: "0.001",
+						strokeDasharray: "0px, 999999px",
+					}}
 					ref={lineRef}
 					d='M238.46,192.41c0,11-26.3,20-58.73,20s-58.73-8.93-58.73-20,26.29-19.94,58.73-19.94S238.46,181.4,238.46,192.41Z'
 					transform='translate(-120.5 -171.97)'
