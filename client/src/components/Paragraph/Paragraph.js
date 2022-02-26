@@ -57,15 +57,15 @@ function Paragraph(props) {
 			});
 		}
 
-		// if (splitText) {
-		// 	$(splitText.lines).wrap("<div class='line-wrapper'></div>");
-		// }
+		if (splitText) {
+			$(splitText.lines).wrapInner("<div class='line-inner'></div>");
+		}
 	}, [isSplit, windowWidth, intersecting, splitText]);
 
 	useEffect(() => {
 		splitText && setSplitText(splitText.revert().split());
-		// splitText && setSplitWrap(splitWrap.revert().split());
-	}, [windowWidth, splitText]);
+		splitWrap && setSplitWrap(splitWrap.revert().split());
+	}, [windowWidth, splitText, splitWrap]);
 
 	const paragraphClass = "Paragraph";
 

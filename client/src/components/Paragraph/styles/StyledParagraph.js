@@ -46,14 +46,17 @@ export const StyledParagraph = styled.p`
 		color: pink;
 	}
 
-	.line-wrapper {
+	.line-inner {
 		overflow: hidden;
 		justify-content: flex-start;
 	}
 
 	.line {
-		white-space: nowrap; 
+		white-space: break-spaces;
 
+		position: relative;
+		display: block;
+		text-align: start;
 	}
 
 	${({ indent }) => {
