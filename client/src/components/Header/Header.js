@@ -1,22 +1,23 @@
-import React, { forwardRef, useRef, useState, useEffect } from "react";
-import Section from "../Section";
-import { StyledHeader } from "./styles/StyledHeader";
-import { Box } from "@mui/system";
-import ContainerFluid from "../Containers/ContainerFluid";
+import React, { forwardRef, useState } from "react";
 import { Link } from "react-router-dom";
+import ContainerFluid from "../Containers/ContainerFluid";
+import Nav from "./Nav";
+import { StyledHeader } from "./styles/StyledHeader";
+import styled from "styled-components";
 
 function Header(props, ref) {
-	const { currentPath, headerOffset, isMenuActive, isDefaultContentHidden } =
-		props;
+	const { headerOffset, isMenuActive, isDefaultContentHidden } = props;
 	const [innerHeight, setInnerHeight] = useState(null);
+
 
 	return (
 		<StyledHeader headerHeight={headerOffset} ref={ref} height={innerHeight}>
-			<ContainerFluid>
+			<ContainerFluid flex>
 				<div className='header-logo'>
 					<Link to='/'>Matt Parisien</Link>
-					<span className="copyright-symbol">©</span>
+					<span className='copyright-symbol'>©</span>
 				</div>
+				<Nav />
 			</ContainerFluid>
 		</StyledHeader>
 	);

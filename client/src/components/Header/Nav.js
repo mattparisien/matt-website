@@ -1,38 +1,25 @@
 import React, { forwardRef } from "react";
-import UnorderedList from "../UnorderedList/UnorderedList";
+import UnorderedList from "../Lists/UnorderedList";
 
 function Nav(props, ref) {
-
-	const { currentPath } = props;
-
 	const listInfo = [
 		{
 			title: "Work",
-			url: "/",
-			openNewTab: false,
+			href: "/",
 		},
 		{
 			title: "About",
-			url: "/about",
-			openNewTab: false,
+			href: "/about",
 		},
 		{
 			title: "Contact",
-			url: "/contact",
-			openNewTab: false,
+			href: "/contact",
 		},
 	];
 
 	return (
 		<nav className='header-nav'>
-			<UnorderedList
-				listInfo={listInfo}
-				orientation={"horizontal"}
-				justifyContent={"flex-end"}
-				alignItems={"center"}
-				currentPath={currentPath}
-				ref={ref}
-			/>
+			<UnorderedList listItems={listInfo} />
 		</nav>
 	);
 }
