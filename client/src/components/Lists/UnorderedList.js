@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import TransitionTrigger from "../Transition/TransitionTrigger";
 
 const StyledUl = styled.ul`
 	padding: 0;
@@ -24,7 +25,7 @@ function UnorderedList(props) {
 			{props.listItems.map(item => {
 				return (
 					<li className='UnorderedList__item'>
-						<Link to={item.href}>{item.title}</Link>
+						<TransitionTrigger to={item.href}>{item.title}</TransitionTrigger>
 					</li>
 				);
 			})}

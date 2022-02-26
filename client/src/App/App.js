@@ -10,8 +10,9 @@ import Construction from "../components/pages/Construction";
 import { GlobalStyle } from "../styles/global";
 import AboutPage from "../components/pages/AboutPage";
 import Header from "../components/Header/Header";
-import Loader from "../components/Loading/Loader";
+import Loader from "../components/Transition/Loader";
 import WorkPage from "../components/pages/WorkPage";
+import HomePage from "../components/pages/HomePage";
 import axios from "axios";
 
 export const ColorContext = createContext();
@@ -168,7 +169,7 @@ function App() {
 						<LocomotiveScrollProvider
 							options={{
 								smooth: true,
-								getDirection: true
+								getDirection: true,
 							}}
 							containerRef={scrollRef}
 						>
@@ -198,7 +199,7 @@ function App() {
 										/>
 
 										<Routes>
-											<Route path='/' element={<Construction />} />
+											<Route path='/' element={<HomePage />} />
 											<Route path='/about' element={<AboutPage />} />
 											<Route path='/work' element={<WorkPage />} />
 										</Routes>
