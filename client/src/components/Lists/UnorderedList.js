@@ -2,10 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 import TransitionTrigger from "../Transition/TransitionTrigger";
+import { addHeaderSpacing } from "../../styles/global";
 
 const StyledUl = styled.ul`
+	${addHeaderSpacing("height")};
+	
+	top: 0;
+	right: 0;
 	padding: 0;
-	height: 100%;
 	margin: 0;
 	list-style-type: none;
 	display: flex;
@@ -19,6 +23,20 @@ const StyledUl = styled.ul`
 		align-items: center;
 		justify-content: center;
 		position: relative;
+
+		${({ negativeOffset }) => {
+			return negativeOffset === "left"
+				? `
+					&:nth-of-type(1) {
+						margin-left: -3rem;
+					}
+				`
+				: `
+				&:last-of-type {
+					margin-right: -3rem;
+				}
+				`;
+		}};
 	}
 `;
 

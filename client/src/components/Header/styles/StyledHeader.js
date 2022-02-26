@@ -8,7 +8,6 @@ export const StyledHeader = styled.header`
 	box-sizing: border-box;
 	transform: translateY(${({ $hidden }) => ($hidden ? "-100px" : "0")});
 	transition: transform 500ms ease;
-	padding: 2rem;
 	z-index: -1;
 	color: ${({ theme }) => theme.colors.dark};
 	position: fixed;

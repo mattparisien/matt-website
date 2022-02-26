@@ -1,14 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
 import Layout from "../Containers/Layout";
-import Paragraph from "../Paragraph/Paragraph";
+
 import { Box } from "@mui/material";
 import Button from "../Button/Button";
-import { ButtonGroup } from "@material-ui/core";
+
 import styled from "styled-components";
 import ResponsiveGrid from "../Grid/ResponsiveGrid";
 import { DataContext } from "../../App/App";
 import Line from "../Divider/Line";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
+import UnorderedList from "../Lists/UnorderedList";
 
 function WorkPage() {
 	const StyledCategoryBtn = styled(Button)`
@@ -64,22 +65,19 @@ function WorkPage() {
 			</Layout>
 			<Layout bg='light' height='auto'>
 				<Box className='categories-bar' sx={{ marginBottom: "4rem" }}>
-					<ButtonGroup style={{ marginBottom: "2rem" }}>
-						<StyledCategoryBtn
-							naked
-							onClick={handleCategoryClick}
-							id='software'
-						>
-							Software
-						</StyledCategoryBtn>
-						<StyledCategoryBtn
-							naked
-							onClick={handleCategoryClick}
-							id='photography'
-						>
-							Photography
-						</StyledCategoryBtn>
-					</ButtonGroup>
+					<UnorderedList
+						negativeOffset='left'
+						listItems={[
+							{
+								title: "Software",
+								href: "",
+							},
+							{
+								title: "Photography",
+								href: "",
+							},
+						]}
+					/>
 					<Line />
 					{/* <form
 						action={`${process.env.REACT_APP_API_URL}/upload`}
