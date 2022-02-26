@@ -18,7 +18,7 @@ function Nav(props, ref) {
 	];
 
 	return (
-		<nav className='header-nav'>
+		<nav className='header-nav' style={{height: "100%"}}>
 			<UnorderedList listItems={listInfo} />
 		</nav>
 	);

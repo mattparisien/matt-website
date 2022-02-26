@@ -68,6 +68,7 @@ export const StyledParagraph = styled.p`
 				position: absolute;
 				left: 0;
 				top: 0;
+				text-transform: capitalize;
 			}`
 			: "";
 	}};
