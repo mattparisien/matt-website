@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { addHeaderSpacing } from "../../../styles/global";
 
 export const StyledContent = styled.main`
 	min-height: 100vh;
-	margin-top: 200px;
+	${addHeaderSpacing("margin-top")};
 
 	${({ hideContentDefault }) => {
 		return hideContentDefault

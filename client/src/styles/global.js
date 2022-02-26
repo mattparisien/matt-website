@@ -4,6 +4,19 @@ import FKScreamer from "../fonts/FKScreamer.otf";
 import FuturaCEB from "../fonts/Futura.otf";
 import Haas from "../fonts/Haas.otf";
 import Konnect from "../fonts/Konnect.woff";
+import { device } from "./breakpoints";
+
+export const addHeaderSpacing = property => {
+	return `
+  @media ${device.mobileS} {
+		${property}: 3.5rem;
+	}
+
+	@media ${device.tablet} {
+		${property}: 7.3rem;
+	}
+  `;
+};
 
 export const GlobalStyle = createGlobalStyle`
 

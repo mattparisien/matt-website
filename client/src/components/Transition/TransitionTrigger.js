@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import Link from "../Link/Link";
 import { LoadingContext } from "../../App/App";
 
 function TransitionTrigger(props) {
@@ -24,9 +25,9 @@ function TransitionTrigger(props) {
 	}, [isTransitioning]);
 
 	return (
-		<a onClick={handleClick} className='TransitionTrigger'>
+		<Link onClick={handleClick} className='TransitionTrigger'>
 			{props.children}
-		</a>
+		</Link>
 	);
 }
 

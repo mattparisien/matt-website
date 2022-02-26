@@ -66,6 +66,7 @@ function Paragraph(props) {
 		<InView
 			className='paragraph-view-wrapper'
 			onChange={(inView, entry) => inView && setIntersecting(entry.target)}
+			style={{width: "100%"}}
 		>
 			<StyledStandardParagraph
 				className={paragraphClass}

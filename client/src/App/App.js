@@ -12,7 +12,7 @@ import AboutPage from "../components/pages/AboutPage";
 import Header from "../components/Header/Header";
 import Loader from "../components/Transition/Loader";
 import WorkPage from "../components/pages/WorkPage";
-import HomePage from "../components/pages/HomePage";
+import HomePage from "../components/pages/HomePage"
 import axios from "axios";
 
 export const ColorContext = createContext();

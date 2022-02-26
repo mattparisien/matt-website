@@ -8,7 +8,7 @@ import styled from "styled-components";
 import ResponsiveGrid from "../Grid/ResponsiveGrid";
 import { DataContext } from "../../App/App";
 import Line from "../Divider/Line";
-import axios from "axios";
+import ParagraphLayout from "../Paragraph/ParagraphLayout";
 
 function WorkPage() {
 	const StyledCategoryBtn = styled(Button)`
@@ -57,10 +57,10 @@ function WorkPage() {
 	return (
 		<>
 			<Layout bg='light' height='45vh'>
-				<Paragraph indent indentHeading='Work'>
+				<ParagraphLayout indent indentHeading='work'>
 					I design, develop and maintain full-stack applications for a living. I
 					also do beauty photography on the side, check it out below.
-				</Paragraph>
+				</ParagraphLayout>
 			</Layout>
 			<Layout bg='light' height='auto'>
 				<Box className='categories-bar' sx={{ marginBottom: "4rem" }}>

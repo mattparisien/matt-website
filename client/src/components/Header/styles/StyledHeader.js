@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import { device } from "../../../styles/breakpoints";
+
+import { addHeaderSpacing } from "../../../styles/global";
 
 export const StyledHeader = styled.header`
-	height: 100px;
+	${addHeaderSpacing("height")};
+
 	box-sizing: border-box;
 	transform: translateY(${({ $hidden }) => ($hidden ? "-100px" : "0")});
 	transition: transform 500ms ease;
