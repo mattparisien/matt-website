@@ -12,12 +12,12 @@ const paragraphFontSizes = {
 			lineHeight: "4.4rem",
 		},
 		laptopL: {
-			fontSize: "2rem",
-			lineHeight: "1.5rem",
+			fontSize: "4.4rem",
+			lineHeight: "4.4rem",
 		},
 		laptop: {
-			fontSize: "2rem",
-			lineHeight: "2rem",
+			fontSize: "4.4rem",
+			lineHeight: "4.4rem",
 		},
 		tablet: {
 			fontSize: "1.5rem",
@@ -51,9 +51,14 @@ export const StyledParagraph = styled.p`
 		justify-content: flex-start;
 	}
 
+	.line {
+		white-space: nowrap; 
+
+	}
+
 	${({ indent }) => {
 		return indent
-			? `.line-wrapper:nth-of-type(1) {
+			? `.line:nth-of-type(1) {
 				padding-left: 14.4rem;
 				position: relative;
 			}`
@@ -62,7 +67,7 @@ export const StyledParagraph = styled.p`
 
 	${({ indentHeading }) => {
 		return indentHeading
-			? `.line-wrapper:nth-of-type(1)::after {
+			? `.line:nth-of-type(1)::after {
 				content: '${indentHeading}';
 				font-size: 1.2rem;
 				position: absolute;

@@ -24,13 +24,13 @@ function Paragraph(props) {
 				linesClass: "line",
 				charsClass: "char",
 			});
-			const splitTextWrap = new SplitText(paragraph.current, {
-				type: "lines",
-				linesClass: "line-wrapper",
-			});
+			// const splitTextWrap = new SplitText(paragraph.current, {
+			// 	type: "lines",
+			// 	linesClass: "line-wrapper",
+			// });
 			setIsSplit(true);
 			setSplitText(mySplitText);
-			setSplitWrap(splitTextWrap);
+			// setSplitWrap(splitTextWrap);
 		}
 
 		if (isSplit && intersecting) {
@@ -64,7 +64,7 @@ function Paragraph(props) {
 
 	useEffect(() => {
 		splitText && setSplitText(splitText.revert().split());
-		splitText && setSplitWrap(splitWrap.revert().split());
+		// splitText && setSplitWrap(splitWrap.revert().split());
 	}, [windowWidth, splitText]);
 
 	const paragraphClass = "Paragraph";
