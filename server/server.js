@@ -30,6 +30,9 @@ const Image = require("./db/models/Image");
 let gfs;
 conn.once("open", () => {
 	//Init stream
+	gridFsBucket = new mongoose.mongo.GridFSBucket(conn.db, {
+		bucketName: "uploads",
+	});
 	gfs = Grid(conn.db, mongoose.mongo);
 	gfs.collection("uploads");
 });
@@ -82,6 +85,7 @@ router.post("/upload", upload.single("image"), (req, res) => {
 //Fetch photo JSON data
 router.get("/photography", (req, res) => {
 	gfs.files.find().toArray((err, files) => {
+		console.log(files);
 		if (err) console.log(er);
 
 		if (!files || files.length === 0) {
@@ -95,18 +99,26 @@ router.get("/photography", (req, res) => {
 //Display images
 router.get("/images/:filename", (req, res) => {
 	gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+		if (err) console.log("err", err);
+
 		//Check if file
 		if (!file || file.length === 0) {
 			return res.status(404).json({
-				error: 'No file exists'
-			})
+				error: "No file exists",
+			});
 		}
 		//Check if images
-		if (file.contentType === 'image/jpeg' || file.contentType === 'image/png' ) {
-			
+		if (file.contentType === "image/jpeg" || file.contentType === "image/png") {
+			//Read output to browser
+			const readStream = gridFsBucket.openDownloadStreamByName(file.filename);
+			readStream.pipe(res);
+		} else {
+			res.status(404).json({
+				error: "Not a valid image type",
+			});
 		}
-	})
-})
+	});
+});
 
 router.get("/seeding", (req, res) => {
 	const projects = [
