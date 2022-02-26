@@ -8,10 +8,9 @@ function Link(props) {
 			href={props.href}
 			target={props.target}
 			onClick={props.onClick}
-			
 		>
 			{props.children}
-			<LinkCircle/>
+			{!props.noCircle && <LinkCircle />}
 		</a>
 	);
 }
