@@ -8,7 +8,6 @@ import InView from "react-intersection-observer";
 import { device } from "../../styles/breakpoints";
 
 const StyledHeading = styled.h2`
-	
 	margin: 0;
 
 	letter-spacing: -0.5vw;
@@ -19,8 +18,7 @@ const StyledHeading = styled.h2`
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%)scale(1.2);
-	
+	transform: translate(-50%, -50%) scale(1.2);
 
 	.line {
 		white-space: nowrap;
