@@ -15,6 +15,8 @@ import WorkPage from "../components/pages/WorkPage";
 import HomePage from "../components/pages/HomePage";
 import UploadPage from "../components/pages/UploadPage";
 import axios from "axios";
+import useResize from "../helpers/hooks/useResize";
+import { deviceSize } from "../styles/breakpoints";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();
@@ -22,6 +24,16 @@ export const DataContext = createContext();
 
 function App() {
 	//Themes
+
+	const [spacing, setSpacing] = useState(2);
+	const [windowWidth] = useResize();
+
+	useEffect(() => {
+		if (windowWidth === deviceSize.desktop) {
+			console.log("uass!");
+		}
+	}, [windowWidth]);
+
 	const themes = {
 		colors: {
 			light: "#ffff",
@@ -36,6 +48,9 @@ function App() {
 			orange: "rgb(231, 100, 53)",
 			grey: "rgb(207, 207, 207)",
 			purple: "#5b487c",
+		},
+		spacing: multiplier => {
+			return spacing * multiplier + "rem";
 		},
 	};
 
@@ -71,7 +86,6 @@ function App() {
 
 		Promise.all(promiseArray)
 			.then(data => {
-				console.log(data);
 				const photography = data[0].data;
 				const software = data[1].data.softwareProjects;
 

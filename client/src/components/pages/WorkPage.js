@@ -2,9 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import Layout from "../Containers/Layout";
 
 import { Box } from "@mui/material";
-import Button from "../Button/Button";
 
-import styled from "styled-components";
 import ResponsiveGrid from "../Grid/ResponsiveGrid";
 import { DataContext } from "../../App/App";
 import Line from "../Divider/Line";

@@ -45,7 +45,6 @@ function UnorderedList(props) {
 	return (
 		<StyledUl className='UnorderedList' {...props}>
 			{props.listItems.map(item => {
-				console.log(item.title);
 				return (
 					<li className='UnorderedList__item'>
 						{!props.noTransition ? (
