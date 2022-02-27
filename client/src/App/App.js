@@ -73,7 +73,8 @@ function App() {
 			.then(data => {
 				console.log(data);
 				const photography = data[0].data;
-				const software = data[1].data.projects;
+				const software = data[1].data.softwareProjects;
+
 				setState(prev => ({
 					...prev,
 					data: { ...prev.data, photography: photography, software: software },

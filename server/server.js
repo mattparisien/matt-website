@@ -25,6 +25,7 @@ app.use(methodOverride("_method"));
 const conn = mongoose.createConnection(process.env.MONGO_URI);
 const Project = require("./db/models/Project");
 const Image = require("./db/models/Image");
+const { url } = require("inspector");
 
 //Init gfs
 let gfs;
@@ -125,15 +126,78 @@ router.post("/software/upload", upload.single("image"), (req, res) => {
 
 //Get JSON data of software project
 router.get("/software", (req, res) => {
-	gfs.files.find().toArray((err, files) => {
-		if (err) console.log(er);
-
-		if (!files || files.length === 0) {
-			return res.status(404).json({ error: "No files exist" });
+	//Get all software projects
+	ProjectModel.find({}, (err, projects) => {
+		if (err) {
+			return res.status(404).json({ error: err });
 		}
-		//Files exist
-		return res.json(files);
+
+		//Get images files
+		const imageIds = [];
+
+		// gfs.files.find().toArray((err, files) => {
+		// 	if (err) console.log(err);
+
+		// 	if (!files || files.length === 0) {
+		// 		return res.status(404).json({ error: "No files exist" });
+		// 	}
+		// 	//Files exist
+		// 	return res.json(files);
+		// });
+
+		// const formattedProjects = projects.map(project => {
+		// 	return (
+		// 		{
+		// 			id: project._id,
+		// 			name: project.name,
+		// 			description: project.description,
+		// 			url: project.url,
+		// 			image:
+		// 		}
+		// 	)
+		// })
+
+		// return res.json({ softwareProjects: projects });
+
+		const objectIds = projects.map(
+			project => new mongoose.mongo.ObjectId(project.image_id)
+		);
+
+		gfs.files.find({ _id: { $in: [...objectIds] } }).toArray((err, files) => {
+			if (err) console.log(err);
+			if (files) {
+				const response = projects.map(project => {
+					return {
+						id: project._id,
+						name: project.name,
+						description: project.description,
+						url: project.url,
+						image: files.find(
+							x => x._id.toString() === project.image_id.toString()
+						),
+					};
+				});
+
+				res.json({ softwareProjects: response });
+				return;
+			}
+		});
 	});
+
+	// 	for (i = 0; i < projects.length; i++) {
+	// 		const imageId = new mongoose.mongo.ObjectId(projects[i].image_id);
+	// 		gfs.files.find({ _id: imageId }).toArray((err, files) => {
+	// 			if (err) console.log(err);
+
+	// 			//Files exist
+	// 			images.push({
+	// 				[files._id]: files.filename,
+	// 			});
+	// 		});
+	// 	}
+
+	// 	console.log(images)
+	// });
 });
 
 //Fetch photo JSON data

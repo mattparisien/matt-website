@@ -39,9 +39,9 @@ function WorkPage() {
 		} else if (category === "software" && software) {
 			const array = software.map(project => {
 				return {
-					id: project._id,
+					id: project.id,
 					name: project.name,
-					featureImage: project.featureImage,
+					featureImage: project.image.filename,
 					description: project.description,
 					href: project.url,
 				};
