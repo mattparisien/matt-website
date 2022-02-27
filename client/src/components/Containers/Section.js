@@ -20,7 +20,7 @@ function Section(props) {
 
 	return (
 		<>
-			<StyledSection className='Section' {...props}>
+			<StyledSection className='Section' {...props} bg={props.bg}>
 				<ColorTrigger foreground={props.bg === "light" ? "dark" : "light"}>
 					{props.children}
 				</ColorTrigger>

@@ -24,9 +24,18 @@ export const LoadingContext = createContext();
 export const DataContext = createContext();
 
 function App() {
+
+	const location = useLocation();
 	//Themes
 
-	const [headerColor, setHeaderColor] = useState("light");
+	
+	const [headerColor, setHeaderColor] = useState(null);
+
+	useEffect(() => {
+		location.pathname === "/" && setHeaderColor("light")
+		location.pathname === "/work" && setHeaderColor("dark")
+		location.pathname === "/about" && setHeaderColor("dark")
+	}, [location])
 
 	const baseSpacing = {
 		desktopL: 2,
@@ -178,6 +187,7 @@ function App() {
 	// };
 
 	const changeColors = (fg, bg) => {
+		console.log('hello!', fg)
 		setHeaderColor(fg);
 	};
 

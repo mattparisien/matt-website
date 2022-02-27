@@ -5,6 +5,7 @@ import Nav from "./Nav";
 import { StyledHeader } from "./styles/StyledHeader";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import TransitionTrigger from "../Transition/TransitionTrigger";
+import { useLocation } from "react-router-dom";
 
 function Header(props, ref) {
 	const { headerOffset, isMenuActive, isDefaultContentHidden } = props;
@@ -32,7 +33,9 @@ function Header(props, ref) {
 		>
 			<ContainerFluid flex>
 				<div className='header-logo'>
-					<TransitionTrigger to='/' noCircle>Matt Parisien</TransitionTrigger>
+					<TransitionTrigger to='/' noCircle>
+						Matt Parisien
+					</TransitionTrigger>
 					<span className='copyright-symbol'>©</span>
 				</div>
 				<Nav />
