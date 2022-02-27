@@ -6,14 +6,26 @@ import Haas from "../fonts/Haas.otf";
 import Konnect from "../fonts/Konnect.woff";
 import { device } from "./breakpoints";
 
-export const addHeaderSpacing = property => {
+export const renderResponsiveSizes = object => {
+	console.log(Object.entries(object));
+	return Object.entries(object).map(size => {
+		return `
+			@media ${device[size[0]]} {
+				padding: ${size[1].padding};
+        font-size: ${size[1].fontSize};
+			}
+			`;
+	});
+};
+
+export const addHeaderSpacing = (property, extra) => {
 	return `
   @media ${device.mobileS} {
-		${property}: 3.5rem;
+    ${extra ? `${property}: calc(${extra} + 3.5rem);` : `${property}: 3.5rem;`}	
 	}
 
 	@media ${device.tablet} {
-		${property}: 7.3rem;
+    ${extra ? `${property}: calc(${extra} + 7.3rem);` : `${property}: 7.3rem;`}	
 	}
   `;
 };

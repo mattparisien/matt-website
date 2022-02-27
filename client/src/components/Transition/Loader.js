@@ -15,7 +15,7 @@ function Loader({ isActive }) {
 		width: "100%",
 		height: "100vh",
 		zIndex: 9999,
-		backgroundColor: theme.colors.dark,
+		backgroundColor: theme.colors.dark2,
 		color: theme.colors.light,
 		fontFamily: "Haas",
 		display: isActive ? "flex" : "none",

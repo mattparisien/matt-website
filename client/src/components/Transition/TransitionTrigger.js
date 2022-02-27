@@ -25,7 +25,7 @@ function TransitionTrigger(props) {
 	}, [isTransitioning]);
 
 	return (
-		<Link onClick={handleClick} className='TransitionTrigger'>
+		<Link onClick={handleClick} className='TransitionTrigger' noCircle={props.noCircle}>
 			{props.children}
 		</Link>
 	);

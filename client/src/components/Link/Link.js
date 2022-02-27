@@ -1,4 +1,5 @@
 import React from "react";
+import LinkCircle from "./LinkCircle";
 
 function Link(props) {
 	return (
@@ -9,6 +10,7 @@ function Link(props) {
 			onClick={props.onClick}
 		>
 			{props.children}
+			{!props.noCircle && <LinkCircle />}
 		</a>
 	);
 }

@@ -2,8 +2,10 @@ import styled from "styled-components";
 import { addHeaderSpacing } from "../../../styles/global";
 
 export const StyledContent = styled.main`
+	position: relative;
 	min-height: 100vh;
-	${addHeaderSpacing("margin-top")};
+	${addHeaderSpacing("padding-top")};
+	${addHeaderSpacing("padding-bottom")};
 
 	${({ hideContentDefault }) => {
 		return hideContentDefault
@@ -14,5 +16,5 @@ export const StyledContent = styled.main`
 			}
 			`
 			: "";
-	}}
+	}};
 `;

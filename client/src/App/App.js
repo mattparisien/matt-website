@@ -12,7 +12,7 @@ import AboutPage from "../components/pages/AboutPage";
 import Header from "../components/Header/Header";
 import Loader from "../components/Transition/Loader";
 import WorkPage from "../components/pages/WorkPage";
-import HomePage from "../components/pages/HomePage"
+import HomePage from "../components/pages/HomePage";
 import axios from "axios";
 
 export const ColorContext = createContext();
@@ -25,6 +25,7 @@ function App() {
 		colors: {
 			light: "#ffff",
 			dark: "#141414",
+			dark2: "#23252B",
 			lighterDark: "#111111",
 			red: "#DF181F",
 			green: "#1c8c53",

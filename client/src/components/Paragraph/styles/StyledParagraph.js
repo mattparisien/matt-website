@@ -4,36 +4,36 @@ import { device } from "../../../styles/breakpoints";
 const paragraphFontSizes = {
 	standard: {
 		desktopL: {
-			fontSize: "5rem",
-			lineHeight: "1.5rem",
+			fontSize: "4.4rem",
+			lineHeight: "4.4rem",
 		},
 		desktop: {
 			fontSize: "4.4rem",
 			lineHeight: "4.4rem",
 		},
 		laptopL: {
-			fontSize: "2rem",
-			lineHeight: "1.5rem",
+			fontSize: "4rem",
+			lineHeight: "4.4rem",
 		},
 		laptop: {
-			fontSize: "2rem",
-			lineHeight: "2rem",
+			fontSize: "2.8rem",
+			lineHeight: "3.2rem",
 		},
 		tablet: {
-			fontSize: "1.5rem",
-			lineHeight: "1.5rem",
+			fontSize: "2.6rem",
+			lineHeight: "2.8rem",
 		},
 		mobileL: {
-			fontSize: "2.4rem",
-			lineHeight: "2.5rem",
+			fontSize: "1.8rem",
+			lineHeight: "2rem",
 		},
 		mobileM: {
-			fontSize: "4rem",
-			lineHeight: "4rem",
+			fontSize: "1.5rem",
+			lineHeight: "1.6rem",
 		},
 		mobileS: {
-			fontSize: "4rem",
-			lineHeight: "4rem",
+			fontSize: "1.5rem",
+			lineHeight: "1.6rem",
 		},
 	},
 };
@@ -46,14 +46,22 @@ export const StyledParagraph = styled.p`
 		color: pink;
 	}
 
-	.line-wrapper {
+	.line-inner {
 		overflow: hidden;
 		justify-content: flex-start;
 	}
 
+	.line {
+		white-space: break-spaces;
+
+		position: relative;
+		display: block;
+		text-align: start;
+	}
+
 	${({ indent }) => {
 		return indent
-			? `.line-wrapper:nth-of-type(1) {
+			? `.line:nth-of-type(1) {
 				padding-left: 14.4rem;
 				position: relative;
 			}`
@@ -62,12 +70,13 @@ export const StyledParagraph = styled.p`
 
 	${({ indentHeading }) => {
 		return indentHeading
-			? `.line-wrapper:nth-of-type(1)::after {
+			? `.line:nth-of-type(1)::after {
 				content: '${indentHeading}';
 				font-size: 1.2rem;
 				position: absolute;
 				left: 0;
 				top: 0;
+				text-transform: capitalize;
 			}`
 			: "";
 	}};

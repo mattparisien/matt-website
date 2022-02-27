@@ -6,13 +6,11 @@ function ParagraphLayout(props) {
 	const { text, indent, indentHeading, children } = props;
 
 	const boxStyles = {
-	
-	height: "100%",
-	width: "100%",
-	display: "flex",
-	alignItems: "center",
-	justifyContent: "center"
-
+		height: "100%",
+		width: "100%",
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
 	};
 
 	return (

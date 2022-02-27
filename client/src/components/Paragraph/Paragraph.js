@@ -12,53 +12,60 @@ function Paragraph(props) {
 	const [intersecting, setIntersecting] = useState(null);
 	const [isSplit, setIsSplit] = useState(false);
 	const [splitText, setSplitText] = useState(null);
+	const [splitWrap, setSplitWrap] = useState(null);
 	const paragraph = useRef(null);
 	const [windowWidth, isResized] = useResize();
 	// const timeline = useRef(gsap.timeline());
 
-	useEffect(() => {
-		if (!isSplit && paragraph.current) {
-			const mySplitText = new SplitText(paragraph.current, {
-				type: "lines, chars, words",
-				linesClass: "line",
-				charsClass: "char",
-			});
-			setIsSplit(true);
-			setSplitText(mySplitText);
-		}
+	// useEffect(() => {
+	// 	if (!isSplit && paragraph.current) {
+	// 		const mySplitText = new SplitText(paragraph.current, {
+	// 			type: "lines, chars, words",
+	// 			linesClass: "line",
+	// 			charsClass: "char",
+	// 		});
+	// 		// const splitTextWrap = new SplitText(paragraph.current, {
+	// 		// 	type: "lines",
+	// 		// 	linesClass: "line-wrapper",
+	// 		// });
+	// 		setIsSplit(true);
+	// 		setSplitText(mySplitText);
+	// 		// setSplitWrap(splitTextWrap);
+	// 	}
 
-		if (isSplit && intersecting) {
-			const lines = $(intersecting).find(".line");
+	// 	if (isSplit && intersecting) {
+	// 		const lines = $(intersecting).find(".line");
 
-			lines.each((index, el) => {
-				const chars = $(el).find(".char");
-				let delay = 0;
-				gsap.set(chars, {
-					y: "100%",
-					opacity: 0,
-				});
-				gsap.to(chars, {
-					y: 0,
-					opacity: 1,
-					stagger: 0.02,
-					duration: 2,
-					ease: "expo.inOut",
-					delay: delay + index / 4,
-					onComplete: () => {
-						$(paragraph.current).removeClass("is-initial-hidden");
-					},
-				});
-			});
-		}
+	// 		lines.each((index, el) => {
+	// 			const chars = $(el).find(".char");
+	// 			let delay = 0;
+	// 			gsap.set(chars, {
+	// 				y: "100%",
+	// 				opacity: 0,
+	// 			});
+	// 			gsap.to(chars, {
+	// 				y: 0,
+	// 				opacity: 1,
+	// 				stagger: 0.02,
+	// 				duration: 2,
+	// 				ease: "expo.inOut",
+	// 				delay: delay + index / 4,
+	// 				onComplete: () => {
+	// 					$(paragraph.current).removeClass("is-initial-hidden");
+	// 				},
+	// 			});
+	// 		});
+	// 	}
 
-		if (splitText) {
-			$(splitText.lines).wrap("<div class='line-wrapper'></div>");
-		}
-	}, [isSplit, windowWidth, intersecting, splitText]);
+	// 	if (splitText) {
+	// 		$(splitText.lines).wrapInner("<div class='line-inner'></div>");
+	// 	}
+	// }, [isSplit, windowWidth, intersecting, splitText]);
 
-	useEffect(() => {
-		splitText && splitText.revert().split();
-	}, [windowWidth, splitText]);
+	// useEffect(() => {
+	// 	splitText && setSplitText(splitText.revert().split());
+	// 	splitWrap && setSplitWrap(splitWrap.revert().split());
+	// }, [windowWidth, splitText, splitWrap]);
 
 	const paragraphClass = "Paragraph";
 
@@ -66,7 +73,7 @@ function Paragraph(props) {
 		<InView
 			className='paragraph-view-wrapper'
 			onChange={(inView, entry) => inView && setIntersecting(entry.target)}
-			style={{width: "100%"}}
+			style={{ width: "100%" }}
 		>
 			<StyledStandardParagraph
 				className={paragraphClass}

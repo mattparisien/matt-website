@@ -24,7 +24,7 @@ function HomePage(props, ref) {
 	};
 
 	return (
-		<Layout>
+		<Layout bg='dark'>
 			<Box
 				sx={{
 					minHeight: "100vh",
