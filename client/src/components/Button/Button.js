@@ -2,27 +2,41 @@ import React, { useRef, useState, useContext } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { LoadingContext } from "../../App/App";
-import { device } from "../../styles/breakpoints";
+import { renderResponsiveSizes } from "../../styles/global";
 
 const buttonSizes = {
-	mobileS: "0.7rem 1rem",
-	mobileM: "0.7rem 1rem",
-	mobileL: "0.9rem 1.3rem",
-	tablet: "1.4rem 2.3rem",
-	laptop: "2rem 4rem",
-	laptopL: "2rem 4rem",
-	desktop: "2rem 4rem",
-	desktopL: "2rem 4rem",
-};
-
-const renderResponsiveSizes = object => {
-	return Object.entries(object).map(size => {
-		return `
-			@media ${device[size[0]]} {
-				padding: ${size[1]};
-			}
-			`;
-	});
+	mobileS: {
+		padding: "0.7rem 1rem",
+		fontSize: "1rem",
+	},
+	mobileM: {
+		padding: "0.7rem 1rem",
+		fontSize: "1rem",
+	},
+	mobileL: {
+		padding: "0.9rem 1.3rem",
+		fontSize: "1rem",
+	},
+	tablet: {
+		padding: "1.4rem 2.3rem",
+		fontSize: "1.2rem",
+	},
+	laptop: {
+		padding: "2rem 4rem",
+		fontSize: "1.4rem",
+	},
+	laptopL: {
+		padding: "2rem 4rem",
+		fontSize: "1.4rem",
+	},
+	desktop: {
+		padding: "2rem 4rem",
+		fontSize: "1.4rem",
+	},
+	desktopL: {
+		padding: "2rem 4rem",
+		fontSize: "1.4rem",
+	},
 };
 
 const StyledButton = styled.button`
