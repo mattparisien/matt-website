@@ -5,7 +5,11 @@ import ContainerFluid from "./ContainerFluid";
 function Layout(props) {
 	return (
 		<Section bg={props.bg} height={props.height}>
-			<ContainerFluid>{props.children}</ContainerFluid>
+			{!props.fullBleed ? (
+				<ContainerFluid>{props.children}</ContainerFluid>
+			) : (
+				props.children
+			)}
 		</Section>
 	);
 }
