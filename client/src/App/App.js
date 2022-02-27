@@ -55,40 +55,21 @@ function App() {
 			purple: "#5b487c",
 		},
 		spacing: (multiplier, property) => {
-			return `
+			return Object.entries(device).map(size => {
+				return `@media ${size[1]} {
+						${
+							Array.isArray(property)
+								? property.map(
+										prop => `${prop}: ${baseSpacing[size[0]] * multiplier}rem;`
+								  )
+								: `
+								${property}: ${baseSpacing[size[0]] * multiplier}rem;
+								`
+						};
+					}
 
-			@media ${device.mobileL} {
-				${property}: ${baseSpacing.mobileL * multiplier}rem;
-			}
-
-			@media ${device.mobileM} {
-				${property}: ${baseSpacing.mobileM * multiplier}rem;
-			}
-
-			@media ${device.mobileS} {
-				${property}: ${baseSpacing.mobileS * multiplier}rem;
-			}
-		
-			@media ${device.tablet} {
-				${property}: ${baseSpacing.tablet * multiplier}rem;
-			}
-		
-			@media ${device.laptop} {
-				${property}: ${baseSpacing.laptop * multiplier}rem;
-			}
-		
-			@media ${device.laptopL} {
-				${property}: ${baseSpacing.laptopL * multiplier}rem;
-			}
-
-			@media ${device.desktop} {
-				${property}: ${baseSpacing.desktop * multiplier}rem;
-			}
-
-			@media ${device.desktopL} {
-				${property}: ${baseSpacing.desktopL * multiplier}rem;
-			}
-			`;
+					`;
+			});
 		},
 		components: {
 			header: {

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { addHeaderSpacing } from "../../../styles/global";
 
 export const StyledHeader = styled.header`
-	${addHeaderSpacing("height")};
+	${({theme}) => theme.spacing(4, "height")};
 
 	box-sizing: border-box;
 	transform: translateY(${({ $hidden }) => ($hidden ? "-100px" : "0")});
