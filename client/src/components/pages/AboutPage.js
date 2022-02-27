@@ -21,7 +21,7 @@ const StyledContactBar = styled(Box)`
 	align-items: center;
 	margin-top: ${margin}rem;
 
-	@media (max-width: ${deviceSize.mobileL}px)} {
+	@media (max-width: ${deviceSize.mobileL}px) {
 		flex-direction: column-reverse;
 		align-items: start;
 
