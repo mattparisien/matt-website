@@ -62,7 +62,25 @@ const storage = new GridFsStorage({
 	},
 });
 
+//Create storage object for software feature image uploads
+// const softwareStorage = new GridFsStorage({
+// 	url: process.env.MONGO_URI,
+// 	file: (req, file) => {
+// 		return new Promise((resolve, reject) => {
+// 			crypto.randomBytes(16, (err, buf) => {
+// 				if (err) {
+// 					return reject(err);
+// 				}
 
+// 				const fileInfo = {
+// 					filename: file.originalname,
+// 					bucketName: "uploads",
+// 				};
+// 				resolve(fileInfo);
+// 			});
+// 		});
+// 	},
+// });
 
 const upload = multer({ storage });
 // const softwareUpload = multer({ storage: softwareStorage });
