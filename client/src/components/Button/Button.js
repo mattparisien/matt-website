@@ -2,6 +2,28 @@ import React, { useRef, useState, useContext } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { LoadingContext } from "../../App/App";
+import { device } from "../../styles/breakpoints";
+
+const buttonSizes = {
+	mobileS: "0.7rem 1rem",
+	mobileM: "0.7rem 1rem",
+	mobileL: "0.9rem 1.3rem",
+	tablet: "1.4rem 2.3rem",
+	laptop: "2rem 4rem",
+	laptopL: "2rem 4rem",
+	desktop: "2rem 4rem",
+	desktopL: "2rem 4rem",
+};
+
+const renderResponsiveSizes = object => {
+	return Object.entries(object).map(size => {
+		return `
+			@media ${device[size[0]]} {
+				padding: ${size[1]};
+			}
+			`;
+	});
+};
 
 const StyledButton = styled.button`
 	background-color: ${({ theme, naked }) => (naked ? "none" : theme.colors.red)};
@@ -17,6 +39,7 @@ const StyledButton = styled.button`
 	display: flex;
 	transition: 300ms ease;
 	position: relative;
+	
 
 	&:hover {
 		opacity: 0.8;
@@ -47,6 +70,8 @@ const StyledLink = styled.a`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
+	${renderResponsiveSizes(buttonSizes)};
 
 	&:hover {
 		opacity: 0.8;
