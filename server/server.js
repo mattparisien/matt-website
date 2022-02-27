@@ -62,38 +62,10 @@ const storage = new GridFsStorage({
 	},
 });
 
-//Create storage object for software feature image uploads
-// const softwareStorage = new GridFsStorage({
-// 	url: process.env.MONGO_URI,
-// 	file: (req, file) => {
-// 		return new Promise((resolve, reject) => {
-// 			crypto.randomBytes(16, (err, buf) => {
-// 				if (err) {
-// 					return reject(err);
-// 				}
-
-// 				const fileInfo = {
-// 					filename: file.originalname,
-// 					bucketName: "uploads",
-// 				};
-// 				resolve(fileInfo);
-// 			});
-// 		});
-// 	},
-// });
-
 const upload = multer({ storage });
-// const softwareUpload = multer({ storage: softwareStorage });
 
 //Routing config
 app.use("/api", router);
-
-// router.get("/software", (req, res) => {
-// 	ProjectModel.find({}, (err, projects) => {
-// 		if (err) console.log(err);
-// 		res.json({ projects: projects });
-// 	});
-// });
 
 router.post("/photography/upload", upload.single("image"), (req, res) => {
 	//Upload photography route and stores in db
@@ -132,39 +104,11 @@ router.get("/software", (req, res) => {
 			return res.status(404).json({ error: err });
 		}
 
-		//Get images files
-		const imageIds = [];
-
-		// gfs.files.find().toArray((err, files) => {
-		// 	if (err) console.log(err);
-
-		// 	if (!files || files.length === 0) {
-		// 		return res.status(404).json({ error: "No files exist" });
-		// 	}
-		// 	//Files exist
-		// 	return res.json(files);
-		// });
-
-		// const formattedProjects = projects.map(project => {
-		// 	return (
-		// 		{
-		// 			id: project._id,
-		// 			name: project.name,
-		// 			description: project.description,
-		// 			url: project.url,
-		// 			image:
-		// 		}
-		// 	)
-		// })
-
-		// return res.json({ softwareProjects: projects });
-
 		const objectIds = projects.map(
 			project => new mongoose.mongo.ObjectId(project.image_id)
 		);
 
 		gfs.files.find({ _id: { $in: [...objectIds] } }).toArray((err, files) => {
-			if (err) console.log(err);
 			if (files) {
 				const response = projects.map(project => {
 					return {
@@ -183,27 +127,12 @@ router.get("/software", (req, res) => {
 			}
 		});
 	});
-
-	// 	for (i = 0; i < projects.length; i++) {
-	// 		const imageId = new mongoose.mongo.ObjectId(projects[i].image_id);
-	// 		gfs.files.find({ _id: imageId }).toArray((err, files) => {
-	// 			if (err) console.log(err);
-
-	// 			//Files exist
-	// 			images.push({
-	// 				[files._id]: files.filename,
-	// 			});
-	// 		});
-	// 	}
-
-	// 	console.log(images)
-	// });
 });
 
 //Fetch photo JSON data
 router.get("/photography", (req, res) => {
 	gfs.files.find().toArray((err, files) => {
-		if (err) console.log(er);
+		if (err) console.log(err);
 
 		if (!files || files.length === 0) {
 			return res.status(404).json({ error: "No files exist" });
@@ -215,7 +144,6 @@ router.get("/photography", (req, res) => {
 
 //Display images
 router.get("/images/:filename", (req, res) => {
-	console.log(req.params.filename)
 	gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
 		if (err) console.log("err", err);
 

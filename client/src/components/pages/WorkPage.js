@@ -41,7 +41,8 @@ function WorkPage() {
 				return {
 					id: project.id,
 					name: project.name,
-					featureImage: project.image.filename,
+					featureImage:
+						process.env.REACT_APP_API_URL + "/images/" + project.image.filename,
 					description: project.description,
 					href: project.url,
 				};
@@ -50,6 +51,10 @@ function WorkPage() {
 			setGridData(() => ({ data: array }));
 		}
 	}, [photography, software, category]);
+
+	useEffect(() => {
+		gridData && console.log("griddata", gridData);
+	}, [gridData]);
 
 	return (
 		<>
