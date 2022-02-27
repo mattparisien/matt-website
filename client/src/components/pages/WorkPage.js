@@ -80,14 +80,6 @@ function WorkPage() {
 						]}
 					/>
 					<Line />
-					{/* <form
-						action={`${process.env.REACT_APP_API_URL}/upload`}
-						method='POST'
-						encType='multipart/form-data'
-					>
-						<input name='image' type='file' accept='image/*' />
-						<input type='submit' value='Submit' />
-					</form> */}
 				</Box>
 
 				<ResponsiveGrid

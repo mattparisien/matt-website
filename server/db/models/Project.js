@@ -4,9 +4,9 @@ mongoose.set('debug', true);
 
 const projectSchema = new mongoose.Schema({
 	name: String,
-	url: String,
+	image_id: String,
 	description: String,
-	featureImage: String,
+	url: String
 });
 
 module.exports = projectSchema;

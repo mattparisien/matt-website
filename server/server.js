@@ -40,7 +40,7 @@ conn.once("open", () => {
 //Models
 const ProjectModel = conn.model("Project", require("./db/models/Project"));
 
-//Create storage object
+//Create storage object for photography uploads
 const storage = new GridFsStorage({
 	url: process.env.MONGO_URI,
 	file: (req, file) => {
@@ -49,9 +49,10 @@ const storage = new GridFsStorage({
 				if (err) {
 					return reject(err);
 				}
-				const filename = buf.toString("hex") + path.extname(file.originalname);
+				// const filename = buf.toString("hex") + path.extname(file.originalname);
 				const fileInfo = {
-					filename: filename,
+					filename: file.originalname,
+					random: "quitecure",
 					bucketName: "uploads",
 				};
 				resolve(fileInfo);
@@ -59,27 +60,85 @@ const storage = new GridFsStorage({
 		});
 	},
 });
+
+//Create storage object for software feature image uploads
+// const softwareStorage = new GridFsStorage({
+// 	url: process.env.MONGO_URI,
+// 	file: (req, file) => {
+// 		return new Promise((resolve, reject) => {
+// 			crypto.randomBytes(16, (err, buf) => {
+// 				if (err) {
+// 					return reject(err);
+// 				}
+
+// 				const fileInfo = {
+// 					filename: file.originalname,
+// 					bucketName: "uploads",
+// 				};
+// 				resolve(fileInfo);
+// 			});
+// 		});
+// 	},
+// });
+
 const upload = multer({ storage });
+// const softwareUpload = multer({ storage: softwareStorage });
 
 //Routing config
 app.use("/api", router);
 
-router.get("/software", (req, res) => {
-	ProjectModel.find({}, (err, projects) => {
-		if (err) console.log(err);
-		res.json({ projects: projects });
+// router.get("/software", (req, res) => {
+// 	ProjectModel.find({}, (err, projects) => {
+// 		if (err) console.log(err);
+// 		res.json({ projects: projects });
+// 	});
+// });
+
+router.post("/photography/upload", upload.single("image"), (req, res) => {
+	//Upload photography route and stores in db
+	res.json({ file: req.file });
+});
+
+//Upload software post to db
+router.post("/software/upload", upload.single("image"), (req, res) => {
+	const { name, description, url } = req.body;
+	const file = req.file;
+
+	if (!name || !description || !url || !req.file) {
+		return res.status(404).send("Please fill out all fields");
+	}
+
+	const softwarePost = new ProjectModel({
+		name,
+		description,
+		url,
+		image_id: file.id,
+	});
+
+	softwarePost.save((err, success) => {
+		if (err) throw err;
+		if (success) {
+			return res.send("Your software post has been uploaded!");
+		}
 	});
 });
 
-router.post("/upload", upload.single("image"), (req, res) => {
-	//Upload photography route and stores in db
-	res.json({ file: req.file });
+//Get JSON data of software project
+router.get("/software", (req, res) => {
+	gfs.files.find().toArray((err, files) => {
+		if (err) console.log(er);
+
+		if (!files || files.length === 0) {
+			return res.status(404).json({ error: "No files exist" });
+		}
+		//Files exist
+		return res.json(files);
+	});
 });
 
 //Fetch photo JSON data
 router.get("/photography", (req, res) => {
 	gfs.files.find().toArray((err, files) => {
-		console.log(files);
 		if (err) console.log(er);
 
 		if (!files || files.length === 0) {

@@ -13,6 +13,7 @@ import Header from "../components/Header/Header";
 import Loader from "../components/Transition/Loader";
 import WorkPage from "../components/pages/WorkPage";
 import HomePage from "../components/pages/HomePage";
+import UploadPage from "../components/pages/UploadPage";
 import axios from "axios";
 
 export const ColorContext = createContext();
@@ -203,6 +204,7 @@ function App() {
 											<Route path='/' element={<HomePage />} />
 											<Route path='/about' element={<AboutPage />} />
 											<Route path='/work' element={<WorkPage />} />
+											<Route path='/upload' element={<UploadPage />} />
 										</Routes>
 									</ContentWrapper>
 								</div>
