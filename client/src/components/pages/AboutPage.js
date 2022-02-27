@@ -19,7 +19,7 @@ const StyledContactBar = styled(Box)`
 	display: flex;
 	flex-direction: row-reverse;
 	align-items: center;
-	margin-top: ${margin}rem;
+	${({ theme }) => theme.spacing(2, "margin-top")};
 
 	@media (max-width: ${deviceSize.mobileL}px) {
 		flex-direction: column-reverse;

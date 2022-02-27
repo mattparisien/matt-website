@@ -16,7 +16,8 @@ import HomePage from "../components/pages/HomePage";
 import UploadPage from "../components/pages/UploadPage";
 import axios from "axios";
 import useResize from "../helpers/hooks/useResize";
-import { deviceSize } from "../styles/breakpoints";
+import { deviceSize, device } from "../styles/breakpoints";
+import MediaQuery from "../components/MediaQueries/MediaQuery";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();
@@ -25,14 +26,19 @@ export const DataContext = createContext();
 function App() {
 	//Themes
 
-	const [spacing, setSpacing] = useState(2);
 	const [windowWidth] = useResize();
+	const [minWidth, setMinWidth] = useState(500000);
 
-	useEffect(() => {
-		if (windowWidth === deviceSize.desktop) {
-			console.log("uass!");
-		}
-	}, [windowWidth]);
+	const baseSpacing = {
+		desktopL: 2,
+		desktop: 1.5,
+		laptop: 2,
+		laptopL: 2,
+		tablet: 1,
+		mobileL: 1,
+		mobileM: 0.5,
+		mobileS: 0.4,
+	};
 
 	const themes = {
 		colors: {
@@ -49,8 +55,41 @@ function App() {
 			grey: "rgb(207, 207, 207)",
 			purple: "#5b487c",
 		},
-		spacing: multiplier => {
-			return spacing * multiplier + "rem";
+		spacing: (multiplier, property) => {
+			return `
+
+			@media ${device.mobileL} {
+				${property}: ${baseSpacing.mobileL * multiplier}rem;
+			}
+
+			@media ${device.mobileM} {
+				${property}: ${baseSpacing.mobileM * multiplier}rem;
+			}
+
+			@media ${device.mobileS} {
+				${property}: ${baseSpacing.mobileS * multiplier}rem;
+			}
+		
+			@media ${device.tablet} {
+				${property}: ${baseSpacing.tablet * multiplier}rem;
+			}
+		
+			@media ${device.laptop} {
+				${property}: ${baseSpacing.laptop * multiplier}rem;
+			}
+		
+			@media ${device.laptopL} {
+				${property}: ${baseSpacing.laptopL * multiplier}rem;
+			}
+
+			@media ${device.desktop} {
+				${property}: ${baseSpacing.desktop * multiplier}rem;
+			}
+
+			@media ${device.desktopL} {
+				${property}: ${baseSpacing.desktopL * multiplier}rem;
+			}
+			`;
 		},
 	};
 
@@ -214,6 +253,8 @@ function App() {
 											backgroundColor={state.colors.backgroundColor}
 											foregroundColor={state.colors.foregroundColor}
 										/>
+
+										<MediaQuery />
 
 										<Routes>
 											<Route path='/' element={<HomePage />} />
