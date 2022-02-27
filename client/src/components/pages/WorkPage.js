@@ -56,8 +56,9 @@ function WorkPage() {
 		<>
 			<Layout bg='light' height='45vh'>
 				<ParagraphLayout indent indentHeading='work'>
-					I design, develop and maintain full-stack applications for a living. I
-					also do beauty photography on the side, check it out below.
+					I design, develop and maintain
+					full-stack applications for a living. I also do beauty photography on
+					the side, check it out below.
 				</ParagraphLayout>
 			</Layout>
 			<Layout bg='light' height='auto'>

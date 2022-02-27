@@ -42,6 +42,11 @@ export const StyledParagraph = styled.p`
 	font-family: "Haas";
 	margin: 0;
 
+	span.spacer {
+		width: 7rem;
+		display: inline-block;
+	}
+
 	.accent {
 		color: pink;
 	}
@@ -52,21 +57,13 @@ export const StyledParagraph = styled.p`
 	}
 
 	.line {
-		white-space: break-spaces;
+		
 
 		position: relative;
-		display: block;
+		display: inline-block;
 		text-align: start;
 	}
 
-	${({ indent }) => {
-		return indent
-			? `.line:nth-of-type(1) {
-				padding-left: 14.4rem;
-				position: relative;
-			}`
-			: "";
-	}};
 
 	${({ indentHeading }) => {
 		return indentHeading
