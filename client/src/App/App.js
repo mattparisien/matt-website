@@ -229,7 +229,7 @@ function App() {
 											theme={themes}
 										/>
 
-										<MediaQuery />
+										
 
 										<Routes>
 											<Route path='/' element={<HomePage />} />

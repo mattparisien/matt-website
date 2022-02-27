@@ -41,7 +41,7 @@ function About() {
 
 	return (
 		<>
-			<Layout bg='light'>
+			<Layout bg='light' offsetTop>
 				<Box sx={flexStyle}>
 					<Box sx={{ marginBottom: "5rem" }}>
 						<Paragraph indent>Made in Montreal,</Paragraph>

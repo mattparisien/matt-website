@@ -26,24 +26,18 @@ function HomePage(props, ref) {
 	};
 
 	return (
-		<Layout bg='dark' height='40vw' fullBleed>
-			{/* <ParagraphLayout indent>
-				Hey, I'm Matt * I'm a full-stack software developer & graphic designer
-				obsessed with digital products and passionate about building fantastic
-				user interfaces.
-			</ParagraphLayout> */}
-			<Heading>Developer.</Heading>
-			<Box
-				sx={{
-					minHeight: "100vh",
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "center",
-				}}
-			>
-				<Line />
-			</Box>
-		</Layout>
+		<>
+			<Layout bg='dark' fullBleed hero={true}>
+				<Heading>Developer.</Heading>
+			</Layout>
+			<Layout bg='light' height='40vw'>
+				<ParagraphLayout indent indentHeading='about'>
+					Hey, I'm Matt * I'm a full-stack software developer & graphic designer
+					obsessed with digital products and passionate about building fantastic
+					user interfaces.
+				</ParagraphLayout>
+			</Layout>
+		</>
 	);
 }
 

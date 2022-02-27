@@ -8,7 +8,7 @@ import InView from "react-intersection-observer";
 import { device } from "../../styles/breakpoints";
 
 const StyledHeading = styled.h2`
-	// font-size: 45vw;
+	
 	margin: 0;
 
 	letter-spacing: -0.5vw;
@@ -19,11 +19,16 @@ const StyledHeading = styled.h2`
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%)scale(1.2);
+	
 
 	.line {
 		white-space: nowrap;
 		width: 100%;
+	}
+
+	.hero-heading-char {
+		transform: translateX(-100vw);
 	}
 
 	@media ${device.laptopL} {
@@ -39,7 +44,7 @@ function Heading(props) {
 	const [intersecting, setIntersecting] = useState(null);
 	const [isSplit, setIsSplit] = useState(false);
 	const [splitText, setSplitText] = useState(null);
-
+	const headingTimeline = useRef(gsap.timeline());
 	const [windowWidth, isResized] = useResize();
 	// const timeline = useRef(gsap.timeline());
 
@@ -64,11 +69,12 @@ function Heading(props) {
 		if (isSplit && intersecting) {
 			const chars = $(intersecting).find(".hero-heading-char");
 			console.log(chars);
-			gsap.to(chars, {
+			let duration = 2;
+			headingTimeline.current.to(chars, {
 				x: 0,
-				duration: 3,
+				duration: duration,
 				stagger: -0.2,
-				ease: "expo.inOut",
+				ease: "circ.Out",
 			});
 		}
 	}, [isSplit, windowWidth, intersecting, splitText]);

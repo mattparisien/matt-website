@@ -54,7 +54,7 @@ function WorkPage() {
 
 	return (
 		<>
-			<Layout bg='light' height='45vh'>
+			<Layout bg='light' height='45vh' offsetTop>
 				<ParagraphLayout indent indentHeading='work'>
 					I design, develop and maintain
 					full-stack applications for a living. I also do beauty photography on
