@@ -31,8 +31,8 @@ function App() {
 	const baseSpacing = {
 		desktopL: 2,
 		desktop: 1.5,
-		laptop: 2,
 		laptopL: 2,
+		laptop: 2,
 		tablet: 1,
 		mobileL: 1,
 		mobileM: 0.5,
@@ -56,6 +56,7 @@ function App() {
 		},
 		spacing: (multiplier, property) => {
 			return Object.entries(device).map(size => {
+				console.log(baseSpacing[size[0]])
 				return `@media ${size[1]} {
 						${
 							Array.isArray(property)
