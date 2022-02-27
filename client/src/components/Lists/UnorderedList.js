@@ -6,7 +6,7 @@ import { addHeaderSpacing } from "../../styles/global";
 import Link from "../Link/Link";
 
 const StyledUl = styled.ul`
-	${addHeaderSpacing("height")};
+	${({ theme, height }) => theme.spacing(height, "height")};
 
 	top: 0;
 	right: 0;
@@ -45,7 +45,6 @@ function UnorderedList(props) {
 	return (
 		<StyledUl className='UnorderedList' {...props}>
 			{props.listItems.map(item => {
-				console.log(item.title);
 				return (
 					<li className='UnorderedList__item'>
 						{!props.noTransition ? (

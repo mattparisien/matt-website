@@ -15,6 +15,9 @@ import WorkPage from "../components/pages/WorkPage";
 import HomePage from "../components/pages/HomePage";
 import UploadPage from "../components/pages/UploadPage";
 import axios from "axios";
+import useResize from "../helpers/hooks/useResize";
+import { deviceSize, device } from "../styles/breakpoints";
+import MediaQuery from "../components/MediaQueries/MediaQuery";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();
@@ -22,6 +25,20 @@ export const DataContext = createContext();
 
 function App() {
 	//Themes
+
+	const [headerColor, setHeaderColor] = useState("light");
+
+	const baseSpacing = {
+		desktopL: 2,
+		desktop: 1.5,
+		laptopL: 2,
+		laptop: 2,
+		tablet: 1,
+		mobileL: 1,
+		mobileM: 0.5,
+		mobileS: 0.4,
+	};
+
 	const themes = {
 		colors: {
 			light: "#ffff",
@@ -37,6 +54,31 @@ function App() {
 			grey: "rgb(207, 207, 207)",
 			purple: "#5b487c",
 		},
+		spacing: (multiplier, property) => {
+			return Object.entries(device).map(size => {
+				console.log(baseSpacing[size[0]])
+				return `@media ${size[1]} {
+						${
+							Array.isArray(property)
+								? property.map(
+										prop => `${prop}: ${baseSpacing[size[0]] * multiplier}rem;`
+								  )
+								: `
+								${property}: ${baseSpacing[size[0]] * multiplier}rem;
+								`
+						};
+					}
+
+					`;
+			});
+		},
+		components: {
+			header: {
+				styles: {
+					color: headerColor,
+				},
+			},
+		},
 	};
 
 	const scrollRef = useRef(null);
@@ -46,10 +88,6 @@ function App() {
 		modal: {
 			isActive: false,
 			hasBeenActive: false,
-		},
-		colors: {
-			backgroundColor: themes.colors.dark,
-			foregroundColor: themes.colors.light,
 		},
 		data: {},
 		headerHeight: null,
@@ -71,7 +109,6 @@ function App() {
 
 		Promise.all(promiseArray)
 			.then(data => {
-				console.log(data);
 				const photography = data[0].data;
 				const software = data[1].data.softwareProjects;
 
@@ -140,15 +177,8 @@ function App() {
 	// 	}));
 	// };
 
-	const changeColors = (bg, fg) => {
-		console.log(bg, fg);
-		setState(prev => ({
-			...prev,
-			colors: {
-				backgroundColor: bg,
-				foregroundColor: fg,
-			},
-		}));
+	const changeColors = (fg, bg) => {
+		setHeaderColor(fg);
 	};
 
 	const toggleLoading = () => {
@@ -197,9 +227,9 @@ function App() {
 											isScrollDisabled={state.isLoading}
 											isCursorWait={state.isLoading}
 											theme={themes}
-											backgroundColor={state.colors.backgroundColor}
-											foregroundColor={state.colors.foregroundColor}
 										/>
+
+										<MediaQuery />
 
 										<Routes>
 											<Route path='/' element={<HomePage />} />

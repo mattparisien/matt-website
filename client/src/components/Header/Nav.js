@@ -19,7 +19,7 @@ function Nav(props, ref) {
 
 	return (
 		<nav className='header-nav' style={{height: "100%"}}>
-			<UnorderedList negativeOffset={"right"} listItems={listInfo} />
+			<UnorderedList height={4} negativeOffset={"right"} listItems={listInfo} />
 		</nav>
 	);
 }

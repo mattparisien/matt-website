@@ -1,10 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import Layout from "../Containers/Layout";
-
 import { Box } from "@mui/material";
-import Button from "../Button/Button";
-
-import styled from "styled-components";
 import ResponsiveGrid from "../Grid/ResponsiveGrid";
 import { DataContext } from "../../App/App";
 import Line from "../Divider/Line";
@@ -67,6 +63,7 @@ function WorkPage() {
 			<Layout bg='light' height='auto'>
 				<Box className='categories-bar' sx={{ marginBottom: "4rem" }}>
 					<UnorderedList
+						height={3}
 						clickHandlers={{
 							software: () => setCategory("software"),
 							photography: () => setCategory("photography"),

@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import { useTheme } from "styled-components";
 import styled from "styled-components";
 import { addHeaderSpacing } from "../../styles/global";
+import ColorTrigger from "../ColorTrigger/ColorTrigger";
 
 const StyledHeroBg = styled.div`
 	height: ${addHeaderSpacing("height", "100vh")};
@@ -31,8 +32,11 @@ function Section(props) {
 	return (
 		<>
 			<Box component='section' className='Section' sx={sectionStyle}>
-				{props.children}
+				<ColorTrigger foreground={props.bg === "light" ? "dark" : "light"}>
+					{props.children}
+				</ColorTrigger>
 			</Box>
+
 			<StyledHeroBg {...props} className='hero-background'>
 				*
 			</StyledHeroBg>

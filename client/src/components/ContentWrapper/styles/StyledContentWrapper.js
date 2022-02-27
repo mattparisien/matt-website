@@ -4,8 +4,8 @@ import { addHeaderSpacing } from "../../../styles/global";
 export const StyledContent = styled.main`
 	position: relative;
 	min-height: 100vh;
-	${addHeaderSpacing("padding-top")};
-	${addHeaderSpacing("padding-bottom")};
+	${({theme}) => theme.spacing(4, ["padding-top", "padding-bottom"])};
+	
 
 	${({ hideContentDefault }) => {
 		return hideContentDefault
