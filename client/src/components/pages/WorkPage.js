@@ -12,10 +12,6 @@ import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import UnorderedList from "../Lists/UnorderedList";
 
 function WorkPage() {
-	const StyledCategoryBtn = styled(Button)`
-		margin-right: 4rem;
-	`;
-
 	const [itemLoading, setItemLoading] = useState(false);
 	const [gridData, setGridData] = useState(null);
 	const [category, setCategory] = useState("software");
@@ -68,7 +64,7 @@ function WorkPage() {
 					<UnorderedList
 						clickHandlers={{
 							software: () => setCategory("software"),
-							photography: () => setCategory("photography")
+							photography: () => setCategory("photography"),
 						}}
 						noTransition
 						negativeOffset='left'

@@ -1,7 +1,5 @@
 import React, { useEffect, useContext } from "react";
 import Paragraph from "../Paragraph/Paragraph";
-import ContainerFluid from "../Containers/ContainerFluid";
-import Section from "../Containers/Section";
 import { Box } from "@mui/material";
 import styled from "styled-components";
 import Button from "../Button/Button";
@@ -9,11 +7,29 @@ import Line from "../Divider/Line";
 import SocialList from "../Lists/SocialList";
 import Layout from "../Containers/Layout";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
+import { deviceSize } from "../../styles/breakpoints";
 
 const margin = 4;
 
 const StyledFromHeading = styled(Paragraph)`
 	margin-bottom: ${margin}rem;
+`;
+
+const StyledContactBar = styled(Box)`
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	margin-top: ${margin}rem;
+
+	@media (max-width: ${deviceSize.mobileL}px)} {
+		flex-direction: column-reverse;
+		align-items: start;
+
+		a {
+			margin-right: auto;
+			margin-left: 0px;
+		}
+	}
 `;
 
 function About() {
@@ -41,20 +57,12 @@ function About() {
 				<Box sx={{ marginTop: `${margin * 2}rem` }}>
 					<Line />
 					{/* <StyledDivider /> */}
-					<Box
-						className='contact-bar'
-						sx={{
-							display: "flex",
-							flexDirection: "row-reverse",
-							alignItems: "center",
-							marginTop: `${margin}rem`,
-						}}
-					>
+					<StyledContactBar className='contact-bar'>
 						<Button align='left' $href='mailto:hello@matthewparisien.com'>
 							Get in touch
 						</Button>
 						<SocialList orientation='horizontal' />
-					</Box>
+					</StyledContactBar>
 				</Box>
 			</Layout>
 			{/* </ContainerFluid>
