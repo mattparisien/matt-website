@@ -13,6 +13,7 @@ import Header from "../components/Header/Header";
 import Loader from "../components/Transition/Loader";
 import WorkPage from "../components/pages/WorkPage";
 import HomePage from "../components/pages/HomePage";
+import UploadPage from "../components/pages/UploadPage";
 import axios from "axios";
 
 export const ColorContext = createContext();
@@ -72,7 +73,8 @@ function App() {
 			.then(data => {
 				console.log(data);
 				const photography = data[0].data;
-				const software = data[1].data.projects;
+				const software = data[1].data.softwareProjects;
+
 				setState(prev => ({
 					...prev,
 					data: { ...prev.data, photography: photography, software: software },
@@ -203,6 +205,7 @@ function App() {
 											<Route path='/' element={<HomePage />} />
 											<Route path='/about' element={<AboutPage />} />
 											<Route path='/work' element={<WorkPage />} />
+											<Route path='/upload' element={<UploadPage />} />
 										</Routes>
 									</ContentWrapper>
 								</div>

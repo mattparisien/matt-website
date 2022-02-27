@@ -153,7 +153,7 @@ function ResponsiveGrid({ items, isItemLoading }) {
 	const renderGridItems = () => {
 		if (items) {
 			const divided = divideArray(items.data, 10);
-			console.log(divided);
+
 			return divided.map((subArray, index) => {
 				return (
 					<Box

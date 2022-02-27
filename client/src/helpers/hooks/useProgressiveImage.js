@@ -10,6 +10,7 @@ export const useProgressiveImage = sources => {
 			array.forEach(image => {
 				const img = new Image();
 				img.src = image.src || image.featureImage;
+				console.log(image)
 				img.onload = () =>
 					setSourceLoaded(prev => ({
 						...prev,

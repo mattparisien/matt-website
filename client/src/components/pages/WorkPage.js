@@ -39,9 +39,10 @@ function WorkPage() {
 		} else if (category === "software" && software) {
 			const array = software.map(project => {
 				return {
-					id: project._id,
+					id: project.id,
 					name: project.name,
-					featureImage: project.featureImage,
+					featureImage:
+						process.env.REACT_APP_API_URL + "/images/" + project.image.filename,
 					description: project.description,
 					href: project.url,
 				};
@@ -50,6 +51,10 @@ function WorkPage() {
 			setGridData(() => ({ data: array }));
 		}
 	}, [photography, software, category]);
+
+	useEffect(() => {
+		gridData && console.log("griddata", gridData);
+	}, [gridData]);
 
 	return (
 		<>
@@ -80,14 +85,6 @@ function WorkPage() {
 						]}
 					/>
 					<Line />
-					{/* <form
-						action={`${process.env.REACT_APP_API_URL}/upload`}
-						method='POST'
-						encType='multipart/form-data'
-					>
-						<input name='image' type='file' accept='image/*' />
-						<input type='submit' value='Submit' />
-					</form> */}
 				</Box>
 
 				<ResponsiveGrid
