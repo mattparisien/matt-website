@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { addHeaderSpacing } from "../../../styles/global";
 
 export const StyledHeader = styled.header`
-	${({theme}) => theme.spacing(4, "height")};
+	${({ theme }) => theme.spacing(4, "height")};
 
 	box-sizing: border-box;
 	transform: translateY(${({ $hidden }) => ($hidden ? "-100px" : "0")});
@@ -14,6 +14,10 @@ export const StyledHeader = styled.header`
 	top: 0;
 	left: 0;
 	width: 100vw;
+
+	.LinkCircle path {
+		stroke: ${({ theme }) => theme.colors[theme.components.header.styles.color]};
+	}
 
 	.menu-trigger {
 		opacity: 0;

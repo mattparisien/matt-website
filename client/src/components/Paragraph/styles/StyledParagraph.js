@@ -43,7 +43,7 @@ export const StyledParagraph = styled.p`
 	margin: 0;
 
 	span.spacer {
-		width: 7rem;
+		width: 10rem;
 		display: inline-block;
 	}
 
@@ -57,8 +57,6 @@ export const StyledParagraph = styled.p`
 	}
 
 	.line {
-		
-
 		position: relative;
 		display: inline-block;
 		text-align: start;

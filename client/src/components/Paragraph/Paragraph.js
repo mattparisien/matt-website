@@ -20,7 +20,7 @@ function Paragraph(props) {
 	useEffect(() => {
 		if (!isSplit && paragraph.current) {
 			const mySplitText = new SplitText(paragraph.current, {
-				type: "lines, chars",
+				type: "lines, chars, words",
 				linesClass: "line",
 				charsClass: "char",
 			});
