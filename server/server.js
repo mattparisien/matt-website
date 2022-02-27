@@ -215,6 +215,7 @@ router.get("/photography", (req, res) => {
 
 //Display images
 router.get("/images/:filename", (req, res) => {
+	console.log(req.params.filename)
 	gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
 		if (err) console.log("err", err);
 
