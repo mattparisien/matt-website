@@ -26,8 +26,7 @@ export const DataContext = createContext();
 function App() {
 	//Themes
 
-	const [windowWidth] = useResize();
-	const [minWidth, setMinWidth] = useState(500000);
+	const [headerColor, setHeaderColor] = useState("light");
 
 	const baseSpacing = {
 		desktopL: 2,
@@ -91,6 +90,13 @@ function App() {
 			}
 			`;
 		},
+		components: {
+			header: {
+				styles: {
+					color: headerColor,
+				},
+			},
+		},
 	};
 
 	const scrollRef = useRef(null);
@@ -100,10 +106,6 @@ function App() {
 		modal: {
 			isActive: false,
 			hasBeenActive: false,
-		},
-		colors: {
-			backgroundColor: themes.colors.dark,
-			foregroundColor: themes.colors.light,
 		},
 		data: {},
 		headerHeight: null,
@@ -193,15 +195,8 @@ function App() {
 	// 	}));
 	// };
 
-	const changeColors = (bg, fg) => {
-		console.log(bg, fg);
-		setState(prev => ({
-			...prev,
-			colors: {
-				backgroundColor: bg,
-				foregroundColor: fg,
-			},
-		}));
+	const changeColors = (fg, bg) => {
+		setHeaderColor(fg);
 	};
 
 	const toggleLoading = () => {
@@ -250,8 +245,6 @@ function App() {
 											isScrollDisabled={state.isLoading}
 											isCursorWait={state.isLoading}
 											theme={themes}
-											backgroundColor={state.colors.backgroundColor}
-											foregroundColor={state.colors.foregroundColor}
 										/>
 
 										<MediaQuery />

@@ -9,7 +9,7 @@ export const StyledHeader = styled.header`
 	transform: translateY(${({ $hidden }) => ($hidden ? "-100px" : "0")});
 	transition: transform 500ms ease;
 	z-index: -1;
-	color: ${({ theme }) => theme.colors.dark};
+	color: ${({ theme }) => theme.colors[theme.components.header.styles.color]};
 	position: fixed;
 	top: 0;
 	left: 0;

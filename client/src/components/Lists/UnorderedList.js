@@ -6,7 +6,7 @@ import { addHeaderSpacing } from "../../styles/global";
 import Link from "../Link/Link";
 
 const StyledUl = styled.ul`
-	${({ theme }) => theme.spacing(3, "height")};
+	${({ theme, height }) => theme.spacing(height, "height")};
 
 	top: 0;
 	right: 0;

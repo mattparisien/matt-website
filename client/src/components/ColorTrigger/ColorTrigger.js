@@ -8,10 +8,13 @@ function ColorTrigger({ children, threshold, background, foreground }) {
 	return (
 		<InView
 			as='div'
-			threshold={threshold ? threshold : 1}
+			style={{ height: "100%" }}
+			threshold={threshold ? threshold : 0.5}
 			className='ColorTrigger'
 			onChange={(inView, entry) => {
-				return inView ? changeColors(background, foreground) : changeColors(foreground, background);
+				return inView
+					? changeColors(foreground, background)
+					: changeColors(foreground, background);
 			}}
 		>
 			{children}
