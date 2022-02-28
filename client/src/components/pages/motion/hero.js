@@ -54,9 +54,6 @@ export default function heroAnim(words, blob, timelines, trigger) {
 					{
 						scale: 5,
 						duration: 4,
-						onComplete: () => {
-							console.log("hi");
-						},
 					}
 				)
 				.to(

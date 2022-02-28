@@ -48,9 +48,7 @@ function WorkPage() {
 		}
 	}, [photography, software, category]);
 
-	useEffect(() => {
-		gridData && console.log("griddata", gridData);
-	}, [gridData]);
+
 
 	return (
 		<>

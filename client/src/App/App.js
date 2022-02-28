@@ -14,6 +14,7 @@ import Loader from "../components/Transition/Loader";
 import { device } from "../styles/breakpoints";
 import { GlobalStyle } from "../styles/global";
 import ScrollWrapper from "../components/Containers/ScrollWrapper";
+import ThemeSwitch from "../components/ThemeSwitch/ThemeSwitch";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();
@@ -237,6 +238,7 @@ function App() {
 										</Routes>
 									</ContentWrapper>
 								</ScrollWrapper>
+								<ThemeSwitch />
 							</div>
 						</LocomotiveScrollProvider>
 					</LoadingContext.Provider>
