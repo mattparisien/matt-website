@@ -23,7 +23,6 @@ function useSplit(arrayOfElements, options) {
 		}
 
 		if (arrayOfElements.length >= 0 && !isSplit) {
-			console.log(arrayOfElements)
 			const mySplitText = new SplitText(arrayOfElements, options);
 			$(mySplitText.lines).wrap('<div class="line-wrapper"></div>');
 			setIsSplit(true);
@@ -35,7 +34,6 @@ function useSplit(arrayOfElements, options) {
 
 	useEffect(() => {
 		if (splitText) {
-			console.log('asasasaS', splitText)
 			setSplitText(splitText.revert().split());
 			// $(splitText.lines).wrap('<div class="line-wrapper"></div>');
 			setSplitCount(prev => prev + 1);

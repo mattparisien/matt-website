@@ -10,8 +10,8 @@ const StyledContainer = styled(Container)`
 	display: ${({ flex }) => (flex ? "flex" : "block")};
 	justify-content: space-between;
 	align-items: center;
-	${({ fullBleed }) =>
-		fullBleed &&
+	${({ fullbleed }) =>
+		fullbleed &&
 		`padding: 0 !important;
 	margin: 0 !important;
 	max-width: none;

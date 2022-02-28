@@ -14,6 +14,7 @@ import Loader from "../components/Transition/Loader";
 import { device } from "../styles/breakpoints";
 import { GlobalStyle } from "../styles/global";
 import ScrollWrapper from "../components/Containers/ScrollWrapper";
+import ThemeSwitch from "../components/ThemeSwitch/ThemeSwitch";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();
@@ -21,15 +22,15 @@ export const DataContext = createContext();
 
 function App() {
 	const location = useLocation();
-	//Themes
 
 	const [headerColor, setHeaderColor] = useState(null);
+	const [palette, setPalette] = useState("primary");
 
-	useEffect(() => {
-		location.pathname === "/" && setHeaderColor("light");
-		location.pathname === "/work" && setHeaderColor("dark");
-		location.pathname === "/about" && setHeaderColor("dark");
-	}, [location]);
+	// useEffect(() => {
+	// 	location.pathname === "/" && setHeaderColor("light");
+	// 	location.pathname === "/work" && setHeaderColor("dark");
+	// 	location.pathname === "/about" && setHeaderColor("dark");
+	// }, [location]);
 
 	const baseSpacing = {
 		desktopL: 2,
@@ -42,10 +43,21 @@ function App() {
 		mobileS: 0.4,
 	};
 
+	const baseFontSize = {
+		desktopL: 1.2,
+		desktop: 1.2,
+		laptopL: 1,
+		laptop: 1,
+		tablet: 0.8,
+		mobileL: 0.7,
+		mobileM: 0.7,
+		mobileS: 0.6,
+	};
+
 	const themes = {
 		colors: {
-			light: "#ffff",
-			dark: "#141414",
+			light: palette === "primary" ? "#ffff" : "#f1b9b8",
+			dark: palette === "primary" ? "#141414" : "rgb(231, 100, 53)",
 			dark2: "#23252B",
 			lighterDark: "#111111",
 			red: "#DF181F",
@@ -56,6 +68,47 @@ function App() {
 			orange: "rgb(231, 100, 53)",
 			grey: "rgb(207, 207, 207)",
 			purple: "#5b487c",
+		},
+		typography: {
+			setSize: multiplier => {
+				return `
+					@media ${device.mobileS} {
+						
+						font-size: ${baseFontSize.mobileS * multiplier}rem;
+					}
+				
+					@media ${device.mobileL} {
+						
+						font-size: ${baseFontSize.mobileL * multiplier}rem;
+					}
+				
+					@media ${device.tablet} {
+						
+						font-size: ${baseFontSize.tablet * multiplier}rem;
+					}
+				
+					@media ${device.laptop} {
+						
+						font-size: 8rem;
+						font-size: ${baseFontSize.laptop * multiplier}rem;
+					}
+				
+					@media ${device.laptopL} {
+					
+						font-size: ${baseFontSize.laptopL * multiplier}rem;
+					}
+
+					@media ${device.desktop} {
+					
+						font-size: ${baseFontSize.desktop * multiplier}rem;
+					}
+
+					@media ${device.desktopL} {
+					
+						font-size: ${baseFontSize.desktopL * multiplier}rem;
+					}
+					`;
+			},
 		},
 		spacing: (multiplier, property) => {
 			return Object.entries(device).map(size => {
@@ -81,6 +134,10 @@ function App() {
 				},
 			},
 		},
+	};
+
+	const togglePartyMode = () => {
+		setPalette(prev => (prev === "primary" ? "secondary" : "primary"));
 	};
 
 	const scrollRef = useRef(null);
@@ -180,6 +237,7 @@ function App() {
 	// };
 
 	const changeColors = (fg, bg) => {
+		console.log("has called");
 		setHeaderColor(fg);
 	};
 
@@ -226,7 +284,6 @@ function App() {
 										<GlobalStyle
 											isScrollDisabled={state.isLoading}
 											isCursorWait={state.isLoading}
-											theme={themes}
 										/>
 
 										<Routes>
@@ -237,6 +294,7 @@ function App() {
 										</Routes>
 									</ContentWrapper>
 								</ScrollWrapper>
+								<ThemeSwitch togglePartyMode={togglePartyMode} />
 							</div>
 						</LocomotiveScrollProvider>
 					</LoadingContext.Provider>

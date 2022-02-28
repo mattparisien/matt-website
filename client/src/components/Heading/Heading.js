@@ -91,9 +91,7 @@ function Heading(props) {
 		}
 
 		if (isSplit && intersecting && !hasPlayed) {
-			console.log("hello!");
 			const chars = $(intersecting).find(".hero-heading-char");
-			console.log(chars);
 			let duration = 4;
 			headingTimeline.current.to(chars, {
 				x: 0,

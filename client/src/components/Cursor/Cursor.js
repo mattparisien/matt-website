@@ -25,7 +25,6 @@ function Cursor() {
 		const animateFollower = () => {
 			_x.current += (endX.current - _x.current) / delay;
 			_y.current += (endY.current - _y.current) / delay;
-			console.log(endX.current)
 
 			$(cursorRing.current).css({
 				top: `${_y.current}px`,
