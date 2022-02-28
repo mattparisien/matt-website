@@ -152,7 +152,6 @@ function HomePage(props, ref) {
 			</Layout>
 			<Layout bg='light' height='auto' fullbleed>
 				<Line />
-				<Heading>Stack</Heading>
 			</Layout>
 			<Layout bg='light' height='100vw'>
 				<Pills info={pillInfo} />
