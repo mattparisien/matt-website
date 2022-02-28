@@ -9,7 +9,7 @@ export const StyledMenu = styled.div`
 	width: 100vw;
 	height: 100vh;
 	padding: 2rem;
-	background-color: ${({ theme }) => theme.colors.dark};
+	background-color: ${({ theme }) => theme.colors.dark2};
 	transform: translateY(-100vh);
 	display: none;
 	

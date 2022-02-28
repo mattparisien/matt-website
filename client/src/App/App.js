@@ -227,7 +227,6 @@ function App() {
 	// }, [headerRef, state.isLoading]);
 
 	const toggleMenuActivity = () => {
-		console.log("in here!");
 		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
 	};
 
@@ -284,7 +283,7 @@ function App() {
 									isMenuActive={state.menuActive}
 									toggleMenu={toggleMenuActivity}
 								/>
-								<Menu />
+								<Menu isOpen={state.menuActive} />
 
 								<ScrollWrapper ref={scrollRef}>
 									<ContentWrapper ref={contentWrapperRef}>

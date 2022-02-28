@@ -69,11 +69,9 @@ function Menu(props) {
 	return (
 		<StyledMenu isOpen={isOpen} ref={menuRef}>
 			<UnorderedList
-				listInfo={listInfo}
-				currentPath={currentPath}
-				addToRefs={addToRefs}
+				listItems={listInfo}
 				onClick={handleClick}
-				hasRouterLinks
+				
 			/>
 			<SocialList addToRefs={addToRefs} alignItems={"center"} isDefaultHidden />
 		</StyledMenu>
