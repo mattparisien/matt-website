@@ -15,15 +15,16 @@ const StyledHeading = styled.h2`
 	font-weight: lighter;
 	width: 100%;
 	text-align: center;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%) scale(1.2);
+
 	white-space: nowrap;
 
 	.line {
 		white-space: nowrap;
 		width: 100%;
+	}
+
+	.scroll-char {
+		display: inline-block;
 	}
 
 	.initial-hidden-char {
@@ -39,10 +40,9 @@ const StyledHeading = styled.h2`
 	}
 
 	@media ${device.laptop} {
-		line-height: 15vw;
 		.hero-heading-char {
-			font-size: 22vw;
-			line-height: 15vw;
+			font-size: 25vw;
+			line-height: 25vw;
 		}
 	}
 `;
@@ -74,6 +74,18 @@ function Heading(props) {
 			// setSplitWrap(splitTextWrap);
 		}
 
+		if (isSplit) {
+			$(splitText.chars).each((i, el) => {
+				if (i % 2 === 0) {
+					$(el).wrap(
+						"<div class='scroll-char' data-scroll data-scroll-speed=2 ></div>"
+					);
+				} else {
+					$(el).wrap("<div class='scroll-char' data-scroll-speed=4></div>");
+				}
+			});
+		}
+
 		if (isSplit && intersecting && !hasPlayed) {
 			console.log("hello!");
 			const chars = $(intersecting).find(".hero-heading-char");
@@ -93,14 +105,20 @@ function Heading(props) {
 	}, [isSplit, windowWidth, intersecting, splitText]);
 
 	return (
-		<InView
-			className='heading-view-wrapper'
-			onChange={(inView, entry) => inView && setIntersecting(entry.target)}
+		<StyledHeading
+			ref={headingRef}
+			className='Heading'
+			data-scroll
+			data-scroll-speed={5}
 		>
-			<StyledHeading ref={headingRef} className='Heading'>
+			<InView
+				style={{ transform: "translateX(-4vw)" }}
+				className='heading-view-wrapper'
+				onChange={(inView, entry) => inView && setIntersecting(entry.target)}
+			>
 				{props.children}
-			</StyledHeading>
-		</InView>
+			</InView>
+		</StyledHeading>
 	);
 }
 

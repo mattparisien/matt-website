@@ -10,6 +10,12 @@ const StyledContainer = styled(Container)`
 	display: ${({ flex }) => (flex ? "flex" : "block")};
 	justify-content: space-between;
 	align-items: center;
+	${({ fullBleed }) =>
+		fullBleed &&
+		`padding: 0 !important;
+	margin: 0 !important;
+	max-width: none;
+	`};
 
 	@media ${device.mobileS} {
 		padding-left: 1.3rem;
@@ -47,7 +53,7 @@ function ContainerFluid(props) {
 	};
 
 	return (
-		<StyledContainer maxWidth='xl' {...props}>
+		<StyledContainer maxWidth='xl' {...props} className="ContainerFluid">
 			{props.children}
 		</StyledContainer>
 	);

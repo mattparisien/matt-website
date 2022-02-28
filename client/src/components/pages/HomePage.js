@@ -1,14 +1,9 @@
-import { Box } from "@mui/material";
 import React, { forwardRef, useContext, useRef } from "react";
 import { ColorContext } from "../../App/App";
-import ColorTrigger from "../ColorTrigger/ColorTrigger";
-import Line from "../Line/Line";
-import Paragraph from "../Paragraph/Paragraph";
-import { StyledHome } from "./styles/StyledHome";
-import { Link } from "react-router-dom";
 import Layout from "../Containers/Layout";
-import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import Heading from "../Heading/Heading";
+import ParagraphLayout from "../Paragraph/ParagraphLayout";
+import { Box } from "@mui/system";
 
 function HomePage(props, ref) {
 	//Declare refs needed for animation
@@ -25,11 +20,24 @@ function HomePage(props, ref) {
 		left: 0,
 	};
 
+	const stickyRef = useRef(null);
+
 	return (
 		<>
 			<Layout bg='dark' fullBleed hero={true}>
-				<Heading>Developer.</Heading>
+				<Box
+					className='hero__inner'
+					sx={{
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "center",
+						height: "100%"
+					}}
+				>
+					<Heading>Developer.</Heading>
+				</Box>
 			</Layout>
+
 			<Layout bg='light' height='40vw'>
 				<ParagraphLayout indent indentHeading='about'>
 					Hey, I'm Matt * I'm a full-stack software developer & graphic designer

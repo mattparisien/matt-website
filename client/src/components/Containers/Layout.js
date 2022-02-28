@@ -7,13 +7,7 @@ function Layout(props) {
 	return (
 		<>
 			<Section bg={props.bg} height={props.height} offsetTop={props.offsetTop}>
-				{!props.fullBleed ? (
-					<>
-						<ContainerFluid>{props.children}</ContainerFluid>
-					</>
-				) : (
-					<>{props.children}</>
-				)}
+				<ContainerFluid fullBleed={props.fullBleed}>{props.children}</ContainerFluid>
 			</Section>
 		</>
 	);

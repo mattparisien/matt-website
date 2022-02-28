@@ -207,6 +207,7 @@ function App() {
 							options={{
 								smooth: true,
 								getDirection: true,
+								initPosition: { x: 0, y: 0 },
 							}}
 							containerRef={scrollRef}
 						>
