@@ -30,27 +30,71 @@ function HomePage(props, ref) {
 			highlighted: false,
 		},
 		{
-			text: "ReactJS",
+			text: "NodeJS",
 			highlighted: false,
 		},
 		{
-			text: "ReactJS",
+			text: "Express",
 			highlighted: true,
 		},
 		{
-			text: "ReactJS",
+			text: "SQL",
 			highlighted: false,
 		},
 		{
-			text: "ReactJS",
+			text: "HTML5",
 			highlighted: false,
 		},
 		{
-			text: "ReactJS",
+			text: "Styled Components",
 			highlighted: false,
 		},
 		{
-			text: "ReactJS",
+			text: "Human",
+			highlighted: false,
+		},
+		{
+			text: "MaterialUI",
+			highlighted: false,
+		},
+		{
+			text: "MongoDB",
+			highlighted: false,
+		},
+		{
+			text: "GSAP",
+			highlighted: false,
+		},
+		{
+			text: "Threejs",
+			highlighted: false,
+		},
+		{
+			text: "Ruby on rails",
+			highlighted: false,
+		},
+		{
+			text: "Empathy",
+			highlighted: true,
+		},
+		{
+			text: "Rest APIS",
+			highlighted: false,
+		},
+		{
+			text: "Illustrator",
+			highlighted: false,
+		},
+		{
+			text: "Photoshop",
+			highlighted: false,
+		},
+		{
+			text: "Git",
+			highlighted: false,
+		},
+		{
+			text: "Mobile-first",
 			highlighted: false,
 		},
 

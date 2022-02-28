@@ -40,9 +40,9 @@ const StyledPillGroup = styled.div`
 	${({ theme }) => theme.spacing(4, "margin-top")};
 `;
 
-function Pill({ children, addToRefs, highlighted }) {
+function Pill({ children, addToRefs, highlighted}) {
 	return (
-		<div className='pill-wrapper' style={{ overflow: "hidden" }}>
+		<div className='pill-wrapper' style={{ overflow: "hidden" }} >
 			<StyledPill className='Pill' ref={addToRefs} highlighted={highlighted}>
 				{children}
 			</StyledPill>
@@ -81,7 +81,7 @@ export function Pills({ info }) {
 			<StyledPillGroup className='Pills'>
 				{info.map((pill, i) => {
 					return (
-						<Pill addToRefs={addToRefs} key={i} highlighted={pill.highlighted}>
+						<Pill addToRefs={addToRefs} key={i} highlighted={pill.highlighted} scrollSpeed={i}>
 							{pill.text}
 						</Pill>
 					);
