@@ -54,6 +54,7 @@ function Heading(props) {
 	const headingTimeline = useRef(gsap.timeline());
 	const [windowWidth, isResized] = useResize();
 	const [hasPlayed, setHasPlayed] = useState(false);
+	const [hasCharWrapped, setCharWrapped] = useState(false);
 	// const timeline = useRef(gsap.timeline());
 
 	const headingRef = useRef(null);
@@ -74,16 +75,19 @@ function Heading(props) {
 			// setSplitWrap(splitTextWrap);
 		}
 
-		if (isSplit) {
+		if (isSplit && !hasCharWrapped) {
 			$(splitText.chars).each((i, el) => {
 				if (i % 2 === 0) {
 					$(el).wrap(
 						"<div class='scroll-char' data-scroll data-scroll-speed=2 ></div>"
 					);
 				} else {
-					$(el).wrap("<div class='scroll-char' data-scroll-speed=4></div>");
+					$(el).wrap(
+						"<div class='scroll-char' data-scroll data-scroll-speed=4></div>"
+					);
 				}
 			});
+			setCharWrapped(true);
 		}
 
 		if (isSplit && intersecting && !hasPlayed) {

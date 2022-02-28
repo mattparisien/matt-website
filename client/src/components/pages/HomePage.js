@@ -4,6 +4,7 @@ import Layout from "../Containers/Layout";
 import Heading from "../Heading/Heading";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import { Box } from "@mui/system";
+import Line from "../Divider/Line";
 
 function HomePage(props, ref) {
 	//Declare refs needed for animation
@@ -39,8 +40,16 @@ function HomePage(props, ref) {
 			</Layout>
 
 			<Layout bg='light' height='40vw'>
-				<ParagraphLayout indent indentHeading='about'>
-					Hey, I'm Matt * I'm a full-stack software developer & graphic designer
+				<ParagraphLayout indent indentHeading='about' variant={1}>
+					Full-stack software developer & graphic designer
+					obsessed with digital products and passionate about building fantastic
+					user interfaces.
+				</ParagraphLayout>
+			</Layout>
+			<Layout bg='light' height='40vw'>
+				<Line/>
+				<ParagraphLayout indent indentHeading='about' variant={2}>
+					Full-stack software developer & graphic designer
 					obsessed with digital products and passionate about building fantastic
 					user interfaces.
 				</ParagraphLayout>

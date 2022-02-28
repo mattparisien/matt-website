@@ -6,7 +6,10 @@ import $ from "jquery";
 import useResize from "../../helpers/hooks/useResize";
 import InView from "react-intersection-observer";
 import styled from "styled-components";
-import { StyledStandardParagraph } from "./styles/StyledParagraph";
+import {
+	StyledVariant1Paragraph,
+	StyledVariant2Paragraph,
+} from "./styles/StyledParagraph";
 
 function Paragraph(props) {
 	const [intersecting, setIntersecting] = useState(null);
@@ -71,15 +74,24 @@ function Paragraph(props) {
 			onChange={(inView, entry) => inView && setIntersecting(entry.target)}
 			style={{ width: "100%" }}
 		>
-			<StyledStandardParagraph
-				className={paragraphClass}
-				{...props}
-				isResized={isResized}
-				ref={paragraph}
-			>
-				{props.indent ? <span className='spacer'>&nbsp;</span> : ""}
-				{props.children}
-			</StyledStandardParagraph>
+			{props.variant === 1 ? (
+				<StyledVariant1Paragraph
+					className={paragraphClass}
+					{...props}
+					isResized={isResized}
+					ref={paragraph}
+				>
+					{props.indent ? <span className='spacer'>&nbsp;</span> : ""}
+					{props.children}
+				</StyledVariant1Paragraph>
+			) : (
+				<StyledVariant2Paragraph
+					className={paragraphClass}
+					{...props}
+					isResized={isResized}
+					ref={paragraph}
+				></StyledVariant2Paragraph>
+			)}
 		</InView>
 	);
 }

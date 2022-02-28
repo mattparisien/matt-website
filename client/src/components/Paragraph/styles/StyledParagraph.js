@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { device } from "../../../styles/breakpoints";
 
 const paragraphFontSizes = {
-	standard: {
+	variant1: {
 		desktopL: {
 			fontSize: "4.4rem",
 			lineHeight: "4.4rem",
@@ -10,6 +10,40 @@ const paragraphFontSizes = {
 		desktop: {
 			fontSize: "4.4rem",
 			lineHeight: "4.4rem",
+		},
+		laptopL: {
+			fontSize: "4rem",
+			lineHeight: "4.4rem",
+		},
+		laptop: {
+			fontSize: "2.8rem",
+			lineHeight: "3.2rem",
+		},
+		tablet: {
+			fontSize: "2.6rem",
+			lineHeight: "2.8rem",
+		},
+		mobileL: {
+			fontSize: "1.8rem",
+			lineHeight: "2rem",
+		},
+		mobileM: {
+			fontSize: "1.5rem",
+			lineHeight: "1.6rem",
+		},
+		mobileS: {
+			fontSize: "1.5rem",
+			lineHeight: "1.6rem",
+		},
+	},
+	variant2: {
+		desktopL: {
+			fontSize: "4rem",
+			lineHeight: "4.4rem",
+		},
+		desktop: {
+			fontSize: "2rem",
+			lineHeight: "2.5rem",
 		},
 		laptopL: {
 			fontSize: "4rem",
@@ -81,13 +115,26 @@ export const StyledParagraph = styled.p`
 	}
 `;
 
-export const StyledStandardParagraph = styled(StyledParagraph)`
-	${Object.keys(paragraphFontSizes.standard)
+export const StyledVariant1Paragraph = styled(StyledParagraph)`
+	${Object.keys(paragraphFontSizes.variant1)
 		.reverse()
 		.map(size => {
 			return `@media ${device[size]} {
-				font-size: ${paragraphFontSizes.standard[size].fontSize};
-				line-height: ${paragraphFontSizes.standard[size].lineHeight};
+				font-size: ${paragraphFontSizes.variant1[size].fontSize};
+				line-height: ${paragraphFontSizes.variant1[size].lineHeight};
 			}`;
 		})};
 `;
+
+export const StyledVariant2Paragraph = styled(StyledParagraph)`
+width: 50%;
+margin-left: auto;
+${Object.keys(paragraphFontSizes.variant2)
+	.reverse()
+	.map(size => {
+		return `@media ${device[size]} {
+			font-size: ${paragraphFontSizes.variant2[size].fontSize};
+			line-height: ${paragraphFontSizes.variant2[size].lineHeight};
+		}`;
+	})};
+`
