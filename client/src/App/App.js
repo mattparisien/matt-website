@@ -25,6 +25,7 @@ function App() {
 	//Themes
 
 	const [headerColor, setHeaderColor] = useState(null);
+	const [palette, setPalette] = useState("primary");
 
 	useEffect(() => {
 		location.pathname === "/" && setHeaderColor("light");
@@ -45,8 +46,8 @@ function App() {
 
 	const themes = {
 		colors: {
-			light: "#ffff",
-			dark: "#141414",
+			light: palette === "primary" ? "#ffff" : "#f1b9b8",
+			dark: palette === "primary" ? "#141414" : "rgb(231, 100, 53)",
 			dark2: "#23252B",
 			lighterDark: "#111111",
 			red: "#DF181F",
@@ -82,6 +83,10 @@ function App() {
 				},
 			},
 		},
+	};
+
+	const togglePartyMode = () => {
+		setPalette(prev => (prev === "primary" ? "secondary" : "primary"));
 	};
 
 	const scrollRef = useRef(null);
@@ -238,7 +243,7 @@ function App() {
 										</Routes>
 									</ContentWrapper>
 								</ScrollWrapper>
-								<ThemeSwitch />
+								<ThemeSwitch togglePartyMode={togglePartyMode} />
 							</div>
 						</LocomotiveScrollProvider>
 					</LoadingContext.Provider>
