@@ -1,12 +1,12 @@
 import React, { forwardRef } from "react";
-import UnorderedList from "../Lists/UnorderedList";
+import UnorderedList from "../../Lists/UnorderedList";
 import styled from "styled-components";
 
 const NavList = styled(UnorderedList)`
 	height: 100%;
-`
+`;
 
-function Nav(props, ref) {
+function DesktopNav(props, ref) {
 	const listInfo = [
 		{
 			title: "Home",
@@ -23,10 +23,10 @@ function Nav(props, ref) {
 	];
 
 	return (
-		<nav className='header-nav' style={{height: "100%"}}>
+		<nav style={{ height: "100%" }} className='DesktopNav'>
 			<NavList height={4} negativeOffset={"right"} listItems={listInfo} />
 		</nav>
 	);
 }
 
-export default forwardRef(Nav);
+export default forwardRef(DesktopNav);

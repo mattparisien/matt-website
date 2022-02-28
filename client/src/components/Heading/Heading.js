@@ -96,7 +96,7 @@ function Heading(props) {
 			headingTimeline.current.to(chars, {
 				x: 0,
 				duration: duration,
-				stagger: -0.3,
+				stagger: -0.2,
 				ease: "circ.out",
 				onComplete: () => {
 					chars.removeClass("initial-hidden-char");

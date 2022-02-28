@@ -15,6 +15,7 @@ import { device } from "../styles/breakpoints";
 import { GlobalStyle } from "../styles/global";
 import ScrollWrapper from "../components/Containers/ScrollWrapper";
 import ThemeSwitch from "../components/ThemeSwitch/ThemeSwitch";
+import Menu from "../components/Menu/Menu";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();
@@ -26,11 +27,11 @@ function App() {
 	const [headerColor, setHeaderColor] = useState(null);
 	const [palette, setPalette] = useState("primary");
 
-	// useEffect(() => {
-	// 	location.pathname === "/" && setHeaderColor("light");
-	// 	location.pathname === "/work" && setHeaderColor("dark");
-	// 	location.pathname === "/about" && setHeaderColor("dark");
-	// }, [location]);
+	useEffect(() => {
+		location.pathname === "/" && setHeaderColor("light");
+		location.pathname === "/work" && setHeaderColor("dark");
+		location.pathname === "/about" && setHeaderColor("dark");
+	}, [location]);
 
 	const baseSpacing = {
 		desktopL: 2,
@@ -225,9 +226,10 @@ function App() {
 	// 	}
 	// }, [headerRef, state.isLoading]);
 
-	// const toggleMenuActivity = () => {
-	// 	setState(prev => ({ ...prev, menuActive: !state.menuActive }));
-	// };
+	const toggleMenuActivity = () => {
+		console.log("in here!");
+		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
+	};
 
 	// const toggleLoadingState = () => {
 	// 	setState(prev => ({
@@ -277,7 +279,12 @@ function App() {
 									/>
 								</Helmet>
 								<Loader isActive={state.isLoading} />
-								<Header ref={headerRef} isMenuActive={state.menuActive} />
+								<Header
+									ref={headerRef}
+									isMenuActive={state.menuActive}
+									toggleMenu={toggleMenuActivity}
+								/>
+								<Menu />
 
 								<ScrollWrapper ref={scrollRef}>
 									<ContentWrapper ref={contentWrapperRef}>

@@ -1,12 +1,13 @@
 import React, { forwardRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ContainerFluid from "../Containers/ContainerFluid";
-import Nav from "./Nav";
+import DesktopNav from "./Nav/DesktopNav";
 import { StyledHeader } from "./styles/StyledHeader";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import TransitionTrigger from "../Transition/TransitionTrigger";
 import { useLocation } from "react-router-dom";
 import { Box } from "@material-ui/core";
+import MobileNav from "./Nav/MobileNav";
 
 function Header(props, ref) {
 	const { headerOffset, isMenuActive, isDefaultContentHidden } = props;
@@ -42,7 +43,8 @@ function Header(props, ref) {
 							<span className='role'>Web developer</span>
 						</TransitionTrigger>
 					</Box>
-					<Nav />
+					<DesktopNav />
+					<MobileNav toggleMenu={props.toggleMenu}/>
 				</ContainerFluid>
 			</Box>
 		</StyledHeader>

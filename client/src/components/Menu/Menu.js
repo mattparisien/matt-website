@@ -1,9 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { StyledMenu } from "./styles/StyledMenu";
-import UnorderedList from "../UnorderedList/UnorderedList";
-import useResize from "../../helpers/hooks/useResize";
+import UnorderedList from "../Lists/UnorderedList";
 import gsap from "gsap";
-import SocialList from "../UnorderedList/SocialList";
+import SocialList from "../Lists/SocialList";
 
 function Menu(props) {
 	const listInfo = [

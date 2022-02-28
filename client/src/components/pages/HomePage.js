@@ -97,6 +97,22 @@ function HomePage(props, ref) {
 			text: "Mobile-first",
 			highlighted: false,
 		},
+		{
+			text: "Mocha/Chai",
+			highlighted: false,
+		},
+		{
+			text: "Cypress",
+			highlighted: false,
+		},
+		{
+			text: "Figma",
+			highlighted: false,
+		},
+		{
+			text: "Modern Javascript",
+			highlighted: false,
+		},
 
 	];
 
@@ -138,7 +154,7 @@ function HomePage(props, ref) {
 				<Line />
 				<Heading>Stack</Heading>
 			</Layout>
-			<Layout bg='light' height='50vw'>
+			<Layout bg='light' height='100vw'>
 				<Pills info={pillInfo} />
 			</Layout>
 			<Layout bg='dark'>

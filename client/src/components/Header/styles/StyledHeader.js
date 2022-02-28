@@ -1,10 +1,20 @@
 import styled from "styled-components";
-
-import { addHeaderSpacing } from "../../../styles/global";
+import { device, deviceSoze } from "../../../styles/breakpoints";
 
 export const StyledHeader = styled.header`
+	.DesktopNav {
+		display: none;
+	}
 
+	@media ${device.laptop} {
+		.MobileNav {
+			display: none;
+		}
 
+		.DesktopNav {
+			display: block;
+		}
+	}
 
 	.Header__floater {
 		transition: 500ms ease;
@@ -12,15 +22,11 @@ export const StyledHeader = styled.header`
 	}
 
 	${({ theme }) => {
-		return (
-			theme.spacing(5, "height") 
-		)
+		return theme.spacing(5, "height");
 	}};
 
 	${({ theme }) => {
-		return (
-			theme.typography.setSize(1)
-		)
+		return theme.typography.setSize(1);
 	}};
 
 	box-sizing: border-box;
@@ -28,10 +34,17 @@ export const StyledHeader = styled.header`
 	transition: transform 500ms ease;
 	z-index: -1;
 	color: ${({ theme }) => theme.colors[theme.components.header.styles.color]};
+
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100vw;
+
+	.top,
+	.bottom {
+		background-color: ${({ theme }) =>
+			theme.colors[theme.components.header.styles.color]};
+	}
 
 	.LinkCircle path {
 		stroke: ${({ theme }) =>
@@ -60,8 +73,6 @@ export const StyledHeader = styled.header`
 				.copyright-symbol {
 					display: inline;
 				}
-
-				
 			}
 		}
 
