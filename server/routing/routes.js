@@ -1,5 +1,7 @@
 const router = require("express").Router();
-const { conn, upload, gfs } = require("../db");
+const mongoose = require("mongoose");
+const { conn, upload, ProjectModel } = require("../db");
+
 
 router.post("/photography/upload", upload.single("image"), (req, res) => {
 	//Upload photography route and stores in db

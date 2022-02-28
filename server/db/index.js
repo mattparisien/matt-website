@@ -8,13 +8,14 @@ const conn = mongoose.createConnection(process.env.MONGO_URI);
 
 //Init gfs
 let gfs;
-conn.once("open", () => {
+let open = conn.once("open", () => {
 	//Init stream
 	gridFsBucket = new mongoose.mongo.GridFSBucket(conn.db, {
 		bucketName: "uploads",
 	});
 	gfs = Grid(conn.db, mongoose.mongo);
 	gfs.collection("uploads");
+	return gfs;
 });
 
 //Models
@@ -42,4 +43,4 @@ const storage = new GridFsStorage({
 
 const upload = multer({ storage });
 
-module.exports = { conn, upload, gfs };
+module.exports = { conn, upload, ProjectModel };
