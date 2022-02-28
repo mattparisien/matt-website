@@ -3,10 +3,15 @@ import styled from "styled-components";
 import { addHeaderSpacing } from "../../../styles/global";
 
 export const StyledHeader = styled.header`
+	.Header__floater {
+		transition: 500ms ease;
+		transform: translateY(${({ $hidden }) => ($hidden ? "-100px" : "0")});
+	}
+
 	${({ theme }) => theme.spacing(4, "height")};
 
 	box-sizing: border-box;
-	transform: translateY(${({ $hidden }) => ($hidden ? "-100px" : "0")});
+
 	transition: transform 500ms ease;
 	z-index: -1;
 	color: ${({ theme }) => theme.colors[theme.components.header.styles.color]};
@@ -16,7 +21,8 @@ export const StyledHeader = styled.header`
 	width: 100vw;
 
 	.LinkCircle path {
-		stroke: ${({ theme }) => theme.colors[theme.components.header.styles.color]};
+		stroke: ${({ theme }) =>
+			theme.colors[theme.components.header.styles.color]};
 	}
 
 	.menu-trigger {
@@ -31,6 +37,19 @@ export const StyledHeader = styled.header`
 
 		a {
 			margin-right: 0.8rem;
+
+			span {
+				display: block;
+				&:nth-of-type(1) {
+					position: relative;
+				}
+
+				.copyright-symbol {
+					display: inline;
+				}
+
+				
+			}
 		}
 
 		.copyright-symbol {

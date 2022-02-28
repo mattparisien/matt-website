@@ -6,6 +6,7 @@ import { StyledHeader } from "./styles/StyledHeader";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import TransitionTrigger from "../Transition/TransitionTrigger";
 import { useLocation } from "react-router-dom";
+import { Box } from "@material-ui/core";
 
 function Header(props, ref) {
 	const { headerOffset, isMenuActive, isDefaultContentHidden } = props;
@@ -30,16 +31,21 @@ function Header(props, ref) {
 			ref={ref}
 			height={innerHeight}
 			$hidden={isHeaderHidden}
+			className='Header'
 		>
-			<ContainerFluid flex>
-				<div className='header-logo'>
-					<TransitionTrigger to='/' noCircle>
-						Matt Parisien
-					</TransitionTrigger>
-					<span className='copyright-symbol'>©</span>
-				</div>
-				<Nav />
-			</ContainerFluid>
+			<Box className='Header__floater' sx={{height: "100%"}}>
+				<ContainerFluid flex>
+					<Box className='header-logo' >
+						<TransitionTrigger to='/' noCircle>
+							<span className='name'>
+								Matt Parisien <span className='copyright-symbol'>©</span>
+							</span>
+							<span className='role'>Web developer</span>
+						</TransitionTrigger>
+					</Box>
+					<Nav />
+				</ContainerFluid>
+			</Box>
 		</StyledHeader>
 	);
 }

@@ -8,6 +8,7 @@ function Link(props) {
 			href={props.href}
 			target={props.target}
 			onClick={props.onClick}
+			style={{display: "block"}}
 		>
 			{props.children}
 			{!props.noCircle && <LinkCircle />}
