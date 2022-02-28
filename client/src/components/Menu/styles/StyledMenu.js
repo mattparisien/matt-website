@@ -12,7 +12,6 @@ export const StyledMenu = styled.div`
 	background-color: ${({ theme }) => theme.colors.dark2};
 	transform: translateY(-100vh);
 	display: none;
-	
 
 	@media only screen and (max-width: ${deviceSize.tablet}px) {
 		padding: 1rem;
@@ -51,7 +50,7 @@ export const StyledMenu = styled.div`
 			display: inline-block;
 			overflow: hidden;
 
-			&:last-of-type{
+			&:last-of-type {
 				margin-top: -2vw;
 			}
 
