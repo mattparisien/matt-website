@@ -25,14 +25,14 @@ function HomePage(props, ref) {
 
 	return (
 		<>
-			<Layout bg='dark' fullBleed hero={true}>
+			<Layout bg='dark' fullbleed={true} hero={true}>
 				<Box
 					className='hero__inner'
 					sx={{
 						display: "flex",
 						alignItems: "center",
 						justifyContent: "center",
-						height: "100%"
+						height: "100%",
 					}}
 				>
 					<Heading>Developer.</Heading>
@@ -41,17 +41,15 @@ function HomePage(props, ref) {
 
 			<Layout bg='light' height='40vw'>
 				<ParagraphLayout indent indentHeading='about' variant={1}>
-					Full-stack software developer & graphic designer
-					obsessed with digital products and passionate about building fantastic
-					user interfaces.
+					Full-stack software developer & graphic designer obsessed with digital
+					products and passionate about building fantastic user interfaces.
 				</ParagraphLayout>
 			</Layout>
 			<Layout bg='light' height='40vw'>
-				<Line/>
+				<Line />
 				<ParagraphLayout indent indentHeading='about' variant={2}>
-					Full-stack software developer & graphic designer
-					obsessed with digital products and passionate about building fantastic
-					user interfaces.
+					Full-stack software developer & graphic designer obsessed with digital
+					products and passionate about building fantastic user interfaces.
 				</ParagraphLayout>
 			</Layout>
 		</>
