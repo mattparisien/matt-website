@@ -6,6 +6,8 @@ import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import { Box } from "@mui/system";
 import Line from "../Divider/Line";
 import Button from "../Button/Button";
+import { Pills } from "../Pills/Pills";
+import styled from "styled-components";
 
 function HomePage(props, ref) {
 	//Declare refs needed for animation
@@ -21,6 +23,38 @@ function HomePage(props, ref) {
 		top: 0,
 		left: 0,
 	};
+
+	const pillInfo = [
+		{
+			text: "ReactJS",
+			highlighted: false,
+		},
+		{
+			text: "ReactJS",
+			highlighted: false,
+		},
+		{
+			text: "ReactJS",
+			highlighted: true,
+		},
+		{
+			text: "ReactJS",
+			highlighted: false,
+		},
+		{
+			text: "ReactJS",
+			highlighted: false,
+		},
+		{
+			text: "ReactJS",
+			highlighted: false,
+		},
+		{
+			text: "ReactJS",
+			highlighted: false,
+		},
+
+	];
 
 	const stickyRef = useRef(null);
 
@@ -48,17 +82,23 @@ function HomePage(props, ref) {
 			</Layout>
 			<Layout bg='light' height='40vw'>
 				<Line />
-				<ParagraphLayout indent indentHeading='about' variant={2}>
-					Full-stack software developer & graphic designer obsessed with digital
-					products and passionate about building fantastic user interfaces.
-					<Button align='left' $href='mailto:hello@matthewparisien.com'>
-						Get in touch
-					</Button>
-				</ParagraphLayout>
+				<div className='half-section-wrapper'>
+					<ParagraphLayout indent indentHeading='about' variant={2}>
+						Full-stack software developer & graphic designer obsessed with
+						digital products and passionate about building fantastic user
+						interfaces.
+					</ParagraphLayout>
+				</div>
 			</Layout>
-			<Layout bg='light' height='100vh' fullbleed>
+			<Layout bg='light' height='auto' fullbleed>
 				<Line />
 				<Heading>Stack</Heading>
+			</Layout>
+			<Layout bg='light' height='50vw'>
+				<Pills info={pillInfo} />
+			</Layout>
+			<Layout bg='dark'>
+				
 			</Layout>
 		</>
 	);

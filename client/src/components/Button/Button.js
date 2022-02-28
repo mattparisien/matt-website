@@ -39,9 +39,8 @@ const buttonSizes = {
 	},
 };
 
-const StyledButton = styled.button`
-	background-color: ${({ theme, naked }) => (naked ? "none" : theme.colors.red)};
-	background: transparent;
+const StyledRectangleButton = styled.button`
+	background-color: ${({ theme, naked }) => theme.colors.red};
 	color: ${({ theme, naked }) =>
 		naked ? theme.colors.dark : theme.colors.light};
 	font-family: "Haas";
@@ -49,11 +48,10 @@ const StyledButton = styled.button`
 	outline: none;
 	border: 0px;
 	font-size: 1.4rem;
-	padding: ${({ naked }) => (naked ? "0" : "2rem 4rem")}
+	padding: ${({ naked }) => (naked ? "0" : "2rem 4rem")};
 	display: flex;
 	transition: 300ms ease;
 	position: relative;
-	
 
 	&:hover {
 		opacity: 0.8;
@@ -64,6 +62,39 @@ const StyledButton = styled.button`
 			? `
 				margin-${align}: auto;
 			`
+			: ``;
+	}}
+`;
+
+const StyledCircleButton = styled.button`
+	background-color: ${({ theme, naked }) => theme.colors.red};
+	color: ${({ theme, naked }) =>
+		naked ? theme.colors.dark : theme.colors.light};
+	font-family: "Haas";
+	text-decoration: none;
+	outline: none;
+	border: 0px;
+	font-size: 1.4rem;
+	padding: 7.4rem 5rem;
+	border-radius: 50%;
+	display: flex;
+	transition: 300ms ease;
+	position: relative;
+
+	a {
+		margin: 0;
+		padding: 0;
+	}
+
+	&:hover {
+		opacity: 0.8;
+	}
+
+	${({ align }) => {
+		return align
+			? `
+			margin-${align}: auto;
+		`
 			: ``;
 	}}
 `;
@@ -112,14 +143,33 @@ function Button(props) {
 	};
 
 	return props.$href ? (
-		<StyledLink href={props.$href} {...props}></StyledLink>
-	) : (
-		<StyledButton
+		props.variant === "circle" ? (
+			<StyledCircleButton>
+				<StyledLink href={props.$href} {...props} />
+			</StyledCircleButton>
+		) : (
+			<StyledLink href={props.$href} {...props}></StyledLink>
+		)
+	) : props.variant === "circle" ? (
+		<StyledCircleButton
+			className='Button'
 			onClick={props.onClickHandler}
 			type='button'
 			{...props}
 			onClick={props.$to ? handleClick : props.onClick ? props.onClick : ""}
-		>{props.children}</StyledButton>
+		>
+			{props.children}
+		</StyledCircleButton>
+	) : (
+		<StyledRectangleButton
+			className='Button'
+			onClick={props.onClickHandler}
+			type='button'
+			{...props}
+			onClick={props.$to ? handleClick : props.onClick ? props.onClick : ""}
+		>
+			{props.children}
+		</StyledRectangleButton>
 	);
 }
 
