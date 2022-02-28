@@ -18,6 +18,9 @@ const StyledUl = styled.ul`
 		orientation === "vertical" ? "column" : "row"};
 
 	li {
+
+		${({theme}) => theme.typography.setSize(1)};
+
 		font-family: "Haas";
 		width: 10rem;
 		display: flex;

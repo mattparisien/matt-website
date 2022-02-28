@@ -26,11 +26,11 @@ function App() {
 	const [headerColor, setHeaderColor] = useState(null);
 	const [palette, setPalette] = useState("primary");
 
-	useEffect(() => {
-		location.pathname === "/" && setHeaderColor("light");
-		location.pathname === "/work" && setHeaderColor("dark");
-		location.pathname === "/about" && setHeaderColor("dark");
-	}, [location]);
+	// useEffect(() => {
+	// 	location.pathname === "/" && setHeaderColor("light");
+	// 	location.pathname === "/work" && setHeaderColor("dark");
+	// 	location.pathname === "/about" && setHeaderColor("dark");
+	// }, [location]);
 
 	const baseSpacing = {
 		desktopL: 2,
@@ -41,6 +41,17 @@ function App() {
 		mobileL: 1,
 		mobileM: 0.5,
 		mobileS: 0.4,
+	};
+
+	const baseFontSize = {
+		desktopL: 1.2,
+		desktop: 1.2,
+		laptopL: 1,
+		laptop: 1,
+		tablet: 0.8,
+		mobileL: 0.7,
+		mobileM: 0.7,
+		mobileS: 0.6,
 	};
 
 	const themes = {
@@ -57,6 +68,47 @@ function App() {
 			orange: "rgb(231, 100, 53)",
 			grey: "rgb(207, 207, 207)",
 			purple: "#5b487c",
+		},
+		typography: {
+			setSize: multiplier => {
+				return `
+					@media ${device.mobileS} {
+						
+						font-size: ${baseFontSize.mobileS * multiplier}rem;
+					}
+				
+					@media ${device.mobileL} {
+						
+						font-size: ${baseFontSize.mobileL * multiplier}rem;
+					}
+				
+					@media ${device.tablet} {
+						
+						font-size: ${baseFontSize.tablet * multiplier}rem;
+					}
+				
+					@media ${device.laptop} {
+						
+						font-size: 8rem;
+						font-size: ${baseFontSize.laptop * multiplier}rem;
+					}
+				
+					@media ${device.laptopL} {
+					
+						font-size: ${baseFontSize.laptopL * multiplier}rem;
+					}
+
+					@media ${device.desktop} {
+					
+						font-size: ${baseFontSize.desktop * multiplier}rem;
+					}
+
+					@media ${device.desktopL} {
+					
+						font-size: ${baseFontSize.desktopL * multiplier}rem;
+					}
+					`;
+			},
 		},
 		spacing: (multiplier, property) => {
 			return Object.entries(device).map(size => {
@@ -185,6 +237,7 @@ function App() {
 	// };
 
 	const changeColors = (fg, bg) => {
+		console.log("has called");
 		setHeaderColor(fg);
 	};
 
@@ -231,7 +284,6 @@ function App() {
 										<GlobalStyle
 											isScrollDisabled={state.isLoading}
 											isCursorWait={state.isLoading}
-											theme={themes}
 										/>
 
 										<Routes>

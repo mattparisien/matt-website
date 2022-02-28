@@ -52,6 +52,9 @@ function HomePage(props, ref) {
 					products and passionate about building fantastic user interfaces.
 				</ParagraphLayout>
 			</Layout>
+			<Layout bg="dark" height="100vh">
+
+			</Layout>
 		</>
 	);
 }

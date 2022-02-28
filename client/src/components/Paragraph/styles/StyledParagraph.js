@@ -47,7 +47,7 @@ const paragraphFontSizes = {
 		},
 		laptopL: {
 			fontSize: "2rem",
-			lineHeight: "4.4rem",
+			lineHeight: "2.4rem",
 		},
 		laptop: {
 			fontSize: "1.8rem",
@@ -85,22 +85,18 @@ export const StyledParagraph = styled.p`
 		color: pink;
 	}
 
-	.line-inner {
-		overflow: hidden;
-		justify-content: flex-start;
-	}
-
 	.line {
 		position: relative;
 		display: inline-block;
 		text-align: start;
+		overflow-y: hidden;
 	}
 
-	${({ indentHeading }) => {
+	${({ indentHeading, theme }) => {
 		return indentHeading
 			? `.line:nth-of-type(1)::after {
 				content: '${indentHeading}';
-				font-size: 1.2rem;
+				${theme.typography.setSize(1)};
 				position: absolute;
 				left: 0;
 				top: 0;

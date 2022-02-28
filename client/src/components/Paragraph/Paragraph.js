@@ -33,8 +33,11 @@ function Paragraph(props) {
 			// });
 			setIsSplit(true);
 			setSplitText(mySplitText);
+
 			// setSplitWrap(splitTextWrap);
 		}
+
+	
 
 		if (isSplit && intersecting) {
 			const lines = $(intersecting).find(".line");
@@ -62,8 +65,13 @@ function Paragraph(props) {
 	}, [isSplit, windowWidth, intersecting, splitText]);
 
 	useEffect(() => {
+
+		if (splitText && !splitWrap) {
+			$(splitText.lines).wrap("<div></div>");
+			setSplitWrap(true);
+		}
+
 		splitText && setSplitText(splitText.revert().split());
-		splitWrap && setSplitWrap(splitWrap.revert().split());
 	}, [windowWidth, splitText, splitWrap]);
 
 	const paragraphClass = "Paragraph";
