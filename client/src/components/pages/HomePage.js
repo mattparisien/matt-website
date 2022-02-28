@@ -5,6 +5,7 @@ import Heading from "../Heading/Heading";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import { Box } from "@mui/system";
 import Line from "../Divider/Line";
+import Button from "../Button/Button";
 
 function HomePage(props, ref) {
 	//Declare refs needed for animation
@@ -50,10 +51,14 @@ function HomePage(props, ref) {
 				<ParagraphLayout indent indentHeading='about' variant={2}>
 					Full-stack software developer & graphic designer obsessed with digital
 					products and passionate about building fantastic user interfaces.
+					<Button align='left' $href='mailto:hello@matthewparisien.com'>
+						Get in touch
+					</Button>
 				</ParagraphLayout>
 			</Layout>
-			<Layout bg="dark" height="100vh">
-
+			<Layout bg='light' height='100vh' fullbleed>
+				<Line />
+				<Heading>Stack</Heading>
 			</Layout>
 		</>
 	);

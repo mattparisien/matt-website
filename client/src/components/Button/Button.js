@@ -119,7 +119,7 @@ function Button(props) {
 			type='button'
 			{...props}
 			onClick={props.$to ? handleClick : props.onClick ? props.onClick : ""}
-		></StyledButton>
+		>{props.children}</StyledButton>
 	);
 }
 

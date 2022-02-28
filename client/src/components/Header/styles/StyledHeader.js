@@ -3,12 +3,25 @@ import styled from "styled-components";
 import { addHeaderSpacing } from "../../../styles/global";
 
 export const StyledHeader = styled.header`
+
+
+
 	.Header__floater {
 		transition: 500ms ease;
 		transform: translateY(${({ $hidden }) => ($hidden ? "-100px" : "0")});
 	}
 
-	${({ theme }) => theme.spacing(4, "height")};
+	${({ theme }) => {
+		return (
+			theme.spacing(5, "height") 
+		)
+	}};
+
+	${({ theme }) => {
+		return (
+			theme.typography.setSize(1)
+		)
+	}};
 
 	box-sizing: border-box;
 

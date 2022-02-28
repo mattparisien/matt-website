@@ -10,6 +10,7 @@ const StyledSection = styled.section`
 	position: relative;
 	width: 100%;
 	height: ${({ height }) => (height ? height : "100vh")};
+	
 	background-color: ${({ theme, bg }) => (bg ? theme.colors[bg] : "black")};
 	color: ${({ theme, bg }) =>
 		bg ? theme.colors[bg === "dark" ? "light" : "dark"] : "blue"};
