@@ -73,9 +73,8 @@ const Item = styled(Box)`
 function ResponsiveGrid({ items, isItemLoading }) {
 	const sourceLoaded = useProgressiveImage(items);
 
-	const itemRef = useState(null);
 
-	const revealTimeline = useRef(gsap.timeline());
+
 
 	const [intersecting, setIntersecting] = useState(null);
 	const [hasFadeUp, setHasFadeUp] = useState(null);
@@ -163,6 +162,7 @@ function ResponsiveGrid({ items, isItemLoading }) {
 						gap={2}
 						className={`ResponsiveGrid ResponsiveGrid__${index + 1}`}
 						sx={{ marginBottom: 2 }}
+						key={index}
 					>
 						{subArray.map((item, i) => {
 							return (

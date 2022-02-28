@@ -44,9 +44,9 @@ const StyledUl = styled.ul`
 function UnorderedList(props) {
 	return (
 		<StyledUl className='UnorderedList' {...props}>
-			{props.listItems.map(item => {
+			{props.listItems.map((item, i) => {
 				return (
-					<li className='UnorderedList__item'>
+					<li className='UnorderedList__item'  key={i}>
 						{!props.noTransition ? (
 							<TransitionTrigger to={item.href}>{item.title}</TransitionTrigger>
 						) : (

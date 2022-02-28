@@ -37,6 +37,10 @@ export const GlobalStyle = createGlobalStyle`
  }
 
 
+ section {
+   transition: 300ms ease;
+ }
+
 
   body {
     cursor: url(${DefaultCursor});

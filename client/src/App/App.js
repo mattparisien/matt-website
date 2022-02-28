@@ -22,7 +22,6 @@ export const DataContext = createContext();
 
 function App() {
 	const location = useLocation();
-	//Themes
 
 	const [headerColor, setHeaderColor] = useState(null);
 	const [palette, setPalette] = useState("primary");
