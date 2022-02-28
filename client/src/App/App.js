@@ -59,7 +59,6 @@ function App() {
 		},
 		spacing: (multiplier, property) => {
 			return Object.entries(device).map(size => {
-				console.log(baseSpacing[size[0]]);
 				return `@media ${size[1]} {
 						${
 							Array.isArray(property)
@@ -181,7 +180,6 @@ function App() {
 	// };
 
 	const changeColors = (fg, bg) => {
-		console.log("hello!", fg);
 		setHeaderColor(fg);
 	};
 
@@ -209,6 +207,7 @@ function App() {
 								getDirection: true,
 								initPosition: { x: 0, y: 0 },
 							}}
+							watch={[location.pathname]}
 							containerRef={scrollRef}
 						>
 							<div className='App'>

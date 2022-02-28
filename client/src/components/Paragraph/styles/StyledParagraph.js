@@ -38,32 +38,32 @@ const paragraphFontSizes = {
 	},
 	variant2: {
 		desktopL: {
-			fontSize: "4rem",
-			lineHeight: "4.4rem",
+			fontSize: "2rem",
+			lineHeight: "2.5rem",
 		},
 		desktop: {
 			fontSize: "2rem",
 			lineHeight: "2.5rem",
 		},
 		laptopL: {
-			fontSize: "4rem",
+			fontSize: "2rem",
 			lineHeight: "4.4rem",
 		},
 		laptop: {
-			fontSize: "2.8rem",
-			lineHeight: "3.2rem",
+			fontSize: "1.8rem",
+			lineHeight: "2.4rem",
 		},
 		tablet: {
-			fontSize: "2.6rem",
-			lineHeight: "2.8rem",
+			fontSize: "1.3rem",
+			lineHeight: "1.6rem",
 		},
 		mobileL: {
-			fontSize: "1.8rem",
-			lineHeight: "2rem",
+			fontSize: "1.2rem",
+			lineHeight: "1.4rem",
 		},
 		mobileM: {
-			fontSize: "1.5rem",
-			lineHeight: "1.6rem",
+			fontSize: "1rem",
+			lineHeight: "1.3rem",
 		},
 		mobileS: {
 			fontSize: "1.5rem",
@@ -96,7 +96,6 @@ export const StyledParagraph = styled.p`
 		text-align: start;
 	}
 
-
 	${({ indentHeading }) => {
 		return indentHeading
 			? `.line:nth-of-type(1)::after {
@@ -127,14 +126,21 @@ export const StyledVariant1Paragraph = styled(StyledParagraph)`
 `;
 
 export const StyledVariant2Paragraph = styled(StyledParagraph)`
-width: 50%;
-margin-left: auto;
-${Object.keys(paragraphFontSizes.variant2)
-	.reverse()
-	.map(size => {
-		return `@media ${device[size]} {
+	width: 50%;
+	margin-left: auto;
+
+	.line:nth-of-type(1) {
+		&::after {
+			left: -100%;
+		}
+	}
+
+	${Object.keys(paragraphFontSizes.variant2)
+		.reverse()
+		.map(size => {
+			return `@media ${device[size]} {
 			font-size: ${paragraphFontSizes.variant2[size].fontSize};
 			line-height: ${paragraphFontSizes.variant2[size].lineHeight};
 		}`;
-	})};
-`
+		})};
+`;

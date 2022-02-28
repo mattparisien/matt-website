@@ -12,18 +12,17 @@ function Header(props, ref) {
 	const { headerOffset, isMenuActive, isDefaultContentHidden } = props;
 	const [innerHeight, setInnerHeight] = useState(null);
 	const [isHeaderHidden, setHeaderHidden] = useState(false);
-	const { scroll } = useLocomotiveScroll();
 
-	useEffect(() => {
-		scroll &&
-			scroll.on("scroll", e => {
-				if (e.direction === "down" && !isHeaderHidden) {
-					setHeaderHidden(true);
-				} else if (e.direction === "up") {
-					setHeaderHidden(false);
-				}
-			});
-	}, [scroll]);
+	// useEffect(() => {
+	// 	scroll &&
+	// 		scroll.on("scroll", e => {
+	// 			if (e.direction === "down" && !isHeaderHidden) {
+	// 				setHeaderHidden(true);
+	// 			} else if (e.direction === "up") {
+	// 				setHeaderHidden(false);
+	// 			}
+	// 		});
+	// }, [scroll]);
 
 	return (
 		<StyledHeader
