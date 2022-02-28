@@ -1,12 +1,10 @@
-import { Box } from "@mui/material";
 import React, { forwardRef, useContext, useRef } from "react";
 import { ColorContext } from "../../App/App";
-import ColorTrigger from "../ColorTrigger/ColorTrigger";
-import Line from "../Line/Line";
-import Paragraph from "../Paragraph/Paragraph";
-import { StyledHome } from "./styles/StyledHome";
-import { Link } from "react-router-dom";
 import Layout from "../Containers/Layout";
+import Heading from "../Heading/Heading";
+import ParagraphLayout from "../Paragraph/ParagraphLayout";
+import { Box } from "@mui/system";
+import Line from "../Divider/Line";
 
 function HomePage(props, ref) {
 	//Declare refs needed for animation
@@ -23,45 +21,40 @@ function HomePage(props, ref) {
 		left: 0,
 	};
 
+	const stickyRef = useRef(null);
+
 	return (
-		<Layout bg='dark'>
-			<Box
-				sx={{
-					minHeight: "100vh",
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "center",
-				}}
-			>
-				<Paragraph>
-					Hey, I'm Matt * I'm a full-stack software developer & graphic designer
+		<>
+			<Layout bg='dark' fullBleed hero={true}>
+				<Box
+					className='hero__inner'
+					sx={{
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "center",
+						height: "100%"
+					}}
+				>
+					<Heading>Developer.</Heading>
+				</Box>
+			</Layout>
+
+			<Layout bg='light' height='40vw'>
+				<ParagraphLayout indent indentHeading='about' variant={1}>
+					Full-stack software developer & graphic designer
 					obsessed with digital products and passionate about building fantastic
 					user interfaces.
-				</Paragraph>
-			</Box>
-			<Box
-				sx={{
-					minHeight: "100vh",
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "center",
-				}}
-			>
-				<Line />
-				<ColorTrigger threshold={0.5} background='light' foreground='dark'>
-					<Paragraph margin={"10vw 0"}>
-						Skilled in ReactJS & HTLM5, modern Javascript (ES6), Strapi CMS,
-						CSS/SASS, Styled Components, GSAP, REST APIs, UI testing,
-						Nodejs/Express and SQL.
-					</Paragraph>
-
-					<Paragraph>
-						Interested <span className='accent'>?</span>{" "}
-						<a href='#'>View work</a>
-					</Paragraph>
-				</ColorTrigger>
-			</Box>
-		</Layout>
+				</ParagraphLayout>
+			</Layout>
+			<Layout bg='light' height='40vw'>
+				<Line/>
+				<ParagraphLayout indent indentHeading='about' variant={2}>
+					Full-stack software developer & graphic designer
+					obsessed with digital products and passionate about building fantastic
+					user interfaces.
+				</ParagraphLayout>
+			</Layout>
+		</>
 	);
 }
 

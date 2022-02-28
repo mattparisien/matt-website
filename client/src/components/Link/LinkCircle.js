@@ -42,7 +42,6 @@ export default function LinkCircle() {
 					style={{
 						fill: "none",
 						strokeWidth: "1px",
-						stroke: "black",
 						strokeDashoffset: "0.001",
 						strokeDasharray: "0px, 999999px",
 					}}

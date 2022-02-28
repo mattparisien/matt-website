@@ -6,7 +6,10 @@ import $ from "jquery";
 import useResize from "../../helpers/hooks/useResize";
 import InView from "react-intersection-observer";
 import styled from "styled-components";
-import { StyledStandardParagraph } from "./styles/StyledParagraph";
+import {
+	StyledVariant1Paragraph,
+	StyledVariant2Paragraph,
+} from "./styles/StyledParagraph";
 
 function Paragraph(props) {
 	const [intersecting, setIntersecting] = useState(null);
@@ -17,55 +20,51 @@ function Paragraph(props) {
 	const [windowWidth, isResized] = useResize();
 	// const timeline = useRef(gsap.timeline());
 
-	// useEffect(() => {
-	// 	if (!isSplit && paragraph.current) {
-	// 		const mySplitText = new SplitText(paragraph.current, {
-	// 			type: "lines, chars, words",
-	// 			linesClass: "line",
-	// 			charsClass: "char",
-	// 		});
-	// 		// const splitTextWrap = new SplitText(paragraph.current, {
-	// 		// 	type: "lines",
-	// 		// 	linesClass: "line-wrapper",
-	// 		// });
-	// 		setIsSplit(true);
-	// 		setSplitText(mySplitText);
-	// 		// setSplitWrap(splitTextWrap);
-	// 	}
+	useEffect(() => {
+		if (!isSplit && paragraph.current) {
+			const mySplitText = new SplitText(paragraph.current, {
+				type: "lines, chars, words",
+				linesClass: "line",
+				charsClass: "char",
+			});
+			// const splitTextWrap = new SplitText(paragraph.current, {
+			// 	type: "lines",
+			// 	linesClass: "line-wrapper",
+			// });
+			setIsSplit(true);
+			setSplitText(mySplitText);
+			// setSplitWrap(splitTextWrap);
+		}
 
-	// 	if (isSplit && intersecting) {
-	// 		const lines = $(intersecting).find(".line");
+		if (isSplit && intersecting) {
+			const lines = $(intersecting).find(".line");
 
-	// 		lines.each((index, el) => {
-	// 			const chars = $(el).find(".char");
-	// 			let delay = 0;
-	// 			gsap.set(chars, {
-	// 				y: "100%",
-	// 				opacity: 0,
-	// 			});
-	// 			gsap.to(chars, {
-	// 				y: 0,
-	// 				opacity: 1,
-	// 				stagger: 0.02,
-	// 				duration: 2,
-	// 				ease: "expo.inOut",
-	// 				delay: delay + index / 4,
-	// 				onComplete: () => {
-	// 					$(paragraph.current).removeClass("is-initial-hidden");
-	// 				},
-	// 			});
-	// 		});
-	// 	}
+			lines.each((index, el) => {
+				const chars = $(el).find(".char");
+				let delay = 0;
+				gsap.set(chars, {
+					y: "100%",
+					opacity: 0,
+				});
+				gsap.to(chars, {
+					y: 0,
+					opacity: 1,
+					stagger: 0.02,
+					duration: 2,
+					ease: "expo.inOut",
+					delay: delay + index / 4,
+					onComplete: () => {
+						$(paragraph.current).removeClass("is-initial-hidden");
+					},
+				});
+			});
+		}
+	}, [isSplit, windowWidth, intersecting, splitText]);
 
-	// 	if (splitText) {
-	// 		$(splitText.lines).wrapInner("<div class='line-inner'></div>");
-	// 	}
-	// }, [isSplit, windowWidth, intersecting, splitText]);
-
-	// useEffect(() => {
-	// 	splitText && setSplitText(splitText.revert().split());
-	// 	splitWrap && setSplitWrap(splitWrap.revert().split());
-	// }, [windowWidth, splitText, splitWrap]);
+	useEffect(() => {
+		splitText && setSplitText(splitText.revert().split());
+		splitWrap && setSplitWrap(splitWrap.revert().split());
+	}, [windowWidth, splitText, splitWrap]);
 
 	const paragraphClass = "Paragraph";
 
@@ -75,14 +74,24 @@ function Paragraph(props) {
 			onChange={(inView, entry) => inView && setIntersecting(entry.target)}
 			style={{ width: "100%" }}
 		>
-			<StyledStandardParagraph
-				className={paragraphClass}
-				{...props}
-				isResized={isResized}
-				ref={paragraph}
-			>
-				{props.children}
-			</StyledStandardParagraph>
+			{props.variant === 1 ? (
+				<StyledVariant1Paragraph
+					className={paragraphClass}
+					{...props}
+					isResized={isResized}
+					ref={paragraph}
+				>
+					{props.indent ? <span className='spacer'>&nbsp;</span> : ""}
+					{props.children}
+				</StyledVariant1Paragraph>
+			) : (
+				<StyledVariant2Paragraph
+					className={paragraphClass}
+					{...props}
+					isResized={isResized}
+					ref={paragraph}
+				></StyledVariant2Paragraph>
+			)}
 		</InView>
 	);
 }

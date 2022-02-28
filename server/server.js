@@ -62,7 +62,28 @@ const storage = new GridFsStorage({
 	},
 });
 
+//Create storage object for software feature image uploads
+// const softwareStorage = new GridFsStorage({
+// 	url: process.env.MONGO_URI,
+// 	file: (req, file) => {
+// 		return new Promise((resolve, reject) => {
+// 			crypto.randomBytes(16, (err, buf) => {
+// 				if (err) {
+// 					return reject(err);
+// 				}
+
+// 				const fileInfo = {
+// 					filename: file.originalname,
+// 					bucketName: "uploads",
+// 				};
+// 				resolve(fileInfo);
+// 			});
+// 		});
+// 	},
+// });
+
 const upload = multer({ storage });
+// const softwareUpload = multer({ storage: softwareStorage });
 
 //Routing config
 app.use("/api", router);
@@ -109,6 +130,7 @@ router.get("/software", (req, res) => {
 		);
 
 		gfs.files.find({ _id: { $in: [...objectIds] } }).toArray((err, files) => {
+			if (err) console.log(err);
 			if (files) {
 				const response = projects.map(project => {
 					return {
@@ -132,7 +154,7 @@ router.get("/software", (req, res) => {
 //Fetch photo JSON data
 router.get("/photography", (req, res) => {
 	gfs.files.find().toArray((err, files) => {
-		if (err) console.log(err);
+		if (err) console.log(er);
 
 		if (!files || files.length === 0) {
 			return res.status(404).json({ error: "No files exist" });
@@ -144,6 +166,7 @@ router.get("/photography", (req, res) => {
 
 //Display images
 router.get("/images/:filename", (req, res) => {
+	console.log(req.params.filename);
 	gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
 		if (err) console.log("err", err);
 

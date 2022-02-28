@@ -1,5 +1,10 @@
 import React, { forwardRef } from "react";
 import UnorderedList from "../Lists/UnorderedList";
+import styled from "styled-components";
+
+const NavList = styled(UnorderedList)`
+	height: 100%;
+`
 
 function Nav(props, ref) {
 	const listInfo = [
@@ -19,7 +24,7 @@ function Nav(props, ref) {
 
 	return (
 		<nav className='header-nav' style={{height: "100%"}}>
-			<UnorderedList height={4} negativeOffset={"right"} listItems={listInfo} />
+			<NavList height={4} negativeOffset={"right"} listItems={listInfo} />
 		</nav>
 	);
 }

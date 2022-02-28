@@ -54,10 +54,11 @@ function WorkPage() {
 
 	return (
 		<>
-			<Layout bg='light' height='45vh'>
-				<ParagraphLayout indent indentHeading='work'>
-					I design, develop and maintain full-stack applications for a living. I
-					also do beauty photography on the side, check it out below.
+			<Layout bg='light' height='45vh' offsetTop>
+				<ParagraphLayout indent indentHeading='work' variant={1}>
+					I design, develop and maintain
+					full-stack applications for a living. I also do beauty photography on
+					the side, check it out below.
 				</ParagraphLayout>
 			</Layout>
 			<Layout bg='light' height='auto'>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { device } from "../../../styles/breakpoints";
 
 const paragraphFontSizes = {
-	standard: {
+	variant1: {
 		desktopL: {
 			fontSize: "4.4rem",
 			lineHeight: "4.4rem",
@@ -36,11 +36,50 @@ const paragraphFontSizes = {
 			lineHeight: "1.6rem",
 		},
 	},
+	variant2: {
+		desktopL: {
+			fontSize: "2rem",
+			lineHeight: "2.5rem",
+		},
+		desktop: {
+			fontSize: "2rem",
+			lineHeight: "2.5rem",
+		},
+		laptopL: {
+			fontSize: "2rem",
+			lineHeight: "4.4rem",
+		},
+		laptop: {
+			fontSize: "1.8rem",
+			lineHeight: "2.4rem",
+		},
+		tablet: {
+			fontSize: "1.3rem",
+			lineHeight: "1.6rem",
+		},
+		mobileL: {
+			fontSize: "1.2rem",
+			lineHeight: "1.4rem",
+		},
+		mobileM: {
+			fontSize: "1rem",
+			lineHeight: "1.3rem",
+		},
+		mobileS: {
+			fontSize: "1.5rem",
+			lineHeight: "1.6rem",
+		},
+	},
 };
 
 export const StyledParagraph = styled.p`
 	font-family: "Haas";
 	margin: 0;
+
+	span.spacer {
+		width: 10rem;
+		display: inline-block;
+	}
 
 	.accent {
 		color: pink;
@@ -52,21 +91,10 @@ export const StyledParagraph = styled.p`
 	}
 
 	.line {
-		white-space: break-spaces;
-
 		position: relative;
-		display: block;
+		display: inline-block;
 		text-align: start;
 	}
-
-	${({ indent }) => {
-		return indent
-			? `.line:nth-of-type(1) {
-				padding-left: 14.4rem;
-				position: relative;
-			}`
-			: "";
-	}};
 
 	${({ indentHeading }) => {
 		return indentHeading
@@ -86,13 +114,33 @@ export const StyledParagraph = styled.p`
 	}
 `;
 
-export const StyledStandardParagraph = styled(StyledParagraph)`
-	${Object.keys(paragraphFontSizes.standard)
+export const StyledVariant1Paragraph = styled(StyledParagraph)`
+	${Object.keys(paragraphFontSizes.variant1)
 		.reverse()
 		.map(size => {
 			return `@media ${device[size]} {
-				font-size: ${paragraphFontSizes.standard[size].fontSize};
-				line-height: ${paragraphFontSizes.standard[size].lineHeight};
+				font-size: ${paragraphFontSizes.variant1[size].fontSize};
+				line-height: ${paragraphFontSizes.variant1[size].lineHeight};
 			}`;
+		})};
+`;
+
+export const StyledVariant2Paragraph = styled(StyledParagraph)`
+	width: 50%;
+	margin-left: auto;
+
+	.line:nth-of-type(1) {
+		&::after {
+			left: -100%;
+		}
+	}
+
+	${Object.keys(paragraphFontSizes.variant2)
+		.reverse()
+		.map(size => {
+			return `@media ${device[size]} {
+			font-size: ${paragraphFontSizes.variant2[size].fontSize};
+			line-height: ${paragraphFontSizes.variant2[size].lineHeight};
+		}`;
 		})};
 `;

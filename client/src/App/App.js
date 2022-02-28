@@ -1,32 +1,35 @@
-import gsap from "gsap/all";
-import $ from "jquery";
+import axios from "axios";
 import { createContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
-import Construction from "../components/pages/Construction";
-import { GlobalStyle } from "../styles/global";
-import AboutPage from "../components/pages/AboutPage";
 import Header from "../components/Header/Header";
-import Loader from "../components/Transition/Loader";
-import WorkPage from "../components/pages/WorkPage";
+import AboutPage from "../components/pages/AboutPage";
 import HomePage from "../components/pages/HomePage";
 import UploadPage from "../components/pages/UploadPage";
-import axios from "axios";
-import useResize from "../helpers/hooks/useResize";
-import { deviceSize, device } from "../styles/breakpoints";
-import MediaQuery from "../components/MediaQueries/MediaQuery";
+import WorkPage from "../components/pages/WorkPage";
+import Loader from "../components/Transition/Loader";
+import { device } from "../styles/breakpoints";
+import { GlobalStyle } from "../styles/global";
+import ScrollWrapper from "../components/Containers/ScrollWrapper";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();
 export const DataContext = createContext();
 
 function App() {
+	const location = useLocation();
 	//Themes
 
-	const [headerColor, setHeaderColor] = useState("light");
+	const [headerColor, setHeaderColor] = useState(null);
+
+	useEffect(() => {
+		location.pathname === "/" && setHeaderColor("light");
+		location.pathname === "/work" && setHeaderColor("dark");
+		location.pathname === "/about" && setHeaderColor("dark");
+	}, [location]);
 
 	const baseSpacing = {
 		desktopL: 2,
@@ -56,7 +59,6 @@ function App() {
 		},
 		spacing: (multiplier, property) => {
 			return Object.entries(device).map(size => {
-				console.log(baseSpacing[size[0]])
 				return `@media ${size[1]} {
 						${
 							Array.isArray(property)
@@ -203,7 +205,9 @@ function App() {
 							options={{
 								smooth: true,
 								getDirection: true,
+								initPosition: { x: 0, y: 0 },
 							}}
+							watch={[location.pathname]}
 							containerRef={scrollRef}
 						>
 							<div className='App'>
@@ -217,19 +221,13 @@ function App() {
 								<Loader isActive={state.isLoading} />
 								<Header ref={headerRef} isMenuActive={state.menuActive} />
 
-								<div
-									className='scroll-container'
-									ref={scrollRef}
-									data-scroll-container
-								>
+								<ScrollWrapper ref={scrollRef}>
 									<ContentWrapper ref={contentWrapperRef}>
 										<GlobalStyle
 											isScrollDisabled={state.isLoading}
 											isCursorWait={state.isLoading}
 											theme={themes}
 										/>
-
-										<MediaQuery />
 
 										<Routes>
 											<Route path='/' element={<HomePage />} />
@@ -238,7 +236,7 @@ function App() {
 											<Route path='/upload' element={<UploadPage />} />
 										</Routes>
 									</ContentWrapper>
-								</div>
+								</ScrollWrapper>
 							</div>
 						</LocomotiveScrollProvider>
 					</LoadingContext.Provider>

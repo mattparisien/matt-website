@@ -7,7 +7,6 @@ import Konnect from "../fonts/Konnect.woff";
 import { device } from "./breakpoints";
 
 export const renderResponsiveSizes = object => {
-	console.log(Object.entries(object));
 	return Object.entries(object).map(size => {
 		return `
 			@media ${device[size[0]]} {

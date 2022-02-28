@@ -41,13 +41,13 @@ function About() {
 
 	return (
 		<>
-			<Layout bg='light'>
+			<Layout bg='light' offsetTop>
 				<Box sx={flexStyle}>
 					<Box sx={{ marginBottom: "5rem" }}>
-						<Paragraph indent>Made in Montreal,</Paragraph>
-						<Paragraph indent>Quebec, Canada</Paragraph>
+						<Paragraph indent variant={1}>Made in Montreal,</Paragraph>
+						<Paragraph indent variant={1}>Quebec, Canada</Paragraph>
 					</Box>
-					<ParagraphLayout indent indentHeading='About'>
+					<ParagraphLayout indent indentHeading='About' variant={1}>
 						Hey, I'm Matt - full-stack web developer & photographer and graphic
 						designer obsessed with digital products and passionate about
 						interactive digital experiences. I work hard and consistently
