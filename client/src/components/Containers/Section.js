@@ -8,6 +8,7 @@ import ColorTrigger from "../ColorTrigger/ColorTrigger";
 const StyledSection = styled.section`
 	${({ theme, offsetTop }) => offsetTop && theme.spacing(4, "padding-top")};
 	position: relative;
+	z-index: 1;
 	width: 100%;
 	height: ${({ height }) => (height ? height : "100vh")};
 	

@@ -4,18 +4,19 @@ import { Helmet } from "react-helmet";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+import ScrollWrapper from "../components/Containers/ScrollWrapper";
 import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
 import Header from "../components/Header/Header";
+import Menu from "../components/Menu/Menu";
 import AboutPage from "../components/pages/AboutPage";
 import HomePage from "../components/pages/HomePage";
 import UploadPage from "../components/pages/UploadPage";
 import WorkPage from "../components/pages/WorkPage";
+import ThemeSwitch from "../components/ThemeSwitch/ThemeSwitch";
 import Loader from "../components/Transition/Loader";
 import { device } from "../styles/breakpoints";
 import { GlobalStyle } from "../styles/global";
-import ScrollWrapper from "../components/Containers/ScrollWrapper";
-import ThemeSwitch from "../components/ThemeSwitch/ThemeSwitch";
-import Menu from "../components/Menu/Menu";
+import Footer from "../components/Footer/Footer";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();
@@ -299,6 +300,7 @@ function App() {
 											<Route path='/upload' element={<UploadPage />} />
 										</Routes>
 									</ContentWrapper>
+									<Footer/>
 								</ScrollWrapper>
 								<ThemeSwitch togglePartyMode={togglePartyMode} />
 							</div>

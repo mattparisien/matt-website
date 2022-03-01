@@ -1,9 +1,18 @@
 import React, { useState, useRef, forwardRef } from "react";
 import Cards from "./Cards";
 import { StyledFooter } from "./styles/StyledFooter";
-import UnorderedList from "../UnorderedList/UnorderedList";
-import { InstagramIcon, LinkedInIcon, GitHubIcon } from "../Vector/Socials";
-import SocialList from "../UnorderedList/SocialList";
+
+import SocialList from "../Lists/SocialList";
+import UnorderedList from "../Lists/UnorderedList";
+import Layout from "../Containers/Layout";
+import Heading from "../Heading/Heading";
+import styled from "styled-components";
+
+const FooterHeading = styled(Heading)`
+	position: absolute;
+	bottom: 100%;
+	padding-bottom: 10rem;
+`;
 
 function Footer(props, ref) {
 	const footerStyle = {
@@ -14,35 +23,19 @@ function Footer(props, ref) {
 	const footerRef = useRef(null);
 
 	return (
-		<StyledFooter
-			className='app-footer'
-			style={footerStyle}
-			ref={(footerRef, ref)}
-		>
-			<div className='heading-wrapper'>
-				<h1>Talk to me.</h1>
-			</div>
-			<div className='footer-copyright'>© Matthew Parisien</div>
-			<SocialList isVertical alignItems={"flex-end"}/>
-			<Cards footerRef={footerRef.current} />
+		<footer className='Footer' data-scroll data-scroll-speed='-8'>
+			<Layout
+				bg='orange'
+				style={footerStyle}
+				ref={(footerRef, ref)}
+				height='40vh'
+			>
+				<FooterHeading>Contact</FooterHeading>
 
-			{/* <div className='footer-bottom'>
-				<div className="email">
-					<a href="mailto:hello@matthewparisien.com">hello@matthewparisien.com</a>
-					</div>
-				<ul className='footer-ul-socials'>
-					<li>
-						<a href='https://instagram.com/matt.parisien'>Instagram</a>
-					</li>
-					<li>
-						<a href='/'>LinkedIn</a>
-					</li>
-					<li>
-						<a href='/'>GitHub</a>
-					</li>
-				</ul>
-			</div> */}
-		</StyledFooter>
+				<div className='footer-copyright'>© Matthew Parisien</div>
+				<SocialList isVertical alignItems={"flex-end"} />
+			</Layout>
+		</footer>
 	);
 }
 

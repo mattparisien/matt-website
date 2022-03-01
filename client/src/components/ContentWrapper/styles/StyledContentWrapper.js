@@ -5,6 +5,7 @@ export const StyledContent = styled.main`
 	position: relative;
 	min-height: 100vh;
 	
+	
 
 	${({ hideContentDefault }) => {
 		return hideContentDefault

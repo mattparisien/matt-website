@@ -113,7 +113,6 @@ function HomePage(props, ref) {
 			text: "Modern Javascript",
 			highlighted: false,
 		},
-
 	];
 
 	const stickyRef = useRef(null);
@@ -137,16 +136,16 @@ function HomePage(props, ref) {
 			<Layout bg='light' height='40vw'>
 				<ParagraphLayout indent indentHeading='about' variant={1}>
 					Full-stack software developer & graphic designer obsessed with digital
-					products and passionate about building fantastic user interfaces.
+					products and passionate about building responsive user interfaces.
 				</ParagraphLayout>
 			</Layout>
 			<Layout bg='light' height='40vw'>
 				<Line />
 				<div className='half-section-wrapper'>
 					<ParagraphLayout indent indentHeading='about' variant={2}>
-						Full-stack software developer & graphic designer obsessed with
-						digital products and passionate about building fantastic user
-						interfaces.
+						Good research leads to effective design and better tech stacks. I
+						draw from daring, innovative references to create smooth, seamless 
+						user experiences. My work never brags, but it sure does speak for itself.
 					</ParagraphLayout>
 				</div>
 			</Layout>
@@ -156,9 +155,7 @@ function HomePage(props, ref) {
 			<Layout bg='light' height='100vw'>
 				<Pills info={pillInfo} />
 			</Layout>
-			<Layout bg='dark'>
-				
-			</Layout>
+			<Layout bg='dark'></Layout>
 		</>
 	);
 }

@@ -5,6 +5,7 @@ import { device, deviceSize } from "../../../styles/breakpoints";
 export const StyledFooter = styled.footer`
 	color: blue;
 	overflow: hidden;
+	z-index: -999;
 	
 
 	ul, .footer-copyright {
