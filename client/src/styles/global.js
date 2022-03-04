@@ -33,12 +33,22 @@ export const GlobalStyle = createGlobalStyle`
 
  * {
 -webkit-font-smoothing: antialiased;
+font-family: 'Haas';
 
  }
 
 
  section {
    transition: 300ms ease;
+ }
+
+ ul {
+   list-style-type: none;
+    
+ }
+
+ a {
+   text-decoration: none;
  }
 
 
