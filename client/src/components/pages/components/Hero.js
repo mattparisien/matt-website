@@ -1,9 +1,6 @@
-import React, { useRef, useEffect, useState } from "react";
-import Section from "../../Section";
-import HeroClipPath from "./HeroClipPath";
-import heroAnim from "../motion/hero";
-import gsap from "gsap";
+import React from "react";
 import Paragraph from "../../Paragraph/Paragraph";
+import Section from "../../Section";
 
 function Hero(props) {
 	return (
