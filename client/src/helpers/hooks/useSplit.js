@@ -1,45 +1,21 @@
-import { useState, useEffect, useRef, useMemo } from "react";
-import gsap from "gsap";
-import SplitText from "gsap/SplitText";
+import { useEffect, useState } from "react";
 import useResize from "./useResize";
-import { split } from "lodash";
-import $ from "jquery";
+import SplitText from "gsap/SplitText";
+import gsap from "gsap";
 
-function useSplit(arrayOfElements, options) {
+function useSplit(refs, options) {
 	const [splitText, setSplitText] = useState(null);
-	const [splitCount, setSplitCount] = useState(0);
-	const [isSplit, setIsSplit] = useState(false);
-	const [chars, setChars] = useState(null);
 	const [windowWidth] = useResize();
-	const [windowWidthChanged, setWindowWidthChanged] = useState(false);
 
 	useEffect(() => {
 		gsap.registerPlugin(SplitText);
-		
-		
-		if (!arrayOfElements.length || !arrayOfElements[0]) {
-			
-			return;
-		}
 
-		if (arrayOfElements.length >= 0 && !isSplit) {
-			const mySplitText = new SplitText(arrayOfElements, options);
-			$(mySplitText.lines).wrap('<div class="line-wrapper"></div>');
-			setIsSplit(true);
+		if (refs[0] && !splitText) {
+			const mySplitText = new SplitText(refs, options);
 			setSplitText(mySplitText);
-			setSplitCount(1);
-			setChars(mySplitText.chars);
 		}
-	}, [arrayOfElements]);
+	}, [windowWidth, refs]);
 
-	useEffect(() => {
-		if (splitText) {
-			setSplitText(splitText.revert().split());
-			// $(splitText.lines).wrap('<div class="line-wrapper"></div>');
-			setSplitCount(prev => prev + 1);
-		}
-	}, [windowWidth]);
-
-	return [isSplit, chars, splitCount];
+	return { splitText };
 }
 export default useSplit;

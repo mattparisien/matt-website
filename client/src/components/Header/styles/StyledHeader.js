@@ -1,7 +1,21 @@
-import styled from "styled-components";
-import { device, deviceSoze } from "../../../styles/breakpoints";
+import styled, { css, keyframes } from "styled-components";
+import { device } from "../../../styles/breakpoints";
+
+let delay = 1;
+
+const revealHeaderAnimation = keyframes`
+	0% {
+		opacity: 0
+	}
+	100% {
+		opacity: 1
+	}
+`;
 
 export const StyledHeader = styled.header`
+
+	height: ${({height}) => height ? height : "80px"};
+
 	.DesktopNav {
 		display: none;
 	}
@@ -16,14 +30,39 @@ export const StyledHeader = styled.header`
 		}
 	}
 
-	.Header__floater {
-		transition: 500ms ease;
-		transform: translateY(${({ $hidden }) => ($hidden ? "-100px" : "0")});
+	.header-logo {
+		opacity: 0;
+		animation: ${({ isHidden }) =>
+			!isHidden
+				? css`
+						${revealHeaderAnimation} 1s ease forwards;
+				  `
+				: ""};
+		animation-delay: ${delay}00ms;
 	}
 
-	${({ theme }) => {
-		return theme.spacing(5, "height");
-	}};
+	li {
+		opacity: 0;
+		animation: ${({ isHidden }) =>
+			!isHidden
+				? css`
+						${revealHeaderAnimation} 1s ease forwards;
+				  `
+				: ""};
+
+		&:nth-of-type(1) {
+			animation-delay: ${(delay += 2)}00ms;
+		}
+
+		&:nth-of-type(2) {
+			animation-delay: ${(delay += 2)}00ms;
+		}
+		&:nth-of-type(3) {
+			animation-delay: ${(delay += 2)}00ms;
+		}
+	}
+
+	
 
 	${({ theme }) => {
 		return theme.typography.setSize(1);

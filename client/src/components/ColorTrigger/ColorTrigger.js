@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import InView from "react-intersection-observer";
-import { ColorContext } from "../../App/App";
+import { ColorContext } from "../App/App";
 
 function ColorTrigger({ children, threshold, background, foreground }) {
 	const { changeColors } = useContext(ColorContext);

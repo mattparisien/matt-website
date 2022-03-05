@@ -4,18 +4,18 @@ import { Helmet } from "react-helmet";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import ScrollWrapper from "../components/Containers/ScrollWrapper";
-import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
-import Footer from "../components/Footer/Footer";
-import Header from "../components/Header/Header";
-import Menu from "../components/Menu/Menu";
-import AboutPage from "../components/pages/AboutPage";
-import HomePage from "../components/pages/HomePage";
-import UploadPage from "../components/pages/UploadPage";
-import WorkPage from "../components/pages/WorkPage";
-import Loader from "../components/Transition/Loader";
-import { device } from "../styles/breakpoints";
-import { GlobalStyle } from "../styles/global";
+import ScrollWrapper from "../Containers/ScrollWrapper";
+import ContentWrapper from "../ContentWrapper/ContentWrapper";
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
+import Menu from "../Menu/Menu";
+import HomePage from "../pages/Home/HomePage";
+import UploadPage from "../pages/About/AboutPage";
+import WorkPage from "../pages/Work/WorkPage";
+import AboutPage from "../pages/About/AboutPage";
+import Loader from "../Transition/Loader";
+import { device } from "../../styles/breakpoints";
+import { GlobalStyle } from "../../styles/global";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();
@@ -137,10 +137,6 @@ function App() {
 		},
 	};
 
-	const togglePartyMode = () => {
-		setPalette(prev => (prev === "primary" ? "secondary" : "primary"));
-	};
-
 	const scrollRef = useRef(null);
 
 	const [state, setState] = useState({
@@ -156,6 +152,10 @@ function App() {
 		menuActive: false,
 		isLoading: false,
 	});
+
+	const [headerHidden, setHeaderHidden] = useState(
+		location.pathname === "/" ? true : false
+	);
 
 	useEffect(() => {
 		//Get essential data
@@ -242,6 +242,10 @@ function App() {
 		setHeaderColor(fg);
 	};
 
+	const toggleHeaderShow = () => {
+		setHeaderHidden(false);
+	};
+
 	const toggleLoading = () => {
 		setState(prev => ({ ...prev, isLoading: !state.isLoading }));
 	};
@@ -282,6 +286,7 @@ function App() {
 									ref={headerRef}
 									isMenuActive={state.menuActive}
 									toggleMenu={toggleMenuActivity}
+									hidden={headerHidden}
 								/>
 								<Menu isOpen={state.menuActive} />
 
@@ -293,7 +298,10 @@ function App() {
 										/>
 
 										<Routes>
-											<Route path='/' element={<HomePage />} />
+											<Route
+												path='/'
+												element={<HomePage showHeader={toggleHeaderShow} />}
+											/>
 											<Route path='/about' element={<AboutPage />} />
 											<Route path='/work' element={<WorkPage />} />
 											<Route path='/upload' element={<UploadPage />} />

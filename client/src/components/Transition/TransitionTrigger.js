@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Link from "../Link/Link";
-import { LoadingContext } from "../../App/App";
+import { LoadingContext } from "../App/App";
 
 function TransitionTrigger(props) {
 	const [isTransitioning, setTransitioning] = useState(false);

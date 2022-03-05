@@ -23,23 +23,31 @@ const StyledContainer = styled(Container)`
 	}
 
 	@media ${device.mobileL} {
-		padding-left: 2.3rem;
-		padding-right: 2.3rem;
+		padding-left: 1.2rem;
+		padding-right: 1.2rem;
 	}
 
 	@media ${device.tablet} {
-		padding-left: 3rem;
-		padding-right: 3rem;
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
 	}
 
 	@media ${device.laptop} {
-		padding-left: 8rem;
-		padding-right: 8rem;
+		padding-left: 1.9rem;
+		padding-right: 1.9rem;
 	}
 
 	@media ${device.laptopL} {
-		padding-left: 9rem;
-		padding-right: 9rem;
+		padding-left: 3rem;
+		padding-right: 3rem;
+	}
+	@media ${device.desktop} {
+		padding-left: 3.7rem;
+		padding-right: 3.7rem;
+	}
+	@media ${device.desktopL} {
+		padding-left: 3.8rem;
+		padding-right: 3.8rem;
 	}
 `;
 
@@ -53,7 +61,7 @@ function ContainerFluid(props) {
 	};
 
 	return (
-		<StyledContainer maxWidth='xl' {...props} className="ContainerFluid">
+		<StyledContainer maxWidth='none' {...props} className="ContainerFluid">
 			{props.children}
 		</StyledContainer>
 	);

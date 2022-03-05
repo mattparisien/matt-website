@@ -8,34 +8,24 @@ import TransitionTrigger from "../Transition/TransitionTrigger";
 import { useLocation } from "react-router-dom";
 import { Box } from "@material-ui/core";
 import MobileNav from "./Nav/MobileNav";
+import useHeaderSpacing from "../../helpers/hooks/useHeaderSpacing";
 
 function Header(props, ref) {
-	const { headerOffset, isMenuActive, isDefaultContentHidden } = props;
+	const { headerOffset, isMenuActive, hidden } = props;
 	const [innerHeight, setInnerHeight] = useState(null);
-	const [isHeaderHidden, setHeaderHidden] = useState(false);
-
-	// useEffect(() => {
-	// 	scroll &&
-	// 		scroll.on("scroll", e => {
-	// 			if (e.direction === "down" && !isHeaderHidden) {
-	// 				setHeaderHidden(true);
-	// 			} else if (e.direction === "up") {
-	// 				setHeaderHidden(false);
-	// 			}
-	// 		});
-	// }, [scroll]);
+	const [headerHeight] = useHeaderSpacing();
 
 	return (
 		<StyledHeader
-			headerHeight={headerOffset}
 			ref={ref}
-			height={innerHeight}
-			$hidden={isHeaderHidden}
+			
+			isHidden={hidden}
 			className='Header'
+			height={headerHeight}
 		>
-			<Box className='Header__floater' sx={{height: "100%"}}>
+			<Box className='Header__floater' sx={{ height: "100%" }}>
 				<ContainerFluid flex={true}>
-					<Box className='header-logo' >
+					<Box className='header-logo'>
 						<TransitionTrigger to='/' noCircle>
 							<span className='name'>
 								Matt Parisien <span className='copyright-symbol'>©</span>
@@ -44,7 +34,7 @@ function Header(props, ref) {
 						</TransitionTrigger>
 					</Box>
 					<DesktopNav />
-					<MobileNav toggleMenu={props.toggleMenu}/>
+					<MobileNav toggleMenu={props.toggleMenu} />
 				</ContainerFluid>
 			</Box>
 		</StyledHeader>

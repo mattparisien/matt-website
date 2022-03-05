@@ -4,6 +4,8 @@ import Haas from "../assets/fonts/Haas.otf";
 import Konnect from "../assets/fonts/Konnect.woff";
 import { device } from "./breakpoints";
 
+
+
 export const renderResponsiveSizes = object => {
 	return Object.entries(object).map(size => {
 		return `

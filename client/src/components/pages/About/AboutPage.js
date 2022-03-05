@@ -1,13 +1,13 @@
 import React, { useEffect, useContext } from "react";
-import Paragraph from "../Paragraph/Paragraph";
+import Paragraph from "../../Paragraph/Paragraph";
 import { Box } from "@mui/material";
 import styled from "styled-components";
-import Button from "../Button/Button";
-import Line from "../Divider/Line";
-import SocialList from "../Lists/SocialList";
-import Layout from "../Containers/Layout";
-import ParagraphLayout from "../Paragraph/ParagraphLayout";
-import { deviceSize } from "../../styles/breakpoints";
+import Button from "../../Button/Button";
+import Line from "../../Divider/Line";
+import SocialList from "../../Lists/SocialList";
+import Layout from "../../Containers/Layout";
+import ParagraphLayout from "../../Paragraph/ParagraphLayout";
+import { deviceSize } from "../../../styles/breakpoints";
 
 const margin = 4;
 
@@ -32,7 +32,7 @@ const StyledContactBar = styled(Box)`
 	}
 `;
 
-function About() {
+function AboutPage() {
 	const flexStyle = {
 		display: "flex",
 		alignItems: "flex-start",
@@ -80,4 +80,4 @@ function About() {
 	);
 }
 
-export default About;
+export default AboutPage;
