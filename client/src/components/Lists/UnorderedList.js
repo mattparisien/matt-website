@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 import TransitionTrigger from "../Transition/TransitionTrigger";
-import { addHeaderSpacing } from "../../styles/global";
+
 import Link from "../Link/Link";
+import { Box } from "@mui/material";
 
 const StyledUl = styled.ul`
 	${({ theme, height }) => theme.spacing(height, "height")};
@@ -18,8 +19,7 @@ const StyledUl = styled.ul`
 		orientation === "vertical" ? "column" : "row"};
 
 	li {
-
-		${({theme}) => theme.typography.setSize(1)};
+		${({ theme }) => theme.typography.setSize(1)};
 
 		font-family: "Haas";
 		width: 10rem;
@@ -49,7 +49,7 @@ function UnorderedList(props) {
 		<StyledUl className='UnorderedList' {...props}>
 			{props.listItems.map((item, i) => {
 				return (
-					<li className='UnorderedList__item'  key={i}>
+					<li className='UnorderedList__item' key={i}>
 						{!props.noTransition ? (
 							<TransitionTrigger to={item.href}>{item.title}</TransitionTrigger>
 						) : (

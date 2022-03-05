@@ -14,6 +14,7 @@ import Line from "../Divider/Line";
 import ResponsiveGrid from "../Grid/ResponsiveGrid";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import useSplit from "../../helpers/hooks/useSplit";
+import gsap from "gsap";
 
 function HomePage(props, ref) {
 	//Declare refs needed for animation
@@ -23,7 +24,7 @@ function HomePage(props, ref) {
 	const theme = useTheme();
 	const [layoutColor, setLayoutColor] = useState("dark");
 	const { splitText } = useSplit([heading.current], {
-		type: "lines",
+		type: "lines, chars",
 		linesClass: "line",
 		charsClass: "char",
 	});
@@ -33,6 +34,8 @@ function HomePage(props, ref) {
 		top: 0,
 		left: 0,
 	};
+
+	const introTimeline = useRef(gsap.timeline());
 
 	const pillInfo = [
 		{
@@ -128,6 +131,9 @@ function HomePage(props, ref) {
 	const [gridData, setGridData] = useState(null);
 
 	useEffect(() => {
+
+
+
 		if (data && data.software) {
 			const array = data.software.slice(0, 2).map(project => {
 				return {
@@ -141,7 +147,27 @@ function HomePage(props, ref) {
 			});
 			setGridData(() => ({ data: array }));
 		}
-	}, [data]);
+	}, [data, splitText]);
+
+	useEffect(() => {
+		if (splitText && splitText.chars) {
+			introTimeline.current.to(splitText.chars, {
+				y: 0,
+				duration: 1,
+				stagger: 0.05,
+				ease: 'expo.inOut'
+			})
+			.to(splitText.chars, {
+				y: "-100%",
+				duration: 1,
+				stagger: 0.05,
+				ease: 'expo.inOut',
+				onComplete: () => {
+					props.showHeader()
+				}
+			})
+		}
+	}, [splitText])
 
 	const stickyRef = useRef(null);
 
@@ -149,6 +175,13 @@ function HomePage(props, ref) {
 		color: theme.colors.light,
 		fontSize: "20vw",
 		textTransform: "uppercase",
+		lineHeight: "19vw",
+		"& .line": {
+			overflow: "hidden",
+		},
+		"& .char": {
+			transform: "translateY(100%)",
+		},
 	};
 
 	return (

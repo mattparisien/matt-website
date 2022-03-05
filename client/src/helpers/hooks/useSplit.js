@@ -10,11 +10,11 @@ function useSplit(refs, options) {
 	useEffect(() => {
 		gsap.registerPlugin(SplitText);
 
-		if (refs[0]) {
+		if (refs[0] && !splitText) {
 			const mySplitText = new SplitText(refs, options);
 			setSplitText(mySplitText);
 		}
-	}, [windowWidth]);
+	}, [windowWidth, refs]);
 
 	return { splitText };
 }

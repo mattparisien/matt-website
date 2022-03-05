@@ -137,10 +137,6 @@ function App() {
 		},
 	};
 
-	const togglePartyMode = () => {
-		setPalette(prev => (prev === "primary" ? "secondary" : "primary"));
-	};
-
 	const scrollRef = useRef(null);
 
 	const [state, setState] = useState({
@@ -156,6 +152,10 @@ function App() {
 		menuActive: false,
 		isLoading: false,
 	});
+
+	const [headerHidden, setHeaderHidden] = useState(
+		location.pathname === "/" ? true : false
+	);
 
 	useEffect(() => {
 		//Get essential data
@@ -242,6 +242,10 @@ function App() {
 		setHeaderColor(fg);
 	};
 
+	const toggleHeaderShow = () => {
+		setHeaderHidden(false);
+	};
+
 	const toggleLoading = () => {
 		setState(prev => ({ ...prev, isLoading: !state.isLoading }));
 	};
@@ -282,6 +286,7 @@ function App() {
 									ref={headerRef}
 									isMenuActive={state.menuActive}
 									toggleMenu={toggleMenuActivity}
+									hidden={headerHidden}
 								/>
 								<Menu isOpen={state.menuActive} />
 
@@ -293,7 +298,7 @@ function App() {
 										/>
 
 										<Routes>
-											<Route path='/' element={<HomePage />} />
+											<Route path='/' element={<HomePage showHeader={toggleHeaderShow}/>} />
 											<Route path='/about' element={<AboutPage />} />
 											<Route path='/work' element={<WorkPage />} />
 											<Route path='/upload' element={<UploadPage />} />
