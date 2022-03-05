@@ -5,12 +5,11 @@ import Layout from "../../Containers/Layout";
 import { useMediaQuery } from "@material-ui/core";
 import SplitText from "gsap/SplitText";
 import gsap from "gsap";
-import { useTheme } from "styled-components";
 import useSplit from "../../../helpers/hooks/useSplit";
 import useHeaderSpacing from "../../../helpers/hooks/useHeaderSpacing";
 
-function Hero({ data, showHeader }) {
-	const theme = useTheme();
+function Hero({ data, showHeader, theme, matches }) {
+	
 	const heading = useRef(null);
 	const heading2 = useRef(null);
 	const revealer = useRef(null);
@@ -20,7 +19,6 @@ function Hero({ data, showHeader }) {
 	const [featuredProject, setFeaturedProject] = useState(null);
 	const [brandLineShow, setBrandLineShow] = useState(false);
 	const [headerHeight] = useHeaderSpacing();
-	const matches = useMediaQuery("(max-width: 800px)");
 	const [hasPlayed, setHasPlayed] = useState(false);
 	const { splitText } = useSplit([heading.current, heading2.current], {
 		type: "lines, chars",

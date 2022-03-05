@@ -45,6 +45,7 @@ const StyledUl = styled.ul`
 `;
 
 function UnorderedList(props) {
+	console.log(props)
 	return (
 		<StyledUl className='UnorderedList' {...props}>
 			{props.listItems.map((item, i) => {
