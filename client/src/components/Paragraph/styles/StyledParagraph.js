@@ -74,6 +74,7 @@ const paragraphFontSizes = {
 
 export const StyledParagraph = styled.p`
 	
+
 	margin: 0;
 
 	span.spacer {
