@@ -1,6 +1,12 @@
 import { Box } from "@mui/system";
 import gsap from "gsap";
-import React, { forwardRef, useContext, useRef, useState, useEffect } from "react";
+import React, {
+	forwardRef,
+	useContext,
+	useRef,
+	useState,
+	useEffect,
+} from "react";
 import { useTheme } from "styled-components";
 import useHeaderSpacing from "../../../helpers/hooks/useHeaderSpacing";
 import useSplit from "../../../helpers/hooks/useSplit";
@@ -10,15 +16,14 @@ import Line from "../../Divider/Line";
 import ResponsiveGrid from "../../Grid/ResponsiveGrid";
 import ParagraphLayout from "../../Paragraph/ParagraphLayout";
 import Hero from "./Hero";
+import Work from "./Work";
 
 function HomePage(props, ref) {
 	//Declare refs needed for animation
 
 	const data = useContext(DataContext);
 
-	
 	const [layoutColor, setLayoutColor] = useState("dark");
-
 
 	// useEffect(() => {
 	// 	if (data && data.software) {
@@ -127,7 +132,13 @@ function HomePage(props, ref) {
 
 	return (
 		<>
-			<Hero data={data} showHeader={props.showHeader}/>
+			<Hero data={data} showHeader={props.showHeader} />
+			<Layout bg='light' height='auto' fullBleed>
+				<Work
+					projectAmount={data && data.software && data.software.length}
+					projects={data && data.software}
+				/>
+			</Layout>
 			<Layout bg='light' height='auto'>
 				<ParagraphLayout
 					indent
@@ -147,16 +158,12 @@ function HomePage(props, ref) {
 				</ParagraphLayout>
 			</Layout>
 
-			<Layout bg='light' height='auto' fullbleed>
-				<Line />
-			</Layout>
 			<Layout bg={layoutColor} height='auto'>
 				{/* <Pills info={pillInfo} /> */}
 				<ParagraphLayout indent indentHeading={"work"} variant={1}>
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam,
 					placeat?
 				</ParagraphLayout>
-			
 			</Layout>
 			<Layout bg='dark'></Layout>
 		</>

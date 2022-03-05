@@ -10,6 +10,7 @@ import useSplit from "../../../helpers/hooks/useSplit";
 import useHeaderSpacing from "../../../helpers/hooks/useHeaderSpacing";
 
 function Hero({ data, showHeader }) {
+	
 	const theme = useTheme();
 	const heading = useRef(null);
 	const heading2 = useRef(null);

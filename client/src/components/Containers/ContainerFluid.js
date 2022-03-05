@@ -10,12 +10,6 @@ const StyledContainer = styled(Container)`
 	display: ${({ flex }) => (flex ? "flex" : "block")};
 	justify-content: space-between;
 	align-items: center;
-	${({ fullbleed }) =>
-		fullbleed &&
-		`padding: 0 !important;
-	margin: 0 !important;
-	max-width: none;
-	`};
 
 	@media ${device.mobileS} {
 		padding-left: 1.3rem;
@@ -49,19 +43,18 @@ const StyledContainer = styled(Container)`
 		padding-left: 3.8rem;
 		padding-right: 3.8rem;
 	}
+
+	${({ fullbleed }) =>
+		fullbleed &&
+		`padding: 0 !important;
+margin: 0 !important;
+max-width: none;
+`};
 `;
 
 function ContainerFluid(props) {
-	const containerStyle = {
-		position: "relative",
-		height: "100%",
-		display: props.flex ? "flex" : "block",
-		justifyContent: "space-between",
-		alignItems: "center",
-	};
-
 	return (
-		<StyledContainer maxWidth='none' {...props} className="ContainerFluid">
+		<StyledContainer maxWidth='none' {...props} className='ContainerFluid'>
 			{props.children}
 		</StyledContainer>
 	);
