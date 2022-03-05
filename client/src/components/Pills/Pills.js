@@ -8,7 +8,7 @@ const StyledPill = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-family: "Haas";
+	
 	text-transform: uppercase;
 
 	${({ theme }) => theme.spacing(-0.4, ["padding-top"])};

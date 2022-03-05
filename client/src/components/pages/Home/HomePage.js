@@ -129,7 +129,7 @@ function HomePage(props, ref) {
 				theme={theme}
 				matches={matches}
 			/>
-			<Layout bg='light' height='auto' fullBleed>
+			<Layout bg='light' height='auto' fullBleed={true}>
 				<Work
 					projectAmount={data && data.software && data.software.length}
 					projects={data && data.software}

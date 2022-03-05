@@ -17,7 +17,7 @@ function Loader({ isActive }) {
 		zIndex: 9,
 		backgroundColor: theme.colors.dark2,
 		color: theme.colors.light,
-		fontFamily: "Haas",
+		
 		display: isActive ? "flex" : "none",
 		alignItems: "center",
 		justifyContent: "center",
