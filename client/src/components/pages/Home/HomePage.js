@@ -1,27 +1,18 @@
-import { Box } from "@mui/system";
-import gsap from "gsap";
-import React, {
-	forwardRef,
-	useContext,
-	useRef,
-	useState,
-	useEffect,
-} from "react";
+import React, { forwardRef, useContext, useState } from "react";
 import { useTheme } from "styled-components";
-import useHeaderSpacing from "../../../helpers/hooks/useHeaderSpacing";
-import useSplit from "../../../helpers/hooks/useSplit";
 import { DataContext } from "../../App/App";
 import Layout from "../../Containers/Layout";
-import Line from "../../Divider/Line";
-import ResponsiveGrid from "../../Grid/ResponsiveGrid";
 import ParagraphLayout from "../../Paragraph/ParagraphLayout";
 import Hero from "./Hero";
 import Work from "./Work";
+import { useMediaQuery } from "@material-ui/core";
 
 function HomePage(props, ref) {
 	//Declare refs needed for animation
+	const matches = useMediaQuery("(max-width: 800px)");
 
 	const data = useContext(DataContext);
+	const theme = useTheme();
 
 	const [layoutColor, setLayoutColor] = useState("dark");
 
@@ -132,11 +123,18 @@ function HomePage(props, ref) {
 
 	return (
 		<>
-			<Hero data={data} showHeader={props.showHeader} />
+			<Hero
+				data={data}
+				showHeader={props.showHeader}
+				theme={theme}
+				matches={matches}
+			/>
 			<Layout bg='light' height='auto' fullBleed>
 				<Work
 					projectAmount={data && data.software && data.software.length}
 					projects={data && data.software}
+					theme={theme}
+					matches={matches}
 				/>
 			</Layout>
 			<Layout bg='light' height='auto'>

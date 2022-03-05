@@ -12,18 +12,17 @@ const StyledUl = styled(List)`
 	padding: 0;
 
 	li {
-		
 		font-size: 1.3rem;
 		text-transform: uppercase;
 		border-bottom: 1px solid black;
 		transition: 300ms ease;
-		
+
 		a {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 			padding: 0.6rem 0 0.5rem 0;
-			
+
 			.project-category {
 				margin-right: 20vw;
 			}
@@ -33,15 +32,17 @@ const StyledUl = styled(List)`
 			background-color: ${({ theme }) => theme.colors.dark};
 
 			a {
-				
 				color: ${({ theme }) => theme.colors.light} !important;
 			}
 		}
+
+		
 	}
 `;
 
-function Work({ projectAmount, projects }) {
+function Work({ projectAmount, projects, theme }) {
 	const topBar = {
+		padding: "1vw",
 		width: "100%",
 		height: "11vw",
 		display: "flex",
@@ -49,10 +50,19 @@ function Work({ projectAmount, projects }) {
 		borderBottom: "1px solid black",
 		border: "0px",
 		background: "none",
+		transition: "300ms ease",
 		"& h2": {
 			fontSize: "11vw",
+			lineHeight: "9vw",
 			textTransform: "uppercase",
 		},
+		"&:hover": {
+			backgroundColor: theme.colors.dark,
+			color: theme.colors.light
+		},
+		"&:hover .line": {
+			backgroundColor: theme.colors.light
+		}
 	};
 
 	const [formattedProjects, setFormattedProjects] = useState(null);
@@ -88,6 +98,34 @@ function Work({ projectAmount, projects }) {
 		},
 	};
 
+	const filter = {
+		width: "10vw",
+		height: "100%",
+		position: "relative",
+
+		".line": {
+			width: "80%",
+			height: "2px",
+			backgroundColor: "black",
+			position: "absolute",
+			top: "50%",
+			transform: "translateY(-50%)",
+			transition: "300ms ease"
+		},
+
+		".line:nth-of-type(2)": {
+			transform: "rotate(90deg)translateY(-50%)",
+		},
+	};
+
+	const cta = {
+		width: "38vw",
+		display: 'flex',
+		height: "100%",
+		alignItems: "start",
+		justifyContent: "center"
+	}
+
 	const [image, setImage] = useState(null);
 
 	const handleMouseEnter = filename => {
@@ -96,15 +134,19 @@ function Work({ projectAmount, projects }) {
 
 	return (
 		<>
-			<Box className='featured-topBar' sx={topBar} component="button">
+			<Box className='featured-topBar' sx={topBar} component='button'>
 				<Typography variant='h2' component='h2'>
 					{projectAmount}
 				</Typography>
 				<Typography variant='h2' component='h2' sx={{ marginLeft: "27vw" }}>
 					All
 				</Typography>
-				<Box className="">
-
+				<Box className="filter-cta" sx={cta}>
+					<Typography component="span">Filter Projects</Typography>
+				</Box>
+				<Box className='filter-button' sx={filter}>
+					<Box className='line'></Box>
+					<Box className='line'></Box>
 				</Box>
 			</Box>
 			<Box sx={containerStyle}>
