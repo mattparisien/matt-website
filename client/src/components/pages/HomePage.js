@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, {
 	forwardRef,
@@ -6,22 +7,26 @@ import React, {
 	useRef,
 	useState,
 } from "react";
+import { useTheme } from "styled-components";
+import { ColorContext, DataContext } from "../App/App";
 import Layout from "../Containers/Layout";
 import Line from "../Divider/Line";
-import Heading from "../Heading/Heading";
-import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import ResponsiveGrid from "../Grid/ResponsiveGrid";
-import { DataContext, ColorContext } from "../App/App";
+import ParagraphLayout from "../Paragraph/ParagraphLayout";
+import useSplit from "../../helpers/hooks/useSplit";
 
 function HomePage(props, ref) {
 	//Declare refs needed for animation
-	const stickySection = useRef(null);
-	const data = useContext(DataContext);
-	const { changeColors } = useContext(ColorContext);
-	const { revealContent, colors } = props;
-	const [layoutColor, setLayoutColor] = useState("dark");
 
-	const containerStyles = { maxWidth: 2000, margin: "0 auto" };
+	const data = useContext(DataContext);
+	const heading = useRef(null);
+	const theme = useTheme();
+	const [layoutColor, setLayoutColor] = useState("dark");
+	const { splitText } = useSplit([heading.current], {
+		type: "lines",
+		linesClass: "line",
+		charsClass: "char",
+	});
 
 	const imgStyle = {
 		position: "absolute",
@@ -140,6 +145,12 @@ function HomePage(props, ref) {
 
 	const stickyRef = useRef(null);
 
+	const headingStyles = {
+		color: theme.colors.light,
+		fontSize: "20vw",
+		textTransform: "uppercase",
+	};
+
 	return (
 		<>
 			<Layout bg={"dark"} fullbleed={true} hero={true}>
@@ -152,7 +163,9 @@ function HomePage(props, ref) {
 						height: "100%",
 					}}
 				>
-					<Heading>Developer.</Heading>
+					<Typography component='h1' sx={headingStyles} ref={heading}>
+						Matth3w
+					</Typography>
 				</Box>
 			</Layout>
 

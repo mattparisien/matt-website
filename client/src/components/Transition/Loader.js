@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import gsap from "gsap";
 import { useTheme } from "styled-components";
 import { LoadingContext } from "../App/App";
+
 function Loader({ isActive }) {
 	const theme = useTheme();
 	const { toggleLoading } = useContext(LoadingContext);
