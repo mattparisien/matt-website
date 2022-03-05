@@ -4,28 +4,28 @@ import { device } from "../../../styles/breakpoints";
 const paragraphFontSizes = {
 	variant1: {
 		desktopL: {
-			fontSize: "4.4rem",
-			lineHeight: "4.4rem",
+			fontSize: "4.8rem",
+			lineHeight: "4.5rem",
 		},
 		desktop: {
-			fontSize: "4.4rem",
-			lineHeight: "4.4rem",
+			fontSize: "6rem",
+			lineHeight: "6.2rem",
 		},
 		laptopL: {
-			fontSize: "4rem",
-			lineHeight: "4.4rem",
+			fontSize: "5.2rem",
+			lineHeight: "5.1rem",
 		},
 		laptop: {
-			fontSize: "2.8rem",
-			lineHeight: "3.2rem",
+			fontSize: "4.9rem",
+			lineHeight: "4.9rem",
 		},
 		tablet: {
-			fontSize: "2.6rem",
-			lineHeight: "2.8rem",
+			fontSize: "3.8rem",
+			lineHeight: "4rem",
 		},
 		mobileL: {
-			fontSize: "1.8rem",
-			lineHeight: "2rem",
+			fontSize: "3rem",
+			lineHeight: "3rem",
 		},
 		mobileM: {
 			fontSize: "1.5rem",
@@ -77,25 +77,24 @@ export const StyledParagraph = styled.p`
 	margin: 0;
 
 	span.spacer {
-		width: 10rem;
+		width: 35%;
 		display: inline-block;
 	}
 
 	.accent {
-		color: pink;
+		color: hotpink;
 	}
 
 	.line-initial-hidden {
 		transform: translateY(150%);
 		opacity: 0;
-
 	}
 
 	${({ indentHeading, theme }) => {
 		return indentHeading
 			? `.line:nth-of-type(1)::after {
-				content: '${indentHeading}';
-				${theme.typography.setSize(1)};
+				
+				
 				position: absolute;
 				left: 0;
 				top: 0;

@@ -18,51 +18,47 @@ function Paragraph(props) {
 	const [windowWidth, isResized] = useResize();
 	// const timeline = useRef(gsap.timeline());
 
-	useEffect(() => {
-		if (!isSplit && paragraph.current) {
-			const mySplitText = new SplitText(paragraph.current, {
-				type: "lines",
-				linesClass: "line line-initial-hidden",
-			});
-			// const splitTextWrap = new SplitText(paragraph.current, {
-			// 	type: "lines",
-			// 	linesClass: "line-wrapper",
-			// });
-			setIsSplit(true);
-			setSplitText(mySplitText);
+	// useEffect(() => {
+	// 	if (!isSplit && paragraph.current) {
+	// 		const mySplitText = new SplitText(paragraph.current, {
+	// 			type: "lines",
+	// 			linesClass: "line line-initial-hidden",
+	// 		});
+	// 		// const splitTextWrap = new SplitText(paragraph.current, {
+	// 		// 	type: "lines",
+	// 		// 	linesClass: "line-wrapper",
+	// 		// });
+	// 		setIsSplit(true);
+	// 		setSplitText(mySplitText);
 
-			// setSplitWrap(splitTextWrap);
-		}
+	// 		// setSplitWrap(splitTextWrap);
+	// 	}
 
-		if (isSplit && intersecting) {
-			gsap.to(splitText.lines, {
-				y: 0,
-				opacity: 1,
-				stagger: 0.05,
-				duration: 1,
-				ease: "power2.out",
-				delay: 0.2,
-			});
-		}
-	}, [isSplit, windowWidth, intersecting, splitText]);
+	// 	if (isSplit && intersecting) {
+	// 		gsap.to(splitText.lines, {
+	// 			y: 0,
+	// 			opacity: 1,
+	// 			stagger: 0.05,
+	// 			duration: 1,
+	// 			ease: "power2.out",
+	// 			delay: 0.2,
+	// 		});
+	// 	}
+	// }, [isSplit, windowWidth, intersecting, splitText]);
 
-	useEffect(() => {
-		if (splitText && !splitWrap) {
-			$(splitText.lines).wrap("<div></div>");
-			setSplitWrap(true);
-		}
+	// useEffect(() => {
+	// 	if (splitText && !splitWrap) {
+	// 		$(splitText.lines).wrap("<div></div>");
+	// 		setSplitWrap(true);
+	// 	}
 
-		splitText && setSplitText(splitText.revert().split());
-	}, [windowWidth, splitText, splitWrap]);
+	// 	splitText && setSplitText(splitText.revert().split());
+	// }, [windowWidth, splitText, splitWrap]);
 
 	const paragraphClass = "Paragraph";
 
 	return (
-		<InView
-			className='paragraph-view-wrapper'
-			onChange={(inView, entry) => inView && setIntersecting(entry.target)}
-			style={{ width: "100%" }}
-		>
+		<>
 			{props.variant === 1 ? (
 				<StyledVariant1Paragraph
 					className={paragraphClass}
@@ -81,7 +77,7 @@ function Paragraph(props) {
 					ref={paragraph}
 				></StyledVariant2Paragraph>
 			)}
-		</InView>
+		</>
 	);
 }
 

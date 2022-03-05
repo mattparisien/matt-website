@@ -9,7 +9,7 @@ const StyledParagraphWrapper = styled(Box)`
 	width: 100%;
 	display: flex;
 	align-items: ${({ variant }) => (variant === 2 ? "start" : "center")};
-	justify-content: center;
+	justify-content: ${({justify}) => justify ? justify : "center"};
 
 	p {
 		${({ theme }) => theme.spacing(2, "margin-top")};
