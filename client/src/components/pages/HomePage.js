@@ -22,10 +22,13 @@ function HomePage(props, ref) {
 	const data = useContext(DataContext);
 	const heading = useRef(null);
 	const heading2 = useRef(null);
+	const revealer = useRef(null);
 	const brandLine = useRef(null);
 	const introTimeline = useRef(gsap.timeline());
 	const theme = useTheme();
 	const [layoutColor, setLayoutColor] = useState("dark");
+	const [featuredProject, setFeaturedProject] = useState(null);
+	const [brandLineShow, setBrandLineShow] = useState(false);
 	const { splitText } = useSplit([heading.current, heading2.current], {
 		type: "lines, chars",
 		linesClass: "line",
@@ -133,6 +136,9 @@ function HomePage(props, ref) {
 
 	useEffect(() => {
 		if (data && data.software) {
+			const featuredProj = data.software[1];
+			setFeaturedProject(featuredProj);
+
 			const array = data.software.slice(0, 2).map(project => {
 				return {
 					id: project.id,
@@ -163,22 +169,46 @@ function HomePage(props, ref) {
 					duration: 1,
 					stagger: 0.05,
 					ease: "expo.inOut",
-					onComplete: () => {
-						props.showHeader();
-					},
 				})
-				.to(secondHeadingChars, {
-					y: 0,
-					duration: 1,
-					stagger: 0.05,
-					ease: "expo.inOut",
-				}, 1.2);
+
+				.to(
+					secondHeadingChars,
+					{
+						y: 0,
+						duration: 1,
+						stagger: 0.05,
+						ease: "expo.inOut",
+						onStart: () => {
+							setBrandLineShow(true);
+							props.showHeader();
+						},
+					},
+					1.2
+				)
+				.to(
+					revealer.current,
+					{
+						y: "100%",
+						ease: "circ.inOut",
+						duration: 2,
+					},
+					1.5
+				)
+				.set(revealer.current, {
+					display: "none",
+				});
 		}
 	}, [splitText]);
 
 	const stickyRef = useRef(null);
 
 	const headingStyles = {
+		zIndex: 1,
+		position: "absolute",
+		top: "50%",
+		left: "50%",
+		transform: "translate(-50%, -50%)",
+		width: "100%",
 		color: theme.colors.light,
 		fontSize: "20vw",
 		textTransform: "uppercase",
@@ -193,9 +223,7 @@ function HomePage(props, ref) {
 
 	const heading2Styles = {
 		color: theme.colors.light,
-		position: "absolute",
-		bottom: 0,
-		left: 0,
+
 		fontSize: "10vw",
 		textTransform: "uppercase",
 		lineHeight: "9vw",
@@ -208,23 +236,55 @@ function HomePage(props, ref) {
 	};
 
 	const brandLineStyles = {
-		position: "absolute",
-		bottom: 0,
-		right: 0,
 		width: "250px",
 		textTransform: "uppercase",
 		fontSize: "0.8rem",
 		lineHeight: "0.8rem",
 		textIndent: "30%",
+		opacity: brandLineShow ? 1 : 0,
+		transition: "300ms ease",
+	};
+
+	console.log(data);
+
+	const featured = {
+		backgroundColor: "blue",
+		width: "100%",
+		height: "100%",
+		position: "relative",
+		overflow: "hidden",
+		"& img": {
+			width: "100%",
+			height: "100%",
+			objectFit: "cover",
+			objectPosition: "left"
+		},
+		"& .revealer": {
+			width: "100%",
+			height: "100%",
+			backgroundColor: theme.colors.dark,
+			position: "absolute",
+			top: 0,
+			left: 0,
+			zIndex: 0,
+		},
+	};
+
+	const heroBottom = {
+		display: "flex",
+		alignItems: "end",
+		justifyContent: "space-between",
+		width: "100%",
 	};
 
 	return (
 		<>
-			<Layout bg={"dark"} fullbleed={true} hero={true}>
+			<Layout bg={"dark"} hero={true}>
 				<Box
 					className='hero__inner'
 					sx={{
 						display: "flex",
+						flexDirection: "column-reverse",
 						alignItems: "center",
 						justifyContent: "center",
 						height: "100%",
@@ -233,17 +293,29 @@ function HomePage(props, ref) {
 					<Typography component='h1' sx={headingStyles} ref={heading}>
 						Matth3w
 					</Typography>
-					<Typography component='h3' sx={heading2Styles} ref={heading2}>
-						Matth3w
-					</Typography>
-					<Typography
-						component='span'
-						sx={brandLineStyles}
-						ref={brandLine}
-						p={2}
-					>
-						Full-Stack developer based in the city of Montreal, Canada.
-					</Typography>
+					<Box className='hero-bottom-bar' sx={heroBottom}>
+						<Typography component='h3' sx={heading2Styles} ref={heading2}>
+							Matth3w
+						</Typography>
+						<Typography
+							component='span'
+							sx={brandLineStyles}
+							ref={brandLine}
+							p={2}
+						>
+							Full-Stack developer based in the city of Montreal, Canada.
+						</Typography>
+					</Box>
+					<Box className='featured-work-wrapper' sx={featured}>
+						<img
+							src={`${process.env.REACT_APP_API_URL}/images/${
+								featuredProject && featuredProject.image
+									? featuredProject.image.filename
+									: ""
+							}`}
+						></img>
+						<div className='revealer' ref={revealer}></div>
+					</Box>
 				</Box>
 			</Layout>
 
