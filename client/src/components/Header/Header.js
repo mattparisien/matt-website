@@ -8,18 +8,20 @@ import TransitionTrigger from "../Transition/TransitionTrigger";
 import { useLocation } from "react-router-dom";
 import { Box } from "@material-ui/core";
 import MobileNav from "./Nav/MobileNav";
+import useHeaderSpacing from "../../helpers/hooks/useHeaderSpacing";
 
 function Header(props, ref) {
 	const { headerOffset, isMenuActive, hidden } = props;
 	const [innerHeight, setInnerHeight] = useState(null);
+	const [headerHeight] = useHeaderSpacing();
 
 	return (
 		<StyledHeader
-			headerHeight={headerOffset}
 			ref={ref}
-			height={innerHeight}
+			
 			isHidden={hidden}
 			className='Header'
+			height={headerHeight}
 		>
 			<Box className='Header__floater' sx={{ height: "100%" }}>
 				<ContainerFluid flex={true}>

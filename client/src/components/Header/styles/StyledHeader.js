@@ -13,6 +13,9 @@ const revealHeaderAnimation = keyframes`
 `;
 
 export const StyledHeader = styled.header`
+
+	height: ${({height}) => height ? height : "80px"};
+
 	.DesktopNav {
 		display: none;
 	}
@@ -59,9 +62,7 @@ export const StyledHeader = styled.header`
 		}
 	}
 
-	${({ theme }) => {
-		return theme.spacing(5, "height");
-	}};
+	
 
 	${({ theme }) => {
 		return theme.typography.setSize(1);

@@ -298,7 +298,10 @@ function App() {
 										/>
 
 										<Routes>
-											<Route path='/' element={<HomePage showHeader={toggleHeaderShow}/>} />
+											<Route
+												path='/'
+												element={<HomePage showHeader={toggleHeaderShow} />}
+											/>
 											<Route path='/about' element={<AboutPage />} />
 											<Route path='/work' element={<WorkPage />} />
 											<Route path='/upload' element={<UploadPage />} />

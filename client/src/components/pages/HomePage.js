@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box, textTransform } from "@mui/system";
 import React, {
 	forwardRef,
 	useContext,
@@ -15,14 +15,18 @@ import ResponsiveGrid from "../Grid/ResponsiveGrid";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import useSplit from "../../helpers/hooks/useSplit";
 import gsap from "gsap";
+import useHeaderSpacing from "../../helpers/hooks/useHeaderSpacing";
+import { useMediaQuery } from "@material-ui/core";
 
 function HomePage(props, ref) {
 	//Declare refs needed for animation
 
+	const [headerHeight] = useHeaderSpacing();
 	const data = useContext(DataContext);
 	const heading = useRef(null);
 	const heading2 = useRef(null);
 	const revealer = useRef(null);
+	revealer.current = [];
 	const brandLine = useRef(null);
 	const introTimeline = useRef(gsap.timeline());
 	const theme = useTheme();
@@ -132,11 +136,14 @@ function HomePage(props, ref) {
 		},
 	];
 
+	const [hasPlayed, setHasPlayed] = useState(false);
+
 	const [gridData, setGridData] = useState(null);
+	const matches = useMediaQuery("(max-width: 800px)");
 
 	useEffect(() => {
 		if (data && data.software) {
-			const featuredProj = data.software[1];
+			const featuredProj = data.software.slice(0, matches ? 1 : 2);
 			setFeaturedProject(featuredProj);
 
 			const array = data.software.slice(0, 2).map(project => {
@@ -151,10 +158,11 @@ function HomePage(props, ref) {
 			});
 			setGridData(() => ({ data: array }));
 		}
-	}, [data, splitText]);
+	}, [data, splitText, matches]);
 
 	useEffect(() => {
-		if (splitText && splitText.chars) {
+		if (splitText && splitText.chars && !hasPlayed && revealer.current[0]) {
+			setHasPlayed(true);
 			const firstHeadingChars = splitText.chars.slice(0, 7);
 			const secondHeadingChars = splitText.chars.slice(7, 14);
 			introTimeline.current
@@ -190,6 +198,7 @@ function HomePage(props, ref) {
 					{
 						y: "100%",
 						ease: "circ.inOut",
+						stagger: 0.1,
 						duration: 2,
 					},
 					1.5
@@ -198,9 +207,9 @@ function HomePage(props, ref) {
 					display: "none",
 				});
 		}
-	}, [splitText]);
 
-	const stickyRef = useRef(null);
+		console.log(revealer.current);
+	}, [splitText, revealer.current]);
 
 	const headingStyles = {
 		zIndex: 1,
@@ -223,10 +232,10 @@ function HomePage(props, ref) {
 
 	const heading2Styles = {
 		color: theme.colors.light,
-
-		fontSize: "10vw",
+		fontSize: matches ? "18.98vw" : "10vw",
+		letterSpacing: "-1.4px",
 		textTransform: "uppercase",
-		lineHeight: "9vw",
+		lineHeight: matches ? "18vw" : "9vw",
 		"& .line": {
 			overflow: "hidden",
 		},
@@ -236,28 +245,54 @@ function HomePage(props, ref) {
 	};
 
 	const brandLineStyles = {
-		width: "250px",
+		width: matches ? "100%" : "250px",
 		textTransform: "uppercase",
 		fontSize: "0.8rem",
 		lineHeight: "0.8rem",
-		textIndent: "30%",
+		textIndent: !matches && "30%",
 		opacity: brandLineShow ? 1 : 0,
 		transition: "300ms ease",
 	};
 
-	console.log(data);
-
 	const featured = {
 		backgroundColor: "blue",
 		width: "100%",
-		height: "100%",
+		height: "34vw",
 		position: "relative",
 		overflow: "hidden",
+		display: "flex",
+		flexDirection: matches ? "column" : "row",
+		marginTop: headerHeight,
+		"& .project-wrapper": {
+			width: "50%",
+			height: "100%",
+		},
+		"& .project-wrapper:hover .cta span": {
+			transform: 'translateY(0)',
+			opacity: 1,
+		},
 		"& img": {
 			width: "100%",
-			height: "100%",
+			height: "90%",
 			objectFit: "cover",
-			objectPosition: "left"
+			objectPosition: "left",
+			position: "relative",
+		},
+		"& .cta": {
+			height: "10%",
+			width: "100%",
+			backgroundColor: "red",
+			display: "flex",
+			alignItems: "center",
+			justifyContent: "end",
+			textTransform: "uppercase",
+			fontSize: "0.8rem",
+			overflow: "hidden",
+			"& span": {
+				transition: "500ms ease",
+				transform: "translateY(-110%)",
+				opacity: 0,
+			},
 		},
 		"& .revealer": {
 			width: "100%",
@@ -272,9 +307,16 @@ function HomePage(props, ref) {
 
 	const heroBottom = {
 		display: "flex",
-		alignItems: "end",
-		justifyContent: "space-between",
+		alignItems: matches ? "start" : "end",
+		flexDirection: matches ? "column" : "row",
+		justifyContent: matches ? "center" : "space-between",
 		width: "100%",
+	};
+
+	const addToRevealerRefs = el => {
+		if (el && !revealer.current.includes(el)) {
+			revealer.current.push(el);
+		}
 	};
 
 	return (
@@ -286,7 +328,7 @@ function HomePage(props, ref) {
 						display: "flex",
 						flexDirection: "column-reverse",
 						alignItems: "center",
-						justifyContent: "center",
+						justifyContent: "space-between",
 						height: "100%",
 					}}
 				>
@@ -301,20 +343,30 @@ function HomePage(props, ref) {
 							component='span'
 							sx={brandLineStyles}
 							ref={brandLine}
-							p={2}
+							pr={2}
+							pb={2}
 						>
 							Full-Stack developer based in the city of Montreal, Canada.
 						</Typography>
 					</Box>
 					<Box className='featured-work-wrapper' sx={featured}>
-						<img
-							src={`${process.env.REACT_APP_API_URL}/images/${
-								featuredProject && featuredProject.image
-									? featuredProject.image.filename
-									: ""
-							}`}
-						></img>
-						<div className='revealer' ref={revealer}></div>
+						{featuredProject &&
+							featuredProject[0] &&
+							featuredProject.map(proj => {
+								return (
+									<>
+										<a className='project-wrapper'>
+											<img
+												src={`${process.env.REACT_APP_API_URL}/images/${proj.image.filename}`}
+											></img>
+											<div className='revealer' ref={addToRevealerRefs}></div>
+											<Box className='cta'>
+												<Box component='span'>View project</Box>
+											</Box>
+										</a>
+									</>
+								);
+							})}
 					</Box>
 				</Box>
 			</Layout>

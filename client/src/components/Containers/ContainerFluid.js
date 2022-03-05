@@ -23,8 +23,8 @@ const StyledContainer = styled(Container)`
 	}
 
 	@media ${device.mobileL} {
-		padding-left: 2.3rem;
-		padding-right: 2.3rem;
+		padding-left: 1.2rem;
+		padding-right: 1.2rem;
 	}
 
 	@media ${device.tablet} {
