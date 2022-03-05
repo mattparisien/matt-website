@@ -1,7 +1,7 @@
 import React, { useRef, useState, useContext } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { LoadingContext } from "../../App/App";
+import { LoadingContext } from "../App/App";
 import { renderResponsiveSizes } from "../../styles/global";
 
 const buttonSizes = {

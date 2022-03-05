@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import Layout from "../Containers/Layout";
 import { Box } from "@mui/material";
 import ResponsiveGrid from "../Grid/ResponsiveGrid";
-import { DataContext } from "../../App/App";
+import { DataContext } from "../App/App";
 import Line from "../Divider/Line";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import UnorderedList from "../Lists/UnorderedList";

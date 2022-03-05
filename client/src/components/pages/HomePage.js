@@ -6,13 +6,12 @@ import React, {
 	useRef,
 	useState,
 } from "react";
-import { ColorContext } from "../../App/App";
 import Layout from "../Containers/Layout";
 import Line from "../Divider/Line";
 import Heading from "../Heading/Heading";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import ResponsiveGrid from "../Grid/ResponsiveGrid";
-import { DataContext } from "../../App/App";
+import { DataContext, ColorContext } from "../App/App";
 
 function HomePage(props, ref) {
 	//Declare refs needed for animation
