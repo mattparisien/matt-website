@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../Containers/Layout";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { Typography } from "@mui/material";
 import { textTransform } from "@mui/system";
 import UnorderedList from "../../Lists/UnorderedList";
 import styled from "styled-components";
 import { List } from "@mui/material";
+import ContainerFluid from "../../Containers/ContainerFluid";
 
 const StyledUl = styled(List)`
 	width: 100%;
@@ -13,8 +14,6 @@ const StyledUl = styled(List)`
 	display: block;
 
 	li {
-		font-size: 1.3rem;
-		text-transform: uppercase;
 		border-bottom: 1px solid black;
 		transition: 300ms ease;
 		height: ${({ listItemHeight }) => listItemHeight};
@@ -24,6 +23,7 @@ const StyledUl = styled(List)`
 		a {
 			height: 100%;
 			display: flex;
+
 			align-items: ${({ matches }) => (matches ? "start" : "center")};
 			justify-content: space-between;
 			padding: ${({ matches }) => (matches ? "0" : "0.6rem 0 0.5rem 0")};
@@ -68,6 +68,7 @@ function Work({ projectAmount, projects, theme, matches }) {
 	};
 
 	const [formattedProjects, setFormattedProjects] = useState(null);
+	const [hasFilterClicked, setFilterClicked] = useState(false);
 
 	useEffect(() => {
 		if (projects) {
@@ -89,8 +90,12 @@ function Work({ projectAmount, projects, theme, matches }) {
 
 		"& .desktop-image-container": {
 			width: "51vw",
+			height: "25vw",
 			overflow: "hidden",
 			display: matches ? "none" : "block",
+			position: "sticky",
+			top: 0,
+			left: 0,
 		},
 		"& img": {
 			width: "100%",
@@ -104,6 +109,10 @@ function Work({ projectAmount, projects, theme, matches }) {
 		width: "10vw",
 		height: "100%",
 		position: "relative",
+		transform: `rotate(${hasFilterClicked ? "45deg" : "-deg"})`,
+		transformOrigin: "center",
+		transition: "300ms ease",
+		
 
 		".line": {
 			width: "80%",
@@ -111,7 +120,7 @@ function Work({ projectAmount, projects, theme, matches }) {
 			backgroundColor: "black",
 			position: "absolute",
 			top: "50%",
-			transform: "translateY(-50%)",
+			transform: `translateY(-50%)`,
 			transition: "300ms ease",
 		},
 
@@ -138,8 +147,11 @@ function Work({ projectAmount, projects, theme, matches }) {
 		alignItems: "start",
 		"& .project-category": {
 			textTransform: matches && "capitalize",
-		}
-	}
+		},
+		"& .project-title": {
+			textTransform: "uppercase",
+		},
+	};
 
 	const [image, setImage] = useState(null);
 
@@ -147,9 +159,19 @@ function Work({ projectAmount, projects, theme, matches }) {
 		setImage(`${process.env.REACT_APP_API_URL}/images/${filename}`);
 	};
 
+	const handleTopBarClick = e => {
+		e.preventDefault();
+		setFilterClicked(hasFilterClicked ? false : true);
+	};
+
 	return (
 		<>
-			<Box className='featured-topBar' sx={topBar} component='button'>
+			<Box
+				className='featured-topBar'
+				sx={topBar}
+				component='button'
+				onClick={handleTopBarClick}
+			>
 				<Typography variant='h2' component='h2'>
 					{projectAmount}
 				</Typography>
@@ -164,51 +186,70 @@ function Work({ projectAmount, projects, theme, matches }) {
 					<Box className='line'></Box>
 				</Box>
 			</Box>
-			<Box sx={containerStyle}>
-				<Box
-					className='desktop-image-container'
-					sx={{
-						backgroundImage: `url(${image})`,
-						backgroundPosition: "left",
-						backgroundSize: "cover",
-					}}
-				></Box>
-				<StyledUl listItemHeight={matches ? "15vw" : "auto"} matches={matches}>
-					{projects &&
-						projects.map(proj => {
-							return (
-								<li
-									key={proj.id}
-									onMouseEnter={() => handleMouseEnter(proj.image.filename)}
-									onMouseLeave={() => setImage(null)}
-								>
-									<a href={proj.url}>
-										<Box
-											className='mobile-image-container'
-											sx={{
-												width: "30vw",
-												height: "100%",
-												backgroundImage: `url(${process.env.REACT_APP_API_URL}/images/${proj.image.filename})`,
-												backgroundPosition: "left",
-												backgroundSize: "cover",
-												display: matches ? "block" : "none",
-											}}
-										></Box>
-										<Box className="project-info-wrapper" sx={infoWrapper}>
-											<Typography className='project-title'>
-												{proj.name}
-											</Typography>
+			<ContainerFluid>
+				<Box sx={containerStyle}>
+					<Box
+						className='desktop-image-container'
+						sx={{
+							backgroundImage: `url(${image})`,
+							backgroundPosition: "left",
+							backgroundSize: "cover",
+						}}
+					></Box>
+					<StyledUl
+						listItemHeight={matches ? "15vw" : "auto"}
+						matches={matches}
+					>
+						{projects &&
+							projects.map(proj => {
+								return (
+									<li
+										key={proj.id}
+										onMouseEnter={() => handleMouseEnter(proj.image.filename)}
+										onMouseLeave={() => setImage(null)}
+									>
+										<a href={proj.url}>
+											<Box
+												className='mobile-image-container'
+												sx={{
+													width: "30vw",
+													height: "100%",
+													backgroundImage: `url(${process.env.REACT_APP_API_URL}/images/${proj.image.filename})`,
+													backgroundPosition: "left",
+													backgroundSize: "cover",
+													display: matches ? "block" : "none",
+												}}
+											></Box>
+											<Box className='project-info-wrapper' sx={infoWrapper}>
+												<p
+													className='project-title'
+													style={{
+														fontSize: "1.4rem",
+														letterSpacing: "-0.2px",
+														margin: 0,
+													}}
+												>
+													{proj.name}
+												</p>
 
-											<Typography className='project-category'>
-												Software
-											</Typography>
-										</Box>
-									</a>
-								</li>
-							);
-						})}
-				</StyledUl>
-			</Box>
+												<p
+													className='project-category'
+													style={{
+														fontSize: "1.4rem",
+														letterSpacing: "-0.9px",
+														margin: "0 21.9vw 0 0",
+													}}
+												>
+													Software
+												</p>
+											</Box>
+										</a>
+									</li>
+								);
+							})}
+					</StyledUl>
+				</Box>
+			</ContainerFluid>
 		</>
 	);
 }

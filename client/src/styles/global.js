@@ -2,9 +2,8 @@ import { createGlobalStyle } from "styled-components";
 import DefaultCursor from "../assets/images/cursor-default-01.svg";
 import Haas from "../assets/fonts/Haas.otf";
 import Konnect from "../assets/fonts/Konnect.woff";
+import NeueMtl from "../assets/fonts/Montreal.otf";
 import { device } from "./breakpoints";
-
-
 
 export const renderResponsiveSizes = object => {
 	return Object.entries(object).map(size => {
@@ -33,7 +32,7 @@ export const GlobalStyle = createGlobalStyle`
 
  * {
 -webkit-font-smoothing: antialiased;
-font-family: 'Haas';
+font-family: 'Neue Mtl';
 
  }
 
@@ -57,9 +56,6 @@ font-family: 'Haas';
     margin: 0;
   }
 
-  p, a:not(li a) {
-    font-family: 'Haas';
-  }
 
 
 
@@ -78,8 +74,8 @@ font-family: 'Haas';
 
 
   @font-face {
-    font-family: 'Haas';
-    src: url(${Haas}) format('woff');
+    font-family: 'Neue Mtl';
+    src: url(${NeueMtl}) format('woff');
   }
 
   @font-face {
@@ -96,17 +92,14 @@ font-family: 'Haas';
     color: inherit;
   };
 
-  button {
-    font-family: 'Opposit';
-  };
+  
+  
   
   h1, h2 {
     font-family: 'FK';
   }
 
-  p {
-    font-family: 'Opposit';
-  }
+
 
   /*! locomotive-scroll v4.1.3 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
 html.has-scroll-smooth {

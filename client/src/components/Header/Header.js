@@ -18,7 +18,6 @@ function Header(props, ref) {
 	return (
 		<StyledHeader
 			ref={ref}
-			
 			isHidden={hidden}
 			className='Header'
 			height={headerHeight}
@@ -33,7 +32,7 @@ function Header(props, ref) {
 							<span className='role'>Web developer</span>
 						</TransitionTrigger>
 					</Box>
-					<DesktopNav />
+
 					<MobileNav toggleMenu={props.toggleMenu} />
 				</ContainerFluid>
 			</Box>

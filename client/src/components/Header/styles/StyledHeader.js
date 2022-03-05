@@ -16,19 +16,7 @@ export const StyledHeader = styled.header`
 
 	height: ${({height}) => height ? height : "80px"};
 
-	.DesktopNav {
-		display: none;
-	}
 
-	@media ${device.laptop} {
-		.MobileNav {
-			display: none;
-		}
-
-		.DesktopNav {
-			display: block;
-		}
-	}
 
 	.header-logo {
 		opacity: 0;
@@ -73,16 +61,20 @@ export const StyledHeader = styled.header`
 	transition: transform 500ms ease;
 	z-index: -1;
 	color: ${({ theme }) => theme.colors[theme.components.header.styles.color]};
-
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100vw;
 
-	.top,
-	.bottom {
+	.circle {
+		transition: 500ms ease;
 		background-color: ${({ theme }) =>
 			theme.colors[theme.components.header.styles.color]};
+	}
+
+	.burger::before, .burger::after {
+		background-color: ${({ theme }) =>
+		theme.colors[theme.components.header.styles.color === 'light' ? 'dark' : 'light']};
 	}
 
 	.LinkCircle path {
@@ -121,7 +113,7 @@ export const StyledHeader = styled.header`
 			top: 0;
 			display: block;
 			font-size: 0.7rem;
-			font-family: "Haas";
+			
 		}
 	}
 `;

@@ -43,7 +43,7 @@ const StyledRectangleButton = styled.button`
 	background-color: ${({ theme, naked }) => theme.colors.red};
 	color: ${({ theme, naked }) =>
 		naked ? theme.colors.dark : theme.colors.light};
-	font-family: "Haas";
+	
 	text-decoration: none;
 	outline: none;
 	border: 0px;

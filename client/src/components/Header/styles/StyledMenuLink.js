@@ -7,7 +7,7 @@ export const StyledMenuLink = styled.a`
 	top: 0;
 	right: 0;
 	padding: 2rem;
-	font-family: "Haas";
+	
 	z-index: 9999999;
 	color: ${({ theme, isMenuActive, isFooterIntersecting }) =>
 		isMenuActive || isFooterIntersecting

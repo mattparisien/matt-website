@@ -11,7 +11,7 @@ const StyledHeading = styled.h2`
 	margin: 0;
 
 	letter-spacing: -0.5vw;
-	font-family: Haas;
+	
 	font-weight: lighter;
 	width: 100%;
 	text-align: center;
