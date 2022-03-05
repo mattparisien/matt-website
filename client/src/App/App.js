@@ -13,7 +13,6 @@ import AboutPage from "../components/pages/AboutPage";
 import HomePage from "../components/pages/HomePage";
 import UploadPage from "../components/pages/UploadPage";
 import WorkPage from "../components/pages/WorkPage";
-import ThemeSwitch from "../components/ThemeSwitch/ThemeSwitch";
 import Loader from "../components/Transition/Loader";
 import { device } from "../styles/breakpoints";
 import { GlobalStyle } from "../styles/global";
@@ -300,9 +299,8 @@ function App() {
 											<Route path='/upload' element={<UploadPage />} />
 										</Routes>
 									</ContentWrapper>
-									<Footer/>
+									<Footer />
 								</ScrollWrapper>
-								<ThemeSwitch togglePartyMode={togglePartyMode} />
 							</div>
 						</LocomotiveScrollProvider>
 					</LoadingContext.Provider>

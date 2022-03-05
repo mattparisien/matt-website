@@ -1,4 +1,5 @@
-import { Box, CircularProgress, stepClasses } from "@mui/material";
+import { useMediaQuery } from "@material-ui/core";
+import { Box, CircularProgress } from "@mui/material";
 import gsap from "gsap";
 import $ from "jquery";
 import React, { useEffect, useState } from "react";
@@ -6,8 +7,7 @@ import InView from "react-intersection-observer";
 import styled from "styled-components";
 import { useProgressiveImage } from "../../helpers/hooks/useProgressiveImage";
 import { device } from "../../styles/breakpoints";
-import { Grid } from "@mui/material";
-import { useMediaQuery } from "@material-ui/core";
+import { useTheme } from "styled-components";
 
 const Item = styled(Box)`
 	background-color: blue;
@@ -49,7 +49,7 @@ const Item = styled(Box)`
 		justify-content: center;
 		color: ${({ theme }) => theme.colors.light};
 		z-index: 1;
-		transition: 300ms ease;
+
 		opacity: 0;
 		text-transform: capitalize;
 
@@ -64,31 +64,19 @@ const Item = styled(Box)`
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background-color: black;
+			background-color: white;
 			z-index: -1;
 			opacity: 0.4;
 		}
 	}
 `;
 
-function ResponsiveGrid({ items, isItemLoading, mouseEnterCb }) {
+function ResponsiveGrid({ items, isItemLoading, hoverCb }) {
+	const theme = useTheme();
 	const sourceLoaded = useProgressiveImage(items);
-	const matches = useMediaQuery("(max-width: 600px)");
+	const matches = useMediaQuery("(max-width: 800px)");
 
 	const [intersecting, setIntersecting] = useState(null);
-	const [hasFadeUp, setHasFadeUp] = useState(null);
-
-	useEffect(() => {
-		if (intersecting) {
-			gsap.to($(intersecting).children(), {
-				y: 0,
-				opacity: 1,
-				duration: 0.5,
-				stagger: 0.2,
-			});
-			setHasFadeUp(true);
-		}
-	}, [intersecting, hasFadeUp]);
 
 	const linkStyle = {
 		height: "100%",
@@ -101,10 +89,12 @@ function ResponsiveGrid({ items, isItemLoading, mouseEnterCb }) {
 		display: "flex",
 		flexDirection: matches ? "column" : "row",
 		justifyContent: "center",
+		flexWrap: "wrap",
 		gap: 2,
 	};
 
 	const gridItem = {
+		boxSizing: "border-box",
 		width: matches ? "100%" : "48%",
 		height: matches ? "120vw" : "50vw",
 		maxHeight: "800px",
@@ -129,13 +119,14 @@ function ResponsiveGrid({ items, isItemLoading, mouseEnterCb }) {
 		top: "50%",
 		left: "50%",
 		transform: "translate(-50%, -50%)scale(0.8)",
-		transition: "800ms ease",
+		transition: "800ms ease-in-out",
 	};
 
 	const imageStyle = {
 		width: "100%",
 		height: "100%",
 		objectFit: "cover",
+		objectPosition: "left",
 	};
 
 	const background = itemId => {
@@ -152,13 +143,14 @@ function ResponsiveGrid({ items, isItemLoading, mouseEnterCb }) {
 			backgroundSize: "cover",
 			filter: "blur(50px)",
 			transform: "scale(1.7)",
+			transition: "800ms ease-in-out",
 		};
 		return bg;
 	};
 
 	const title = {
 		textTransform: "uppercase",
-		fontSize: "1.8rem",
+		fontSize: "1.3rem",
 		position: "relative",
 		display: "inline",
 		"&::after": {
@@ -166,27 +158,36 @@ function ResponsiveGrid({ items, isItemLoading, mouseEnterCb }) {
 			left: 0,
 			bottom: 0,
 			content: '""',
-			backgroundColor: "black",
+			backgroundColor: theme.colors.light,
 			height: "1px",
 			width: "100%",
 			transformOrigin: "left",
 			transform: "scaleX(0)",
-			transition: "800ms ease",
+			transition: "800ms ease-in-out",
 		},
+	};
+
+	const description = {
+		position: "absolute",
+		bottom: 0,
+		right: 0,
+		width: matches ? "100%" : "50%",
+		textIndent: "30%",
+		textTransform: "uppercase",
+		fontSize: "0.8rem",
 	};
 
 	const renderGridItems = () => {
 		if (items) {
 			return (
-				<Box spacing={2} sx={gridContainer}>
+				<Box spacing={2} sx={gridContainer} pb={5}>
 					{items.data.map((item, i) => {
 						return (
 							<Box
 								sx={gridItem}
 								p={4}
-								onMouseEnter={mouseEnterCb}
-								onMouseLeave={mouseEnterCb}
-								
+								onMouseEnter={hoverCb}
+								onMouseLeave={hoverCb}
 							>
 								<InView
 									as='div'
@@ -211,6 +212,14 @@ function ResponsiveGrid({ items, isItemLoading, mouseEnterCb }) {
 												{item.name && (
 													<Box className='title-overlay' sx={title}>
 														{item.name}
+													</Box>
+												)}
+												{item.description && (
+													<Box className='description-overlay' sx={description} p={4}>
+														{item.description.substr(
+															0,
+															item.description.indexOf(".") + 1
+														)}
 													</Box>
 												)}
 											</a>

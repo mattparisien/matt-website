@@ -20,7 +20,7 @@ function HomePage(props, ref) {
 	const data = useContext(DataContext);
 	const { changeColors } = useContext(ColorContext);
 	const { revealContent, colors } = props;
-	const [layoutColor, setLayoutColor] = useState("light");
+	const [layoutColor, setLayoutColor] = useState("dark");
 
 	const containerStyles = { maxWidth: 2000, margin: "0 auto" };
 
@@ -186,7 +186,7 @@ function HomePage(props, ref) {
 				<Box>
 					<ResponsiveGrid
 						items={gridData}
-						mouseEnterCb={() =>
+						hoverCb={() =>
 							setLayoutColor(layoutColor === "dark" ? "light" : "dark")
 						}
 					/>

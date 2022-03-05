@@ -1,11 +1,8 @@
+import { Box, ListItem, Typography } from "@mui/material";
 import React, { forwardRef, useRef } from "react";
 import styled from "styled-components";
 import Layout from "../Containers/Layout";
 import Heading from "../Heading/Heading";
-import SocialList from "../Lists/SocialList";
-import { Box } from "@mui/material";
-import { ListItem } from "@mui/material";
-import { Typography } from "@mui/material";
 
 const FooterHeading = styled(Heading)`
 	position: absolute;

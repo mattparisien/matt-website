@@ -1,9 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import DefaultCursor from "../assets/images/cursor-default-01.svg";
-import FKScreamer from "../fonts/FKScreamer.otf";
-import FuturaCEB from "../fonts/Futura.otf";
-import Haas from "../fonts/Haas.otf";
-import Konnect from "../fonts/Konnect.woff";
+import Haas from "../assets/fonts/Haas.otf";
+import Konnect from "../assets/fonts/Konnect.woff";
 import { device } from "./breakpoints";
 
 export const renderResponsiveSizes = object => {
@@ -75,15 +73,7 @@ font-family: 'Haas';
 
 
 
-  @font-face {
-    font-family: 'FK';
-    src: url(${FKScreamer}) format('woff');
-  }
 
-  @font-face {
-    font-family: 'NeueMtl';
-    src: url(${FKScreamer}) format('woff');
-  }
 
   @font-face {
     font-family: 'Haas';
@@ -95,19 +85,6 @@ font-family: 'Haas';
     src: url(${Konnect}) format('woff');
   }
 
- 
-
-  @font-face {
-    font-family: 'FuturaCEB';
-    src: url(${FuturaCEB}) format('woff');
-  }
-
-  
-
-  body {
-    font-family: 'FK';
-    
-  }
 
 
 
