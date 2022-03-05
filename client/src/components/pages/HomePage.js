@@ -21,9 +21,12 @@ function HomePage(props, ref) {
 
 	const data = useContext(DataContext);
 	const heading = useRef(null);
+	const heading2 = useRef(null);
+	const brandLine = useRef(null);
+	const introTimeline = useRef(gsap.timeline());
 	const theme = useTheme();
 	const [layoutColor, setLayoutColor] = useState("dark");
-	const { splitText } = useSplit([heading.current], {
+	const { splitText } = useSplit([heading.current, heading2.current], {
 		type: "lines, chars",
 		linesClass: "line",
 		charsClass: "char",
@@ -34,8 +37,6 @@ function HomePage(props, ref) {
 		top: 0,
 		left: 0,
 	};
-
-	const introTimeline = useRef(gsap.timeline());
 
 	const pillInfo = [
 		{
@@ -131,9 +132,6 @@ function HomePage(props, ref) {
 	const [gridData, setGridData] = useState(null);
 
 	useEffect(() => {
-
-
-
 		if (data && data.software) {
 			const array = data.software.slice(0, 2).map(project => {
 				return {
@@ -151,23 +149,32 @@ function HomePage(props, ref) {
 
 	useEffect(() => {
 		if (splitText && splitText.chars) {
-			introTimeline.current.to(splitText.chars, {
-				y: 0,
-				duration: 1,
-				stagger: 0.05,
-				ease: 'expo.inOut'
-			})
-			.to(splitText.chars, {
-				y: "-100%",
-				duration: 1,
-				stagger: 0.05,
-				ease: 'expo.inOut',
-				onComplete: () => {
-					props.showHeader()
-				}
-			})
+			const firstHeadingChars = splitText.chars.slice(0, 7);
+			const secondHeadingChars = splitText.chars.slice(7, 14);
+			introTimeline.current
+				.to(firstHeadingChars, {
+					y: 0,
+					duration: 1,
+					stagger: 0.05,
+					ease: "expo.inOut",
+				})
+				.to(firstHeadingChars, {
+					y: "-100%",
+					duration: 1,
+					stagger: 0.05,
+					ease: "expo.inOut",
+					onComplete: () => {
+						props.showHeader();
+					},
+				})
+				.to(secondHeadingChars, {
+					y: 0,
+					duration: 1,
+					stagger: 0.05,
+					ease: "expo.inOut",
+				}, 1.2);
 		}
-	}, [splitText])
+	}, [splitText]);
 
 	const stickyRef = useRef(null);
 
@@ -184,6 +191,33 @@ function HomePage(props, ref) {
 		},
 	};
 
+	const heading2Styles = {
+		color: theme.colors.light,
+		position: "absolute",
+		bottom: 0,
+		left: 0,
+		fontSize: "10vw",
+		textTransform: "uppercase",
+		lineHeight: "9vw",
+		"& .line": {
+			overflow: "hidden",
+		},
+		"& .char": {
+			transform: "translateY(100%)",
+		},
+	};
+
+	const brandLineStyles = {
+		position: "absolute",
+		bottom: 0,
+		right: 0,
+		width: "250px",
+		textTransform: "uppercase",
+		fontSize: "0.8rem",
+		lineHeight: "0.8rem",
+		textIndent: "30%",
+	};
+
 	return (
 		<>
 			<Layout bg={"dark"} fullbleed={true} hero={true}>
@@ -198,6 +232,17 @@ function HomePage(props, ref) {
 				>
 					<Typography component='h1' sx={headingStyles} ref={heading}>
 						Matth3w
+					</Typography>
+					<Typography component='h3' sx={heading2Styles} ref={heading2}>
+						Matth3w
+					</Typography>
+					<Typography
+						component='span'
+						sx={brandLineStyles}
+						ref={brandLine}
+						p={2}
+					>
+						Full-Stack developer based in the city of Montreal, Canada.
 					</Typography>
 				</Box>
 			</Layout>
