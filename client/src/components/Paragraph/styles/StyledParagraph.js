@@ -85,11 +85,10 @@ export const StyledParagraph = styled.p`
 		color: pink;
 	}
 
-	.line {
-		position: relative;
-		display: inline-block;
-		text-align: start;
-		overflow-y: hidden;
+	.line-initial-hidden {
+		transform: translateY(150%);
+		opacity: 0;
+
 	}
 
 	${({ indentHeading, theme }) => {

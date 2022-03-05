@@ -1,5 +1,3 @@
-import { useRef } from "react";
-import $ from "jquery";
 import gsap from "gsap";
 import MorphSVGPlugin from "gsap/MorphSVGPlugin";
 import ScrollTrigger from "gsap/ScrollTrigger";

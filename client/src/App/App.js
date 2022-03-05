@@ -6,6 +6,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import ScrollWrapper from "../components/Containers/ScrollWrapper";
 import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
+import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import Menu from "../components/Menu/Menu";
 import AboutPage from "../components/pages/AboutPage";
@@ -16,7 +17,6 @@ import ThemeSwitch from "../components/ThemeSwitch/ThemeSwitch";
 import Loader from "../components/Transition/Loader";
 import { device } from "../styles/breakpoints";
 import { GlobalStyle } from "../styles/global";
-import Footer from "../components/Footer/Footer";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();

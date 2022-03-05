@@ -1,20 +1,26 @@
-import React, { forwardRef, useContext, useRef } from "react";
+import { Box } from "@mui/system";
+import React, {
+	forwardRef,
+	useContext,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 import { ColorContext } from "../../App/App";
 import Layout from "../Containers/Layout";
+import Line from "../Divider/Line";
 import Heading from "../Heading/Heading";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
-import { Box } from "@mui/system";
-import Line from "../Divider/Line";
-import Button from "../Button/Button";
-import { Pills } from "../Pills/Pills";
-import styled from "styled-components";
+import ResponsiveGrid from "../Grid/ResponsiveGrid";
+import { DataContext } from "../../App/App";
 
 function HomePage(props, ref) {
 	//Declare refs needed for animation
 	const stickySection = useRef(null);
-
+	const data = useContext(DataContext);
 	const { changeColors } = useContext(ColorContext);
 	const { revealContent, colors } = props;
+	const [layoutColor, setLayoutColor] = useState("light");
 
 	const containerStyles = { maxWidth: 2000, margin: "0 auto" };
 
@@ -115,11 +121,29 @@ function HomePage(props, ref) {
 		},
 	];
 
+	const [gridData, setGridData] = useState(null);
+
+	useEffect(() => {
+		if (data && data.software) {
+			const array = data.software.slice(0, 2).map(project => {
+				return {
+					id: project.id,
+					name: project.name,
+					featureImage:
+						process.env.REACT_APP_API_URL + "/images/" + project.image.filename,
+					description: project.description,
+					href: project.url,
+				};
+			});
+			setGridData(() => ({ data: array }));
+		}
+	}, [data]);
+
 	const stickyRef = useRef(null);
 
 	return (
 		<>
-			<Layout bg='dark' fullbleed={true} hero={true}>
+			<Layout bg={"dark"} fullbleed={true} hero={true}>
 				<Box
 					className='hero__inner'
 					sx={{
@@ -144,16 +168,29 @@ function HomePage(props, ref) {
 				<div className='half-section-wrapper'>
 					<ParagraphLayout indent indentHeading='about' variant={2}>
 						Good research leads to effective design and better tech stacks. I
-						draw from daring, innovative references to create smooth, seamless 
-						user experiences. My work never brags, but it sure does speak for itself.
+						draw from daring, innovative references to create smooth, seamless
+						user experiences. My work never brags, but it sure does speak for
+						itself.
 					</ParagraphLayout>
 				</div>
 			</Layout>
 			<Layout bg='light' height='auto' fullbleed>
 				<Line />
 			</Layout>
-			<Layout bg='light' height='100vw'>
-				<Pills info={pillInfo} />
+			<Layout bg={layoutColor} height='auto'>
+				{/* <Pills info={pillInfo} /> */}
+				<ParagraphLayout indent indentHeading={"work"} variant={1}>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam,
+					placeat?
+				</ParagraphLayout>
+				<Box>
+					<ResponsiveGrid
+						items={gridData}
+						mouseEnterCb={() =>
+							setLayoutColor(layoutColor === "dark" ? "light" : "dark")
+						}
+					/>
+				</Box>
 			</Layout>
 			<Layout bg='dark'></Layout>
 		</>

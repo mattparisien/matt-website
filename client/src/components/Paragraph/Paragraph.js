@@ -1,11 +1,9 @@
-import React, { useRef, useEffect, useState } from "react";
-import { StyledParagraph } from "./styles/StyledParagraph";
-import { SplitText } from "gsap/all";
 import gsap from "gsap";
+import { SplitText } from "gsap/all";
 import $ from "jquery";
-import useResize from "../../helpers/hooks/useResize";
+import React, { useEffect, useRef, useState } from "react";
 import InView from "react-intersection-observer";
-import styled from "styled-components";
+import useResize from "../../helpers/hooks/useResize";
 import {
 	StyledVariant1Paragraph,
 	StyledVariant2Paragraph,
@@ -23,9 +21,8 @@ function Paragraph(props) {
 	useEffect(() => {
 		if (!isSplit && paragraph.current) {
 			const mySplitText = new SplitText(paragraph.current, {
-				type: "lines, chars, words",
-				linesClass: "line",
-				charsClass: "char",
+				type: "lines",
+				linesClass: "line line-initial-hidden",
 			});
 			// const splitTextWrap = new SplitText(paragraph.current, {
 			// 	type: "lines",
@@ -37,35 +34,19 @@ function Paragraph(props) {
 			// setSplitWrap(splitTextWrap);
 		}
 
-	
-
 		if (isSplit && intersecting) {
-			const lines = $(intersecting).find(".line");
-
-			lines.each((index, el) => {
-				const chars = $(el).find(".char");
-				let delay = 0;
-				gsap.set(chars, {
-					y: "100%",
-					opacity: 0,
-				});
-				gsap.to(chars, {
-					y: 0,
-					opacity: 1,
-					stagger: 0.02,
-					duration: 2,
-					ease: "expo.inOut",
-					delay: delay + index / 4,
-					onComplete: () => {
-						$(paragraph.current).removeClass("is-initial-hidden");
-					},
-				});
+			gsap.to(splitText.lines, {
+				y: 0,
+				opacity: 1,
+				stagger: 0.05,
+				duration: 1,
+				ease: "power2.out",
+				delay: 0.2,
 			});
 		}
 	}, [isSplit, windowWidth, intersecting, splitText]);
 
 	useEffect(() => {
-
 		if (splitText && !splitWrap) {
 			$(splitText.lines).wrap("<div></div>");
 			setSplitWrap(true);

@@ -17,11 +17,9 @@ function HomePage() {
 					characterized by an agile method combining strategy, design and
 					technology. Oh, and great people too.
 				</Typography>
-        <Grid container>  
-          <Grid item>
-
-          </Grid>
-        </Grid>
+				<Grid container>
+					<Grid item></Grid>
+				</Grid>
 			</Layout>
 		</>
 	);

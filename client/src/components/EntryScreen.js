@@ -1,8 +1,8 @@
-import React, { useRef, useEffect, useState } from "react";
-import useSplit from "../helpers/hooks/useSplit";
 import classNames from "classnames";
 import gsap from "gsap/all";
 import $ from "jquery";
+import React, { useEffect, useRef, useState } from "react";
+import useSplit from "../helpers/hooks/useSplit";
 import ClipPathTransition from "./ClipPathTransition";
 
 function EntryScreen(props) {

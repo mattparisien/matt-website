@@ -1,15 +1,16 @@
-import { Box, CircularProgress } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import { Box, CircularProgress, stepClasses } from "@mui/material";
+import gsap from "gsap";
+import $ from "jquery";
+import React, { useEffect, useState } from "react";
+import InView from "react-intersection-observer";
 import styled from "styled-components";
 import { useProgressiveImage } from "../../helpers/hooks/useProgressiveImage";
 import { device } from "../../styles/breakpoints";
-import gsap from "gsap";
-import InView from "react-intersection-observer";
-import $ from "jquery";
+import { Grid } from "@mui/material";
+import { useMediaQuery } from "@material-ui/core";
 
 const Item = styled(Box)`
 	background-color: blue;
-	min-height: 20vw;
 	background-color: ${({ theme }) => theme.colors.grey};
 	overflow: hidden;
 	display: flex;
@@ -70,11 +71,9 @@ const Item = styled(Box)`
 	}
 `;
 
-function ResponsiveGrid({ items, isItemLoading }) {
+function ResponsiveGrid({ items, isItemLoading, mouseEnterCb }) {
 	const sourceLoaded = useProgressiveImage(items);
-
-
-
+	const matches = useMediaQuery("(max-width: 600px)");
 
 	const [intersecting, setIntersecting] = useState(null);
 	const [hasFadeUp, setHasFadeUp] = useState(null);
@@ -91,124 +90,144 @@ function ResponsiveGrid({ items, isItemLoading }) {
 		}
 	}, [intersecting, hasFadeUp]);
 
-	// const addToRefs = el => {
-	// 	if (el && !itemRefs.current.includes(el)) {
-	// 		itemRefs.current.push(el);
-	// 	}
-	// };
-
-	const itemSizes = [
-		{
-			column: "span 6",
-			row: "span 2",
-		},
-		{
-			column: "span 6",
-		},
-		{
-			column: "span 6",
-		},
-		{
-			column: "span 8",
-		},
-		{
-			column: "span 4",
-		},
-		{
-			column: "span 12",
-			row: "span 2",
-		},
-		{
-			column: "span 6",
-			row: "span 1",
-		},
-		{
-			column: "span 6",
-			row: "span 2",
-		},
-		{
-			column: "span 6",
-			row: "span 2",
-		},
-		{
-			column: "span 6",
-			row: "span 2",
-		},
-	];
-
 	const linkStyle = {
 		height: "100%",
 		width: "100%",
+
+		display: "block",
 	};
 
-	const divideArray = (arr, size) => {
-		var myArray = [];
-		for (var i = 0; i < arr.length; i += size) {
-			myArray.push(arr.slice(i, i + size));
-		}
-		return myArray;
+	const gridContainer = {
+		display: "flex",
+		flexDirection: matches ? "column" : "row",
+		justifyContent: "center",
+		gap: 2,
+	};
+
+	const gridItem = {
+		width: matches ? "100%" : "48%",
+		height: matches ? "120vw" : "50vw",
+		maxHeight: "800px",
+
+		position: "relative",
+		overflow: "hidden",
+
+		"&:hover .image-wrapper": {
+			transform: "translate(-50%, -50%)scale(0.9)",
+		},
+
+		"&:hover .title-overlay::after": {
+			transform: "scaleX(1)",
+		},
+	};
+
+	const imageWrapper = {
+		width: "100%",
+		height: "50%",
+		overflow: "hidden",
+		position: "absolute",
+		top: "50%",
+		left: "50%",
+		transform: "translate(-50%, -50%)scale(0.8)",
+		transition: "800ms ease",
+	};
+
+	const imageStyle = {
+		width: "100%",
+		height: "100%",
+		objectFit: "cover",
+	};
+
+	const background = itemId => {
+		console.log(sourceLoaded);
+		const bg = {
+			position: "absolute",
+			top: 0,
+			left: 0,
+			width: "100%",
+			height: "100%",
+			zIndex: -1,
+			backgroundImage: `url(${sourceLoaded[itemId]})`,
+			backgroundPosition: "center",
+			backgroundSize: "cover",
+			filter: "blur(50px)",
+			transform: "scale(1.7)",
+		};
+		return bg;
+	};
+
+	const title = {
+		textTransform: "uppercase",
+		fontSize: "1.8rem",
+		position: "relative",
+		display: "inline",
+		"&::after": {
+			position: "absolute",
+			left: 0,
+			bottom: 0,
+			content: '""',
+			backgroundColor: "black",
+			height: "1px",
+			width: "100%",
+			transformOrigin: "left",
+			transform: "scaleX(0)",
+			transition: "800ms ease",
+		},
 	};
 
 	const renderGridItems = () => {
 		if (items) {
-			const divided = divideArray(items.data, 10);
-
-			return divided.map((subArray, index) => {
-				return (
-					<Box
-						display='grid'
-						gridTemplateColumns='repeat(12, 1fr)'
-						gridAutoRows={`50vmin`}
-						gap={2}
-						className={`ResponsiveGrid ResponsiveGrid__${index + 1}`}
-						sx={{ marginBottom: 2 }}
-						key={index}
-					>
-						{subArray.map((item, i) => {
-							return (
-								<Box
-									gridColumn={itemSizes[i].column}
-									gridRow={itemSizes[i].row}
-									sx={{ position: "relative" }}
-									key={i}
+			return (
+				<Box spacing={2} sx={gridContainer}>
+					{items.data.map((item, i) => {
+						return (
+							<Box
+								sx={gridItem}
+								p={4}
+								onMouseEnter={mouseEnterCb}
+								onMouseLeave={mouseEnterCb}
+								
+							>
+								<InView
+									as='div'
+									style={{ width: "100%", height: "100%" }}
+									onChange={(inView, entry) =>
+										inView && setIntersecting(entry.target)
+									}
 								>
-									<InView
-										as='div'
-										style={{ width: "100%", height: "100%" }}
-										onChange={(inView, entry) =>
-											inView && setIntersecting(entry.target)
-										}
-									>
-										<Item
-											id={i}
-											sx={{
-												height: "100%",
-												backgroundPosition: "center",
-												backgroundSize: "cover",
-											}}
-										>
-											{sourceLoaded && sourceLoaded[item.id] ? (
-												<a
-													href={item.url || item.href}
-													style={linkStyle}
-													target='_blank'
-												>
-													<img src={sourceLoaded[item.id]}></img>
-													{item.name && (
-														<Box className='title-overlay'>{item.name}</Box>
-													)}
-												</a>
-											) : (
-												<CircularProgress color='inherit' />
-											)}
-										</Item>
-									</InView>
-								</Box>
-							);
-						})}
-					</Box>
-				);
-			});
+									<Box id={i} sx={{ height: "100%" }}>
+										{sourceLoaded && sourceLoaded[item.id] ? (
+											<a
+												href={item.url || item.href}
+												style={linkStyle}
+												target='_blank'
+											>
+												<Box className='image-wrapper' sx={imageWrapper}>
+													<img
+														src={sourceLoaded[item.id]}
+														style={imageStyle}
+													></img>
+												</Box>
+												{item.name && (
+													<Box className='title-overlay' sx={title}>
+														{item.name}
+													</Box>
+												)}
+											</a>
+										) : (
+											<CircularProgress color='inherit' />
+										)}
+									</Box>
+									<Box
+										className='background'
+										sx={sourceLoaded ? () => background(item.id) : ""}
+									></Box>
+								</InView>
+							</Box>
+						);
+					})}
+				</Box>
+			);
 		}
 	};
 
