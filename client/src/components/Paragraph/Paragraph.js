@@ -1,9 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import useResize from "../../helpers/hooks/useResize";
 import {
 	StyledVariant1Paragraph,
-	StyledVariant2Paragraph
+	StyledVariant2Paragraph,
 } from "./styles/StyledParagraph";
+import SplitText from "gsap/SplitText";
+import gsap from "gsap";
+import $ from "jquery";
 
 function Paragraph(props) {
 	const [intersecting, setIntersecting] = useState(null);
@@ -14,42 +17,55 @@ function Paragraph(props) {
 	const [windowWidth, isResized] = useResize();
 	// const timeline = useRef(gsap.timeline());
 
-	// useEffect(() => {
-	// 	if (!isSplit && paragraph.current) {
-	// 		const mySplitText = new SplitText(paragraph.current, {
-	// 			type: "lines",
-	// 			linesClass: "line line-initial-hidden",
-	// 		});
-	// 		// const splitTextWrap = new SplitText(paragraph.current, {
-	// 		// 	type: "lines",
-	// 		// 	linesClass: "line-wrapper",
-	// 		// });
-	// 		setIsSplit(true);
-	// 		setSplitText(mySplitText);
+	useEffect(() => {
+		if (!isSplit && paragraph.current) {
+			gsap.registerPlugin(SplitText);
+			const mySplitText = new SplitText(paragraph.current, {
+				type: "lines, chars",
+				charsClass: "char",
+				linesClass: "line line-initial-hidden",
+			});
 
-	// 		// setSplitWrap(splitTextWrap);
-	// 	}
+			setTimeout(() => {
+				mySplitText.revert().split();
+				setIsSplit(true);
+				setSplitText(mySplitText);
+			}, 200);
 
-	// 	if (isSplit && intersecting) {
-	// 		gsap.to(splitText.lines, {
-	// 			y: 0,
-	// 			opacity: 1,
-	// 			stagger: 0.05,
-	// 			duration: 1,
-	// 			ease: "power2.out",
-	// 			delay: 0.2,
-	// 		});
-	// 	}
-	// }, [isSplit, windowWidth, intersecting, splitText]);
+			// setSplitWrap(splitTextWrap);
+		}
 
-	// useEffect(() => {
-	// 	if (splitText && !splitWrap) {
-	// 		$(splitText.lines).wrap("<div></div>");
-	// 		setSplitWrap(true);
-	// 	}
+		if (splitText) {
+			console.log(splitText.chars);
 
-	// 	splitText && setSplitText(splitText.revert().split());
-	// }, [windowWidth, splitText, splitWrap]);
+			let delay = 0;
+
+			setTimeout(() => {
+				for (let i = 0; i < splitText.lines.length; i++) {
+					delay += 0.2;
+					gsap.to(
+						$(splitText.lines[i]).find(".char"),
+						{
+							duration: 2,
+							ease: "expo.inOut",
+							stagger: 0.05,
+							y: 0,
+						},
+						delay
+					);
+				}
+			}, 200);
+		}
+	}, [isSplit, splitText, windowWidth]);
+
+	useEffect(() => {
+		if (splitText && !splitWrap) {
+			$(splitText.lines).wrap("<div></div>");
+			setSplitWrap(true);
+		}
+
+		splitText && setSplitText(splitText.revert().split());
+	}, [windowWidth, splitText, splitWrap]);
 
 	const paragraphClass = "Paragraph";
 

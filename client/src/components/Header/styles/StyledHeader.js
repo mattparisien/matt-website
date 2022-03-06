@@ -11,7 +11,7 @@ export const StyledHeader = styled.header`
 
 	transition: transform 500ms ease;
 	z-index: -1;
-	color: ${({ theme }) => theme.colors.light};
+	color: ${({ theme }) => theme.colors.dark};
 	position: fixed;
 	top: 0;
 	left: 0;

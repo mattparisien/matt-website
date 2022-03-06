@@ -75,6 +75,9 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 
+  .line {
+    overflow: hidden;
+  }
 
 
 
@@ -115,41 +118,31 @@ h1, h2 {
     color: inherit;
   };
 
-  
-  
 
-  .line {
-    font-family: 'Brutal' !important;
-    transform: translateY(110%);
-    display: block;
-
-    .accent {
-      position: relative;
-
-      overflow: hidden;
-      
-
-      .accent-bg {
-        z-index: -1;
-          position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: ${({theme}) => theme.colors.light};
-        height: 400%;
-        width: 0;
-      }
-    }
-  }
-
-  .line-wrapper {
-    overflow: hidden;
-
-  }
+ 
 
   .char {
-    transform: translateY(110%);
+    transform: translateY(190%);
+  }
+
+  .indent-title {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .spacer {
+    width: 150px;
+  }
+  
+  
+
+
+
+
+
+  p {
+    font-family: 'Neue Mtl';
   }
 
 

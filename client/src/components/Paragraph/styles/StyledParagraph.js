@@ -86,10 +86,7 @@ export const StyledParagraph = styled.p`
 		color: hotpink;
 	}
 
-	.line-initial-hidden {
-		transform: translateY(150%);
-		opacity: 0;
-	}
+
 
 	${({ indentHeading, theme }) => {
 		return indentHeading

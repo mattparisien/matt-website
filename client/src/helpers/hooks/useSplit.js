@@ -14,7 +14,7 @@ function useSplit(refs, options) {
 				setSplitText(mySplitText);
 			}, 200);
 		}
-	}, [refs, options, splitText]);
+	}, [refs]);
 
 	return { splitText };
 }
