@@ -1,15 +1,12 @@
 import { useMediaQuery } from "@material-ui/core";
 import { Typography } from "@mui/material";
-import { Box, grid } from "@mui/system";
+import { Box } from "@mui/system";
 import gsap from "gsap";
 import $ from "jquery";
-import React, { useEffect, useRef, useState, useContext } from "react";
-import useSplit from "../../helpers/hooks/useSplit";
-import Layout from "../Containers/Layout";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import styled, { keyframes, useTheme } from "styled-components";
 import { LoadingContext } from "../App/App";
-import { useTheme } from "styled-components";
-import styled from "styled-components";
-import { keyframes } from "styled-components";
+import Layout from "../Containers/Layout";
 
 const gradientAnim = keyframes`
 	0% {
@@ -45,11 +42,6 @@ const GradientBg = styled.div`
 `;
 
 function SplashPage(props) {
-	const maxFontSize = useMediaQuery("(min-width: 1600px)");
-	const mobileFontSize = useMediaQuery("(max-width: 800px)");
-	const theme = useTheme();
-
-	const { isLoading, toggleLoading } = useContext(LoadingContext);
 	const headingStyle = {
 		fontFamily: "Brutal",
 		textAlign: "center",
@@ -143,7 +135,7 @@ function SplashPage(props) {
 						duration: 1.2,
 						stagger: 0.2,
 					},
-				1.5
+					1.5
 				);
 		}
 	}, [lines.current, accentRefs.current]);
