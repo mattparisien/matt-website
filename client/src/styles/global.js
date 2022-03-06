@@ -4,7 +4,6 @@ import Konnect from "../assets/fonts/Konnect.woff";
 import NeueMtl from "../assets/fonts/Montreal.otf";
 import Brutal from "../assets/fonts/Brutal.woff";
 import { device } from "./breakpoints";
-import Brutal from "../assets/fonts/Brutal.woff";
 
 export const renderResponsiveSizes = object => {
 	return Object.entries(object).map(size => {
@@ -90,7 +89,6 @@ export const GlobalStyle = createGlobalStyle`
 
 
 
-<<<<<<< HEAD
 
   @font-face {
     font-family: 'Neue Mtl';
@@ -111,8 +109,6 @@ h1, h2 {
 
 
 
-=======
->>>>>>> 8c87b19ac55d0e726aaa116fecdce578a0175257
   button, a {
     cursor: pointer;
     text-decoration: none;
