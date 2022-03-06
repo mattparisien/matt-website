@@ -1,19 +1,14 @@
-import React, { useEffect, useContext } from "react";
-import Paragraph from "../../Paragraph/Paragraph";
 import { Box } from "@mui/material";
+import React from "react";
 import styled from "styled-components";
-import Button from "../../Button/Button";
+import { deviceSize } from "../../../styles/breakpoints";
+import Layout from "../../Containers/Layout";
 import Line from "../../Divider/Line";
 import SocialList from "../../Lists/SocialList";
-import Layout from "../../Containers/Layout";
+import Paragraph from "../../Paragraph/Paragraph";
 import ParagraphLayout from "../../Paragraph/ParagraphLayout";
-import { deviceSize } from "../../../styles/breakpoints";
 
 const margin = 4;
-
-const StyledFromHeading = styled(Paragraph)`
-	margin-bottom: ${margin}rem;
-`;
 
 const StyledContactBar = styled(Box)`
 	display: flex;
@@ -44,8 +39,12 @@ function AboutPage() {
 			<Layout bg='light' offsetTop>
 				<Box sx={flexStyle}>
 					<Box sx={{ marginBottom: "5rem" }}>
-						<Paragraph indent variant={1}>Made in Montreal,</Paragraph>
-						<Paragraph indent variant={1}>Quebec, Canada</Paragraph>
+						<Paragraph indent variant={1}>
+							Made in Montreal,
+						</Paragraph>
+						<Paragraph indent variant={1}>
+							Quebec, Canada
+						</Paragraph>
 					</Box>
 					<ParagraphLayout indent indentHeading='About' variant={1}>
 						Hey, I'm Matt - full-stack web developer & photographer and graphic
@@ -58,9 +57,6 @@ function AboutPage() {
 					<Line />
 					{/* <StyledDivider /> */}
 					<StyledContactBar className='contact-bar'>
-						<Button align='left' $href='mailto:hello@matthewparisien.com'>
-							Get in touch
-						</Button>
 						<SocialList orientation='horizontal' />
 					</StyledContactBar>
 				</Box>

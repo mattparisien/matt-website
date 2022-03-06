@@ -9,10 +9,7 @@ import { GlobalStyle } from "../../styles/global";
 import ScrollWrapper from "../Containers/ScrollWrapper";
 import ContentWrapper from "../ContentWrapper/ContentWrapper";
 import Header from "../Header/Header";
-import Menu from "../Menu/Menu";
-import { default as AboutPage, default as UploadPage } from "../pages/About/AboutPage";
 import SplashPage from "../pages/SplashPage";
-import WorkPage from "../pages/Work/WorkPage";
 import Loader from "../Transition/Loader";
 
 export const ColorContext = createContext();
@@ -23,7 +20,6 @@ function App() {
 	const location = useLocation();
 
 	const [headerColor, setHeaderColor] = useState(null);
-	const [palette, setPalette] = useState("primary");
 
 	useEffect(() => {
 		location.pathname === "/" && setHeaderColor("light");
@@ -55,8 +51,8 @@ function App() {
 
 	const themes = {
 		colors: {
-			light: palette === "primary" ? "#ffff" : "#f1b9b8",
-			dark: palette === "primary" ? "#141414" : "rgb(231, 100, 53)",
+			light: "#FFFFFF",
+			dark: "#1E1E1E",
 			dark2: "#23252B",
 			lighterDark: "#111111",
 			red: "#DF181F",
@@ -67,7 +63,7 @@ function App() {
 			orange: "rgb(231, 100, 53)",
 			grey: "rgb(207, 207, 207)",
 			purple: "#5b487c",
-			gradient: "lineat-gra"
+			gradient: "lineat-gra",
 		},
 		typography: {
 			setSize: multiplier => {
@@ -177,62 +173,13 @@ function App() {
 			.catch(err => console.log(err));
 	}, []);
 
-	// const toggleModalVisibility = () => {
-	// 	setState(prev => ({
-	// 		...prev,
-	// 		modal: {
-	// 			isActive: !state.modal.isActive,
-	// 			hasBeenActive: true,
-	// 		},
-	// 	}));
-	// };
-
-	/***** ANIMATE CONTENT ENTRY ON LOAD  *****/
-
-	// const galleryRef = useRef(null);
-	// const revealContentTl = useRef(gsap.timeline({ paused: true }));
 	const headerRef = useRef(null);
-	const footerRef = useRef(null);
+
 	const contentWrapperRef = useRef(null);
-	// const menuTriggerRef = useRef(null);
-
-	// const location = useLocation();
-
-	// useEffect(() => {
-	// 	if (!state.isLoading) {
-	// 		//If not loading, animate content in
-
-	// 		const headerTitleChars = $(headerRef.current).find(".char");
-	// 		const header = headerRef.current;
-	// 		const mainContent = galleryRef.current;
-	// 		const menuBtn = menuTriggerRef.current;
-	// 		const titleChars = headerTitleChars;
-	// 		const timeline = revealContentTl.current;
-
-	// 		const refs = {
-	// 			header,
-	// 			mainContent,
-	// 			titleChars,
-	// 			menuBtn,
-	// 		};
-
-	// 		animateContentEntry(timeline, refs).play();
-	// 	} else {
-	// 		const titleChars = $(headerRef.current).find(".char");
-	// 		// revealContentTl.current.set(titleChars, { clearProps: "all" });
-	// 	}
-	// }, [headerRef, state.isLoading]);
 
 	const toggleMenuActivity = () => {
 		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
 	};
-
-	// const toggleLoadingState = () => {
-	// 	setState(prev => ({
-	// 		...prev,
-	// 		isLoading: state.isLoading ? false : true,
-	// 	}));
-	// };
 
 	const changeColors = (fg, bg) => {
 		console.log("has called");
@@ -285,7 +232,6 @@ function App() {
 									toggleMenu={toggleMenuActivity}
 									hidden={headerHidden}
 								/>
-								<Menu isOpen={state.menuActive} />
 
 								<ScrollWrapper ref={scrollRef}>
 									<ContentWrapper ref={contentWrapperRef}>
@@ -299,9 +245,9 @@ function App() {
 												path='/'
 												element={<SplashPage showHeader={toggleHeaderShow} />}
 											/>
-											<Route path='/about' element={<AboutPage />} />
+											{/* <Route path='/about' element={<AboutPage />} />
 											<Route path='/work' element={<WorkPage />} />
-											<Route path='/upload' element={<UploadPage />} />
+											<Route path='/upload' element={<UploadPage />} /> */}
 										</Routes>
 									</ContentWrapper>
 									{/* <Footer /> */}

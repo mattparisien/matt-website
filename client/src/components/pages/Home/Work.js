@@ -1,11 +1,6 @@
+import { Box, List, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import Layout from "../../Containers/Layout";
-import { Box, Container } from "@mui/material";
-import { Typography } from "@mui/material";
-import { textTransform } from "@mui/system";
-import UnorderedList from "../../Lists/UnorderedList";
 import styled from "styled-components";
-import { List } from "@mui/material";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Heading from "../../Heading/Heading";
 
