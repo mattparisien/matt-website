@@ -136,11 +136,11 @@ function SplashPage(props) {
 					1.5
 				);
 		}
-	}, [lines, accentRefs]);
+	}, [lines, accentRefs, props]);
 
 	useEffect(() => {
 		animationComplete && props.showHeader();
-	}, [animationComplete, props.showHeader]);
+	}, [animationComplete, props]);
 
 	return (
 		<Layout bg='dark'>
