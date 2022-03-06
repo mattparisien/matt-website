@@ -130,7 +130,6 @@ function ResponsiveGrid({ items, isItemLoading, hoverCb }) {
 	};
 
 	const background = itemId => {
-		console.log(sourceLoaded);
 		const bg = {
 			position: "absolute",
 			top: 0,

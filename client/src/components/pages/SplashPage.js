@@ -14,7 +14,7 @@ function SplashPage(props) {
 	const headingStyle = {
 		fontFamily: "Brutal",
 		textAlign: "center",
-		fontSize: maxFontSize ? "7.5rem" : mobileFontSize? "8vw" : "6vw",
+		fontSize: maxFontSize ? "7.5rem" : mobileFontSize? "8vw" : "7vw",
 		margin: 0,
 		position: "absolute",
 		bottom: 0,

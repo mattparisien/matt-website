@@ -96,7 +96,6 @@ function Hero({ data, showHeader, theme, matches }) {
 				});
 		}
 
-		console.log(revealer.current);
 	}, [splitText, revealer.current]);
 
 	const headingStyles = {

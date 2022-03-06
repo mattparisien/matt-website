@@ -20,7 +20,7 @@ const StyledContainer = styled(Container)`
 	}
 
 	@media ${device.tablet} {
-		padding: 1.5rem;
+		padding: 1rem;
 	}
 
 	@media ${device.laptop} {
@@ -28,13 +28,13 @@ const StyledContainer = styled(Container)`
 	}
 
 	@media ${device.laptopL} {
-		padding: 3rem;
+		padding: 2rem;
 	}
 	@media ${device.desktop} {
-		padding: 3.7rem;
+		padding: 2rem;
 	}
 	@media ${device.desktopL} {
-		padding: 3.8rem;
+		padding: 2rem;
 	}
 
 	${({ fullbleed }) =>
