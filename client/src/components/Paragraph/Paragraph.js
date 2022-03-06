@@ -5,10 +5,8 @@ import React, { useEffect, useRef, useState } from "react";
 import useResize from "../../helpers/hooks/useResize";
 import {
 	StyledVariant1Paragraph,
-	StyledVariant2Paragraph,
+	StyledVariant2Paragraph
 } from "./styles/StyledParagraph";
-import { useContext } from "react";
-import { LoadingContext } from "../App/App";
 
 function Paragraph(props) {
 	const [isSplit, setIsSplit] = useState(false);
