@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
-import Section from "./Section";
+import React from "react";
 import ContainerFluid from "./ContainerFluid";
-import styled from "styled-components";
+import Section from "./Section";
 
 function Layout(props) {
 	return (

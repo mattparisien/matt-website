@@ -1,12 +1,8 @@
-import gsap from "gsap";
-import { SplitText } from "gsap/all";
-import $ from "jquery";
-import React, { useEffect, useRef, useState } from "react";
-import InView from "react-intersection-observer";
+import React, { useRef, useState } from "react";
 import useResize from "../../helpers/hooks/useResize";
 import {
 	StyledVariant1Paragraph,
-	StyledVariant2Paragraph,
+	StyledVariant2Paragraph
 } from "./styles/StyledParagraph";
 
 function Paragraph(props) {

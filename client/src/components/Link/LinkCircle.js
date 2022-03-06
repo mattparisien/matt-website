@@ -22,6 +22,7 @@ export default function LinkCircle() {
 
 	const handleMouseLeave = () => {
 		gsap.registerPlugin(DrawSVGPlugin);
+		
 		gsap.to(lineRef.current, {
 			drawSVG: "0%",
 		});

@@ -52,7 +52,8 @@ function SocialList(props) {
 			{SocialItems.map(item => {
 				return (
 					<li key={item.id} className='SocialList__item'>
-						<a href={item.href} target='_blank' rel='noreferrer'>
+						<a href={item.href} target='_blank' rel='noreferrer'
+						>
 							{React.createElement(item.component, { key: item.id })}
 						</a>
 					</li>

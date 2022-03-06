@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useContext } from "react";
 import { Box } from "@mui/material";
 import gsap from "gsap";
+import React, { useContext, useEffect, useRef } from "react";
 import { useTheme } from "styled-components";
 import { LoadingContext } from "../App/App";
 

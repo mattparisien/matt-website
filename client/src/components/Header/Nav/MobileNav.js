@@ -19,6 +19,7 @@ const StyledBurger = styled.button`
 		z-index: -1;
 		overflow: hidden;
 	}
+	
 
 	.hover-circle {
 		position: absolute;
