@@ -38,8 +38,6 @@ function Paragraph(props) {
 		}
 
 		if (splitText) {
-			
-
 			let delay = 0;
 
 			setTimeout(() => {
@@ -53,7 +51,7 @@ function Paragraph(props) {
 							stagger: 0.05,
 							y: 0,
 							onComplete: () => {
-								toggleHeaderShow()
+								toggleHeaderShow();
 							},
 						},
 						delay
@@ -61,7 +59,7 @@ function Paragraph(props) {
 				}
 			}, 200);
 		}
-	}, [isSplit, splitText, windowWidth]);
+	}, [isSplit, splitText, windowWidth, props.toggleHeaderShow]);
 
 	useEffect(() => {
 		if (splitText && !splitWrap) {
