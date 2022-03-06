@@ -28,11 +28,11 @@ function Header(props, ref) {
 			transition: "300ms ease",
 		},
 		"& .brand-line": {
-			transitionDelay: '200ms'
+			transitionDelay: "200ms",
 		},
 		"& .email-cta": {
-			transitionDelay: '400ms'
-		}
+			transitionDelay: "400ms",
+		},
 	};
 
 	const inner = {
@@ -50,7 +50,7 @@ function Header(props, ref) {
 			className='Header'
 			height={headerHeight}
 		>
-			<ContainerFluid >
+			<ContainerFluid>
 				<Box className='header-inner' sx={inner}>
 					<Box className='header-logo' sx={brand}>
 						<span className='name'>Matthew Parisien</span>
@@ -59,7 +59,9 @@ function Header(props, ref) {
 						<span className='brand-line'>Website coming soon</span>
 					</Box>
 					<Box className='cta' sx={brand}>
-						<span className='email-cta'>Contact me</span>
+						<a href='mailto:hello@matthewparisien.com' className='email-cta'>
+							<span >Contact me</span>
+						</a>
 					</Box>
 				</Box>
 			</ContainerFluid>
