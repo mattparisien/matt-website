@@ -11,7 +11,6 @@ import { useContext } from "react";
 import { LoadingContext } from "../App/App";
 
 function Paragraph(props) {
-	const { toggleHeaderShow } = useContext(LoadingContext);
 	const [isSplit, setIsSplit] = useState(false);
 	const [splitText, setSplitText] = useState(null);
 	const [splitWrap, setSplitWrap] = useState(null);
@@ -42,24 +41,21 @@ function Paragraph(props) {
 
 			setTimeout(() => {
 				for (let i = 0; i < splitText.lines.length; i++) {
-					delay += 0.2;
+					delay += 0.1;
 					gsap.to(
 						$(splitText.lines[i]).find(".char"),
 						{
 							duration: 2,
 							ease: "expo.inOut",
-							stagger: 0.05,
+							stagger: 0.03,
 							y: 0,
-							onComplete: () => {
-								toggleHeaderShow();
-							},
 						},
 						delay
 					);
 				}
 			}, 200);
 		}
-	}, [isSplit, splitText, windowWidth,toggleHeaderShow]);
+	}, [isSplit, splitText, windowWidth]);
 
 	useEffect(() => {
 		if (splitText && !splitWrap) {
