@@ -24,8 +24,8 @@ const paragraphFontSizes = {
 			lineHeight: "4rem",
 		},
 		mobileL: {
-			fontSize: "3rem",
-			lineHeight: "3rem",
+			fontSize: "2rem",
+			lineHeight: "2.1rem",
 		},
 		mobileM: {
 			fontSize: "1.5rem",
