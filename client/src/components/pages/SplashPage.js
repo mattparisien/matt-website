@@ -50,7 +50,6 @@ function SplashPage(props) {
 						ease: "expo.inOut",
 						duration: 2,
 						y: 0,
-						ease: "expo.inOut",
 						stagger: 0.03,
 						onComplete: () => {
 							if (i === splitText.lines.length - 1) {
@@ -62,7 +61,7 @@ function SplashPage(props) {
 				);
 			}
 		}
-	}, [splitText]);
+	}, [splitText, props]);
 
 	useEffect(() => {
 		animationComplete && props.showHeader();
