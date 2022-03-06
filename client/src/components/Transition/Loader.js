@@ -1,8 +1,6 @@
 import { Box } from "@mui/material";
-import gsap from "gsap";
-import React, { useContext, useEffect, useRef } from "react";
+import React from "react";
 import { useTheme } from "styled-components";
-import { LoadingContext } from "../App/App";
 
 function Loader({ isActive }) {
 	const theme = useTheme();
@@ -17,10 +15,6 @@ function Loader({ isActive }) {
 		color: theme.colors.light,
 		display: isActive ? "block" : "none",
 		zIndex: 9999,
-	};
-
-	const wordStyle = {
-		opacity: 0,
 	};
 
 	return <Box sx={loaderStyle} component='div' className='Loader'></Box>;
