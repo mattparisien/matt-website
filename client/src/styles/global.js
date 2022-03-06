@@ -75,10 +75,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 
-  .line {
-    overflow: hidden;
-  }
 
+.line {
+  overflow: hidden;
+}
 
 
   .App {

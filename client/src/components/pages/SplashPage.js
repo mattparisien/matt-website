@@ -15,8 +15,6 @@ const GradientBg = styled.div`
 `;
 
 function SplashPage(props) {
-
-
 	const lines = useRef([]);
 	lines.current = [];
 	const accentRefs = useRef([]);
@@ -27,6 +25,7 @@ function SplashPage(props) {
 		width: "100%",
 		position: "relative",
 		display: "flex",
+		flexDirection: "column",
 		alignItems: "center",
 		justifyContent: "center",
 	};
@@ -41,6 +40,7 @@ function SplashPage(props) {
 					about crafting great user experiences.
 				</ParagraphLayout>
 			</Box>
+
 			<GradientBg className='gradient-bg'></GradientBg>
 		</Layout>
 	);

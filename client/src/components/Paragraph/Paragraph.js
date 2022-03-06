@@ -1,15 +1,14 @@
-import React, { useRef, useState, useEffect } from "react";
+import gsap from "gsap";
+import SplitText from "gsap/SplitText";
+import $ from "jquery";
+import React, { useEffect, useRef, useState } from "react";
 import useResize from "../../helpers/hooks/useResize";
 import {
 	StyledVariant1Paragraph,
 	StyledVariant2Paragraph,
 } from "./styles/StyledParagraph";
-import SplitText from "gsap/SplitText";
-import gsap from "gsap";
-import $ from "jquery";
 
 function Paragraph(props) {
-	const [intersecting, setIntersecting] = useState(null);
 	const [isSplit, setIsSplit] = useState(false);
 	const [splitText, setSplitText] = useState(null);
 	const [splitWrap, setSplitWrap] = useState(null);
@@ -21,7 +20,7 @@ function Paragraph(props) {
 		if (!isSplit && paragraph.current) {
 			gsap.registerPlugin(SplitText);
 			const mySplitText = new SplitText(paragraph.current, {
-				type: "lines, chars",
+				type: "lines, chars, words",
 				charsClass: "char",
 				linesClass: "line line-initial-hidden",
 			});
