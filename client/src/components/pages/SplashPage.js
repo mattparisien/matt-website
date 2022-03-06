@@ -1,11 +1,9 @@
-import { useMediaQuery } from "@material-ui/core";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import gsap from "gsap";
 import $ from "jquery";
-import React, { useContext, useEffect, useRef, useState } from "react";
-import styled, { keyframes, useTheme } from "styled-components";
-import { LoadingContext } from "../App/App";
+import React, { useEffect, useRef, useState } from "react";
+import styled, { keyframes } from "styled-components";
 import Layout from "../Containers/Layout";
 
 const gradientAnim = keyframes`
@@ -138,7 +136,7 @@ function SplashPage(props) {
 					1.5
 				);
 		}
-	}, [lines.current, accentRefs.current]);
+	}, [lines, accentRefs]);
 
 	useEffect(() => {
 		animationComplete && props.showHeader();
