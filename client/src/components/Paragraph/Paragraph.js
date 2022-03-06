@@ -7,7 +7,6 @@ import {
 	StyledVariant1Paragraph,
 	StyledVariant2Paragraph,
 } from "./styles/StyledParagraph";
-import { useTheme } from "styled-components";
 
 function Paragraph(props) {
 	const [isSplit, setIsSplit] = useState(false);
@@ -15,7 +14,7 @@ function Paragraph(props) {
 	const [splitWrap, setSplitWrap] = useState(null);
 	const paragraph = useRef(null);
 	const [windowWidth, isResized] = useResize();
-	const theme = useTheme();
+
 	// const timeline = useRef(gsap.timeline());
 
 	useEffect(() => {
@@ -56,7 +55,7 @@ function Paragraph(props) {
 										stagger: 0.1,
 										width: "100%",
 										ease: "circ.inOut",
-										
+
 										duration: 1,
 									});
 									gsap.to($(splitText.lines).find(".accent"), {
