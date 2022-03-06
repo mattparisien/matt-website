@@ -1,7 +1,4 @@
-import styled, { css, keyframes } from "styled-components";
-import { device } from "../../../styles/breakpoints";
-
-let delay = 1;
+import styled from "styled-components";
 
 export const StyledHeader = styled.header`
 	height: auto;

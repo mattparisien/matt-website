@@ -130,7 +130,7 @@ function Loader({ isActive }) {
 
 			masterTimeline.current.add(fadeIn()).add(fadeOut(), "-=0.5");
 		}
-	}, [word1, word2, word3, container, isActive]);
+	}, [word1, word2, word3, container, isActive, toggleLoading]);
 
 	return (
 		<Box sx={loaderStyle} component='div' ref={container} className='Loader'>

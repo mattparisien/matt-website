@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import Layout from "../Containers/Layout";
+import { useMediaQuery } from "@material-ui/core";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import useSplit from "../../helpers/hooks/useSplit";
 import gsap from "gsap";
 import $ from "jquery";
-import { useMediaQuery } from "@material-ui/core";
+import React, { useEffect, useRef, useState } from "react";
+import useSplit from "../../helpers/hooks/useSplit";
+import Layout from "../Containers/Layout";
 
 function SplashPage(props) {
 	const maxFontSize = useMediaQuery("(min-width: 1600px)");
@@ -14,7 +14,7 @@ function SplashPage(props) {
 	const headingStyle = {
 		fontFamily: "Brutal",
 		textAlign: "center",
-		fontSize: maxFontSize ? "7.5rem" : mobileFontSize? "8vw" : "7vw",
+		fontSize: maxFontSize ? "7.5rem" : mobileFontSize ? "8vw" : "7vw",
 		margin: 0,
 		position: "absolute",
 		bottom: 0,
@@ -24,7 +24,6 @@ function SplashPage(props) {
 	};
 
 	const heading = useRef(null);
-	const timeline = useRef(gsap.timeline());
 	const [animationComplete, setAnimationComplete] = useState(false);
 
 	const { splitText } = useSplit([heading.current], {

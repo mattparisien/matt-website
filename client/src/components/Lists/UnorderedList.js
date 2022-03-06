@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-
+import Link from "../Link/Link";
 import TransitionTrigger from "../Transition/TransitionTrigger";
 
-import Link from "../Link/Link";
-import { Box } from "@mui/material";
+
 
 const StyledUl = styled.ul`
 	${({ theme, height }) => theme.spacing(height, "height")};

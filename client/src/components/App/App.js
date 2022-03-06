@@ -4,19 +4,16 @@ import { Helmet } from "react-helmet";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import ScrollWrapper from "../Containers/ScrollWrapper";
-import ContentWrapper from "../ContentWrapper/ContentWrapper";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
-import Menu from "../Menu/Menu";
-import HomePage from "../pages/Home/HomePage";
-import UploadPage from "../pages/About/AboutPage";
-import WorkPage from "../pages/Work/WorkPage";
-import AboutPage from "../pages/About/AboutPage";
-import Loader from "../Transition/Loader";
 import { device } from "../../styles/breakpoints";
 import { GlobalStyle } from "../../styles/global";
+import ScrollWrapper from "../Containers/ScrollWrapper";
+import ContentWrapper from "../ContentWrapper/ContentWrapper";
+import Header from "../Header/Header";
+import Menu from "../Menu/Menu";
+import { default as AboutPage, default as UploadPage } from "../pages/About/AboutPage";
 import SplashPage from "../pages/SplashPage";
+import WorkPage from "../pages/Work/WorkPage";
+import Loader from "../Transition/Loader";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();
@@ -70,6 +67,7 @@ function App() {
 			orange: "rgb(231, 100, 53)",
 			grey: "rgb(207, 207, 207)",
 			purple: "#5b487c",
+			gradient: "lineat-gra"
 		},
 		typography: {
 			setSize: multiplier => {
@@ -154,9 +152,7 @@ function App() {
 		isLoading: false,
 	});
 
-	const [headerHidden, setHeaderHidden] = useState(
-		true
-	);
+	const [headerHidden, setHeaderHidden] = useState(true);
 
 	useEffect(() => {
 		//Get essential data
@@ -301,7 +297,7 @@ function App() {
 										<Routes>
 											<Route
 												path='/'
-												element={<SplashPage  showHeader={toggleHeaderShow}/>}
+												element={<SplashPage showHeader={toggleHeaderShow} />}
 											/>
 											<Route path='/about' element={<AboutPage />} />
 											<Route path='/work' element={<WorkPage />} />

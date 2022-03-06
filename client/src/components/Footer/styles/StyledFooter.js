@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { shuffleColors } from "../../../helpers/shuffleColors";
-import { device, deviceSize } from "../../../styles/breakpoints";
+import { deviceSize } from "../../../styles/breakpoints";
 
 export const StyledFooter = styled.footer`
 	color: blue;

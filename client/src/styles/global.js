@@ -1,8 +1,7 @@
 import { createGlobalStyle } from "styled-components";
-import DefaultCursor from "../assets/images/cursor-default-01.svg";
-import Konnect from "../assets/fonts/Konnect.woff";
-import NeueMtl from "../assets/fonts/Montreal.otf";
 import Brutal from "../assets/fonts/Brutal.woff";
+import NeueMtl from "../assets/fonts/Montreal.otf";
+import DefaultCursor from "../assets/images/cursor-default-01.svg";
 import { device } from "./breakpoints";
 
 export const renderResponsiveSizes = object => {

@@ -1,16 +1,13 @@
-import React, { useEffect, useState, useRef } from "react";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import Layout from "../../Containers/Layout";
-import { useMediaQuery } from "@material-ui/core";
-import SplitText from "gsap/SplitText";
 import gsap from "gsap";
-import useSplit from "../../../helpers/hooks/useSplit";
+import React, { useEffect, useRef, useState } from "react";
 import useHeaderSpacing from "../../../helpers/hooks/useHeaderSpacing";
+import useSplit from "../../../helpers/hooks/useSplit";
+import Layout from "../../Containers/Layout";
 import Heading from "../../Heading/Heading";
 
 function Hero({ data, showHeader, theme, matches }) {
-	
 	const heading = useRef(null);
 	const heading2 = useRef(null);
 	const revealer = useRef(null);
@@ -26,7 +23,6 @@ function Hero({ data, showHeader, theme, matches }) {
 		linesClass: "line",
 		charsClass: "char",
 	});
-
 
 	useEffect(() => {
 		if (data && data.software) {
@@ -96,7 +92,6 @@ function Hero({ data, showHeader, theme, matches }) {
 					display: "none",
 				});
 		}
-
 	}, [splitText, revealer.current]);
 
 	const headingStyles = {
@@ -107,7 +102,7 @@ function Hero({ data, showHeader, theme, matches }) {
 		transform: "translate(-50%, -50%)",
 		width: "100%",
 		color: theme.colors.light,
-		'font-family': 'Brutal',
+		"font-family": "Brutal",
 		fontSize: "20vw",
 		textTransform: "uppercase",
 		lineHeight: "19vw",
@@ -244,7 +239,7 @@ function Hero({ data, showHeader, theme, matches }) {
 								<>
 									<a className='project-wrapper'>
 										<img
-											src={`${process.env.REACT_APP_API_URL}/images/${proj.image.filename}`}
+											src={`${process.env.REACT_APP_API_URL}/images/${proj.image.filename}`} alt="project-image"
 										></img>
 										<div className='revealer' ref={addToRevealerRefs}></div>
 										<Box className='cta'>

@@ -1,13 +1,10 @@
 import { useMediaQuery } from "@material-ui/core";
 import { Box, CircularProgress } from "@mui/material";
-import gsap from "gsap";
-import $ from "jquery";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import InView from "react-intersection-observer";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { useProgressiveImage } from "../../helpers/hooks/useProgressiveImage";
 import { device } from "../../styles/breakpoints";
-import { useTheme } from "styled-components";
 
 const Item = styled(Box)`
 	background-color: blue;
@@ -39,7 +36,7 @@ const Item = styled(Box)`
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		
+
 		transform: translate(-50%, -50%);
 		font-size: 4vw;
 		height: 100%;
@@ -75,8 +72,6 @@ function ResponsiveGrid({ items, isItemLoading, hoverCb }) {
 	const theme = useTheme();
 	const sourceLoaded = useProgressiveImage(items);
 	const matches = useMediaQuery("(max-width: 800px)");
-
-	const [intersecting, setIntersecting] = useState(null);
 
 	const linkStyle = {
 		height: "100%",
@@ -188,49 +183,47 @@ function ResponsiveGrid({ items, isItemLoading, hoverCb }) {
 								onMouseEnter={hoverCb}
 								onMouseLeave={hoverCb}
 							>
-								<InView
-									as='div'
-									style={{ width: "100%", height: "100%" }}
-									onChange={(inView, entry) =>
-										inView && setIntersecting(entry.target)
-									}
-								>
-									<Box id={i} sx={{ height: "100%" }}>
-										{sourceLoaded && sourceLoaded[item.id] ? (
-											<a
-												href={item.url || item.href}
-												style={linkStyle}
-												target='_blank'
-											>
-												<Box className='image-wrapper' sx={imageWrapper}>
-													<img
-														src={sourceLoaded[item.id]}
-														style={imageStyle}
-													></img>
+								<Box id={i} sx={{ height: "100%" }}>
+									{sourceLoaded && sourceLoaded[item.id] ? (
+										<a
+											href={item.url || item.href}
+											style={linkStyle}
+											target='_blank'
+											rel='noreferrer'
+										>
+											<Box className='image-wrapper' sx={imageWrapper}>
+												<img
+													src={sourceLoaded[item.id]}
+													style={imageStyle}
+													alt="image"
+												></img>
+											</Box>
+											{item.name && (
+												<Box className='title-overlay' sx={title}>
+													{item.name}
 												</Box>
-												{item.name && (
-													<Box className='title-overlay' sx={title}>
-														{item.name}
-													</Box>
-												)}
-												{item.description && (
-													<Box className='description-overlay' sx={description} p={4}>
-														{item.description.substr(
-															0,
-															item.description.indexOf(".") + 1
-														)}
-													</Box>
-												)}
-											</a>
-										) : (
-											<CircularProgress color='inherit' />
-										)}
-									</Box>
-									<Box
-										className='background'
-										sx={sourceLoaded ? () => background(item.id) : ""}
-									></Box>
-								</InView>
+											)}
+											{item.description && (
+												<Box
+													className='description-overlay'
+													sx={description}
+													p={4}
+												>
+													{item.description.substr(
+														0,
+														item.description.indexOf(".") + 1
+													)}
+												</Box>
+											)}
+										</a>
+									) : (
+										<CircularProgress color='inherit' />
+									)}
+								</Box>
+								<Box
+									className='background'
+									sx={sourceLoaded ? () => background(item.id) : ""}
+								></Box>
 							</Box>
 						);
 					})}

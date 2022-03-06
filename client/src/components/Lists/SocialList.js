@@ -1,6 +1,6 @@
+import { GitHub, Instagram, LinkedIn } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
-import { Instagram, LinkedIn, GitHub } from "@material-ui/icons";
 
 const SocialItems = [
 	{
@@ -41,7 +41,7 @@ const StyledSocialList = styled.ul`
 
 		svg {
 			transition: 300ms ease;
-			fill: ${({theme}) => theme.colors.dark};
+			fill: ${({ theme }) => theme.colors.dark};
 		}
 	}
 `;
@@ -52,7 +52,7 @@ function SocialList(props) {
 			{SocialItems.map(item => {
 				return (
 					<li key={item.id} className='SocialList__item'>
-						<a href={item.href} target='_blank'>
+						<a href={item.href} target='_blank' rel='noreferrer'>
 							{React.createElement(item.component, { key: item.id })}
 						</a>
 					</li>

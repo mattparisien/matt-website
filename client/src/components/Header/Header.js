@@ -1,18 +1,11 @@
-import React, { forwardRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import ContainerFluid from "../Containers/ContainerFluid";
-import DesktopNav from "./Nav/DesktopNav";
-import { StyledHeader } from "./styles/StyledHeader";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
-import TransitionTrigger from "../Transition/TransitionTrigger";
-import { useLocation } from "react-router-dom";
 import { Box } from "@material-ui/core";
-import MobileNav from "./Nav/MobileNav";
+import React, { forwardRef } from "react";
 import useHeaderSpacing from "../../helpers/hooks/useHeaderSpacing";
+import ContainerFluid from "../Containers/ContainerFluid";
+import { StyledHeader } from "./styles/StyledHeader";
 
 function Header(props, ref) {
-	const { headerOffset, isMenuActive, hidden } = props;
-	const [innerHeight, setInnerHeight] = useState(null);
+	const { hidden } = props;
 	const [headerHeight] = useHeaderSpacing();
 
 	const brand = {
@@ -60,7 +53,7 @@ function Header(props, ref) {
 					</Box>
 					<Box className='cta' sx={brand}>
 						<a href='mailto:hello@matthewparisien.com' className='email-cta'>
-							<span >Contact me</span>
+							<span>Contact me</span>
 						</a>
 					</Box>
 				</Box>

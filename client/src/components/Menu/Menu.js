@@ -1,8 +1,7 @@
-import React, { useEffect, useRef } from "react";
-import { StyledMenu } from "./styles/StyledMenu";
-import UnorderedList from "../Lists/UnorderedList";
 import gsap from "gsap";
-import SocialList from "../Lists/SocialList";
+import React, { useEffect, useRef } from "react";
+import Link from "react-router-dom";
+import { StyledMenu } from "./styles/StyledMenu";
 
 function Menu(props) {
 	const listInfo = [
@@ -20,18 +19,11 @@ function Menu(props) {
 		},
 	];
 
-	const { currentPath, isOpen, hideMenu, hideContent, setLoading, isLoading } =
-		props;
+	const { isOpen, hideMenu, hideContent, setLoading } = props;
 
 	const menuRef = useRef(null);
 	const menuAnim = useRef(gsap.timeline());
 	const navItems = useRef([]);
-
-	const addToRefs = el => {
-		if (el && !navItems.current.includes(el)) {
-			navItems.current.push(el);
-		}
-	};
 
 	useEffect(() => {
 		if (isOpen) {
@@ -60,21 +52,17 @@ function Menu(props) {
 		}
 	}, [isOpen, menuRef, navItems]);
 
-	const handleClick = () => {
-		hideContent();
-		hideMenu();
-		setLoading();
-	};
-
 	return (
 		<StyledMenu isOpen={isOpen} ref={menuRef}>
 			<ul>
-				<li>
-					hello@!
-				</li>
+				{listInfo.map(item => {
+					return (
+						<li>
+							<Link>{}</Link>
+						</li>
+					);
+				})}
 			</ul>
-
-			
 		</StyledMenu>
 	);
 }
