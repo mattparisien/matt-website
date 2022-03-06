@@ -202,6 +202,7 @@ function App() {
 	const loadingControls = {
 		isLoading: state.isLoading,
 		toggleLoading,
+		toggleHeaderShow
 	};
 
 	return (

@@ -17,7 +17,7 @@ function Header(props, ref) {
 		transition: "300ms ease",
 
 		"& .name, & .brand-line, & .email-cta": {
-			opacity: 1,
+			opacity: hidden ? 0 : 1,
 			transition: "300ms ease",
 		},
 		"& .brand-line": {

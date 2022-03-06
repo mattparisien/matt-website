@@ -7,8 +7,11 @@ import {
 	StyledVariant1Paragraph,
 	StyledVariant2Paragraph,
 } from "./styles/StyledParagraph";
+import { useContext } from "react";
+import { LoadingContext } from "../App/App";
 
 function Paragraph(props) {
+	const { toggleHeaderShow } = useContext(LoadingContext);
 	const [isSplit, setIsSplit] = useState(false);
 	const [splitText, setSplitText] = useState(null);
 	const [splitWrap, setSplitWrap] = useState(null);
@@ -35,7 +38,7 @@ function Paragraph(props) {
 		}
 
 		if (splitText) {
-			console.log(splitText.chars);
+			
 
 			let delay = 0;
 
@@ -49,6 +52,9 @@ function Paragraph(props) {
 							ease: "expo.inOut",
 							stagger: 0.05,
 							y: 0,
+							onComplete: () => {
+								toggleHeaderShow()
+							},
 						},
 						delay
 					);
