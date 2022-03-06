@@ -12,36 +12,29 @@ const StyledContainer = styled(Container)`
 	align-items: center;
 
 	@media ${device.mobileS} {
-		padding-left: 1.3rem;
-		padding-right: 1.3rem;
+		padding: 1.3rem;
 	}
 
 	@media ${device.mobileL} {
-		padding-left: 0.4rem;
-		padding-right: 0.4rem;
+		padding: 0.4rem;
 	}
 
 	@media ${device.tablet} {
-		padding-left: 1.5rem;
-		padding-right: 1.5rem;
+		padding: 1.5rem;
 	}
 
 	@media ${device.laptop} {
-		padding-left: 1.9rem;
-		padding-right: 1.9rem;
+		padding: 1.9rem;
 	}
 
 	@media ${device.laptopL} {
-		padding-left: 3rem;
-		padding-right: 3rem;
+		padding: 3rem;
 	}
 	@media ${device.desktop} {
-		padding-left: 3.7rem;
-		padding-right: 3.7rem;
+		padding: 3.7rem;
 	}
 	@media ${device.desktopL} {
-		padding-left: 3.8rem;
-		padding-right: 3.8rem;
+		padding: 3.8rem;
 	}
 
 	${({ fullbleed }) =>

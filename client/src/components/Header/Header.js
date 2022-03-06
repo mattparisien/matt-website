@@ -15,6 +15,34 @@ function Header(props, ref) {
 	const [innerHeight, setInnerHeight] = useState(null);
 	const [headerHeight] = useHeaderSpacing();
 
+	const brand = {
+		color: "white",
+		zIndex: 999,
+		position: "relative",
+		fontFamily: "Neue Mtl",
+		fontSize: "0.8rem",
+		transition: "300ms ease",
+
+		"& .name, & .brand-line, & .email-cta": {
+			opacity: hidden ? 0 : 1,
+			transition: "300ms ease",
+		},
+		"& .brand-line": {
+			transitionDelay: '200ms'
+		},
+		"& .email-cta": {
+			transitionDelay: '400ms'
+		}
+	};
+
+	const inner = {
+		width: "100%",
+		height: "100%",
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "space-between",
+	};
+
 	return (
 		<StyledHeader
 			ref={ref}
@@ -22,20 +50,19 @@ function Header(props, ref) {
 			className='Header'
 			height={headerHeight}
 		>
-			<Box className='Header__floater' sx={{ height: "100%" }}>
-				<ContainerFluid flex={true}>
-					<Box className='header-logo'>
-						<TransitionTrigger to='/' noCircle>
-							<span className='name'>
-								Matt Parisien <span className='copyright-symbol'>©</span>
-							</span>
-							<span className='role'>Web developer</span>
-						</TransitionTrigger>
+			<ContainerFluid >
+				<Box className='header-inner' sx={inner}>
+					<Box className='header-logo' sx={brand}>
+						<span className='name'>Matthew Parisien</span>
 					</Box>
-
-					<MobileNav toggleMenu={props.toggleMenu} />
-				</ContainerFluid>
-			</Box>
+					<Box className='announcement' sx={brand}>
+						<span className='brand-line'>Website coming soon</span>
+					</Box>
+					<Box className='cta' sx={brand}>
+						<span className='email-cta'>Contact me</span>
+					</Box>
+				</Box>
+			</ContainerFluid>
 		</StyledHeader>
 	);
 }

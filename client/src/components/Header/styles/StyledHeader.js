@@ -3,54 +3,8 @@ import { device } from "../../../styles/breakpoints";
 
 let delay = 1;
 
-const revealHeaderAnimation = keyframes`
-	0% {
-		opacity: 0
-	}
-	100% {
-		opacity: 1
-	}
-`;
-
 export const StyledHeader = styled.header`
-
-	height: ${({height}) => height ? height : "80px"};
-
-
-
-	.header-logo {
-		opacity: 0;
-		animation: ${({ isHidden }) =>
-			!isHidden
-				? css`
-						${revealHeaderAnimation} 1s ease forwards;
-				  `
-				: ""};
-		animation-delay: ${delay}00ms;
-	}
-
-	li {
-		opacity: 0;
-		animation: ${({ isHidden }) =>
-			!isHidden
-				? css`
-						${revealHeaderAnimation} 1s ease forwards;
-				  `
-				: ""};
-
-		&:nth-of-type(1) {
-			animation-delay: ${(delay += 2)}00ms;
-		}
-
-		&:nth-of-type(2) {
-			animation-delay: ${(delay += 2)}00ms;
-		}
-		&:nth-of-type(3) {
-			animation-delay: ${(delay += 2)}00ms;
-		}
-	}
-
-	
+	height: auto;
 
 	${({ theme }) => {
 		return theme.typography.setSize(1);
@@ -60,7 +14,7 @@ export const StyledHeader = styled.header`
 
 	transition: transform 500ms ease;
 	z-index: -1;
-	color: ${({ theme }) => theme.colors[theme.components.header.styles.color]};
+	color: ${({ theme }) => theme.colors.light};
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -72,9 +26,12 @@ export const StyledHeader = styled.header`
 			theme.colors[theme.components.header.styles.color]};
 	}
 
-	.burger::before, .burger::after {
+	.burger::before,
+	.burger::after {
 		background-color: ${({ theme }) =>
-		theme.colors[theme.components.header.styles.color === 'light' ? 'dark' : 'light']};
+			theme.colors[
+				theme.components.header.styles.color === "light" ? "dark" : "light"
+			]};
 	}
 
 	.LinkCircle path {
@@ -113,7 +70,6 @@ export const StyledHeader = styled.header`
 			top: 0;
 			display: block;
 			font-size: 0.7rem;
-			
 		}
 	}
 `;

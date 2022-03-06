@@ -7,8 +7,8 @@ const useHeaderSpacing = () => {
 	const [headerHeight, setHeaderHeight] = useState("80px");
 
 	useEffect(() => {
-		desktop && setHeaderHeight("85px");
-		mobile && setHeaderHeight("80px");
+		desktop && setHeaderHeight("35px");
+		mobile && setHeaderHeight("30px");
 	}, [desktop, mobile]);
 
 	return [headerHeight];

@@ -4,6 +4,7 @@ import Haas from "../assets/fonts/Haas.otf";
 import Konnect from "../assets/fonts/Konnect.woff";
 import NeueMtl from "../assets/fonts/Montreal.otf";
 import { device } from "./breakpoints";
+import Brutal from "../assets/fonts/Brutal.woff";
 
 export const renderResponsiveSizes = object => {
 	return Object.entries(object).map(size => {
@@ -32,7 +33,7 @@ export const GlobalStyle = createGlobalStyle`
 
  * {
 -webkit-font-smoothing: antialiased;
-font-family: 'Neue Mtl';
+
 
  }
 
@@ -78,11 +79,17 @@ font-family: 'Neue Mtl';
     src: url(${NeueMtl}) format('woff');
   }
 
+
   @font-face {
-    font-family: 'Konnect';
-    src: url(${Konnect}) format('woff');
+    font-family: 'Brutal';
+    src: url(${Brutal}) format('woff');
   }
 
+
+h1, h2 {
+  font-family: 'Brutal';
+  text-transform: uppercase;
+}
 
 
 
@@ -94,9 +101,18 @@ font-family: 'Neue Mtl';
 
   
   
-  
-  h1, h2 {
-    font-family: 'FK';
+
+  .line, .line .word, .line .word .char {
+    font-family: 'Brutal' !important;
+  }
+
+  .line {
+    overflow: hidden;
+
+  }
+
+  .char {
+    transform: translateY(100%);
   }
 
 

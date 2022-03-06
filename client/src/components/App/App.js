@@ -16,6 +16,7 @@ import AboutPage from "../pages/About/AboutPage";
 import Loader from "../Transition/Loader";
 import { device } from "../../styles/breakpoints";
 import { GlobalStyle } from "../../styles/global";
+import SplashPage from "../pages/SplashPage";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();
@@ -154,7 +155,7 @@ function App() {
 	});
 
 	const [headerHidden, setHeaderHidden] = useState(
-		location.pathname === "/" ? true : false
+		true
 	);
 
 	useEffect(() => {
@@ -300,14 +301,14 @@ function App() {
 										<Routes>
 											<Route
 												path='/'
-												element={<HomePage showHeader={toggleHeaderShow} />}
+												element={<SplashPage  showHeader={toggleHeaderShow}/>}
 											/>
 											<Route path='/about' element={<AboutPage />} />
 											<Route path='/work' element={<WorkPage />} />
 											<Route path='/upload' element={<UploadPage />} />
 										</Routes>
 									</ContentWrapper>
-									<Footer />
+									{/* <Footer /> */}
 								</ScrollWrapper>
 							</div>
 						</LocomotiveScrollProvider>

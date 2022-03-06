@@ -68,12 +68,13 @@ function Menu(props) {
 
 	return (
 		<StyledMenu isOpen={isOpen} ref={menuRef}>
-			<UnorderedList
-				listItems={listInfo}
-				onClick={handleClick}
-				
-			/>
-			<SocialList addToRefs={addToRefs} alignItems={"center"} isDefaultHidden />
+			<ul>
+				<li>
+					hello@!
+				</li>
+			</ul>
+
+			
 		</StyledMenu>
 	);
 }
