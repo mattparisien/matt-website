@@ -1,7 +1,6 @@
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import { useEffect, useState } from "react";
-import useResize from "./useResize";
 
 function useSplit(refs, options) {
 	const [splitText, setSplitText] = useState(null);

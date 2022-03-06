@@ -61,11 +61,11 @@ function SplashPage(props) {
 				);
 			}
 		}
-	}, [splitText, props]);
+	}, [splitText]);
 
 	useEffect(() => {
 		animationComplete && props.showHeader();
-	}, [animationComplete]);
+	}, [animationComplete, props]);
 
 	return (
 		<Layout bg='dark'>
