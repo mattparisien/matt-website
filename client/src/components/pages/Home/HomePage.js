@@ -155,15 +155,6 @@ function HomePage(props, ref) {
 					does speak for itself.
 				</ParagraphLayout>
 			</Layout>
-
-			<Layout bg={layoutColor} height='auto'>
-				{/* <Pills info={pillInfo} /> */}
-				<ParagraphLayout indent indentHeading={"work"} variant={1}>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam,
-					placeat?
-				</ParagraphLayout>
-			</Layout>
-			<Layout bg='dark'></Layout>
 		</>
 	);
 }

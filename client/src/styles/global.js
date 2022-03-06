@@ -1,8 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 import DefaultCursor from "../assets/images/cursor-default-01.svg";
-import Haas from "../assets/fonts/Haas.otf";
 import Konnect from "../assets/fonts/Konnect.woff";
 import NeueMtl from "../assets/fonts/Montreal.otf";
+import Brutal from "../assets/fonts/Brutal.woff";
 import { device } from "./breakpoints";
 import Brutal from "../assets/fonts/Brutal.woff";
 
@@ -31,10 +31,28 @@ export const addHeaderSpacing = (property, extra) => {
 
 export const GlobalStyle = createGlobalStyle`
 
+
+@font-face {
+  font-family: 'Neue Mtl';
+  src: url(${NeueMtl}) format('woff');
+}
+
+@font-face {
+  font-family: 'Brutal';
+  src: url(${Brutal}) format('woff');
+}
+
+
+
+
  * {
 -webkit-font-smoothing: antialiased;
 
 
+ }
+
+ h1, h2 {
+   font-family: 'Brutal';
  }
 
 
@@ -61,7 +79,6 @@ export const GlobalStyle = createGlobalStyle`
 
 
 
-
   .App {
     
     color: ${({ foregroundColor, theme }) => theme.colors.light};
@@ -73,6 +90,7 @@ export const GlobalStyle = createGlobalStyle`
 
 
 
+<<<<<<< HEAD
 
   @font-face {
     font-family: 'Neue Mtl';
@@ -93,6 +111,8 @@ h1, h2 {
 
 
 
+=======
+>>>>>>> 8c87b19ac55d0e726aaa116fecdce578a0175257
   button, a {
     cursor: pointer;
     text-decoration: none;

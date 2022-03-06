@@ -7,6 +7,7 @@ import SplitText from "gsap/SplitText";
 import gsap from "gsap";
 import useSplit from "../../../helpers/hooks/useSplit";
 import useHeaderSpacing from "../../../helpers/hooks/useHeaderSpacing";
+import Heading from "../../Heading/Heading";
 
 function Hero({ data, showHeader, theme, matches }) {
 	
@@ -106,6 +107,7 @@ function Hero({ data, showHeader, theme, matches }) {
 		transform: "translate(-50%, -50%)",
 		width: "100%",
 		color: theme.colors.light,
+		'font-family': 'Brutal',
 		fontSize: "20vw",
 		textTransform: "uppercase",
 		lineHeight: "19vw",
@@ -217,13 +219,13 @@ function Hero({ data, showHeader, theme, matches }) {
 					height: "100%",
 				}}
 			>
-				<Typography component='h1' sx={headingStyles} ref={heading}>
+				<Heading level={1} styles={headingStyles} ref={heading}>
 					Matth3w
-				</Typography>
+				</Heading>
 				<Box className='hero-bottom-bar' sx={heroBottom}>
-					<Typography component='h3' sx={heading2Styles} ref={heading2}>
+					<Heading level={1} styles={heading2Styles} ref={heading2}>
 						Matth3w
-					</Typography>
+					</Heading>
 					<Typography
 						component='span'
 						sx={brandLineStyles}

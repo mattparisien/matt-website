@@ -7,6 +7,7 @@ import UnorderedList from "../../Lists/UnorderedList";
 import styled from "styled-components";
 import { List } from "@mui/material";
 import ContainerFluid from "../../Containers/ContainerFluid";
+import Heading from "../../Heading/Heading";
 
 const StyledUl = styled(List)`
 	width: 100%;
@@ -46,18 +47,14 @@ function Work({ projectAmount, projects, theme, matches }) {
 	const topBar = {
 		padding: "1vw",
 		width: "100%",
-		height: "11vw",
+		height: "15vw",
 		display: "flex",
 		alignItems: "center",
 		borderBottom: "1px solid black",
 		border: "0px",
 		background: "none",
 		transition: "300ms ease",
-		"& h2": {
-			fontSize: "11vw",
-			lineHeight: "9vw",
-			textTransform: "uppercase",
-		},
+	
 		"&:hover": {
 			backgroundColor: theme.colors.dark,
 			color: theme.colors.light,
@@ -112,7 +109,6 @@ function Work({ projectAmount, projects, theme, matches }) {
 		transform: `rotate(${hasFilterClicked ? "45deg" : "-deg"})`,
 		transformOrigin: "center",
 		transition: "300ms ease",
-		
 
 		".line": {
 			width: "80%",
@@ -164,6 +160,22 @@ function Work({ projectAmount, projects, theme, matches }) {
 		setFilterClicked(hasFilterClicked ? false : true);
 	};
 
+
+const headingStyles = `
+	font-size: 10vw;
+	line-height: 10vw;
+	text-transform: uppercase;
+
+`;
+
+const headingStyles2 = `
+	font-size: 10vw;
+	line-height: 10vw;
+	margin-left: 29vw;
+	text-transform: uppercase;
+
+`
+
 	return (
 		<>
 			<Box
@@ -172,12 +184,13 @@ function Work({ projectAmount, projects, theme, matches }) {
 				component='button'
 				onClick={handleTopBarClick}
 			>
-				<Typography variant='h2' component='h2'>
+				<Heading level={2} styles={headingStyles}>
 					{projectAmount}
-				</Typography>
-				<Typography variant='h2' component='h2' sx={{ marginLeft: "27vw" }}>
+				</Heading>
+				
+				<Heading level={2} styles={headingStyles2}>
 					All
-				</Typography>
+				</Heading>
 				<Box className='filter-cta' sx={cta}>
 					<Typography component='span'>Filter Projects</Typography>
 				</Box>
