@@ -5,8 +5,9 @@ import React, { useEffect, useRef, useState } from "react";
 import useResize from "../../helpers/hooks/useResize";
 import {
 	StyledVariant1Paragraph,
-	StyledVariant2Paragraph
+	StyledVariant2Paragraph,
 } from "./styles/StyledParagraph";
+import { useTheme } from "styled-components";
 
 function Paragraph(props) {
 	const [isSplit, setIsSplit] = useState(false);
@@ -14,6 +15,7 @@ function Paragraph(props) {
 	const [splitWrap, setSplitWrap] = useState(null);
 	const paragraph = useRef(null);
 	const [windowWidth, isResized] = useResize();
+	const theme = useTheme();
 	// const timeline = useRef(gsap.timeline());
 
 	useEffect(() => {
@@ -47,6 +49,25 @@ function Paragraph(props) {
 							ease: "expo.inOut",
 							stagger: 0.03,
 							y: 0,
+							onComplete: () => {
+								if (i === splitText.lines.length - 1) {
+									gsap.to($(splitText.lines).find(".accent-bg"), {
+										color: "red",
+										stagger: 0.1,
+										width: "100%",
+										ease: "circ.inOut",
+										
+										duration: 1,
+									});
+									gsap.to($(splitText.lines).find(".accent"), {
+										color: "red",
+										stagger: 0.1,
+										width: "100%",
+										ease: "circ.inOut",
+										duration: 1,
+									});
+								}
+							},
 						},
 						delay
 					);

@@ -34,10 +34,19 @@ function SplashPage(props) {
 		<Layout bg='light'>
 			<Box sx={containerStyle}>
 				<ParagraphLayout variant={1} indent>
-					Craft, code, and smile. I'm a full-stack software developer & graphic
-					designer based in the beautiful city of Montréal. Previously at
-					Lighthouse Labs, I'm obsessed with digital products and passionate
-					about crafting great user experiences.
+					Craft, code, and smile. I'm a full-stack{" "}
+					<span className='accent'>
+						software <span className='accent-bg'></span>{" "}
+					</span>{" "}
+					developer & graphic designer based in the beautiful city of{" "}
+					<span className='accent'>
+						Montréal <span className='accent-bg'></span>{" "}
+					</span>
+					. Previously at Lighthouse Labs, I'm obsessed with digital products
+					and passionate about crafting great user{" "}
+					<span className='accent'>
+						experiences. <span className='accent-bg'></span>{" "}
+					</span>
 				</ParagraphLayout>
 			</Box>
 

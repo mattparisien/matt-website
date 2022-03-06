@@ -82,9 +82,6 @@ export const StyledParagraph = styled.p`
 		display: inline-block;
 	}
 
-	.accent {
-		color: hotpink;
-	}
 
 
 
