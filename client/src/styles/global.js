@@ -1,8 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 import DefaultCursor from "../assets/images/cursor-default-01.svg";
-import Haas from "../assets/fonts/Haas.otf";
 import Konnect from "../assets/fonts/Konnect.woff";
 import NeueMtl from "../assets/fonts/Montreal.otf";
+import Brutal from "../assets/fonts/Brutal.woff";
 import { device } from "./breakpoints";
 
 export const renderResponsiveSizes = object => {
@@ -30,10 +30,28 @@ export const addHeaderSpacing = (property, extra) => {
 
 export const GlobalStyle = createGlobalStyle`
 
+
+@font-face {
+  font-family: 'Neue Mtl';
+  src: url(${NeueMtl}) format('woff');
+}
+
+@font-face {
+  font-family: 'Brutal';
+  src: url(${Brutal}) format('woff');
+}
+
+
+
+
  * {
 -webkit-font-smoothing: antialiased;
 font-family: 'Neue Mtl';
 
+ }
+
+ h1, h2 {
+   font-family: 'Brutal';
  }
 
 
@@ -60,7 +78,6 @@ font-family: 'Neue Mtl';
 
 
 
-
   .App {
     
     color: ${({ foregroundColor, theme }) => theme.colors.light};
@@ -68,20 +85,6 @@ font-family: 'Neue Mtl';
     transition: 500ms ease;
   }
 
-
-
-
-
-
-  @font-face {
-    font-family: 'Neue Mtl';
-    src: url(${NeueMtl}) format('woff');
-  }
-
-  @font-face {
-    font-family: 'Konnect';
-    src: url(${Konnect}) format('woff');
-  }
 
 
 
