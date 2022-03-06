@@ -59,7 +59,7 @@ function Paragraph(props) {
 				}
 			}, 200);
 		}
-	}, [isSplit, splitText, windowWidth, props.toggleHeaderShow]);
+	}, [isSplit, splitText, windowWidth,toggleHeaderShow]);
 
 	useEffect(() => {
 		if (splitText && !splitWrap) {
