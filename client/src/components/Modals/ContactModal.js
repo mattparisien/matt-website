@@ -25,7 +25,6 @@ function ContactModal({ isShow }) {
 			path: "https://instagram.com/matt.parisien",
 			component: Instagram,
 		},
-
 		{
 			name: "LinkedIn",
 			path: "https://www.linkedin.com/in/matthew-parisien-365572130/",
