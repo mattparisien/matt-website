@@ -546,7 +546,7 @@ function ContactModal({ isShow }) {
 											<Box
 												component='span'
 												className='success-msg'
-												sx={{ fontSize: "4rem", fontFamily: "Neue Mtl" }}
+												sx={{ fontSize: matches ? "1.5rem" : "4rem", fontFamily: "Neue Mtl" }}
 											>
 												Thank you for your message!
 											</Box>
@@ -554,7 +554,7 @@ function ContactModal({ isShow }) {
 												component='span'
 												className='success-msg'
 												sx={{
-													fontSize: "2rem",
+													fontSize: matches ? "1rem" : "2rem",
 													fontFamily: "Neue Mtl",
 													textAlign: "center",
 												}}
