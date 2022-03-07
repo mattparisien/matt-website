@@ -10,8 +10,11 @@ import Layout from "../Containers/Layout";
 
 function ContactModal({ isShow }) {
 	const theme = useTheme();
-	const matches = useMediaQuery("(max-width: 980px)", {noSsr: true});
-	const mobile = useMediaQuery("(max-width: 600px)", {noSsr: true});
+	const matches = useMediaQuery("(max-width: 980px)", { noSsr: true });
+	const mobile = useMediaQuery("(max-width: 600px)", { noSsr: true });
+	const tablet = useMediaQuery(
+		"(max-width: 1024px) and (orientation: landscape)"
+	);
 
 	const socialList = [
 		{
@@ -88,6 +91,7 @@ function ContactModal({ isShow }) {
 	};
 
 	const button = {
+		
 		width: "100%",
 		height: "8rem",
 		position: "relative",
@@ -186,18 +190,19 @@ function ContactModal({ isShow }) {
 	};
 
 	const paragraphLeft = {
-		fontSize: matches ? "1rem" : "2rem",
+		fontSize: matches || tablet ? "1rem" : "2rem",
+		lineHeight: matches || tablet ? "1rem" : "2rem",
 	};
 
 	const paragraphRight = {
-		fontSize: matches ? "2.5rem" : "5rem",
-		lineHeight: matches ? "2.5rem" : "5rem",
-		width: mobile ? "100%" : "50%",
+		fontSize: matches || tablet ? "2.5rem" : "5rem",
+		lineHeight: matches || tablet ? "2.5rem" : "5rem",
+		width: mobile  ? "100%" : "50%",
 		margin: 0,
 	};
 
 	const heading = {
-		fontSize: matches ? "2.5rem" : "5rem",
+		fontSize: matches || tablet ? "2.5rem" : "5rem",
 		fontFamily: "Neue Mtl",
 		fontWeight: "lighter",
 		display: matches ? "none" : "block",
@@ -546,7 +551,10 @@ function ContactModal({ isShow }) {
 											<Box
 												component='span'
 												className='success-msg'
-												sx={{ fontSize: matches ? "1.5rem" : "4rem", fontFamily: "Neue Mtl" }}
+												sx={{
+													fontSize: matches ? "1.5rem" : "4rem",
+													fontFamily: "Neue Mtl",
+												}}
 											>
 												Thank you for your message!
 											</Box>

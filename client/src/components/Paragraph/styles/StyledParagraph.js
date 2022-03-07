@@ -8,20 +8,20 @@ const paragraphFontSizes = {
 			lineHeight: "4.5rem",
 		},
 		desktop: {
-			fontSize: "5rem",
-			lineHeight: "6.2rem",
+			fontSize: "4.8rem",
+			lineHeight: "5rem",
 		},
 		laptopL: {
-			fontSize: "5.2rem",
+			fontSize: "4.8rem",
 			lineHeight: "5.1rem",
 		},
 		laptop: {
-			fontSize: "4rem",
-			lineHeight: "4rem",
+			fontSize: "3.1rem",
+			lineHeight: "3.4rem",
 		},
 		tablet: {
-			fontSize: "3.8rem",
-			lineHeight: "4rem",
+			fontSize: "2.5rem",
+			lineHeight: "2.9rem",
 		},
 		mobileL: {
 			fontSize: "1.3rem",
