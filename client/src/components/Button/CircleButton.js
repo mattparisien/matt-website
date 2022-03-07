@@ -20,7 +20,7 @@ function CircleButton({ children, onClick }) {
     margin: "20px",
     "&:hover":  {
       backgroundColor: theme.colors.purple,
-      transform: "scale(1.2)"
+      transform: matches ? "none" : "scale(1.2)"
     },
     "& svg": {
       width: matches ? "14px" : "30px",

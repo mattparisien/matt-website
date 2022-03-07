@@ -21,7 +21,7 @@ function RectangleButton({ children, onClick, bg, hoverBg, color, type }) {
 		transition: "400ms ease",
 		"&:hover": {
 			backgroundColor: theme.colors[hoverBg],
-			transform: "scale(1.2)",
+			transform: matches ? 'none' : "scale(1.2)",
 		},
 		"& svg": {
 			width: matches ? "20px" : "40px",

@@ -56,7 +56,7 @@ function ContactModal({ isShow }) {
 		top: 0,
 		left: 0,
 		width: "100vw",
-
+		backgroundColor: theme.colors.pink,
 		zIndex: 9999999,
 
 		color: theme.colors.purple,
@@ -200,7 +200,7 @@ function ContactModal({ isShow }) {
 		fontSize: matches ? "2.5rem" : "5rem",
 		fontFamily: "Neue Mtl",
 		fontWeight: "lighter",
-		display: "block",
+		display: matches ? "none" : "block",
 		margin: 0,
 	};
 
