@@ -13,17 +13,18 @@ function CircleButton({ children, onClick }) {
     fontFamily: 'Neue Mtl',
     fontSize: "1rem",
     backgroundColor: theme.colors.purple,
-    height: matches ? "5.3rem" : "11rem",
-    width: matches ? "5.3rem" : "11rem",
+    height: matches ? "5.3rem" : "9rem",
+    width: matches ? "5.3rem" : "9rem",
     borderRadius: "50%",
     transition: "400ms ease",
+    margin: "20px",
     "&:hover":  {
       backgroundColor: theme.colors.purple,
       transform: "scale(1.2)"
     },
     "& svg": {
-      width: matches ? "20px" : "40px",
-      height: matches ? "20px" : "40px",
+      width: matches ? "20px" : "30px",
+      height: matches ? "20px" : "30px",
     }
     
   }
