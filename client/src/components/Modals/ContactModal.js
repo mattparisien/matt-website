@@ -1,35 +1,19 @@
 import { FormGroup, TextField, useMediaQuery } from "@material-ui/core";
-import { Close } from "@material-ui/icons";
+import {
+	Close,
+	Facebook,
+	GitHub,
+	Instagram,
+	LinkedIn,
+} from "@material-ui/icons";
 import { Button, Stack } from "@mui/material";
 import { Box, keyframes } from "@mui/system";
 import axios from "axios";
-import React, { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import React, { useEffect, useRef, useState } from "react";
 import { useTheme } from "styled-components";
 import RectangleButton from "../Button/RectangleButton";
 import Layout from "../Containers/Layout";
-import { Instagram, Facebook, LinkedIn, GitHub } from "@material-ui/icons";
-
-const bgEntryAnim = keyframes`
-	0% {
-		transform: scaleY(0.001)
-	}
-	100% {
-		transform: scaleY(1)
-	}
-`;
-
-const revealContentAnim = keyframes`
-	0% {
-		opacity: 0;
-		transform: translateY(110%);
-	}
-
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-	
-`;
 
 function ContactModal({ isShow }) {
 	const theme = useTheme();
@@ -155,6 +139,7 @@ function ContactModal({ isShow }) {
 		display: isCollapsed ? "none" : "block",
 		position: "absolute",
 		width: "100%",
+		height: "100%",
 	};
 
 	const handleChange = e => {
@@ -260,16 +245,70 @@ function ContactModal({ isShow }) {
 		}
 	};
 
-	const star = {};
+	// const star = {};
 
-	const line = {
-		fill: theme.colors.dark,
-		color: theme.colors.dark,
-		fill: "none",
-		stroke: "#231f20",
-		strokeMiterlimit: 10,
-		strokeWidth: "1px",
-	};
+	// const line = {
+	// 	fill: theme.colors.dark,
+	// 	color: theme.colors.dark,
+	// 	fill: "none",
+	// 	stroke: "#231f20",
+	// 	strokeMiterlimit: 10,
+	// 	strokeWidth: "1px",
+	// };
+
+	// // const starTimeline = useRef(gsap.timeline());
+
+	useEffect(() => {
+		if (lineRefs.current) {
+			const degrees = ["360"];
+
+			gsap.set(lineRefs.current, { transformOrigin: "center" });
+
+			let rotation = 180;
+			let delay = 0.1;
+
+			for (let i = lineRefs.current.length; i >= 0; i--) {
+				gsap.to(lineRefs.current[i], {
+					duration: 5,
+					ease: "expo.inOut",
+					repeat: -1,
+					repeatDelay: 0,
+					rotation: `${rotation}deg`,
+					delay: delay,
+					yoyo: true,
+				});
+
+				rotation += 26;
+				// delay+=0.1
+			}
+
+			// .to(lineRefs.current[lineRefs.current.length - 1], {
+
+			// 	duration: 2,
+			// 	rotation: `${360}deg`,
+			// 	ease: "expo.inOut",
+			// 	stagger: 0.1,
+			// 	repeat: -1,
+			// 	repeatDelay: 0,
+			// })
+			// .to(lineRefs.current[lineRefs.current.length - 2], {
+			// 	duration: 2,
+			// 	rotation: `${360 + 26}deg`,
+			// 	ease: "expo.inOut",
+			// 	stagger: 0.1,
+			// 	repeat: -1,
+			// 	repeatDelay: 0,
+			// })
+			// .to(lineRefs.current[lineRefs.current.length - 3], {
+			// 	duration: 2,
+			// 	rotation: `${360 + 52}deg`,
+			// 	ease: "expo.inOut",
+			// 	stagger: 0.1,
+			// 	repeat: -1,
+			// 	repeatDelay: 0,
+			// })
+		}
+	}, [lineRefs.current]);
 
 	return (
 		<>
@@ -339,7 +378,7 @@ function ContactModal({ isShow }) {
 						isCollapsed={isCollapsed}
 						sx={collapsibleSection}
 					>
-						<Layout height='auto' bg={"pink"} color='purple'>
+						<Layout height='100%' bg={"pink"} color='purple'>
 							<Box
 								display='flex'
 								sx={{
@@ -351,8 +390,10 @@ function ContactModal({ isShow }) {
 							>
 								{!success ? (
 									<>
-										<Box sx={{ flexGrow: 1 }}>
-											<svg
+										<Box
+											sx={{ flexGrow: 1, display: matches ? "none" : "block" }}
+										>
+											{/* <svg
 												id='svg-star'
 												style={star}
 												xmlns='http://www.w3.org/2000/svg'
@@ -407,7 +448,7 @@ function ContactModal({ isShow }) {
 													style={line}
 													ref={addToLineRefs}
 												/>
-											</svg>
+											</svg> */}
 										</Box>
 										<Box
 											component='form'
@@ -492,23 +533,23 @@ function ContactModal({ isShow }) {
 													}
 													helperText={error["message"]}
 												/>
-											</Stack>
-											<Box
-												sx={{
-													width: "100%",
-													display: "flex",
-													justifyContent: "end",
-												}}
-											>
-												<RectangleButton
-													color='pink'
-													bg='orange'
-													hoverBg={"purple"}
-													type='submit'
+												<Box
+													sx={{
+														width: "100%",
+														display: "flex",
+														justifyContent: "end",
+													}}
 												>
-													Send
-												</RectangleButton>
-											</Box>
+													<RectangleButton
+														color='pink'
+														bg='orange'
+														hoverBg={"purple"}
+														type='submit'
+													>
+														Send
+													</RectangleButton>
+												</Box>
+											</Stack>
 										</Box>
 									</>
 								) : (

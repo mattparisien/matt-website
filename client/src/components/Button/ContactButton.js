@@ -7,9 +7,13 @@ function ContactButton({ toggleContactModal, isModalShow }) {
 	const theme = useTheme();
 	const buttonWrapper = {
 		position: "absolute",
-		bottom: 0,
+		bottom: !isModalShow && 0,
+		top: isModalShow && 0,
 		zIndex: 9999999,
+
 		right: 0,
+
+		transition: "600ms ease",
 	};
 
 	const handleClick = () => {
