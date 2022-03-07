@@ -1,11 +1,5 @@
 import { FormGroup, TextField, useMediaQuery } from "@material-ui/core";
-import {
-	Close,
-	Facebook,
-	GitHub,
-	Instagram,
-	LinkedIn,
-} from "@material-ui/icons";
+import { Close, GitHub, Instagram, LinkedIn } from "@material-ui/icons";
 import { Button, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
