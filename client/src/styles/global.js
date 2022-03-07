@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import Brutal from "../assets/fonts/Brutal.woff";
 import NeueMtl from "../assets/fonts/Montreal.otf";
-import Pickle from "../assets/fonts/Pickle.woff";
+import Cardinal from "../assets/fonts/Cardinal.otf";
 import DefaultCursor from "../assets/images/cursor-default-01.svg";
 import { device } from "./breakpoints";
 
@@ -42,8 +42,8 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 @font-face {
-  font-family: 'Pickle';
-  src: url(${Pickle}) format('woff');
+  font-family: 'Cardinal';
+  src: url(${Cardinal}) format('woff');
 }
 
 
@@ -84,7 +84,7 @@ export const GlobalStyle = createGlobalStyle`
 
 .line {
   transform: translateY(110%);
-  opacity: 0;
+  opacity: 0
 }
 
 .word {

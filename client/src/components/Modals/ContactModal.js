@@ -1,16 +1,63 @@
-import { FormGroup, TextField } from "@material-ui/core";
+import { FormGroup, TextField, useMediaQuery } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 import { Button, Stack } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box, keyframes } from "@mui/system";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useTheme } from "styled-components";
 import RectangleButton from "../Button/RectangleButton";
 import Layout from "../Containers/Layout";
-import ParagraphLayout from "../Paragraph/ParagraphLayout";
+import { Instagram, Facebook, LinkedIn, GitHub } from "@material-ui/icons";
 
-function ContactModal() {
+const bgEntryAnim = keyframes`
+	0% {
+		transform: scaleY(0.001)
+	}
+	100% {
+		transform: scaleY(1)
+	}
+`;
+
+const revealContentAnim = keyframes`
+	0% {
+		opacity: 0;
+		transform: translateY(110%);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	
+`;
+
+function ContactModal({ isShow }) {
 	const theme = useTheme();
+	const matches = useMediaQuery("(max-width: 980px)");
+	const mobile = useMediaQuery("(max-width: 600px");
+
+	const socialList = [
+		{
+			name: "Instagram",
+			path: "/",
+			component: Instagram,
+		},
+		{
+			name: "Facebook",
+			path: "/",
+			component: Facebook,
+		},
+		{
+			name: "LinkedIn",
+			path: "/",
+			component: LinkedIn,
+		},
+		{
+			name: "Github",
+			path: "/",
+			component: GitHub,
+		},
+	];
 
 	const [isCollapsed, setCollapsed] = useState(true);
 	const [formValues, setFormValues] = useState({
@@ -31,6 +78,7 @@ function ContactModal() {
 	const [success, setSuccess] = useState(false);
 
 	const container = {
+		display: isShow ? "block" : "none",
 		overflow: "scroll",
 		position: "fixed",
 		top: 0,
@@ -38,7 +86,7 @@ function ContactModal() {
 		width: "100vw",
 		height: "100vh",
 		zIndex: 9999999,
-		backgroundColor: theme.colors.pink,
+
 		color: theme.colors.purple,
 		height: "100%",
 		"& .success-msg": {
@@ -51,14 +99,16 @@ function ContactModal() {
 
 	const flexContainer = {
 		display: "flex",
+		flexDirection: mobile ? "column" : "row",
 		"& .ParagraphLayout": {
 			alignItems: "start !important",
 			justifyContent: "start",
+			margin: 0,
+			width: "100%",
 			"&__2": {
-				width: "50%",
 				marginLeft: "none",
 				"& p": {
-					marginRight: "auto",
+					width: "100%",
 					marginLeft: "0px",
 				},
 			},
@@ -69,12 +119,19 @@ function ContactModal() {
 		width: "100%",
 		height: "8rem",
 		position: "relative",
-		fontSize: "2rem",
+		fontSize: matches ? "1rem" : "2rem",
+		lineHeight: matches ? "1rem" : "2rem",
 		fontFamily: "Neue Mtl",
 		textTransform: "none",
+		justifyContent: matches ? "start" : "center",
+		textAlign: "left",
 		color: theme.colors.purple,
 		"&:hover .button-bg": {
 			transform: "scaleY(1)",
+		},
+
+		"& span": {
+			marginRight: "1rem",
 		},
 
 		"&:hover": {
@@ -96,6 +153,8 @@ function ContactModal() {
 
 	const collapsibleSection = {
 		display: isCollapsed ? "none" : "block",
+		position: "absolute",
+		width: "100%",
 	};
 
 	const handleChange = e => {
@@ -153,191 +212,335 @@ function ContactModal() {
 		success && setSuccess(false);
 	};
 
+	const paragraphLeft = {
+		fontSize: matches ? "1rem" : "2rem",
+	};
+
+	const paragraphRight = {
+		fontSize: matches ? "2.5rem" : "5rem",
+		lineHeight: matches ? "2.5rem" : "5rem",
+		width: mobile ? "100%" : "50%",
+		margin: 0,
+	};
+
+	const heading = {
+		fontSize: matches ? "2.5rem" : "5rem",
+		fontFamily: "Neue Mtl",
+		fontWeight: "lighter",
+		display: "block",
+		margin: 0,
+	};
+
+	const background = {
+		position: "absolute",
+		top: 0,
+		left: 0,
+		width: "100%",
+		height: "100%",
+		backgroundColor: theme.colors.pink,
+		transformOrigin: "top",
+		// animation: `${bgEntryAnim} 600ms ease-in-out forwards`,
+		zIndex: -999,
+	};
+
+	const content = {
+		position: "absolute",
+		top: "50%",
+		left: "50%",
+		transform: "translate(-50%, -50%)",
+		width: "100%",
+	};
+
+	const lineRefs = useRef([]);
+	lineRefs.current = [];
+
+	const addToLineRefs = el => {
+		if (el && !lineRefs.current.includes(el)) {
+			lineRefs.current.push(el);
+		}
+	};
+
+	const star = {};
+
+	const line = {
+		fill: theme.colors.dark,
+		color: theme.colors.dark,
+		fill: "none",
+		stroke: "#231f20",
+		strokeMiterlimit: 10,
+		strokeWidth: "1px",
+	};
+
 	return (
 		<>
-			<Box sx={container}>
-				<Layout bg='pink' color='purple' height='auto'>
-					<Box sx={{ width: "50%" }}>
-						<ParagraphLayout variant={1}>Contact</ParagraphLayout>
-					</Box>
-					<Box sx={flexContainer}>
-						<ParagraphLayout variant={2}>
-							Montréal, Canada <br></br>
-							hello@matthewparisien.com <br></br>
-							514.467.1771
-						</ParagraphLayout>
-
-						<Box sx={{ width: "50%" }}>
-							<ParagraphLayout variant={1}>
+			<Box sx={container} className='modal-container'>
+				<Box className='modal-content' sx={content}>
+					<Layout bg='transparent' color='purple' height='auto'>
+						<Box sx={flexContainer}>
+							<Box sx={{ width: mobile ? "100%" : "50%", marginBottom: 3 }}>
+								<Box component='h3' sx={heading}>
+									Contact
+								</Box>
+								<Box component='p' sx={paragraphLeft}>
+									Montréal, Canada <br></br>
+									<a href="mailto:hello@matthewparisien.com?subject=Let's chat.">
+										hello@matthewparisien.com
+									</a>{" "}
+									<br></br>
+									514.467.1771
+								</Box>
+								<Box
+									component='ul'
+									sx={{
+										display: "flex",
+										width: "280px",
+										justifyContent: "space-between",
+										paddingLeft: 0,
+										fontFamily: "Neue Mtl",
+									}}
+								>
+									{socialList.map((item, i) => {
+										return (
+											<>
+												<li key={i}>
+													<a href={item.path} target='_blank'>
+														{item.name}
+													</a>
+												</li>
+											</>
+										);
+									})}
+								</Box>
+							</Box>
+							<Box component='p' sx={paragraphRight}>
 								I would love to talk. Give me a call, join my social fun or fill
 								out the form below ↓
-							</ParagraphLayout>
+							</Box>
 						</Box>
-					</Box>
-					<Box></Box>
-				</Layout>
-				<Layout bg='pink' color='purple' height='auto'>
-					<Button sx={button} onClick={handleCollapsedClick}>
-						This form is open 24/7. Literally. Reach us here.{" "}
-						<Close
-							style={{
-								position: "absolute",
-								right: "2rem",
-								transform: `rotate(${isCollapsed ? "45deg" : "0"})`,
-								transition: "400ms ease",
-							}}
-						/>
-						<Box className='button-bg'></Box>
-					</Button>
-				</Layout>
-				<Box
-					className='section-collapsible'
-					isCollapsed={isCollapsed}
-					sx={collapsibleSection}
-				>
-					<Layout height='100vh' bg={"pink"} color='purple'>
-						<Box
-							display='flex'
-							sx={{
-								width: "100%",
-								height: "30%",
-								justifyContent: !success ? "start" : "center",
-								alignItems: success && "center",
-							}}
-						>
-							{!success ? (
-								<>
-									<Box sx={{ flexGrow: 1 }}></Box>
-									<Box
-										component='form'
-										sx={{ flexGrow: 1 }}
-										onSubmit={handleSubmit}
-									>
-										<Stack
-											orientation={"vertical"}
-											sx={{
-												width: "100%",
-												height: "100%",
-												justifyContent: "space-between",
-											}}
+					</Layout>
+					<Layout bg='tranparent' color='purple' height='auto'>
+						<Button sx={button} onClick={handleCollapsedClick}>
+							<Box component='span'>
+								This form is open 24/7. Literally. Reach us here.
+							</Box>
+							<Close
+								style={{
+									position: "absolute",
+									right: matches ? "0" : "2rem",
+									transform: `rotate(${isCollapsed ? "45deg" : "0"})`,
+									transition: "400ms ease",
+								}}
+							/>
+							<Box className='button-bg'></Box>
+						</Button>
+					</Layout>
+					<Box
+						className='section-collapsible'
+						isCollapsed={isCollapsed}
+						sx={collapsibleSection}
+					>
+						<Layout height='auto' bg={"pink"} color='purple'>
+							<Box
+								display='flex'
+								sx={{
+									width: "100%",
+									height: "100%",
+									justifyContent: !success ? "start" : "center",
+									alignItems: success && "center",
+								}}
+							>
+								{!success ? (
+									<>
+										<Box sx={{ flexGrow: 1 }}>
+											<svg
+												id='svg-star'
+												style={star}
+												xmlns='http://www.w3.org/2000/svg'
+												viewBox='0 0 398.89 407.59'
+											>
+												<path
+													class='cls-1'
+													d='M223.11,539.31,388.89,167'
+													transform='translate(-106.56 -149.34)'
+													style={line}
+													ref={addToLineRefs}
+												/>
+												<path
+													class='cls-1'
+													d='M149.89,484.13l312.22-262'
+													transform='translate(-106.56 -149.34)'
+													style={line}
+													ref={addToLineRefs}
+												/>
+												<path
+													class='cls-1'
+													d='M108.26,402.44l395.48-98.6'
+													transform='translate(-106.56 -149.34)'
+													style={line}
+													ref={addToLineRefs}
+												/>
+												<path
+													class='cls-1'
+													d='M106.66,310.77l398.68,84.74'
+													transform='translate(-106.56 -149.34)'
+													style={line}
+													ref={addToLineRefs}
+												/>
+												<path
+													class='cls-1'
+													d='M145.41,227.67,466.59,478.61'
+													transform='translate(-106.56 -149.34)'
+													style={line}
+													ref={addToLineRefs}
+												/>
+												<path
+													class='cls-1'
+													d='M216.66,170,395.34,536.31'
+													transform='translate(-106.56 -149.34)'
+													style={line}
+													ref={addToLineRefs}
+												/>
+												<path
+													class='cls-1'
+													d='M306,149.34V556.93'
+													transform='translate(-106.56 -149.34)'
+													style={line}
+													ref={addToLineRefs}
+												/>
+											</svg>
+										</Box>
+										<Box
+											component='form'
+											sx={{ flexGrow: 1 }}
+											onSubmit={handleSubmit}
 										>
-											<FormGroup
-												style={{
-													flexDirection: "row",
+											<Stack
+												orientation={"vertical"}
+												sx={{
+													width: "100%",
+													height: "100%",
 													justifyContent: "space-between",
 												}}
 											>
+												<FormGroup
+													style={{
+														flexDirection: "row",
+														justifyContent: "space-between",
+													}}
+												>
+													<TextField
+														placeholder='Name'
+														variant='standard'
+														label='Name'
+														style={{ flexGrow: "1" }}
+														name='name'
+														value={formValues.name}
+														onChange={handleChange}
+														error={
+															typeof error["name"] === "string" ? true : false
+														}
+														helperText={error["name"]}
+													/>
+													<TextField
+														placeholder='tessa@example.com'
+														variant='standard'
+														label='Email'
+														style={{ flexGrow: "1" }}
+														value={formValues.email}
+														name='email'
+														onChange={handleChange}
+														error={
+															typeof error["email"] === "string" ? true : false
+														}
+														helperText={error["email"]}
+													/>
+												</FormGroup>
 												<TextField
-													placeholder='Name'
+													placeholder='Location'
 													variant='standard'
-													label='Name'
-													style={{ flexGrow: "1" }}
-													name='name'
-													value={formValues.name}
+													label='Location'
+													name='location'
+													value={formValues.location}
 													onChange={handleChange}
 													error={
-														typeof error["name"] === "string" ? true : false
+														typeof error["location"] === "string" ? true : false
 													}
-													helperText={error["name"]}
+													helperText={error["location"]}
 												/>
 												<TextField
-													placeholder='tessa@example.com'
+													placeholder='Subject'
 													variant='standard'
-													label='Email'
-													style={{ flexGrow: "1" }}
-													value={formValues.email}
-													name='email'
+													label='Subject'
+													name='subject'
+													value={formValues.Subject}
 													onChange={handleChange}
 													error={
-														typeof error["email"] === "string" ? true : false
+														typeof error["subject"] === "string" ? true : false
 													}
-													helperText={error["email"]}
+													helperText={error["subject"]}
 												/>
-											</FormGroup>
-											<TextField
-												placeholder='Location'
-												variant='standard'
-												label='Location'
-												name='location'
-												value={formValues.location}
-												onChange={handleChange}
-												error={
-													typeof error["location"] === "string" ? true : false
-												}
-												helperText={error["location"]}
-											/>
-											<TextField
-												placeholder='Subject'
-												variant='standard'
-												label='Subject'
-												name='subject'
-												value={formValues.Subject}
-												onChange={handleChange}
-												error={
-													typeof error["subject"] === "string" ? true : false
-												}
-												helperText={error["subject"]}
-											/>
-											<TextField
-												placeholder='Your message'
-												variant='standard'
-												label='Message'
-												name='message'
-												value={formValues.message}
-												onChange={handleChange}
-												inputProps={{ maxLength: 1000 }}
-												error={
-													typeof error["message"] === "string" ? true : false
-												}
-												helperText={error["message"]}
-											/>
-										</Stack>
-										<Box
-											sx={{
-												width: "100%",
-												display: "flex",
-												justifyContent: "end",
-											}}
-										>
-											<RectangleButton
-												color='pink'
-												bg='orange'
-												hoverBg={"purple"}
-												type='submit'
+												<TextField
+													placeholder='Your message'
+													variant='standard'
+													label='Message'
+													name='message'
+													value={formValues.message}
+													onChange={handleChange}
+													inputProps={{ maxLength: 1000 }}
+													error={
+														typeof error["message"] === "string" ? true : false
+													}
+													helperText={error["message"]}
+												/>
+											</Stack>
+											<Box
+												sx={{
+													width: "100%",
+													display: "flex",
+													justifyContent: "end",
+												}}
 											>
-												Send
-											</RectangleButton>
+												<RectangleButton
+													color='pink'
+													bg='orange'
+													hoverBg={"purple"}
+													type='submit'
+												>
+													Send
+												</RectangleButton>
+											</Box>
 										</Box>
-									</Box>
-								</>
-							) : (
-								<>
-									<Box sx={{ display: "flex", flexDirection: "column" }}>
-										<Box
-											component='span'
-											className='success-msg'
-											sx={{ fontSize: "4rem", fontFamily: "Neue Mtl" }}
-										>
-											Thank you for your message!
+									</>
+								) : (
+									<>
+										<Box sx={{ display: "flex", flexDirection: "column" }}>
+											<Box
+												component='span'
+												className='success-msg'
+												sx={{ fontSize: "4rem", fontFamily: "Neue Mtl" }}
+											>
+												Thank you for your message!
+											</Box>
+											<Box
+												component='span'
+												className='success-msg'
+												sx={{
+													fontSize: "2rem",
+													fontFamily: "Neue Mtl",
+													textAlign: "center",
+												}}
+												pt={2}
+											>
+												We will get back you shortly :)
+											</Box>
 										</Box>
-										<Box
-											component='span'
-											className='success-msg'
-											sx={{
-												fontSize: "2rem",
-												fontFamily: "Neue Mtl",
-												textAlign: "center",
-											}}
-											pt={2}
-										>
-											We will get back you shortly :)
-										</Box>
-									</Box>
-								</>
-							)}
-						</Box>
-					</Layout>
+									</>
+								)}
+							</Box>
+						</Layout>
+					</Box>
 				</Box>
+				<Box className='modal-bg' sx={background}></Box>
 			</Box>
 		</>
 	);

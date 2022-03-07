@@ -12,6 +12,7 @@ import Header from "../Header/Header";
 import SplashPage from "../pages/SplashPage";
 import Loader from "../Transition/Loader";
 import ContactModal from "../Modals/ContactModal";
+import ContactButton from "../Button/ContactButton";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();
@@ -138,10 +139,7 @@ function App() {
 
 	const [state, setState] = useState({
 		entryScreenActive: true,
-		modal: {
-			isActive: false,
-			hasBeenActive: false,
-		},
+		modalShow: false,
 		data: {},
 		headerHeight: null,
 		footerHeight: null,
@@ -203,7 +201,11 @@ function App() {
 	const loadingControls = {
 		isLoading: state.isLoading,
 		toggleLoading,
-		toggleHeaderShow
+		toggleHeaderShow,
+	};
+
+	const toggleContactModal = () => {
+		setState(prev => ({ ...prev, modalShow: !state.modalShow }));
 	};
 
 	return (
@@ -229,7 +231,8 @@ function App() {
 									/>
 								</Helmet>
 								<Loader isActive={state.isLoading} />
-								<ContactModal/>
+								<ContactModal isShow={state.modalShow} />
+								<ContactButton toggleContactModal={toggleContactModal} isModalShow={state.modalShow}/>
 								<Header
 									ref={headerRef}
 									isMenuActive={state.menuActive}
