@@ -19,12 +19,14 @@ function ContactModal() {
 		name: "",
 		email: "",
 		location: "",
+		subject: "",
 		message: "",
 	});
 	const [error, setError] = useState({
 		name: null,
 		email: null,
 		location: null,
+		subject: null,
 		message: null,
 	});
 
@@ -113,7 +115,10 @@ function ContactModal() {
 				if (!entry[1] || entry[1] === "") {
 					setError(prev => ({
 						...prev,
-						[entry[0]]: `${entry[0].slice(0, 1).toUpperCase().concat(entry[0].slice(1, entry[0].length))} cannot be empty`,
+						[entry[0]]: `${entry[0]
+							.slice(0, 1)
+							.toUpperCase()
+							.concat(entry[0].slice(1, entry[0].length))} cannot be empty`,
 					}));
 					hasError = true;
 				}
@@ -262,6 +267,18 @@ function ContactModal() {
 													typeof error["location"] === "string" ? true : false
 												}
 												helperText={error["location"]}
+											/>
+											<TextField
+												placeholder='Subject'
+												variant='standard'
+												label='Subject'
+												name='subject'
+												value={formValues.Subject}
+												onChange={handleChange}
+												error={
+													typeof error["subject"] === "string" ? true : false
+												}
+												helperText={error["subject"]}
 											/>
 											<TextField
 												placeholder='Your message'

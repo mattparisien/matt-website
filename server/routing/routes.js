@@ -5,6 +5,7 @@ const multer = require("multer");
 const { GridFsStorage } = require("multer-gridfs-storage");
 const Grid = require("gridfs-stream");
 const crypto = require("crypto");
+const nodemailer = require("nodemailer");
 
 //Init gfs
 let gfs;
@@ -144,9 +145,52 @@ router.get("/images/:filename", (req, res) => {
 });
 
 router.post("/email/submit", (req, res) => {
-	console.log(req.body)
-	res.send('success!')
-})
+	res.send("success!");
+
+	const { name, email, location, subject, message } = req.body;
+
+	const emailOutput = `
+		<p>You have a new message!</p>
+		<h3>Details: </h3>
+		<ul>
+			<li>Name: ${name}</li>
+			<li>Email: ${email}</li>
+			<li>Location: ${location}</li>
+			<li>Subject: ${subject}</li>
+			<li>Message: ${message}</li>
+		</ul>
+	`;
+
+	// create reusable transporter object using the default SMTP transport
+	let transporter = nodemailer.createTransport({
+		service: "gmail",
+		auth: {
+			user: process.env.GOOGLE_EMAIL, // generated ethereal user
+			pass: process.env.GOOGLE_PASSWORD, // generated ethereal password
+		},
+	});
+
+	console.log(process.env.GOOGLE_EMAIL, process.env.GOOGLE_PASSWORD);
+
+	// send mail with defined transport object
+	let mailOptions = {
+		from: process.env.GOOGLE_EMAIL, // sender address
+		to: "hello@matthewparisien.com", // list of receivers
+		subject: "You've got a new message for node!", // Subject line
+		text: "Hello world?", // plain text body
+		html: emailOutput, // html body
+	};
+
+	transporter.sendMail(mailOptions, (err, info) => {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log(`Email sent: ${info.response}`);
+		}
+	});
+
+	// Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+});
 
 router.get("/seeding", (req, res) => {
 	const projects = [
