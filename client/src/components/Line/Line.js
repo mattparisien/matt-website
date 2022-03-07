@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import InView from "react-intersection-observer";
+import React from "react";
+import styled, { keyframes } from "styled-components";
 
-const StyledLine = styled.div`
-	width: ${({ intersecting }) => (intersecting ? "100%" : "0%")};
-	margin-bottom: 2.5rem;
-	transition: 1s ease;
-	height: 1px;
-	background-color: ${({ theme }) => theme.colors.light};
+const lineAnim = keyframes`
+	0% {
+		transform: scaleX(0);
+	} 100% {
+		transform: scaleX(1);	
+	}
 `;
 
-function Line() {
-	const [intersecting, setIntersecting] = useState(false);
+const StyledLine = styled.div`
+	margin-bottom: 2.5rem;
+	width: 100%;
+	height: 1px;
+	background-color: ${({ theme, color }) =>
+		color ? theme.colors[color] : theme.colors.light};
+	transform: scaleX(0);
+	animation: ${lineAnim} 800ms ease forwards;
+`;
 
-	return (
-		<InView
-			className='line-view-wrapper'
-			onChange={(inView, entry) => inView && setIntersecting(true)}
-		>
-			<StyledLine intersecting={intersecting}></StyledLine>
-		</InView>
-	);
+function Line(props) {
+	return <StyledLine {...props}></StyledLine>;
 }
 
 export default Line;

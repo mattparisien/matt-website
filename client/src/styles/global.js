@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import Brutal from "../assets/fonts/Brutal.woff";
 import NeueMtl from "../assets/fonts/Montreal.otf";
+import Pickle from "../assets/fonts/Pickle.woff";
 import DefaultCursor from "../assets/images/cursor-default-01.svg";
 import { device } from "./breakpoints";
 
@@ -40,6 +41,11 @@ export const GlobalStyle = createGlobalStyle`
   src: url(${Brutal}) format('woff');
 }
 
+@font-face {
+  font-family: 'Pickle';
+  src: url(${Pickle}) format('woff');
+}
+
 
 
 
@@ -77,7 +83,8 @@ export const GlobalStyle = createGlobalStyle`
 
 
 .line {
-  overflow: hidden;
+  transform: translateY(110%);
+  opacity: 0;
 }
 
 .word {
@@ -139,9 +146,6 @@ h1, h2 {
 
  
 
-  .char {
-    transform: translateY(190%);
-  }
 
   .indent-title {
     position: absolute;

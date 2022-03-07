@@ -146,7 +146,7 @@ function App() {
 		footerHeight: null,
 		isFooterIntersecting: false,
 		menuActive: false,
-		isLoading: false,
+		isLoading: true,
 	});
 
 	const [headerHidden, setHeaderHidden] = useState(true);

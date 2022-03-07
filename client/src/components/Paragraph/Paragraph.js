@@ -27,7 +27,6 @@ function Paragraph(props) {
 			});
 
 			setTimeout(() => {
-				mySplitText.revert().split();
 				setIsSplit(true);
 				setSplitText(mySplitText);
 			}, 200);
@@ -35,45 +34,20 @@ function Paragraph(props) {
 			// setSplitWrap(splitTextWrap);
 		}
 
-		if (splitText) {
-			let delay = 0;
+		if (splitText && splitText.lines) {
+			// let delay = 0;
 
 			setTimeout(() => {
-				for (let i = 0; i < splitText.lines.length; i++) {
-					delay += 0.1;
-					gsap.to(
-						$(splitText.lines[i]).find(".char"),
-						{
-							duration: 2,
-							ease: "expo.inOut",
-							stagger: 0.03,
-							y: 0,
-							onComplete: () => {
-								if (i === splitText.lines.length - 1) {
-									props.onCompleteCallback();
-									gsap.to($(splitText.lines).find(".accent-bg"), {
-										color: "red",
-										stagger: 0.1,
-										width: "100%",
-										ease: "circ.inOut",
-										duration: 1,
-									});
-									gsap.to($(splitText.lines).find(".accent"), {
-										color: "red",
-										stagger: 0.1,
-										width: "100%",
-										ease: "circ.inOut",
-										duration: 1,
-									});
-								}
-							},
-						},
-						delay
-					);
-				}
-			}, 200);
+				gsap.to(splitText.lines, {
+					y: 0,
+					opacity: 1,
+					duration: 1,
+					ease: "expo.out",
+					stagger: 0.08,
+				});
+			}, 1000);
 		}
-	}, [isSplit, splitText, windowWidth, props]);
+	}, [isSplit, splitText, windowWidth]);
 
 	useEffect(() => {
 		if (splitText && !splitWrap) {
