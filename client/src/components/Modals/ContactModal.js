@@ -1,15 +1,13 @@
-import { Button } from "@mui/material";
+import { FormGroup, TextField } from "@material-ui/core";
+import { Close } from "@material-ui/icons";
+import { Button, Stack } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState, useEffect } from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { useTheme } from "styled-components";
+import RectangleButton from "../Button/RectangleButton";
 import Layout from "../Containers/Layout";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
-import { Close, ContactsOutlined } from "@material-ui/icons";
-import { FormLabel, FormGroup, TextField } from "@material-ui/core";
-import { Stack } from "@mui/material";
-import axios from "axios";
-import RectangleButton from "../Button/RectangleButton";
-import Paragraph from "../Paragraph/Paragraph";
 
 function ContactModal() {
 	const theme = useTheme();

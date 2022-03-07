@@ -176,7 +176,7 @@ router.post("/email/submit", (req, res) => {
 	let mailOptions = {
 		from: process.env.GOOGLE_EMAIL, // sender address
 		to: "hello@matthewparisien.com", // list of receivers
-		subject: "You've got a new message for node!", // Subject line
+		subject: "You've got a new website email!", // Subject line
 		text: "Hello world?", // plain text body
 		html: emailOutput, // html body
 	};
