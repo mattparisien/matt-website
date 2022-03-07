@@ -164,7 +164,7 @@ function ContactModal({ isShow }) {
 		}
 
 		axios
-			.post(`http://localhost:8080/api/email/submit`, formValues)
+			.post(`${process.env.REACT_APP_API_URL}/email/submit`, formValues)
 			.then(
 				res =>
 					res.data === "success!" &&
