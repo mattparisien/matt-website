@@ -10,8 +10,8 @@ import Layout from "../Containers/Layout";
 
 function ContactModal({ isShow }) {
 	const theme = useTheme();
-	const matches = useMediaQuery("(max-width: 980px)");
-	const mobile = useMediaQuery("(max-width: 600px");
+	const matches = useMediaQuery("(max-width: 980px)", {noSsr: true});
+	const mobile = useMediaQuery("(max-width: 600px)", {noSsr: true});
 
 	const socialList = [
 		{

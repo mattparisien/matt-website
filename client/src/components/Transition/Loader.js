@@ -36,7 +36,7 @@ const fadeContent = keyframes`
 
 function Loader() {
 	const [isAnimCompleted, setAnimCompleted] = useState(false);
-	const matches = useMediaQuery('(max-width: 600px)');
+	const matches = useMediaQuery('(max-width: 600px)', {noSsr: true});
 
 	useEffect(() => {
 		setTimeout(() => {

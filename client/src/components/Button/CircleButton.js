@@ -5,7 +5,7 @@ import { useTheme } from "styled-components";
 
 function CircleButton({ children, onClick }) {
   const theme = useTheme();
-  const matches  = useMediaQuery("(max-width: 900px");
+  const matches  = useMediaQuery("(max-width: 900px)", {noSsr: true});
 
   const circleButton = {
     textTransform: "none",
