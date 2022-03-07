@@ -7,10 +7,9 @@ import {
 	LinkedIn,
 } from "@material-ui/icons";
 import { Button, Stack } from "@mui/material";
-import { Box, keyframes } from "@mui/system";
+import { Box } from "@mui/system";
 import axios from "axios";
-import gsap from "gsap";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { useTheme } from "styled-components";
 import RectangleButton from "../Button/RectangleButton";
 import Layout from "../Containers/Layout";
@@ -23,22 +22,18 @@ function ContactModal({ isShow }) {
 	const socialList = [
 		{
 			name: "Instagram",
-			path: "/",
+			path: "https://instagram.com/matt.parisien",
 			component: Instagram,
 		},
-		{
-			name: "Facebook",
-			path: "/",
-			component: Facebook,
-		},
+
 		{
 			name: "LinkedIn",
-			path: "/",
+			path: "https://www.linkedin.com/in/matthew-parisien-365572130/",
 			component: LinkedIn,
 		},
 		{
 			name: "Github",
-			path: "/",
+			path: "https://github.com/mattparisien/matt-website",
 			component: GitHub,
 		},
 	];
@@ -68,7 +63,7 @@ function ContactModal({ isShow }) {
 		top: 0,
 		left: 0,
 		width: "100vw",
-		height: "100vh",
+
 		zIndex: 9999999,
 
 		color: theme.colors.purple,
@@ -236,14 +231,14 @@ function ContactModal({ isShow }) {
 		width: "100%",
 	};
 
-	const lineRefs = useRef([]);
-	lineRefs.current = [];
+	// const lineRefs = useRef([]);
+	// lineRefs.current = [];
 
-	const addToLineRefs = el => {
-		if (el && !lineRefs.current.includes(el)) {
-			lineRefs.current.push(el);
-		}
-	};
+	// const addToLineRefs = el => {
+	// 	if (el && !lineRefs.current.includes(el)) {
+	// 		lineRefs.current.push(el);
+	// 	}
+	// };
 
 	// const star = {};
 
@@ -258,57 +253,57 @@ function ContactModal({ isShow }) {
 
 	// // const starTimeline = useRef(gsap.timeline());
 
-	useEffect(() => {
-		if (lineRefs.current) {
-			const degrees = ["360"];
+	// useEffect(() => {
+	// 	if (lineRefs.current) {
+	// 		const degrees = ["360"];
 
-			gsap.set(lineRefs.current, { transformOrigin: "center" });
+	// 		gsap.set(lineRefs.current, { transformOrigin: "center" });
 
-			let rotation = 180;
-			let delay = 0.1;
+	// 		let rotation = 180;
+	// 		let delay = 0.1;
 
-			for (let i = lineRefs.current.length; i >= 0; i--) {
-				gsap.to(lineRefs.current[i], {
-					duration: 5,
-					ease: "expo.inOut",
-					repeat: -1,
-					repeatDelay: 0,
-					rotation: `${rotation}deg`,
-					delay: delay,
-					yoyo: true,
-				});
+	// 		for (let i = lineRefs.current.length; i >= 0; i--) {
+	// 			gsap.to(lineRefs.current[i], {
+	// 				duration: 5,
+	// 				ease: "expo.inOut",
+	// 				repeat: -1,
+	// 				repeatDelay: 0,
+	// 				rotation: `${rotation}deg`,
+	// 				delay: delay,
+	// 				yoyo: true,
+	// 			});
 
-				rotation += 26;
-				// delay+=0.1
-			}
+	// 			rotation += 26;
+	// 			// delay+=0.1
+	// 		}
 
-			// .to(lineRefs.current[lineRefs.current.length - 1], {
+	// 		// .to(lineRefs.current[lineRefs.current.length - 1], {
 
-			// 	duration: 2,
-			// 	rotation: `${360}deg`,
-			// 	ease: "expo.inOut",
-			// 	stagger: 0.1,
-			// 	repeat: -1,
-			// 	repeatDelay: 0,
-			// })
-			// .to(lineRefs.current[lineRefs.current.length - 2], {
-			// 	duration: 2,
-			// 	rotation: `${360 + 26}deg`,
-			// 	ease: "expo.inOut",
-			// 	stagger: 0.1,
-			// 	repeat: -1,
-			// 	repeatDelay: 0,
-			// })
-			// .to(lineRefs.current[lineRefs.current.length - 3], {
-			// 	duration: 2,
-			// 	rotation: `${360 + 52}deg`,
-			// 	ease: "expo.inOut",
-			// 	stagger: 0.1,
-			// 	repeat: -1,
-			// 	repeatDelay: 0,
-			// })
-		}
-	}, [lineRefs.current]);
+	// 		// 	duration: 2,
+	// 		// 	rotation: `${360}deg`,
+	// 		// 	ease: "expo.inOut",
+	// 		// 	stagger: 0.1,
+	// 		// 	repeat: -1,
+	// 		// 	repeatDelay: 0,
+	// 		// })
+	// 		// .to(lineRefs.current[lineRefs.current.length - 2], {
+	// 		// 	duration: 2,
+	// 		// 	rotation: `${360 + 26}deg`,
+	// 		// 	ease: "expo.inOut",
+	// 		// 	stagger: 0.1,
+	// 		// 	repeat: -1,
+	// 		// 	repeatDelay: 0,
+	// 		// })
+	// 		// .to(lineRefs.current[lineRefs.current.length - 3], {
+	// 		// 	duration: 2,
+	// 		// 	rotation: `${360 + 52}deg`,
+	// 		// 	ease: "expo.inOut",
+	// 		// 	stagger: 0.1,
+	// 		// 	repeat: -1,
+	// 		// 	repeatDelay: 0,
+	// 		// })
+	// 	}
+	// }, [lineRefs.current]);
 
 	return (
 		<>
@@ -342,7 +337,7 @@ function ContactModal({ isShow }) {
 										return (
 											<>
 												<li key={i}>
-													<a href={item.path} target='_blank'>
+													<a href={item.path} target='_blank' rel='noreferrer'>
 														{item.name}
 													</a>
 												</li>

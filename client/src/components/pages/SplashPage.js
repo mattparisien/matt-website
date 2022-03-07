@@ -1,8 +1,7 @@
 import { Box } from "@mui/system";
 import gsap from "gsap";
 import React, { useRef } from "react";
-import styled, { useTheme } from "styled-components";
-import CircleButton from "../Button/CircleButton";
+import styled from "styled-components";
 import Layout from "../Containers/Layout";
 import Line from "../Line/Line";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
@@ -18,7 +17,6 @@ const GradientBg = styled.div`
 `;
 
 function SplashPage(props) {
-	const theme = useTheme();
 	const button = useRef(null);
 	const lines = useRef([]);
 	lines.current = [];
@@ -48,8 +46,6 @@ function SplashPage(props) {
 			duration: 2,
 		});
 	};
-
-
 
 	return (
 		<Layout bg='light'>
