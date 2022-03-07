@@ -44,9 +44,9 @@ function ContactModal() {
 		"& .success-msg": {
 			margin: 0,
 			"& p, & p .line": {
-				textAlign: "center !important"
-			}
-		}
+				textAlign: "center !important",
+			},
+		},
 	};
 
 	const flexContainer = {
@@ -131,9 +131,23 @@ function ContactModal() {
 		axios
 			.post(`http://localhost:8080/api/email/submit`, formValues)
 			.then(
-				res => res.data === "success!" && res.status === 200 && setSuccess(true)
+				res =>
+					res.data === "success!" &&
+					res.status === 200 &&
+					(setSuccess(true),
+					setFormValues({
+						name: "",
+						email: "",
+						location: "",
+						message: "",
+					}))
 			)
 			.catch(err => console.log(err));
+	};
+
+	const handleCollapsedClick = () => {
+		setCollapsed(!isCollapsed);
+		success && setSuccess(false);
 	};
 
 	return (
@@ -160,7 +174,7 @@ function ContactModal() {
 					<Box></Box>
 				</Layout>
 				<Layout bg='pink' color='purple' height='auto'>
-					<Button sx={button} onClick={() => setCollapsed(!isCollapsed)}>
+					<Button sx={button} onClick={handleCollapsedClick}>
 						This form is open 24/7. Literally. Reach us here.{" "}
 						<Close
 							style={{
@@ -179,93 +193,124 @@ function ContactModal() {
 					sx={collapsibleSection}
 				>
 					<Layout height='100vh' bg={"pink"} color='purple'>
-						<Box display='flex' sx={{ width: "100%", height: "30%" }}>
-							<Box sx={{ flexGrow: 1 }}></Box>
-
+						<Box
+							display='flex'
+							sx={{
+								width: "100%",
+								height: "30%",
+								justifyContent: !success ? "start" : "center",
+								alignItems: success && "center",
+							}}
+						>
 							{!success ? (
-								<Box
-									component='form'
-									sx={{ flexGrow: 1 }}
-									onSubmit={handleSubmit}
-								>
-									<Stack
-										orientation={"vertical"}
-										sx={{
-											width: "100%",
-											height: "100%",
-											justifyContent: "space-between",
-										}}
+								<>
+									<Box sx={{ flexGrow: 1 }}></Box>
+									<Box
+										component='form'
+										sx={{ flexGrow: 1 }}
+										onSubmit={handleSubmit}
 									>
-										<FormGroup
-											style={{
-												flexDirection: "row",
+										<Stack
+											orientation={"vertical"}
+											sx={{
+												width: "100%",
+												height: "100%",
 												justifyContent: "space-between",
 											}}
 										>
+											<FormGroup
+												style={{
+													flexDirection: "row",
+													justifyContent: "space-between",
+												}}
+											>
+												<TextField
+													variant='standard'
+													label='Name'
+													style={{ flexGrow: "1" }}
+													name='name'
+													value={formValues.name}
+													onChange={handleChange}
+													error={
+														typeof error["name"] === "string" ? true : false
+													}
+												/>
+												<TextField
+													variant='standard'
+													label='Email'
+													style={{ flexGrow: "1" }}
+													value={formValues.email}
+													name='email'
+													onChange={handleChange}
+													error={
+														typeof error["email"] === "string" ? true : false
+													}
+												/>
+											</FormGroup>
 											<TextField
 												variant='standard'
-												label='Name'
-												style={{ flexGrow: "1" }}
-												name='name'
-												value={formValues.name}
-												onChange={handleChange}
-												error={typeof error["name"] === "string" ? true : false}
-											/>
-											<TextField
-												variant='standard'
-												label='Email'
-												style={{ flexGrow: "1" }}
-												value={formValues.email}
-												name='email'
+												label='Location'
+												name='location'
+												value={formValues.location}
 												onChange={handleChange}
 												error={
-													typeof error["email"] === "string" ? true : false
+													typeof error["location"] === "string" ? true : false
 												}
 											/>
-										</FormGroup>
-										<TextField
-											variant='standard'
-											label='Location'
-											name='location'
-											value={formValues.location}
-											onChange={handleChange}
-											error={
-												typeof error["location"] === "string" ? true : false
-											}
-										/>
-										<TextField
-											variant='standard'
-											label='Message'
-											name='message'
-											value={formValues.message}
-											onChange={handleChange}
-											inputProps={{ maxLength: 1000 }}
-											error={
-												typeof error["message"] === "string" ? true : false
-											}
-										/>
-									</Stack>
-									<Box
-										sx={{
-											width: "100%",
-											display: "flex",
-											justifyContent: "end",
-										}}
-									>
-										<RectangleButton
-											color='pink'
-											bg='orange'
-											hoverBg={"purple"}
-											type='submit'
+											<TextField
+												variant='standard'
+												label='Message'
+												name='message'
+												value={formValues.message}
+												onChange={handleChange}
+												inputProps={{ maxLength: 1000 }}
+												error={
+													typeof error["message"] === "string" ? true : false
+												}
+											/>
+										</Stack>
+										<Box
+											sx={{
+												width: "100%",
+												display: "flex",
+												justifyContent: "end",
+											}}
 										>
-											Send
-										</RectangleButton>
+											<RectangleButton
+												color='pink'
+												bg='orange'
+												hoverBg={"purple"}
+												type='submit'
+											>
+												Send
+											</RectangleButton>
+										</Box>
 									</Box>
-								</Box>
+								</>
 							) : (
-								<Paragraph variant={2} className="success-msg">
-									Thank you!
-								</Paragraph>
+								<>
+									<Box sx={{ display: "flex", flexDirection: "column" }}>
+										<Box
+											component='span'
+											className='success-msg'
+											sx={{ fontSize: "4rem", fontFamily: "Neue Mtl" }}
+										>
+											Thank you for your message!
+										</Box>
+										<Box
+											component='span'
+											className='success-msg'
+											sx={{
+												fontSize: "2rem",
+												fontFamily: "Neue Mtl",
+												textAlign: "center",
+											}}
+											pt={2}
+										>
+											We will get back you shortly :)
+										</Box>
+									</Box>
+								</>
 							)}
 						</Box>
 					</Layout>

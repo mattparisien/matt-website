@@ -32,6 +32,7 @@
     "react-helmet": "^6.1.0",
     "react-intersection-observer": "^8.33.1",
     "react-locomotive-scroll": "^0.2.0",
+    "react-lottie": "^1.2.3",
     "react-postprocessing": "^1.4.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
