@@ -99,7 +99,7 @@ function ContactModal({ isShow }) {
 		textAlign: "left",
 		color: theme.colors.purple,
 		"&:hover .button-bg": {
-			transform: "scaleY(1)",
+			transform: mobile ? "none" : "scaleY(1)",
 		},
 
 		"& span": {
