@@ -3,6 +3,7 @@ import { keyframes } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 import Line from "../Line/Line";
+import { useMediaQuery } from "@mui/material";
 
 const wordAnim = keyframes`
 	0% {
@@ -35,6 +36,7 @@ const fadeContent = keyframes`
 
 function Loader() {
 	const [isAnimCompleted, setAnimCompleted] = useState(false);
+	const matches = useMediaQuery('(max-width: 600px)');
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -59,7 +61,7 @@ function Loader() {
 
 	const word = {
 		fontFamily: "Neue Mtl",
-		fontSize: "2rem",
+		fontSize: matches ? "1rem" : "2rem",
 		width: "100%",
 		display: "block",
 		animation: `

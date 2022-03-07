@@ -5,6 +5,9 @@ import styled from "styled-components";
 import Layout from "../Containers/Layout";
 import Line from "../Line/Line";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
+import CircleButton from "../Button/CircleButton";
+import { useTheme } from "styled-components";
+import { Container } from "@mui/material";
 
 const GradientBg = styled.div`
 	width: 100%;
@@ -16,44 +19,8 @@ const GradientBg = styled.div`
 	animation-direction: reverse-alternate;
 `;
 
-// const Button = styled.button`
-// 	border: 0px;
-// 	position: relative;
-// 	color: white;
-// 	padding: 2rem 4rem;
-// 	margin: 1rem 0;
-// 	transform: translateY(150%);
-// 	background: transparent;
-// 	font-size: 1rem;
-
-// 	background-color: ${({ theme }) => theme.colors.red};
-// 	overflow: hidden;
-
-// 	&:hover .circle {
-// 		transform: scale(1.6) translateY(0);
-// 	}
-
-// 	.circle {
-// 		position: absolute;
-// 		top: 0;
-// 		left: 0;
-// 		transition: 800ms ease;
-// 		width: 100%;
-// 		height: 250%;
-// 		border-radius: 50%;
-// 		background-color: ${({ theme }) => theme.colors.purple};
-// 		z-index: -1;
-// 		transform: translateY(100%);
-// 	}
-
-// 	@media (max-width: ${deviceSize.mobileL}px) {
-// 		padding: 1.4rem 2.2rem;
-// 		font-size: 0.8rem;
-// 	}
-// `;
-
 function SplashPage(props) {
-	// const theme = useTheme();
+	const theme = useTheme();
 	const button = useRef(null);
 	const lines = useRef([]);
 	lines.current = [];
@@ -84,6 +51,12 @@ function SplashPage(props) {
 		});
 	};
 
+	const buttonWrapper = {
+		position: "absolute",
+		bottom: 0,
+		right: 0,
+	};
+
 	return (
 		<Layout bg='light'>
 			<Box sx={containerStyle}>
@@ -94,10 +67,22 @@ function SplashPage(props) {
 					great user experiences. Website coming soon.
 				</ParagraphLayout>
 				<Line color='dark' />
-				<div
-					className='button-wrapper'
-					style={{ alignSelf: "start", overflow: "hidden" }}
-				></div>
+				<Box sx={buttonWrapper} className='button-wrapper'>
+					<CircleButton>
+						<svg
+							width='37'
+							height='37'
+							viewBox='0 0 37 37'
+							fill={theme.colors.light}
+							xmlns='http://www.w3.org/2000/svg'
+						>
+							<path
+								d='M0 29.5V37H7.5L29.62 14.88L22.12 7.38L0 29.5ZM35.42 9.08C36.2 8.3 36.2 7.04 35.42 6.26L30.74 1.58C29.96 0.8 28.7 0.8 27.92 1.58L24.26 5.24L31.76 12.74L35.42 9.08V9.08Z'
+								fill={theme.colors.light}
+							/>
+						</svg>
+					</CircleButton>
+				</Box>
 			</Box>
 
 			<GradientBg className='gradient-bg'></GradientBg>
