@@ -113,7 +113,7 @@ function ContactModal() {
 				if (!entry[1] || entry[1] === "") {
 					setError(prev => ({
 						...prev,
-						[entry[0]]: "Please fill out the field",
+						[entry[0]]: `${entry[0].slice(0, 1).toUpperCase().concat(entry[0].slice(1, entry[0].length))} cannot be empty`,
 					}));
 					hasError = true;
 				}
@@ -225,6 +225,7 @@ function ContactModal() {
 												}}
 											>
 												<TextField
+													placeholder='Name'
 													variant='standard'
 													label='Name'
 													style={{ flexGrow: "1" }}
@@ -234,8 +235,10 @@ function ContactModal() {
 													error={
 														typeof error["name"] === "string" ? true : false
 													}
+													helperText={error["name"]}
 												/>
 												<TextField
+													placeholder='tessa@example.com'
 													variant='standard'
 													label='Email'
 													style={{ flexGrow: "1" }}
@@ -245,9 +248,11 @@ function ContactModal() {
 													error={
 														typeof error["email"] === "string" ? true : false
 													}
+													helperText={error["email"]}
 												/>
 											</FormGroup>
 											<TextField
+												placeholder='Location'
 												variant='standard'
 												label='Location'
 												name='location'
@@ -256,8 +261,10 @@ function ContactModal() {
 												error={
 													typeof error["location"] === "string" ? true : false
 												}
+												helperText={error["location"]}
 											/>
 											<TextField
+												placeholder='Your message'
 												variant='standard'
 												label='Message'
 												name='message'
@@ -267,6 +274,7 @@ function ContactModal() {
 												error={
 													typeof error["message"] === "string" ? true : false
 												}
+												helperText={error["message"]}
 											/>
 										</Stack>
 										<Box
