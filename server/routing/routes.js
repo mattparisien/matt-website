@@ -143,6 +143,11 @@ router.get("/images/:filename", (req, res) => {
 	});
 });
 
+router.post("/email/submit", (req, res) => {
+	console.log(req.body)
+	res.send('success!')
+})
+
 router.get("/seeding", (req, res) => {
 	const projects = [
 		{

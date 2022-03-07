@@ -5,7 +5,7 @@ import Section from "./Section";
 function Layout(props) {
 	return (
 		<>
-			<Section bg={props.bg} height={props.height} offsetTop={props.offsetTop} position={props.position}>
+			<Section bg={props.bg} height={props.height} offsetTop={props.offsetTop} position={props.position} color={props.color}>
 				<ContainerFluid fullbleed={props.fullBleed}>{props.children}</ContainerFluid>
 			</Section>
 		</>

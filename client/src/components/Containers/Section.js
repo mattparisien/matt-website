@@ -10,8 +10,10 @@ const StyledSection = styled.section`
 	height: ${({ height }) => (height ? height : "100vh")};
 	position: ${({ position }) => (position ? position : "")};
 	background-color: ${({ theme, bg }) => (bg ? theme.colors[bg] : "black")};
-	color: ${({ theme, bg }) =>
-		bg ? theme.colors[bg === "dark" ? "light" : "dark"] : "blue"};
+	color: ${({ theme, bg, color }) =>
+		bg
+			? theme.colors[bg === "dark" ? "light" : bg === "light" ? "dark" : color]
+			: ""};
 `;
 
 function Section(props) {

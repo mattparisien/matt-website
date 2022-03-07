@@ -20,7 +20,7 @@ function ParagraphLayout(props) {
 	const { children } = props;
 
 	return (
-		<StyledParagraphWrapper className='ParagraphLayout' {...props}>
+		<StyledParagraphWrapper className={`ParagraphLayout ParagraphLayout__${props.variant}`} {...props}>
 			<Paragraph {...props} variant={props.variant}>
 				{children}
 			</Paragraph>

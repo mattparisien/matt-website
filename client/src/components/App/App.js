@@ -11,6 +11,7 @@ import ContentWrapper from "../ContentWrapper/ContentWrapper";
 import Header from "../Header/Header";
 import SplashPage from "../pages/SplashPage";
 import Loader from "../Transition/Loader";
+import ContactModal from "../Modals/ContactModal";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();
@@ -228,6 +229,7 @@ function App() {
 									/>
 								</Helmet>
 								<Loader isActive={state.isLoading} />
+								<ContactModal/>
 								<Header
 									ref={headerRef}
 									isMenuActive={state.menuActive}

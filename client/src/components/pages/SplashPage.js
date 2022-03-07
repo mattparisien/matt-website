@@ -68,7 +68,12 @@ function SplashPage(props) {
 				</ParagraphLayout>
 				<Line color='dark' />
 				<Box sx={buttonWrapper} className='button-wrapper'>
-					<CircleButton>
+					<CircleButton
+						onClick={() =>
+							(window.location =
+								"mailto:hello@matthewparisien.com?subject=Let's talk.")
+						}
+					>
 						<svg
 							width='37'
 							height='37'
