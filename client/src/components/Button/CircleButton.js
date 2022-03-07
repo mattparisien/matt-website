@@ -13,8 +13,8 @@ function CircleButton({ children, onClick }) {
     fontFamily: 'Neue Mtl',
     fontSize: "1rem",
     backgroundColor: theme.colors.purple,
-    height: matches ? "5.3rem" : "9rem",
-    width: matches ? "5.3rem" : "9rem",
+    height: matches ? "4rem" : "9rem",
+    width: matches ? "4rem" : "9rem",
     borderRadius: "50%",
     transition: "400ms ease",
     margin: "20px",
@@ -23,8 +23,8 @@ function CircleButton({ children, onClick }) {
       transform: "scale(1.2)"
     },
     "& svg": {
-      width: matches ? "20px" : "30px",
-      height: matches ? "20px" : "30px",
+      width: matches ? "14px" : "30px",
+      height: matches ? "14px" : "30px",
     }
     
   }

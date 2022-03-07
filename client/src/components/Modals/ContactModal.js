@@ -103,7 +103,7 @@ function ContactModal({ isShow }) {
 		},
 
 		"& span": {
-			marginRight: "1rem",
+			marginRight: "3rem",
 		},
 
 		"&:hover": {
