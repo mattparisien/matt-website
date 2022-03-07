@@ -50,12 +50,12 @@ function Paragraph(props) {
 							y: 0,
 							onComplete: () => {
 								if (i === splitText.lines.length - 1) {
+									props.onCompleteCallback();
 									gsap.to($(splitText.lines).find(".accent-bg"), {
 										color: "red",
 										stagger: 0.1,
 										width: "100%",
 										ease: "circ.inOut",
-
 										duration: 1,
 									});
 									gsap.to($(splitText.lines).find(".accent"), {
@@ -73,7 +73,7 @@ function Paragraph(props) {
 				}
 			}, 200);
 		}
-	}, [isSplit, splitText, windowWidth]);
+	}, [isSplit, splitText, windowWidth, props]);
 
 	useEffect(() => {
 		if (splitText && !splitWrap) {

@@ -24,15 +24,15 @@ const paragraphFontSizes = {
 			lineHeight: "4rem",
 		},
 		mobileL: {
-			fontSize: "2rem",
-			lineHeight: "2.1rem",
+			fontSize: "1.3rem",
+			lineHeight: "1.5rem",
 		},
 		mobileM: {
-			fontSize: "1.5rem",
+			fontSize: "1.3rem",
 			lineHeight: "1.6rem",
 		},
 		mobileS: {
-			fontSize: "1.5rem",
+			fontSize: "1.2rem",
 			lineHeight: "1.6rem",
 		},
 	},

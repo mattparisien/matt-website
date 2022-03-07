@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Paragraph from "./Paragraph";
 
 const StyledParagraphWrapper = styled(Box)`
-	height: 100%;
+	
 	width: 100%;
 	display: flex;
 	align-items: ${({ variant }) => (variant === 2 ? "start" : "center")};
