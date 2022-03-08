@@ -10,7 +10,8 @@ const lineAnim = keyframes`
 `;
 
 const StyledLine = styled.div`
-	margin-bottom: 2.5rem;
+	margin-bottom: ${({margin}) => margin ? margin: "2rem"};
+	
 	width: 100%;
 	height: 1px;
 	background-color: ${({ theme, color }) =>

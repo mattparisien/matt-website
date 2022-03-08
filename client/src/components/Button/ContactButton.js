@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import CircleButton from "./CircleButton";
 import { useTheme } from "styled-components";
 
-function ContactButton({ toggleContactModal, isModalShow }) {
+function ContactButton({ isModalShow }) {
 	const theme = useTheme();
 	const buttonWrapper = {
 		position: "absolute",
@@ -17,7 +17,8 @@ function ContactButton({ toggleContactModal, isModalShow }) {
 	};
 
 	const handleClick = () => {
-		toggleContactModal();
+		// toggleContactModal();
+		window.location = "mailto:hello@matthewparisien.com?subject=Let's chat."
 	};
 
 	return (

@@ -51,11 +51,7 @@ function Header(props, ref) {
 					<Box className='announcement' sx={brand}>
 						<span className='brand-line'>Website coming soon</span>
 					</Box>
-					<Box className='cta' sx={brand}>
-						<a href='mailto:hello@matthewparisien.com' className='email-cta'>
-							<span>Contact me</span>
-						</a>
-					</Box>
+				
 				</Box>
 			</ContainerFluid>
 		</StyledHeader>

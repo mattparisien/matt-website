@@ -1,10 +1,12 @@
 import { Box } from "@mui/system";
 import gsap from "gsap";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import Layout from "../Containers/Layout";
 import Line from "../Line/Line";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
+import SocialList from "../Lists/SocialList";
+import { Instagram, LinkedIn, GitHub } from "@material-ui/icons";
 
 const GradientBg = styled.div`
 	width: 100%;
@@ -47,6 +49,47 @@ function SplashPage(props) {
 		});
 	};
 
+	const socialList = [
+		{
+			name: "Instagram",
+			path: "https://instagram.com/matt.parisien",
+			component: Instagram,
+		},
+		{
+			name: "LinkedIn",
+			path: "https://www.linkedin.com/in/matthew-parisien-365572130/",
+			component: LinkedIn,
+		},
+		{
+			name: "Github",
+			path: "https://github.com/mattparisien/matt-website",
+			component: GitHub,
+		},
+	];
+
+	const listItems = useRef([]);
+	listItems.current = [];
+
+	const addToRefs = el => {
+		if (el && !listItems.current.includes(el)) {
+			listItems.current.push(el);
+		}
+	};
+
+	useEffect(() => {
+		if (listItems) {
+			gsap.set(listItems.current, { y: "100%", opacity: 0 });
+			setTimeout(() => {
+				gsap.to(listItems.current, {
+					y: 0,
+					opacity: 2,
+					stagger: 0.1,
+					ease: "power3.out",
+				});
+			}, 1400);
+		}
+	}, [listItems]);
+
 	return (
 		<Layout bg='light'>
 			<Box sx={containerStyle}>
@@ -57,6 +100,30 @@ function SplashPage(props) {
 					great user experiences. Website coming soon.
 				</ParagraphLayout>
 				<Line color='dark' />
+				<Box
+					component='ul'
+					sx={{
+						alignSelf: "start",
+						marginTop: 0,
+						display: "flex",
+						width: "280px",
+						justifyContent: "space-between",
+						paddingLeft: 0,
+						fontFamily: "Neue Mtl",
+					}}
+				>
+					{socialList.map((item, i) => {
+						return (
+							<>
+								<li key={i} ref={addToRefs}>
+									<a href={item.path} target='_blank' rel='noreferrer'>
+										{item.name}
+									</a>
+								</li>
+							</>
+						);
+					})}
+				</Box>
 			</Box>
 
 			<GradientBg className='gradient-bg'></GradientBg>
