@@ -74,7 +74,7 @@ function Loader({ isActive, toggleLoading }) {
 							toggleLoading();
 						},
 					},
-					1.6
+					1.3
 				);
 		}
 	}, [bg, content]);

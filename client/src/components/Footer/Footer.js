@@ -4,7 +4,8 @@ import { useTheme } from "styled-components";
 import { deviceSize } from "../../styles/breakpoints";
 import Layout from "../Containers/Layout";
 import Star from "../Star/Star";
-
+import InView from "react-intersection-observer";
+import $ from "jquery"
 
 const socialLinks = [
 	{
@@ -33,6 +34,7 @@ function Footer(props, ref) {
 	};
 	const theme = useTheme();
 	const laptop = useMediaQuery(`(max-width: ${deviceSize.laptop}px)`);
+	const tablet = useMediaQuery(`(max-width: ${deviceSize.tablet}px)`);
 	const footerRef = useRef(null);
 
 	useEffect(() => {
@@ -84,6 +86,15 @@ function Footer(props, ref) {
 		transform: "translate(-50%, -50%)",
 	};
 
+	const lineHorizontalTop = {
+		width: "100%",
+		height: "1px",
+		backgroundColor: theme.colors.light,
+		position: "absolute",
+		top: 0,
+		left: 0,
+	};
+
 	const lineVerticalCentered = {
 		width: "1px",
 		height: "100%",
@@ -98,7 +109,6 @@ function Footer(props, ref) {
 	const lineVerticalLeft = {
 		width: "1px",
 		height: "100%",
-
 		backgroundColor: theme.colors.light,
 		position: "absolute",
 		top: 0,
@@ -111,7 +121,7 @@ function Footer(props, ref) {
 				bg='dark'
 				style={footerStyle}
 				ref={(footerRef, ref)}
-				height='60vw'
+				height={tablet ? "90vw" : "60vw"}
 				fullbleed
 			>
 				<Box sx={lineHorizontal}></Box>
@@ -119,14 +129,20 @@ function Footer(props, ref) {
 					display='flex'
 					justifyContent='center'
 					alignItems='center'
+					flexDirection={tablet ? "column" : "row"}
 					sx={{ textTransform: "uppercase", height: "100%" }}
 				>
-					<Box sx={{ height: "100%", width: "40%" }}>
+					<Box
+						sx={{
+							height: tablet ? "40%" : "100%",
+							width: tablet ? "100%" : "40%",
+						}}
+					>
 						<Box sx={{ height: "50%" }}>
 							<Star height='100%' color={starColor} strokeWidth={"2px"} />
 						</Box>
 					</Box>
-
+						
 					<Box
 						className='social-links-list'
 						component='ul'
@@ -134,17 +150,18 @@ function Footer(props, ref) {
 							margin: 0,
 							padding: 0,
 							display: "flex",
-							height: "100%",
-							width: "60%",
+							height: tablet ? "60%" : "100%",
+							width: tablet ? "100%" : "60%",
 							flexWrap: "wrap",
 							alignItems: "center",
 							justifyContent: "center",
 							position: "relative",
 						}}
 					>
-						<Box sx={lineHorizontalCentered}></Box>
-						<Box sx={lineVerticalCentered}></Box>
-						<Box sx={lineVerticalLeft}></Box>
+						<Line sx={lineHorizontalCentered}></Line>
+						<Line sx={lineVerticalCentered}></Line>
+						{!tablet && <Line sx={lineVerticalLeft}></Line>}
+						{tablet && <Line sx={lineHorizontalTop}></Line>}
 						{socialLinks.map((link, i) => {
 							return (
 								<ListItem
@@ -171,7 +188,9 @@ function Footer(props, ref) {
 										},
 									}}
 								>
-									<a href={link.path}>{link.name}</a>
+									<a href={link.path} target='_blank' rel='noreferrer'>
+										{link.name}
+									</a>
 								</ListItem>
 							);
 						})}
@@ -181,5 +200,22 @@ function Footer(props, ref) {
 		</footer>
 	);
 }
+
+const Line = ({ sx }) => {
+
+	const [intersecting, setIntersecting] = useState(false);
+
+	useEffect(() => {
+		if (intersecting) {
+			$(intersecting).find("")
+		}
+	}, [intersecting])
+
+	return (
+		<InView className="line-view-wrapper" onChange={(inView, entry) => inView && setIntersecting(entry.target)}>
+			<Box sx={sx} className="line"></Box>
+		</InView>
+	);
+};
 
 export default forwardRef(Footer);

@@ -14,21 +14,22 @@ function Star({ height, color, strokeWidth }) {
 	lineRefs.current = [];
 
 
-	// useEffect(() => {
-	// 	if (lineRefs.current) {
-	// 		gsap.set(lineRefs.current, { transformOrigin: "50% 50%" });
+	useEffect(() => {
+		if (lineRefs.current) {
+			gsap.set(lineRefs.current, { transformOrigin: "center" });
 
-	// 		lineTimeline.current.to(lineRefs.current, {
-	// 			rotation: "180deg",
-	// 			ease: "expo.inOut",
-	// 			duration: 3,
-	// 			repeat: -1,
-	// 			stagger: 0.1,
-	// 			yoyo: true,
-	// 			repeatDelay: 0,
-	// 		});
-	// 	}
-	// }, [lineRefs]);
+			lineTimeline.current.to(lineRefs.current, {
+				rotation: "180deg",
+				ease: "expo.inOut",
+				duration: 3,
+				repeat: -1,
+				stagger: 0.1,
+				yoyo: true,
+				repeatDelay: 0,
+			});
+		}
+	}, [lineRefs.current]);
+
 
 	const line = {
 		fill: theme.colors[color],

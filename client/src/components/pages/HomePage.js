@@ -409,7 +409,7 @@ function HomePage(props, ref) {
 					<FeaturedCard featuredProject={featuredProject} />
 				</Box>
 			</Layout>
-			<Layout bg='dark'></Layout>
+			
 		</>
 	);
 }
