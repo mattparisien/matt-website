@@ -115,6 +115,17 @@ function Footer(props, ref) {
 		left: 0,
 	};
 
+	const gradient = {
+		position: "absolute",
+		top: 0,
+		left: 0,
+		width: "100%",
+		height: "100%",
+		background: theme.colors.gradient,
+		zIndex: -1
+
+	}
+
 	return (
 		<footer className='Footer'>
 			<Layout
@@ -138,8 +149,9 @@ function Footer(props, ref) {
 							width: tablet ? "100%" : "40%",
 						}}
 					>
-						<Box sx={{ height: "50%" }}>
+						<Box sx={{ height: "50%", position: "relative" }}>
 							<Star height='100%' color={starColor} strokeWidth={"2px"} />
+							<Box sx={gradient}></Box>
 						</Box>
 					</Box>
 						

@@ -6,42 +6,44 @@ function Star({ height, color, strokeWidth }) {
 	const theme = useTheme();
 	const star = {
 		height: height,
-		width: "100%"
+		width: "100%",
 	};
 
-	const lineTimeline = useRef(gsap.timeline());
-  const lineRefs = useRef([]);
+	const lineTimeline = useRef(
+		gsap.timeline({ repeat: -1, repeatDelay: 0, yoyo: true })
+	);
+	const lineRefs = useRef([]);
 	lineRefs.current = [];
 
-
 	useEffect(() => {
-		if (lineRefs.current) {
+
+
+
+		if (lineRefs.current.length ) {
+
+			console.log(lineRefs.current)
+
 			gsap.set(lineRefs.current, { transformOrigin: "center" });
 
 			lineTimeline.current.to(lineRefs.current, {
 				rotation: "180deg",
 				ease: "expo.inOut",
 				duration: 3,
-				repeat: -1,
 				stagger: 0.1,
-				yoyo: true,
-				repeatDelay: 0,
 			});
 		}
 	}, [lineRefs.current]);
-
 
 	const line = {
 		fill: theme.colors[color],
 		color: theme.colors[color],
 		fill: "none",
-		stroke: theme.colors[color],
+		stroke: theme.colors["light"],
 		strokeMiterlimit: 10,
 		strokeWidth: strokeWidth,
-		transition: '2s linear',
-		transformOrigin: "center"
-	};
 
+		transformOrigin: "center",
+	};
 
 	const addToLineRefs = el => {
 		if (el && !lineRefs.current.includes(el)) {
