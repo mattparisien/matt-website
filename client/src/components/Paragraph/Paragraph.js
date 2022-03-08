@@ -76,7 +76,7 @@ function Paragraph(props) {
 				delay: 0.1,
 			});
 		}
-	}, [inView, inViewRef, ref]);
+	}, [inView, inViewRef, ref, windowWidth]);
 
 	return (
 		<>

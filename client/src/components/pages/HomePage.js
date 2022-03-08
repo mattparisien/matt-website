@@ -2,16 +2,25 @@ import { useMediaQuery } from "@mui/material";
 import { Box } from "@mui/system";
 import gsap from "gsap";
 import $ from "jquery";
-import React, { forwardRef, useEffect, useRef } from "react";
+import React, {
+	forwardRef,
+	useContext,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
+import Marquee from "react-fast-marquee";
 import { useTheme } from "styled-components";
+import { DataContext } from "../../App/App";
 import useSplit from "../../helpers/hooks/useSplit";
 import { device, deviceSize } from "../../styles/breakpoints";
 import Layout from "../Containers/Layout";
 import Line from "../Line/Line";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
-import { Pills } from "../Pills/Pills";
 
 function HomePage(props, ref) {
+	const [featuredProject, setFeaturedProject] = useState(null);
+	const data = useContext(DataContext);
 	const theme = useTheme();
 	const introTimeline = useRef(gsap.timeline());
 	const card = useRef(null);
@@ -120,33 +129,23 @@ function HomePage(props, ref) {
 		},
 	];
 
-	const marqueeStyle = {
-		fontSize: desktop ? "10rem" : "13vw",
-		fontFamily: mobile ? "Georgia" : "Neue Mtl",
-		fontWeight: "lighter",
-	};
-
-	const word = {
-		marginRight: "8vw",
-	};
-
-	const featuredWrapper = {
-		backgroundColor: theme.colors.yellow,
-		height: desktop ? "700px" : mobile ? "150vw" : "600px",
-		width: desktop ? "560px" : mobile ? "100%" : "500px",
-		position: "absolute",
-		top: "50%",
-		left: "50%",
-		transform: "translate(-50%, -50%)",
-		zIndex: 1,
-	};
-
 	const wordTimelineLine3 = useRef(
 		gsap.timeline({ repeat: -1, yoyo: true, repeatDelay: 0 })
 	);
 	const wordTimelineLine4 = useRef(
 		gsap.timeline({ repeat: -1, yoyo: true, repeatDelay: 0 })
 	);
+
+	useEffect(() => {
+		if (data && data.software) {
+			setFeaturedProject({
+				id: data.software[0].id,
+				title: data.software[0].name,
+				url: data.software[0].url,
+				description: data.software[0].description,
+			});
+		}
+	}, [data]);
 
 	useEffect(() => {
 		if (headingRef.current) {
@@ -168,21 +167,33 @@ function HomePage(props, ref) {
 			];
 
 			wordTimelineLine4.current
-				.to(word[14], {
-					x: "-35vw",
-					duration: 3,
-					ease: "expo.inOut",
-				}, 0)
-				.to(word[14], {
-					x: "0",
-					duration: 3,
-					ease: "expo.inOut",
-				}, 3)
-				.to(word[13], {
-					x: "36.2vw",
-					duration: 3,
-					ease: "expo.inOut",
-				}, 3.2);
+				.to(
+					word[14],
+					{
+						x: "-35vw",
+						duration: 3,
+						ease: "expo.inOut",
+					},
+					0
+				)
+				.to(
+					word[14],
+					{
+						x: "0",
+						duration: 3,
+						ease: "expo.inOut",
+					},
+					3
+				)
+				.to(
+					word[13],
+					{
+						x: "36.2vw",
+						duration: 3,
+						ease: "expo.inOut",
+					},
+					3.2
+				);
 
 			wordTimelineLine3.current
 				.to(
@@ -216,6 +227,7 @@ function HomePage(props, ref) {
 	}, [headingRef.current]);
 
 	const heading = {
+		marginBottom: 0,
 		fontSize: "7vw",
 		lineHeight: "7vw",
 		fontFamily: "Neue Mtl",
@@ -280,6 +292,11 @@ function HomePage(props, ref) {
 			});
 		}
 	}, [lineRefs.current]);
+
+	const marqueeOffset = {
+		transform: `translateY(100%)`,
+		opacity: 0,
+	};
 
 	return (
 		<>
@@ -348,32 +365,195 @@ function HomePage(props, ref) {
 				</Box>
 			</Layout>
 
-			<Layout bg='light' height='40vw'>
+			<Layout bg='light' height='auto'>
 				<ParagraphLayout indent indentHeading='about' variant={1}>
-					Full-stack software developer & graphic designer obsessed with digital
-					products and passionate about building responsive user interfaces.
+					Hey. I'm a full-stack software developer & graphic designer obsessed
+					with digital products and passionate about building responsive user
+					interfaces. Previously at Lighthouse Labs, I'm currently exploring the
+					space where development and animation intersects.
 				</ParagraphLayout>
 			</Layout>
-			<Layout bg='light' height='40vw'>
-				<Line />
-				<div className='half-section-wrapper'>
-					<ParagraphLayout indent indentHeading='about' variant={2}>
-						Good research leads to effective design and better tech stacks. I
-						draw from daring, innovative references to create smooth, seamless
-						user experiences. My work never brags, but it sure does speak for
-						itself.
-					</ParagraphLayout>
-				</div>
+			<Layout bg='light' height='auto'>
+				<Box
+					sx={{
+						width: "100%",
+						height: "100%",
+						paddingTop: desktop ? "5rem" : "2rem",
+					}}
+				>
+					<Line />
+					<div className='half-section-wrapper'>
+						<ParagraphLayout indent indentHeading='Philosophy' variant={2}>
+							Good research leads to effective design and better tech stacks. I
+							believe that a team of people who love creating, learning and
+							growing together have the ability to transcend the workplace.
+						</ParagraphLayout>
+					</div>
+				</Box>
 			</Layout>
 			<Layout bg='light' height='auto' fullbleed>
 				<Line />
 			</Layout>
-			<Layout bg='light' height='100vw'>
-				<Pills info={pillInfo} />
+			<Layout bg='dark' height='100vw' fullbleed>
+				<Box
+					sx={{
+						height: "100%",
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "center",
+					}}
+				>
+					<MarqueeBlock
+						projectTitle={featuredProject && featuredProject.title}
+					/>
+					<FeaturedCard featuredProject={featuredProject} />
+				</Box>
 			</Layout>
 			<Layout bg='dark'></Layout>
 		</>
 	);
 }
+
+const FeaturedCard = ({ featuredProject }) => {
+	const desktop = useMediaQuery(device.laptop);
+	const mobile = useMediaQuery(`(max-width: ${deviceSize.mobileL}px`);
+	const theme = useTheme();
+
+	const featuredWrapper = {
+		height: desktop ? "700px" : mobile ? "150vw" : "600px",
+		width: desktop ? "560px" : mobile ? "100%" : "500px",
+		position: "absolute",
+		top: "50%",
+		left: "50%",
+		transform: "translate(-50%, -50%)",
+		zIndex: 1,
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "space-between",
+		padding: "2rem",
+		boxSizing: "border-box",
+		"&:hover .card-bg": {
+			transform: "scale(1.1)",
+		},
+	};
+
+	const bg = {
+		backgroundColor: theme.colors.pink,
+		position: "absolute",
+		top: 0,
+		left: 0,
+		height: "100%",
+		width: "100%",
+		zIndex: -2,
+		transition: "400ms ease",
+	};
+
+	const media = {};
+
+	const title = {
+		fontSize: "2rem",
+
+		color: theme.colors.dark,
+		margin: 0,
+	};
+
+	const description = {
+		color: theme.colors.dark,
+		textIndent: "39%",
+		
+		fontSize: "0.8rem"
+	};
+
+	return (
+		<Box
+			className='featured-work-card'
+			sx={featuredWrapper}
+			component='a'
+			href={featuredProject ? featuredProject.url : ""}
+			target='_blank'
+			rel='noreferrer'
+		>
+			<Box className='title' sx={title} component='h4'>
+				{featuredProject ? featuredProject.title : ""}
+			</Box>
+			<Box sx={media} className='media-wrapper'></Box>
+			<Box className='description' sx={description} component='span'>
+				{featuredProject ? featuredProject.description : ""}
+			</Box>
+
+			<Box className='card-bg' sx={bg}></Box>
+		</Box>
+	);
+};
+
+const MarqueeBlock = ({ projectTitle }) => {
+	const desktop = useMediaQuery(device.laptop);
+	const mobile = useMediaQuery(`(max-width: ${deviceSize.mobileL}px`);
+
+	const marqueeStyle = {
+		fontSize: desktop ? "10rem" : "13vw",
+		fontFamily: mobile ? "Georgia" : "Neue Mtl",
+		fontWeight: "lighter",
+	};
+
+	return (
+		<Box
+			sx={{
+				display: "flex",
+				flexDirection: "column",
+				height: "40vw",
+				justifyContent: "space-between",
+			}}
+		>
+			<Line/>
+			<Box
+				className='marquee-rail-overflow-wrapper'
+				sx={{ overflow: "hidden" }}
+			>
+				
+				<Box className='marquee-rail-yOffset-wrapper'>
+					<Marquee sx={marqueeStyle} gradient={false}>
+						<MarqueeItem multiplier={10}>Featured Work</MarqueeItem>
+					</Marquee>
+				</Box>
+				<Line/>
+			</Box>
+			<Box
+				className='marquee-rail-overflow-wrapper'
+				sx={{ overflow: "hidden" }}
+			>
+				<Box className='marquee-rail-yOffset-wrapper'>
+					<Marquee sx={marqueeStyle} gradient={false} direction={"right"}>
+						<MarqueeItem multiplier={10}>
+							{projectTitle ? projectTitle : "Featured Work"}
+						</MarqueeItem>
+					</Marquee>
+				</Box>
+			</Box>
+			<Box
+				className='marquee-rail-overflow-wrapper'
+				sx={{ overflow: "hidden" }}
+			>
+				<Box className='marquee-rail-yOffset-wrapper'>
+					<Marquee sx={marqueeStyle} gradient={false}>
+						<MarqueeItem multiplier={10}>Featured Work</MarqueeItem>
+					</Marquee>
+				</Box>
+			</Box>
+		</Box>
+	);
+};
+
+const MarqueeItem = ({ speed, multiplier, children }) => {
+	const marqueeWord = {
+		marginRight: "8vw",
+		fontSize: "10vw",
+	};
+	return [...Array(multiplier)].map((e, i) => (
+		<Box className='marquee-word' key={i} sx={marqueeWord}>
+			{children}
+		</Box>
+	));
+};
 
 export default forwardRef(HomePage);

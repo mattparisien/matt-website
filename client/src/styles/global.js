@@ -31,6 +31,7 @@ export const GlobalStyle = createGlobalStyle`
  * {
 -webkit-font-smoothing: antialiased;
 font-family: 'Neue Mtl';
+font-weight: lighter;
 
  }
 

@@ -45,31 +45,39 @@ function Loader({ isActive, toggleLoading }) {
 	useEffect(() => {
 		setTimeout(() => {
 			setAnimCompleted(true);
-			toggleLoading()
+			toggleLoading();
 		}, 3000);
 	}, []);
 
 	useEffect(() => {
 		if (content.current && bg.current) {
-			timeline.current.to(bg.current, {
-				scaleX: 1,
-				duration: 0.6,
-				ease: 'power2.out'
-			})
-			.to(bg.current, {
-				scaleY: 0.001,
-				duration: 0.6,
-				ease: 'power2.out',
-				
-			}, 1.2)
-			.to(content.current, {
-				opacity: 0,
-				onComplete: () => {
-					toggleLoading()
-				}
-			}, 1.2)
+			timeline.current
+				.to(bg.current, {
+					scaleX: 1,
+					duration: 0.6,
+					ease: "power2.out",
+				})
+				.to(
+					bg.current,
+					{
+						scaleY: 0.001,
+						duration: 0.6,
+						ease: "power2.out",
+					},
+					1.2
+				)
+				.to(
+					content.current,
+					{
+						opacity: 0,
+						onComplete: () => {
+							toggleLoading();
+						},
+					},
+					1.6
+				);
 		}
-	}, [bg, content])
+	}, [bg, content]);
 
 	const theme = useTheme();
 
@@ -88,15 +96,25 @@ function Loader({ isActive, toggleLoading }) {
 
 	const word = {
 		fontFamily: "Neue Mtl",
-		fontSize: matches ? "1rem" : "2rem",
+		fontSize: matches ? "0.8rem" : "2rem",
 		width: "100%",
 		display: "block",
-	
+		transform: "translateY(100%)",
+		opacity: 0,
+		animation: `${wordAnim} 400ms ease forwards`,
+		"&:nth-of-type(1)": {
+			animationDelay: "100ms",
+		},
+		"&:nth-of-type(2)": {
+			animationDelay: "200ms",
+		},
 	};
 
 	const loadSpacer = {
+		padding: "2rem 0",
 		margin: 0,
-		height: "10rem",
+		boxSizing: "border-box",
+		height: matches ? "10rem" : "20rem",
 		width: "100%",
 	};
 
@@ -114,16 +132,13 @@ function Loader({ isActive, toggleLoading }) {
 		backgroundColor: "black",
 		zIndex: -1,
 		transformOrigin: "left top",
-		transform: 'scaleX(0.001)',
+		transform: "scaleX(0.001)",
 		animationDelay: "1s",
 	};
 
 	const container = {
-		
 		animationDelay: "1s",
 	};
-
-
 
 	return (
 		<Box sx={loaderStyle} component='div' className='Loader'>

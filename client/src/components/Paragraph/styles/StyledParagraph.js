@@ -66,8 +66,8 @@ const paragraphFontSizes = {
 			lineHeight: "1.3rem",
 		},
 		mobileS: {
-			fontSize: "1.5rem",
-			lineHeight: "1.6rem",
+			fontSize: "1rem",
+			lineHeight: "1.2rem",
 		},
 	},
 };
@@ -123,8 +123,10 @@ export const StyledVariant1Paragraph = styled(StyledParagraph)`
 `;
 
 export const StyledVariant2Paragraph = styled(StyledParagraph)`
-	width: 50%;
-	margin-left: auto;
+
+
+
+
 
 	.line:nth-of-type(1) {
 		&::after {
@@ -140,4 +142,11 @@ export const StyledVariant2Paragraph = styled(StyledParagraph)`
 			line-height: ${paragraphFontSizes.variant2[size].lineHeight};
 		}`;
 		})};
+
+
+
+		@media ${device.mobileL} {
+		width: 50%;
+		margin-left: auto;
+		}
 `;
