@@ -39,9 +39,9 @@ function Menu(props) {
 			menuAnim.current
 				.set(menuRef.current, { display: "block" })
 				.to(menuRef.current, {
-					y: 0,
-					duration: 0.9,
-					ease: "expo.inOut",
+					x: 0,
+					duration: 0.8,
+					ease: "power3.out",
 				})
 				.to(
 					navItems.current,
@@ -68,11 +68,7 @@ function Menu(props) {
 
 	return (
 		<StyledMenu isOpen={isOpen} ref={menuRef}>
-			<UnorderedList
-				listItems={listInfo}
-				onClick={handleClick}
-				
-			/>
+		
 			<SocialList addToRefs={addToRefs} alignItems={"center"} isDefaultHidden />
 		</StyledMenu>
 	);

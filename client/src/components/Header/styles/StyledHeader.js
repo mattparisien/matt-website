@@ -82,7 +82,7 @@ export const StyledHeader = styled.header`
 			top: 0;
 			display: block;
 			font-size: 0.7rem;
-			font-family: "Haas";
+			font-family: "Neue Mtl";
 		}
 	}
 `;

@@ -18,7 +18,7 @@ export const StyledFooter = styled.footer`
 		bottom: 0;
 		right: 0;
 		padding: inherit;
-		font-family: 'Haas';
+		font-family: 'Neue Mtl';
 	}
 
 	
@@ -27,7 +27,7 @@ export const StyledFooter = styled.footer`
 		
 		
 		margin: 0;
-    font-family: 'Haas';
+    font-family: 'Neue Mtl';
 		
 		width: 100%;
 		height: 100%;

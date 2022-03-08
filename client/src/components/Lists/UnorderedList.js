@@ -18,8 +18,7 @@ const StyledUl = styled.ul`
 		orientation === "vertical" ? "column" : "row"};
 
 	li {
-
-		${({theme}) => theme.typography.setSize(1)};
+		${({ theme }) => theme.typography.setSize(1)};
 
 		font-family: "Neue Mtl";
 		width: 10rem;
@@ -49,7 +48,7 @@ function UnorderedList(props) {
 		<StyledUl className='UnorderedList' {...props}>
 			{props.listItems.map((item, i) => {
 				return (
-					<li className='UnorderedList__item'  key={i}>
+					<li className='UnorderedList__item' key={i}>
 						{!props.noTransition ? (
 							<TransitionTrigger to={item.href}>{item.title}</TransitionTrigger>
 						) : (

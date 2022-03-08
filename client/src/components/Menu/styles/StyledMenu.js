@@ -10,8 +10,9 @@ export const StyledMenu = styled.div`
 	height: 100vh;
 	padding: 2rem;
 	background-color: ${({ theme }) => theme.colors.dark2};
-	transform: translateY(-100vh);
+	transform: translateX(-115vw);
 	display: none;
+	
 
 	@media only screen and (max-width: ${deviceSize.tablet}px) {
 		padding: 1rem;

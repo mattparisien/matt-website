@@ -17,8 +17,10 @@ import { device, deviceSize } from "../../styles/breakpoints";
 import Layout from "../Containers/Layout";
 import Line from "../Line/Line";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
+import useResize from "../../helpers/hooks/useResize";
 
 function HomePage(props, ref) {
+	const [windowWidth] = useResize();
 	const [featuredProject, setFeaturedProject] = useState(null);
 	const data = useContext(DataContext);
 	const theme = useTheme();
@@ -30,9 +32,16 @@ function HomePage(props, ref) {
 	lines.current = [];
 	const desktop = useMediaQuery(device.laptop);
 	const mobile = useMediaQuery(`(max-width: ${deviceSize.mobileL}px`);
-	const headingRef = useRef(null);
+	const headingRef = useRef([]);
+	headingRef.current = [];
 
-	const { splitText } = useSplit([headingRef.current], {
+	const addToHeadingRef = el => {
+		if (el && !headingRef.current.includes(el)) {
+			headingRef.current.push(el);
+		}
+	};
+
+	const { splitText } = useSplit(headingRef.current, {
 		type: "lines, words",
 		linesClass: "heading-line",
 		wordsClass: "word",
@@ -129,13 +138,6 @@ function HomePage(props, ref) {
 		},
 	];
 
-	const wordTimelineLine3 = useRef(
-		gsap.timeline({ repeat: -1, yoyo: true, repeatDelay: 0 })
-	);
-	const wordTimelineLine4 = useRef(
-		gsap.timeline({ repeat: -1, yoyo: true, repeatDelay: 0 })
-	);
-
 	useEffect(() => {
 		if (data && data.software) {
 			setFeaturedProject({
@@ -146,85 +148,44 @@ function HomePage(props, ref) {
 			});
 		}
 	}, [data]);
+	const lineRefs = useRef([]);
+	lineRefs.current = [];
+
+	const lineTl = useRef(gsap.timeline());
+
+	const addToLineRefs = el => {
+		if (el && !lineRefs.current.includes(el)) {
+			lineRefs.current.push(el);
+		}
+	};
+
+	const [hasPlayed, setHasPlayed] = useState(false);
 
 	useEffect(() => {
-		if (headingRef.current) {
-			const word = $(headingRef.current).find(".word");
+		if (lineRefs.current && !hasPlayed) {
+			let delay = 0;
+			let rotation = 30;
 
-			const offsets = [
-				{
-					index: 11,
-					x: "10vw",
-				},
-				{
-					index: "10",
-					x: "19vw",
-				},
-				{
-					index: 9,
-					x: "28vw",
-				},
-			];
+			setHasPlayed(true);
 
-			wordTimelineLine4.current
-				.to(
-					word[14],
-					{
-						x: "-35vw",
-						duration: 3,
-						ease: "expo.inOut",
-					},
-					0
-				)
-				.to(
-					word[14],
-					{
-						x: "0",
-						duration: 3,
-						ease: "expo.inOut",
-					},
-					3
-				)
-				.to(
-					word[13],
-					{
-						x: "36.2vw",
-						duration: 3,
-						ease: "expo.inOut",
-					},
-					3.2
-				);
+			lineRefs.current.reverse().forEach((item, index) => {
+				let tl = gsap.timeline();
+				console.log("hello!");
 
-			wordTimelineLine3.current
-				.to(
-					word[offsets[0].index],
-					{
-						duration: 3,
-						x: offsets[0].x,
-						ease: "expo.inOut",
-					},
-					0
-				)
-				.to(
-					word[offsets[1].index],
-					{
-						duration: 3,
-						x: offsets[1].x,
-						ease: "expo.inOut",
-					},
-					0.2
-				)
-				.to(
-					word[offsets[2].index],
-					{
-						duration: 3,
-						x: offsets[2].x,
-						ease: "expo.inOut",
-					},
-					0.2
-				);
+				tl.to(item, {
+					rotation: `${rotation}deg`,
+					delay: delay,
+					duration: 3,
+					transformOrigin: "center",
+					ease: "expo.inOut",
+					repeat: -1,
+					yoyo: true
+				});
+				rotation += 38;
+				delay += 0.1;
+			});
 		}
-	}, [headingRef.current]);
+	}, [lineRefs.current]);
 
 	const heading = {
 		marginBottom: 0,
@@ -239,6 +200,8 @@ function HomePage(props, ref) {
 		"& .heading-line": {
 			display: "flex !important",
 			justifyContent: "space-between",
+			transform: "translateY(100%)",
+			opacity: 0,
 		},
 		"& .heading-line:nth-of-type(4)": {
 			justifyContent: "flex-end !important",
@@ -251,59 +214,117 @@ function HomePage(props, ref) {
 		display: "flex",
 		alignItems: "end",
 		textAlign: "center",
+		flexDirection: "column",
+		justifyContent: "center",
 	};
 
 	const line = {
-		fill: theme.colors.dark,
-		color: theme.colors.dark,
+		fill: theme.colors.orange,
+		color: theme.colors.orange,
 		fill: "none",
-		stroke: "#231f20",
+		stroke: theme.colors.dark,
 		strokeMiterlimit: 10,
-		strokeWidth: "0.4vw",
-	};
-
-	const lineRefs = useRef([]);
-	lineRefs.current = [];
-
-	const addToLineRefs = el => {
-		if (el && !lineRefs.current.includes(el)) {
-			lineRefs.current.push(el);
-		}
+		strokeWidth: mobile ? "0.9vw" : "3px",
 	};
 
 	const star = {
-		height: "6vw",
+		height: "50vw",
+		width: "50vw",
+		zIndex: 99,
+		position: "absolute",
+		top: "50%",
+		left: "50%",
+		transform: "translate(-50%, -50%)",
 	};
 
-	const lineTimeline = useRef(gsap.timeline());
-
-	useEffect(() => {
-		if (lineRefs.current) {
-			gsap.set(lineRefs.current, { transformOrigin: "center" });
-
-			lineTimeline.current.to(lineRefs.current, {
-				rotation: "180deg",
-				ease: "expo.inOut",
-				duration: 3,
-				repeat: -1,
-				stagger: 0.1,
-				yoyo: true,
-				repeatDelay: 0,
-			});
-		}
-	}, [lineRefs.current]);
+	const lineTimeline = useRef(gsap.timeline({ repeat: -1, yoyo: true }));
 
 	const marqueeOffset = {
 		transform: `translateY(100%)`,
 		opacity: 0,
 	};
 
+	const bg = {
+		position: "absolute",
+		top: 0,
+		left: 0,
+		width: "200px",
+
+		background: theme.colors.gradient,
+		zIndex: 9,
+		filter: `blur(30px)`,
+		height: "300%",
+		mixBlendMode: "normal",
+	};
+
 	return (
 		<>
-			<Layout bg={"green"} color='light' height='100vh' fullbleed>
+			<Layout bg={"green"} color='light' height='100vh'>
 				<Box className='hero-inner' sx={innerHero}>
-					<Box as='h2' className='hero-heading' sx={heading} ref={headingRef}>
-						— I Leverage the power of software &{" "}
+					<svg
+						id='svg-star'
+						style={star}
+						xmlns='http://www.w3.org/2000/svg'
+						viewBox='0 0 398.89 407.59'
+					>
+						<path
+							class='cls-1'
+							d='M223.11,539.31,388.89,167'
+							transform='translate(-106.56 -149.34)'
+							style={line}
+							ref={addToLineRefs}
+						/>
+						<path
+							class='cls-1'
+							d='M149.89,484.13l312.22-262'
+							transform='translate(-106.56 -149.34)'
+							style={line}
+							ref={addToLineRefs}
+						/>
+						<path
+							class='cls-1'
+							d='M108.26,402.44l395.48-98.6'
+							transform='translate(-106.56 -149.34)'
+							style={line}
+							ref={addToLineRefs}
+						/>
+						<path
+							class='cls-1'
+							d='M106.66,310.77l398.68,84.74'
+							transform='translate(-106.56 -149.34)'
+							style={line}
+							ref={addToLineRefs}
+						/>
+						<path
+							class='cls-1'
+							d='M145.41,227.67,466.59,478.61'
+							transform='translate(-106.56 -149.34)'
+							style={line}
+							ref={addToLineRefs}
+						/>
+						<path
+							class='cls-1'
+							d='M216.66,170,395.34,536.31'
+							transform='translate(-106.56 -149.34)'
+							style={line}
+							ref={addToLineRefs}
+						/>
+						<path
+							class='cls-1'
+							d='M306,149.34V556.93'
+							transform='translate(-106.56 -149.34)'
+							style={line}
+							ref={addToLineRefs}
+						/>
+					</svg>{" "}
+					{/* <Box
+						as='h2'
+						className='hero-heading'
+						sx={heading}
+						ref={addToHeadingRef}
+					>
+						— I Leverage the power of software & design to push people and
+						brands forward.
 						<svg
 							id='svg-star'
 							style={star}
@@ -360,8 +381,7 @@ function HomePage(props, ref) {
 								ref={addToLineRefs}
 							/>
 						</svg>{" "}
-						design to push people and brands forward.
-					</Box>
+					</Box> */}
 				</Box>
 			</Layout>
 

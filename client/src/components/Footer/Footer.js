@@ -170,7 +170,6 @@ function Footer(props, ref) {
 					>
 						<Box sx={{ height: "50%", position: "relative" }}>
 							<Star height='100%' color={starColor} strokeWidth={"2px"} />
-						
 						</Box>
 					</Box>
 
