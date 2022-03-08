@@ -16,19 +16,19 @@ const paragraphFontSizes = {
 			lineHeight: "4.4rem",
 		},
 		laptop: {
-			fontSize: "2.8rem",
+			fontSize: "2.3rem",
 			lineHeight: "3.2rem",
 		},
 		tablet: {
-			fontSize: "2.6rem",
-			lineHeight: "2.8rem",
+			fontSize: "2rem",
+			lineHeight: "2.3rem",
 		},
 		mobileL: {
-			fontSize: "1.8rem",
-			lineHeight: "2rem",
+			fontSize: "1.3rem",
+			lineHeight: "1.6rem",
 		},
 		mobileM: {
-			fontSize: "1.5rem",
+			fontSize: "1.2rem",
 			lineHeight: "1.6rem",
 		},
 		mobileS: {
@@ -58,8 +58,8 @@ const paragraphFontSizes = {
 			lineHeight: "1.6rem",
 		},
 		mobileL: {
-			fontSize: "1.2rem",
-			lineHeight: "1.4rem",
+			fontSize: "0.9rem",
+			lineHeight: "1.2rem",
 		},
 		mobileM: {
 			fontSize: "1rem",

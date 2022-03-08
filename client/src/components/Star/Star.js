@@ -15,28 +15,8 @@ function Star({ height, color, strokeWidth }) {
 	const lineRefs = useRef([]);
 	lineRefs.current = [];
 
-	useEffect(() => {
-
-
-
-		if (lineRefs.current.length ) {
-
-			console.log(lineRefs.current)
-
-			gsap.set(lineRefs.current, { transformOrigin: "center" });
-
-			lineTimeline.current.to(lineRefs.current, {
-				rotation: "180deg",
-				ease: "expo.inOut",
-				duration: 3,
-				stagger: 0.1,
-			});
-		}
-	}, [lineRefs.current]);
 
 	const line = {
-		fill: theme.colors[color],
-		color: theme.colors[color],
 		fill: "none",
 		stroke: theme.colors["light"],
 		strokeMiterlimit: 10,

@@ -70,6 +70,8 @@ function App() {
 			orange: "rgb(231, 100, 53)",
 			grey: "rgb(207, 207, 207)",
 			purple: "#5b487c",
+			gradient:
+			"linear-gradient(#516dc1,#ce4469,#ce4469,#fb986c,#fb986c,#a99af4,#a99af4,#2fd8a8,#2fd8a8,#009b8e,#009b8e,#516dc1,#516dc1,#ce4469)",
 		},
 		typography: {
 			setSize: multiplier => {

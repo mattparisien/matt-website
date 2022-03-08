@@ -5,7 +5,8 @@ import { deviceSize } from "../../styles/breakpoints";
 import Layout from "../Containers/Layout";
 import Star from "../Star/Star";
 import InView from "react-intersection-observer";
-import $ from "jquery"
+import $ from "jquery";
+import { keyframes } from "@mui/system";
 
 const socialLinks = [
 	{
@@ -25,6 +26,15 @@ const socialLinks = [
 		path: "/",
 	},
 ];
+
+const gradientAnim = keyframes`
+0% {
+	transform: translateY(0)
+}
+100% {
+	transform: translateY(-80%)
+}
+`;
 
 function Footer(props, ref) {
 	const [starColor, setStarColor] = useState("light");
@@ -115,16 +125,25 @@ function Footer(props, ref) {
 		left: 0,
 	};
 
-	const gradient = {
+	const gradientWrapper = {
 		position: "absolute",
 		top: 0,
 		left: 0,
 		width: "100%",
-		height: "100%",
-		background: theme.colors.gradient,
-		zIndex: -1
+		height: "110%",
 
-	}
+		zIndex: -1,
+		borderRadius: "50%",
+		filter: "blur(5vw)",
+		overflow: "hidden",
+	};
+
+	const gradient = {
+		height: "300%",
+		width: "100%",
+		background: theme.colors.gradient,
+		animation: `${gradientAnim} 60s linear alternate-reverse`,
+	};
 
 	return (
 		<footer className='Footer'>
@@ -151,10 +170,10 @@ function Footer(props, ref) {
 					>
 						<Box sx={{ height: "50%", position: "relative" }}>
 							<Star height='100%' color={starColor} strokeWidth={"2px"} />
-							<Box sx={gradient}></Box>
+						
 						</Box>
 					</Box>
-						
+
 					<Box
 						className='social-links-list'
 						component='ul'
@@ -214,18 +233,20 @@ function Footer(props, ref) {
 }
 
 const Line = ({ sx }) => {
-
 	const [intersecting, setIntersecting] = useState(false);
 
 	useEffect(() => {
 		if (intersecting) {
-			$(intersecting).find("")
+			$(intersecting).find("");
 		}
-	}, [intersecting])
+	}, [intersecting]);
 
 	return (
-		<InView className="line-view-wrapper" onChange={(inView, entry) => inView && setIntersecting(entry.target)}>
-			<Box sx={sx} className="line"></Box>
+		<InView
+			className='line-view-wrapper'
+			onChange={(inView, entry) => inView && setIntersecting(entry.target)}
+		>
+			<Box sx={sx} className='line'></Box>
 		</InView>
 	);
 };

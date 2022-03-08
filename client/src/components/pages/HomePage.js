@@ -366,24 +366,34 @@ function HomePage(props, ref) {
 			</Layout>
 
 			<Layout bg='light' height='auto'>
-				<ParagraphLayout indent indentHeading='about' variant={1}>
-					Hey. I'm a full-stack software developer & graphic designer obsessed
-					with digital products and passionate about building responsive user
-					interfaces. Previously at Lighthouse Labs, I'm currently exploring the
-					space where development and animation intersects.
-				</ParagraphLayout>
+				<Box
+					sx={{
+						height: "100%",
+						width: "100%",
+						padding: mobile ? "3rem 0" : "5rem 0",
+					}}
+				>
+					<ParagraphLayout indent indentHeading='about' variant={1}>
+						Hey. I'm a full-stack software developer & graphic designer obsessed
+						with digital products and passionate about building responsive user
+						interfaces. Previously at Lighthouse Labs, I'm currently exploring
+						the space where development and animation intersects.
+					</ParagraphLayout>
+					<Line color='dark' />
+				</Box>
 			</Layout>
 			<Layout bg='light' height='auto'>
 				<Box
 					sx={{
 						width: "100%",
 						height: "100%",
-						paddingTop: desktop ? "5rem" : "2rem",
+
+						padding: mobile ? "3rem 0" : "5rem 0",
 					}}
 				>
-					<Line />
 					<div className='half-section-wrapper'>
 						<ParagraphLayout indent indentHeading='Philosophy' variant={2}>
+							<Line color='dark' />
 							Good research leads to effective design and better tech stacks. I
 							believe that a team of people who love creating, learning and
 							growing together have the ability to transcend the workplace.
@@ -406,10 +416,9 @@ function HomePage(props, ref) {
 					<MarqueeBlock
 						projectTitle={featuredProject && featuredProject.title}
 					/>
-					<FeaturedCard featuredProject={featuredProject} />
+					{/* <FeaturedCard featuredProject={featuredProject} /> */}
 				</Box>
 			</Layout>
-			
 		</>
 	);
 }
@@ -460,8 +469,8 @@ const FeaturedCard = ({ featuredProject }) => {
 	const description = {
 		color: theme.colors.dark,
 		textIndent: "39%",
-		
-		fontSize: "0.8rem"
+
+		fontSize: "0.8rem",
 	};
 
 	return (
@@ -505,18 +514,17 @@ const MarqueeBlock = ({ projectTitle }) => {
 				justifyContent: "space-between",
 			}}
 		>
-			<Line/>
+			<Line />
 			<Box
 				className='marquee-rail-overflow-wrapper'
 				sx={{ overflow: "hidden" }}
 			>
-				
 				<Box className='marquee-rail-yOffset-wrapper'>
 					<Marquee sx={marqueeStyle} gradient={false}>
 						<MarqueeItem multiplier={10}>Featured Work</MarqueeItem>
 					</Marquee>
 				</Box>
-				<Line/>
+				<Line />
 			</Box>
 			<Box
 				className='marquee-rail-overflow-wrapper'
