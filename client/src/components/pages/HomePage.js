@@ -18,6 +18,16 @@ import Layout from "../Containers/Layout";
 import Line from "../Line/Line";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import useResize from "../../helpers/hooks/useResize";
+import { keyframes } from "@mui/system";
+
+const gradientAnim = keyframes`
+	0% {
+		transform: translateY(0)
+	}
+	100% {
+		transform: translateY(-100%)
+	}
+`;
 
 function HomePage(props, ref) {
 	const [windowWidth] = useResize();
@@ -164,7 +174,7 @@ function HomePage(props, ref) {
 	useEffect(() => {
 		if (lineRefs.current && !hasPlayed) {
 			let delay = 0;
-			let rotation = 30;
+			let rotation = 180;
 
 			setHasPlayed(true);
 
@@ -175,13 +185,14 @@ function HomePage(props, ref) {
 				tl.to(item, {
 					rotation: `${rotation}deg`,
 					delay: delay,
-					duration: 3,
+					duration: 4,
 					transformOrigin: "center",
 					ease: "expo.inOut",
 					repeat: -1,
-					yoyo: true
+					yoyo: true,
+					repeatDelay: 1,
 				});
-				rotation += 38;
+				rotation += 28;
 				delay += 0.1;
 			});
 		}
@@ -224,7 +235,7 @@ function HomePage(props, ref) {
 		fill: "none",
 		stroke: theme.colors.dark,
 		strokeMiterlimit: 10,
-		strokeWidth: mobile ? "0.9vw" : "3px",
+		strokeWidth: mobile ? "0.9vw" : "2px",
 	};
 
 	const star = {
@@ -235,6 +246,30 @@ function HomePage(props, ref) {
 		top: "50%",
 		left: "50%",
 		transform: "translate(-50%, -50%)",
+		zIndex: 1,
+	};
+
+	const overlay = {
+		height: "30vw",
+		width: "30vw",
+		zIndex: 99,
+		position: "absolute",
+		top: "50%",
+		left: "50%",
+		transform: "translate(-50%, -50%)",
+		zIndex: 2,
+		overflow: "hidden",
+		borderRadius: "50%",
+		filter: "blur(60px)",
+		opacity: 0.9,
+		mixBlendMode: "exclusion",
+	};
+
+	const gradientInner = {
+		width: "100%",
+		animation: `${gradientAnim} 60s linear forwards`,
+		background: theme.colors.gradient,
+		height: "300%",
 	};
 
 	const lineTimeline = useRef(gsap.timeline({ repeat: -1, yoyo: true }));
@@ -259,7 +294,7 @@ function HomePage(props, ref) {
 
 	return (
 		<>
-			<Layout bg={"green"} color='light' height='100vh'>
+			<Layout bg={"pink"} color='light' height='100vh'>
 				<Box className='hero-inner' sx={innerHero}>
 					<svg
 						id='svg-star'
@@ -317,6 +352,9 @@ function HomePage(props, ref) {
 							ref={addToLineRefs}
 						/>
 					</svg>{" "}
+					<Box className='gradient-overlay' sx={overlay}>
+						<Box sx={gradientInner}></Box>
+					</Box>
 					{/* <Box
 						as='h2'
 						className='hero-heading'
