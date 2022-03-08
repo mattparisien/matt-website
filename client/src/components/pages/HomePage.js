@@ -198,10 +198,84 @@ function HomePage(props, ref) {
 		textAlign: "center",
 	};
 
+	const line = {
+		fill: theme.colors.dark,
+		color: theme.colors.dark,
+		fill: "none",
+		stroke: "#231f20",
+		strokeMiterlimit: 10,
+		strokeWidth: "1px",
+	};
+
+	const addToLineRefs = el => {
+		if (el && !lines.current.includes(el)) {
+			lines.current.push(el);
+		}
+	};
+
+	const star = {};
+
 	return (
 		<>
 			<Layout bg={"green"} color='light' height='100vh' fullbleed>
 				<Box className='hero-inner' sx={innerHero}>
+					<svg
+						id='svg-star'
+						style={star}
+						xmlns='http://www.w3.org/2000/svg'
+						viewBox='0 0 398.89 407.59'
+					>
+						<path
+							class='cls-1'
+							d='M223.11,539.31,388.89,167'
+							transform='translate(-106.56 -149.34)'
+							style={line}
+							ref={addToLineRefs}
+						/>
+						<path
+							class='cls-1'
+							d='M149.89,484.13l312.22-262'
+							transform='translate(-106.56 -149.34)'
+							style={line}
+							ref={addToLineRefs}
+						/>
+						<path
+							class='cls-1'
+							d='M108.26,402.44l395.48-98.6'
+							transform='translate(-106.56 -149.34)'
+							style={line}
+							ref={addToLineRefs}
+						/>
+						<path
+							class='cls-1'
+							d='M106.66,310.77l398.68,84.74'
+							transform='translate(-106.56 -149.34)'
+							style={line}
+							ref={addToLineRefs}
+						/>
+						<path
+							class='cls-1'
+							d='M145.41,227.67,466.59,478.61'
+							transform='translate(-106.56 -149.34)'
+							style={line}
+							ref={addToLineRefs}
+						/>
+						<path
+							class='cls-1'
+							d='M216.66,170,395.34,536.31'
+							transform='translate(-106.56 -149.34)'
+							style={line}
+							ref={addToLineRefs}
+						/>
+						<path
+							class='cls-1'
+							d='M306,149.34V556.93'
+							transform='translate(-106.56 -149.34)'
+							style={line}
+							ref={addToLineRefs}
+						/>
+					</svg>
+
 					<Box as='h2' className='hero-heading' sx={heading} ref={headingRef}>
 						I like to leverage the power of software & design to push people and
 						brands forward

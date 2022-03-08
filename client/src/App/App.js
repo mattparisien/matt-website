@@ -63,7 +63,7 @@ function App() {
 			dark2: "#23252B",
 			lighterDark: "#111111",
 			red: "#DF181F",
-			green: "#1c8c53",
+			green: "#C0FF0D",
 			blue: "rgb(78, 140, 162)",
 			yellow: "#faf281",
 			pink: "#f1b9b8",

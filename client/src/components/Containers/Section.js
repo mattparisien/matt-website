@@ -13,7 +13,7 @@ const StyledSection = styled.section`
 	height: ${({ height }) => (height ? height : "100vh")};
 	
 	background-color: ${({ theme, bg }) => (bg ? theme.colors[bg] : "black")};
-	\
+	
 	color: ${({ theme, bg }) =>
 		bg ? theme.colors[bg === "dark" ? "light" : "dark"] : "blue"};
 `;
