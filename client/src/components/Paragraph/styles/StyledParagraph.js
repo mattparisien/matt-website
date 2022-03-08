@@ -73,7 +73,7 @@ const paragraphFontSizes = {
 };
 
 export const StyledParagraph = styled.p`
-	font-family: "Haas";
+	font-family: "Neue Mtl";
 	margin: 0;
 
 	span.spacer {
@@ -106,7 +106,7 @@ export const StyledParagraph = styled.p`
 	}};
 
 	a {
-		font-family: "Haas";
+		font-family: "Neue Mtl";
 	}
 `;
 

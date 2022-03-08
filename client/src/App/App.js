@@ -155,7 +155,7 @@ function App() {
 		footerHeight: null,
 		isFooterIntersecting: false,
 		menuActive: false,
-		isLoading: false,
+		isLoading: true,
 	});
 
 	useEffect(() => {
@@ -239,7 +239,6 @@ function App() {
 	// };
 
 	const changeColors = (fg, bg) => {
-		console.log("has called");
 		setHeaderColor(fg);
 	};
 
@@ -278,7 +277,12 @@ function App() {
 										content='Web Developer, Photographer & Graphic Designer'
 									/>
 								</Helmet>
-								<Loader isActive={state.isLoading} />
+								{state.isLoading && (
+									<Loader
+										isActive={state.isLoading}
+										toggleLoading={toggleLoading}
+									/>
+								)}
 								<Header
 									ref={headerRef}
 									isMenuActive={state.menuActive}
@@ -300,7 +304,7 @@ function App() {
 											<Route path='/upload' element={<UploadPage />} />
 										</Routes>
 									</ContentWrapper>
-									<Footer/>
+									<Footer />
 								</ScrollWrapper>
 								<ThemeSwitch togglePartyMode={togglePartyMode} />
 							</div>

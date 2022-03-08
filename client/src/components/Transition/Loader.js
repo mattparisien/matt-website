@@ -1,148 +1,151 @@
-import React, { useRef, useEffect, useContext } from "react";
-import { Box } from "@mui/material";
-import gsap from "gsap";
+import { Box, Container, toggleButtonClasses } from "@mui/material";
+import { keyframes } from "@mui/system";
+import React, { useEffect, useState, useRef } from "react";
 import { useTheme } from "styled-components";
-import { LoadingContext } from "../../App/App";
+import Line from "../Line/Line";
+import { useMediaQuery } from "@mui/material";
+import gsap from "gsap";
 
-function Loader({ isActive }) {
+const wordAnim = keyframes`
+	0% {
+		transform: translateY(150%);
+		opacity: 0;
+	} 100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+`;
+
+const bgLeaveAnim = keyframes`
+	0% {
+		transform: scaleY(1)
+	}
+	100% {
+		transform: scaleY(0.001)
+	}
+`;
+
+const fadeContent = keyframes`
+	0% {
+		opacity: 1
+	}
+
+	100% {
+		opacity: 0
+	}
+`;
+
+function Loader({ isActive, toggleLoading }) {
+	const [isAnimCompleted, setAnimCompleted] = useState(false);
+	const matches = useMediaQuery("(max-width: 600px)", { noSsr: true });
+	const timeline = useRef(gsap.timeline());
+	const content = useRef(null);
+	const bg = useRef(null);
+
+	useEffect(() => {
+		setTimeout(() => {
+			setAnimCompleted(true);
+			toggleLoading()
+		}, 3000);
+	}, []);
+
+	useEffect(() => {
+		if (content.current && bg.current) {
+			timeline.current.to(bg.current, {
+				scaleX: 1,
+				duration: 0.6,
+				ease: 'power2.out'
+			})
+			.to(bg.current, {
+				scaleY: 0.001,
+				duration: 0.6,
+				ease: 'power2.out',
+				
+			}, 1.2)
+			.to(content.current, {
+				opacity: 0,
+				onComplete: () => {
+					toggleLoading()
+				}
+			}, 1.2)
+		}
+	}, [bg, content])
+
 	const theme = useTheme();
-	const { toggleLoading } = useContext(LoadingContext);
 
 	const loaderStyle = {
+		top: 0,
+		left: 0,
 		position: "fixed",
+		height: "100vh",
+		width: "100vw",
+		color: theme.colors.light,
+		zIndex: 9999,
+		display: isAnimCompleted ? "none" : "flex",
+		alignItems: "center",
+		justifyContent: "center",
+	};
+
+	const word = {
+		fontFamily: "Neue Mtl",
+		fontSize: matches ? "1rem" : "2rem",
+		width: "100%",
+		display: "block",
+	
+	};
+
+	const loadSpacer = {
+		margin: 0,
+		height: "10rem",
+		width: "100%",
+	};
+
+	const copyright = {
+		fontSize: "0.8rem",
+		position: "absolute",
+	};
+
+	const background = {
+		position: "absolute",
 		top: 0,
 		left: 0,
 		width: "100%",
-		height: "100vh",
-		zIndex: 9,
-		backgroundColor: theme.colors.dark2,
-		color: theme.colors.light,
-		fontFamily: "Haas",
-		display: isActive ? "flex" : "none",
-		alignItems: "center",
-		justifyContent: "center",
-		flexDirection: "column",
-		fontSize: "15vw",
-		transform: "translateX(-100%)",
+		height: "100%",
+		backgroundColor: "black",
+		zIndex: -1,
+		transformOrigin: "left top",
+		transform: 'scaleX(0.001)',
+		animationDelay: "1s",
 	};
 
-	const wordStyle = {
-		opacity: 0,
+	const container = {
+		
+		animationDelay: "1s",
 	};
 
-	const word1 = useRef(null);
-	const word2 = useRef(null);
-	const word3 = useRef(null);
-	const container = useRef(null);
-	const fadeInTimeline = useRef(gsap.timeline());
-	const fadeOutTimeline = useRef(gsap.timeline());
-	const masterTimeline = useRef(gsap.timeline());
-	const translateTimeline = useRef(gsap.timeline());
 
-	useEffect(() => {
-		if (
-			word1.current &&
-			word2.current &&
-			word3.current &&
-			container.current &&
-			isActive
-		) {
-			const speed = 0.2;
-			const ease = "linear.easeNone";
-
-			translateTimeline.current
-				.to(container.current, {
-					x: 0,
-					ease: "expo.inOut",
-					duration: 0.9,
-				})
-				.to(container.current, {
-					y: "-100%",
-					ease: "expo.inOut",
-					duration: 0.9,
-					onComplete: () => {
-						toggleLoading();
-					},
-				})
-				.set(container.current, { clearProps: "all" });
-
-			const fadeIn = () => {
-				fadeInTimeline.current
-					.to(
-						word1.current,
-						{
-							opacity: 1,
-							duration: speed,
-							ease: ease,
-						},
-						0
-					)
-					.to(
-						word2.current,
-						{
-							opacity: 1,
-							duration: speed,
-							ease: ease,
-						},
-						speed
-					)
-					.to(
-						word3.current,
-						{
-							opacity: 1,
-							duration: speed,
-							ease: ease,
-						},
-						speed * 2
-					);
-				return fadeInTimeline.current;
-			};
-
-			const fadeOut = () => {
-				fadeOutTimeline.current
-					.to(
-						word1.current,
-						{
-							opacity: 0,
-							ease: ease,
-						},
-						speed
-					)
-					.to(
-						word2.current,
-						{
-							opacity: 0,
-							ease: ease,
-						},
-						speed * 2
-					)
-					.to(
-						word3.current,
-						{
-							opacity: 0,
-							ease: ease,
-						},
-						speed * 3
-					);
-
-				return fadeOutTimeline.current;
-			};
-
-			masterTimeline.current.add(fadeIn()).add(fadeOut(), "-=0.5");
-		}
-	}, [word1, word2, word3, container, isActive]);
 
 	return (
-		<Box sx={loaderStyle} component='div' ref={container} className='Loader'>
-			<span ref={word1} style={wordStyle}>
-				Work hard
-			</span>
-			<span ref={word2} style={wordStyle}>
-				Work hard
-			</span>
-			<span ref={word3} style={wordStyle}>
-				Work hard
-			</span>
+		<Box sx={loaderStyle} component='div' className='Loader'>
+			<Container sx={container} ref={content}>
+				<Line />
+				<Box sx={loadSpacer}>
+					<Box component='span' sx={word}>
+						Matthew Parisien{" "}
+						<Box component='span' sx={copyright}>
+							©
+						</Box>
+					</Box>
+
+					<Box component='span' sx={word}>
+						Software & Graphic Design
+					</Box>
+				</Box>
+				<Line />
+				<Box sx={loadSpacer}></Box>
+				<Line />
+			</Container>
+			<Box className='loader-background' sx={background} ref={bg}></Box>
 		</Box>
 	);
 }

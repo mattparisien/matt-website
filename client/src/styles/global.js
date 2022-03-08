@@ -1,10 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import DefaultCursor from "../assets/images/cursor-default-01.svg";
-import FKScreamer from "../fonts/FKScreamer.otf";
-import FuturaCEB from "../fonts/Futura.otf";
-import Haas from "../fonts/Haas.otf";
-import Konnect from "../fonts/Konnect.woff";
 import { device } from "./breakpoints";
+import NeueMtl from "../fonts/NeueMtl.otf";
 
 export const renderResponsiveSizes = object => {
 	return Object.entries(object).map(size => {
@@ -33,7 +30,7 @@ export const GlobalStyle = createGlobalStyle`
 
  * {
 -webkit-font-smoothing: antialiased;
-font-family: 'Haas';
+font-family: 'Neue Mtl';
 
  }
 
@@ -74,32 +71,9 @@ font-family: 'Haas';
 
 
 
-
   @font-face {
-    font-family: 'FK';
-    src: url(${FKScreamer}) format('woff');
-  }
-
-  @font-face {
-    font-family: 'NeueMtl';
-    src: url(${FKScreamer}) format('woff');
-  }
-
-  @font-face {
-    font-family: 'Haas';
-    src: url(${Haas}) format('woff');
-  }
-
-  @font-face {
-    font-family: 'Konnect';
-    src: url(${Konnect}) format('woff');
-  }
-
- 
-
-  @font-face {
-    font-family: 'FuturaCEB';
-    src: url(${FuturaCEB}) format('woff');
+    font-family: 'Neue Mtl';
+    src: url(${NeueMtl}) format('woff');
   }
 
   

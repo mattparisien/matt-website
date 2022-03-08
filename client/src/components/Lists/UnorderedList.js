@@ -21,7 +21,7 @@ const StyledUl = styled.ul`
 
 		${({theme}) => theme.typography.setSize(1)};
 
-		font-family: "Haas";
+		font-family: "Neue Mtl";
 		width: 10rem;
 		display: flex;
 		align-items: center;

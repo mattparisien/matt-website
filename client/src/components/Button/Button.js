@@ -43,7 +43,7 @@ const StyledRectangleButton = styled.button`
 	background-color: ${({ theme, naked }) => theme.colors.red};
 	color: ${({ theme, naked }) =>
 		naked ? theme.colors.dark : theme.colors.light};
-	font-family: "Haas";
+	font-family: "Neue Mtl";
 	text-decoration: none;
 	outline: none;
 	border: 0px;
@@ -102,7 +102,7 @@ const StyledCircleButton = styled.button`
 const StyledLink = styled.a`
 	background-color: ${({ theme }) => theme.colors.red};
 	color: ${({ theme }) => theme.colors.light};
-	font-family: "Haas";
+	font-family: Neue Mtl;
 	text-decoration: none;
 	outline: none;
 	border: 0px;

@@ -1,13 +1,13 @@
+import { Box } from "@mui/system";
 import React, { forwardRef, useContext, useRef } from "react";
 import { ColorContext } from "../../App/App";
 import Layout from "../Containers/Layout";
+import Line from "../Line/Line";
 import Heading from "../Heading/Heading";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
-import { Box } from "@mui/system";
-import Line from "../Divider/Line";
-import Button from "../Button/Button";
 import { Pills } from "../Pills/Pills";
-import styled from "styled-components";
+import Marquee from "react-fast-marquee";
+import { Container } from "@mui/material";
 
 function HomePage(props, ref) {
 	//Declare refs needed for animation
@@ -117,6 +117,16 @@ function HomePage(props, ref) {
 
 	const stickyRef = useRef(null);
 
+	const marqueeStyle = {
+		fontSize: "13vw",
+		fontFamily: "Neue Mtl",
+		fontWeight: "lighter",
+	};
+
+	const word = {
+		marginRight: "8vw",
+	};
+
 	return (
 		<>
 			<Layout bg='dark' fullbleed={true} hero={true}>
@@ -127,9 +137,65 @@ function HomePage(props, ref) {
 						alignItems: "center",
 						justifyContent: "center",
 						height: "100%",
+						flexDirection: "column",
 					}}
 				>
-					<Heading>Developer.</Heading>
+					<Box
+						sx={{
+							width: "100%",
+							position: "relative",
+							height: "22vw",
+							display: "flex",
+							flexDirection: "column",
+							justifyContent: "space-between",
+						}}
+					>
+						<Container>
+							<Line />
+						</Container>
+
+						<Box className='marquee-overflow-box' sx={{ overflow: "hidden" }}>
+							<Marquee gradient={false} style={marqueeStyle}>
+								<Box sx={word}>Software</Box>
+								<Box sx={word}>Software</Box>
+								<Box sx={word}>Software</Box>
+								<Box sx={word}>Software</Box>
+								<Box sx={word}>Software</Box>
+							</Marquee>
+						</Box>
+						<Container>
+							<Line />
+						</Container>
+					</Box>
+					<Box
+						sx={{
+							width: "100%",
+							position: "relative",
+							height: "22vw",
+							display: "flex",
+							flexDirection: "column",
+							justifyContent: "space-between",
+						}}
+					>
+						<Container>
+							<Line color='dark' />
+						</Container>
+
+						<Box className='marquee-overflow-box' sx={{ overflow: "hidden" }}>
+							<Marquee gradient={false} style={marqueeStyle} direction="right">
+								<Box sx={word}>Design</Box>
+								<Box sx={word}>Design</Box>
+								<Box sx={word}>Design</Box>
+								<Box sx={word}>Design</Box>
+								<Box sx={word}>Design</Box>
+							</Marquee>
+						</Box>
+						<Container>
+							<Line />
+						</Container>
+					</Box>
+
+					<Line />
 				</Box>
 			</Layout>
 
@@ -144,8 +210,9 @@ function HomePage(props, ref) {
 				<div className='half-section-wrapper'>
 					<ParagraphLayout indent indentHeading='about' variant={2}>
 						Good research leads to effective design and better tech stacks. I
-						draw from daring, innovative references to create smooth, seamless 
-						user experiences. My work never brags, but it sure does speak for itself.
+						draw from daring, innovative references to create smooth, seamless
+						user experiences. My work never brags, but it sure does speak for
+						itself.
 					</ParagraphLayout>
 				</div>
 			</Layout>

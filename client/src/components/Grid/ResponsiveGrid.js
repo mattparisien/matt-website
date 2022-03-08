@@ -38,7 +38,7 @@ const Item = styled(Box)`
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		font-family: Haas;
+		font-family: Neue Mtl;
 		transform: translate(-50%, -50%);
 		font-size: 4vw;
 		height: 100%;
