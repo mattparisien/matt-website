@@ -89,7 +89,8 @@ export const StyledParagraph = styled.p`
 		position: relative;
 		display: inline-block;
 		text-align: start;
-		overflow-y: hidden;
+		opacity: 0;
+		transform: translateY(100%);
 	}
 
 	${({ indentHeading, theme }) => {

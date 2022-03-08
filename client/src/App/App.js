@@ -298,7 +298,7 @@ function App() {
 										/>
 
 										<Routes>
-											<Route path='/' element={<HomePage />} />
+											<Route path='/' element={<HomePage isLoading={state.isLoading}/>} />
 											<Route path='/about' element={<AboutPage />} />
 											<Route path='/work' element={<WorkPage />} />
 											<Route path='/upload' element={<UploadPage />} />

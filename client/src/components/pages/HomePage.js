@@ -1,22 +1,38 @@
+import { Container } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { forwardRef, useContext, useRef } from "react";
+import React, { forwardRef, useContext, useEffect, useRef } from "react";
+import Marquee from "react-fast-marquee";
 import { ColorContext } from "../../App/App";
 import Layout from "../Containers/Layout";
 import Line from "../Line/Line";
-import Heading from "../Heading/Heading";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import { Pills } from "../Pills/Pills";
-import Marquee from "react-fast-marquee";
-import { Container } from "@mui/material";
+import { device } from "../../styles/breakpoints";
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "styled-components";
+import gsap from "gsap";
 
 function HomePage(props, ref) {
-	//Declare refs needed for animation
-	const stickySection = useRef(null);
+	const theme = useTheme();
+	const introTimeline = useRef(gsap.timeline());
+	const card = useRef(null);
+	const marquees = useRef([]);
+	marquees.current = [];
+	const lines = useRef([]);
+	lines.current = [];
+	const desktop = useMediaQuery(device.laptop);
 
-	const { changeColors } = useContext(ColorContext);
-	const { revealContent, colors } = props;
+	const addToRefs = el => {
+		if (el && !marquees.current.includes(el)) {
+			marquees.current.push(el);
+		}
+	};
 
-	const containerStyles = { maxWidth: 2000, margin: "0 auto" };
+	const addToLines = el => {
+		if (el && !lines.current.includes(el)) {
+			lines.current.push(el);
+		}
+	};
 
 	const imgStyle = {
 		position: "absolute",
@@ -115,10 +131,8 @@ function HomePage(props, ref) {
 		},
 	];
 
-	const stickyRef = useRef(null);
-
 	const marqueeStyle = {
-		fontSize: "13vw",
+		fontSize: desktop ? "10rem" : "13vw",
 		fontFamily: "Neue Mtl",
 		fontWeight: "lighter",
 	};
@@ -126,6 +140,54 @@ function HomePage(props, ref) {
 	const word = {
 		marginRight: "8vw",
 	};
+
+	const featuredWrapper = {
+		backgroundColor: theme.colors.yellow,
+		height: "50vw",
+		width: "40vw",
+		position: "absolute",
+		top: "50%",
+		left: "50%",
+		transform: "translate(-50%, -50%)",
+		zIndex: 99,
+	};
+
+	useEffect(() => {
+		console.log(marquees);
+		if (card.current && marquees.current) {
+			console.log(marquees.current);
+			console.log("made it here");
+			gsap.set(card.current, {
+				y: "100%",
+				opacity: 0,
+			});
+			gsap.set(marquees.current, {
+				y: "100%",
+				opacity: 0,
+			});
+
+			if (!props.isLoading) {
+				introTimeline.current
+					.to([marquees.current], {
+						y: 0,
+						opacity: 1,
+						duration: 2,
+						ease: "expo.inOut",
+						stagger: 0.1,
+					})
+					.to(
+						card.current,
+						{
+							y: "-50%",
+							opacity: 1,
+							duration: 1,
+							ease: "power2.out",
+						},
+						1.2
+					);
+			}
+		}
+	}, [card, marquees.current, lines.current, props.isLoading]);
 
 	return (
 		<>
@@ -135,6 +197,7 @@ function HomePage(props, ref) {
 					sx={{
 						display: "flex",
 						alignItems: "center",
+						position: "relative",
 						justifyContent: "center",
 						height: "100%",
 						flexDirection: "column",
@@ -144,26 +207,28 @@ function HomePage(props, ref) {
 						sx={{
 							width: "100%",
 							position: "relative",
-							height: "22vw",
+							height: desktop ? "15rem" : "26vw",
 							display: "flex",
 							flexDirection: "column",
 							justifyContent: "space-between",
 						}}
 					>
-						<Container>
+						<Container ref={addToLines}>
 							<Line />
 						</Container>
 
 						<Box className='marquee-overflow-box' sx={{ overflow: "hidden" }}>
-							<Marquee gradient={false} style={marqueeStyle}>
-								<Box sx={word}>Software</Box>
-								<Box sx={word}>Software</Box>
-								<Box sx={word}>Software</Box>
-								<Box sx={word}>Software</Box>
-								<Box sx={word}>Software</Box>
-							</Marquee>
+							<Box ref={addToRefs}>
+								<Marquee gradient={false} style={marqueeStyle}>
+									<Box sx={word}>Software</Box>
+									<Box sx={word}>Software</Box>
+									<Box sx={word}>Software</Box>
+									<Box sx={word}>Software</Box>
+									<Box sx={word}>Software</Box>
+								</Marquee>
+							</Box>
 						</Box>
-						<Container>
+						<Container ref={addToLines}>
 							<Line />
 						</Container>
 					</Box>
@@ -171,31 +236,41 @@ function HomePage(props, ref) {
 						sx={{
 							width: "100%",
 							position: "relative",
-							height: "22vw",
+							height: desktop ? "15rem" : "26vw",
 							display: "flex",
 							flexDirection: "column",
 							justifyContent: "space-between",
 						}}
 					>
-						<Container>
+						<Container ref={addToLines}>
 							<Line color='dark' />
 						</Container>
 
 						<Box className='marquee-overflow-box' sx={{ overflow: "hidden" }}>
-							<Marquee gradient={false} style={marqueeStyle} direction="right">
-								<Box sx={word}>Design</Box>
-								<Box sx={word}>Design</Box>
-								<Box sx={word}>Design</Box>
-								<Box sx={word}>Design</Box>
-								<Box sx={word}>Design</Box>
-							</Marquee>
+							<Box ref={addToRefs}>
+								<Marquee
+									gradient={false}
+									style={marqueeStyle}
+									direction='right'
+								>
+									<Box sx={word}>Design</Box>
+									<Box sx={word}>Design</Box>
+									<Box sx={word}>Design</Box>
+									<Box sx={word}>Design</Box>
+									<Box sx={word}>Design</Box>
+								</Marquee>
+							</Box>
 						</Box>
-						<Container>
+
+						<Container ref={addToLines}>
 							<Line />
 						</Container>
 					</Box>
-
-					<Line />
+					<Box
+						className='featured-wrapper'
+						sx={featuredWrapper}
+						ref={card}
+					></Box>
 				</Box>
 			</Layout>
 

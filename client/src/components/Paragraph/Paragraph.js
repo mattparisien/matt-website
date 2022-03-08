@@ -1,15 +1,14 @@
-import React, { useRef, useEffect, useState } from "react";
-import { StyledParagraph } from "./styles/StyledParagraph";
-import { SplitText } from "gsap/all";
 import gsap from "gsap";
+import { SplitText } from "gsap/all";
 import $ from "jquery";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import useResize from "../../helpers/hooks/useResize";
-import InView from "react-intersection-observer";
-import styled from "styled-components";
 import {
 	StyledVariant1Paragraph,
 	StyledVariant2Paragraph,
 } from "./styles/StyledParagraph";
+import { useInView } from "react-intersection-observer";
+import { Box } from "@mui/material";
 
 function Paragraph(props) {
 	const [intersecting, setIntersecting] = useState(null);
@@ -23,9 +22,8 @@ function Paragraph(props) {
 	useEffect(() => {
 		if (!isSplit && paragraph.current) {
 			const mySplitText = new SplitText(paragraph.current, {
-				type: "lines, chars, words",
+				type: "lines, words, chars",
 				linesClass: "line",
-				charsClass: "char",
 			});
 			// const splitTextWrap = new SplitText(paragraph.current, {
 			// 	type: "lines",
@@ -36,36 +34,9 @@ function Paragraph(props) {
 
 			// setSplitWrap(splitTextWrap);
 		}
-
-	
-
-		if (isSplit && intersecting) {
-			const lines = $(intersecting).find(".line");
-
-			lines.each((index, el) => {
-				const chars = $(el).find(".char");
-				let delay = 0;
-				gsap.set(chars, {
-					y: "100%",
-					opacity: 0,
-				});
-				gsap.to(chars, {
-					y: 0,
-					opacity: 1,
-					stagger: 0.02,
-					duration: 2,
-					ease: "expo.inOut",
-					delay: delay + index / 4,
-					onComplete: () => {
-						$(paragraph.current).removeClass("is-initial-hidden");
-					},
-				});
-			});
-		}
 	}, [isSplit, windowWidth, intersecting, splitText]);
 
 	useEffect(() => {
-
 		if (splitText && !splitWrap) {
 			$(splitText.lines).wrap("<div></div>");
 			setSplitWrap(true);
@@ -75,32 +46,59 @@ function Paragraph(props) {
 	}, [windowWidth, splitText, splitWrap]);
 
 	const paragraphClass = "Paragraph";
+	const ref = useRef();
+	const [inViewRef, inView] = useInView();
+
+	const setRefs = useCallback(
+		node => {
+			// Ref's from useRef needs to have the node assigned to `current`
+			ref.current = node;
+			// Callback refs, like the one from `useInView`, is a function that takes the node as an argument
+			inViewRef(node);
+		},
+		[inViewRef]
+	);
+
+	useEffect(() => {
+		if (inView) {
+			console.log($(ref.current).find(".line"));
+
+			gsap.to($(ref.current).find(".line"), {
+				y: 0,
+				opacity: 1,
+				ease: "expo.inOut",
+				duration: 1,
+				stagger: 0.1,
+				delay: 0.1,
+			});
+		}
+	}, [inView, inViewRef, ref]);
 
 	return (
-		<InView
-			className='paragraph-view-wrapper'
-			onChange={(inView, entry) => inView && setIntersecting(entry.target)}
-			style={{ width: "100%" }}
-		>
+		<>
 			{props.variant === 1 ? (
-				<StyledVariant1Paragraph
-					className={paragraphClass}
-					{...props}
-					isResized={isResized}
-					ref={paragraph}
-				>
-					{props.indent ? <span className='spacer'>&nbsp;</span> : ""}
-					{props.children}
-				</StyledVariant1Paragraph>
+				<Box ref={setRefs} className='view-wrapper' sx={{ width: "100%" }}>
+					<StyledVariant1Paragraph
+						className={paragraphClass}
+						{...props}
+						isResized={isResized}
+						ref={paragraph}
+					>
+						{props.indent ? <span className='spacer'>&nbsp;</span> : ""}
+						{props.children}
+					</StyledVariant1Paragraph>
+				</Box>
 			) : (
-				<StyledVariant2Paragraph
-					className={paragraphClass}
-					{...props}
-					isResized={isResized}
-					ref={paragraph}
-				></StyledVariant2Paragraph>
+				<Box ref={setRefs} className='view-wrapper' sx={{ width: "100%" }}>
+					<StyledVariant2Paragraph
+						className={paragraphClass}
+						{...props}
+						isResized={isResized}
+						ref={paragraph}
+					></StyledVariant2Paragraph>
+				</Box>
 			)}
-		</InView>
+		</>
 	);
 }
 
