@@ -1,3 +1,4 @@
+import { GitHub, Instagram, LinkedIn } from "@material-ui/icons";
 import { Box } from "@mui/system";
 import gsap from "gsap";
 import React, { useEffect, useRef } from "react";
@@ -5,8 +6,6 @@ import styled from "styled-components";
 import Layout from "../Containers/Layout";
 import Line from "../Line/Line";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
-import SocialList from "../Lists/SocialList";
-import { Instagram, LinkedIn, GitHub } from "@material-ui/icons";
 
 const GradientBg = styled.div`
 	width: 100%;
