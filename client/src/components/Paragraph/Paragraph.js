@@ -25,12 +25,16 @@ function Paragraph(props) {
 				type: "lines, words, chars",
 				linesClass: "line",
 			});
+
+			setTimeout(() => {
+				mySplitText.revert().split();
+				// });
+				setIsSplit(true);
+				setSplitText(mySplitText);
+			}, 200);
 			// const splitTextWrap = new SplitText(paragraph.current, {
 			// 	type: "lines",
 			// 	linesClass: "line-wrapper",
-			// });
-			setIsSplit(true);
-			setSplitText(mySplitText);
 
 			// setSplitWrap(splitTextWrap);
 		}
@@ -66,7 +70,7 @@ function Paragraph(props) {
 			gsap.to($(ref.current).find(".line"), {
 				y: 0,
 				opacity: 1,
-				ease: "expo.inOut",
+				ease: "power3.out",
 				duration: 1,
 				stagger: 0.1,
 				delay: 0.1,

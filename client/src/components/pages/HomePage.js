@@ -7,10 +7,11 @@ import Layout from "../Containers/Layout";
 import Line from "../Line/Line";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import { Pills } from "../Pills/Pills";
-import { device } from "../../styles/breakpoints";
+import { device, deviceSize } from "../../styles/breakpoints";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "styled-components";
 import gsap from "gsap";
+import useSplit from "../../helpers/hooks/useSplit";
 
 function HomePage(props, ref) {
 	const theme = useTheme();
@@ -21,24 +22,13 @@ function HomePage(props, ref) {
 	const lines = useRef([]);
 	lines.current = [];
 	const desktop = useMediaQuery(device.laptop);
+	const mobile = useMediaQuery(`(max-width: ${deviceSize.mobileL}px`);
+	const headingRef = useRef(null);
 
-	const addToRefs = el => {
-		if (el && !marquees.current.includes(el)) {
-			marquees.current.push(el);
-		}
-	};
-
-	const addToLines = el => {
-		if (el && !lines.current.includes(el)) {
-			lines.current.push(el);
-		}
-	};
-
-	const imgStyle = {
-		position: "absolute",
-		top: 0,
-		left: 0,
-	};
+	const { splitText } = useSplit([headingRef.current], {
+		type: "lines, words",
+		linesClass: "heading-line",
+	});
 
 	const pillInfo = [
 		{
@@ -133,7 +123,7 @@ function HomePage(props, ref) {
 
 	const marqueeStyle = {
 		fontSize: desktop ? "10rem" : "13vw",
-		fontFamily: "Neue Mtl",
+		fontFamily: mobile ? "Georgia" : "Neue Mtl",
 		fontWeight: "lighter",
 	};
 
@@ -143,13 +133,13 @@ function HomePage(props, ref) {
 
 	const featuredWrapper = {
 		backgroundColor: theme.colors.yellow,
-		height: "50vw",
-		width: "40vw",
+		height: desktop ? "700px" : mobile ? "150vw" : "600px",
+		width: desktop ? "560px" : mobile ? "100%" : "500px",
 		position: "absolute",
 		top: "50%",
 		left: "50%",
 		transform: "translate(-50%, -50%)",
-		zIndex: 99,
+		zIndex: 1,
 	};
 
 	useEffect(() => {
@@ -157,10 +147,7 @@ function HomePage(props, ref) {
 		if (card.current && marquees.current) {
 			console.log(marquees.current);
 			console.log("made it here");
-			gsap.set(card.current, {
-				y: "100%",
-				opacity: 0,
-			});
+
 			gsap.set(marquees.current, {
 				y: "100%",
 				opacity: 0,
@@ -168,109 +155,57 @@ function HomePage(props, ref) {
 
 			if (!props.isLoading) {
 				introTimeline.current
-					.to([marquees.current], {
+					.to(marquees.current, {
 						y: 0,
 						opacity: 1,
 						duration: 2,
 						ease: "expo.inOut",
 						stagger: 0.1,
 					})
-					.to(
+					.from(
 						card.current,
 						{
-							y: "-50%",
-							opacity: 1,
-							duration: 1,
-							ease: "power2.out",
+							y: "100%",
+							ease: "power3.out",
+							opacity: 0,
+							duration: 0.8,
 						},
-						1.2
+						0.9
 					);
 			}
 		}
 	}, [card, marquees.current, lines.current, props.isLoading]);
 
+	const heading = {
+		fontSize: "7vw",
+		lineHeight: "7vw",
+		fontFamily: "Neue Mtl",
+		fontWeight: "lighter",
+		width: "100%",
+		color: theme.colors.light,
+		textAlign: "center",
+		"& .heading-line": {
+			display: "flex !important",
+			justifyContent: "space-between",
+		},
+	};
+
+	const innerHero = {
+		width: "100%",
+		height: "100%",
+		display: "flex",
+		alignItems: "end",
+		textAlign: "center",
+	};
+
 	return (
 		<>
-			<Layout bg='dark' fullbleed={true} hero={true}>
-				<Box
-					className='hero__inner'
-					sx={{
-						display: "flex",
-						alignItems: "center",
-						position: "relative",
-						justifyContent: "center",
-						height: "100%",
-						flexDirection: "column",
-					}}
-				>
-					<Box
-						sx={{
-							width: "100%",
-							position: "relative",
-							height: desktop ? "15rem" : "26vw",
-							display: "flex",
-							flexDirection: "column",
-							justifyContent: "space-between",
-						}}
-					>
-						<Container ref={addToLines}>
-							<Line />
-						</Container>
-
-						<Box className='marquee-overflow-box' sx={{ overflow: "hidden" }}>
-							<Box ref={addToRefs}>
-								<Marquee gradient={false} style={marqueeStyle}>
-									<Box sx={word}>Software</Box>
-									<Box sx={word}>Software</Box>
-									<Box sx={word}>Software</Box>
-									<Box sx={word}>Software</Box>
-									<Box sx={word}>Software</Box>
-								</Marquee>
-							</Box>
-						</Box>
-						<Container ref={addToLines}>
-							<Line />
-						</Container>
+			<Layout bg={"green"} color='light' height='100vh' fullbleed>
+				<Box className='hero-inner' sx={innerHero}>
+					<Box as='h2' className='hero-heading' sx={heading} ref={headingRef}>
+						I like to leverage the power of software & design to push people and
+						brands forward
 					</Box>
-					<Box
-						sx={{
-							width: "100%",
-							position: "relative",
-							height: desktop ? "15rem" : "26vw",
-							display: "flex",
-							flexDirection: "column",
-							justifyContent: "space-between",
-						}}
-					>
-						<Container ref={addToLines}>
-							<Line color='dark' />
-						</Container>
-
-						<Box className='marquee-overflow-box' sx={{ overflow: "hidden" }}>
-							<Box ref={addToRefs}>
-								<Marquee
-									gradient={false}
-									style={marqueeStyle}
-									direction='right'
-								>
-									<Box sx={word}>Design</Box>
-									<Box sx={word}>Design</Box>
-									<Box sx={word}>Design</Box>
-									<Box sx={word}>Design</Box>
-									<Box sx={word}>Design</Box>
-								</Marquee>
-							</Box>
-						</Box>
-
-						<Container ref={addToLines}>
-							<Line />
-						</Container>
-					</Box>
-					<Box
-						className='featured-wrapper'
-						sx={featuredWrapper}
-						ref={card}
-					></Box>
 				</Box>
 			</Layout>
 
