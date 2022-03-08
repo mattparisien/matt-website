@@ -1,9 +1,10 @@
-import { Box, ListItem } from "@mui/material";
+import { Box, ListItem, useMediaQuery } from "@mui/material";
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { useTheme } from "styled-components";
+import { deviceSize } from "../../styles/breakpoints";
 import Layout from "../Containers/Layout";
 import Star from "../Star/Star";
-import styled from "styled-components";
+
 
 const socialLinks = [
 	{
@@ -31,7 +32,7 @@ function Footer(props, ref) {
 		color: props.foregroundColor,
 	};
 	const theme = useTheme();
-
+	const laptop = useMediaQuery(`(max-width: ${deviceSize.laptop}px)`);
 	const footerRef = useRef(null);
 
 	useEffect(() => {
@@ -94,13 +95,23 @@ function Footer(props, ref) {
 		transform: "translate(-50%, -50%)",
 	};
 
+	const lineVerticalLeft = {
+		width: "1px",
+		height: "100%",
+
+		backgroundColor: theme.colors.light,
+		position: "absolute",
+		top: 0,
+		left: 0,
+	};
+
 	return (
 		<footer className='Footer'>
 			<Layout
 				bg='dark'
 				style={footerStyle}
 				ref={(footerRef, ref)}
-				height='80vh'
+				height='60vw'
 				fullbleed
 			>
 				<Box sx={lineHorizontal}></Box>
@@ -110,12 +121,11 @@ function Footer(props, ref) {
 					alignItems='center'
 					sx={{ textTransform: "uppercase", height: "100%" }}
 				>
-					<Box sx={{ height: "100%", width: "50%"}} >
-						<Box sx={{height: "50%"}}>
-						<Star height='100%' color={starColor} strokeWidth={"2px"} />
+					<Box sx={{ height: "100%", width: "40%" }}>
+						<Box sx={{ height: "50%" }}>
+							<Star height='100%' color={starColor} strokeWidth={"2px"} />
 						</Box>
 					</Box>
-					
 
 					<Box
 						className='social-links-list'
@@ -125,7 +135,7 @@ function Footer(props, ref) {
 							padding: 0,
 							display: "flex",
 							height: "100%",
-							width: "50%",
+							width: "60%",
 							flexWrap: "wrap",
 							alignItems: "center",
 							justifyContent: "center",
@@ -134,6 +144,7 @@ function Footer(props, ref) {
 					>
 						<Box sx={lineHorizontalCentered}></Box>
 						<Box sx={lineVerticalCentered}></Box>
+						<Box sx={lineVerticalLeft}></Box>
 						{socialLinks.map((link, i) => {
 							return (
 								<ListItem
@@ -141,7 +152,7 @@ function Footer(props, ref) {
 										padding: 0,
 
 										width: "50%",
-										fontSize: "4rem",
+										fontSize: laptop ? "2rem" : "4rem",
 										textTransform: "capitalize",
 										fontFamily: "Neue Mtl",
 										textAlign: "center",
@@ -156,7 +167,7 @@ function Footer(props, ref) {
 											height: "100%",
 											alignItems: "center",
 											justifyContent: "center",
-											transition: "400ms ease"
+											transition: "400ms ease",
 										},
 									}}
 								>

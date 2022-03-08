@@ -6,6 +6,7 @@ function Star({ height, color, strokeWidth }) {
 	const theme = useTheme();
 	const star = {
 		height: height,
+		width: "100%"
 	};
 
 	const lineTimeline = useRef(gsap.timeline());
