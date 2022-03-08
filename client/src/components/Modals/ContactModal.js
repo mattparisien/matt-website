@@ -1,14 +1,12 @@
 import { FormGroup, TextField, useMediaQuery } from "@material-ui/core";
 import { Close, GitHub, Instagram, LinkedIn } from "@material-ui/icons";
 import { Button, Stack } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box, keyframes } from "@mui/system";
 import axios from "axios";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useTheme } from "styled-components";
 import RectangleButton from "../Button/RectangleButton";
 import Layout from "../Containers/Layout";
-import { keyframes } from "@mui/system";
-import gsap from "gsap";
 
 const bgEntryAnim = keyframes`
 	0% {
@@ -22,12 +20,12 @@ const bgEntryAnim = keyframes`
 
 const fadeInContent = keyframes`
 0% {
-	transform: translateY(100px);
+	
 	opacity: 0;
 }
 
 100% {
-	transform: translateY(0);
+	
 	opacity: 1;
 }
 `;
@@ -254,6 +252,9 @@ function ContactModal({ isShow }) {
 		left: "50%",
 		transform: "translate(-50%, -50%)",
 		width: "100%",
+		opacity: 0,
+		animation: `${fadeInContent} 400ms ease forwards`,
+		animationDelay: "100ms"
 	};
 
 	// const lineRefs = useRef([]);
@@ -265,21 +266,7 @@ function ContactModal({ isShow }) {
 		}
 	};
 
-	useEffect(() => {
-		if (itemRefs.current) {
-			gsap.set(itemRefs.current, {
-				y: "100",
-				opacity: 0,
-			});
-			gsap.to(itemRefs.current, {
-				y: 0,
-				opacity: 1,
-				ease: 'power4.out',
-				duration: 0.5,
-				stagger: 0.1
-			})
-		}
-	}, [itemRefs.current, isShow]);
+
 
 	// const star = {};
 
