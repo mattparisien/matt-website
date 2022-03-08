@@ -3,12 +3,38 @@ import { Close, GitHub, Instagram, LinkedIn } from "@material-ui/icons";
 import { Button, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useTheme } from "styled-components";
 import RectangleButton from "../Button/RectangleButton";
 import Layout from "../Containers/Layout";
+import { keyframes } from "@mui/system";
+import gsap from "gsap";
+
+const bgEntryAnim = keyframes`
+	0% {
+		transform: scaleY(0.001);
+	}
+
+	100% {
+		transform: scaleY(1)
+	}
+`;
+
+const fadeInContent = keyframes`
+0% {
+	transform: translateY(100px);
+	opacity: 0;
+}
+
+100% {
+	transform: translateY(0);
+	opacity: 1;
+}
+`;
 
 function ContactModal({ isShow }) {
+	const itemRefs = useRef([]);
+	itemRefs.current = [];
 	const theme = useTheme();
 	const matches = useMediaQuery("(max-width: 980px)", { noSsr: true });
 	const mobile = useMediaQuery("(max-width: 600px)", { noSsr: true });
@@ -59,7 +85,7 @@ function ContactModal({ isShow }) {
 		top: 0,
 		left: 0,
 		width: "100vw",
-		backgroundColor: theme.colors.pink,
+
 		zIndex: 9999999,
 
 		color: theme.colors.purple,
@@ -91,7 +117,6 @@ function ContactModal({ isShow }) {
 	};
 
 	const button = {
-		
 		width: "100%",
 		height: "8rem",
 		position: "relative",
@@ -102,6 +127,7 @@ function ContactModal({ isShow }) {
 		justifyContent: matches ? "start" : "center",
 		textAlign: "left",
 		color: theme.colors.purple,
+
 		"&:hover .button-bg": {
 			transform: mobile ? "none" : "scaleY(1)",
 		},
@@ -197,7 +223,7 @@ function ContactModal({ isShow }) {
 	const paragraphRight = {
 		fontSize: matches || tablet ? "2.5rem" : "5rem",
 		lineHeight: matches || tablet ? "2.5rem" : "5rem",
-		width: mobile  ? "100%" : "50%",
+		width: mobile ? "100%" : "50%",
 		margin: 0,
 	};
 
@@ -216,8 +242,9 @@ function ContactModal({ isShow }) {
 		width: "100%",
 		height: "100%",
 		backgroundColor: theme.colors.pink,
+		transform: "scaleY(0.001)",
 		transformOrigin: "top",
-		// animation: `${bgEntryAnim} 600ms ease-in-out forwards`,
+		animation: `${bgEntryAnim} 400ms ease forwards`,
 		zIndex: -999,
 	};
 
@@ -232,11 +259,27 @@ function ContactModal({ isShow }) {
 	// const lineRefs = useRef([]);
 	// lineRefs.current = [];
 
-	// const addToLineRefs = el => {
-	// 	if (el && !lineRefs.current.includes(el)) {
-	// 		lineRefs.current.push(el);
-	// 	}
-	// };
+	const addToRefs = el => {
+		if (el && !itemRefs.current.includes(el)) {
+			itemRefs.current.push(el);
+		}
+	};
+
+	useEffect(() => {
+		if (itemRefs.current) {
+			gsap.set(itemRefs.current, {
+				y: "100",
+				opacity: 0,
+			});
+			gsap.to(itemRefs.current, {
+				y: 0,
+				opacity: 1,
+				ease: 'power4.out',
+				duration: 0.5,
+				stagger: 0.1
+			})
+		}
+	}, [itemRefs.current, isShow]);
 
 	// const star = {};
 
@@ -310,16 +353,19 @@ function ContactModal({ isShow }) {
 					<Layout bg='transparent' color='purple' height='auto'>
 						<Box sx={flexContainer}>
 							<Box sx={{ width: mobile ? "100%" : "50%", marginBottom: 3 }}>
-								<Box component='h3' sx={heading}>
+								<Box component='h3' sx={heading} ref={addToRefs}>
 									Contact
 								</Box>
-								<Box component='p' sx={paragraphLeft}>
+								<Box component='p' sx={paragraphLeft} ref={addToRefs}>
 									Montréal, Canada <br></br>
-									<a href="mailto:hello@matthewparisien.com?subject=Let's chat.">
+									<a
+										href="mailto:hello@matthewparisien.com?subject=Let's chat."
+										ref={addToRefs}
+									>
 										hello@matthewparisien.com
 									</a>{" "}
 									<br></br>
-									514.467.1771
+									<span ref={addToRefs}> 514.467.1771</span>
 								</Box>
 								<Box
 									component='ul'
@@ -334,7 +380,7 @@ function ContactModal({ isShow }) {
 									{socialList.map((item, i) => {
 										return (
 											<>
-												<li key={i}>
+												<li key={i} ref={addToRefs}>
 													<a href={item.path} target='_blank' rel='noreferrer'>
 														{item.name}
 													</a>
@@ -344,14 +390,14 @@ function ContactModal({ isShow }) {
 									})}
 								</Box>
 							</Box>
-							<Box component='p' sx={paragraphRight}>
+							<Box component='p' sx={paragraphRight} ref={addToRefs}>
 								I would love to talk. Give me a call, join my social fun or fill
 								out the form below ↓
 							</Box>
 						</Box>
 					</Layout>
 					<Layout bg='tranparent' color='purple' height='auto'>
-						<Button sx={button} onClick={handleCollapsedClick}>
+						<Button sx={button} onClick={handleCollapsedClick} ref={addToRefs}>
 							<Box component='span'>
 								This form is open 24/7. Literally. Reach us here.
 							</Box>
