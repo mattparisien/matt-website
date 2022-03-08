@@ -1,17 +1,15 @@
-import { Container } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { forwardRef, useContext, useEffect, useRef } from "react";
-import Marquee from "react-fast-marquee";
-import { ColorContext } from "../../App/App";
+import gsap from "gsap";
+import $ from "jquery";
+import React, { forwardRef, useEffect, useRef } from "react";
+import { useTheme } from "styled-components";
+import useSplit from "../../helpers/hooks/useSplit";
+import { device, deviceSize } from "../../styles/breakpoints";
 import Layout from "../Containers/Layout";
 import Line from "../Line/Line";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import { Pills } from "../Pills/Pills";
-import { device, deviceSize } from "../../styles/breakpoints";
-import { useMediaQuery } from "@mui/material";
-import { useTheme } from "styled-components";
-import gsap from "gsap";
-import useSplit from "../../helpers/hooks/useSplit";
 
 function HomePage(props, ref) {
 	const theme = useTheme();
@@ -28,6 +26,7 @@ function HomePage(props, ref) {
 	const { splitText } = useSplit([headingRef.current], {
 		type: "lines, words",
 		linesClass: "heading-line",
+		wordsClass: "word",
 	});
 
 	const pillInfo = [
@@ -142,39 +141,79 @@ function HomePage(props, ref) {
 		zIndex: 1,
 	};
 
+	const wordTimelineLine3 = useRef(
+		gsap.timeline({ repeat: -1, yoyo: true, repeatDelay: 0 })
+	);
+	const wordTimelineLine4 = useRef(
+		gsap.timeline({ repeat: -1, yoyo: true, repeatDelay: 0 })
+	);
+
 	useEffect(() => {
-		console.log(marquees);
-		if (card.current && marquees.current) {
-			console.log(marquees.current);
-			console.log("made it here");
+		if (headingRef.current) {
+			const word = $(headingRef.current).find(".word");
 
-			gsap.set(marquees.current, {
-				y: "100%",
-				opacity: 0,
-			});
+			const offsets = [
+				{
+					index: 11,
+					x: "10vw",
+				},
+				{
+					index: "10",
+					x: "19vw",
+				},
+				{
+					index: 9,
+					x: "28vw",
+				},
+			];
 
-			if (!props.isLoading) {
-				introTimeline.current
-					.to(marquees.current, {
-						y: 0,
-						opacity: 1,
-						duration: 2,
+			wordTimelineLine4.current
+				.to(word[14], {
+					x: "-35vw",
+					duration: 3,
+					ease: "expo.inOut",
+				}, 0)
+				.to(word[14], {
+					x: "0",
+					duration: 3,
+					ease: "expo.inOut",
+				}, 3)
+				.to(word[13], {
+					x: "36.2vw",
+					duration: 3,
+					ease: "expo.inOut",
+				}, 3.2);
+
+			wordTimelineLine3.current
+				.to(
+					word[offsets[0].index],
+					{
+						duration: 3,
+						x: offsets[0].x,
 						ease: "expo.inOut",
-						stagger: 0.1,
-					})
-					.from(
-						card.current,
-						{
-							y: "100%",
-							ease: "power3.out",
-							opacity: 0,
-							duration: 0.8,
-						},
-						0.9
-					);
-			}
+					},
+					0
+				)
+				.to(
+					word[offsets[1].index],
+					{
+						duration: 3,
+						x: offsets[1].x,
+						ease: "expo.inOut",
+					},
+					0.2
+				)
+				.to(
+					word[offsets[2].index],
+					{
+						duration: 3,
+						x: offsets[2].x,
+						ease: "expo.inOut",
+					},
+					0.2
+				);
 		}
-	}, [card, marquees.current, lines.current, props.isLoading]);
+	}, [headingRef.current]);
 
 	const heading = {
 		fontSize: "7vw",
@@ -182,11 +221,15 @@ function HomePage(props, ref) {
 		fontFamily: "Neue Mtl",
 		fontWeight: "lighter",
 		width: "100%",
-		color: theme.colors.light,
+		color: theme.colors.dark,
 		textAlign: "center",
+		textTransform: "uppercase",
 		"& .heading-line": {
 			display: "flex !important",
 			justifyContent: "space-between",
+		},
+		"& .heading-line:nth-of-type(4)": {
+			justifyContent: "flex-end !important",
 		},
 	};
 
@@ -204,81 +247,103 @@ function HomePage(props, ref) {
 		fill: "none",
 		stroke: "#231f20",
 		strokeMiterlimit: 10,
-		strokeWidth: "1px",
+		strokeWidth: "0.4vw",
 	};
 
+	const lineRefs = useRef([]);
+	lineRefs.current = [];
+
 	const addToLineRefs = el => {
-		if (el && !lines.current.includes(el)) {
-			lines.current.push(el);
+		if (el && !lineRefs.current.includes(el)) {
+			lineRefs.current.push(el);
 		}
 	};
 
-	const star = {};
+	const star = {
+		height: "6vw",
+	};
+
+	const lineTimeline = useRef(gsap.timeline());
+
+	useEffect(() => {
+		if (lineRefs.current) {
+			gsap.set(lineRefs.current, { transformOrigin: "center" });
+
+			lineTimeline.current.to(lineRefs.current, {
+				rotation: "180deg",
+				ease: "expo.inOut",
+				duration: 3,
+				repeat: -1,
+				stagger: 0.1,
+				yoyo: true,
+				repeatDelay: 0,
+			});
+		}
+	}, [lineRefs.current]);
 
 	return (
 		<>
 			<Layout bg={"green"} color='light' height='100vh' fullbleed>
 				<Box className='hero-inner' sx={innerHero}>
-					<svg
-						id='svg-star'
-						style={star}
-						xmlns='http://www.w3.org/2000/svg'
-						viewBox='0 0 398.89 407.59'
-					>
-						<path
-							class='cls-1'
-							d='M223.11,539.31,388.89,167'
-							transform='translate(-106.56 -149.34)'
-							style={line}
-							ref={addToLineRefs}
-						/>
-						<path
-							class='cls-1'
-							d='M149.89,484.13l312.22-262'
-							transform='translate(-106.56 -149.34)'
-							style={line}
-							ref={addToLineRefs}
-						/>
-						<path
-							class='cls-1'
-							d='M108.26,402.44l395.48-98.6'
-							transform='translate(-106.56 -149.34)'
-							style={line}
-							ref={addToLineRefs}
-						/>
-						<path
-							class='cls-1'
-							d='M106.66,310.77l398.68,84.74'
-							transform='translate(-106.56 -149.34)'
-							style={line}
-							ref={addToLineRefs}
-						/>
-						<path
-							class='cls-1'
-							d='M145.41,227.67,466.59,478.61'
-							transform='translate(-106.56 -149.34)'
-							style={line}
-							ref={addToLineRefs}
-						/>
-						<path
-							class='cls-1'
-							d='M216.66,170,395.34,536.31'
-							transform='translate(-106.56 -149.34)'
-							style={line}
-							ref={addToLineRefs}
-						/>
-						<path
-							class='cls-1'
-							d='M306,149.34V556.93'
-							transform='translate(-106.56 -149.34)'
-							style={line}
-							ref={addToLineRefs}
-						/>
-					</svg>
-
 					<Box as='h2' className='hero-heading' sx={heading} ref={headingRef}>
-						I like to leverage the power of software & design to push people and
-						brands forward
+						— I Leverage the power of software &{" "}
+						<svg
+							id='svg-star'
+							style={star}
+							xmlns='http://www.w3.org/2000/svg'
+							viewBox='0 0 398.89 407.59'
+						>
+							<path
+								class='cls-1'
+								d='M223.11,539.31,388.89,167'
+								transform='translate(-106.56 -149.34)'
+								style={line}
+								ref={addToLineRefs}
+							/>
+							<path
+								class='cls-1'
+								d='M149.89,484.13l312.22-262'
+								transform='translate(-106.56 -149.34)'
+								style={line}
+								ref={addToLineRefs}
+							/>
+							<path
+								class='cls-1'
+								d='M108.26,402.44l395.48-98.6'
+								transform='translate(-106.56 -149.34)'
+								style={line}
+								ref={addToLineRefs}
+							/>
+							<path
+								class='cls-1'
+								d='M106.66,310.77l398.68,84.74'
+								transform='translate(-106.56 -149.34)'
+								style={line}
+								ref={addToLineRefs}
+							/>
+							<path
+								class='cls-1'
+								d='M145.41,227.67,466.59,478.61'
+								transform='translate(-106.56 -149.34)'
+								style={line}
+								ref={addToLineRefs}
+							/>
+							<path
+								class='cls-1'
+								d='M216.66,170,395.34,536.31'
+								transform='translate(-106.56 -149.34)'
+								style={line}
+								ref={addToLineRefs}
+							/>
+							<path
+								class='cls-1'
+								d='M306,149.34V556.93'
+								transform='translate(-106.56 -149.34)'
+								style={line}
+								ref={addToLineRefs}
+							/>
+						</svg>{" "}
+						design to push people and brands forward.
 					</Box>
 				</Box>
 			</Layout>
