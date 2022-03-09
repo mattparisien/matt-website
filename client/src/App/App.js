@@ -71,7 +71,7 @@ function App() {
 			grey: "rgb(207, 207, 207)",
 			purple: "#5b487c",
 			gradient:
-			"linear-gradient(#516dc1,#ce4469,#ce4469,#fb986c,#fb986c,#a99af4,#a99af4,#2fd8a8,#2fd8a8,#009b8e,#009b8e,#516dc1,#516dc1,#ce4469)",
+				"linear-gradient(#516dc1,#ce4469,#ce4469,#fb986c,#fb986c,#a99af4,#a99af4,#2fd8a8,#2fd8a8,#009b8e,#009b8e,#516dc1,#516dc1,#ce4469)",
 		},
 		typography: {
 			setSize: multiplier => {
@@ -166,19 +166,30 @@ function App() {
 		const basePath = process.env.REACT_APP_API_URL;
 		const fetchURL = url => axios.get(url);
 
-		const urls = [`${basePath}/photography`, `${basePath}/software`];
+		const urls = [`${basePath}/projects?populate=*`];
 
 		const promiseArray = [...urls].map(fetchURL);
 
 		Promise.all(promiseArray)
 			.then(data => {
-				const photography = data[0].data;
-				const software = data[1].data.softwareProjects;
-
-				setState(prev => ({
-					...prev,
-					data: { ...prev.data, photography: photography, software: software },
-				}));
+				// const photography = data[0].data;
+				const projects = data[0].data.data.map(x => {
+					return {
+						...x.attributes,
+						id: x.id,
+						Cover: {
+							url: x.attributes.Cover.data.attributes.url,
+							alt: x.attributes.Cover.data.attributes.alternativeText,
+						}
+					}
+				});
+				
+				console.log(data)
+				console.log(projects)
+					setState(prev => ({
+						...prev,
+						data: { ...prev.data, projects: projects },
+					}));
 			})
 			.catch(err => console.log(err));
 	}, []);
@@ -300,7 +311,10 @@ function App() {
 										/>
 
 										<Routes>
-											<Route path='/' element={<HomePage isLoading={state.isLoading}/>} />
+											<Route
+												path='/'
+												element={<HomePage isLoading={state.isLoading} />}
+											/>
 											<Route path='/about' element={<AboutPage />} />
 											<Route path='/work' element={<WorkPage />} />
 											<Route path='/upload' element={<UploadPage />} />

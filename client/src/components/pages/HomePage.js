@@ -1,7 +1,6 @@
 import { useMediaQuery } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box, keyframes } from "@mui/system";
 import gsap from "gsap";
-import $ from "jquery";
 import React, {
 	forwardRef,
 	useContext,
@@ -12,13 +11,13 @@ import React, {
 import Marquee from "react-fast-marquee";
 import { useTheme } from "styled-components";
 import { DataContext } from "../../App/App";
+import useResize from "../../helpers/hooks/useResize";
 import useSplit from "../../helpers/hooks/useSplit";
 import { device, deviceSize } from "../../styles/breakpoints";
 import Layout from "../Containers/Layout";
 import Line from "../Line/Line";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
-import useResize from "../../helpers/hooks/useResize";
-import { keyframes } from "@mui/system";
+import { useInView } from "react-intersection-observer";
 
 const gradientAnim = keyframes`
 	0% {
@@ -30,8 +29,10 @@ const gradientAnim = keyframes`
 `;
 
 function HomePage(props, ref) {
+	const starRef = useRef(null);
+
 	const [windowWidth] = useResize();
-	const [featuredProject, setFeaturedProject] = useState(null);
+	const [featuredProjects, setFeaturedProjects] = useState(null);
 	const data = useContext(DataContext);
 	const theme = useTheme();
 	const introTimeline = useRef(gsap.timeline());
@@ -149,19 +150,31 @@ function HomePage(props, ref) {
 	];
 
 	useEffect(() => {
-		if (data && data.software) {
-			setFeaturedProject({
-				id: data.software[0].id,
-				title: data.software[0].name,
-				url: data.software[0].url,
-				description: data.software[0].description,
-			});
+		if (data && data.projects) {
+			setFeaturedProjects([
+				{
+					id: data.projects[0].id,
+					title: data.projects[0].Title,
+					url: data.projects[0].Path,
+					description: data.projects[0].PreviewText,
+					cover: {
+						...data.projects[0].Cover,
+					},
+				},
+				{
+					id: data.projects[1].id,
+					title: data.projects[1].Title,
+					url: data.projects[1].Path,
+					description: data.projects[1].PreviewText,
+					cover: {
+						...data.projects[1].Cover,
+					},
+				},
+			]);
 		}
 	}, [data]);
 	const lineRefs = useRef([]);
 	lineRefs.current = [];
-
-	const lineTl = useRef(gsap.timeline());
 
 	const addToLineRefs = el => {
 		if (el && !lineRefs.current.includes(el)) {
@@ -173,30 +186,53 @@ function HomePage(props, ref) {
 
 	useEffect(() => {
 		if (lineRefs.current && !hasPlayed) {
-			let delay = 0;
-			let rotation = 180;
-
 			setHasPlayed(true);
 
+			let delay = 0;
+			let rotation = 270;
+
+			//Individual line tls
 			lineRefs.current.reverse().forEach((item, index) => {
 				let tl = gsap.timeline();
-				console.log("hello!");
 
-				tl.to(item, {
+				tl.set(item, {
 					rotation: `${rotation}deg`,
-					delay: delay,
-					duration: 4,
 					transformOrigin: "center",
-					ease: "expo.inOut",
-					repeat: -1,
-					yoyo: true,
-					repeatDelay: 1,
-				});
-				rotation += 28;
+
+					scale: 0.01,
+				})
+					.to(item, {
+						width: "100%",
+						delay: 1.4,
+						duration: 0.8,
+						scale: 1,
+						ease: "power3.out",
+					})
+					.to(
+						item,
+						{
+							rotation: "0deg",
+							ease: "expo.inOut",
+							duration: 3,
+						},
+						1
+					)
+					.to(item, {
+						rotation: `${rotation}deg`,
+						delay: delay,
+						duration: 4,
+						transformOrigin: "center",
+						ease: "expo.inOut",
+						repeat: -1,
+						yoyo: true,
+						repeatDelay: 1,
+					});
+
+				rotation += 26;
 				delay += 0.1;
 			});
 		}
-	}, [lineRefs.current]);
+	}, [lineRefs.current, starRef.current]);
 
 	const heading = {
 		marginBottom: 0,
@@ -267,16 +303,9 @@ function HomePage(props, ref) {
 
 	const gradientInner = {
 		width: "100%",
-		animation: `${gradientAnim} 60s linear forwards`,
+		animation: `${gradientAnim} 60s linear alternate-reverse`,
 		background: theme.colors.gradient,
 		height: "300%",
-	};
-
-	const lineTimeline = useRef(gsap.timeline({ repeat: -1, yoyo: true }));
-
-	const marqueeOffset = {
-		transform: `translateY(100%)`,
-		opacity: 0,
 	};
 
 	const bg = {
@@ -298,6 +327,7 @@ function HomePage(props, ref) {
 				<Box className='hero-inner' sx={innerHero}>
 					<svg
 						id='svg-star'
+						ref={starRef}
 						style={star}
 						xmlns='http://www.w3.org/2000/svg'
 						viewBox='0 0 398.89 407.59'
@@ -462,60 +492,80 @@ function HomePage(props, ref) {
 			<Layout bg='light' height='auto' fullbleed>
 				<Line />
 			</Layout>
-			<Layout bg='dark' height='100vw' fullbleed>
+			<Layout bg='dark' height='100vw'>
 				<Box
 					sx={{
 						height: "100%",
 						display: "flex",
 						alignItems: "center",
 						justifyContent: "center",
+						gap: "2rem",
 					}}
 				>
-					<MarqueeBlock
+					{/* <MarqueeBlock
 						projectTitle={featuredProject && featuredProject.title}
+					/> */}
+
+					<FeaturedCard
+						featuredProject={featuredProjects && featuredProjects[0]}
+						bg='yellow'
 					/>
-					{/* <FeaturedCard featuredProject={featuredProject} /> */}
+					<FeaturedCard
+						featuredProject={featuredProjects && featuredProjects[1]}
+						bg='orange'
+					/>
 				</Box>
 			</Layout>
 		</>
 	);
 }
 
-const FeaturedCard = ({ featuredProject }) => {
+const FeaturedCard = ({ featuredProject, bg }) => {
 	const desktop = useMediaQuery(device.laptop);
 	const mobile = useMediaQuery(`(max-width: ${deviceSize.mobileL}px`);
 	const theme = useTheme();
+	const [ref, inView, entry] = useInView({
+		threshold: 0.3,
+	});
+
+	useEffect(() => {
+		let delay = 0;
+
+		inView &&
+			gsap.to(entry.target, {
+				scaleY: 0,
+				duration: 1.8,
+				ease: "circ.inOut",
+			});
+	}, [inView]);
 
 	const featuredWrapper = {
-		height: desktop ? "700px" : mobile ? "150vw" : "600px",
-		width: desktop ? "560px" : mobile ? "100%" : "500px",
-		position: "absolute",
-		top: "50%",
-		left: "50%",
-		transform: "translate(-50%, -50%)",
+		height: "45vw",
+		width: desktop ? "50%" : mobile ? "100%" : "500px",
 		zIndex: 1,
 		display: "flex",
 		flexDirection: "column",
 		justifyContent: "space-between",
-		padding: "2rem",
 		boxSizing: "border-box",
+		overflow: "hidden",
 		"&:hover .card-bg": {
 			transform: "scale(1.1)",
 		},
+		position: "relative",
+		backgroundColor: theme.colors[bg],
 	};
 
-	const bg = {
-		backgroundColor: theme.colors.pink,
-		position: "absolute",
-		top: 0,
-		left: 0,
-		height: "100%",
+	const media = {
+		backgroundColor: "blue",
 		width: "100%",
-		zIndex: -2,
-		transition: "400ms ease",
+		height: "90%",
+		"& img": {
+			objectFit: "cover",
+			width: "100%",
+			height: "100%",
+			objectPosition: "left",
+		},
 	};
-
-	const media = {};
 
 	const title = {
 		fontSize: "2rem",
@@ -531,6 +581,16 @@ const FeaturedCard = ({ featuredProject }) => {
 		fontSize: "0.8rem",
 	};
 
+	const itemRevealer = {
+		transformOrigin: "bottom",
+		position: "absolute",
+		top: 0,
+		left: 0,
+		width: "100%",
+		height: "100%",
+		backgroundColor: theme.colors.dark,
+	};
+
 	return (
 		<Box
 			className='featured-work-card'
@@ -540,15 +600,21 @@ const FeaturedCard = ({ featuredProject }) => {
 			target='_blank'
 			rel='noreferrer'
 		>
-			<Box className='title' sx={title} component='h4'>
-				{featuredProject ? featuredProject.title : ""}
+			<Box sx={media} className='media-wrapper'>
+				<Box sx={itemRevealer} ref={ref}></Box>
+				<img
+					src={featuredProject && featuredProject.cover.url}
+					alt={featuredProject && featuredProject.cover.alt}
+				></img>
 			</Box>
-			<Box sx={media} className='media-wrapper'></Box>
-			<Box className='description' sx={description} component='span'>
-				{featuredProject ? featuredProject.description : ""}
+			<Box className='project-info-wrapper' sx={{ height: "10%" }}>
+				<Box className='title' sx={title} component='h4'>
+					{featuredProject ? featuredProject.title : ""}
+				</Box>
+				<Box className='description' sx={description} component='span'>
+					{featuredProject ? featuredProject.description : ""}
+				</Box>
 			</Box>
-
-			<Box className='card-bg' sx={bg}></Box>
 		</Box>
 	);
 };
