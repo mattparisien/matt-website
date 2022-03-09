@@ -106,7 +106,7 @@ function Footer(props) {
 		transform: "scaleX(0.001)",
 		transform: !inView ? "scaleX(0.001)" : "scaleX(1)",
 		transition: "1s ease",
-		transitionDelay: 0.1
+		transitionDelay: 0.1,
 	};
 
 	const lineHorizontalCentered = {
@@ -122,7 +122,7 @@ function Footer(props) {
 		transformOrigin: "center",
 
 		transition: "1s ease",
-		transitionDelay: 0.2
+		transitionDelay: 0.2,
 	};
 
 	const lineHorizontalTop = {
@@ -135,7 +135,7 @@ function Footer(props) {
 		left: 0,
 		transform: !inView ? "scaleX(0.001)" : "scaleX(1)",
 		transition: "1s ease",
-		transitionDelay: 0.3
+		transitionDelay: 0.3,
 	};
 
 	const lineVerticalCentered = {
@@ -151,7 +151,7 @@ function Footer(props) {
 		}`,
 
 		transition: "1s ease",
-		transitionDelay: 0.4
+		transitionDelay: 0.4,
 	};
 
 	const lineVerticalLeft = {
@@ -164,7 +164,7 @@ function Footer(props) {
 		left: 0,
 		transform: !inView ? "scaleY(0.001)" : "scaleY(1)",
 		transition: "1s ease",
-		transitionDelay: 0.5
+		transitionDelay: 0.5,
 	};
 
 	const gradientWrapper = {
@@ -212,6 +212,14 @@ function Footer(props) {
 					>
 						<Box sx={{ height: "50%", position: "relative" }}>
 							<Star height='100%' color={starColor} strokeWidth={"2px"} />
+							{props.data && (
+								<Box className='contact-info-wrapper' sx={{textTransform: "none", fontSize: "0.8rem", width: "200px"}}>
+									<Box className='name'>Matthew Parisien</Box>
+									<Box className='phone' sx={{marginTop: 1}}>{props.data.Phone}</Box>
+									<Box className='email' sx={{marginTop: 1}}>{props.data.Email}</Box>
+									<Box className='greeting' sx={{marginTop: 1}}>{props.data.Greeting}</Box>
+								</Box>
+							)}
 						</Box>
 					</Box>
 

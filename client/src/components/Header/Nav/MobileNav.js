@@ -8,30 +8,34 @@ const StyledBurger = styled.button`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-  background: transparent;
-  border: 0px;
+	background: transparent;
+	border: 0px;
 
-  &:hover .top {
-    transform: translateX(-10px);
-  }
+	&:hover .top {
+		transform: ${isBurger => (isBurger ? "translateX(-10px)" : "none")};
+	}
 
-  &:hover .bottom {
-    transform: translateX(10px);
-  }
+	&:hover .bottom {
+		transform: ${isBurger => (isBurger ? "translateX(10px)" : "none")};
+	}
 
 	.top,
 	.bottom {
-    transition: 300ms ease;
+		transition: 300ms ease;
 		height: 1px;
 		width: 100%;
+		transform-origin: center;
 	}
 
 	.top {
-		margin-bottom: 0.4rem;
+		margin-bottom: ${({ isBurger }) => (isBurger ? "0.4rem" : 0)};
+		transform: ${({ isBurger }) => (isBurger ? "none" : "rotate(45deg)")};
+	}
+
+	.bottom {
+		transform: ${({ isBurger }) => (isBurger ? "none" : "rotate(-45deg)")};
 	}
 `;
-
-
 
 function MobileNav(props) {
 	return (

@@ -14,17 +14,6 @@ function Header(props, ref) {
 	const [innerHeight, setInnerHeight] = useState(null);
 	const [isHeaderHidden, setHeaderHidden] = useState(false);
 
-	// useEffect(() => {
-	// 	scroll &&
-	// 		scroll.on("scroll", e => {
-	// 			if (e.direction === "down" && !isHeaderHidden) {
-	// 				setHeaderHidden(true);
-	// 			} else if (e.direction === "up") {
-	// 				setHeaderHidden(false);
-	// 			}
-	// 		});
-	// }, [scroll]);
-
 	return (
 		<StyledHeader
 			headerHeight={headerOffset}
@@ -33,9 +22,9 @@ function Header(props, ref) {
 			$hidden={isHeaderHidden}
 			className='Header'
 		>
-			<Box className='Header__floater' sx={{height: "100%"}}>
+			<Box className='Header__floater' sx={{ height: "100%" }}>
 				<ContainerFluid flex={true}>
-					<Box className='header-logo' >
+					<Box className='header-logo'>
 						<TransitionTrigger to='/' noCircle>
 							<span className='name'>
 								Matt Parisien <span className='copyright-symbol'>©</span>
@@ -44,7 +33,7 @@ function Header(props, ref) {
 						</TransitionTrigger>
 					</Box>
 					<DesktopNav />
-					<MobileNav toggleMenu={props.toggleMenu}/>
+					<MobileNav toggleMenu={props.toggleMenu} isBurger={!isMenuActive}/>
 				</ContainerFluid>
 			</Box>
 		</StyledHeader>

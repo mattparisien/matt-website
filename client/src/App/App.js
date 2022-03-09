@@ -166,7 +166,7 @@ function App() {
 		const basePath = process.env.REACT_APP_API_URL;
 		const fetchURL = url => axios.get(url);
 
-		const urls = [`${basePath}/projects?populate=*`];
+		const urls = [`${basePath}/projects?populate=*`, `${basePath}/contact`];
 
 		const promiseArray = [...urls].map(fetchURL);
 
@@ -203,10 +203,14 @@ function App() {
 			.then(data => {
 				console.log(data);
 				// const photography = data[0].data;
+				console.log(data);
+				const contactInfo = {
+					...data[1].data.data.attributes,
+					...data[1].data.data.id,
+				};
 				const projects = data[0].data.data.map(x => {
 					const video = findVideo(x.attributes.Cover.data);
 					const image = findImage(x.attributes.Cover.data);
-					console.log("video", video);
 
 					return {
 						...x.attributes,
@@ -222,9 +226,11 @@ function App() {
 					};
 				});
 
+				console.log(contactInfo);
+
 				setState(prev => ({
 					...prev,
-					data: { ...prev.data, projects: projects },
+					data: { ...prev.data, projects: projects, contact: contactInfo },
 				}));
 			})
 			.catch(err => console.log(err));
@@ -337,7 +343,7 @@ function App() {
 									isMenuActive={state.menuActive}
 									toggleMenu={toggleMenuActivity}
 								/>
-								<Menu isOpen={state.menuActive} />
+								<Menu isOpen={state.menuActive} theme={themes}/>
 
 								<ScrollWrapper ref={scrollRef}>
 									<ContentWrapper ref={contentWrapperRef}>
@@ -356,7 +362,7 @@ function App() {
 											<Route path='/upload' element={<UploadPage />} />
 										</Routes>
 									</ContentWrapper>
-									<Footer />
+									<Footer data={state.data.contact} />
 								</ScrollWrapper>
 								<ThemeSwitch togglePartyMode={togglePartyMode} />
 							</div>

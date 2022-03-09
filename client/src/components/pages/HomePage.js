@@ -283,8 +283,10 @@ function HomePage(props, ref) {
 	};
 
 	const star = {
-		height: "50vw",
-		width: "50vw",
+		height: "60vw",
+		width: "60vw",
+		maxWidth: "700px",
+		maxHeight: "700px",
 		zIndex: 99,
 		position: "absolute",
 		top: "50%",
@@ -304,7 +306,7 @@ function HomePage(props, ref) {
 		zIndex: 2,
 		overflow: "hidden",
 		borderRadius: "50%",
-		filter: "blur(60px)",
+		filter: "blur(5vw)",
 		opacity: 0.9,
 		mixBlendMode: "exclusion",
 	};
@@ -524,114 +526,6 @@ function HomePage(props, ref) {
 		</>
 	);
 }
-
-const FeaturedCard = ({ featuredProject, bg }) => {
-	const desktop = useMediaQuery(device.laptop);
-	const mobile = useMediaQuery(`(max-width: ${deviceSize.mobileL}px`);
-
-	const theme = useTheme();
-	const [ref, inView, entry] = useInView({
-		threshold: 0.3,
-	});
-
-	useEffect(() => {
-		let delay = 0;
-
-		inView &&
-			gsap.to(entry.target, {
-				scaleY: 0,
-				duration: 1.8,
-				ease: "circ.inOut",
-			});
-	}, [inView]);
-
-	const featuredWrapper = {
-		height: "26vw",
-		width: desktop ? "50%" : mobile ? "100%" : "500px",
-		zIndex: 1,
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "space-between",
-		boxSizing: "border-box",
-		overflow: "hidden",
-		"&:hover .card-bg": {
-			transform: "scale(1.1)",
-		},
-		position: "relative",
-		backgroundColor: theme.colors[bg],
-	};
-
-	const media = {
-		backgroundColor: "blue",
-		width: "100%",
-		height: "90%",
-		"& img": {
-			objectFit: "cover",
-			width: "100%",
-			height: "100%",
-			objectPosition: "left",
-		},
-	};
-
-	const title = {
-		fontSize: "2rem",
-
-		color: theme.colors.dark,
-		margin: 0,
-	};
-
-	const description = {
-		color: theme.colors.dark,
-		textIndent: "39%",
-
-		fontSize: "0.8rem",
-	};
-
-	const itemRevealer = {
-		transformOrigin: "bottom",
-		position: "absolute",
-		top: 0,
-		left: 0,
-		width: "100%",
-		height: "100%",
-		backgroundColor: theme.colors.dark,
-	};
-
-	return (
-		<Box
-			className='featured-work-card'
-			sx={featuredWrapper}
-			component='a'
-			href={featuredProject ? featuredProject.url : ""}
-			target='_blank'
-			rel='noreferrer'
-		>
-			<Box sx={media} className='media-wrapper'>
-				<Box sx={itemRevealer} ref={ref}></Box>
-				<img
-					src={
-						featuredProject &&
-						featuredProject.cover.image &&
-						featuredProject.cover.image.url
-					}
-					alt={
-						featuredProject &&
-						featuredProject.cover.image &&
-						featuredProject.cover.image.alt
-					}
-				></img>
-			</Box>
-			<Box className='project-info-wrapper' sx={{ height: "10%" }}>
-				<Box className='title' sx={title} component='h4'>
-					{featuredProject ? featuredProject.title : ""}
-				</Box>
-				<Box className='description' sx={description} component='span'>
-					{featuredProject ? featuredProject.description : ""}
-				</Box>
-			</Box>
-		</Box>
-	);
-};
 
 const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 	const [currentSlide, setCurrentSlide] = useState(1);

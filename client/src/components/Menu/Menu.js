@@ -1,45 +1,56 @@
-import React, { useEffect, useRef } from "react";
-import { StyledMenu } from "./styles/StyledMenu";
-import UnorderedList from "../Lists/UnorderedList";
+import { Box } from "@mui/system";
 import gsap from "gsap";
-import SocialList from "../Lists/SocialList";
+import { CSSRulePlugin } from "gsap/all";
+import React, { useEffect, useRef } from "react";
+import Layout from "../Containers/Layout";
+import TransitionTrigger from "../Transition/TransitionTrigger";
+import { useMediaQuery } from "@material-ui/core";
+import { device } from "../../styles/breakpoints";
 
 function Menu(props) {
 	const listInfo = [
 		{
 			url: "/",
-			title: "Work,",
+			title: "Home",
 		},
 		{
-			url: "/about",
-			title: "About,",
+			url: "/projects",
+			title: "Projects",
 		},
 		{
 			url: "/contact",
-			title: "Contact,",
+			title: "Let's talk",
 		},
 	];
 
-	const { currentPath, isOpen, hideMenu, hideContent, setLoading, isLoading } =
-		props;
-
-	const menuRef = useRef(null);
+	const { isOpen } = props;
+	const mobile = useMediaQuery(device.mobileL);
 	const menuAnim = useRef(gsap.timeline());
 	const navItems = useRef([]);
+	const containerRef = useRef(null);
 
-	const addToRefs = el => {
+	const addToListRefs = el => {
 		if (el && !navItems.current.includes(el)) {
 			navItems.current.push(el);
 		}
 	};
 
 	useEffect(() => {
-		if (isOpen) {
+		if (isOpen && containerRef.current && navItems.current) {
+			gsap.registerPlugin(CSSRulePlugin);
+			const rule = CSSRulePlugin.getRule(".css-1cm6twq li::after");
+			const rule2 = CSSRulePlugin.getRule(
+				".css-1cm6twq li:last-of-type::before"
+			);
+
+			gsap.set([rule, rule2], {
+				width: "0%",
+			});
 			menuAnim.current.play();
 			menuAnim.current
-				.set(menuRef.current, { display: "block" })
-				.to(menuRef.current, {
-					x: 0,
+				.set(containerRef.current, { display: "block" })
+				.to(containerRef.current, {
+					y: 0,
 					duration: 0.8,
 					ease: "power3.out",
 				})
@@ -47,30 +58,106 @@ function Menu(props) {
 					navItems.current,
 					{
 						y: 0,
-						duration: 0.3,
-						stagger: 0.1,
+						duration: 0.7,
+						stagger: -0.1,
 						opacity: 1,
+						ease: "power4.out",
 					},
-					0.6
+					0.4
+				)
+				.to(
+					[rule, rule2],
+					{
+						cssRule: { width: "100%" },
+						duration: 1,
+						ease: "power3.out",
+					},
+					0.4
 				);
 		}
 
 		if (!isOpen && menuAnim.current.progress() !== 0) {
 			menuAnim.current.reverse(0.93);
 		}
-	}, [isOpen, menuRef, navItems]);
+	}, [isOpen, containerRef, navItems]);
 
-	const handleClick = () => {
-		hideContent();
-		hideMenu();
-		setLoading();
+	const container = {
+		width: "100vw",
+		height: "100vh",
+		position: "fixed",
+		top: 0,
+		left: 0,
+		backgroundColor: "black",
+		zIndex: 9,
+		transform: "translateY(-100%)",
+		display: "none",
+		
+		fontSize: "0.8rem",
+		color: props.theme.colors.light
+	};
+
+	const listContainer = {
+		height: "100%",
+		width: "100%",
+		fontSize: mobile ? "4rem" : "2.5rem",
+		padding: 0,
+		color: props.theme.colors.light,
+
+		"& li": {
+			overflow: "hidden",
+			position: "relative",
+			padding: "0.3rem 0",
+			"&::after": {
+				position: "absolute",
+				content: "''",
+				top: 0,
+				left: 0,
+				width: "100%",
+				height: "1px",
+				backgroundColor: props.theme.colors.light,
+			},
+			"&:last-of-type::before": {
+				position: "absolute",
+				content: "''",
+				bottom: 0,
+				left: 0,
+				width: "100%",
+				height: "1px",
+				backgroundColor: props.theme.colors.light,
+			},
+		},
+		"& .visibility-wrapper": {
+			transform: "translateY(-100%)",
+			opacity: 0,
+		},
+	};
+
+	const menuBottom = {
+		width: "100%",
+		bottom: 0,
+		height: "200px",
+		backgroundColor: "white",
 	};
 
 	return (
-		<StyledMenu isOpen={isOpen} ref={menuRef}>
-		
-			<SocialList addToRefs={addToRefs} alignItems={"center"} isDefaultHidden />
-		</StyledMenu>
+		<Box className='Menu' sx={container} ref={containerRef}>
+			<Layout height="100%">
+				<Box component='ul' sx={listContainer} className='menu-list'>
+					{listInfo.map((item, i) => {
+						return (
+							<li key={i} className='menu-list__item'>
+								<Box className='visibility-wrapper' ref={addToListRefs}>
+									<TransitionTrigger nocircle to={item.url}>
+										{item.title}
+									</TransitionTrigger>
+								</Box>
+							</li>
+						);
+					})}
+				</Box>
+				
+			</Layout>
+		</Box>
 	);
 }
 
