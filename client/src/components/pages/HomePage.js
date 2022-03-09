@@ -9,7 +9,14 @@ import React, {
 	useState,
 } from "react";
 import Marquee from "react-fast-marquee";
+import { useInView } from "react-intersection-observer";
 import { useTheme } from "styled-components";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { DataContext } from "../../App/App";
 import useResize from "../../helpers/hooks/useResize";
 import useSplit from "../../helpers/hooks/useSplit";
@@ -17,14 +24,7 @@ import { device, deviceSize } from "../../styles/breakpoints";
 import Layout from "../Containers/Layout";
 import Line from "../Line/Line";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
-import { useInView } from "react-intersection-observer";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+import Arrow from "../Vector/Arrow";
 
 const gradientAnim = keyframes`
 	0% {
@@ -158,11 +158,12 @@ function HomePage(props, ref) {
 
 	useEffect(() => {
 		if (data && data.projects) {
+			console.log(data.projects);
 			setFeaturedProjects([
 				{
 					id: data.projects[0].id,
 					title: data.projects[0].Title,
-					url: data.projects[0].Path,
+					url: data.projects[0].Location,
 					description: data.projects[0].PreviewText,
 					cover: {
 						...data.projects[0].Cover,
@@ -171,7 +172,7 @@ function HomePage(props, ref) {
 				{
 					id: data.projects[1].id,
 					title: data.projects[1].Title,
-					url: data.projects[1].Path,
+					url: data.projects[1].Location,
 					description: data.projects[1].PreviewText,
 					cover: {
 						...data.projects[1].Cover,
@@ -525,7 +526,7 @@ function HomePage(props, ref) {
 							/>{" "}
 						</>
 					) : (
-						<Slider slides={featuredProjects} />
+						<Slider slides={featuredProjects} mobileQuery={mobile} />
 					)}
 				</Box>
 			</Layout>
@@ -633,12 +634,36 @@ const FeaturedCard = ({ featuredProject, bg }) => {
 	);
 };
 
-const Slider = ({ slides }) => {
+const Slider = ({ slides, mobileQuery }) => {
+	const [currentSlide, setCurrentSlide] = useState(1);
+
+	const theme = useTheme();
+	const video = useRef(null);
+
+	const handleSlideChange = e => {
+		if (e.swipeDirection !== "prev") {
+			setCurrentSlide(2);
+		} else {
+			setCurrentSlide(1);
+		}
+	};
+
+	const handleMouseEnter = () => {
+		const playPromise = video.current.play();
+		playPromise
+			.then(success => console.log("has played!"))
+			.catch(failure => console.log(failure));
+	};
+
+	const handleMouseLeave = () => {
+		video.current.pause();
+	};
+
 	return (
 		<Swiper
 			spaceBetween={50}
 			slidesPerView={1}
-			onSlideChange={() => console.log("slide change")}
+			onSlideChange={handleSlideChange}
 			onSwiper={swiper => console.log(swiper)}
 			height='100%'
 		>
@@ -646,11 +671,121 @@ const Slider = ({ slides }) => {
 				slides.map(slide => {
 					return (
 						<SwiperSlide>
-							<img
-								src={slide.cover.url}
-								alt={slide.cover.alt}
-								style={{ objectFit: "cover", height: "100%", width: "100%" }}
-							></img>
+							<Box
+								as='a'
+								sx={{
+									width: "100%",
+									height: "100%",
+									display: "block",
+									
+									"&:hover .cta": {
+										transform: "translateY(0)",
+										opacity: 1,
+									},
+									"&:hover .arrow-visibility-wrapper": {
+										transform: "translateX(0)",
+										opacity: 1,
+									},
+								}}
+								href={slide.url}
+								target='_blank'
+								rel='noreferrer'
+							>
+								<Box sx={{ width: "100%", height: "90%", backgroundColor: theme.colors.orange }}>
+									<Box
+										className='media-wrapper'
+										sx={{
+											height: "100%",
+											width: "100%",
+											transform: "scale(0.7)",
+										}}
+									>
+										<video
+											muted
+											autoPlay={mobileQuery ? true : false}
+											webkit-playsInline={true}
+											playsInline
+											loop
+											ref={video}
+											src={slide.cover.url}
+											className='featurd-project-demo-video'
+											onMouseEnter={handleMouseEnter}
+											onMouseLeave={handleMouseLeave}
+											style={{
+												objectFit: "cover",
+												height: "100%%",
+												width: "100%",
+											}}
+										></video>
+									</Box>
+								</Box>
+
+								<Box
+									sx={{
+										height: "10%",
+										marginTop: "1rem",
+										width: "100%",
+										display: "flex",
+										alignItems: "center",
+										justifyContent: "space-between",
+										overflow: "hidden",
+										fontFamily: "Neue Mtl",
+									}}
+								>
+									<Box sx={{ display: "flex" }}>
+										<Box
+											component='span'
+											sx={{ fontSize: "0.8rem", marginRight: "1rem" }}
+										>
+											<Box
+												component='span'
+												sx={{
+													opacity: currentSlide === 1 ? 1 : 0.5,
+												}}
+											>
+												01
+											</Box>
+											<Box
+												component='span'
+												sx={{
+													opacity: 0.5,
+												}}
+											>
+												/
+											</Box>
+											<Box
+												component='span'
+												sx={{
+													opacity: currentSlide === 2 ? 1 : 0.5,
+												}}
+											>
+												02
+											</Box>
+										</Box>
+										<Box
+											sx={{
+												transform: "translateX(-20%)",
+												opacity: 0,
+												transition: "400ms ease",
+											}}
+											className='arrow-visibility-wrapper'
+										>
+											<Arrow color='light' width='40px' height='100%' />
+										</Box>
+									</Box>
+									<Box
+										component='span'
+										sx={{
+											transform: "translateY(-100%)",
+											opacity: 0,
+											transition: "400ms ease",
+										}}
+										className='cta'
+									>
+										View project
+									</Box>
+								</Box>
+							</Box>
 						</SwiperSlide>
 					);
 				})}
