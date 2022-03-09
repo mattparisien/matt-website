@@ -1,6 +1,5 @@
-import React from "react";
-import { Box } from "@mui/material";
 import { Container } from "@mui/material";
+import React from "react";
 import styled from "styled-components";
 import { device } from "../../styles/breakpoints";
 
@@ -44,16 +43,8 @@ const StyledContainer = styled(Container)`
 `;
 
 function ContainerFluid(props) {
-	const containerStyle = {
-		position: "relative",
-		height: "100%",
-		display: props.flex ? "flex" : "block",
-		justifyContent: "space-between",
-		alignItems: "center",
-	};
-
 	return (
-		<StyledContainer maxWidth='xl' {...props} className="ContainerFluid">
+		<StyledContainer maxWidth='xl' {...props} className='ContainerFluid'>
 			{props.children}
 		</StyledContainer>
 	);

@@ -1,11 +1,11 @@
 import { Box, CircularProgress } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import $ from "jquery";
+import React, { useEffect, useState } from "react";
+import InView from "react-intersection-observer";
 import styled from "styled-components";
 import { useProgressiveImage } from "../../helpers/hooks/useProgressiveImage";
 import { device } from "../../styles/breakpoints";
-import gsap from "gsap";
-import InView from "react-intersection-observer";
-import $ from "jquery";
 
 const Item = styled(Box)`
 	background-color: blue;
@@ -39,7 +39,7 @@ const Item = styled(Box)`
 		top: 50%;
 		left: 50%;
 		font-family: Neue Mtl;
-		
+
 		transform: translate(-50%, -50%);
 		font-size: 4vw;
 		height: 100%;
@@ -71,11 +71,8 @@ const Item = styled(Box)`
 	}
 `;
 
-function ResponsiveGrid({ items, isItemLoading }) {
+function ResponsiveGrid({ items }) {
 	const sourceLoaded = useProgressiveImage(items);
-
-
-
 
 	const [intersecting, setIntersecting] = useState(null);
 	const [hasFadeUp, setHasFadeUp] = useState(null);
@@ -193,8 +190,10 @@ function ResponsiveGrid({ items, isItemLoading }) {
 													href={item.url || item.href}
 													style={linkStyle}
 													target='_blank'
+													rel="noreferrer"
+													
 												>
-													<img src={sourceLoaded[item.id]}></img>
+													<img src={sourceLoaded[item.id]} alt="img"></img>
 													{item.name && (
 														<Box className='title-overlay'>{item.name}</Box>
 													)}

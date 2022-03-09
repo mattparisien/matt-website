@@ -4,7 +4,6 @@ import $ from "jquery";
 import React, { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useTheme } from "styled-components";
-import useSplit from "../../helpers/hooks/useSplit";
 import { deviceSize } from "../../styles/breakpoints";
 import Layout from "../Containers/Layout";
 import Star from "../Star/Star";
@@ -48,15 +47,15 @@ function Footer(props) {
 	const laptop = useMediaQuery(`(max-width: ${deviceSize.laptop}px)`);
 	const tablet = useMediaQuery(`(max-width: ${deviceSize.tablet}px)`);
 
-	const [ref, inView ] = useInView({
+	const [ref, inView] = useInView({
 		threshold: 0.5,
 	});
 	const linkRefs = useRef([]);
 	linkRefs.current = [];
-	const { splitText } = useSplit(linkRefs.current, {
-		type: "chars",
-		charsClass: "char",
-	});
+	// const { splitText } = useSplit(linkRefs.current, {
+	// 	type: "chars",
+	// 	charsClass: "char",
+	// });
 
 	const addToLinkRefs = el => {
 		if (el && !linkRefs.current.includes(el)) {
@@ -114,7 +113,6 @@ function Footer(props) {
 		height: "1px",
 		backgroundColor: theme.colors.light,
 		transformOrigin: "center",
-		transform: "scaleX(0.001)",
 		transform: !inView ? "scaleX(0.001)" : "scaleX(1)",
 		transition: "1s ease",
 		transitionDelay: 0.1,

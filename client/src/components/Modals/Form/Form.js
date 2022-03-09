@@ -59,9 +59,7 @@ function Form() {
 					value={state.message}
 					onChange={handleChange}
 				></textarea>
-				<Button type={"submit"} style={"regular"} bg={"Pink"} textColor={"Light"}>
-					Submit
-				</Button>
+			
 				</form>
 		</div>
 	);

@@ -1,7 +1,6 @@
-import React, { forwardRef, useEffect } from "react";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import gsap from "gsap";
-import { Scroll } from "react-locomotive-scroll";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import React, { forwardRef, useEffect } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 function ScrollWrapper(props, ref) {

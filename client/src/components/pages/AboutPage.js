@@ -2,7 +2,6 @@ import { Box } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
 import { deviceSize } from "../../styles/breakpoints";
-import Button from "../Button/Button";
 import Layout from "../Containers/Layout";
 import Line from "../Divider/Line";
 import SocialList from "../Lists/SocialList";
@@ -58,9 +57,7 @@ function About() {
 					<Line />
 					{/* <StyledDivider /> */}
 					<StyledContactBar className='contact-bar'>
-						<Button align='left' $href='mailto:hello@matthewparisien.com'>
-							Get in touch
-						</Button>
+						
 						<SocialList orientation='horizontal' />
 					</StyledContactBar>
 				</Box>

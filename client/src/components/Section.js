@@ -1,7 +1,6 @@
 import React, { forwardRef } from "react";
-import classNames from "classnames";
-import SectionWave from "./SectionWave";
 import styled from "styled-components";
+import SectionWave from "./SectionWave";
 
 const StyledSection = styled.section`
 	margin: 5vw 0;

@@ -1,6 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useTheme } from "styled-components";
-import gsap from "gsap";
 
 function Star({ height, color, strokeWidth }) {
 	const theme = useTheme();
@@ -9,9 +8,7 @@ function Star({ height, color, strokeWidth }) {
 		width: "100%",
 	};
 
-	const lineTimeline = useRef(
-		gsap.timeline({ repeat: -1, repeatDelay: 0, yoyo: true })
-	);
+
 	const lineRefs = useRef([]);
 	lineRefs.current = [];
 

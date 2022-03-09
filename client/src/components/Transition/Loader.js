@@ -27,7 +27,7 @@ function Loader({ isActive, toggleLoading }) {
 			setAnimCompleted(true);
 			toggleLoading();
 		}, 3000);
-	}, []);
+	}, [toggleLoading]);
 
 	useEffect(() => {
 		if (content.current && bg.current) {

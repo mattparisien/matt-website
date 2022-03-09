@@ -25,7 +25,7 @@ function App() {
 	const location = useLocation();
 
 	const [headerColor, setHeaderColor] = useState(null);
-	const [palette, setPalette] = useState("primary");
+	const [palette] = useState("primary");
 
 	useEffect(() => {
 		location.pathname === "/" && setHeaderColor("light");
@@ -139,9 +139,6 @@ function App() {
 		},
 	};
 
-	const togglePartyMode = () => {
-		setPalette(prev => (prev === "primary" ? "secondary" : "primary"));
-	};
 
 	const scrollRef = useRef(null);
 
@@ -235,62 +232,13 @@ function App() {
 			.catch(err => console.log(err));
 	}, []);
 
-	// const toggleModalVisibility = () => {
-	// 	setState(prev => ({
-	// 		...prev,
-	// 		modal: {
-	// 			isActive: !state.modal.isActive,
-	// 			hasBeenActive: true,
-	// 		},
-	// 	}));
-	// };
-
-	/***** ANIMATE CONTENT ENTRY ON LOAD  *****/
-
-	// const galleryRef = useRef(null);
-	// const revealContentTl = useRef(gsap.timeline({ paused: true }));
 	const headerRef = useRef(null);
-	const footerRef = useRef(null);
 	const contentWrapperRef = useRef(null);
-	// const menuTriggerRef = useRef(null);
-
-	// const location = useLocation();
-
-	// useEffect(() => {
-	// 	if (!state.isLoading) {
-	// 		//If not loading, animate content in
-
-	// 		const headerTitleChars = $(headerRef.current).find(".char");
-	// 		const header = headerRef.current;
-	// 		const mainContent = galleryRef.current;
-	// 		const menuBtn = menuTriggerRef.current;
-	// 		const titleChars = headerTitleChars;
-	// 		const timeline = revealContentTl.current;
-
-	// 		const refs = {
-	// 			header,
-	// 			mainContent,
-	// 			titleChars,
-	// 			menuBtn,
-	// 		};
-
-	// 		animateContentEntry(timeline, refs).play();
-	// 	} else {
-	// 		const titleChars = $(headerRef.current).find(".char");
-	// 		// revealContentTl.current.set(titleChars, { clearProps: "all" });
-	// 	}
-	// }, [headerRef, state.isLoading]);
-
+	
 	const toggleMenuActivity = () => {
 		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
 	};
 
-	// const toggleLoadingState = () => {
-	// 	setState(prev => ({
-	// 		...prev,
-	// 		isLoading: state.isLoading ? false : true,
-	// 	}));
-	// };
 
 	const changeColors = (fg, bg) => {
 		setHeaderColor(fg);
