@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import DefaultCursor from "../assets/images/cursor-default-01.svg";
+
 import { device } from "./breakpoints";
 import NeueMtl from "../fonts/NeueMtl.otf";
 
@@ -51,7 +51,7 @@ font-weight: lighter;
 
 
   body {
-    cursor: url(${DefaultCursor});
+    
     margin: 0;
   }
 

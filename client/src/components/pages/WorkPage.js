@@ -1,11 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
-import Layout from "../Containers/Layout";
 import { Box } from "@mui/material";
-import ResponsiveGrid from "../Grid/ResponsiveGrid";
+import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../../App/App";
+import Layout from "../Containers/Layout";
 import Line from "../Divider/Line";
-import ParagraphLayout from "../Paragraph/ParagraphLayout";
+import ResponsiveGrid from "../Grid/ResponsiveGrid";
 import UnorderedList from "../Lists/UnorderedList";
+import ParagraphLayout from "../Paragraph/ParagraphLayout";
 
 function WorkPage() {
 	const [itemLoading, setItemLoading] = useState(false);
@@ -14,11 +14,11 @@ function WorkPage() {
 
 	const { software, photography } = useContext(DataContext);
 
-	const handleCategoryClick = e => {
-		e.preventDefault();
-		setItemLoading(!itemLoading);
-		setCategory(e.target.id);
-	};
+	// const handleCategoryClick = e => {
+	// 	e.preventDefault();
+	// 	setItemLoading(!itemLoading);
+	// 	setCategory(e.target.id);
+	// };
 
 	useEffect(() => {
 		if (category === "photography" && photography) {
@@ -48,15 +48,12 @@ function WorkPage() {
 		}
 	}, [photography, software, category]);
 
-
-
 	return (
 		<>
 			<Layout bg='light' height='45vh' offsetTop>
 				<ParagraphLayout indent indentHeading='work' variant={1}>
-					I design, develop and maintain
-					full-stack applications for a living. I also do beauty photography on
-					the side, check it out below.
+					I design, develop and maintain full-stack applications for a living. I
+					also do beauty photography on the side, check it out below.
 				</ParagraphLayout>
 			</Layout>
 			<Layout bg='light' height='auto'>

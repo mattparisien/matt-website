@@ -1,10 +1,9 @@
-import { Box, Container, toggleButtonClasses } from "@mui/material";
+import { Box, Container, useMediaQuery } from "@mui/material";
 import { keyframes } from "@mui/system";
-import React, { useEffect, useState, useRef } from "react";
+import gsap from "gsap";
+import React, { useEffect, useRef, useState } from "react";
 import { useTheme } from "styled-components";
 import Line from "../Line/Line";
-import { useMediaQuery } from "@mui/material";
-import gsap from "gsap";
 
 const wordAnim = keyframes`
 	0% {
@@ -13,25 +12,6 @@ const wordAnim = keyframes`
 	} 100% {
 		transform: translateY(0);
 		opacity: 1;
-	}
-`;
-
-const bgLeaveAnim = keyframes`
-	0% {
-		transform: scaleY(1)
-	}
-	100% {
-		transform: scaleY(0.001)
-	}
-`;
-
-const fadeContent = keyframes`
-	0% {
-		opacity: 1
-	}
-
-	100% {
-		opacity: 0
 	}
 `;
 
@@ -77,7 +57,7 @@ function Loader({ isActive, toggleLoading }) {
 					1.3
 				);
 		}
-	}, [bg, content]);
+	}, [bg, content, toggleLoading]);
 
 	const theme = useTheme();
 
