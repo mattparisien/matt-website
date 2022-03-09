@@ -37,12 +37,19 @@ function Menu(props) {
 	};
 
 	useEffect(() => {
-		if (isOpen && containerRef.current && navItems.current && infoWrapperRef.current) {
+		if (
+			isOpen &&
+			containerRef.current &&
+			navItems.current &&
+			infoWrapperRef.current
+		) {
 			gsap.registerPlugin(CSSRulePlugin);
-			const rule = CSSRulePlugin.getRule(".css-1cm6twq li::after");
+			const rule = CSSRulePlugin.getRule(".css-1ta320g li::after");
 			const rule2 = CSSRulePlugin.getRule(
-				".css-1cm6twq li:last-of-type::before"
+				".css-1ta320g li:last-of-type::before"
 			);
+
+			console.log(rule, rule2);
 
 			gsap.set([rule, rule2], {
 				width: "0%",
@@ -75,10 +82,14 @@ function Menu(props) {
 					},
 					0.4
 				)
-				.to(infoWrapperRef.current, {
-					opacity: 1,
-					duration: 0.4,
-				}, 0.4);
+				.to(
+					infoWrapperRef.current,
+					{
+						opacity: 1,
+						duration: 0.4,
+					},
+					0.4
+				);
 		}
 
 		if (!isOpen && menuAnim.current.progress() !== 0) {
@@ -137,17 +148,10 @@ function Menu(props) {
 		},
 	};
 
-	const menuBottom = {
-		width: "100%",
-		bottom: 0,
-		height: "200px",
-		backgroundColor: "white",
-	};
-
 	const contactInfoWrapper = {
 		color: props.theme.colors.light,
 		display: "flex",
-		opacity: 0
+		opacity: 0,
 	};
 
 	return (

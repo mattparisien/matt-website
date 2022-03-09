@@ -313,7 +313,7 @@ function HomePage(props, ref) {
 
 	const gradientInner = {
 		width: "100%",
-		animation: `${gradientAnim} 60s linear alternate-reverse`,
+		animation: `${gradientAnim} 60s linear infinite`,
 		background: theme.colors.gradient,
 		height: "300%",
 	};

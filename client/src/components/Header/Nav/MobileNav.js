@@ -12,11 +12,11 @@ const StyledBurger = styled.button`
 	border: 0px;
 
 	&:hover .top {
-		transform: ${isBurger => (isBurger ? "translateX(-10px)" : "none")};
+		transform: ${({ isBurger }) => (isBurger ? "translateX(-10px)" : "none")};
 	}
 
 	&:hover .bottom {
-		transform: ${isBurger => (isBurger ? "translateX(10px)" : "none")};
+		transform: ${({ isBurger }) => (isBurger ? "translateX(10px)" : "none")};
 	}
 
 	.top,

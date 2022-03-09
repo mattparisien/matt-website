@@ -6,6 +6,9 @@ import { deviceSize } from "../../styles/breakpoints";
 import Layout from "../Containers/Layout";
 import Star from "../Star/Star";
 import { useInView } from "react-intersection-observer";
+import useSplit from "../../helpers/hooks/useSplit";
+import gsap from "gsap";
+import $ from "jquery";
 
 const socialLinks = [
 	{
@@ -57,6 +60,7 @@ const verticalLineAnim = `
 
 function Footer(props) {
 	const [starColor, setStarColor] = useState("light");
+
 	const footerStyle = {
 		backgroundColor: props.backgroundColor,
 		color: props.foregroundColor,
@@ -68,10 +72,20 @@ function Footer(props) {
 	const [ref, inView, entry] = useInView({
 		threshold: 0.5,
 	});
+	const linkRefs = useRef([]);
+	linkRefs.current = [];
+	const { splitText } = useSplit(linkRefs.current, {
+		type: "chars",
+		charsClass: "char",
+	});
+
+	const addToLinkRefs = el => {
+		if (el && !linkRefs.current.includes(el)) {
+			linkRefs.current.push(el);
+		}
+	};
 
 	useEffect(() => {
-		console.log(inView);
-
 		if (theme) {
 			const colorNames = Object.keys(theme.colors);
 
@@ -96,7 +110,21 @@ function Footer(props) {
 				}
 			}, 3000);
 		}
-	}, [inView]);
+
+		if (inView && linkRefs.current) {
+			for (let i = 0; i < linkRefs.current.length; i++) {
+				let tl = gsap.timeline();
+
+				tl.to($(linkRefs.current).find(".char"), {
+					y: 0,
+					opacity: 1,
+					duration: 0.9,
+					stagger: 0.05,
+					ease: "expo.inOut",
+				}, 0);
+			}
+		}
+	}, [inView, linkRefs]);
 
 	const lineHorizontal = {
 		width: "100%",
@@ -187,6 +215,15 @@ function Footer(props) {
 		animation: `${gradientAnim} 60s linear alternate-reverse`,
 	};
 
+	const footerLink = {
+		textTransform: "none",
+		overflow: "hidden",
+		"& .char": {
+			transform: `translateY(100%)`,
+			opacity: 0,
+		},
+	};
+
 	return (
 		<footer className='Footer'>
 			<Layout
@@ -213,11 +250,24 @@ function Footer(props) {
 						<Box sx={{ height: "50%", position: "relative" }}>
 							<Star height='100%' color={starColor} strokeWidth={"2px"} />
 							{props.data && (
-								<Box className='contact-info-wrapper' sx={{textTransform: "none", fontSize: "0.8rem", width: "200px"}}>
+								<Box
+									className='contact-info-wrapper'
+									sx={{
+										textTransform: "none",
+										fontSize: "0.8rem",
+										width: "200px",
+									}}
+								>
 									<Box className='name'>Matthew Parisien</Box>
-									<Box className='phone' sx={{marginTop: 1}}>{props.data.Phone}</Box>
-									<Box className='email' sx={{marginTop: 1}}>{props.data.Email}</Box>
-									<Box className='greeting' sx={{marginTop: 1}}>{props.data.Greeting}</Box>
+									<Box className='phone' sx={{ marginTop: 1 }}>
+										{props.data.Phone}
+									</Box>
+									<Box className='email' sx={{ marginTop: 1 }}>
+										{props.data.Email}
+									</Box>
+									<Box className='greeting' sx={{ marginTop: 1 }}>
+										{props.data.Greeting}
+									</Box>
 								</Box>
 							)}
 						</Box>
@@ -268,9 +318,16 @@ function Footer(props) {
 										},
 									}}
 								>
-									<a href={link.path} target='_blank' rel='noreferrer'>
-										{link.name}
-									</a>
+									<Box
+										component='a'
+										href={link.path}
+										target='_blank'
+										rel='noreferrer'
+										ref={addToLinkRefs}
+										sx={footerLink}
+									>
+										<Box component="span" sx={{overflow: "hidden"}}>{link.name}</Box>
+									</Box>
 								</ListItem>
 							);
 						})}
