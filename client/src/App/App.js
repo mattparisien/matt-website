@@ -170,26 +170,64 @@ function App() {
 
 		const promiseArray = [...urls].map(fetchURL);
 
+		const findVideo = array => {
+			for (let i = 0; i < array.length; i++) {
+				if (
+					array[i].attributes.ext === ".mov" ||
+					array[i].attributes.ext === ".mp4" ||
+					array[i].attributes.ext === ".mpeg"
+				) {
+					return array[i].attributes.url;
+				}
+			}
+			return null;
+		};
+
+		const findImage = array => {
+			for (let i = 0; i < array.length; i++) {
+				if (
+					array[i].attributes.ext === ".jpg" ||
+					array[i].attributes.ext === ".png" ||
+					array[i].attributes.ext === ".jpeg"
+				) {
+					return {
+						url: array[i].attributes.url,
+						alt: array[i].attributes.alternativeText,
+					};
+				}
+			}
+			return null;
+		};
+
 		Promise.all(promiseArray)
 			.then(data => {
+				console.log(data);
 				// const photography = data[0].data;
 				const projects = data[0].data.data.map(x => {
+					const video = findVideo(x.attributes.Cover.data);
+					const image = findImage(x.attributes.Cover.data);
+					console.log("video", video);
+
 					return {
 						...x.attributes,
 						id: x.id,
 						Cover: {
-							url: x.attributes.Cover.data.attributes.url,
-							alt: x.attributes.Cover.data.attributes.alternativeText,
-						}
-					}
+							video: !video
+								? null
+								: {
+										url: video,
+								  },
+							image: !image ? null : image,
+						},
+					};
 				});
-				
-				console.log(data)
-				console.log(projects)
-					setState(prev => ({
-						...prev,
-						data: { ...prev.data, projects: projects },
-					}));
+
+				console.log(data);
+				console.log("projectx", projects);
+				setState(prev => ({
+					...prev,
+					data: { ...prev.data, projects: projects },
+				}));
 			})
 			.catch(err => console.log(err));
 	}, []);
