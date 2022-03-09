@@ -222,7 +222,6 @@ function App() {
 					};
 				});
 
-				console.log(data);
 				console.log("projectx", projects);
 				setState(prev => ({
 					...prev,

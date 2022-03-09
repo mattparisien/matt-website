@@ -514,20 +514,11 @@ function HomePage(props, ref) {
 						projectTitle={featuredProject && featuredProject.title}
 					/> */}
 
-					{desktop ? (
-						<>
-							<FeaturedCard
-								featuredProject={featuredProjects && featuredProjects[0]}
-								bg='yellow'
-							/>
-							<FeaturedCard
-								featuredProject={featuredProjects && featuredProjects[1]}
-								bg='orange'
-							/>{" "}
-						</>
-					) : (
-						<Slider slides={featuredProjects} mobileQuery={mobile} />
-					)}
+					<Slider
+						slides={featuredProjects}
+						mobileQuery={mobile}
+						desktopQuery={desktop}
+					/>
 				</Box>
 			</Layout>
 		</>
@@ -618,8 +609,16 @@ const FeaturedCard = ({ featuredProject, bg }) => {
 			<Box sx={media} className='media-wrapper'>
 				<Box sx={itemRevealer} ref={ref}></Box>
 				<img
-					src={featuredProject && featuredProject.cover.url}
-					alt={featuredProject && featuredProject.cover.alt}
+					src={
+						featuredProject &&
+						featuredProject.cover.image &&
+						featuredProject.cover.image.url
+					}
+					alt={
+						featuredProject &&
+						featuredProject.cover.image &&
+						featuredProject.cover.image.alt
+					}
 				></img>
 			</Box>
 			<Box className='project-info-wrapper' sx={{ height: "10%" }}>
@@ -634,7 +633,7 @@ const FeaturedCard = ({ featuredProject, bg }) => {
 	);
 };
 
-const Slider = ({ slides, mobileQuery }) => {
+const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 	const [currentSlide, setCurrentSlide] = useState(1);
 
 	const theme = useTheme();
@@ -648,21 +647,10 @@ const Slider = ({ slides, mobileQuery }) => {
 		}
 	};
 
-	const handleMouseEnter = () => {
-		const playPromise = video.current.play();
-		playPromise
-			.then(success => console.log("has played!"))
-			.catch(failure => console.log(failure));
-	};
-
-	const handleMouseLeave = () => {
-		video.current.pause();
-	};
-
 	return (
 		<Swiper
 			spaceBetween={50}
-			slidesPerView={1}
+			slidesPerView={desktopQuery ? 2 : 1}
 			onSlideChange={handleSlideChange}
 			onSwiper={swiper => console.log(swiper)}
 			height='100%'
@@ -677,7 +665,7 @@ const Slider = ({ slides, mobileQuery }) => {
 									width: "100%",
 									height: "100%",
 									display: "block",
-									
+
 									"&:hover .cta": {
 										transform: "translateY(0)",
 										opacity: 1,
@@ -686,12 +674,21 @@ const Slider = ({ slides, mobileQuery }) => {
 										transform: "translateX(0)",
 										opacity: 1,
 									},
+									"&:hover .featured-project-image": {
+										opacity: 0,
+									},
 								}}
 								href={slide.url}
 								target='_blank'
 								rel='noreferrer'
 							>
-								<Box sx={{ width: "100%", height: "90%", backgroundColor: theme.colors.orange }}>
+								<Box
+									sx={{
+										width: "100%",
+										height: "90%",
+										backgroundColor: theme.colors.orange,
+									}}
+								>
 									<Box
 										className='media-wrapper'
 										sx={{
@@ -700,23 +697,50 @@ const Slider = ({ slides, mobileQuery }) => {
 											transform: "scale(0.7)",
 										}}
 									>
-										<video
-											muted
-											autoPlay={mobileQuery ? true : false}
-											webkit-playsInline={true}
-											playsInline
-											loop
-											ref={video}
-											src={slide.cover.url}
-											className='featurd-project-demo-video'
-											onMouseEnter={handleMouseEnter}
-											onMouseLeave={handleMouseLeave}
-											style={{
-												objectFit: "cover",
-												height: "100%%",
-												width: "100%",
-											}}
-										></video>
+										{slide.cover.image && !desktopQuery && (
+											<Box
+												className='featured-project-image'
+												sx={{
+													height: "100%",
+													width: "100%",
+													position: "absolute",
+													top: 0,
+													left: 0,
+													overflow: "hidden",
+													transition: "400ms ease",
+												}}
+											>
+												<img
+													src={slide.cover.image.url}
+													alt={slide.cover.image.alt}
+													style={{
+														zIndex: 1,
+
+														objectFit: "cover",
+														height: "100%%",
+														width: "100%",
+													}}
+												></img>
+											</Box>
+										)}
+										{slide.cover.video && (
+											<video
+												muted
+												autoPlay={true}
+												webkit-playsInline={true}
+												playsInline
+												loop
+												ref={video}
+												src={slide.cover.video.url}
+												className='featured-project-demo-video'
+												style={{
+													zIndex: -1,
+													objectFit: "cover",
+													height: "100%%",
+													width: "100%",
+												}}
+											></video>
+										)}
 									</Box>
 								</Box>
 
@@ -735,7 +759,11 @@ const Slider = ({ slides, mobileQuery }) => {
 									<Box sx={{ display: "flex" }}>
 										<Box
 											component='span'
-											sx={{ fontSize: "0.8rem", marginRight: "1rem" }}
+											sx={{
+												fontSize: "0.8rem",
+												marginRight: "1rem",
+												display: desktopQuery ? "none" : "block",
+											}}
 										>
 											<Box
 												component='span'
@@ -779,6 +807,7 @@ const Slider = ({ slides, mobileQuery }) => {
 											transform: "translateY(-100%)",
 											opacity: 0,
 											transition: "400ms ease",
+											fontSize: "0.8rem",
 										}}
 										className='cta'
 									>
@@ -789,7 +818,6 @@ const Slider = ({ slides, mobileQuery }) => {
 						</SwiperSlide>
 					);
 				})}
-			...
 		</Swiper>
 	);
 };
