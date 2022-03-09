@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { device, deviceSoze } from "../../../styles/breakpoints";
+import { device } from "../../../styles/breakpoints";
 
 export const StyledHeader = styled.header`
 	.DesktopNav {

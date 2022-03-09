@@ -1,14 +1,13 @@
 import { Box, ListItem, useMediaQuery } from "@mui/material";
-import { keyframes } from "@mui/system";
-import React, { forwardRef, useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import $ from "jquery";
+import React, { useEffect, useRef, useState } from "react";
+import { useInView } from "react-intersection-observer";
 import { useTheme } from "styled-components";
+import useSplit from "../../helpers/hooks/useSplit";
 import { deviceSize } from "../../styles/breakpoints";
 import Layout from "../Containers/Layout";
 import Star from "../Star/Star";
-import { useInView } from "react-intersection-observer";
-import useSplit from "../../helpers/hooks/useSplit";
-import gsap from "gsap";
-import $ from "jquery";
 
 const socialLinks = [
 	{
@@ -29,34 +28,14 @@ const socialLinks = [
 	},
 ];
 
-const gradientAnim = keyframes`
-0% {
-	transform: translateY(0)
-}
-100% {
-	transform: translateY(-80%)
-}
-`;
-
-const horizontalLineAnim = `
-	0% {
-		transform: scaleX(0.001)
-	}
-
-	100% {
-		transform: scaleX(1)
-	}
-`;
-
-const verticalLineAnim = `
-	0% {
-		transform: scaleY(0.001)
-	}
-
-	100% {
-		transform: scaleY(1)
-	}
-`;
+// const gradientAnim = keyframes`
+// 0% {
+// 	transform: translateY(0)
+// }
+// 100% {
+// 	transform: translateY(-80%)
+// }
+// `;
 
 function Footer(props) {
 	const [starColor, setStarColor] = useState("light");
@@ -68,8 +47,8 @@ function Footer(props) {
 	const theme = useTheme();
 	const laptop = useMediaQuery(`(max-width: ${deviceSize.laptop}px)`);
 	const tablet = useMediaQuery(`(max-width: ${deviceSize.tablet}px)`);
-	const footerRef = useRef(null);
-	const [ref, inView, entry] = useInView({
+
+	const [ref, inView ] = useInView({
 		threshold: 0.5,
 	});
 	const linkRefs = useRef([]);
@@ -115,16 +94,20 @@ function Footer(props) {
 			for (let i = 0; i < linkRefs.current.length; i++) {
 				let tl = gsap.timeline();
 
-				tl.to($(linkRefs.current).find(".char"), {
-					y: 0,
-					opacity: 1,
-					duration: 0.9,
-					stagger: 0.05,
-					ease: "expo.inOut",
-				}, 0);
+				tl.to(
+					$(linkRefs.current).find(".char"),
+					{
+						y: 0,
+						opacity: 1,
+						duration: 0.9,
+						stagger: 0.05,
+						ease: "expo.inOut",
+					},
+					0
+				);
 			}
 		}
-	}, [inView, linkRefs]);
+	}, [inView, linkRefs, theme]);
 
 	const lineHorizontal = {
 		width: "100%",
@@ -195,25 +178,25 @@ function Footer(props) {
 		transitionDelay: 0.5,
 	};
 
-	const gradientWrapper = {
-		position: "absolute",
-		top: 0,
-		left: 0,
-		width: "100%",
-		height: "110%",
+	// const gradientWrapper = {
+	// 	position: "absolute",
+	// 	top: 0,
+	// 	left: 0,
+	// 	width: "100%",
+	// 	height: "110%",
 
-		zIndex: -1,
-		borderRadius: "50%",
-		filter: "blur(5vw)",
-		overflow: "hidden",
-	};
+	// 	zIndex: -1,
+	// 	borderRadius: "50%",
+	// 	filter: "blur(5vw)",
+	// 	overflow: "hidden",
+	// };
 
-	const gradient = {
-		height: "300%",
-		width: "100%",
-		background: theme.colors.gradient,
-		animation: `${gradientAnim} 60s linear alternate-reverse`,
-	};
+	// const gradient = {
+	// 	height: "300%",
+	// 	width: "100%",
+	// 	background: theme.colors.gradient,
+	// 	animation: `${gradientAnim} 60s linear alternate-reverse`,
+	// };
 
 	const footerLink = {
 		textTransform: "none",
@@ -326,7 +309,9 @@ function Footer(props) {
 										ref={addToLinkRefs}
 										sx={footerLink}
 									>
-										<Box component="span" sx={{overflow: "hidden"}}>{link.name}</Box>
+										<Box component='span' sx={{ overflow: "hidden" }}>
+											{link.name}
+										</Box>
 									</Box>
 								</ListItem>
 							);

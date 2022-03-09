@@ -1,18 +1,15 @@
-import React, { forwardRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import ContainerFluid from "../Containers/ContainerFluid";
-import DesktopNav from "./Nav/DesktopNav";
-import { StyledHeader } from "./styles/StyledHeader";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
-import TransitionTrigger from "../Transition/TransitionTrigger";
-import { useLocation } from "react-router-dom";
 import { Box } from "@material-ui/core";
+import React, { forwardRef, useState } from "react";
+import ContainerFluid from "../Containers/ContainerFluid";
+import TransitionTrigger from "../Transition/TransitionTrigger";
+import DesktopNav from "./Nav/DesktopNav";
 import MobileNav from "./Nav/MobileNav";
+import { StyledHeader } from "./styles/StyledHeader";
 
 function Header(props, ref) {
-	const { headerOffset, isMenuActive, isDefaultContentHidden } = props;
-	const [innerHeight, setInnerHeight] = useState(null);
-	const [isHeaderHidden, setHeaderHidden] = useState(false);
+	const { headerOffset, isMenuActive } = props;
+	const [innerHeight] = useState(null);
+	const [isHeaderHidden] = useState(false);
 
 	return (
 		<StyledHeader

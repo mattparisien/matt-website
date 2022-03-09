@@ -11,7 +11,7 @@ import { useInView } from "react-intersection-observer";
 import { Box } from "@mui/material";
 
 function Paragraph(props) {
-	const [intersecting, setIntersecting] = useState(null);
+	const [intersecting] = useState(null);
 	const [isSplit, setIsSplit] = useState(false);
 	const [splitText, setSplitText] = useState(null);
 	const [splitWrap, setSplitWrap] = useState(null);

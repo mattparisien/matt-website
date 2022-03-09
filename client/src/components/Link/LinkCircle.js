@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from "react";
-import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import gsap from "gsap";
+import DrawSVGPlugin from "gsap/DrawSVGPlugin";
+import React, { useRef } from "react";
 
 export default function LinkCircle() {
 	const circleStyle = {
