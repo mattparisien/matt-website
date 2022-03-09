@@ -6,7 +6,7 @@ import { device } from "../../styles/breakpoints";
 const StyledContainer = styled(Container)`
 	height: 100%;
 	position: relative;
-	display: ${({ isFlex }) => (isFlex ? "flex" : "block")};
+	display: ${({ display }) => (display ? display : "block")};
 	justify-content: space-between;
 	align-items: center;
 	${({ isfull }) =>

@@ -140,7 +140,6 @@ function HomePage(props, ref) {
 
 	useEffect(() => {
 		if (data && data.projects) {
-			
 			setFeaturedProjects([
 				{
 					id: data.projects[0].id,
@@ -529,9 +528,9 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 			height='100%'
 		>
 			{slides &&
-				slides.map(slide => {
+				slides.map((slide, i)=> {
 					return (
-						<SwiperSlide>
+						<SwiperSlide key={i}>
 							<Box
 								as='a'
 								sx={{
@@ -600,7 +599,6 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 											<video
 												muted
 												autoPlay={true}
-												webkit-playsInline={true}
 												playsInline
 												loop
 												ref={video}

@@ -65,8 +65,6 @@ function Paragraph(props) {
 
 	useEffect(() => {
 		if (inView) {
-			console.log($(ref.current).find(".line"));
-
 			gsap.to($(ref.current).find(".line"), {
 				y: 0,
 				opacity: 1,

@@ -48,7 +48,7 @@ export default function Arrow(props) {
 			sx={{ overflow: "hidden", position: "relative" }}
 		>
 			<svg
-				class='arrow'
+				className='arrow'
 				width={props.width}
 				height={props.height}
 				viewBox='0 0 84 22'
@@ -66,7 +66,7 @@ export default function Arrow(props) {
 				></path>
 			</svg>
 			<svg
-				class='arrow'
+				className='arrow'
 				width={props.width}
 				height={props.height}
 				viewBox='0 0 84 22'
