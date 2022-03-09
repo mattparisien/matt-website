@@ -343,7 +343,11 @@ function App() {
 									isMenuActive={state.menuActive}
 									toggleMenu={toggleMenuActivity}
 								/>
-								<Menu isOpen={state.menuActive} theme={themes}/>
+								<Menu
+									isOpen={state.menuActive}
+									theme={themes}
+									data={state.data.contact}
+								/>
 
 								<ScrollWrapper ref={scrollRef}>
 									<ContentWrapper ref={contentWrapperRef}>

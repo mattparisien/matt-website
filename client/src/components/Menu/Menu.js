@@ -28,6 +28,7 @@ function Menu(props) {
 	const menuAnim = useRef(gsap.timeline());
 	const navItems = useRef([]);
 	const containerRef = useRef(null);
+	const infoWrapperRef = useRef(null);
 
 	const addToListRefs = el => {
 		if (el && !navItems.current.includes(el)) {
@@ -36,7 +37,7 @@ function Menu(props) {
 	};
 
 	useEffect(() => {
-		if (isOpen && containerRef.current && navItems.current) {
+		if (isOpen && containerRef.current && navItems.current && infoWrapperRef.current) {
 			gsap.registerPlugin(CSSRulePlugin);
 			const rule = CSSRulePlugin.getRule(".css-1cm6twq li::after");
 			const rule2 = CSSRulePlugin.getRule(
@@ -73,13 +74,17 @@ function Menu(props) {
 						ease: "power3.out",
 					},
 					0.4
-				);
+				)
+				.to(infoWrapperRef.current, {
+					opacity: 1,
+					duration: 0.4,
+				}, 0.4);
 		}
 
 		if (!isOpen && menuAnim.current.progress() !== 0) {
 			menuAnim.current.reverse(0.93);
 		}
-	}, [isOpen, containerRef, navItems]);
+	}, [isOpen, containerRef, navItems, infoWrapperRef]);
 
 	const container = {
 		width: "100vw",
@@ -91,9 +96,9 @@ function Menu(props) {
 		zIndex: 9,
 		transform: "translateY(-100%)",
 		display: "none",
-		
+		paddingTop: "8rem",
 		fontSize: "0.8rem",
-		color: props.theme.colors.light
+		color: props.theme.colors.light,
 	};
 
 	const listContainer = {
@@ -139,9 +144,15 @@ function Menu(props) {
 		backgroundColor: "white",
 	};
 
+	const contactInfoWrapper = {
+		color: props.theme.colors.light,
+		display: "flex",
+		opacity: 0
+	};
+
 	return (
 		<Box className='Menu' sx={container} ref={containerRef}>
-			<Layout height="100%">
+			<Layout height='auto'>
 				<Box component='ul' sx={listContainer} className='menu-list'>
 					{listInfo.map((item, i) => {
 						return (
@@ -155,7 +166,29 @@ function Menu(props) {
 						);
 					})}
 				</Box>
-				
+
+				{props.data && (
+					<Box
+						sx={contactInfoWrapper}
+						className='contact-info-wrapper'
+						ref={infoWrapperRef}
+					>
+						<Box sx={{ marginRight: "30%" }}>
+							<Box
+								component='ul'
+								sx={{ padding: 0, marginTop: 0, marginBottom: "2rem" }}
+							>
+								<li>Instagram</li>
+								<li>LinkedIn</li>
+								<li>Github</li>
+							</Box>
+							<Box>Matthew Parisien</Box>
+						</Box>
+						<Box>
+							<Box>{props.data.Phone}</Box>
+						</Box>
+					</Box>
+				)}
 			</Layout>
 		</Box>
 	);
