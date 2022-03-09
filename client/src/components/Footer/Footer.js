@@ -1,12 +1,11 @@
 import { Box, ListItem, useMediaQuery } from "@mui/material";
+import { keyframes } from "@mui/system";
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { useTheme } from "styled-components";
 import { deviceSize } from "../../styles/breakpoints";
 import Layout from "../Containers/Layout";
 import Star from "../Star/Star";
-import InView from "react-intersection-observer";
-import $ from "jquery";
-import { keyframes } from "@mui/system";
+import { useInView } from "react-intersection-observer";
 
 const socialLinks = [
 	{
@@ -36,7 +35,27 @@ const gradientAnim = keyframes`
 }
 `;
 
-function Footer(props, ref) {
+const horizontalLineAnim = `
+	0% {
+		transform: scaleX(0.001)
+	}
+
+	100% {
+		transform: scaleX(1)
+	}
+`;
+
+const verticalLineAnim = `
+	0% {
+		transform: scaleY(0.001)
+	}
+
+	100% {
+		transform: scaleY(1)
+	}
+`;
+
+function Footer(props) {
 	const [starColor, setStarColor] = useState("light");
 	const footerStyle = {
 		backgroundColor: props.backgroundColor,
@@ -46,8 +65,13 @@ function Footer(props, ref) {
 	const laptop = useMediaQuery(`(max-width: ${deviceSize.laptop}px)`);
 	const tablet = useMediaQuery(`(max-width: ${deviceSize.tablet}px)`);
 	const footerRef = useRef(null);
+	const [ref, inView, entry] = useInView({
+		threshold: 0.5,
+	});
 
 	useEffect(() => {
+		console.log(inView);
+
 		if (theme) {
 			const colorNames = Object.keys(theme.colors);
 
@@ -72,18 +96,17 @@ function Footer(props, ref) {
 				}
 			}, 3000);
 		}
-	}, []);
-
-	const lineVertical = {
-		width: "1px",
-		height: "100%",
-		backgroundColor: theme.colors.light,
-	};
+	}, [inView]);
 
 	const lineHorizontal = {
 		width: "100%",
 		height: "1px",
 		backgroundColor: theme.colors.light,
+		transformOrigin: "center",
+		transform: "scaleX(0.001)",
+		transform: !inView ? "scaleX(0.001)" : "scaleX(1)",
+		transition: "1s ease",
+		transitionDelay: 0.1
 	};
 
 	const lineHorizontalCentered = {
@@ -93,27 +116,42 @@ function Footer(props, ref) {
 		position: "absolute",
 		top: "50%",
 		left: "50%",
-		transform: "translate(-50%, -50%)",
+		transform: `translate(-50%, -50%)${
+			!inView ? "scaleX(0.001)" : "scaleX(1)"
+		}`,
+		transformOrigin: "center",
+
+		transition: "1s ease",
+		transitionDelay: 0.2
 	};
 
 	const lineHorizontalTop = {
 		width: "100%",
 		height: "1px",
 		backgroundColor: theme.colors.light,
+		transformOrigin: "center",
 		position: "absolute",
 		top: 0,
 		left: 0,
+		transform: !inView ? "scaleX(0.001)" : "scaleX(1)",
+		transition: "1s ease",
+		transitionDelay: 0.3
 	};
 
 	const lineVerticalCentered = {
 		width: "1px",
 		height: "100%",
-
+		transformOrigin: "center",
 		backgroundColor: theme.colors.light,
 		position: "absolute",
 		top: "50%",
 		left: "50%",
-		transform: "translate(-50%, -50%)",
+		transform: `translate(-50%, -50%)${
+			!inView ? "scaleY(0.001)" : "scaleY(1)"
+		}`,
+
+		transition: "1s ease",
+		transitionDelay: 0.4
 	};
 
 	const lineVerticalLeft = {
@@ -121,8 +159,12 @@ function Footer(props, ref) {
 		height: "100%",
 		backgroundColor: theme.colors.light,
 		position: "absolute",
+		transformOrigin: "center",
 		top: 0,
 		left: 0,
+		transform: !inView ? "scaleY(0.001)" : "scaleY(1)",
+		transition: "1s ease",
+		transitionDelay: 0.5
 	};
 
 	const gradientWrapper = {
@@ -150,12 +192,12 @@ function Footer(props, ref) {
 			<Layout
 				bg='dark'
 				style={footerStyle}
-				ref={(footerRef, ref)}
 				height={tablet ? "90vw" : "60vw"}
 				fullbleed
 			>
 				<Box sx={lineHorizontal}></Box>
 				<Box
+					ref={ref}
 					display='flex'
 					justifyContent='center'
 					alignItems='center'
@@ -232,22 +274,7 @@ function Footer(props, ref) {
 }
 
 const Line = ({ sx }) => {
-	const [intersecting, setIntersecting] = useState(false);
-
-	useEffect(() => {
-		if (intersecting) {
-			$(intersecting).find("");
-		}
-	}, [intersecting]);
-
-	return (
-		<InView
-			className='line-view-wrapper'
-			onChange={(inView, entry) => inView && setIntersecting(entry.target)}
-		>
-			<Box sx={sx} className='line'></Box>
-		</InView>
-	);
+	return <Box sx={sx} className='line'></Box>;
 };
 
-export default forwardRef(Footer);
+export default Footer;

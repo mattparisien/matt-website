@@ -792,8 +792,8 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 										</Box>
 										<Box
 											sx={{
-												transform: "translateX(-20%)",
-												opacity: 0,
+												transform: mobileQuery ? "none" : "translateX(-20%)",
+												opacity: mobileQuery ? 1 : 0,
 												transition: "400ms ease",
 											}}
 											className='arrow-visibility-wrapper'
