@@ -276,6 +276,7 @@ function Footer(props) {
 						{socialLinks.map((link, i) => {
 							return (
 								<ListItem
+									key={i}
 									sx={{
 										padding: 0,
 

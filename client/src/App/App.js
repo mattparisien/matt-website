@@ -196,10 +196,7 @@ function App() {
 		};
 
 		Promise.all(promiseArray)
-			.then(data => {
-				console.log(data);
-				// const photography = data[0].data;
-				console.log(data);
+			.then(data => {		
 				const contactInfo = {
 					...data[1].data.data.attributes,
 					...data[1].data.data.id,
@@ -222,7 +219,7 @@ function App() {
 					};
 				});
 
-				console.log(contactInfo);
+				
 
 				setState(prev => ({
 					...prev,

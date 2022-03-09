@@ -20,7 +20,7 @@ function Header(props, ref) {
 			className='Header'
 		>
 			<Box className='Header__floater' sx={{ height: "100%" }}>
-				<ContainerFluid flex={true}>
+				<ContainerFluid display="flex">
 					<Box className='header-logo'>
 						<TransitionTrigger to='/' noCircle>
 							<span className='name'>

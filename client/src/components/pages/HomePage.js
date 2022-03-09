@@ -140,7 +140,7 @@ function HomePage(props, ref) {
 
 	useEffect(() => {
 		if (data && data.projects) {
-			console.log(data.projects);
+			
 			setFeaturedProjects([
 				{
 					id: data.projects[0].id,
@@ -471,15 +471,15 @@ function HomePage(props, ref) {
 				>
 					<div className='half-section-wrapper'>
 						<ParagraphLayout indent indentHeading='Philosophy' variant={2}>
-							<Line color='dark' />
 							Good research leads to effective design and better tech stacks. I
 							believe that a team of people who love creating, learning and
 							growing together have the ability to transcend the workplace.
 						</ParagraphLayout>
+						<Line color='dark' />
 					</div>
 				</Box>
 			</Layout>
-			<Layout bg='light' height='auto' fullbleed>
+			<Layout bg='light' height='auto' fullWidth={"true"}>
 				<Line />
 			</Layout>
 			<Layout bg='dark' height='100vw'>
@@ -526,7 +526,6 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 			spaceBetween={50}
 			slidesPerView={desktopQuery ? 2 : 1}
 			onSlideChange={handleSlideChange}
-			onSwiper={swiper => console.log(swiper)}
 			height='100%'
 		>
 			{slides &&

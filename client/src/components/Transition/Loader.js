@@ -23,10 +23,14 @@ function Loader({ isActive, toggleLoading }) {
 	const bg = useRef(null);
 
 	useEffect(() => {
-		setTimeout(() => {
+		const timeOut = setTimeout(() => {
 			setAnimCompleted(true);
 			toggleLoading();
 		}, 3000);
+
+		return () => {
+			clearTimeout(timeOut)
+		}
 	}, [toggleLoading]);
 
 	useEffect(() => {

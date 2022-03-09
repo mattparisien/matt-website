@@ -6,11 +6,11 @@ import { device } from "../../styles/breakpoints";
 const StyledContainer = styled(Container)`
 	height: 100%;
 	position: relative;
-	display: ${({ flex }) => (flex ? "flex" : "block")};
+	display: ${({ isFlex }) => (isFlex ? "flex" : "block")};
 	justify-content: space-between;
 	align-items: center;
-	${({ fullbleed }) =>
-		fullbleed &&
+	${({ isfull }) =>
+		isfull &&
 		`padding: 0 !important;
 	margin: 0 !important;
 	max-width: none;
