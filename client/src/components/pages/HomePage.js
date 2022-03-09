@@ -18,6 +18,13 @@ import Layout from "../Containers/Layout";
 import Line from "../Line/Line";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import { useInView } from "react-intersection-observer";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 const gradientAnim = keyframes`
 	0% {
@@ -506,14 +513,20 @@ function HomePage(props, ref) {
 						projectTitle={featuredProject && featuredProject.title}
 					/> */}
 
-					<FeaturedCard
-						featuredProject={featuredProjects && featuredProjects[0]}
-						bg='yellow'
-					/>
-					<FeaturedCard
-						featuredProject={featuredProjects && featuredProjects[1]}
-						bg='orange'
-					/>
+					{desktop ? (
+						<>
+							<FeaturedCard
+								featuredProject={featuredProjects && featuredProjects[0]}
+								bg='yellow'
+							/>
+							<FeaturedCard
+								featuredProject={featuredProjects && featuredProjects[1]}
+								bg='orange'
+							/>{" "}
+						</>
+					) : (
+						<Slider slides={featuredProjects} />
+					)}
 				</Box>
 			</Layout>
 		</>
@@ -523,6 +536,7 @@ function HomePage(props, ref) {
 const FeaturedCard = ({ featuredProject, bg }) => {
 	const desktop = useMediaQuery(device.laptop);
 	const mobile = useMediaQuery(`(max-width: ${deviceSize.mobileL}px`);
+
 	const theme = useTheme();
 	const [ref, inView, entry] = useInView({
 		threshold: 0.3,
@@ -540,7 +554,7 @@ const FeaturedCard = ({ featuredProject, bg }) => {
 	}, [inView]);
 
 	const featuredWrapper = {
-		height: "45vw",
+		height: "26vw",
 		width: desktop ? "50%" : mobile ? "100%" : "500px",
 		zIndex: 1,
 		display: "flex",
@@ -616,6 +630,32 @@ const FeaturedCard = ({ featuredProject, bg }) => {
 				</Box>
 			</Box>
 		</Box>
+	);
+};
+
+const Slider = ({ slides }) => {
+	return (
+		<Swiper
+			spaceBetween={50}
+			slidesPerView={1}
+			onSlideChange={() => console.log("slide change")}
+			onSwiper={swiper => console.log(swiper)}
+			height='100%'
+		>
+			{slides &&
+				slides.map(slide => {
+					return (
+						<SwiperSlide>
+							<img
+								src={slide.cover.url}
+								alt={slide.cover.alt}
+								style={{ objectFit: "cover", height: "100%", width: "100%" }}
+							></img>
+						</SwiperSlide>
+					);
+				})}
+			...
+		</Swiper>
 	);
 };
 
