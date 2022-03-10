@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 export default function useMouseMove(array) {
 	const [location, setLocation] = useState({});
+	const scroll = useLocomotiveScroll();
 
 	useEffect(() => {
 		const handleMouseMove = (e, index) => {
@@ -11,12 +13,16 @@ export default function useMouseMove(array) {
 			});
 		};
 
-		window.addEventListener("mousemove", e => handleMouseMove(e));
+		scroll &&
+			scroll.scroll &&
+			scroll.scroll.el.addEventListener("mousemove", e => handleMouseMove(e));
 
 		return () => {
-			window.removeEventListener("mousemove", handleMouseMove);
+			scroll &&
+				scroll.scroll &&
+				scroll.scroll.el.removeEventListener("mousemove", handleMouseMove);
 		};
-	}, []);
+	}, [scroll]);
 
 	return [location];
 }

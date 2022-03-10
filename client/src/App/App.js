@@ -1,3 +1,4 @@
+import { useMediaQuery } from "@material-ui/core";
 import axios from "axios";
 import { createContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -16,7 +17,6 @@ import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
 import { device } from "../styles/breakpoints";
 import { GlobalStyle } from "../styles/global";
-import { useMediaQuery } from "@material-ui/core";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();
@@ -27,18 +27,20 @@ function App() {
 
 	const [headerColor, setHeaderColor] = useState(null);
 	const [palette] = useState("primary");
-	const tablet = useMediaQuery(device.tablet)
+	const tablet = useMediaQuery(device.tablet);
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
+
 		location.pathname === "/" && setHeaderColor("light");
 		location.pathname === "/work" && setHeaderColor("dark");
 		location.pathname === "/about" && setHeaderColor("dark");
 	}, [location]);
 
 	useEffect(() => {
-//Footer height config
-	setState(prev => ({...prev, footerHeight: tablet ? "60vw" : "90vw"}))
-	}, [tablet])
+		//Footer height config
+		setState(prev => ({ ...prev, footerHeight: tablet ? "60vw" : "90vw" }));
+	}, [tablet]);
 
 	const baseSpacing = {
 		desktopL: 2,
@@ -289,6 +291,7 @@ function App() {
 										content='Web Developer, Photographer & Graphic Designer'
 									/>
 								</Helmet>
+
 								<Loader
 									isActive={state.isTransitioning}
 									setDone={toggleTransitioning}
@@ -308,7 +311,10 @@ function App() {
 								/>
 
 								<ScrollWrapper ref={scrollRef}>
-									<ContentWrapper ref={contentWrapperRef} offsetBottom={state.footerHeight}>
+									<ContentWrapper
+										ref={contentWrapperRef}
+										offsetBottom={state.footerHeight}
+									>
 										<GlobalStyle />
 
 										<Routes>

@@ -26,6 +26,8 @@ import ContainerFluid from "../Containers/ContainerFluid";
 import MtlLogo from "../Vector/MtlLogo";
 import Star from "../Star/Star";
 import Button from "../Button/Button";
+import { useInView } from "react-intersection-observer";
+import $ from "jquery";
 
 const gradientAnim = keyframes`
 	0% {
@@ -49,6 +51,11 @@ function HomePage(props, ref) {
 	const mobile = useMediaQuery(`(max-width: ${deviceSize.mobileL}px`);
 	const headingRef = useRef([]);
 	headingRef.current = [];
+
+	const baseSpacing = desktop ? 5 : 2;
+	const setVerticalSpacing = multiplier => {
+		return `${baseSpacing * multiplier}rem 0`;
+	};
 
 	// 	{
 	// 		text: "ReactJS",
@@ -347,7 +354,7 @@ function HomePage(props, ref) {
 					sx={{
 						height: "100%",
 						width: "100%",
-						padding: mobile ? "3rem 0" : "5rem 0",
+						padding: setVerticalSpacing(1),
 					}}
 				>
 					<ParagraphLayout indent indentHeading='about' variant={1}>
@@ -365,7 +372,7 @@ function HomePage(props, ref) {
 						width: "100%",
 						height: "100%",
 
-						padding: mobile ? "3rem 0" : "5rem 0 10rem 0",
+						padding: setVerticalSpacing(2),
 					}}
 				>
 					<Box className='half-section-wrapper'>
@@ -382,7 +389,7 @@ function HomePage(props, ref) {
 				<ContainerFluid>
 					<Line color='dark' width='100%' />
 				</ContainerFluid>
-				<Box sx={{ padding: "5rem 0" }}>
+				<Box sx={{ padding: setVerticalSpacing(2) }}>
 					<MarqueeBlock
 						rails={["Work Hard", ["Montreal", MtlLogo], "Change the World"]}
 					/>
@@ -407,7 +414,14 @@ function HomePage(props, ref) {
 								desktopQuery={desktop}
 							/>
 						</Box>
-						<Box sx={{display: "flex", alignItems: "end", justifyContent: "end", paddingTop: "5rem"}}>
+						<Box
+							sx={{
+								display: "flex",
+								alignItems: "end",
+								justifyContent: "end",
+								paddingTop: "5rem",
+							}}
+						>
 							<Button fontSize={mobile ? "10vw" : "4rem"}>All Projects</Button>
 						</Box>
 					</Box>
@@ -434,7 +448,7 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 	return (
 		<Swiper
 			spaceBetween={50}
-			slidesPerView={desktopQuery ? 2 : 1}
+			slidesPerView={1}
 			onSlideChange={handleSlideChange}
 			height='100%'
 		>
@@ -607,6 +621,7 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 const MarqueeBlock = ({ rails }) => {
 	const desktop = useMediaQuery(device.laptop);
 	const mobile = useMediaQuery(`(max-width: ${deviceSize.mobileL}px`);
+	const [ref, inView, entry] = useInView({threshold: 0.5});
 
 	const marqueeStyle = {
 		fontSize: desktop ? "10rem" : "13vw",
@@ -614,8 +629,29 @@ const MarqueeBlock = ({ rails }) => {
 		fontWeight: "lighter",
 	};
 
+	const marqueeOffset = {
+		transform: "translateY(100%)",
+		opacity: 0,
+	};
+
+	useEffect(() => {
+
+			
+
+		inView &&
+			gsap.to($(entry.target).find(".marquee-rail-yOffset-wrapper"), {
+				y: 0,
+				opacity: 1,
+				ease: "power3.out",
+				duration: 1.3,
+				stagger: 0.2,
+				
+			});
+	}, [inView, entry]);
+
 	return (
 		<Box
+			ref={ref}
 			sx={{
 				display: "flex",
 				flexDirection: "column",
@@ -633,7 +669,7 @@ const MarqueeBlock = ({ rails }) => {
 							className='marquee-rail-overflow-wrapper'
 							sx={{ overflow: "hidden" }}
 						>
-							<Box className='marquee-rail-yOffset-wrapper'>
+							<Box className='marquee-rail-yOffset-wrapper' sx={marqueeOffset}>
 								<Marquee
 									sx={marqueeStyle}
 									gradient={false}

@@ -45,10 +45,6 @@ const StyledBurger = styled.button`
 `;
 
 function MobileNav(props) {
-	useEffect(() => {
-		console.log(props.isBurger);
-	}, [props]);
-
 	return (
 		<StyledBurger className='MobileNav' {...props} onClick={props.toggleMenu}>
 			<div className='top'></div>

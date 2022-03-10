@@ -1,13 +1,11 @@
 import {
 	Box,
-	Container,
-	speedDialActionClasses,
-	useMediaQuery,
+	Container, useMediaQuery
 } from "@mui/material";
 import { keyframes } from "@mui/system";
 import gsap from "gsap";
 import CSSPlugin from "gsap/CSSPlugin";
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTheme } from "styled-components";
 import Line from "../Line/Line";
 
@@ -32,7 +30,7 @@ function Loader({ isActive, setDone }) {
 	const bg = useRef(null);
 
 	const transitionAnim = (masterTimeline, container, background, items) => {
-		console.log("hello in here");
+		
 		masterTimeline
 			.set(container, { display: "flex" })
 			.to(background, {
