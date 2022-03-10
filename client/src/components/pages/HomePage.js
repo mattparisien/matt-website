@@ -24,6 +24,7 @@ import Arrow from "../Vector/Arrow";
 import Marquee from "react-fast-marquee";
 import ContainerFluid from "../Containers/ContainerFluid";
 import MtlLogo from "../Vector/MtlLogo";
+import Star from "../Star/Star";
 
 const gradientAnim = keyframes`
 	0% {
@@ -35,8 +36,6 @@ const gradientAnim = keyframes`
 `;
 
 function HomePage(props, ref) {
-	const starRef = useRef(null);
-
 	const [featuredProjects, setFeaturedProjects] = useState(null);
 	const data = useContext(DataContext);
 	const theme = useTheme();
@@ -50,7 +49,6 @@ function HomePage(props, ref) {
 	const headingRef = useRef([]);
 	headingRef.current = [];
 
-	// const pillInfo = [
 	// 	{
 	// 		text: "ReactJS",
 	// 		highlighted: false,
@@ -165,87 +163,66 @@ function HomePage(props, ref) {
 			]);
 		}
 	}, [data]);
-	const lineRefs = useRef([]);
-	lineRefs.current = [];
+	// const lineRefs = useRef([]);
+	// lineRefs.current = [];
 
-	const addToLineRefs = el => {
-		if (el && !lineRefs.current.includes(el)) {
-			lineRefs.current.push(el);
-		}
-	};
-
-	const [hasPlayed, setHasPlayed] = useState(false);
-
-	useEffect(() => {
-		if (lineRefs.current && !hasPlayed) {
-			setHasPlayed(true);
-
-			let delay = 0;
-			let rotation = 270;
-
-			//Individual line tls
-			lineRefs.current.reverse().forEach((item, index) => {
-				let tl = gsap.timeline();
-
-				tl.set(item, {
-					rotation: `${rotation}deg`,
-					transformOrigin: "center",
-
-					scale: 0.01,
-				})
-					.to(item, {
-						width: "100%",
-						delay: 1.4,
-						duration: 0.8,
-						scale: 1,
-						ease: "power3.out",
-					})
-					.to(
-						item,
-						{
-							rotation: "0deg",
-							ease: "expo.inOut",
-							duration: 3,
-						},
-						1
-					)
-					.to(item, {
-						rotation: `${rotation}deg`,
-						delay: delay,
-						duration: 4,
-						transformOrigin: "center",
-						ease: "expo.inOut",
-						repeat: -1,
-						yoyo: true,
-						repeatDelay: 1,
-					});
-
-				rotation += 26;
-				delay += 0.1;
-			});
-		}
-	}, [lineRefs, starRef, hasPlayed]);
-
-	// const heading = {
-	// 	marginBottom: 0,
-	// 	fontSize: "7vw",
-	// 	lineHeight: "7vw",
-	// 	fontFamily: "Neue Mtl",
-	// 	fontWeight: "lighter",
-	// 	width: "100%",
-	// 	color: theme.colors.dark,
-	// 	textAlign: "center",
-	// 	textTransform: "uppercase",
-	// 	"& .heading-line": {
-	// 		display: "flex !important",
-	// 		justifyContent: "space-between",
-	// 		transform: "translateY(100%)",
-	// 		opacity: 0,
-	// 	},
-	// 	"& .heading-line:nth-of-type(4)": {
-	// 		justifyContent: "flex-end !important",
-	// 	},
+	// const addToLineRefs = el => {
+	// 	if (el && !lineRefs.current.includes(el)) {
+	// 		lineRefs.current.push(el);
+	// 	}
 	// };
+
+	// const [hasPlayed, setHasPlayed] = useState(false);
+
+	// useEffect(() => {
+	// 	if (lineRefs.current && !hasPlayed) {
+	// 		setHasPlayed(true);
+
+	// 		let delay = 0;
+	// 		let rotation = 270;
+
+	// 		//Individual line tls
+	// 		lineRefs.current.reverse().forEach((item, index) => {
+	// 			let tl = gsap.timeline();
+
+	// 			tl.set(item, {
+	// 				rotation: `${rotation}deg`,
+	// 				transformOrigin: "center",
+
+	// 				scale: 0.01,
+	// 			})
+	// 				.to(item, {
+	// 					width: "100%",
+	// 					delay: 1.4,
+	// 					duration: 0.8,
+	// 					scale: 1,
+	// 					ease: "power3.out",
+	// 				})
+	// 				.to(
+	// 					item,
+	// 					{
+	// 						rotation: "0deg",
+	// 						ease: "expo.inOut",
+	// 						duration: 3,
+	// 					},
+	// 					1
+	// 				)
+	// 				.to(item, {
+	// 					rotation: `${rotation}deg`,
+	// 					delay: delay,
+	// 					duration: 4,
+	// 					transformOrigin: "center",
+	// 					ease: "expo.inOut",
+	// 					repeat: -1,
+	// 					yoyo: true,
+	// 					repeatDelay: 1,
+	// 				});
+
+	// 			rotation += 26;
+	// 			delay += 0.1;
+	// 		});
+	// 	}
+	// }, [lineRefs, starRef, hasPlayed]);
 
 	const innerHero = {
 		width: "100%",
@@ -255,27 +232,6 @@ function HomePage(props, ref) {
 		textAlign: "center",
 		flexDirection: "column",
 		justifyContent: "center",
-	};
-
-	const line = {
-		color: theme.colors.orange,
-		fill: "none",
-		stroke: theme.colors.dark,
-		strokeMiterlimit: 10,
-		strokeWidth: mobile ? "0.9vw" : "2px",
-	};
-
-	const star = {
-		height: "60vw",
-		width: "60vw",
-		maxWidth: "700px",
-		maxHeight: "700px",
-
-		position: "absolute",
-		top: "50%",
-		left: "50%",
-		transform: "translate(-50%, -50%)",
-		zIndex: 1,
 	};
 
 	const overlay = {
@@ -317,7 +273,7 @@ function HomePage(props, ref) {
 		<>
 			<Layout bg={"pink"} color='light' height='100vh'>
 				<Box className='hero-inner' sx={innerHero}>
-					<svg
+					{/* <svg
 						id='svg-star'
 						ref={starRef}
 						style={star}
@@ -373,7 +329,8 @@ function HomePage(props, ref) {
 							style={line}
 							ref={addToLineRefs}
 						/>
-					</svg>{" "}
+					</svg>{" "} */}
+					<Star height='60vw' strokeWidth={mobile ? "0.9vw" : "2px"} />
 					<Box className='gradient-overlay' sx={overlay}>
 						<Box sx={gradientInner}></Box>
 					</Box>
@@ -645,7 +602,6 @@ const MarqueeBlock = ({ rails }) => {
 		fontWeight: "lighter",
 	};
 
-
 	return (
 		<Box
 			sx={{
@@ -679,7 +635,7 @@ const MarqueeBlock = ({ rails }) => {
 																key: index,
 																height: "10vw",
 																width: "10vw",
-																style: {marginLeft: "3vw"}
+																style: { marginLeft: "3vw" },
 														  })
 														: item;
 											  })
