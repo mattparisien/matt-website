@@ -242,16 +242,12 @@ function App() {
 	const headerRef = useRef(null);
 	const contentWrapperRef = useRef(null);
 
-	const toggleMenuActivity = () => {
+	const toggleMenu = () => {
 		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
 	};
 
 	const changeColors = (fg, bg) => {
 		setHeaderColor(fg);
-	};
-
-	const toggleLoading = () => {
-		setState(prev => ({ ...prev, isLoading: !state.isLoading }));
 	};
 
 	const colorContextControls = {
@@ -260,7 +256,6 @@ function App() {
 
 	const loadingControls = {
 		isLoading: state.isLoading,
-		toggleLoading,
 	};
 
 	return (
@@ -294,7 +289,7 @@ function App() {
 								<Header
 									ref={headerRef}
 									isMenuActive={state.menuActive}
-									toggleMenu={toggleMenuActivity}
+									toggleMenu={toggleMenu}
 								/>
 								<Menu
 									isOpen={state.menuActive}
