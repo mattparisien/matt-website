@@ -5,7 +5,7 @@ import Link from "../Link/Link";
 
 function TransitionTrigger(props) {
 	const [isTransitioning, setTransitioning] = useState(false);
-	const { toggleLoading } = useContext(LoadingContext);
+	
 	const navigate = useNavigate();
 	const location = useLocation();
 	const handleClick = () => {
@@ -16,13 +16,13 @@ function TransitionTrigger(props) {
 
 	useEffect(() => {
 		if (isTransitioning) {
-			toggleLoading();
+			
 			setTimeout(() => {
 				navigate(props.to);
 				setTransitioning(false);
 			}, 700);
 		}
-	}, [isTransitioning, navigate, toggleLoading, props.to]);
+	}, [isTransitioning, navigate, props.to]);
 
 	return (
 		<Link

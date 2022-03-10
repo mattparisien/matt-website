@@ -15,7 +15,7 @@ const wordAnim = keyframes`
 	}
 `;
 
-function Loader({ isActive, toggleLoading }) {
+function Loader({ isActive }) {
 	const [isAnimCompleted, setAnimCompleted] = useState(false);
 	const matches = useMediaQuery("(max-width: 600px)", { noSsr: true });
 	const timeline = useRef(gsap.timeline());
@@ -25,13 +25,13 @@ function Loader({ isActive, toggleLoading }) {
 	useEffect(() => {
 		const timeOut = setTimeout(() => {
 			setAnimCompleted(true);
-			toggleLoading();
+			
 		}, 3000);
 
 		return () => {
 			clearTimeout(timeOut)
 		}
-	}, [toggleLoading]);
+	}, []);
 
 	useEffect(() => {
 		if (content.current && bg.current) {
@@ -54,14 +54,12 @@ function Loader({ isActive, toggleLoading }) {
 					content.current,
 					{
 						opacity: 0,
-						onComplete: () => {
-							toggleLoading();
-						},
+				
 					},
 					1.3
 				);
 		}
-	}, [bg, content, toggleLoading]);
+	}, [bg, content]);
 
 	const theme = useTheme();
 
