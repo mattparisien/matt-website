@@ -252,7 +252,7 @@ function Footer(props) {
 						{tablet && <Line sx={lineHorizontalTop}></Line>}
 						{props.data.socials &&
 							props.data.socials.map((link, i) => {
-								console.log(link.title);
+								
 								return (
 									<ListItem
 										key={i}

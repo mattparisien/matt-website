@@ -24,7 +24,12 @@ function DesktopNav(props, ref) {
 
 	return (
 		<nav style={{ height: "100%" }} className='DesktopNav'>
-			<NavList height={4} negativeOffset={"right"} listItems={listInfo} />
+			<NavList
+				height={4}
+				negativeOffset={"right"}
+				listItems={listInfo}
+				addToLinkRefs={props.addToLinkRefs}
+			/>
 		</nav>
 	);
 }

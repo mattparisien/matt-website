@@ -408,7 +408,7 @@ function HomePage(props, ref) {
 							/>
 						</Box>
 						<Box sx={{display: "flex", alignItems: "end", justifyContent: "end", paddingTop: "5rem"}}>
-							<Button fontSize={mobile ? "10vw" : "6rem"}>All Projects</Button>
+							<Button fontSize={mobile ? "10vw" : "4rem"}>All Projects</Button>
 						</Box>
 					</Box>
 				</Box>

@@ -46,14 +46,14 @@ function Menu(props) {
 			navItems.current &&
 			infoWrapperRef.current
 		) {
-			// const rule = CSSRulePlugin.getRule(".css-1cm6twq li::after");
-			// const rule2 = CSSRulePlugin.getRule(
-			// 	".css-1cm6twq li:last-of-type::before"
-			// );
+			const rule = CSSRulePlugin.getRule(".css-io0z2h li::after");
+			const rule2 = CSSRulePlugin.getRule(
+				".css-io0z2h li:last-of-type::before"
+			);
 
-			// gsap.set([rule, rule2], {
-			// 	width: "0%",
-			// });
+			gsap.set([rule, rule2], {
+				width: "0%",
+			});
 			menuAnim.current.play();
 			menuAnim.current
 				.set(containerRef.current, { display: "block" })
@@ -73,15 +73,15 @@ function Menu(props) {
 					},
 					0.4
 				)
-				// .to(
-				// 	[rule, rule2],
-				// 	{
-				// 		cssRule: { width: "100%" },
-				// 		duration: 1,
-				// 		ease: "power3.out",
-				// 	},
-				// 	0.4
-				// )
+				.to(
+					[rule, rule2],
+					{
+						cssRule: { width: "100%" },
+						duration: 1,
+						ease: "power3.out",
+					},
+					0.4
+				)
 				.to(
 					infoWrapperRef.current,
 					{

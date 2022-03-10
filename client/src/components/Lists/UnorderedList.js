@@ -47,7 +47,7 @@ function UnorderedList(props) {
 		<StyledUl className='UnorderedList' {...props}>
 			{props.listItems.map((item, i) => {
 				return (
-					<li className='UnorderedList__item' key={i}>
+					<li className='UnorderedList__item' key={i} ref={props.addToLinkRefs}>
 						{!props.noTransition ? (
 							<TransitionTrigger to={item.href}>{item.title}</TransitionTrigger>
 						) : (
