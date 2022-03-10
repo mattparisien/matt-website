@@ -30,8 +30,6 @@ function App() {
 	const tablet = useMediaQuery(device.tablet);
 
 	useEffect(() => {
-		window.scrollTo(0, 0);
-
 		location.pathname === "/" && setHeaderColor("light");
 		location.pathname === "/work" && setHeaderColor("dark");
 		location.pathname === "/about" && setHeaderColor("dark");
