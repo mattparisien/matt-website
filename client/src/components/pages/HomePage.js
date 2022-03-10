@@ -645,6 +645,7 @@ const MarqueeBlock = ({ rails }) => {
 		fontWeight: "lighter",
 	};
 
+
 	return (
 		<Box
 			sx={{

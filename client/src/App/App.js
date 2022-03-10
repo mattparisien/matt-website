@@ -151,10 +151,12 @@ function App() {
 		footerHeight: null,
 		isFooterIntersecting: false,
 		menuActive: false,
-		isTransitioning: false,
+		isTransitioning: true,
 	});
 
 	useEffect(() => {
+		console.log("Designed & developed by Matt Parisien");
+
 		//Get essential data
 
 		const basePath = process.env.REACT_APP_API_URL;
@@ -285,8 +287,7 @@ function App() {
 									/>
 								</Helmet>
 								<Loader
-									isEnter={state.isTransitioning}
-									isExit={!state.isTransitioning}
+									isActive={state.isTransitioning}
 									setDone={toggleTransitioning}
 								/>
 								<Header

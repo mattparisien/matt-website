@@ -1,8 +1,13 @@
-import { Box, Container, useMediaQuery } from "@mui/material";
+import {
+	Box,
+	Container,
+	speedDialActionClasses,
+	useMediaQuery,
+} from "@mui/material";
 import { keyframes } from "@mui/system";
 import gsap from "gsap";
 import CSSPlugin from "gsap/CSSPlugin";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { useTheme } from "styled-components";
 import Line from "../Line/Line";
 
@@ -18,28 +23,23 @@ const wordAnim = keyframes`
 	}
 `;
 
-function Loader({ isEnter, isExit, setDone }) {
-	const [initialComplete, setInitialComplete] = useState(false);
+function Loader({ isActive, setDone }) {
+	const [hasPlayed, setHasPlayed] = useState(false);
 	const matches = useMediaQuery("(max-width: 600px)", { noSsr: true });
-	const enterTimeline = useRef(gsap.timeline());
-	const exitTimeline = useRef(gsap.timeline());
+	const masterTimeline = useRef(gsap.timeline({ paused: true }));
 	const content = useRef(null);
 	const containerRef = useRef(null);
 	const bg = useRef(null);
 
-	const animationEnter = (enterTl, container, background, content) => {
-		enterTl.set(container, { display: "flex" }).to(background, {
-			scaleX: 1,
-			duration: 0.6,
-			ease: "power2.out",
-			onComplete: () => {
-				setDone();
-			},
-		});
-	};
-
-	const animationExit = (exitTl, container, background, content) => {
-		exitTl
+	const transitionAnim = (masterTimeline, container, background, items) => {
+		console.log("hello in here");
+		masterTimeline
+			.set(container, { display: "flex" })
+			.to(background, {
+				scaleX: 1,
+				duration: 0.6,
+				ease: "power2.out",
+			})
 			.to(
 				background,
 				{
@@ -50,38 +50,52 @@ function Loader({ isEnter, isExit, setDone }) {
 				1.2
 			)
 			.to(
-				content,
+				items,
 				{
 					opacity: 0,
 				},
 				1.3
 			)
-			.set([background, content, container], {
+			.set([background, items, container], {
 				clearProps: "all",
 			});
-	};
 
-	const playInLine = (enterTl, exitTl, container, background, content) => {
-		animationEnter(enterTl, container, background, content);
-		animationExit(exitTl, container, background, content);
+		return masterTimeline;
 	};
 
 	useEffect(() => {
-		if (content.current && bg.current && containerRef.current) {
-			//Play on initial component load
-			!initialComplete &&
-				playInLine(
-					enterTimeline.current,
-					exitTimeline.current,
-					containerRef.current,
-					bg.current,
-					content.current
-				);
+		//Play on initial load
 
-			//Prevent from playing again
-			setInitialComplete(true);
+		if (isActive) {
+			transitionAnim(
+				masterTimeline.current,
+				containerRef.current,
+				bg.current,
+				content.current
+			)
+				.progress(0)
+				.play();
 		}
-	}, [bg, content, containerRef, isEnter, isExit]);
+	}, [isActive]);
+
+	// 	if (content.current && bg.current && containerRef.current) {
+	// 		//Play on initial component load
+
+	// 		const container = containerRef.current;
+	// 		const background = bg.current;
+	// 		const items = content.current;
+
+	// 		//Play everytime isActive is true
+
+	// 		if (isActive && !hasPlayed) {
+	// 			transitionAnim(masterTimeline.current, container, background, items)
+	// 				.progress(0)
+	// 				.play();
+	// 		}
+
+	// 		//Prevent from playing again
+	// 	}
+	// }, [bg, content, containerRef, isActive, hasPlayed]);
 
 	const theme = useTheme();
 
