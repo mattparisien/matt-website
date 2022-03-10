@@ -169,6 +169,7 @@ function App() {
 			`${basePath}/projects?populate=*`,
 			`${basePath}/contact`,
 			`${basePath}/socials`,
+			`${basePath}/photos?populate=*`,
 		];
 
 		const promiseArray = [...urls].map(fetchURL);
@@ -204,6 +205,12 @@ function App() {
 
 		Promise.all(promiseArray)
 			.then(data => {
+				console.log(data[3].data.data[0].attributes.Assets)
+				const photos = data[3].data.data[0].attributes.Assets.data.map(x => ({
+					id: x.id,
+					...x.attributes,
+				}));
+
 				const contactInfo = {
 					...data[1].data.data.attributes,
 					...data[1].data.data.id,
@@ -237,6 +244,7 @@ function App() {
 						projects: projects,
 						contact: contactInfo,
 						socials: socials,
+						photos: photos,
 					},
 				}));
 			})

@@ -6,47 +6,17 @@ import Line from "../Divider/Line";
 import ResponsiveGrid from "../Grid/ResponsiveGrid";
 import UnorderedList from "../Lists/UnorderedList";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
+import { useMediaQuery } from "@mui/material";
+import { device } from "../../styles/breakpoints";
+import { useTheme } from "styled-components";
 
 function WorkPage() {
+	const theme = useTheme();
 	const [itemLoading, setItemLoading] = useState(false);
-	const [gridData, setGridData] = useState(null);
+	const tablet = useMediaQuery(device.tablet);
 	const [category, setCategory] = useState("software");
 
-	const { software, photography } = useContext(DataContext);
-
-	// const handleCategoryClick = e => {
-	// 	e.preventDefault();
-	// 	setItemLoading(!itemLoading);
-	// 	setCategory(e.target.id);
-	// };
-
-	useEffect(() => {
-		if (category === "photography" && photography) {
-			const sourceArray = photography.map(image => {
-				return {
-					id: image._id,
-					src: `${process.env.REACT_APP_API_URL}/images/${image.filename}`,
-				};
-			});
-
-			setGridData(prev => ({
-				data: sourceArray,
-			}));
-		} else if (category === "software" && software) {
-			const array = software.map(project => {
-				return {
-					id: project.id,
-					name: project.name,
-					featureImage:
-						process.env.REACT_APP_API_URL + "/images/" + project.image.filename,
-					description: project.description,
-					href: project.url,
-				};
-			});
-
-			setGridData(() => ({ data: array }));
-		}
-	}, [photography, software, category]);
+	const { projects, photos } = useContext(DataContext);
 
 	return (
 		<>
@@ -78,16 +48,141 @@ function WorkPage() {
 						]}
 					/>
 					<Line />
+					<Box className="grid-wrapper" sx={{padding: "5rem 0"}}>
+						{category === "photography" ? (
+							<PhotographyGrid items={photos} tablet={tablet} theme={theme} />
+						) : (
+							<ProjectsGrid items={projects} tablet={tablet} theme={theme} />
+						)}
+					</Box>
 				</Box>
-
-				<ResponsiveGrid
-					items={gridData}
-					isItemLoading={itemLoading}
-					setItemLoading={() => setItemLoading(!itemLoading)}
-				/>
 			</Layout>
 		</>
 	);
 }
+
+const PhotographyGrid = ({ items, tablet, theme }) => {
+	const imageStyle = {
+		width: "100%",
+		height: "100%",
+		objectFit: "cover",
+	};
+
+	const photoItem = {
+		height: tablet ? "54vw" : "120vw",
+
+		gridColumn: tablet ? "span 3" : "span 6",
+	};
+
+	return (
+		<Box
+			display='grid'
+			gridTemplateColumns={"repeat(6, 1fr)"}
+			className='PhotographyGrid'
+			gap={2}
+		>
+			{items &&
+				items.map(photo => {
+					return (
+						<Box className='PhotographyGrid__item' sx={photoItem}>
+							<Box
+								className='PhotographyGrid__image'
+								key={photo.id}
+								src={photo.url}
+								alt={photo.alternativeText}
+								component={"img"}
+								sx={imageStyle}
+							></Box>
+						</Box>
+					);
+				})}
+		</Box>
+	);
+};
+
+const ProjectsGrid = ({ items, tablet, theme }) => {
+	const itemStyle = {
+		width: "100%",
+		height: "100%",
+		objectFit: "cover",
+		transition: "400ms ease",
+		position: "sticky",
+		zIndex: 1,
+	};
+
+	const itemWrapper = {
+		height: tablet ? "54vw" : "120vw",
+		backgroundColor: theme.colors.yellow,
+		gridColumn: tablet ? "span 3" : "span 6",
+		padding: "2vw",
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		"&:hover .ProjectsGrid__image": {
+			opacity: 0,
+		},
+	};
+
+	const video = {
+		objectFit: "cover",
+		position: "absolute",
+		top: 0,
+		left: 0,
+		zIndex: 0,
+		width: "100%",
+		height: "100%",
+	};
+
+	const mediaWrapper = {
+		position: "relative",
+		height: "50%",
+		width: "100%",
+		backgroundColor: theme.colors.yellow,
+		overflow: "hidden",
+	};
+
+	return (
+		<Box
+			display='grid'
+			gridTemplateColumns={"repeat(6, 1fr)"}
+			className='ProjectsGrid'
+			gap={2}
+		>
+			{items &&
+				items.map(project => {
+					return (
+						<Box
+							className='ProjectsGrid__item'
+							sx={itemWrapper}
+							component='a'
+							href={project.url}
+							target='_blank'
+							rel='noreferrer'
+						>
+							<Box className='ProjectsGrid__media-wrapper' sx={mediaWrapper}>
+								<Box
+									className='ProjectsGrid__image'
+									key={project.id}
+									src={project.Cover.image.url}
+									alt={project.Cover.image.alt}
+									component={"img"}
+									sx={itemStyle}
+								></Box>
+								<video
+									style={video}
+									autoPlay
+									loop
+									playsInline
+									mute
+									key={project.id}
+									src={project.Cover.video.url}
+								></video>
+							</Box>
+						</Box>
+					);
+				})}
+		</Box>
+	);
+};
 
 export default WorkPage;
