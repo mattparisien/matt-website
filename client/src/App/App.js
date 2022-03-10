@@ -16,6 +16,7 @@ import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
 import { device } from "../styles/breakpoints";
 import { GlobalStyle } from "../styles/global";
+import { useMediaQuery } from "@material-ui/core";
 
 export const ColorContext = createContext();
 export const LoadingContext = createContext();
@@ -26,12 +27,18 @@ function App() {
 
 	const [headerColor, setHeaderColor] = useState(null);
 	const [palette] = useState("primary");
+	const tablet = useMediaQuery(device.tablet)
 
 	useEffect(() => {
 		location.pathname === "/" && setHeaderColor("light");
 		location.pathname === "/work" && setHeaderColor("dark");
 		location.pathname === "/about" && setHeaderColor("dark");
 	}, [location]);
+
+	useEffect(() => {
+//Footer height config
+	setState(prev => ({...prev, footerHeight: tablet ? "60vw" : "90vw"}))
+	}, [tablet])
 
 	const baseSpacing = {
 		desktopL: 2,
@@ -142,10 +149,6 @@ function App() {
 	const scrollRef = useRef(null);
 
 	const [state, setState] = useState({
-		modal: {
-			isActive: false,
-			hasBeenActive: false,
-		},
 		data: {},
 		headerHeight: null,
 		footerHeight: null,
@@ -305,7 +308,7 @@ function App() {
 								/>
 
 								<ScrollWrapper ref={scrollRef}>
-									<ContentWrapper ref={contentWrapperRef}>
+									<ContentWrapper ref={contentWrapperRef} offsetBottom={state.footerHeight}>
 										<GlobalStyle />
 
 										<Routes>

@@ -23,6 +23,10 @@ function Footer(props) {
 	const footerStyle = {
 		backgroundColor: props.backgroundColor,
 		color: props.foregroundColor,
+		position: "fixed",
+		bottom: 0,
+		left: 0,
+		width: "100vw",
 	};
 	const theme = useTheme();
 	const laptop = useMediaQuery(`(max-width: ${deviceSize.laptop}px)`);
@@ -202,13 +206,8 @@ function Footer(props) {
 	const fontSize = laptop ? "2rem" : "4rem";
 
 	return (
-		<footer className='Footer'>
-			<Layout
-				bg='dark'
-				style={footerStyle}
-				height={tablet ? "90vw" : "60vw"}
-				fullWidth={true}
-			>
+		<Box className='Footer' sx={footerStyle} component='footer' data-scroll>
+			<Layout bg='dark' height={tablet ? "90vw" : "60vw"} fullWidth={true}>
 				<Box sx={lineHorizontal}></Box>
 				<Box
 					ref={ref}
@@ -252,7 +251,6 @@ function Footer(props) {
 						{tablet && <Line sx={lineHorizontalTop}></Line>}
 						{props.data.socials &&
 							props.data.socials.map((link, i) => {
-								
 								return (
 									<ListItem
 										key={i}
@@ -297,7 +295,7 @@ function Footer(props) {
 					</Box>
 				</Box>
 			</Layout>
-		</footer>
+		</Box>
 	);
 }
 

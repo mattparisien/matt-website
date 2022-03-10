@@ -28,7 +28,7 @@ function Header(props, ref) {
 			const navItems = [logo.current, ...links.current];
 			tl.current
 				.set(navItems, {
-					y: "100%",
+					y: "50%",
 					opacity: 0,
 				})
 				.to(navItems, {
