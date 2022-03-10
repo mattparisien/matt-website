@@ -1,9 +1,12 @@
 import { Box, Container, useMediaQuery } from "@mui/material";
 import { keyframes } from "@mui/system";
 import gsap from "gsap";
+import CSSPlugin from "gsap/CSSPlugin";
 import React, { useEffect, useRef, useState } from "react";
 import { useTheme } from "styled-components";
 import Line from "../Line/Line";
+
+gsap.registerPlugin(CSSPlugin);
 
 const wordAnim = keyframes`
 	0% {
@@ -15,51 +18,70 @@ const wordAnim = keyframes`
 	}
 `;
 
-function Loader({ isActive }) {
-	const [isAnimCompleted, setAnimCompleted] = useState(false);
+function Loader({ isEnter, isExit, setDone }) {
+	const [initialComplete, setInitialComplete] = useState(false);
 	const matches = useMediaQuery("(max-width: 600px)", { noSsr: true });
-	const timeline = useRef(gsap.timeline());
+	const enterTimeline = useRef(gsap.timeline());
+	const exitTimeline = useRef(gsap.timeline());
 	const content = useRef(null);
+	const containerRef = useRef(null);
 	const bg = useRef(null);
 
-	useEffect(() => {
-		const timeOut = setTimeout(() => {
-			setAnimCompleted(true);
-			
-		}, 3000);
+	const animationEnter = (enterTl, container, background, content) => {
+		enterTl.set(container, { display: "flex" }).to(background, {
+			scaleX: 1,
+			duration: 0.6,
+			ease: "power2.out",
+			onComplete: () => {
+				setDone();
+			},
+		});
+	};
 
-		return () => {
-			clearTimeout(timeOut)
-		}
-	}, []);
-
-	useEffect(() => {
-		if (content.current && bg.current) {
-			timeline.current
-				.to(bg.current, {
-					scaleX: 1,
+	const animationExit = (exitTl, container, background, content) => {
+		exitTl
+			.to(
+				background,
+				{
+					scaleY: 0.001,
 					duration: 0.6,
 					ease: "power2.out",
-				})
-				.to(
+				},
+				1.2
+			)
+			.to(
+				content,
+				{
+					opacity: 0,
+				},
+				1.3
+			)
+			.set([background, content, container], {
+				clearProps: "all",
+			});
+	};
+
+	const playInLine = (enterTl, exitTl, container, background, content) => {
+		animationEnter(enterTl, container, background, content);
+		animationExit(exitTl, container, background, content);
+	};
+
+	useEffect(() => {
+		if (content.current && bg.current && containerRef.current) {
+			//Play on initial component load
+			!initialComplete &&
+				playInLine(
+					enterTimeline.current,
+					exitTimeline.current,
+					containerRef.current,
 					bg.current,
-					{
-						scaleY: 0.001,
-						duration: 0.6,
-						ease: "power2.out",
-					},
-					1.2
-				)
-				.to(
-					content.current,
-					{
-						opacity: 0,
-				
-					},
-					1.3
+					content.current
 				);
+
+			//Prevent from playing again
+			setInitialComplete(true);
 		}
-	}, [bg, content]);
+	}, [bg, content, containerRef, isEnter, isExit]);
 
 	const theme = useTheme();
 
@@ -71,7 +93,7 @@ function Loader({ isActive }) {
 		width: "100vw",
 		color: theme.colors.light,
 		zIndex: 9999,
-		display: isAnimCompleted ? "none" : "flex",
+		display: "none",
 		alignItems: "center",
 		justifyContent: "center",
 	};
@@ -123,7 +145,7 @@ function Loader({ isActive }) {
 	};
 
 	return (
-		<Box sx={loaderStyle} component='div' className='Loader'>
+		<Box sx={loaderStyle} component='div' className='Loader' ref={containerRef}>
 			<Container sx={container} ref={content}>
 				<Line />
 				<Box sx={loadSpacer}>

@@ -142,7 +142,6 @@ function App() {
 	const scrollRef = useRef(null);
 
 	const [state, setState] = useState({
-		entryScreenActive: true,
 		modal: {
 			isActive: false,
 			hasBeenActive: false,
@@ -152,7 +151,7 @@ function App() {
 		footerHeight: null,
 		isFooterIntersecting: false,
 		menuActive: false,
-		isLoading: true,
+		isTransitioning: false,
 	});
 
 	useEffect(() => {
@@ -250,12 +249,17 @@ function App() {
 		setHeaderColor(fg);
 	};
 
+	const toggleTransitioning = msg => {
+		setState(prev => ({ ...prev, isTransitioning: !state.isTransitioning }));
+	};
+
 	const colorContextControls = {
 		changeColors,
 	};
 
 	const loadingControls = {
-		isLoading: state.isLoading,
+		isTransitioning: state.isTransitioning,
+		toggleTransitioning: toggleTransitioning,
 	};
 
 	return (
@@ -280,12 +284,11 @@ function App() {
 										content='Web Developer, Photographer & Graphic Designer'
 									/>
 								</Helmet>
-								{state.isLoading && (
-									<Loader
-										isActive={state.isLoading}
-										toggleLoading={toggleLoading}
-									/>
-								)}
+								<Loader
+									isEnter={state.isTransitioning}
+									isExit={!state.isTransitioning}
+									setDone={toggleTransitioning}
+								/>
 								<Header
 									ref={headerRef}
 									isMenuActive={state.menuActive}
@@ -302,10 +305,7 @@ function App() {
 
 								<ScrollWrapper ref={scrollRef}>
 									<ContentWrapper ref={contentWrapperRef}>
-										<GlobalStyle
-											isScrollDisabled={state.isLoading}
-											isCursorWait={state.isLoading}
-										/>
+										<GlobalStyle />
 
 										<Routes>
 											<Route

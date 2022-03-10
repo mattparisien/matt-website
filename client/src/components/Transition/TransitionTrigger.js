@@ -4,25 +4,18 @@ import { LoadingContext } from "../../App/App";
 import Link from "../Link/Link";
 
 function TransitionTrigger(props) {
-	const [isTransitioning, setTransitioning] = useState(false);
-	
+	const { toggleTransitioning, isTransitioning } = useContext(LoadingContext);
+
 	const navigate = useNavigate();
 	const location = useLocation();
-	const handleClick = () => {
-		!isTransitioning &&
-			props.to !== location.pathname &&
-			setTransitioning(true);
-	};
 
-	useEffect(() => {
-		if (isTransitioning) {
-			
-			setTimeout(() => {
-				navigate(props.to);
-				setTransitioning(false);
-			}, 700);
-		}
-	}, [isTransitioning, navigate, props.to]);
+	const handleClick = () => {
+		toggleTransitioning();
+
+		setTimeout(() => {
+			navigate(props.to);
+		}, 700);
+	};
 
 	return (
 		<Link

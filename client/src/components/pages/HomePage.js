@@ -21,6 +21,7 @@ import Layout from "../Containers/Layout";
 import Line from "../Line/Line";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import Arrow from "../Vector/Arrow";
+import Marquee from "react-fast-marquee";
 
 const gradientAnim = keyframes`
 	0% {
@@ -374,71 +375,6 @@ function HomePage(props, ref) {
 					<Box className='gradient-overlay' sx={overlay}>
 						<Box sx={gradientInner}></Box>
 					</Box>
-					{/* <Box
-						as='h2'
-						className='hero-heading'
-						sx={heading}
-						ref={addToHeadingRef}
-					>
-						— I Leverage the power of software & design to push people and
-						brands forward.
-						<svg
-							id='svg-star'
-							style={star}
-							xmlns='http://www.w3.org/2000/svg'
-							viewBox='0 0 398.89 407.59'
-						>
-							<path
-								class='cls-1'
-								d='M223.11,539.31,388.89,167'
-								transform='translate(-106.56 -149.34)'
-								style={line}
-								ref={addToLineRefs}
-							/>
-							<path
-								class='cls-1'
-								d='M149.89,484.13l312.22-262'
-								transform='translate(-106.56 -149.34)'
-								style={line}
-								ref={addToLineRefs}
-							/>
-							<path
-								class='cls-1'
-								d='M108.26,402.44l395.48-98.6'
-								transform='translate(-106.56 -149.34)'
-								style={line}
-								ref={addToLineRefs}
-							/>
-							<path
-								class='cls-1'
-								d='M106.66,310.77l398.68,84.74'
-								transform='translate(-106.56 -149.34)'
-								style={line}
-								ref={addToLineRefs}
-							/>
-							<path
-								class='cls-1'
-								d='M145.41,227.67,466.59,478.61'
-								transform='translate(-106.56 -149.34)'
-								style={line}
-								ref={addToLineRefs}
-							/>
-							<path
-								class='cls-1'
-								d='M216.66,170,395.34,536.31'
-								transform='translate(-106.56 -149.34)'
-								style={line}
-								ref={addToLineRefs}
-							/>
-							<path
-								class='cls-1'
-								d='M306,149.34V556.93'
-								transform='translate(-106.56 -149.34)'
-								style={line}
-								ref={addToLineRefs}
-							/>
-						</svg>{" "}
-					</Box> */}
 				</Box>
 			</Layout>
 
@@ -465,22 +401,27 @@ function HomePage(props, ref) {
 						width: "100%",
 						height: "100%",
 
-						padding: mobile ? "3rem 0" : "5rem 0",
+						padding: mobile ? "3rem 0" : "5rem 0 10rem 0",
 					}}
 				>
-					<div className='half-section-wrapper'>
+					<Box className='half-section-wrapper'>
 						<ParagraphLayout indent indentHeading='Philosophy' variant={2}>
 							Good research leads to effective design and better tech stacks. I
 							believe that a team of people who love creating, learning and
 							growing together have the ability to transcend the workplace.
 						</ParagraphLayout>
-						<Line color='dark' />
-					</div>
+					</Box>
 				</Box>
+			
 			</Layout>
-			<Layout bg='light' height='auto' fullWidth={"true"}>
-				<Line />
-			</Layout>
+
+			<Layout bg='light' fullWidth>
+					<Line color='dark' width='100%' />
+					<MarqueeBlock
+						rails={["Featured Work", "Software", "Change the World"]}
+					/>
+				</Layout>
+
 			<Layout bg='dark' height='100vw'>
 				<Box
 					sx={{
@@ -491,10 +432,6 @@ function HomePage(props, ref) {
 						gap: "2rem",
 					}}
 				>
-					{/* <MarqueeBlock
-						projectTitle={featuredProject && featuredProject.title}
-					/> */}
-
 					<Slider
 						slides={featuredProjects}
 						mobileQuery={mobile}
@@ -528,7 +465,7 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 			height='100%'
 		>
 			{slides &&
-				slides.map((slide, i)=> {
+				slides.map((slide, i) => {
 					return (
 						<SwiperSlide key={i}>
 							<Box
@@ -693,73 +630,61 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 	);
 };
 
-// const MarqueeBlock = ({ projectTitle }) => {
-// 	const desktop = useMediaQuery(device.laptop);
-// 	const mobile = useMediaQuery(`(max-width: ${deviceSize.mobileL}px`);
+const MarqueeBlock = ({ rails }) => {
+	const desktop = useMediaQuery(device.laptop);
+	const mobile = useMediaQuery(`(max-width: ${deviceSize.mobileL}px`);
 
-// 	const marqueeStyle = {
-// 		fontSize: desktop ? "10rem" : "13vw",
-// 		fontFamily: mobile ? "Georgia" : "Neue Mtl",
-// 		fontWeight: "lighter",
-// 	};
+	const marqueeStyle = {
+		fontSize: desktop ? "10rem" : "13vw",
+		fontFamily: mobile ? "Georgia" : "Neue Mtl",
+		fontWeight: "lighter",
+	};
 
-// 	return (
-// 		<Box
-// 			sx={{
-// 				display: "flex",
-// 				flexDirection: "column",
-// 				height: "40vw",
-// 				justifyContent: "space-between",
-// 			}}
-// 		>
-// 			<Line />
-// 			<Box
-// 				className='marquee-rail-overflow-wrapper'
-// 				sx={{ overflow: "hidden" }}
-// 			>
-// 				<Box className='marquee-rail-yOffset-wrapper'>
-// 					<Marquee sx={marqueeStyle} gradient={false}>
-// 						<MarqueeItem multiplier={10}>Featured Work</MarqueeItem>
-// 					</Marquee>
-// 				</Box>
-// 				<Line />
-// 			</Box>
-// 			<Box
-// 				className='marquee-rail-overflow-wrapper'
-// 				sx={{ overflow: "hidden" }}
-// 			>
-// 				<Box className='marquee-rail-yOffset-wrapper'>
-// 					<Marquee sx={marqueeStyle} gradient={false} direction={"right"}>
-// 						<MarqueeItem multiplier={10}>
-// 							{projectTitle ? projectTitle : "Featured Work"}
-// 						</MarqueeItem>
-// 					</Marquee>
-// 				</Box>
-// 			</Box>
-// 			<Box
-// 				className='marquee-rail-overflow-wrapper'
-// 				sx={{ overflow: "hidden" }}
-// 			>
-// 				<Box className='marquee-rail-yOffset-wrapper'>
-// 					<Marquee sx={marqueeStyle} gradient={false}>
-// 						<MarqueeItem multiplier={10}>Featured Work</MarqueeItem>
-// 					</Marquee>
-// 				</Box>
-// 			</Box>
-// 		</Box>
-// 	);
-// };
+	return (
+		<Box
+			sx={{
+				display: "flex",
+				flexDirection: "column",
+				height: "40vw",
+				justifyContent: "space-between",
+			}}
+		>
+			<Line />
 
-// const MarqueeItem = ({ speed, multiplier, children }) => {
-// 	const marqueeWord = {
-// 		marginRight: "8vw",
-// 		fontSize: "10vw",
-// 	};
-// 	return [...Array(multiplier)].map((e, i) => (
-// 		<Box className='marquee-word' key={i} sx={marqueeWord}>
-// 			{children}
-// 		</Box>
-// 	));
-// };
+			{rails &&
+				rails.map((rail, i) => {
+					return (
+						<Box
+							key={i}
+							className='marquee-rail-overflow-wrapper'
+							sx={{ overflow: "hidden" }}
+						>
+							<Box className='marquee-rail-yOffset-wrapper'>
+								<Marquee
+									sx={marqueeStyle}
+									gradient={false}
+									direction={i % 2 === 0 ? "right" : "left"}
+								>
+									<MarqueeItem multiplier={10}>{rail}</MarqueeItem>
+								</Marquee>
+							</Box>
+						</Box>
+					);
+				})}
+		</Box>
+	);
+};
+
+const MarqueeItem = ({ speed, multiplier, children }) => {
+	const marqueeWord = {
+		marginRight: "8vw",
+		fontSize: "10vw",
+	};
+	return [...Array(multiplier)].map((e, i) => (
+		<Box className='marquee-word' key={i} sx={marqueeWord}>
+			{children}
+		</Box>
+	));
+};
 
 export default forwardRef(HomePage);
