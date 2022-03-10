@@ -1,6 +1,7 @@
 import { useMediaQuery } from "@mui/material";
 import { Box, keyframes } from "@mui/system";
 import gsap from "gsap";
+import $ from "jquery";
 import React, {
 	forwardRef,
 	useContext,
@@ -8,6 +9,8 @@ import React, {
 	useRef,
 	useState,
 } from "react";
+import Marquee from "react-fast-marquee";
+import { useInView } from "react-intersection-observer";
 import { useTheme } from "styled-components";
 // Import Swiper styles
 import "swiper/css";
@@ -17,17 +20,14 @@ import "swiper/css/scrollbar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { DataContext } from "../../App/App";
 import { device, deviceSize } from "../../styles/breakpoints";
+import Button from "../Button/Button";
+import ContainerFluid from "../Containers/ContainerFluid";
 import Layout from "../Containers/Layout";
 import Line from "../Line/Line";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
-import Arrow from "../Vector/Arrow";
-import Marquee from "react-fast-marquee";
-import ContainerFluid from "../Containers/ContainerFluid";
-import MtlLogo from "../Vector/MtlLogo";
 import Star from "../Star/Star";
-import Button from "../Button/Button";
-import { useInView } from "react-intersection-observer";
-import $ from "jquery";
+import Arrow from "../Vector/Arrow";
+import MtlLogo from "../Vector/MtlLogo";
 
 const gradientAnim = keyframes`
 	0% {
@@ -57,96 +57,6 @@ function HomePage(props, ref) {
 		return `${baseSpacing * multiplier}rem 0`;
 	};
 
-	// 	{
-	// 		text: "ReactJS",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "NodeJS",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "Express",
-	// 		highlighted: true,
-	// 	},
-	// 	{
-	// 		text: "SQL",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "HTML5",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "Styled Components",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "Human",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "MaterialUI",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "MongoDB",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "GSAP",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "Threejs",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "Ruby on rails",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "Empathy",
-	// 		highlighted: true,
-	// 	},
-	// 	{
-	// 		text: "Rest APIS",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "Illustrator",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "Photoshop",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "Git",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "Mobile-first",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "Mocha/Chai",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "Cypress",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "Figma",
-	// 		highlighted: false,
-	// 	},
-	// 	{
-	// 		text: "Modern Javascript",
-	// 		highlighted: false,
-	// 	},
-	// ];
-
 	useEffect(() => {
 		if (data && data.projects) {
 			setFeaturedProjects([
@@ -171,66 +81,6 @@ function HomePage(props, ref) {
 			]);
 		}
 	}, [data]);
-	// const lineRefs = useRef([]);
-	// lineRefs.current = [];
-
-	// const addToLineRefs = el => {
-	// 	if (el && !lineRefs.current.includes(el)) {
-	// 		lineRefs.current.push(el);
-	// 	}
-	// };
-
-	// const [hasPlayed, setHasPlayed] = useState(false);
-
-	// useEffect(() => {
-	// 	if (lineRefs.current && !hasPlayed) {
-	// 		setHasPlayed(true);
-
-	// 		let delay = 0;
-	// 		let rotation = 270;
-
-	// 		//Individual line tls
-	// 		lineRefs.current.reverse().forEach((item, index) => {
-	// 			let tl = gsap.timeline();
-
-	// 			tl.set(item, {
-	// 				rotation: `${rotation}deg`,
-	// 				transformOrigin: "center",
-
-	// 				scale: 0.01,
-	// 			})
-	// 				.to(item, {
-	// 					width: "100%",
-	// 					delay: 1.4,
-	// 					duration: 0.8,
-	// 					scale: 1,
-	// 					ease: "power3.out",
-	// 				})
-	// 				.to(
-	// 					item,
-	// 					{
-	// 						rotation: "0deg",
-	// 						ease: "expo.inOut",
-	// 						duration: 3,
-	// 					},
-	// 					1
-	// 				)
-	// 				.to(item, {
-	// 					rotation: `${rotation}deg`,
-	// 					delay: delay,
-	// 					duration: 4,
-	// 					transformOrigin: "center",
-	// 					ease: "expo.inOut",
-	// 					repeat: -1,
-	// 					yoyo: true,
-	// 					repeatDelay: 1,
-	// 				});
-
-	// 			rotation += 26;
-	// 			delay += 0.1;
-	// 		});
-	// 	}
-	// }, [lineRefs, starRef, hasPlayed]);
 
 	const innerHero = {
 		width: "100%",
@@ -264,80 +114,10 @@ function HomePage(props, ref) {
 		height: "300%",
 	};
 
-	// const bg = {
-	// 	position: "absolute",
-	// 	top: 0,
-	// 	left: 0,
-	// 	width: "200px",
-
-	// 	background: theme.colors.gradient,
-	// 	zIndex: 9,
-	// 	filter: `blur(30px)`,
-	// 	height: "300%",
-	// 	mixBlendMode: "normal",
-	// };
-
 	return (
 		<>
 			<Layout bg={"pink"} color='light' height='100vh'>
 				<Box className='hero-inner' sx={innerHero}>
-					{/* <svg
-						id='svg-star'
-						ref={starRef}
-						style={star}
-						xmlns='http://www.w3.org/2000/svg'
-						viewBox='0 0 398.89 407.59'
-					>
-						<path
-							className='cls-1'
-							d='M223.11,539.31,388.89,167'
-							transform='translate(-106.56 -149.34)'
-							style={line}
-							ref={addToLineRefs}
-						/>
-						<path
-							className='cls-1'
-							d='M149.89,484.13l312.22-262'
-							transform='translate(-106.56 -149.34)'
-							style={line}
-							ref={addToLineRefs}
-						/>
-						<path
-							className='cls-1'
-							d='M108.26,402.44l395.48-98.6'
-							transform='translate(-106.56 -149.34)'
-							style={line}
-							ref={addToLineRefs}
-						/>
-						<path
-							className='cls-1'
-							d='M106.66,310.77l398.68,84.74'
-							transform='translate(-106.56 -149.34)'
-							style={line}
-							ref={addToLineRefs}
-						/>
-						<path
-							className='cls-1'
-							d='M145.41,227.67,466.59,478.61'
-							transform='translate(-106.56 -149.34)'
-							style={line}
-							ref={addToLineRefs}
-						/>
-						<path
-							className='cls-1'
-							d='M216.66,170,395.34,536.31'
-							transform='translate(-106.56 -149.34)'
-							style={line}
-							ref={addToLineRefs}
-						/>
-						<path
-							className='cls-1'
-							d='M306,149.34V556.93'
-							transform='translate(-106.56 -149.34)'
-							style={line}
-							ref={addToLineRefs}
-						/>
-					</svg>{" "} */}
 					<Star
 						height='60vw'
 						strokeWidth={mobile ? "0.9vw" : "2px"}
@@ -445,12 +225,18 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 		}
 	};
 
+	const slideColors = ["orange", "yellow"];
+
 	return (
 		<Swiper
 			spaceBetween={50}
 			slidesPerView={1}
 			onSlideChange={handleSlideChange}
 			height='100%'
+			style={{
+				backgroundColor: theme.colors[slideColors[currentSlide - 1]],
+				transition: "400ms ease",
+			}}
 		>
 			{slides &&
 				slides.map((slide, i) => {
@@ -483,7 +269,6 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 									sx={{
 										width: "100%",
 										height: "90%",
-										backgroundColor: theme.colors.orange,
 									}}
 								>
 									<Box
@@ -621,7 +406,7 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 const MarqueeBlock = ({ rails }) => {
 	const desktop = useMediaQuery(device.laptop);
 	const mobile = useMediaQuery(`(max-width: ${deviceSize.mobileL}px`);
-	const [ref, inView, entry] = useInView({threshold: 0.5});
+	const [ref, inView, entry] = useInView({ threshold: 0.5 });
 
 	const marqueeStyle = {
 		fontSize: desktop ? "10rem" : "13vw",
@@ -635,9 +420,6 @@ const MarqueeBlock = ({ rails }) => {
 	};
 
 	useEffect(() => {
-
-			
-
 		inView &&
 			gsap.to($(entry.target).find(".marquee-rail-yOffset-wrapper"), {
 				y: 0,
@@ -645,7 +427,6 @@ const MarqueeBlock = ({ rails }) => {
 				ease: "power3.out",
 				duration: 1.3,
 				stagger: 0.2,
-				
 			});
 	}, [inView, entry]);
 
