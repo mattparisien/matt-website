@@ -220,10 +220,9 @@ function Footer(props) {
 				>
 					<Box
 						sx={{
-							
 							height: tablet ? "40%" : "100%",
 							width: "50%",
-							marginRight: "auto"
+							marginRight: "auto",
 						}}
 					>
 						<Box sx={{ height: "100%", position: "relative" }}>
@@ -253,6 +252,7 @@ function Footer(props) {
 						{tablet && <Line sx={lineHorizontalTop}></Line>}
 						{props.data.socials &&
 							props.data.socials.map((link, i) => {
+								console.log(link.title);
 								return (
 									<ListItem
 										key={i}
@@ -282,13 +282,13 @@ function Footer(props) {
 										<Box
 											component='a'
 											href={link.Path}
-											target='_blank'
+											target={link.Title === "Email" ? "_self" : "_blank"}
 											rel='noreferrer'
 											ref={addToLinkRefs}
 											sx={footerLink}
 										>
 											<Box component='span' sx={{ overflow: "hidden" }}>
-												{link.Title}
+												{link.Title === "Email" ? "Talk to me" : link.Title}
 											</Box>
 										</Box>
 									</ListItem>
