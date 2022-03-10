@@ -12,7 +12,6 @@ import { useTheme } from "styled-components";
 
 function WorkPage() {
 	const theme = useTheme();
-	const [itemLoading, setItemLoading] = useState(false);
 	const tablet = useMediaQuery(device.tablet);
 	const [category, setCategory] = useState("software");
 
@@ -48,7 +47,7 @@ function WorkPage() {
 						]}
 					/>
 					<Line />
-					<Box className="grid-wrapper" sx={{padding: "5rem 0"}}>
+					<Box className='grid-wrapper' sx={{ padding: "5rem 0" }}>
 						{category === "photography" ? (
 							<PhotographyGrid items={photos} tablet={tablet} theme={theme} />
 						) : (
@@ -84,10 +83,13 @@ const PhotographyGrid = ({ items, tablet, theme }) => {
 			{items &&
 				items.map(photo => {
 					return (
-						<Box className='PhotographyGrid__item' sx={photoItem}>
+						<Box
+							className='PhotographyGrid__item'
+							sx={photoItem}
+							key={photo.id}
+						>
 							<Box
 								className='PhotographyGrid__image'
-								key={photo.id}
 								src={photo.url}
 								alt={photo.alternativeText}
 								component={"img"}
@@ -112,7 +114,7 @@ const ProjectsGrid = ({ items, tablet, theme }) => {
 
 	const itemWrapper = {
 		height: tablet ? "54vw" : "120vw",
-		backgroundColor: theme.colors.yellow,
+
 		gridColumn: tablet ? "span 3" : "span 6",
 		padding: "2vw",
 		display: "flex",
@@ -158,11 +160,11 @@ const ProjectsGrid = ({ items, tablet, theme }) => {
 							href={project.url}
 							target='_blank'
 							rel='noreferrer'
+							key={project.id}
 						>
 							<Box className='ProjectsGrid__media-wrapper' sx={mediaWrapper}>
 								<Box
 									className='ProjectsGrid__image'
-									key={project.id}
 									src={project.Cover.image.url}
 									alt={project.Cover.image.alt}
 									component={"img"}

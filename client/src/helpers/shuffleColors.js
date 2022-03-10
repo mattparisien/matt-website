@@ -22,4 +22,4 @@ function shuffleColors(theme) {
 	return randomColor;
 }
 
-export { shuffleColors };
+export default shuffleColors;

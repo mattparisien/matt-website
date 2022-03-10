@@ -273,6 +273,8 @@ function App() {
 	const loadingControls = {
 		isTransitioning: state.isTransitioning,
 		toggleTransitioning: toggleTransitioning,
+		menuActive: state.menuActive,
+		toggleMenu
 	};
 
 	return (

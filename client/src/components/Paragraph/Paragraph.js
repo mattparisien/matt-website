@@ -51,7 +51,9 @@ function Paragraph(props) {
 
 	const paragraphClass = "Paragraph";
 	const ref = useRef();
-	const [inViewRef, inView] = useInView();
+	const [inViewRef, inView, entry] = useInView({
+		threshold: 1,
+	});
 
 	const setRefs = useCallback(
 		node => {
@@ -65,14 +67,16 @@ function Paragraph(props) {
 
 	useEffect(() => {
 		if (inView) {
-			gsap.to($(ref.current).find(".line"), {
-				y: 0,
-				opacity: 1,
-				ease: "power3.out",
-				duration: 1,
-				stagger: 0.1,
-				delay: 0.1,
-			});
+			setTimeout(() => {
+				gsap.to($(entry.target).find(".line"), {
+					y: 0,
+					opacity: 1,
+					ease: "power3.out",
+					duration: 1,
+					stagger: 0.1,
+					delay: 0.1,
+				});
+			}, 100);
 		}
 	}, [inView, inViewRef, ref, windowWidth]);
 
