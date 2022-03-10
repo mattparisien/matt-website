@@ -22,6 +22,8 @@ import Line from "../Line/Line";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import Arrow from "../Vector/Arrow";
 import Marquee from "react-fast-marquee";
+import ContainerFluid from "../Containers/ContainerFluid";
+import MtlLogo from "../Vector/MtlLogo";
 
 const gradientAnim = keyframes`
 	0% {
@@ -412,15 +414,18 @@ function HomePage(props, ref) {
 						</ParagraphLayout>
 					</Box>
 				</Box>
-			
 			</Layout>
 
-			<Layout bg='light' fullWidth>
+			<Layout bg='light' fullWidth height='auto'>
+				<ContainerFluid>
 					<Line color='dark' width='100%' />
+				</ContainerFluid>
+				<Box sx={{ padding: "5rem 0" }}>
 					<MarqueeBlock
-						rails={["Featured Work", "Software", "Change the World"]}
+						rails={["Work Hard", ["Montreal", MtlLogo], "Change the World"]}
 					/>
-				</Layout>
+				</Box>
+			</Layout>
 
 			<Layout bg='dark' height='100vw'>
 				<Box
@@ -665,7 +670,20 @@ const MarqueeBlock = ({ rails }) => {
 									gradient={false}
 									direction={i % 2 === 0 ? "right" : "left"}
 								>
-									<MarqueeItem multiplier={10}>{rail}</MarqueeItem>
+									<MarqueeItem multiplier={10}>
+										{Array.isArray(rail)
+											? rail.map((item, index) => {
+													return typeof item === "function"
+														? React.createElement(item, {
+																key: index,
+																height: "10vw",
+																width: "10vw",
+																style: {marginLeft: "3vw"}
+														  })
+														: item;
+											  })
+											: rail}
+									</MarqueeItem>
 								</Marquee>
 							</Box>
 						</Box>
@@ -677,6 +695,8 @@ const MarqueeBlock = ({ rails }) => {
 
 const MarqueeItem = ({ speed, multiplier, children }) => {
 	const marqueeWord = {
+		display: "flex",
+		alignItems: "center",
 		marginRight: "8vw",
 		fontSize: "10vw",
 	};
