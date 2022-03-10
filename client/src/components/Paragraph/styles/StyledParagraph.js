@@ -70,6 +70,40 @@ const paragraphFontSizes = {
 			lineHeight: "1.2rem",
 		},
 	},
+	variant3: {
+		desktopL: {
+			fontSize: "1rem",
+			lineHeight: "2.5rem",
+		},
+		desktop: {
+			fontSize: "1.2rem",
+			lineHeight: "1.8rem",
+		},
+		laptopL: {
+			fontSize: "1rem",
+			lineHeight: "1.6rem",
+		},
+		laptop: {
+			fontSize: "1rem",
+			lineHeight: "1.7rem",
+		},
+		tablet: {
+			fontSize: "0.8rem",
+			lineHeight: "1.3rem",
+		},
+		mobileL: {
+			fontSize: "0.8rem",
+			lineHeight: "1.3rem",
+		},
+		mobileM: {
+			fontSize: "0.8rem",
+			lineHeight: "1.3rem",
+		},
+		mobileS: {
+			fontSize: "0.8rem",
+			lineHeight: "1.3rem",
+		},
+	},
 };
 
 export const StyledParagraph = styled.p`
@@ -123,11 +157,6 @@ export const StyledVariant1Paragraph = styled(StyledParagraph)`
 `;
 
 export const StyledVariant2Paragraph = styled(StyledParagraph)`
-
-
-
-
-
 	.line:nth-of-type(1) {
 		&::after {
 			left: -100%;
@@ -142,11 +171,23 @@ export const StyledVariant2Paragraph = styled(StyledParagraph)`
 			line-height: ${paragraphFontSizes.variant2[size].lineHeight};
 		}`;
 		})};
+`;
 
-
-
-		@media ${device.mobileL} {
-		width: 50%;
-		margin-left: auto;
+export const StyledVariant3Paragraph = styled(StyledParagraph)`
+	.line:nth-of-type(1) {
+		&::after {
+			left: -130%;
 		}
+	}
+
+	margin-left: -30%;
+
+	${Object.keys(paragraphFontSizes.variant3)
+		.reverse()
+		.map(size => {
+			return `@media ${device[size]} {
+		font-size: ${paragraphFontSizes.variant3[size].fontSize};
+		line-height: ${paragraphFontSizes.variant3[size].lineHeight};
+	}`;
+		})};
 `;

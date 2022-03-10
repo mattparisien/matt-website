@@ -20,16 +20,14 @@ import "swiper/css/scrollbar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { DataContext } from "../../App/App";
 import { device, deviceSize } from "../../styles/breakpoints";
-import Button from "../Button/Button";
 import ContainerFluid from "../Containers/ContainerFluid";
 import Layout from "../Containers/Layout";
 import Line from "../Line/Line";
+import Link from "../Link/Link";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import Star from "../Star/Star";
 import Arrow from "../Vector/Arrow";
 import MtlLogo from "../Vector/MtlLogo";
-import Link from "../Link/Link";
-
 
 const gradientAnim = keyframes`
 	0% {
@@ -145,8 +143,26 @@ function HomePage(props, ref) {
 						interfaces. Previously at Lighthouse Labs, I'm currently exploring
 						the space where development and animation intersects.
 					</ParagraphLayout>
+				</Box>
+				<Box sx={{marginBottom: setVerticalSpacing(3)}}>
 					<Line color='dark' />
 				</Box>
+			</Layout>
+			<Layout bg='light' height='auto'>
+				<Box
+					sx={{
+						height: "100%",
+						width: "100%",
+						paddingBottom: setVerticalSpacing(4),
+					}}
+				>
+					<ParagraphLayout indent indentHeading='about' variant={3}>
+						Hey. I'm a full-stack software developer & graphic designer obsessed
+						with digital products and passionate about building responsive user
+						interfaces. 
+					</ParagraphLayout>
+				</Box>
+	
 			</Layout>
 			<Layout bg='light' height='auto'>
 				<Box
@@ -204,8 +220,9 @@ function HomePage(props, ref) {
 								paddingTop: "5rem",
 							}}
 						>
-							
-							<Link to={"/work"} fontSize={mobile ? "10vw" : "2rem"}>All Projects ↗︎</Link>
+							<Link to={"/work"} fontSize={mobile ? "10vw" : "2rem"}>
+								All Projects ↗︎
+							</Link>
 						</Box>
 					</Box>
 				</Box>

@@ -10,6 +10,11 @@ const StyledParagraphWrapper = styled(Box)`
 	align-items: ${({ variant }) => (variant === 2 ? "start" : "center")};
 	justify-content: center;
 
+	.spacer {
+		width: 50%;
+		height: 100%;
+	}
+
 	p {
 		${({ theme }) => theme.spacing(2, "margin-top")};
 		${({ theme }) => theme.spacing(2, "margin-bottom")};
@@ -21,6 +26,8 @@ function ParagraphLayout(props) {
 
 	return (
 		<StyledParagraphWrapper className='ParagraphLayout' {...props}>
+			{props.variant === 2 && <div className='spacer'></div>}
+			{props.variant === 3 && <div className='spacer'></div>}
 			<Paragraph {...props} variant={props.variant}>
 				{children}
 			</Paragraph>

@@ -6,6 +6,7 @@ import useResize from "../../helpers/hooks/useResize";
 import {
 	StyledVariant1Paragraph,
 	StyledVariant2Paragraph,
+	StyledVariant3Paragraph,
 } from "./styles/StyledParagraph";
 import { useInView } from "react-intersection-observer";
 import { Box } from "@mui/material";
@@ -82,8 +83,15 @@ function Paragraph(props) {
 
 	return (
 		<>
-			{props.variant === 1 ? (
-				<Box ref={setRefs} className='view-wrapper' sx={{ width: "100%" }}>
+			<Box
+				ref={setRefs}
+				className='view-wrapper'
+				sx={{
+					width:
+						props.variant === 1 ? "100%" : props.variant === 3 ? "30%" : "50%",
+				}}
+			>
+				{props.variant === 1 ? (
 					<StyledVariant1Paragraph
 						className={paragraphClass}
 						{...props}
@@ -93,17 +101,22 @@ function Paragraph(props) {
 						{props.indent ? <span className='spacer'>&nbsp;</span> : ""}
 						{props.children}
 					</StyledVariant1Paragraph>
-				</Box>
-			) : (
-				<Box ref={setRefs} className='view-wrapper' sx={{ width: "100%" }}>
+				) : props.variant === 2 ? (
 					<StyledVariant2Paragraph
 						className={paragraphClass}
 						{...props}
 						isResized={isResized}
 						ref={paragraph}
 					></StyledVariant2Paragraph>
-				</Box>
-			)}
+				) : (
+					<StyledVariant3Paragraph
+						className={paragraphClass}
+						{...props}
+						isResized={isResized}
+						ref={paragraph}
+					></StyledVariant3Paragraph>
+				)}
+			</Box>
 		</>
 	);
 }
