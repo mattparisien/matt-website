@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { LoadingContext } from "../../App/App";
 import { useNavigate } from "react-router-dom";
-import Button from "../Button/Button";
 
 const StyledConstructionHeading = styled(Paragraph)``;
 
@@ -28,7 +27,6 @@ function Construction() {
 				Hey. I'm currently working very hard to make this website the best it
 				can be. Check back soon or contact me.
 			</StyledConstructionHeading>
-			<Button $to={"/about"}>Chnage routes!</Button>
 		</StyledWrapper>
 	);
 }

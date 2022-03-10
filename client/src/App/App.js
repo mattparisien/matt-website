@@ -139,7 +139,6 @@ function App() {
 		},
 	};
 
-
 	const scrollRef = useRef(null);
 
 	const [state, setState] = useState({
@@ -162,7 +161,11 @@ function App() {
 		const basePath = process.env.REACT_APP_API_URL;
 		const fetchURL = url => axios.get(url);
 
-		const urls = [`${basePath}/projects?populate=*`, `${basePath}/contact`];
+		const urls = [
+			`${basePath}/projects?populate=*`,
+			`${basePath}/contact`,
+			`${basePath}/socials`,
+		];
 
 		const promiseArray = [...urls].map(fetchURL);
 
@@ -196,11 +199,15 @@ function App() {
 		};
 
 		Promise.all(promiseArray)
-			.then(data => {		
+			.then(data => {
 				const contactInfo = {
 					...data[1].data.data.attributes,
 					...data[1].data.data.id,
 				};
+				const socials = data[2].data.data.map(x => ({
+					id: x.id,
+					...x.attributes,
+				}));
 				const projects = data[0].data.data.map(x => {
 					const video = findVideo(x.attributes.Cover.data);
 					const image = findImage(x.attributes.Cover.data);
@@ -219,11 +226,14 @@ function App() {
 					};
 				});
 
-				
-
 				setState(prev => ({
 					...prev,
-					data: { ...prev.data, projects: projects, contact: contactInfo },
+					data: {
+						...prev.data,
+						projects: projects,
+						contact: contactInfo,
+						socials: socials,
+					},
 				}));
 			})
 			.catch(err => console.log(err));
@@ -231,11 +241,10 @@ function App() {
 
 	const headerRef = useRef(null);
 	const contentWrapperRef = useRef(null);
-	
+
 	const toggleMenuActivity = () => {
 		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
 	};
-
 
 	const changeColors = (fg, bg) => {
 		setHeaderColor(fg);
@@ -290,7 +299,10 @@ function App() {
 								<Menu
 									isOpen={state.menuActive}
 									theme={themes}
-									data={state.data.contact}
+									data={{
+										contact: { ...state.data.contact },
+										socials: state.data.socials,
+									}}
 								/>
 
 								<ScrollWrapper ref={scrollRef}>
@@ -310,7 +322,12 @@ function App() {
 											<Route path='/upload' element={<UploadPage />} />
 										</Routes>
 									</ContentWrapper>
-									<Footer data={state.data.contact} />
+									<Footer
+										data={{
+											contact: { ...state.data.contact },
+											socials: state.data.socials,
+										}}
+									/>
 								</ScrollWrapper>
 							</div>
 						</LocomotiveScrollProvider>

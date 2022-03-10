@@ -211,7 +211,7 @@ function Footer(props) {
 				bg='dark'
 				style={footerStyle}
 				height={tablet ? "90vw" : "60vw"}
-				fullbleed
+				fullWidth={true}
 			>
 				<Box sx={lineHorizontal}></Box>
 				<Box
@@ -230,7 +230,7 @@ function Footer(props) {
 					>
 						<Box sx={{ height: "50%", position: "relative" }}>
 							<Star height='100%' color={starColor} strokeWidth={"2px"} />
-							{props.data && (
+							{props.data.contact && (
 								<Box
 									className='contact-info-wrapper'
 									sx={{
@@ -241,13 +241,13 @@ function Footer(props) {
 								>
 									<Box className='name'>Matthew Parisien</Box>
 									<Box className='phone' sx={{ marginTop: 1 }}>
-										{props.data.Phone}
+										{props.data.contact.Phone}
 									</Box>
 									<Box className='email' sx={{ marginTop: 1 }}>
-										{props.data.Email}
+										{props.data.contact.Email}
 									</Box>
 									<Box className='greeting' sx={{ marginTop: 1 }}>
-										{props.data.Greeting}
+										{props.data.contact.Greeting}
 									</Box>
 								</Box>
 							)}
@@ -273,7 +273,7 @@ function Footer(props) {
 						<Line sx={lineVerticalCentered}></Line>
 						{!tablet && <Line sx={lineVerticalLeft}></Line>}
 						{tablet && <Line sx={lineHorizontalTop}></Line>}
-						{socialLinks.map((link, i) => {
+						{props.data.socials && props.data.socials.map((link, i) => {
 							return (
 								<ListItem
 									key={i}
@@ -302,14 +302,14 @@ function Footer(props) {
 								>
 									<Box
 										component='a'
-										href={link.path}
+										href={link.Path}
 										target='_blank'
 										rel='noreferrer'
 										ref={addToLinkRefs}
 										sx={footerLink}
 									>
 										<Box component='span' sx={{ overflow: "hidden" }}>
-											{link.name}
+											{link.Title}
 										</Box>
 									</Box>
 								</ListItem>

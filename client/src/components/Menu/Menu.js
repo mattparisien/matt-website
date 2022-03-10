@@ -23,6 +23,7 @@ function Menu(props) {
 		},
 	];
 
+	gsap.registerPlugin(CSSRulePlugin);
 	const { isOpen } = props;
 	const mobile = useMediaQuery(device.mobileL);
 	const menuAnim = useRef(gsap.timeline());
@@ -43,13 +44,10 @@ function Menu(props) {
 			navItems.current &&
 			infoWrapperRef.current
 		) {
-			gsap.registerPlugin(CSSRulePlugin);
-			const rule = CSSRulePlugin.getRule(".css-1ta320g li::after");
+			const rule = CSSRulePlugin.getRule(".css-1cm6twq li::after");
 			const rule2 = CSSRulePlugin.getRule(
-				".css-1ta320g li:last-of-type::before"
+				".css-1cm6twq li:last-of-type::before"
 			);
-
-			console.log(rule, rule2);
 
 			gsap.set([rule, rule2], {
 				width: "0%",
@@ -98,6 +96,7 @@ function Menu(props) {
 	}, [isOpen, containerRef, navItems, infoWrapperRef]);
 
 	const container = {
+		boxSizing: "border-box",
 		width: "100vw",
 		height: "100vh",
 		position: "fixed",
@@ -151,48 +150,78 @@ function Menu(props) {
 	const contactInfoWrapper = {
 		color: props.theme.colors.light,
 		display: "flex",
+		alignItems: "start",
+
 		opacity: 0,
+		position: "absolute",
+		bottom: 0,
+		left: 0,
+		height: "150px",
+		width: "100%",
+		boxSizing: "border-box",
+	};
+
+	const greeting = {
+		width: "200px",
 	};
 
 	return (
 		<Box className='Menu' sx={container} ref={containerRef}>
-			<Layout height='auto'>
-				<Box component='ul' sx={listContainer} className='menu-list'>
-					{listInfo.map((item, i) => {
-						return (
-							<li key={i} className='menu-list__item'>
-								<Box className='visibility-wrapper' ref={addToListRefs}>
-									<TransitionTrigger nocircle to={item.url}>
-										{item.title}
-									</TransitionTrigger>
-								</Box>
-							</li>
-						);
-					})}
-				</Box>
-
-				{props.data && (
-					<Box
-						sx={contactInfoWrapper}
-						className='contact-info-wrapper'
-						ref={infoWrapperRef}
-					>
-						<Box sx={{ marginRight: "30%" }}>
-							<Box
-								component='ul'
-								sx={{ padding: 0, marginTop: 0, marginBottom: "2rem" }}
-							>
-								<li>Instagram</li>
-								<li>LinkedIn</li>
-								<li>Github</li>
-							</Box>
-							<Box>Matthew Parisien</Box>
-						</Box>
-						<Box>
-							<Box>{props.data.Phone}</Box>
-						</Box>
+			<Layout height='100%'>
+				<Box
+					className='layout-inner'
+					sx={{ position: "relative", width: "100%", height: "100%" }}
+				>
+					<Box component='ul' sx={listContainer} className='menu-list'>
+						{listInfo.map((item, i) => {
+							return (
+								<li key={i} className='menu-list__item'>
+									<Box className='visibility-wrapper' ref={addToListRefs}>
+										<TransitionTrigger nocircle to={item.url}>
+											{item.title}
+										</TransitionTrigger>
+									</Box>
+								</li>
+							);
+						})}
 					</Box>
-				)}
+
+					{props.data && props.data.contact && props.data.socials && (
+						<Box
+							sx={contactInfoWrapper}
+							className='contact-info-wrapper'
+							ref={infoWrapperRef}
+						>
+							<Box sx={{ marginRight: "30%" }}>
+								<Box
+									component='ul'
+									sx={{ padding: 0, marginTop: 0, marginBottom: "2rem" }}
+								>
+									{props.data.socials &&
+										props.data.socials.map(account => {
+											return (
+												<li key={account.id}>
+													<a
+														href={account.Path}
+														target='_blank'
+														rel='noreferrer'
+													>
+														{account.Title}
+													</a>
+												</li>
+											);
+										})}
+								</Box>
+							</Box>
+							<Box className='phone'>
+								<Box>{props.data.contact.Phone} ↗︎</Box>
+							</Box>
+							<Box className='greeting' sx={{ marginLeft: "auto" }}>
+								<Box sx={greeting}>{props.data.contact.Greeting}</Box>
+							</Box>
+						</Box>
+					)}
+				</Box>
 			</Layout>
 		</Box>
 	);
