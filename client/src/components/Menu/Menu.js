@@ -6,6 +6,7 @@ import Layout from "../Containers/Layout";
 import TransitionTrigger from "../Transition/TransitionTrigger";
 import { useMediaQuery } from "@material-ui/core";
 import { device } from "../../styles/breakpoints";
+import Arrow from "../Vector/Arrow";
 
 function Menu(props) {
 	const listInfo = [
@@ -26,6 +27,7 @@ function Menu(props) {
 	gsap.registerPlugin(CSSRulePlugin);
 	const { isOpen } = props;
 	const mobile = useMediaQuery(device.mobileL);
+	const tablet = useMediaQuery(device.tablet);
 	const menuAnim = useRef(gsap.timeline());
 	const navItems = useRef([]);
 	const containerRef = useRef(null);
@@ -44,14 +46,14 @@ function Menu(props) {
 			navItems.current &&
 			infoWrapperRef.current
 		) {
-			const rule = CSSRulePlugin.getRule(".css-1cm6twq li::after");
-			const rule2 = CSSRulePlugin.getRule(
-				".css-1cm6twq li:last-of-type::before"
-			);
+			// const rule = CSSRulePlugin.getRule(".css-1cm6twq li::after");
+			// const rule2 = CSSRulePlugin.getRule(
+			// 	".css-1cm6twq li:last-of-type::before"
+			// );
 
-			gsap.set([rule, rule2], {
-				width: "0%",
-			});
+			// gsap.set([rule, rule2], {
+			// 	width: "0%",
+			// });
 			menuAnim.current.play();
 			menuAnim.current
 				.set(containerRef.current, { display: "block" })
@@ -71,15 +73,15 @@ function Menu(props) {
 					},
 					0.4
 				)
-				.to(
-					[rule, rule2],
-					{
-						cssRule: { width: "100%" },
-						duration: 1,
-						ease: "power3.out",
-					},
-					0.4
-				)
+				// .to(
+				// 	[rule, rule2],
+				// 	{
+				// 		cssRule: { width: "100%" },
+				// 		duration: 1,
+				// 		ease: "power3.out",
+				// 	},
+				// 	0.4
+				// )
 				.to(
 					infoWrapperRef.current,
 					{
@@ -122,6 +124,11 @@ function Menu(props) {
 			overflow: "hidden",
 			position: "relative",
 			padding: "0.3rem 0",
+			transition: "400ms ease",
+			"&:hover": {
+				backgroundColor: props.theme.colors.light,
+				color: props.theme.colors.dark,
+			},
 			"&::after": {
 				position: "absolute",
 				content: "''",
@@ -213,11 +220,21 @@ function Menu(props) {
 										})}
 								</Box>
 							</Box>
-							<Box className='phone'>
-								<Box>{props.data.contact.Phone} ↗︎</Box>
-							</Box>
-							<Box className='greeting' sx={{ marginLeft: "auto" }}>
-								<Box sx={greeting}>{props.data.contact.Greeting}</Box>
+							<Box
+								sx={{
+									display: "flex",
+									justifyContent: "space-between",
+									width: "100%",
+								}}
+							>
+								<Box className='phone'>
+									<Box>{props.data.contact.Phone} ↗︎</Box>
+								</Box>
+								{tablet && (
+									<Box className='greeting' sx={{ marginLeft: "auto" }}>
+										<Box sx={greeting}>{props.data.contact.Greeting}</Box>
+									</Box>
+								)}
 							</Box>
 						</Box>
 					)}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const StyledBurger = styled.button`
@@ -11,13 +11,20 @@ const StyledBurger = styled.button`
 	background: transparent;
 	border: 0px;
 
-	&:hover .top {
-		transform: ${({ isBurger }) => (isBurger ? "translateX(-10px)" : "none")};
-	}
-
-	&:hover .bottom {
-		transform: ${({ isBurger }) => (isBurger ? "translateX(10px)" : "none")};
-	}
+	${({ isBurger }) => {
+		return isBurger
+			? `
+			&:hover .top {
+				transform: translateX(-10px);
+			}
+		
+			&:hover .bottom {
+				transform: translateX(10px);
+			}
+		
+			`
+			: "";
+	}}
 
 	.top,
 	.bottom {
@@ -38,6 +45,10 @@ const StyledBurger = styled.button`
 `;
 
 function MobileNav(props) {
+	useEffect(() => {
+		console.log(props.isBurger);
+	}, [props]);
+
 	return (
 		<StyledBurger className='MobileNav' {...props} onClick={props.toggleMenu}>
 			<div className='top'></div>
