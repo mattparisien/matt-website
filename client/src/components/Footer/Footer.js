@@ -8,25 +8,6 @@ import { deviceSize } from "../../styles/breakpoints";
 import Layout from "../Containers/Layout";
 import Star from "../Star/Star";
 
-const socialLinks = [
-	{
-		name: "LinkedIn",
-		path: "/",
-	},
-	{
-		name: "Facebook",
-		path: "/",
-	},
-	{
-		name: "Instagram",
-		path: "/",
-	},
-	{
-		name: "Github",
-		path: "/",
-	},
-];
-
 // const gradientAnim = keyframes`
 // 0% {
 // 	transform: translateY(0)
@@ -147,6 +128,19 @@ function Footer(props) {
 		transitionDelay: 0.3,
 	};
 
+	const lineHorizontalBottom = {
+		width: "100%",
+		height: "1px",
+		backgroundColor: theme.colors.light,
+		transformOrigin: "center",
+		position: "absolute",
+		bottom: 0,
+		left: 0,
+		transform: !inView ? "scaleX(0.001)" : "scaleX(1)",
+		transition: "1s ease",
+		transitionDelay: 0.3,
+	};
+
 	const lineVerticalCentered = {
 		width: "1px",
 		height: "100%",
@@ -205,6 +199,8 @@ function Footer(props) {
 		},
 	};
 
+	const fontSize = laptop ? "2rem" : "4rem";
+
 	return (
 		<footer className='Footer'>
 			<Layout
@@ -224,33 +220,15 @@ function Footer(props) {
 				>
 					<Box
 						sx={{
+							
 							height: tablet ? "40%" : "100%",
-							width: tablet ? "100%" : "40%",
+							width: "50%",
+							marginRight: "auto"
 						}}
 					>
-						<Box sx={{ height: "50%", position: "relative" }}>
+						<Box sx={{ height: "100%", position: "relative" }}>
 							<Star height='100%' color={starColor} strokeWidth={"2px"} />
-							{props.data.contact && (
-								<Box
-									className='contact-info-wrapper'
-									sx={{
-										textTransform: "none",
-										fontSize: "0.8rem",
-										width: "200px",
-									}}
-								>
-									<Box className='name'>Matthew Parisien</Box>
-									<Box className='phone' sx={{ marginTop: 1 }}>
-										{props.data.contact.Phone}
-									</Box>
-									<Box className='email' sx={{ marginTop: 1 }}>
-										{props.data.contact.Email}
-									</Box>
-									<Box className='greeting' sx={{ marginTop: 1 }}>
-										{props.data.contact.Greeting}
-									</Box>
-								</Box>
-							)}
+							{!tablet && <Box sx={lineHorizontalBottom}></Box>}
 						</Box>
 					</Box>
 
@@ -273,48 +251,49 @@ function Footer(props) {
 						<Line sx={lineVerticalCentered}></Line>
 						{!tablet && <Line sx={lineVerticalLeft}></Line>}
 						{tablet && <Line sx={lineHorizontalTop}></Line>}
-						{props.data.socials && props.data.socials.map((link, i) => {
-							return (
-								<ListItem
-									key={i}
-									sx={{
-										padding: 0,
+						{props.data.socials &&
+							props.data.socials.map((link, i) => {
+								return (
+									<ListItem
+										key={i}
+										sx={{
+											padding: 0,
 
-										width: "50%",
-										fontSize: laptop ? "2rem" : "4rem",
-										textTransform: "capitalize",
-										fontFamily: "Neue Mtl",
-										textAlign: "center",
-										height: "50%",
-										"&:hover a": {
-											backgroundColor: theme.colors.light,
-											color: theme.colors.dark,
-										},
-										"& a": {
-											display: "flex",
-											width: "100%",
-											height: "100%",
-											alignItems: "center",
-											justifyContent: "center",
-											transition: "400ms ease",
-										},
-									}}
-								>
-									<Box
-										component='a'
-										href={link.Path}
-										target='_blank'
-										rel='noreferrer'
-										ref={addToLinkRefs}
-										sx={footerLink}
+											width: "50%",
+											fontSize: fontSize,
+											textTransform: "capitalize",
+											fontFamily: "Neue Mtl",
+											textAlign: "center",
+											height: "50%",
+											"&:hover a": {
+												backgroundColor: theme.colors.light,
+												color: theme.colors.dark,
+											},
+											"& a": {
+												display: "flex",
+												width: "100%",
+												height: "100%",
+												alignItems: "center",
+												justifyContent: "center",
+												transition: "400ms ease",
+											},
+										}}
 									>
-										<Box component='span' sx={{ overflow: "hidden" }}>
-											{link.Title}
+										<Box
+											component='a'
+											href={link.Path}
+											target='_blank'
+											rel='noreferrer'
+											ref={addToLinkRefs}
+											sx={footerLink}
+										>
+											<Box component='span' sx={{ overflow: "hidden" }}>
+												{link.Title}
+											</Box>
 										</Box>
-									</Box>
-								</ListItem>
-							);
-						})}
+									</ListItem>
+								);
+							})}
 					</Box>
 				</Box>
 			</Layout>

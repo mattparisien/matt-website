@@ -1,15 +1,16 @@
-import React, { useRef, useState, useEffect } from "react";
-import { useTheme } from "styled-components";
 import gsap from "gsap";
-import { useMediaQuery } from "@material-ui/core";
-import { device } from "../../styles/breakpoints";
+import React, { useEffect, useRef, useState } from "react";
+import { useTheme } from "styled-components";
+import { useInView } from "react-intersection-observer";
+import { Box } from "@mui/system";
 
 function Star({ height, color, strokeWidth }) {
-	const mobile = useMediaQuery(device.mobileL);
+	
 	const theme = useTheme();
 	const lineRefs = useRef([]);
 	lineRefs.current = [];
 	const starRef = useRef(null);
+	const [ref, inView, entry] = useInView();
 
 	const addToLineRefs = el => {
 		if (el && !lineRefs.current.includes(el)) {
@@ -32,7 +33,7 @@ function Star({ height, color, strokeWidth }) {
 	const line = {
 		color: theme.colors.orange,
 		fill: "none",
-		stroke: theme.colors.dark,
+		stroke: theme.colors[color],
 		strokeMiterlimit: 10,
 		strokeWidth: strokeWidth
 	};
@@ -40,7 +41,7 @@ function Star({ height, color, strokeWidth }) {
 	const [hasPlayed, setHasPlayed] = useState(false);
 
 	useEffect(() => {
-		if (lineRefs.current && !hasPlayed) {
+		if (lineRefs.current && !hasPlayed && inView) {
 			setHasPlayed(true);
 
 			let delay = 0;
@@ -87,8 +88,9 @@ function Star({ height, color, strokeWidth }) {
 				delay += 0.1;
 			});
 		}
-	}, [lineRefs, starRef, hasPlayed]);
+	}, [lineRefs, starRef, hasPlayed, inView]);
 	return (
+		<Box className="star-view-wrapper" ref={ref}>
 		<svg
 			id='svg-star'
 			ref={starRef}
@@ -146,6 +148,7 @@ function Star({ height, color, strokeWidth }) {
 				ref={addToLineRefs}
 			/>
 		</svg>
+		</Box>
 	);
 }
 

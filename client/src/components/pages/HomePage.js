@@ -25,6 +25,7 @@ import Marquee from "react-fast-marquee";
 import ContainerFluid from "../Containers/ContainerFluid";
 import MtlLogo from "../Vector/MtlLogo";
 import Star from "../Star/Star";
+import Button from "../Button/Button";
 
 const gradientAnim = keyframes`
 	0% {
@@ -330,7 +331,11 @@ function HomePage(props, ref) {
 							ref={addToLineRefs}
 						/>
 					</svg>{" "} */}
-					<Star height='60vw' strokeWidth={mobile ? "0.9vw" : "2px"} />
+					<Star
+						height='60vw'
+						strokeWidth={mobile ? "0.9vw" : "2px"}
+						color='dark'
+					/>
 					<Box className='gradient-overlay' sx={overlay}>
 						<Box sx={gradientInner}></Box>
 					</Box>
@@ -384,21 +389,28 @@ function HomePage(props, ref) {
 				</Box>
 			</Layout>
 
-			<Layout bg='dark' height='100vw'>
-				<Box
-					sx={{
-						height: "100%",
-						display: "flex",
-						alignItems: "center",
-						justifyContent: "center",
-						gap: "2rem",
-					}}
-				>
-					<Slider
-						slides={featuredProjects}
-						mobileQuery={mobile}
-						desktopQuery={desktop}
-					/>
+			<Layout bg='dark' height='auto'>
+				<Box sx={{ padding: "15rem 0", height: "100%" }}>
+					<Box sx={{ position: "relative", height: "100%" }}>
+						<Box
+							sx={{
+								height: "100%",
+								display: "flex",
+								alignItems: "center",
+								justifyContent: "center",
+								gap: "2rem",
+							}}
+						>
+							<Slider
+								slides={featuredProjects}
+								mobileQuery={mobile}
+								desktopQuery={desktop}
+							/>
+						</Box>
+						<Box sx={{display: "flex", alignItems: "end", justifyContent: "end", paddingTop: "5rem"}}>
+							<Button fontSize={mobile ? "10vw" : "6rem"}>All Projects</Button>
+						</Box>
+					</Box>
 				</Box>
 			</Layout>
 		</>

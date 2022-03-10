@@ -18,8 +18,8 @@ function Menu(props) {
 			title: "Projects",
 		},
 		{
-			url: "/contact",
-			title: "Let's talk",
+			url: "/about",
+			title: "About",
 		},
 	];
 
