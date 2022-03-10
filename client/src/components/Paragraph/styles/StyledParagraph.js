@@ -159,9 +159,11 @@ export const StyledVariant1Paragraph = styled(StyledParagraph)`
 export const StyledVariant2Paragraph = styled(StyledParagraph)`
 	.line:nth-of-type(1) {
 		&::after {
-			left: -100%;
+			left: -130%;
 		}
 	}
+
+	margin-left: -30%;
 
 	${Object.keys(paragraphFontSizes.variant2)
 		.reverse()

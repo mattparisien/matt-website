@@ -6,6 +6,7 @@ import { device } from "../../styles/breakpoints";
 const StyledContainer = styled(Container)`
 	height: 100%;
 	position: relative;
+
 	display: ${({ display }) => (display ? display : "block")};
 	justify-content: space-between;
 	align-items: center;
@@ -15,6 +16,7 @@ const StyledContainer = styled(Container)`
 	margin: 0 !important;
 	max-width: none;
 	`};
+	
 
 	@media ${device.mobileS} {
 		padding-left: 1.3rem;
@@ -40,6 +42,8 @@ const StyledContainer = styled(Container)`
 		padding-left: 9rem;
 		padding-right: 9rem;
 	}
+
+	
 `;
 
 function ContainerFluid(props) {

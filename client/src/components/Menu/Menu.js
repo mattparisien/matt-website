@@ -15,7 +15,7 @@ function Menu(props) {
 			title: "Home",
 		},
 		{
-			url: "/projects",
+			url: "/work",
 			title: "Projects",
 		},
 		{

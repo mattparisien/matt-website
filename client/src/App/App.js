@@ -31,7 +31,7 @@ function App() {
 
 	useEffect(() => {
 		location.pathname === "/" && setHeaderColor("light");
-		location.pathname === "/work" && setHeaderColor("dark");
+		location.pathname === "/work" && setHeaderColor("light");
 		location.pathname === "/about" && setHeaderColor("dark");
 	}, [location]);
 

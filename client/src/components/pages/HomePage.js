@@ -28,6 +28,7 @@ import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import Star from "../Star/Star";
 import Arrow from "../Vector/Arrow";
 import MtlLogo from "../Vector/MtlLogo";
+import ButtonCircle from "../Button/ButtonCircle";
 
 const gradientAnim = keyframes`
 	0% {
@@ -140,29 +141,41 @@ function HomePage(props, ref) {
 					<ParagraphLayout indent indentHeading='about' variant={1}>
 						Hey. I'm a full-stack software developer & graphic designer obsessed
 						with digital products and passionate about building responsive user
-						interfaces. Previously at Lighthouse Labs, I'm currently exploring
-						the space where development and animation intersects.
+						interfaces. Having just graduated from Lighthouse Labs, I'm
+						currently exploring the intersection between technology, design and
+						strategy.
 					</ParagraphLayout>
 				</Box>
-				<Box sx={{marginBottom: setVerticalSpacing(3)}}>
+				<Box sx={{ marginBottom: setVerticalSpacing(3) }}>
 					<Line color='dark' />
 				</Box>
 			</Layout>
-			<Layout bg='light' height='auto'>
+			<Layout bg='light' height='auto' overflow={"visible"}>
 				<Box
 					sx={{
 						height: "100%",
 						width: "100%",
 						paddingBottom: setVerticalSpacing(4),
+						overflow: "visible",
 					}}
 				>
-					<ParagraphLayout indent indentHeading='about' variant={3}>
-						Hey. I'm a full-stack software developer & graphic designer obsessed
-						with digital products and passionate about building responsive user
-						interfaces. 
+					<ParagraphLayout indent indentHeading='Stack' variant={3}>
+						Over the past year I've developed a profiency in full-stack
+						development. I am proficient in Javascript, CSS/SCSS & Styled
+						Components, React, NodeJS, Express, SQL & MondoDB.
 					</ParagraphLayout>
+					<Box
+						sx={{
+							display: "flex",
+							justifyContent: "flex-end",
+							overflow: "visible",
+						}}
+					>
+						<ButtonCircle color='red' scrollSpeed={4} href={"/about"}>
+							Learn more
+						</ButtonCircle>
+					</Box>
 				</Box>
-	
 			</Layout>
 			<Layout bg='light' height='auto'>
 				<Box
@@ -189,7 +202,12 @@ function HomePage(props, ref) {
 				</ContainerFluid>
 				<Box sx={{ padding: setVerticalSpacing(2) }}>
 					<MarqueeBlock
-						rails={["Work Hard", ["Montreal", MtlLogo], "Change the World"]}
+						rails={[
+							"Work Hard Play Hard",
+							["Montreal Native", MtlLogo],
+							"Change the World",
+						]}
+						theme={theme}
 					/>
 				</Box>
 			</Layout>
@@ -220,7 +238,13 @@ function HomePage(props, ref) {
 								paddingTop: "5rem",
 							}}
 						>
-							<Link to={"/work"} fontSize={mobile ? "10vw" : "2rem"}>
+							<Link
+								href={"/work"}
+								style={{
+									fontSize: mobile ? "10vw" : "2rem",
+									fontFamily: "Neue Mtl",
+								}}
+							>
 								All Projects ↗︎
 							</Link>
 						</Box>
@@ -423,7 +447,7 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 	);
 };
 
-const MarqueeBlock = ({ rails }) => {
+const MarqueeBlock = ({ rails, theme }) => {
 	const desktop = useMediaQuery(device.laptop);
 	const mobile = useMediaQuery(`(max-width: ${deviceSize.mobileL}px`);
 	const [ref, inView, entry] = useInView({ threshold: 0.5 });
@@ -484,7 +508,10 @@ const MarqueeBlock = ({ rails }) => {
 																key: index,
 																height: "10vw",
 																width: "10vw",
-																style: { marginLeft: "3vw" },
+																style: {
+																	marginLeft: "3vw",
+																	fill: theme.colors.red,
+																},
 														  })
 														: item;
 											  })

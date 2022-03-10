@@ -88,7 +88,7 @@ function Paragraph(props) {
 				className='view-wrapper'
 				sx={{
 					width:
-						props.variant === 1 ? "100%" : props.variant === 3 ? "30%" : "50%",
+						props.variant === 1 ? "100%" : "30%",
 				}}
 			>
 				{props.variant === 1 ? (
