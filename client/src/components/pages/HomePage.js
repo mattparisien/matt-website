@@ -30,6 +30,7 @@ import Arrow from "../Vector/Arrow";
 import MtlLogo from "../Vector/MtlLogo";
 import ButtonCircle from "../Button/ButtonCircle";
 
+
 const gradientAnim = keyframes`
 	0% {
 		transform: translateY(0)
