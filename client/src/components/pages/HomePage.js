@@ -28,6 +28,8 @@ import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import Star from "../Star/Star";
 import Arrow from "../Vector/Arrow";
 import MtlLogo from "../Vector/MtlLogo";
+import Link from "../Link/Link";
+
 
 const gradientAnim = keyframes`
 	0% {
@@ -202,7 +204,8 @@ function HomePage(props, ref) {
 								paddingTop: "5rem",
 							}}
 						>
-							<Button fontSize={mobile ? "10vw" : "4rem"}>All Projects</Button>
+							
+							<Link to={"/work"} fontSize={mobile ? "10vw" : "2rem"}>All Projects ↗︎</Link>
 						</Box>
 					</Box>
 				</Box>

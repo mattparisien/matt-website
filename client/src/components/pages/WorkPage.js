@@ -17,13 +17,13 @@ function WorkPage() {
 
 	return (
 		<>
-			<Layout bg='light' height='45vh' offsetTop>
+			<Layout bg='dark' height='45vh' offsetTop>
 				<ParagraphLayout indent indentHeading='work' variant={1}>
 					I design, develop and maintain full-stack applications for a living. I
 					also do beauty photography on the side, check it out below.
 				</ParagraphLayout>
 			</Layout>
-			<Layout bg='light' height='auto'>
+			<Layout bg='dark' height='auto'>
 				<Box className='categories-bar' sx={{ marginBottom: "4rem" }}>
 					<UnorderedList
 						height={3}
@@ -101,6 +101,9 @@ const PhotographyGrid = ({ items, tablet, theme }) => {
 };
 
 const ProjectsGrid = ({ items, tablet, theme }) => {
+
+	console.log(items)
+
 	const itemStyle = {
 		width: "100%",
 		height: "100%",
@@ -180,7 +183,7 @@ const ProjectsGrid = ({ items, tablet, theme }) => {
 							className='ProjectsGrid__item'
 							sx={itemWrapper}
 							component='a'
-							href={project.url}
+							href={project.Location}
 							target='_blank'
 							rel='noreferrer'
 							key={project.id}
