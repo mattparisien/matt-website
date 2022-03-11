@@ -13,7 +13,7 @@ const StyledParagraphWrapper = styled(Box)`
 
 function ParagraphLayout(props) {
 	const classes = classNames("ParagraphLayout", {
-		[props.classes]: props.clases,
+		[props.classes]: props.classes,
 	});
 	const { children } = props;
 

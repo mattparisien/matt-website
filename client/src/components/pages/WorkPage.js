@@ -19,13 +19,16 @@ function WorkPage() {
 	return (
 		<>
 			<Container classes='-bg-yellow'>
-				<Section classes='-padding-huge -fullHeight'>
-					<ParagraphLayout indent indentHeading='work' variant={1}>
-						I design, develop and maintain full-stack applications for a living.
+				<Section classes='-fullHeight'>
+					<ParagraphLayout
+						indent
+						indentHeading='work'
+						variant={1}
+						classes='-align-center'
+					>
+						I love my job. A lot. Previously im commercial photography, I now design, develop and maintain full-stack applications for a living.
 						I also do beauty photography on the side, check it out below.{" "}
-						<span className='-absolute'>
-							<Star height='100%' color='dark' height="10vw"/>
-						</span>
+						<span className='-absolute'></span>
 					</ParagraphLayout>
 				</Section>
 			</Container>
