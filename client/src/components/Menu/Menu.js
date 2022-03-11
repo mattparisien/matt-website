@@ -6,6 +6,8 @@ import React, { useEffect, useRef } from "react";
 import { device } from "../../styles/breakpoints";
 import Layout from "../Containers/Layout";
 import TransitionTrigger from "../Transition/TransitionTrigger";
+import Container from "../Containers/Container";
+import FooterNav from "../Nav/FooterNav";
 
 function Menu(props) {
 	const listInfo = [
@@ -23,8 +25,6 @@ function Menu(props) {
 		},
 	];
 
-	
-
 	gsap.registerPlugin(CSSRulePlugin);
 	const { isOpen } = props;
 	const mobile = useMediaQuery(device.mobileL);
@@ -39,8 +39,6 @@ function Menu(props) {
 			navItems.current.push(el);
 		}
 	};
-
-	console.log(isOpen)
 
 	useEffect(() => {
 		if (
@@ -176,12 +174,9 @@ function Menu(props) {
 	};
 
 	return (
-		<Box className='Menu' sx={container} ref={containerRef}>
-			<Layout height='100%'>
-				<Box
-					className='layout-inner'
-					sx={{ position: "relative", width: "100%", height: "100%" }}
-				>
+		<div className='Menu -fullHeight -fullWidth -bg-dark' ref={containerRef}>
+			<Container>
+				<div className='inner' className="-relative -fullHeight">
 					<Box component='ul' sx={listContainer} className='menu-list'>
 						{listInfo.map((item, i) => {
 							return (
@@ -202,48 +197,45 @@ function Menu(props) {
 							className='contact-info-wrapper'
 							ref={infoWrapperRef}
 						>
-							<Box sx={{ marginRight: "30%" }}>
-								<Box
-									component='ul'
-									sx={{ padding: 0, marginTop: 0, marginBottom: "2rem" }}
-								>
-									{props.data.socials &&
-										props.data.socials.map(account => {
-											return (
-												<li key={account.id}>
-													<a
-														href={account.Path}
-														target='_blank'
-														rel='noreferrer'
-													>
-														{account.Title}
-													</a>
-												</li>
-											);
-										})}
-								</Box>
-							</Box>
+							<FooterNav />
+							{/* <Box sx={{ marginRight: "30%" }}>
 							<Box
-								sx={{
-									display: "flex",
-									justifyContent: "space-between",
-									width: "100%",
-								}}
+								component='ul'
+								sx={{ padding: 0, marginTop: 0, marginBottom: "2rem" }}
 							>
-								<Box className='phone'>
-									<Box>{props.data.contact.Phone} ↗︎</Box>
-								</Box>
-								{tablet && (
-									<Box className='greeting' sx={{ marginLeft: "auto" }}>
-										<Box sx={greeting}>{props.data.contact.Greeting}</Box>
-									</Box>
-								)}
+								{props.data.socials &&
+									props.data.socials.map(account => {
+										return (
+											<li key={account.id}>
+												<a href={account.Path} target='_blank' rel='noreferrer'>
+													{account.Title}
+												</a>
+											</li>
+										);
+									})}
 							</Box>
 						</Box>
+						<Box
+							sx={{
+								display: "flex",
+								justifyContent: "space-between",
+								width: "100%",
+							}}
+						>
+							<Box className='phone'>
+								<Box>{props.data.contact.Phone} ↗︎</Box>
+							</Box>
+							{tablet && (
+								<Box className='greeting' sx={{ marginLeft: "auto" }}>
+									<Box sx={greeting}>{props.data.contact.Greeting}</Box>
+								</Box>
+							)}
+						</Box> */}
+						</Box>
 					)}
-				</Box>
-			</Layout>
-		</Box>
+				</div>
+			</Container>
+		</div>
 	);
 }
 

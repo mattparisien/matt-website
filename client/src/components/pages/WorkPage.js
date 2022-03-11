@@ -26,8 +26,9 @@ function WorkPage() {
 						variant={1}
 						classes='-align-center'
 					>
-						I love my job. A lot. Previously im commercial photography, I now design, develop and maintain full-stack applications for a living.
-						I also do beauty photography on the side, check it out below.{" "}
+						I love my job. A lot. Previously im commercial photography, I now
+						design, develop and maintain full-stack applications for a living. I
+						also do beauty photography on the side, check it out below.{" "}
 						<span className='-absolute'></span>
 					</ParagraphLayout>
 				</Section>
@@ -178,7 +179,7 @@ const ProjectsGrid = ({ items, tablet, theme }) => {
 		bottom: 0,
 		color: theme.colors.light,
 		width: "50%",
-		fontSize: "1rem",
+
 		transform: "translateY(100%)",
 		opacity: 0,
 		transition: "400ms ease",
@@ -239,7 +240,11 @@ const ProjectsGrid = ({ items, tablet, theme }) => {
 										></video>
 									)}
 								</Box>
-								<Box className='info-bar-bottom' sx={infoBarBottom}>
+								<Box
+									className='info-bar-bottom'
+									sx={infoBarBottom}
+									className='-text-tiny'
+								>
 									{project.PreviewText}
 								</Box>
 							</Box>

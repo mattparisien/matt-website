@@ -1,0 +1,15 @@
+.Menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9;
+	transform: translateY(-100%);
+
+	.menu-list {
+		padding-top: 10rem;
+	}
+
+	ul {
+		color: white;
+	}
+}

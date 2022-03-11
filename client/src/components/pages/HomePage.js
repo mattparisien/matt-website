@@ -119,7 +119,12 @@ function HomePage(props, ref) {
 
 			<Container classes={"-bg-light "}>
 				<Section classes='-fullHeight'>
-					<ParagraphLayout indent indentHeading='about' variant={1} classes={"-align-start"}>
+					<ParagraphLayout
+						indent
+						indentHeading='about'
+						variant={1}
+						classes={"-align-start"}
+					>
 						Hey. I'm a full-stack software developer & graphic designer obsessed
 						with digital products and passionate about building responsive user
 						interfaces. Having just graduated from Lighthouse Labs, I'm
