@@ -28,8 +28,6 @@ import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import Star from "../Star/Star";
 import Arrow from "../Vector/Arrow";
 import MtlLogo from "../Vector/MtlLogo";
-import ButtonCircle from "../Button/ButtonCircle";
-
 
 const gradientAnim = keyframes`
 	0% {
@@ -131,78 +129,42 @@ function HomePage(props, ref) {
 				</Box>
 			</Layout>
 
-			<Layout bg='light' height='auto'>
-				<Box
-					sx={{
-						height: "100%",
-						width: "100%",
-						padding: setVerticalSpacing(1),
-					}}
-				>
-					<ParagraphLayout indent indentHeading='about' variant={1}>
-						Hey. I'm a full-stack software developer & graphic designer obsessed
-						with digital products and passionate about building responsive user
-						interfaces. Having just graduated from Lighthouse Labs, I'm
-						currently exploring the intersection between technology, design and
-						strategy.
-					</ParagraphLayout>
-				</Box>
-				<Box sx={{ marginBottom: setVerticalSpacing(3) }}>
-					<Line color='dark' />
-				</Box>
+			<Layout bg='light' height='auto' margin={setVerticalSpacing(2)}>
+				<ParagraphLayout indent indentHeading='about' variant={1}>
+					Hey. I'm a full-stack software developer & graphic designer obsessed
+					with digital products and passionate about building responsive user
+					interfaces. Having just graduated from Lighthouse Labs, I'm currently
+					exploring the intersection between technology, design and strategy.
+				</ParagraphLayout>
 			</Layout>
-			<Layout bg='light' height='auto' overflow={"visible"}>
-				<Box
-					sx={{
-						height: "100%",
-						width: "100%",
-						paddingBottom: setVerticalSpacing(4),
-						overflow: "visible",
-					}}
-				>
+			<Layout
+				bg='light'
+				height='auto'
+				overflow={"visible"}
+				margin={"0 0 20rem 0"}
+			>
+				<Line color='dark' />
+				<Box sx={{ paddingTop: "2rem" }}>
 					<ParagraphLayout indent indentHeading='Stack' variant={3}>
 						Over the past year I've developed a profiency in full-stack
 						development. I am proficient in Javascript, CSS/SCSS & Styled
 						Components, React, NodeJS, Express, SQL & MondoDB.
 					</ParagraphLayout>
-	
 				</Box>
-			
 			</Layout>
-			<Layout bg='light' height='auto'>
-			<Box
-						sx={{
-							display: "flex",
-							justifyContent: "flex-end",
-							overflow: "visible",
-						}}
-					>
-						<ButtonCircle color='red' scrollSpeed={4} href={"/about"}>
-							Learn more
-						</ButtonCircle>
-					</Box>
-				<Box
-					sx={{
-						width: "100%",
-						height: "100%",
+			<Layout bg='light' height='auto' margin={"0 0 5rem 0"}>
+				<Line color='dark' width='50%' />
 
-						padding: setVerticalSpacing(2),
-					}}
-				>
-					<Box className='half-section-wrapper'>
-						<ParagraphLayout indent indentHeading='Philosophy' variant={2}>
-							Good research leads to effective design and better tech stacks. I
-							believe that a team of people who love creating, learning and
-							growing together have the ability to transcend the workplace.
-						</ParagraphLayout>
-					</Box>
+				<Box sx={{ paddingTop: "2rem" }}>
+					<ParagraphLayout indent indentHeading='Philosophy' variant={2}>
+						Good research leads to effective design and better tech stacks. I
+						believe that a team of people who love creating, learning and
+						growing together have the ability to transcend the workplace.
+					</ParagraphLayout>
 				</Box>
 			</Layout>
 
 			<Layout bg='light' fullWidth height='auto'>
-				<ContainerFluid>
-					<Line color='dark' width='100%' />
-				</ContainerFluid>
 				<Box sx={{ padding: setVerticalSpacing(2) }}>
 					<MarqueeBlock
 						rails={[

@@ -159,11 +159,18 @@ export const StyledVariant1Paragraph = styled(StyledParagraph)`
 export const StyledVariant2Paragraph = styled(StyledParagraph)`
 	.line:nth-of-type(1) {
 		&::after {
-			left: -130%;
+			top: -25px;
 		}
 	}
-
-	margin-left: -30%;
+	@media ${device.mobileL} {
+		width: 50%;
+		margin-left: auto;
+		.line:nth-of-type(1) {
+			&::after {
+				left: -100%;
+			}
+		}
+	}
 
 	${Object.keys(paragraphFontSizes.variant2)
 		.reverse()
@@ -178,11 +185,19 @@ export const StyledVariant2Paragraph = styled(StyledParagraph)`
 export const StyledVariant3Paragraph = styled(StyledParagraph)`
 	.line:nth-of-type(1) {
 		&::after {
-			left: -130%;
+			top: -25px;
 		}
 	}
 
-	margin-left: -30%;
+	@media ${device.mobileL} {
+		width: 50%;
+		margin-left: auto;
+		.line:nth-of-type(1) {
+			&::after {
+				left: -100%;
+			}
+		}
+	}
 
 	${Object.keys(paragraphFontSizes.variant3)
 		.reverse()

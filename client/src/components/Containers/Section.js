@@ -8,6 +8,7 @@ const StyledSection = styled.section`
 	z-index: 1;
 	width: 100%;
 	height: ${({ height }) => (height ? height : "100vh")};
+	margin: ${({ margin }) => (margin ? margin : "0")};
 
 	background-color: ${({ theme, bg }) => (bg ? theme.colors[bg] : "black")};
 

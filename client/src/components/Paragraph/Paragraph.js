@@ -1,15 +1,15 @@
+import { Box } from "@mui/material";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
 import $ from "jquery";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useInView } from "react-intersection-observer";
 import useResize from "../../helpers/hooks/useResize";
 import {
 	StyledVariant1Paragraph,
 	StyledVariant2Paragraph,
-	StyledVariant3Paragraph,
+	StyledVariant3Paragraph
 } from "./styles/StyledParagraph";
-import { useInView } from "react-intersection-observer";
-import { Box } from "@mui/material";
 
 function Paragraph(props) {
 	const [intersecting] = useState(null);
@@ -33,11 +33,6 @@ function Paragraph(props) {
 				setIsSplit(true);
 				setSplitText(mySplitText);
 			}, 250);
-			// const splitTextWrap = new SplitText(paragraph.current, {
-			// 	type: "lines",
-			// 	linesClass: "line-wrapper",
-
-			// setSplitWrap(splitTextWrap);
 		}
 	}, [isSplit, windowWidth, intersecting, splitText]);
 
@@ -62,8 +57,6 @@ function Paragraph(props) {
 	);
 
 	useEffect(() => {
-		console.log("in view", inView);
-
 		if (inView) {
 			setTimeout(() => {
 				gsap.to($(entry.target).find(".line"), {
@@ -83,12 +76,12 @@ function Paragraph(props) {
 			<Box
 				ref={setRefs}
 				className='view-wrapper'
-				sx={{
-					width: props.variant === 1 ? "100%" : "30%",
-				}}
+				sx={{width: "100%"}}
+				
 			>
 				{props.variant === 1 ? (
 					<StyledVariant1Paragraph
+						desktop={props.desktop}
 						className={paragraphClass}
 						{...props}
 						isResized={isResized}
@@ -99,6 +92,7 @@ function Paragraph(props) {
 					</StyledVariant1Paragraph>
 				) : props.variant === 2 ? (
 					<StyledVariant2Paragraph
+					desktop={props.desktop}
 						className={paragraphClass}
 						{...props}
 						isResized={isResized}
@@ -106,6 +100,7 @@ function Paragraph(props) {
 					></StyledVariant2Paragraph>
 				) : (
 					<StyledVariant3Paragraph
+					desktop={props.desktop}
 						className={paragraphClass}
 						{...props}
 						isResized={isResized}
