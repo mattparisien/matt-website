@@ -8,6 +8,7 @@ import Section from "../Containers/Section";
 import UnorderedList from "../Lists/UnorderedList";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import Star from "../Star/Star";
+import Link from "../Link/Link";
 
 function WorkPage() {
 	const theme = useTheme();
@@ -40,29 +41,18 @@ function WorkPage() {
 						className='categories-bar -padding-small'
 						sx={{ marginBottom: "4rem" }}
 					>
-						<UnorderedList
-							height={3}
-							clickHandlers={{
-								software: () => setCategory("software"),
-								photography: () => setCategory("photography"),
-							}}
-							noTransition
-							negativeOffset='left'
-							listItems={[
-								{
-									title: "Software",
-									href: "",
-									isSelect: category === "software" ? true : false,
-									superscript: projects && projects.length,
-								},
-								{
-									title: "Photography",
-									href: "",
-									isSelect: category === "photography" ? true : false,
-									superscript: photos && photos.length,
-								},
-							]}
-						/>
+						<ul className='category-list -ul-horizontal -ul-horizontal-spacing-md'>
+							<li>
+								<Link isSelect={category === "software"} onClick={() => setCategory('software')}>
+									Software <sup>{projects && projects.length}</sup>
+								</Link>
+							</li>
+							<li>
+								<Link isSelect={category === "photography"} onClick={() => setCategory('photography')}>
+									Photography <sup>{photos && photos.length}</sup>
+								</Link>
+							</li>
+						</ul>
 
 						<Box className='grid-wrapper' sx={{ padding: "5rem 0" }}>
 							{category === "photography" ? (

@@ -188,10 +188,7 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 			slidesPerView={1}
 			onSlideChange={handleSlideChange}
 			height='100%'
-			style={{
-				backgroundColor: theme.colors[slideColors[currentSlide - 1]],
-				transition: "400ms ease",
-			}}
+			style={{ transform: "scale(0.7)" }}
 		>
 			{slides &&
 				slides.map((slide, i) => {
@@ -231,7 +228,6 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 										sx={{
 											height: "100%",
 											width: "100%",
-											transform: "scale(0.7)",
 										}}
 									>
 										{slide.cover.image && !desktopQuery && (
@@ -296,7 +292,7 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 										<Box
 											component='span'
 											sx={{
-												fontSize: "0.8rem",
+												color: "white",
 												marginRight: "1rem",
 												display: desktopQuery ? "none" : "block",
 											}}
@@ -305,6 +301,7 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 												component='span'
 												sx={{
 													opacity: currentSlide === 1 ? 1 : 0.5,
+													color: "white",
 												}}
 											>
 												01
@@ -313,6 +310,7 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 												component='span'
 												sx={{
 													opacity: 0.5,
+													color: "white",
 												}}
 											>
 												/
@@ -343,7 +341,8 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 											transform: "translateY(-100%)",
 											opacity: 0,
 											transition: "400ms ease",
-											fontSize: "0.8rem",
+											
+											color: "white"
 										}}
 										className='cta'
 									>
@@ -395,8 +394,6 @@ const MarqueeBlock = ({ rails, theme }) => {
 				justifyContent: "space-between",
 			}}
 		>
-			<Line />
-
 			{rails &&
 				rails.map((rail, i) => {
 					return (

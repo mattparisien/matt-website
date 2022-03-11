@@ -18,6 +18,18 @@
 	align-items: center;
 }
 
+.-ul-horizontal {
+	display: flex;
+}
+
+.-ul-horizontal-spacing-md {
+
+	li {
+		margin-right: var(--space-md);
+	}
+	
+}
+
 .-align-end {
 	align-items: end;
 }

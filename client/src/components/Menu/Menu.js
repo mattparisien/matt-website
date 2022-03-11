@@ -13,16 +13,12 @@ function Menu(props) {
 	const listInfo = [
 		{
 			url: "/",
-			title: "Home",
+			title: "About",
 		},
 		{
 			url: "/work",
 			title: "Projects",
-		},
-		{
-			url: "/about",
-			title: "About",
-		},
+		}
 	];
 
 	gsap.registerPlugin(CSSRulePlugin);

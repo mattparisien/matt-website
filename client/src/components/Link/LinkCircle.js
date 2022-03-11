@@ -2,13 +2,14 @@ import gsap from "gsap";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import React, { useRef } from "react";
 
-export default function LinkCircle({isSelect}) {
+export default function LinkCircle({ isSelect }) {
 	const circleStyle = {
 		position: "absolute",
 		top: 0,
 		left: 0,
 		width: "100%",
 		height: "100%",
+		transform: 'scale(2.5)'
 	};
 
 	const lineRef = useRef(null);

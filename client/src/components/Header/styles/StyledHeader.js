@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { device } from "../../../styles/breakpoints";
 
 export const StyledHeader = styled.header`
+font-size: inherit !important;
 	.header-floater {
 		background-color: ${({ theme }) => theme.colors.dark};
 		position: absolute;
@@ -32,9 +33,6 @@ export const StyledHeader = styled.header`
 
 	height: 2.4rem;
 
-	${({ theme }) => {
-		return theme.typography.setSize(1);
-	}};
 
 	box-sizing: border-box;
 
@@ -81,13 +79,6 @@ export const StyledHeader = styled.header`
 			}
 		}
 
-		.copyright-symbol {
-			position: absolute;
-			right: 0;
-			top: 0;
-			display: block;
-			font-size: 0.7rem;
-			font-family: "Neue Mtl";
-		}
+	
 	}
 `;

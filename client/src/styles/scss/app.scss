@@ -11,6 +11,21 @@
 	box-sizing: border-box;
 }
 
+:root {
+	@include media("<=tablet") {
+		font-size: '14px';
+	}
+
+	@include media("<=phone") {
+		font-size: '15px';
+	}
+
+
+	@include media(">=tablet") {
+		font-size: 15px;
+	}
+}
+
 a {
 	font-family: "Neue Mtl";
 }
