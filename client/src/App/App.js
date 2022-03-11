@@ -15,13 +15,13 @@ import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
 import { device } from "../styles/breakpoints";
 import { GlobalStyle } from "../styles/global";
+import classNames from "classnames";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
 
 function App() {
 	const location = useLocation();
-
 	const [play, setPlay] = useState(true);
 
 	const baseSpacing = {
@@ -149,6 +149,8 @@ function App() {
 		isTransitioning: true,
 	});
 
+	const appClasses = classNames("App", { "menu-active": state.menuActive });
+
 	useEffect(() => {
 		console.log("Designed & developed by Matt Parisien");
 
@@ -274,7 +276,7 @@ function App() {
 						watch={[location.pathname]}
 						containerRef={scrollRef}
 					>
-						<div className='App'>
+						<div className={appClasses}>
 							<Helmet>
 								<title>Matthew Parisien</title>
 								<meta

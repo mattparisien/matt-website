@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { useTheme } from "styled-components";
 import { deviceSize } from "../../styles/breakpoints";
 import Container from "../Containers/Container";
-import Star from "../Star/Star";
+import TransitionTrigger from "../Transition/TransitionTrigger";
 
 // const gradientAnim = keyframes`
 // 0% {
@@ -46,13 +46,20 @@ function Footer(props) {
 
 	return (
 		<footer className='Footer'>
-			
 			<Container>
-				
 				<nav className='footer-nav'>
-					<a className='footer-nav--link'>Projects ↗︎</a>
-					<a className='footer-nav--link'>Let's talk ↗︎</a>
-					<a className='footer-nav--link'>About ↗︎</a>
+					<TransitionTrigger noCircle to={"/work"} classes='footer-nav--link'>
+						Projects ↗︎
+					</TransitionTrigger>
+					<a
+						href="mailto:hello@matthewparisien.com?subject=Let's talk"
+						className='footer-nav--link'
+					>
+						Let's talk ↗︎
+					</a>
+					<TransitionTrigger noCircle classes='footer-nav--link' to={"/"}>
+						About ↗︎
+					</TransitionTrigger>
 				</nav>
 
 				<div
