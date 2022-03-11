@@ -35,7 +35,7 @@ function Header(props, ref) {
 					ease: "power3.out",
 					stagger: 0.1,
 					duration: 1,
-					delay: 1.6,
+					delay: 1.7,
 				});
 		}
 	}, [links, logo]);
