@@ -36,10 +36,16 @@ function Header(props, ref) {
 					ease: "power3.out",
 					stagger: 0.1,
 					duration: 1,
-					delay: 1.6
+					delay: 1.6,
 				});
 		}
 	}, [links, logo]);
+
+	const logoStyle = {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+	};
 
 	return (
 		<StyledHeader
@@ -51,13 +57,11 @@ function Header(props, ref) {
 		>
 			<Box className='Header__floater' sx={{ height: "100%" }}>
 				<ContainerFluid display='flex'>
-					<Box className='header-logo' ref={logo}>
-						<TransitionTrigger to='/' noCircle>
-							<span className='name'>
-								Matt Parisien <span className='copyright-symbol'>©</span>
-							</span>
-							<span className='role'>Web developer</span>
-						</TransitionTrigger>
+					<Box className='header-logo' ref={logo} sx={logoStyle}>
+						<span className='name'>
+							Matt Parisien ─ Web
+							developer
+						</span>
 					</Box>
 					<DesktopNav addToLinkRefs={addToLinkRefs} />
 					<MobileNav toggleMenu={props.toggleMenu} isBurger={!isMenuActive} />
