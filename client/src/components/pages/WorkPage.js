@@ -38,11 +38,13 @@ function WorkPage() {
 								title: "Software",
 								href: "",
 								isSelect: category === "software" ? true : false,
+								superscript: projects && projects.length
 							},
 							{
 								title: "Photography",
 								href: "",
 								isSelect: category === "photography" ? true : false,
+								superscript: photos && photos.length
 							},
 						]}
 					/>

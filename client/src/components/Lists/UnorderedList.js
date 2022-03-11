@@ -54,6 +54,7 @@ function UnorderedList(props) {
 							<Link
 								to={item.href}
 								isSelect={item.isSelect}
+								superscript={item.superscript}
 								onClick={
 									props.onClick || props.clickHandlers[item.title.toLowerCase()]
 								}

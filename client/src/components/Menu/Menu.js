@@ -184,7 +184,7 @@ function Menu(props) {
 							return (
 								<li key={i} className='menu-list__item'>
 									<Box className='visibility-wrapper' ref={addToListRefs}>
-										<TransitionTrigger nocircle to={item.url}>
+										<TransitionTrigger noCircle to={item.url}>
 											{item.title}
 										</TransitionTrigger>
 									</Box>

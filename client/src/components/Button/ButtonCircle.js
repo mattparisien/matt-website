@@ -47,7 +47,7 @@ function ButtonCircle(props) {
 			data-scroll={props.scrollSpeed ? true : false}
 			data-scroll-speed={props.scrollSpeed}
 		>
-			<TransitionTrigger to={props.href}>
+			<TransitionTrigger to={props.href} noCircle>
 				{props.children}
 				<div className='button-circle-bg'></div>
 			</TransitionTrigger>
