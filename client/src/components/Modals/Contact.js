@@ -1,8 +1,6 @@
 import React, { useRef } from "react";
 import Form from "./Form/Form";
-import useSplit from "../../helpers/hooks/useSplit";
-import { useEffect } from "react/cjs/react.development";
-import Section from "../Section";
+
 
 function Contact() {
 	const headingRef = useRef([]);

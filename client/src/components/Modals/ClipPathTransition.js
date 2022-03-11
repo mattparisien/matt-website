@@ -1,7 +1,5 @@
-import React, { forwardRef, useRef } from "react";
+import React, { forwardRef, useRef, useEffect } from "react";
 import gsap from "gsap";
-import { useEffect } from "react/cjs/react.development";
-import { isCompositeComponentWithType } from "react-dom/cjs/react-dom-test-utils.development";
 
 function ClipPathTransition(props, ref) {
 	const { isTransitioning, setIsTransitioning, container, setState } = props;
