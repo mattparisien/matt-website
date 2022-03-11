@@ -49,10 +49,11 @@ function UnorderedList(props) {
 				return (
 					<li className='UnorderedList__item' key={i} ref={props.addToLinkRefs}>
 						{!props.noTransition ? (
-							<TransitionTrigger to={item.href}>{item.title}</TransitionTrigger>
+							<TransitionTrigger to={item.href} isSelect={item.isSelect}>{item.title}</TransitionTrigger>
 						) : (
 							<Link
 								to={item.href}
+								isSelect={item.isSelect}
 								onClick={
 									props.onClick || props.clickHandlers[item.title.toLowerCase()]
 								}

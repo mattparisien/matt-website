@@ -2,7 +2,7 @@ import gsap from "gsap";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import React, { useRef } from "react";
 
-export default function LinkCircle() {
+export default function LinkCircle({isSelect}) {
 	const circleStyle = {
 		position: "absolute",
 		top: 0,
@@ -35,15 +35,15 @@ export default function LinkCircle() {
 				xmlns='http://www.w3.org/2000/svg'
 				viewBox='0 0 118.46 40.88'
 				style={circleStyle}
-				onMouseEnter={handleMouseEnter}
-				onMouseLeave={handleMouseLeave}
+				onMouseEnter={!isSelect && handleMouseEnter}
+				onMouseLeave={!isSelect && handleMouseLeave}
 			>
 				<path
 					style={{
 						fill: "none",
 						strokeWidth: "1px",
-						strokeDashoffset: "0.001",
-						strokeDasharray: "0px, 999999px",
+						strokeDashoffset: !isSelect && "0.001",
+						strokeDasharray: !isSelect && "0px, 999999px",
 					}}
 					ref={lineRef}
 					d='M238.46,192.41c0,11-26.3,20-58.73,20s-58.73-8.93-58.73-20,26.29-19.94,58.73-19.94S238.46,181.4,238.46,192.41Z'

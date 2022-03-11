@@ -165,7 +165,12 @@ function HomePage(props, ref) {
 						development. I am proficient in Javascript, CSS/SCSS & Styled
 						Components, React, NodeJS, Express, SQL & MondoDB.
 					</ParagraphLayout>
-					<Box
+	
+				</Box>
+			
+			</Layout>
+			<Layout bg='light' height='auto'>
+			<Box
 						sx={{
 							display: "flex",
 							justifyContent: "flex-end",
@@ -176,9 +181,6 @@ function HomePage(props, ref) {
 							Learn more
 						</ButtonCircle>
 					</Box>
-				</Box>
-			</Layout>
-			<Layout bg='light' height='auto'>
 				<Box
 					sx={{
 						width: "100%",

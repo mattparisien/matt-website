@@ -28,6 +28,7 @@ function App() {
 	const [headerColor, setHeaderColor] = useState(null);
 	const [palette] = useState("primary");
 	const tablet = useMediaQuery(device.tablet);
+	const [play, setPlay] = useState(true);
 
 	useEffect(() => {
 		location.pathname === "/" && setHeaderColor("light");
@@ -205,7 +206,7 @@ function App() {
 
 		Promise.all(promiseArray)
 			.then(data => {
-				console.log(data[3].data.data[0].attributes.Assets)
+				console.log(data[3].data.data[0].attributes.Assets);
 				const photos = data[3].data.data[0].attributes.Assets.data.map(x => ({
 					id: x.id,
 					...x.attributes,
@@ -262,8 +263,8 @@ function App() {
 		setHeaderColor(fg);
 	};
 
-	const toggleTransitioning = msg => {
-		setState(prev => ({ ...prev, isTransitioning: !state.isTransitioning }));
+	const playTransition = () => {
+		setPlay(true);
 	};
 
 	const colorContextControls = {
@@ -271,10 +272,9 @@ function App() {
 	};
 
 	const loadingControls = {
-		isTransitioning: state.isTransitioning,
-		toggleTransitioning: toggleTransitioning,
 		menuActive: state.menuActive,
-		toggleMenu
+		toggleMenu,
+		playTransition,
 	};
 
 	return (
@@ -301,8 +301,10 @@ function App() {
 								</Helmet>
 
 								<Loader
-									isActive={state.isTransitioning}
-									setDone={toggleTransitioning}
+									isActive={play}
+									setDone={() => {
+										setPlay(false);
+									}}
 								/>
 								<Header
 									ref={headerRef}

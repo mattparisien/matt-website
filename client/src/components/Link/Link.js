@@ -1,18 +1,20 @@
 import React from "react";
 import LinkCircle from "./LinkCircle";
+import { Box } from "@mui/material";
 
 function Link(props) {
 	return (
-		<a
+		<Box
+			component="a"
 			className={`Link ${props.className ? props.className : ""}`}
 			href={props.href}
 			target={props.target}
 			onClick={props.onClick}
-			style={props.style}
+			sx={props.style}
 		>
 			{props.children}
-			{!props.noCircle && <LinkCircle />}
-		</a>
+			{!props.noCircle && <LinkCircle isSelect={props.isSelect}/>}
+		</Box>
 	);
 }
 

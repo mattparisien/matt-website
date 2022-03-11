@@ -8,11 +8,16 @@ const StyledSection = styled.section`
 	z-index: 1;
 	width: 100%;
 	height: ${({ height }) => (height ? height : "100vh")};
-	
+
 	background-color: ${({ theme, bg }) => (bg ? theme.colors[bg] : "black")};
 
 	color: ${({ theme, bg }) =>
 		bg ? theme.colors[bg === "dark" ? "light" : "dark"] : "blue"};
+
+	.LinkCircle path {
+		stroke: ${({ theme, bg }) =>
+			bg ? theme.colors[bg === "dark" ? "light" : "dark"] : "blue"};
+	}
 `;
 
 function Section(props) {

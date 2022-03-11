@@ -4,16 +4,17 @@ import { LoadingContext } from "../../App/App";
 import Link from "../Link/Link";
 
 function TransitionTrigger(props) {
-	const { toggleTransitioning, toggleMenu, menuActive } =
+	const { playTransition, toggleMenu, menuActive } =
 		useContext(LoadingContext);
 
 	const navigate = useNavigate();
 	const location = useLocation();
 
 	const handleClick = () => {
+		
 		console.log(menuActive)
 		menuActive && toggleMenu();
-		toggleTransitioning();
+		playTransition()
 
 		setTimeout(() => {
 			navigate(props.to);

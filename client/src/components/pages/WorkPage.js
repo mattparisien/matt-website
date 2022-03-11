@@ -37,10 +37,12 @@ function WorkPage() {
 							{
 								title: "Software",
 								href: "",
+								isSelect: category === "software" ? true : false,
 							},
 							{
 								title: "Photography",
 								href: "",
+								isSelect: category === "photography" ? true : false,
 							},
 						]}
 					/>
@@ -101,8 +103,7 @@ const PhotographyGrid = ({ items, tablet, theme }) => {
 };
 
 const ProjectsGrid = ({ items, tablet, theme }) => {
-
-	console.log(items)
+	console.log(items);
 
 	const itemStyle = {
 		width: "100%",
@@ -123,8 +124,8 @@ const ProjectsGrid = ({ items, tablet, theme }) => {
 		},
 		"&:hover .info-bar-top, &:hover .info-bar-bottom": {
 			opacity: 1,
-			transform: 'translateY(0)'
-		}
+			transform: "translateY(0)",
+		},
 	};
 
 	const video = {
@@ -150,10 +151,10 @@ const ProjectsGrid = ({ items, tablet, theme }) => {
 		left: 0,
 		top: 0,
 		color: theme.colors.light,
-		fontSize: '1rem',
-		transform: 'translateY(100%)',
+		fontSize: "1rem",
+		transform: "translateY(100%)",
 		opacity: 0,
-		transition: "400ms ease"
+		transition: "400ms ease",
 	};
 
 	const infoBarBottom = {
@@ -162,11 +163,11 @@ const ProjectsGrid = ({ items, tablet, theme }) => {
 		bottom: 0,
 		color: theme.colors.light,
 		width: "50%",
-		fontSize: '1rem',
-		transform: 'translateY(100%)',
+		fontSize: "1rem",
+		transform: "translateY(100%)",
 		opacity: 0,
 		transition: "400ms ease",
-		transitionDelay: "100ms"
+		transitionDelay: "100ms",
 	};
 
 	return (
@@ -211,17 +212,21 @@ const ProjectsGrid = ({ items, tablet, theme }) => {
 										component={"img"}
 										sx={itemStyle}
 									></Box>
-									<video
-										style={video}
-										autoPlay
-										loop
-										playsInline
-										mute
-										key={project.id}
-										src={project.Cover.video.url}
-									></video>
+									{project.Cover.video && (
+										<video
+											style={video}
+											autoPlay
+											loop
+											playsInline
+											mute
+											key={project.id}
+											src={project.Cover.video.url}
+										></video>
+									)}
 								</Box>
-								<Box className='info-bar-bottom' sx={infoBarBottom}>{project.PreviewText}</Box>
+								<Box className='info-bar-bottom' sx={infoBarBottom}>
+									{project.PreviewText}
+								</Box>
 							</Box>
 						</Box>
 					);

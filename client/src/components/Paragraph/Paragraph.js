@@ -15,7 +15,7 @@ function Paragraph(props) {
 	const [intersecting] = useState(null);
 	const [isSplit, setIsSplit] = useState(false);
 	const [splitText, setSplitText] = useState(null);
-	const [splitWrap, setSplitWrap] = useState(null);
+
 	const paragraph = useRef(null);
 	const [windowWidth, isResized] = useResize();
 	// const timeline = useRef(gsap.timeline());
@@ -32,7 +32,7 @@ function Paragraph(props) {
 				// });
 				setIsSplit(true);
 				setSplitText(mySplitText);
-			}, 200);
+			}, 250);
 			// const splitTextWrap = new SplitText(paragraph.current, {
 			// 	type: "lines",
 			// 	linesClass: "line-wrapper",
@@ -42,13 +42,8 @@ function Paragraph(props) {
 	}, [isSplit, windowWidth, intersecting, splitText]);
 
 	useEffect(() => {
-		if (splitText && !splitWrap) {
-			$(splitText.lines).wrap("<div></div>");
-			setSplitWrap(true);
-		}
-
 		splitText && setSplitText(splitText.revert().split());
-	}, [windowWidth, splitText, splitWrap]);
+	}, [windowWidth, splitText]);
 
 	const paragraphClass = "Paragraph";
 	const ref = useRef();
@@ -67,6 +62,8 @@ function Paragraph(props) {
 	);
 
 	useEffect(() => {
+		console.log("in view", inView);
+
 		if (inView) {
 			setTimeout(() => {
 				gsap.to($(entry.target).find(".line"), {
@@ -77,7 +74,7 @@ function Paragraph(props) {
 					stagger: 0.1,
 					delay: 0.1,
 				});
-			}, 100);
+			}, 250);
 		}
 	}, [inView, inViewRef, ref, windowWidth]);
 
@@ -87,8 +84,7 @@ function Paragraph(props) {
 				ref={setRefs}
 				className='view-wrapper'
 				sx={{
-					width:
-						props.variant === 1 ? "100%" : "30%",
+					width: props.variant === 1 ? "100%" : "30%",
 				}}
 			>
 				{props.variant === 1 ? (

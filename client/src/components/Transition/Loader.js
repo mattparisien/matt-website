@@ -1,7 +1,4 @@
-import {
-	Box,
-	Container, useMediaQuery
-} from "@mui/material";
+import { Box, Container, useMediaQuery } from "@mui/material";
 import { keyframes } from "@mui/system";
 import gsap from "gsap";
 import CSSPlugin from "gsap/CSSPlugin";
@@ -22,57 +19,43 @@ const wordAnim = keyframes`
 `;
 
 function Loader({ isActive, setDone }) {
-	const [hasPlayed, setHasPlayed] = useState(false);
 	const matches = useMediaQuery("(max-width: 600px)", { noSsr: true });
-	const masterTimeline = useRef(gsap.timeline({ paused: true }));
+
 	const content = useRef(null);
 	const containerRef = useRef(null);
 	const bg = useRef(null);
 
-	const transitionAnim = (masterTimeline, container, background, items) => {
-		
-		masterTimeline
-			.set(container, { display: "flex" })
-			.to(background, {
-				scaleX: 1,
-				duration: 0.6,
-				ease: "power2.out",
-			})
-			.to(
-				background,
-				{
-					scaleY: 0.001,
+	useEffect(() => {
+		if (isActive) {
+			const tl = gsap.timeline();
+
+			tl.set(containerRef.current, { display: "flex" })
+				.to(bg.current, {
+					scaleX: 1,
 					duration: 0.6,
 					ease: "power2.out",
-				},
-				1.2
-			)
-			.to(
-				items,
-				{
-					opacity: 0,
-				},
-				1.3
-			)
-			.set([background, items, container], {
-				clearProps: "all",
-			});
+				})
+				.to(
+					bg.current,
+					{
+						scaleY: 0.001,
+						duration: 0.6,
+						ease: "power2.out",
+					},
+					1.2
+				)
+				.to(
+					content.current,
+					{
+						opacity: 0,
+					},
+					1.3
+				)
+				.set([bg.current, content.current, containerRef.current], {
+					clearProps: "all",
+				});
 
-		return masterTimeline;
-	};
-
-	useEffect(() => {
-		//Play on initial load
-
-		if (isActive) {
-			transitionAnim(
-				masterTimeline.current,
-				containerRef.current,
-				bg.current,
-				content.current
-			)
-				.progress(0)
-				.play();
+			setDone();
 		}
 	}, [isActive]);
 
