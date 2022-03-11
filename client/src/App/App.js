@@ -22,15 +22,7 @@ export const LoadingContext = createContext();
 function App() {
 	const location = useLocation();
 
-	const [headerColor, setHeaderColor] = useState(null);
-
 	const [play, setPlay] = useState(true);
-
-	useEffect(() => {
-		location.pathname === "/" && setHeaderColor("light");
-		location.pathname === "/work" && setHeaderColor("light");
-		location.pathname === "/about" && setHeaderColor("dark");
-	}, [location]);
 
 	const baseSpacing = {
 		desktopL: 2,
@@ -240,10 +232,6 @@ function App() {
 
 	const toggleMenu = () => {
 		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
-	};
-
-	const changeColors = (fg, bg) => {
-		setHeaderColor(fg);
 	};
 
 	const playTransition = () => {
