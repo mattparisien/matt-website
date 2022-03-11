@@ -160,6 +160,7 @@ export const StyledVariant2Paragraph = styled(StyledParagraph)`
 	.line:nth-of-type(1) {
 		&::after {
 			top: -25px;
+			
 		}
 	}
 	@media ${device.mobileL} {
@@ -168,6 +169,7 @@ export const StyledVariant2Paragraph = styled(StyledParagraph)`
 		.line:nth-of-type(1) {
 			&::after {
 				left: -100%;
+				top: 0;
 			}
 		}
 	}
@@ -195,6 +197,7 @@ export const StyledVariant3Paragraph = styled(StyledParagraph)`
 		.line:nth-of-type(1) {
 			&::after {
 				left: -100%;
+				top: 0;
 			}
 		}
 	}

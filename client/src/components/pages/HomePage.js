@@ -147,8 +147,8 @@ function HomePage(props, ref) {
 				<Box sx={{ paddingTop: "2rem" }}>
 					<ParagraphLayout indent indentHeading='Stack' variant={3}>
 						Over the past year I've developed a profiency in full-stack
-						development. I am proficient in Javascript, CSS/SCSS & Styled
-						Components, React, NodeJS, Express, SQL & MondoDB.
+						development, expirementing in Javascript, CSS/SCSS & Styled
+						Components, React, NodeJS, Express, SQL & MongoDB.
 					</ParagraphLayout>
 				</Box>
 			</Layout>
@@ -165,7 +165,9 @@ function HomePage(props, ref) {
 			</Layout>
 
 			<Layout bg='light' fullWidth height='auto'>
+				
 				<Box sx={{ padding: setVerticalSpacing(2) }}>
+				<ContainerFluid><Line color="dark"/></ContainerFluid>
 					<MarqueeBlock
 						rails={[
 							"Work Hard Play Hard",
