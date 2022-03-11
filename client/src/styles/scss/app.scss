@@ -1,11 +1,16 @@
 @import "vars";
 @import "utils";
+@import "footer";
 
 * {
 	-webkit-font-smoothing: antialiased;
 	font-family: "Neue Mtl";
 	font-weight: lighter;
 	box-sizing: border-box;
+}
+
+a {
+	font-family: "Neue Mtl";
 }
 
 .Container {
@@ -34,11 +39,11 @@ body {
 	margin: 0;
 }
 
-p,
-a:not(li a) {
-	font-family: "Haas";
-}
-
 .App {
 	transition: 500ms ease;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
 }

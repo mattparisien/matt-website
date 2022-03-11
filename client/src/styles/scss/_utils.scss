@@ -17,6 +17,10 @@
 	align-items: center;
 }
 
+.-align-end {
+	align-items: end;
+}
+
 .-justify-center {
 	justify-content: center;
 
@@ -24,15 +28,30 @@
 		display: none;
 	}
 }
+.-fullWidth {
+	width: "100%"
+}
 
 .-justify-between {
 	justify-content: space-between;
 }
 
 .-bg-light {
-	background-color: var(--light);
+	background-color: #FFFFFF;
 }
 
 .-bg-pink {
-	background-color: $pink;
+	background-color: #f1b9b8;
+}
+
+.-bg-dark {
+	background-color: #1E1E1E;
+}
+
+.-bg-black {
+	background-color: black;
+}
+
+.-ul-small, .-text-tiny {
+	font-size: 0.8rem;
 }

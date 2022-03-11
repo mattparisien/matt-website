@@ -117,7 +117,7 @@ function HomePage(props, ref) {
 				</Box>
 			</Section>
 
-			<Container classes={"-bg-dark"}>
+			<Container classes={"-bg-light"}>
 				<ParagraphLayout indent indentHeading='about' variant={1}>
 					Hey. I'm a full-stack software developer & graphic designer obsessed
 					with digital products and passionate about building responsive user
@@ -131,13 +131,9 @@ function HomePage(props, ref) {
 						growing together have the ability to transcend the workplace.
 					</ParagraphLayout>
 				</Section>
-			</Container>
+				<Section classes={"-padding-huge"}>
+					<Line color='dark' />
 
-			<Layout bg='light' fullWidth height='auto'>
-				<Box sx={{ padding: setVerticalSpacing(2) }}>
-					<ContainerFluid>
-						<Line color='dark' />
-					</ContainerFluid>
 					<MarqueeBlock
 						rails={[
 							"Work Hard Play Hard",
@@ -146,48 +142,35 @@ function HomePage(props, ref) {
 						]}
 						theme={theme}
 					/>
-				</Box>
-			</Layout>
+				</Section>
+			</Container>
 
-			<Layout bg='dark' height='auto'>
-				<Box sx={{ padding: "15rem 0", height: "100%" }}>
-					<Box sx={{ position: "relative", height: "100%" }}>
-						<Box
-							sx={{
-								height: "100%",
-								display: "flex",
-								alignItems: "center",
-								justifyContent: "center",
-								gap: "2rem",
-							}}
-						>
-							<Slider
-								slides={featuredProjects}
-								mobileQuery={mobile}
-								desktopQuery={desktop}
-							/>
-						</Box>
-						<Box
-							sx={{
-								display: "flex",
-								alignItems: "end",
-								justifyContent: "end",
-								paddingTop: "5rem",
-							}}
-						>
-							<Link
-								href={"/work"}
-								style={{
-									fontSize: mobile ? "10vw" : "2rem",
-									fontFamily: "Neue Mtl",
-								}}
-							>
-								All Projects ↗︎
-							</Link>
-						</Box>
-					</Box>
+			<Container classes={"-bg-dark"}>
+				<Slider
+					slides={featuredProjects}
+					mobileQuery={mobile}
+					desktopQuery={desktop}
+				/>
+
+				<Box
+					sx={{
+						display: "flex",
+						alignItems: "end",
+						justifyContent: "end",
+						paddingTop: "5rem",
+					}}
+				>
+					<Link
+						href={"/work"}
+						style={{
+							fontSize: mobile ? "10vw" : "2rem",
+							fontFamily: "Neue Mtl",
+						}}
+					>
+						All Projects ↗︎
+					</Link>
 				</Box>
-			</Layout>
+			</Container>
 		</>
 	);
 }
