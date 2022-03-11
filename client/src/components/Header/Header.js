@@ -2,7 +2,6 @@ import { Box } from "@material-ui/core";
 import gsap from "gsap";
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import ContainerFluid from "../Containers/ContainerFluid";
-import TransitionTrigger from "../Transition/TransitionTrigger";
 import DesktopNav from "./Nav/DesktopNav";
 import MobileNav from "./Nav/MobileNav";
 import { StyledHeader } from "./styles/StyledHeader";
