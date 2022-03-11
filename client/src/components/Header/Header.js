@@ -1,12 +1,11 @@
 import { Box } from "@material-ui/core";
-import { GpsFixed } from "@material-ui/icons";
-import React, { forwardRef, useEffect, useState, useRef } from "react";
+import gsap from "gsap";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 import ContainerFluid from "../Containers/ContainerFluid";
 import TransitionTrigger from "../Transition/TransitionTrigger";
 import DesktopNav from "./Nav/DesktopNav";
 import MobileNav from "./Nav/MobileNav";
 import { StyledHeader } from "./styles/StyledHeader";
-import gsap from "gsap";
 
 function Header(props, ref) {
 	const { headerOffset, isMenuActive } = props;

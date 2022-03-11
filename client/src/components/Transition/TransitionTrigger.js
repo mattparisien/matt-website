@@ -1,20 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { LoadingContext } from "../../App/App";
 import Link from "../Link/Link";
 
 function TransitionTrigger(props) {
-	const { playTransition, toggleMenu, menuActive } =
-		useContext(LoadingContext);
+	const { playTransition, toggleMenu, menuActive } = useContext(LoadingContext);
 
 	const navigate = useNavigate();
-	const location = useLocation();
 
 	const handleClick = () => {
-		
-		console.log(menuActive)
 		menuActive && toggleMenu();
-		playTransition()
+		playTransition();
 
 		setTimeout(() => {
 			navigate(props.to);

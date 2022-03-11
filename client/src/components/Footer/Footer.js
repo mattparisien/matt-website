@@ -23,9 +23,6 @@ function Footer(props) {
 	const footerStyle = {
 		backgroundColor: props.backgroundColor,
 		color: props.foregroundColor,
-		position: "fixed",
-		bottom: 0,
-		left: 0,
 		width: "100vw",
 	};
 	const theme = useTheme();

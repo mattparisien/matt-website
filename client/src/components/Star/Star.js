@@ -1,16 +1,15 @@
+import { Box } from "@mui/system";
 import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
-import { useTheme } from "styled-components";
 import { useInView } from "react-intersection-observer";
-import { Box } from "@mui/system";
+import { useTheme } from "styled-components";
 
 function Star({ height, color, strokeWidth }) {
-	
 	const theme = useTheme();
 	const lineRefs = useRef([]);
 	lineRefs.current = [];
 	const starRef = useRef(null);
-	const [ref, inView, entry] = useInView();
+	const [ref, inView] = useInView();
 
 	const addToLineRefs = el => {
 		if (el && !lineRefs.current.includes(el)) {
@@ -35,7 +34,7 @@ function Star({ height, color, strokeWidth }) {
 		fill: "none",
 		stroke: theme.colors[color],
 		strokeMiterlimit: 10,
-		strokeWidth: strokeWidth
+		strokeWidth: strokeWidth,
 	};
 
 	const [hasPlayed, setHasPlayed] = useState(false);
@@ -90,64 +89,64 @@ function Star({ height, color, strokeWidth }) {
 		}
 	}, [lineRefs, starRef, hasPlayed, inView]);
 	return (
-		<Box className="star-view-wrapper" ref={ref}>
-		<svg
-			id='svg-star'
-			ref={starRef}
-			style={star}
-			xmlns='http://www.w3.org/2000/svg'
-			viewBox='0 0 398.89 407.59'
-		>
-			<path
-				className='cls-1'
-				d='M223.11,539.31,388.89,167'
-				transform='translate(-106.56 -149.34)'
-				style={line}
-				ref={addToLineRefs}
-			/>
-			<path
-				className='cls-1'
-				d='M149.89,484.13l312.22-262'
-				transform='translate(-106.56 -149.34)'
-				style={line}
-				ref={addToLineRefs}
-			/>
-			<path
-				className='cls-1'
-				d='M108.26,402.44l395.48-98.6'
-				transform='translate(-106.56 -149.34)'
-				style={line}
-				ref={addToLineRefs}
-			/>
-			<path
-				className='cls-1'
-				d='M106.66,310.77l398.68,84.74'
-				transform='translate(-106.56 -149.34)'
-				style={line}
-				ref={addToLineRefs}
-			/>
-			<path
-				className='cls-1'
-				d='M145.41,227.67,466.59,478.61'
-				transform='translate(-106.56 -149.34)'
-				style={line}
-				ref={addToLineRefs}
-			/>
-			<path
-				className='cls-1'
-				d='M216.66,170,395.34,536.31'
-				transform='translate(-106.56 -149.34)'
-				style={line}
-				ref={addToLineRefs}
-			/>
-			<path
-				className='cls-1'
-				d='M306,149.34V556.93'
-				transform='translate(-106.56 -149.34)'
-				style={line}
-				ref={addToLineRefs}
-			/>
-		</svg>
+		<Box className='star-view-wrapper' ref={ref}>
+			<svg
+				id='svg-star'
+				ref={starRef}
+				style={star}
+				xmlns='http://www.w3.org/2000/svg'
+				viewBox='0 0 398.89 407.59'
+			>
+				<path
+					className='cls-1'
+					d='M223.11,539.31,388.89,167'
+					transform='translate(-106.56 -149.34)'
+					style={line}
+					ref={addToLineRefs}
+				/>
+				<path
+					className='cls-1'
+					d='M149.89,484.13l312.22-262'
+					transform='translate(-106.56 -149.34)'
+					style={line}
+					ref={addToLineRefs}
+				/>
+				<path
+					className='cls-1'
+					d='M108.26,402.44l395.48-98.6'
+					transform='translate(-106.56 -149.34)'
+					style={line}
+					ref={addToLineRefs}
+				/>
+				<path
+					className='cls-1'
+					d='M106.66,310.77l398.68,84.74'
+					transform='translate(-106.56 -149.34)'
+					style={line}
+					ref={addToLineRefs}
+				/>
+				<path
+					className='cls-1'
+					d='M145.41,227.67,466.59,478.61'
+					transform='translate(-106.56 -149.34)'
+					style={line}
+					ref={addToLineRefs}
+				/>
+				<path
+					className='cls-1'
+					d='M216.66,170,395.34,536.31'
+					transform='translate(-106.56 -149.34)'
+					style={line}
+					ref={addToLineRefs}
+				/>
+				<path
+					className='cls-1'
+					d='M306,149.34V556.93'
+					transform='translate(-106.56 -149.34)'
+					style={line}
+					ref={addToLineRefs}
+				/>
+			</svg>
 		</Box>
 	);
 }

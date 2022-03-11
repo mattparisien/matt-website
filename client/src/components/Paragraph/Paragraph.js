@@ -69,7 +69,7 @@ function Paragraph(props) {
 				});
 			}, 250);
 		}
-	}, [inView, inViewRef, ref, windowWidth]);
+	}, [inView, inViewRef, ref, windowWidth, entry]);
 
 	return (
 		<>

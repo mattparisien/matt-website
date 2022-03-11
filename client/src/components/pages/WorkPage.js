@@ -105,7 +105,7 @@ const PhotographyGrid = ({ items, tablet, theme }) => {
 };
 
 const ProjectsGrid = ({ items, tablet, theme }) => {
-	console.log(items);
+	
 
 	const itemStyle = {
 		width: "100%",

@@ -1,4 +1,3 @@
-import { useMediaQuery } from "@material-ui/core";
 import axios from "axios";
 import { createContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -27,7 +26,6 @@ function App() {
 
 	const [headerColor, setHeaderColor] = useState(null);
 	const [palette] = useState("primary");
-	const tablet = useMediaQuery(device.tablet);
 	const [play, setPlay] = useState(true);
 
 	useEffect(() => {
@@ -36,10 +34,7 @@ function App() {
 		location.pathname === "/about" && setHeaderColor("dark");
 	}, [location]);
 
-	useEffect(() => {
-		//Footer height config
-		setState(prev => ({ ...prev, footerHeight: tablet ? "60vw" : "90vw" }));
-	}, [tablet]);
+
 
 	const baseSpacing = {
 		desktopL: 2,
@@ -206,7 +201,6 @@ function App() {
 
 		Promise.all(promiseArray)
 			.then(data => {
-				console.log(data[3].data.data[0].attributes.Assets);
 				const photos = data[3].data.data[0].attributes.Assets.data.map(x => ({
 					id: x.id,
 					...x.attributes,
@@ -323,7 +317,7 @@ function App() {
 								<ScrollWrapper ref={scrollRef}>
 									<ContentWrapper
 										ref={contentWrapperRef}
-										offsetBottom={state.footerHeight}
+										
 									>
 										<GlobalStyle />
 

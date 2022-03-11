@@ -2,8 +2,6 @@ import { Box } from "@mui/system";
 import React from "react";
 import styled from "styled-components";
 import Paragraph from "./Paragraph";
-import { device } from "../../styles/breakpoints";
-import { useMediaQuery } from "@material-ui/core";
 
 const StyledParagraphWrapper = styled(Box)`
 	height: 100%;

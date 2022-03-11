@@ -2,7 +2,7 @@ import { Box, Container, useMediaQuery } from "@mui/material";
 import { keyframes } from "@mui/system";
 import gsap from "gsap";
 import CSSPlugin from "gsap/CSSPlugin";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useTheme } from "styled-components";
 import Line from "../Line/Line";
 
@@ -57,7 +57,7 @@ function Loader({ isActive, setDone }) {
 
 			setDone();
 		}
-	}, [isActive]);
+	}, [isActive, setDone]);
 
 	// 	if (content.current && bg.current && containerRef.current) {
 	// 		//Play on initial component load

@@ -1,12 +1,11 @@
+import { useMediaQuery } from "@material-ui/core";
 import { Box } from "@mui/system";
 import gsap from "gsap";
 import { CSSRulePlugin } from "gsap/all";
 import React, { useEffect, useRef } from "react";
+import { device } from "../../styles/breakpoints";
 import Layout from "../Containers/Layout";
 import TransitionTrigger from "../Transition/TransitionTrigger";
-import { useMediaQuery } from "@material-ui/core";
-import { device } from "../../styles/breakpoints";
-import Arrow from "../Vector/Arrow";
 
 function Menu(props) {
 	const listInfo = [
