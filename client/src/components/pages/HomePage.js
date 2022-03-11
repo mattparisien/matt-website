@@ -13,10 +13,8 @@ import Marquee from "react-fast-marquee";
 import { useInView } from "react-intersection-observer";
 import { useTheme } from "styled-components";
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
+import 'swiper/swiper-bundle.min.css'
+import 'swiper/swiper.min.css'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { DataContext } from "../../App/App";
 import { device, deviceSize } from "../../styles/breakpoints";
