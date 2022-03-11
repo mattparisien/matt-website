@@ -6,6 +6,7 @@ import ContainerFluid from "../Containers/ContainerFluid";
 import DesktopNav from "./Nav/DesktopNav";
 import MobileNav from "./Nav/MobileNav";
 import { StyledHeader } from "./styles/StyledHeader";
+import Container from "../Containers/Container";
 
 function Header(props, ref) {
 	const scroll = useLocomotiveScroll();
@@ -76,13 +77,13 @@ function Header(props, ref) {
 			className='Header'
 			floaterVisible={floaterVisible}
 		>
-			<ContainerFluid display='flex' width='100%'>
+			<Container classes={"-flex -align-center -justify-between"}>
 				<Box className='header-logo' ref={logo} sx={logoStyle}>
 					<span className='name'>Matt Parisien ─ Web developer</span>
 				</Box>
 				<DesktopNav addToLinkRefs={addToLinkRefs} />
 				<MobileNav toggleMenu={props.toggleMenu} isBurger={!isMenuActive} />
-			</ContainerFluid>
+			</Container>
 			<div className='header-floater'></div>
 		</StyledHeader>
 	);

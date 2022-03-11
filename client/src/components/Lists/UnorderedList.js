@@ -5,7 +5,7 @@ import TransitionTrigger from "../Transition/TransitionTrigger";
 
 
 const StyledUl = styled.ul`
-	${({ theme, height }) => theme.spacing(height, "height")};
+	
 
 	top: 0;
 	right: 0;

@@ -1,0 +1,38 @@
+@import "vars";
+//Utility classes
+
+.-padding-huge {
+	padding: var(--space-xxl) 0;
+}
+
+.-padding-v-huge {
+	padding: var(--space-xxl) 0;
+}
+
+.-flex {
+	display: flex;
+}
+
+.-align-center {
+	align-items: center;
+}
+
+.-justify-center {
+	justify-content: center;
+
+	h1 {
+		display: none;
+	}
+}
+
+.-justify-between {
+	justify-content: space-between;
+}
+
+.-bg-light {
+	background-color: var(--light);
+}
+
+.-bg-pink {
+	background-color: $pink;
+}

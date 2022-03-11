@@ -12,9 +12,10 @@ import React, {
 import Marquee from "react-fast-marquee";
 import { useInView } from "react-intersection-observer";
 import { useTheme } from "styled-components";
+import Container from "../Containers/Container";
 // Import Swiper styles
-import 'swiper/swiper-bundle.min.css'
-import 'swiper/swiper.min.css'
+import "swiper/swiper-bundle.min.css";
+import "swiper/swiper.min.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { DataContext } from "../../App/App";
 import { device, deviceSize } from "../../styles/breakpoints";
@@ -26,6 +27,7 @@ import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import Star from "../Star/Star";
 import Arrow from "../Vector/Arrow";
 import MtlLogo from "../Vector/MtlLogo";
+import Section from "../Containers/Section";
 
 const gradientAnim = keyframes`
 	0% {
@@ -80,16 +82,6 @@ function HomePage(props, ref) {
 		}
 	}, [data]);
 
-	const innerHero = {
-		width: "100%",
-		height: "100%",
-		display: "flex",
-		alignItems: "end",
-		textAlign: "center",
-		flexDirection: "column",
-		justifyContent: "center",
-	};
-
 	const overlay = {
 		height: "30vw",
 		width: "30vw",
@@ -114,63 +106,43 @@ function HomePage(props, ref) {
 
 	return (
 		<>
-			<Layout bg={"pink"} color='light' height='100vh'>
-				<Box className='hero-inner' sx={innerHero}>
-					<Star
-						height='60vw'
-						strokeWidth={mobile ? "0.9vw" : "2px"}
-						color='dark'
-					/>
-					<Box className='gradient-overlay' sx={overlay}>
-						<Box sx={gradientInner}></Box>
-					</Box>
+			<Section classes={"Home -flex -justify-center -align-center -bg-pink"}>
+				<Star
+					height='60vw'
+					strokeWidth={mobile ? "0.9vw" : "2px"}
+					color='dark'
+				/>
+				<Box className='gradient-overlay' sx={overlay}>
+					<Box sx={gradientInner}></Box>
 				</Box>
-			</Layout>
+			</Section>
 
-			<Layout bg='light' height='auto' margin={setVerticalSpacing(2)}>
+			<Container classes={"-bg-dark"}>
 				<ParagraphLayout indent indentHeading='about' variant={1}>
 					Hey. I'm a full-stack software developer & graphic designer obsessed
 					with digital products and passionate about building responsive user
 					interfaces. Having just graduated from Lighthouse Labs, I'm currently
 					exploring the intersection between technology, design and strategy.
 				</ParagraphLayout>
-			</Layout>
-			<Layout
-				bg='light'
-				height='auto'
-				overflow={"visible"}
-				margin={"0 0 20rem 0"}
-			>
-				<Line color='dark' />
-				<Box sx={{ paddingTop: "2rem" }}>
-					<ParagraphLayout indent indentHeading='Stack' variant={3}>
-						Over the past year I've developed a profiency in full-stack
-						development, expirementing in Javascript, CSS/SCSS & Styled
-						Components, React, NodeJS, Express, SQL & MongoDB.
-					</ParagraphLayout>
-				</Box>
-			</Layout>
-			<Layout bg='light' height='auto' margin={"0 0 5rem 0"}>
-				<Line color='dark' width='50%' />
-
-				<Box sx={{ paddingTop: "2rem" }}>
+				<Section classes={"-padding-huge"}>
 					<ParagraphLayout indent indentHeading='Philosophy' variant={2}>
 						Good research leads to effective design and better tech stacks. I
 						believe that a team of people who love creating, learning and
 						growing together have the ability to transcend the workplace.
 					</ParagraphLayout>
-				</Box>
-			</Layout>
+				</Section>
+			</Container>
 
 			<Layout bg='light' fullWidth height='auto'>
-				
 				<Box sx={{ padding: setVerticalSpacing(2) }}>
-				<ContainerFluid><Line color="dark"/></ContainerFluid>
+					<ContainerFluid>
+						<Line color='dark' />
+					</ContainerFluid>
 					<MarqueeBlock
 						rails={[
 							"Work Hard Play Hard",
 							["Montreal Native", MtlLogo],
-							"Change the World",
+							"Never Play It Safe",
 						]}
 						theme={theme}
 					/>
