@@ -1,0 +1,16 @@
+header.is-page-about,
+header.is-page-work {
+	.LinkCircle path {
+		stroke: black;
+	}
+
+	color: black;
+}
+
+.floater-visible {
+	color: white !important;
+
+	.LinkCircle path {
+		stroke: white !important;
+	}
+}

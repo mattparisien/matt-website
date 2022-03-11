@@ -1,13 +1,34 @@
+@import "./breakpoints";
+
 :root {
 	//Spacing
-	--space-unit: 2em;
+	--space-unit: 2rem;
 	--space-xxs: calc(0.25 * var(--space-unit)); // 4px
 	--space-xs: calc(0.5 * var(--space-unit)); // 8px
 	--space-sm: calc(0.75 * var(--space-unit)); // 12px
 	--space-md: calc(1.25 * var(--space-unit)); // 20px
 	--space-lg: calc(2 * var(--space-unit)); // 32px
 	--space-xl: calc(3.25 * var(--space-unit)); // 52px
-	--space-xxl: calc(5.25 * var(--space-unit)); // 84px
+
+	
+
+	@include media("<=tablet") {
+		--space-xxl: calc(3 * var(--space-unit));
+	}
+
+	@include media("<=phone") {
+		--space-xxl: calc(1* var(--space-unit));
+	}
+
+
+	@include media(">=tablet") {
+		--space-xxl: calc(5.25 * var(--space-unit)); // 84px
+	}
+	
+
+
+	
+
 
 	//Colors
 	$light: "#FFFFFF";

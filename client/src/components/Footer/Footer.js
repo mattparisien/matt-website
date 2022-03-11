@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { useTheme } from "styled-components";
 import { deviceSize } from "../../styles/breakpoints";
 import Container from "../Containers/Container";
+import Star from "../Star/Star";
 
 // const gradientAnim = keyframes`
 // 0% {
@@ -45,7 +46,9 @@ function Footer(props) {
 
 	return (
 		<footer className='Footer'>
+			
 			<Container>
+				
 				<nav className='footer-nav'>
 					<a className='footer-nav--link'>Projects ↗︎</a>
 					<a className='footer-nav--link'>Let's talk ↗︎</a>
@@ -57,7 +60,6 @@ function Footer(props) {
 						"footer-bottom -fullWidth -flex -align-end -justify-between -text-tiny"
 					}
 				>
-					
 					<div className='year'>©2022</div>
 					<ul className='-ul-small'>
 						{props.data.socials &&

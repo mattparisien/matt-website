@@ -1,12 +1,13 @@
 @import "vars";
+@import "./breakpoints";
 //Utility classes
 
 .-padding-huge {
 	padding: var(--space-xxl) 0;
 }
 
-.-padding-v-huge {
-	padding: var(--space-xxl) 0;
+.-padding-top-huge {
+	padding-top: var(--space-xxl);
 }
 
 .-flex {
@@ -21,6 +22,10 @@
 	align-items: end;
 }
 
+.-absolute {
+	position: absolute;
+}
+
 .-justify-center {
 	justify-content: center;
 
@@ -29,7 +34,11 @@
 	}
 }
 .-fullWidth {
-	width: "100%"
+	width: 100%;
+}
+
+.-fullHeight {
+	height: 90vh;
 }
 
 .-justify-between {
@@ -37,7 +46,7 @@
 }
 
 .-bg-light {
-	background-color: #FFFFFF;
+	background-color: #ffffff;
 }
 
 .-bg-pink {
@@ -45,13 +54,18 @@
 }
 
 .-bg-dark {
-	background-color: #1E1E1E;
+	background-color: #1e1e1e;
+}
+
+.-bg-yellow {
+	background-color: #faf281;
 }
 
 .-bg-black {
 	background-color: black;
 }
 
-.-ul-small, .-text-tiny {
+.-ul-small,
+.-text-tiny {
 	font-size: 0.8rem;
 }

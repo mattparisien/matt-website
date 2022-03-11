@@ -293,6 +293,7 @@ function App() {
 								ref={headerRef}
 								isMenuActive={state.menuActive}
 								toggleMenu={toggleMenu}
+								location={location}
 							/>
 							<Menu
 								isOpen={state.menuActive}

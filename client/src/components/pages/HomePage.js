@@ -117,21 +117,17 @@ function HomePage(props, ref) {
 				</Box>
 			</Section>
 
-			<Container classes={"-bg-light"}>
-				<ParagraphLayout indent indentHeading='about' variant={1}>
-					Hey. I'm a full-stack software developer & graphic designer obsessed
-					with digital products and passionate about building responsive user
-					interfaces. Having just graduated from Lighthouse Labs, I'm currently
-					exploring the intersection between technology, design and strategy.
-				</ParagraphLayout>
-				<Section classes={"-padding-huge"}>
-					<ParagraphLayout indent indentHeading='Philosophy' variant={2}>
-						Good research leads to effective design and better tech stacks. I
-						believe that a team of people who love creating, learning and
-						growing together have the ability to transcend the workplace.
+			<Container classes={"-bg-light "}>
+				<Section classes='-fullHeight'>
+					<ParagraphLayout indent indentHeading='about' variant={1} classes={"-align-start"}>
+						Hey. I'm a full-stack software developer & graphic designer obsessed
+						with digital products and passionate about building responsive user
+						interfaces. Having just graduated from Lighthouse Labs, I'm
+						currently exploring the intersection between technology, design and
+						strategy.
 					</ParagraphLayout>
 				</Section>
-				<Section classes={"-padding-huge"}>
+				<Section classes='-padding-huge'>
 					<Line color='dark' />
 
 					<MarqueeBlock
@@ -159,17 +155,7 @@ function HomePage(props, ref) {
 						justifyContent: "end",
 						paddingTop: "5rem",
 					}}
-				>
-					<Link
-						href={"/work"}
-						style={{
-							fontSize: mobile ? "10vw" : "2rem",
-							fontFamily: "Neue Mtl",
-						}}
-					>
-						All Projects ↗︎
-					</Link>
-				</Box>
+				></Box>
 			</Container>
 		</>
 	);
