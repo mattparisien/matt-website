@@ -65,7 +65,7 @@ font-weight: lighter;
 
   .App {
     
-    color: ${({ foregroundColor, theme }) => theme.colors.light};
+    
     
     transition: 500ms ease;
   }

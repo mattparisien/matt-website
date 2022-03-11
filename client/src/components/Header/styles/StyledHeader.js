@@ -2,6 +2,20 @@ import styled from "styled-components";
 import { device } from "../../../styles/breakpoints";
 
 export const StyledHeader = styled.header`
+	.header-floater {
+		background-color: ${({ theme }) => theme.colors.dark};
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100%;
+		z-index: -1;
+		transform: translateY(
+			${({ floaterVisible }) => (floaterVisible ? "0" : "-100%")}
+		);
+		transition: 300ms ease;
+	}
+
 	.DesktopNav {
 		display: none;
 	}
@@ -16,14 +30,7 @@ export const StyledHeader = styled.header`
 		}
 	}
 
-	.Header__floater {
-		transition: 500ms ease;
-		transform: translateY(${({ $hidden }) => ($hidden ? "-100px" : "0")});
-	}
-
-	${({ theme }) => {
-		return theme.spacing(5, "height");
-	}};
+	height: 2.4rem;
 
 	${({ theme }) => {
 		return theme.typography.setSize(1);
@@ -33,7 +40,7 @@ export const StyledHeader = styled.header`
 
 	transition: transform 500ms ease;
 	z-index: -1;
-	color: ${({ theme }) => theme.colors[theme.components.header.styles.color]};
+	color: ${({ theme }) => theme.colors.light};
 
 	position: fixed;
 	top: 0;
@@ -42,13 +49,11 @@ export const StyledHeader = styled.header`
 
 	.top,
 	.bottom {
-		background-color: ${({ theme }) =>
-			theme.colors[theme.components.header.styles.color]};
+		background-color: ${({ theme }) => theme.colors["light"]};
 	}
 
 	.LinkCircle path {
-		stroke: ${({ theme }) =>
-			theme.colors[theme.components.header.styles.color]};
+		stroke: ${({ theme }) => theme.colors["light"]};
 	}
 
 	.menu-trigger {

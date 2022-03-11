@@ -11,21 +11,19 @@ import Header from "../components/Header/Header";
 import Menu from "../components/Menu/Menu";
 import AboutPage from "../components/pages/AboutPage";
 import HomePage from "../components/pages/HomePage";
-import UploadPage from "../components/pages/UploadPage";
 import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
 import { device } from "../styles/breakpoints";
 import { GlobalStyle } from "../styles/global";
 
-export const ColorContext = createContext();
-export const LoadingContext = createContext();
 export const DataContext = createContext();
+export const LoadingContext = createContext();
 
 function App() {
 	const location = useLocation();
 
 	const [headerColor, setHeaderColor] = useState(null);
-	const [palette] = useState("primary");
+
 	const [play, setPlay] = useState(true);
 
 	useEffect(() => {
@@ -33,8 +31,6 @@ function App() {
 		location.pathname === "/work" && setHeaderColor("light");
 		location.pathname === "/about" && setHeaderColor("dark");
 	}, [location]);
-
-
 
 	const baseSpacing = {
 		desktopL: 2,
@@ -60,8 +56,8 @@ function App() {
 
 	const themes = {
 		colors: {
-			light: palette === "primary" ? "#ffff" : "#f1b9b8",
-			dark: palette === "primary" ? "#141414" : "rgb(231, 100, 53)",
+			light: "#FFFFFF",
+			dark: "#1E1E1E",
 			dark2: "#23252B",
 			lighterDark: "#111111",
 			red: "#DF181F",
@@ -132,13 +128,6 @@ function App() {
 
 					`;
 			});
-		},
-		components: {
-			header: {
-				styles: {
-					color: headerColor,
-				},
-			},
 		},
 	};
 
@@ -261,10 +250,6 @@ function App() {
 		setPlay(true);
 	};
 
-	const colorContextControls = {
-		changeColors,
-	};
-
 	const loadingControls = {
 		menuActive: state.menuActive,
 		toggleMenu,
@@ -274,74 +259,70 @@ function App() {
 	return (
 		<DataContext.Provider value={state.data}>
 			<ThemeProvider theme={themes}>
-				<ColorContext.Provider value={colorContextControls}>
-					<LoadingContext.Provider value={loadingControls}>
-						<LocomotiveScrollProvider
-							options={{
-								smooth: true,
-								getDirection: true,
-								initPosition: { x: 0, y: 0 },
-							}}
-							watch={[location.pathname]}
-							containerRef={scrollRef}
-						>
-							<div className='App'>
-								<Helmet>
-									<title>Matthew Parisien</title>
-									<meta
-										name='description'
-										content='Web Developer, Photographer & Graphic Designer'
-									/>
-								</Helmet>
+				<LoadingContext.Provider value={loadingControls}>
+					<LocomotiveScrollProvider
+						options={{
+							smooth: true,
+							smoothMobile: false,
+							getDirection: true,
+							initPosition: { x: 0, y: 0 },
+							reloadOnContextChange: true,
+						}}
+						watch={[location.pathname]}
+						containerRef={scrollRef}
+					>
+						<div className='App'>
+							<Helmet>
+								<title>Matthew Parisien</title>
+								<meta
+									name='description'
+									content='Web Developer, Photographer & Graphic Designer'
+								/>
+							</Helmet>
 
-								<Loader
-									isActive={play}
-									setDone={() => {
-										setPlay(false);
-									}}
-								/>
-								<Header
-									ref={headerRef}
-									isMenuActive={state.menuActive}
-									toggleMenu={toggleMenu}
-								/>
-								<Menu
-									isOpen={state.menuActive}
-									theme={themes}
+							<Loader
+								isActive={play}
+								setDone={() => {
+									setPlay(false);
+								}}
+							/>
+							<Header
+								ref={headerRef}
+								isMenuActive={state.menuActive}
+								toggleMenu={toggleMenu}
+							/>
+							<Menu
+								isOpen={state.menuActive}
+								theme={themes}
+								data={{
+									contact: { ...state.data.contact },
+									socials: state.data.socials,
+								}}
+							/>
+
+							<ScrollWrapper ref={scrollRef}>
+								<ContentWrapper ref={contentWrapperRef}>
+									<GlobalStyle />
+
+									<Routes>
+										<Route
+											path='/'
+											element={<HomePage isLoading={state.isLoading} />}
+										/>
+										<Route path='/about' element={<AboutPage />} />
+										<Route path='/work' element={<WorkPage />} />
+									</Routes>
+								</ContentWrapper>
+								<Footer
 									data={{
 										contact: { ...state.data.contact },
 										socials: state.data.socials,
 									}}
 								/>
-
-								<ScrollWrapper ref={scrollRef}>
-									<ContentWrapper
-										ref={contentWrapperRef}
-										
-									>
-										<GlobalStyle />
-
-										<Routes>
-											<Route
-												path='/'
-												element={<HomePage isLoading={state.isLoading} />}
-											/>
-											<Route path='/about' element={<AboutPage />} />
-											<Route path='/work' element={<WorkPage />} />
-											<Route path='/upload' element={<UploadPage />} />
-										</Routes>
-									</ContentWrapper>
-									<Footer
-										data={{
-											contact: { ...state.data.contact },
-											socials: state.data.socials,
-										}}
-									/>
-								</ScrollWrapper>
-							</div>
-						</LocomotiveScrollProvider>
-					</LoadingContext.Provider>
-				</ColorContext.Provider>
+							</ScrollWrapper>
+						</div>
+					</LocomotiveScrollProvider>
+				</LoadingContext.Provider>
 			</ThemeProvider>
 		</DataContext.Provider>
 	);

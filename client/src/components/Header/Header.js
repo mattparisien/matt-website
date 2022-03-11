@@ -5,8 +5,11 @@ import ContainerFluid from "../Containers/ContainerFluid";
 import DesktopNav from "./Nav/DesktopNav";
 import MobileNav from "./Nav/MobileNav";
 import { StyledHeader } from "./styles/StyledHeader";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
+import { LaptopWindowsTwoTone } from "@material-ui/icons";
 
 function Header(props, ref) {
+	const scroll = useLocomotiveScroll();
 	const { headerOffset, isMenuActive } = props;
 	const [innerHeight] = useState(null);
 	const [isHeaderHidden] = useState(false);
@@ -14,6 +17,7 @@ function Header(props, ref) {
 	const links = useRef([]);
 	links.current = [];
 	const tl = useRef(gsap.timeline());
+	const [floaterVisible, setFloaterVisible] = useState(false);
 
 	const addToLinkRefs = el => {
 		if (el && !links.current.includes(el)) {
@@ -46,6 +50,24 @@ function Header(props, ref) {
 		justifyContent: "center",
 	};
 
+	useEffect(() => {
+		const handleScroll = e => {
+			window.scrollY > 400 ? setFloaterVisible(true) : setFloaterVisible(false);
+		};
+
+		if (scroll.scroll && scroll.scroll.scroll.context !== "smartphone") {
+			scroll.scroll.on("scroll", e => {
+				e.delta.y > 400 ? setFloaterVisible(true) : setFloaterVisible(false);
+			});
+		} else {
+			window.addEventListener("scroll", handleScroll);
+		}
+
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, [scroll]);
+
 	return (
 		<StyledHeader
 			headerHeight={headerOffset}
@@ -53,19 +75,16 @@ function Header(props, ref) {
 			height={innerHeight}
 			$hidden={isHeaderHidden}
 			className='Header'
+			floaterVisible={floaterVisible}
 		>
-			<Box className='Header__floater' sx={{ height: "100%" }}>
-				<ContainerFluid display='flex'>
-					<Box className='header-logo' ref={logo} sx={logoStyle}>
-						<span className='name'>
-							Matt Parisien ─ Web
-							developer
-						</span>
-					</Box>
-					<DesktopNav addToLinkRefs={addToLinkRefs} />
-					<MobileNav toggleMenu={props.toggleMenu} isBurger={!isMenuActive} />
-				</ContainerFluid>
-			</Box>
+			<ContainerFluid display='flex' width='100%'>
+				<Box className='header-logo' ref={logo} sx={logoStyle}>
+					<span className='name'>Matt Parisien ─ Web developer</span>
+				</Box>
+				<DesktopNav addToLinkRefs={addToLinkRefs} />
+				<MobileNav toggleMenu={props.toggleMenu} isBurger={!isMenuActive} />
+			</ContainerFluid>
+			<div className='header-floater'></div>
 		</StyledHeader>
 	);
 }

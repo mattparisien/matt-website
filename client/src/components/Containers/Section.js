@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import ColorTrigger from "../ColorTrigger/ColorTrigger";
 
 const StyledSection = styled.section`
 	${({ theme, offsetTop }) => offsetTop && theme.spacing(4, "padding-top")};
@@ -25,13 +24,7 @@ function Section(props) {
 	return (
 		<>
 			<StyledSection className='Section' {...props} bg={props.bg}>
-				<ColorTrigger
-					foreground={
-						props.bg === "light" || props.bg === "green" ? "dark" : "light"
-					}
-				>
-					{props.children}
-				</ColorTrigger>
+				{props.children}
 			</StyledSection>
 		</>
 	);

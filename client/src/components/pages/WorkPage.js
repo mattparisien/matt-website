@@ -38,13 +38,13 @@ function WorkPage() {
 								title: "Software",
 								href: "",
 								isSelect: category === "software" ? true : false,
-								superscript: projects && projects.length
+								superscript: projects && projects.length,
 							},
 							{
 								title: "Photography",
 								href: "",
 								isSelect: category === "photography" ? true : false,
-								superscript: photos && photos.length
+								superscript: photos && photos.length,
 							},
 						]}
 					/>
@@ -105,8 +105,6 @@ const PhotographyGrid = ({ items, tablet, theme }) => {
 };
 
 const ProjectsGrid = ({ items, tablet, theme }) => {
-	
-
 	const itemStyle = {
 		width: "100%",
 		height: "100%",
