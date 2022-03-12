@@ -3,11 +3,24 @@
 //Utility classes
 
 .-padding-huge {
-	padding: var(--space-xxl) 0;
+	padding: $space-xxxl 0;
 }
 
 .-padding-top-huge {
-	padding-top: var(--space-xxl);
+	padding-top: $space-xxxl;
+}
+
+.-padding-bottom-huge {
+	padding-bottom: $space-xxxl;
+}
+
+.-ml-auto {
+	margin-left: auto;
+}
+
+
+.-mr-auto {
+	margin-right: auto;
 }
 
 .-flex {
@@ -23,11 +36,18 @@
 }
 
 .-ul-horizontal-spacing-md {
-
 	li {
 		margin-right: var(--space-md);
 	}
-	
+}
+
+.-split {
+	overflow: hidden;
+
+	div {
+		transform: translateY(100%);
+		opacity: 0;
+	}
 }
 
 .-align-end {
@@ -40,7 +60,6 @@
 
 .-relative {
 	position: relative;
-
 }
 
 .-justify-center {
@@ -54,8 +73,12 @@
 	width: 100%;
 }
 
+.-halfWidth {
+	width: 50%;
+}
+
 .-fullHeight {
-	height: 100vh;
+	min-height: 100vh;
 }
 
 .-justify-between {
@@ -64,6 +87,11 @@
 
 .-bg-light {
 	background-color: #ffffff;
+}
+
+.-bg-purple{
+	background-color: $purple;
+	color: $pink;
 }
 
 .-bg-pink {
@@ -85,4 +113,32 @@
 .-ul-small,
 .-text-tiny {
 	font-size: 0.8rem;
+}
+
+.-indent {
+	text-indent: 30%;
+}
+
+.-text-big {
+	font-size: 2rem;
+
+	@include media(">=tablet") {
+		font-size: 5rem;
+	}
+}
+
+.-text-small {
+	font-size: 1.4rem;
+	line-height: 1.8rem !important;
+
+	@include media(">=tablet") {
+		font-size: 2.8rem;
+		line-height: 3rem !important;
+	}
+}
+
+
+//ITCSS Utilies
+.u-gsap-fill-animate {
+	opacity: 0;
 }

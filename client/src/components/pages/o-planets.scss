@@ -1,0 +1,15 @@
+.o-planets {
+	height: 80vh;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+
+	@include media("<=tablet") {
+		height: 20vh;
+	}
+
+	@include media("<=phoneL") {
+		flex-direction: column;
+	}
+}

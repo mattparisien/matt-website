@@ -79,7 +79,7 @@ function ProjectItem({ title, videoUrl, imageUrl, imageAlt, projectLocation }) {
 							<div className='c-project_org'>Lighthouse Labs</div>
 						</div>
 					</div>
-					<h2 className='c-project_category c-heading -h2'>Software</h2>
+					<h2 className='c-project_category c-heading -h2 -split'>Software</h2>
 				</a>
 			</div>
 		</div>

@@ -1,0 +1,11 @@
+.c-text {
+  line-height: 1;
+  padding: $space-xs 0;
+}
+
+
+.c-text.-halfWidth {
+  @include media("<=tablet") {
+    width: 100%;
+  }
+}

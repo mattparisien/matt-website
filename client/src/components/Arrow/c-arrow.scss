@@ -1,0 +1,21 @@
+.c-arrow {
+	position: relative;
+	overflow: hidden;
+
+	display: inline-block;
+	transition: $translate-transition;
+	position: absolute;
+	margin-left: $space-sm;
+
+	.c-arrow_arrow {
+		transition: $translate-transition;
+		display: inline-block;
+	}
+
+	&_arrow:nth-child(2) {
+		position: absolute;
+		left: 0;
+		top: 0;
+		transform: translate(-175%, 100%);
+	}
+}

@@ -9,6 +9,11 @@
 @import "../../components/Figure/c-figure.scss";
 @import "../../components/Filter/c-filter.scss";
 @import "../../components/Button/c-button.scss";
+@import "../../components/Paragraph/c-paragraph.scss";
+@import "../../components/Line/c-line.scss";
+@import "../../components/Vector/c-planet.scss";
+@import "../../components/pages/o-planets.scss";
+@import "../../components/Arrow/c-arrow.scss";
 
 a {
 	font-family: "Neue Mtl";
@@ -26,6 +31,7 @@ a {
 
 .Section {
 	position: relative;
+	
 }
 
 ul {

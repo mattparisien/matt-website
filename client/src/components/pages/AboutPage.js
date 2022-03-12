@@ -6,7 +6,7 @@ import Layout from "../Containers/Layout";
 import Line from "../Divider/Line";
 import SocialList from "../Lists/SocialList";
 import Paragraph from "../Paragraph/Paragraph";
-import ParagraphLayout from "../Paragraph/ParagraphLayout";
+
 
 const margin = 4;
 
@@ -46,12 +46,12 @@ function About() {
 							Quebec, Canada
 						</Paragraph>
 					</Box>
-					<ParagraphLayout indent indentHeading='About' variant={1}>
+					<Paragraph indent size="big" indentHeading='About' variant={1}>
 						Hey, I'm Matt - full-stack web developer & photographer and graphic
 						designer obsessed with digital products and passionate about
 						interactive digital experiences. I work hard and consistently
 						deliver results.
-					</ParagraphLayout>
+					</Paragraph>
 				</Box>
 				<Box sx={{ marginTop: `${margin * 2}rem` }}>
 					<Line />

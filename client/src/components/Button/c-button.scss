@@ -6,6 +6,11 @@
 	padding: 0.1rem 1.1rem 0.15rem;
 	transition: $transition;
 
+	@include media("<=tablet") {
+		font-size: 25px;
+		line-height: 40px;
+	}
+
 	&_label {
 		position: relative;
 	}
@@ -24,6 +29,6 @@
 .c-button_number {
 	font-size: 30%;
 	top: -1.75em;
-	left: -.3rem;
+	left: -0.3rem;
 	vertical-align: baseline;
 }

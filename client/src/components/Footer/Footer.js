@@ -1,10 +1,9 @@
 import React, { useRef } from "react";
 import Container from "../Containers/Container";
 import TransitionTrigger from "../Transition/TransitionTrigger";
-
+import Arrow from "../Arrow/Arrow";
 
 function Footer(props) {
-
 	const linkRefs = useRef([]);
 	linkRefs.current = [];
 
@@ -13,16 +12,16 @@ function Footer(props) {
 			<Container>
 				<nav className='footer-nav'>
 					<TransitionTrigger noCircle to={"/work"} classes='footer-nav--link'>
-						Projects ↗︎
+						Projects <Arrow />
 					</TransitionTrigger>
 					<a
 						href="mailto:hello@matthewparisien.com?subject=Let's talk"
 						className='footer-nav--link'
 					>
-						Let's talk ↗︎
+						Let's talk <Arrow />
 					</a>
 					<TransitionTrigger noCircle classes='footer-nav--link' to={"/"}>
-						About ↗︎
+						About <Arrow />
 					</TransitionTrigger>
 				</nav>
 

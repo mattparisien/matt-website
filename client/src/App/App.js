@@ -16,6 +16,8 @@ import Loader from "../components/Transition/Loader";
 import { device } from "../styles/breakpoints";
 import { GlobalStyle } from "../styles/global";
 import classNames from "classnames";
+import SplitText from "gsap/SplitText";
+import $ from "jquery";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -23,6 +25,7 @@ export const LoadingContext = createContext();
 function App() {
 	const location = useLocation();
 	const [play, setPlay] = useState(true);
+	const splitText = useRef(null);
 
 	const baseSpacing = {
 		desktopL: 2,
@@ -150,6 +153,16 @@ function App() {
 	});
 
 	const appClasses = classNames("App", { "menu-active": state.menuActive });
+
+	useEffect(() => {
+		if (!splitText.current) {
+			setTimeout(() => {
+				splitText.current = new SplitText($(".-split"), {
+					type: "lines",
+				});
+			}, 1000);
+		}
+	}, [splitText]);
 
 	useEffect(() => {
 		console.log("Designed & developed by Matt Parisien");

@@ -6,7 +6,8 @@ import { device } from "../../styles/breakpoints";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
 import Link from "../Link/Link";
-import ParagraphLayout from "../Paragraph/ParagraphLayout";
+import Paragraph from "../Paragraph/Paragraph";
+import ProjectList from "../Lists/ProjectList";
 
 function WorkPage() {
 	const theme = useTheme();
@@ -18,48 +19,18 @@ function WorkPage() {
 	return (
 		<>
 			<Container classes='-bg-yellow'>
-				<Section classes='-fullHeight'>
-					<ParagraphLayout
-						indent
-						indentHeading='work'
-						variant={1}
-						classes='-align-center'
-					>
+				<Section classes='-fullHeight -flex -align-center -justify-center'>
+					<Paragraph indent size='big'>
 						I love my job. A lot. Previously im commercial photography, I now
 						design, develop and maintain full-stack applications for a living. I
 						also do beauty photography on the side, check it out below.{" "}
 						<span className='-absolute'></span>
-					</ParagraphLayout>
+					</Paragraph>
 				</Section>
 			</Container>
-
 			<Container classes='-bg-light'>
-				<Section classes='-padding-huge'>
-					<Box
-						className='categories-bar -padding-small'
-						sx={{ marginBottom: "4rem" }}
-					>
-						<ul className='category-list -ul-horizontal -ul-horizontal-spacing-md'>
-							<li>
-								<Link isSelect={category === "software"} onClick={() => setCategory('software')}>
-									Software <sup>{projects && projects.length}</sup>
-								</Link>
-							</li>
-							<li>
-								<Link isSelect={category === "photography"} onClick={() => setCategory('photography')}>
-									Photography <sup>{photos && photos.length}</sup>
-								</Link>
-							</li>
-						</ul>
-
-						<Box className='grid-wrapper' sx={{ padding: "5rem 0" }}>
-							{category === "photography" ? (
-								<PhotographyGrid items={photos} tablet={tablet} theme={theme} />
-							) : (
-								<ProjectsGrid items={projects} tablet={tablet} theme={theme} />
-							)}
-						</Box>
-					</Box>
+				<Section>
+					<ProjectList projects={projects} photos={photos} />
 				</Section>
 			</Container>
 		</>
@@ -228,11 +199,7 @@ const ProjectsGrid = ({ items, tablet, theme }) => {
 										></video>
 									)}
 								</Box>
-								<Box
-									
-									sx={infoBarBottom}
-									className='info-bar-bottom -text-tiny'
-								>
+								<Box sx={infoBarBottom} className='info-bar-bottom -text-tiny'>
 									{project.PreviewText}
 								</Box>
 							</Box>

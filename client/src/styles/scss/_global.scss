@@ -5,7 +5,12 @@
 	box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	font-family: "Neue Mtl";
 }
 
@@ -22,7 +27,6 @@ ul {
 	padding: 0;
 }
 
-
 :root {
 	@include media("<=tablet") {
 		font-size: 14px;
@@ -31,7 +35,6 @@ ul {
 	@include media("<=phone") {
 		font-size: 15px;
 	}
-
 
 	@include media(">=tablet") {
 		font-size: 15px;

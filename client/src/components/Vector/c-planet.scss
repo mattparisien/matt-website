@@ -1,0 +1,28 @@
+.c-planet {
+	width: 25vw;
+	max-width: 450px;
+
+
+	@include media('<=phoneL') {
+		width: 100%;
+	}
+
+	
+
+	path {
+		fill: none;
+		stroke: $dark;
+		stroke-width: 1px;
+		stroke-dashoffset: 0.001;
+		stroke-dasharray: 0px, 999999px;
+	}
+
+	.-fill-blue {
+		fill: $blue !important;
+	}
+
+	.-fill-dark {
+		fill: $dark !important;
+		fill: $gradient-secondary;
+	}
+}
