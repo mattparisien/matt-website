@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { device } from "../../../styles/breakpoints";
 
 export const StyledHeader = styled.header`
-font-size: inherit !important;
+	font-size: inherit !important;
 	.header-floater {
 		background-color: ${({ theme }) => theme.colors.dark};
 		position: absolute;
@@ -32,7 +32,6 @@ font-size: inherit !important;
 	}
 
 	height: 2.4rem;
-
 
 	box-sizing: border-box;
 
@@ -78,7 +77,5 @@ font-size: inherit !important;
 				}
 			}
 		}
-
-	
 	}
 `;
