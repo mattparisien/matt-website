@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "../Button/Button";
-import { useState } from "react";
 
 function Filter({ categories, selected, setSelected }) {
 	return (

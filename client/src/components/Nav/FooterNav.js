@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { DataContext } from "../../App/App";
 
 function FooterNav() {

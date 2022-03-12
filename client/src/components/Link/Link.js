@@ -1,7 +1,6 @@
 import { Box } from "@mui/material";
-import React from "react";
-import LinkCircle from "./LinkCircle";
 import classNames from "classnames";
+import React from "react";
 
 function Link(props) {
 	const classes = classNames("Link -relative", {

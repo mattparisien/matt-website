@@ -16,7 +16,7 @@ function Form(props) {
 	};
 
 	return (
-		<form className='c-form' onSubmit={handleSubmit}>
+		<form className={classes} onSubmit={handleSubmit}>
 			<div className='c-form_wrapper -flex -gap2'>
 				<div className='c-form_block'>
 					{props.formFields.map((formField, i) => {

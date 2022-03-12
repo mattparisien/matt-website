@@ -65,7 +65,7 @@
 .c-form_item {
 	display: flex;
 	flex-direction: column;
-	align-items: start;
+	align-items: flex-start;
 
 	&:not(:last-child) {
 		margin-bottom: $space-sm;
