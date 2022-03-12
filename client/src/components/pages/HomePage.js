@@ -12,22 +12,19 @@ import React, {
 import Marquee from "react-fast-marquee";
 import { useInView } from "react-intersection-observer";
 import { useTheme } from "styled-components";
-import Container from "../Containers/Container";
+import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { DataContext } from "../../App/App";
 import { device, deviceSize } from "../../styles/breakpoints";
-import ContainerFluid from "../Containers/ContainerFluid";
-import Layout from "../Containers/Layout";
+import Container from "../Containers/Container";
+import Section from "../Containers/Section";
 import Line from "../Line/Line";
-import Link from "../Link/Link";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import Star from "../Star/Star";
 import Arrow from "../Vector/Arrow";
 import MtlLogo from "../Vector/MtlLogo";
-import Section from "../Containers/Section";
 
 const gradientAnim = keyframes`
 	0% {
@@ -51,11 +48,6 @@ function HomePage(props, ref) {
 	const mobile = useMediaQuery(`(max-width: ${deviceSize.mobileL}px`);
 	const headingRef = useRef([]);
 	headingRef.current = [];
-
-	const baseSpacing = desktop ? 5 : 2;
-	const setVerticalSpacing = multiplier => {
-		return `${baseSpacing * multiplier}rem 0`;
-	};
 
 	useEffect(() => {
 		if (data && data.projects) {
@@ -169,7 +161,6 @@ function HomePage(props, ref) {
 const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 	const [currentSlide, setCurrentSlide] = useState(1);
 
-	const theme = useTheme();
 	const video = useRef(null);
 
 	const handleSlideChange = e => {
@@ -179,8 +170,6 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 			setCurrentSlide(1);
 		}
 	};
-
-	const slideColors = ["orange", "yellow"];
 
 	return (
 		<Swiper
@@ -341,8 +330,8 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 											transform: "translateY(-100%)",
 											opacity: 0,
 											transition: "400ms ease",
-											
-											color: "white"
+
+											color: "white",
 										}}
 										className='cta'
 									>

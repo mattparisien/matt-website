@@ -1,13 +1,12 @@
 import { Box } from "@material-ui/core";
+import classNames from "classnames";
 import gsap from "gsap";
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
-import ContainerFluid from "../Containers/ContainerFluid";
+import Container from "../Containers/Container";
 import DesktopNav from "./Nav/DesktopNav";
 import MobileNav from "./Nav/MobileNav";
 import { StyledHeader } from "./styles/StyledHeader";
-import Container from "../Containers/Container";
-import classNames from "classnames";
 
 function Header(props, ref) {
 	const scroll = useLocomotiveScroll();

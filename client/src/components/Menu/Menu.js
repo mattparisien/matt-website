@@ -4,10 +4,9 @@ import gsap from "gsap";
 import { CSSRulePlugin } from "gsap/all";
 import React, { useEffect, useRef } from "react";
 import { device } from "../../styles/breakpoints";
-import Layout from "../Containers/Layout";
-import TransitionTrigger from "../Transition/TransitionTrigger";
 import Container from "../Containers/Container";
 import FooterNav from "../Nav/FooterNav";
+import TransitionTrigger from "../Transition/TransitionTrigger";
 
 function Menu(props) {
 	const listInfo = [
@@ -18,13 +17,13 @@ function Menu(props) {
 		{
 			url: "/work",
 			title: "Projects",
-		}
+		},
 	];
 
 	gsap.registerPlugin(CSSRulePlugin);
 	const { isOpen } = props;
 	const mobile = useMediaQuery(device.mobileL);
-	const tablet = useMediaQuery(device.tablet);
+
 	const menuAnim = useRef(gsap.timeline());
 	const navItems = useRef([]);
 	const containerRef = useRef(null);
@@ -94,22 +93,6 @@ function Menu(props) {
 		}
 	}, [isOpen, containerRef, navItems, infoWrapperRef]);
 
-	const container = {
-		boxSizing: "border-box",
-		width: "100vw",
-		height: "100vh",
-		position: "fixed",
-		top: 0,
-		left: 0,
-		backgroundColor: "black",
-		zIndex: 9,
-		transform: "translateY(-100%)",
-		display: "none",
-		paddingTop: "8rem",
-		fontSize: "0.8rem",
-		color: props.theme.colors.light,
-	};
-
 	const listContainer = {
 		height: "100%",
 		width: "100%",
@@ -165,14 +148,10 @@ function Menu(props) {
 		boxSizing: "border-box",
 	};
 
-	const greeting = {
-		width: "200px",
-	};
-
 	return (
 		<div className='Menu -fullHeight -fullWidth -bg-dark' ref={containerRef}>
 			<Container>
-				<div className='inner' className="-relative -fullHeight">
+				<div className='-relative -fullHeight'>
 					<Box component='ul' sx={listContainer} className='menu-list'>
 						{listInfo.map((item, i) => {
 							return (

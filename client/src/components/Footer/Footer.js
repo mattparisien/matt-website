@@ -1,48 +1,12 @@
-import { useMediaQuery } from "@mui/material";
-import React, { useRef, useState } from "react";
-import { useInView } from "react-intersection-observer";
-import { useTheme } from "styled-components";
-import { deviceSize } from "../../styles/breakpoints";
+import React, { useRef } from "react";
 import Container from "../Containers/Container";
 import TransitionTrigger from "../Transition/TransitionTrigger";
 
-// const gradientAnim = keyframes`
-// 0% {
-// 	transform: translateY(0)
-// }
-// 100% {
-// 	transform: translateY(-80%)
-// }
-// `;
 
 function Footer(props) {
-	const [starColor, setStarColor] = useState("light");
 
-	const footerStyle = {
-		backgroundColor: props.backgroundColor,
-		color: props.foregroundColor,
-		width: "100vw",
-	};
-	const theme = useTheme();
-	const laptop = useMediaQuery(`(max-width: ${deviceSize.laptop}px)`);
-	const tablet = useMediaQuery(`(max-width: ${deviceSize.tablet}px)`);
-
-	const [ref, inView] = useInView({
-		threshold: 0.5,
-	});
 	const linkRefs = useRef([]);
 	linkRefs.current = [];
-
-	const footerLink = {
-		textTransform: "none",
-		overflow: "hidden",
-		"& .char": {
-			transform: `translateY(100%)`,
-			opacity: 0,
-		},
-	};
-
-	const fontSize = laptop ? "2rem" : "4rem";
 
 	return (
 		<footer className='Footer'>

@@ -5,10 +5,8 @@ import { DataContext } from "../../App/App";
 import { device } from "../../styles/breakpoints";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
-import UnorderedList from "../Lists/UnorderedList";
-import ParagraphLayout from "../Paragraph/ParagraphLayout";
-import Star from "../Star/Star";
 import Link from "../Link/Link";
+import ParagraphLayout from "../Paragraph/ParagraphLayout";
 
 function WorkPage() {
 	const theme = useTheme();
@@ -231,9 +229,9 @@ const ProjectsGrid = ({ items, tablet, theme }) => {
 									)}
 								</Box>
 								<Box
-									className='info-bar-bottom'
+									
 									sx={infoBarBottom}
-									className='-text-tiny'
+									className='info-bar-bottom -text-tiny'
 								>
 									{project.PreviewText}
 								</Box>
