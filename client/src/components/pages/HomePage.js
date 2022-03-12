@@ -12,7 +12,8 @@ import { useTheme } from "styled-components";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { DataContext } from "../../App/App";
-import { device, deviceSize } from "../../styles/breakpoints";
+import { deviceSize } from "../../styles/breakpoints";
+import Accent from "../Accent/Accent";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
 import Line from "../Line/Line";
@@ -20,7 +21,6 @@ import ProjectList from "../Lists/ProjectList";
 import Paragraph from "../Paragraph/Paragraph";
 import Star from "../Star/Star";
 import { Planet1, Planet2, Planet3 } from "../Vector/Planets";
-import Accent from "../Accent/Accent";
 
 const gradientAnim = keyframes`
 	0% {
@@ -40,7 +40,7 @@ function HomePage(props, ref) {
 	marquees.current = [];
 	const lines = useRef([]);
 	lines.current = [];
-	const desktop = useMediaQuery(device.laptop);
+
 	const mobile = useMediaQuery(`(max-width: ${deviceSize.mobileL}px`);
 	const headingRef = useRef([]);
 	headingRef.current = [];
@@ -109,13 +109,12 @@ function HomePage(props, ref) {
 				<Section classes='-padding-bottom-huge'>
 					<Paragraph size='big' indent>
 						Hey. I'm a full-stack software developer & graphic designer obsessed
-						with digital products and{" "}
-						<Accent>passionate</Accent> about building
+						with digital products and <Accent>passionate</Accent> about building
 						responsive user interfaces. Previously in commercial photography,
 						I'm currently exploring the intersection between technology,
 						animation, design and strategy as a way to deliver digital
-						<Accent>experiences</Accent>. I recently graduated
-						from Lighthouse Labs, where I discovered my love for the front-end.
+						<Accent>experiences</Accent>. I recently graduated from Lighthouse
+						Labs, where I discovered my love for the front-end.
 					</Paragraph>
 					<Line color='dark' />
 				</Section>

@@ -1,5 +1,5 @@
 .c-button {
-	font-size: 2.5rem;
+	font-size: 2rem;
 	line-height: 4rem;
 	border: 2px solid $dark;
 	border-radius: 50px;
@@ -10,6 +10,7 @@
 	@include media("<=tablet") {
 		font-size: 25px;
 		line-height: 40px;
+		padding: 0.1rem 1.1rem 0.15rem;
 	}
 
 	&_label {

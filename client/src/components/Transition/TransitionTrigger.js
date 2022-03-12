@@ -6,7 +6,7 @@ import classNames from "classnames";
 
 function TransitionTrigger(props) {
 	const { playTransition, toggleMenu, menuActive } = useContext(LoadingContext);
-	const classes = classNames("TransitionTrigger", {
+	const classes = classNames("TransitionTrigger -block -stretchX", {
 		[props.classes]: props.classes,
 	});
 	const navigate = useNavigate();

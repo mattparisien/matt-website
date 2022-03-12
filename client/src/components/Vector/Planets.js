@@ -11,7 +11,6 @@ export function Planet1() {
 
 	useEffect(() => {
 		if (planet && inView) {
-			console.log($(planet.current).find(".u-gsap-fill-animate"));
 			const tl = new gsap.timeline();
 			tl.to($(planet.current).find(".u-gsap-stroke-animate"), {
 				drawSVG: "100%",
@@ -73,7 +72,6 @@ export function Planet2() {
 
 	useEffect(() => {
 		if (planet && inView) {
-			console.log($(planet.current).find(".u-gsap-fill-animate"));
 			const tl = new gsap.timeline();
 			tl.to($(planet.current).find(".u-gsap-stroke-animate"), {
 				drawSVG: "100%",
@@ -125,7 +123,6 @@ export function Planet3() {
 
 	useEffect(() => {
 		if (planet && inView) {
-			console.log($(planet.current).find(".u-gsap-fill-animate"));
 			const tl = new gsap.timeline();
 			tl.to($(planet.current).find(".u-gsap-stroke-animate"), {
 				drawSVG: "100%",
@@ -208,7 +205,6 @@ export function Planet4() {
 
 	useEffect(() => {
 		if (planet && inView) {
-			console.log($(planet.current).find(".u-gsap-fill-animate"));
 			const tl = new gsap.timeline();
 			tl.to($(planet.current).find(".u-gsap-stroke-animate"), {
 				drawSVG: "100%",

@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
-import classNames from "classnames";
 import axios from "axios";
-
+import classNames from "classnames";
+import React, { useState } from "react";
 
 function Form(props) {
 	const [values, setValues] = useState("");
-	const [errors, setErrors] = useState(false);
-	const [loading, setLoading] = useState(false);
 
 	const classes = classNames("c-form", { [props.classes]: props.classes });
 
@@ -15,9 +12,8 @@ function Form(props) {
 	};
 
 	const handleSubmit = e => {
-		console.log('helo!')
-		axios.post(process.env.REACT_APP_API_URL)
-	}
+		axios.post(process.env.REACT_APP_API_URL);
+	};
 
 	return (
 		<form className='c-form' onSubmit={handleSubmit}>

@@ -7,8 +7,7 @@ import classNames from "classnames";
 function ProjectList({ projects, photos }) {
 	const [selected, setSelected] = useState("Software");
 
-	const classes = classNames(`c-project is-category-${selected.toLowerCase()}`)
-	
+	const classes = classNames(`c-project is-category-${selected.toLowerCase()}`);
 
 	return (
 		<div className={classes}>
@@ -47,7 +46,7 @@ function ProjectList({ projects, photos }) {
 						return (
 							<ProjectItem
 								key={photo.id}
-								title={photo.caption}
+								title={null}
 								videoUrl={null}
 								imageUrl={photo.url}
 								imageAlt={photo.alternativeText}
@@ -76,10 +75,14 @@ function ProjectItem({ title, videoUrl, imageUrl, imageAlt, projectLocation }) {
 					<div className='c-project_info'>
 						<div className='c-project_line'>
 							<div className='c-project_title'>{title}</div>
-							<div className='c-project_org'>Lighthouse Labs</div>
+							<div className='c-project_org'>{title && "Lighthouse Labs"}</div>
 						</div>
 					</div>
-					<h2 className='c-project_category c-heading -h2 -split'>Software</h2>
+					{title && (
+						<h2 className='c-project_category c-heading -h2 -split'>
+							Software
+						</h2>
+					)}
 				</a>
 			</div>
 		</div>

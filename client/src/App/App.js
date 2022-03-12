@@ -9,7 +9,6 @@ import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import Menu from "../components/Menu/Menu";
-import AboutPage from "../components/pages/AboutPage";
 import HomePage from "../components/pages/HomePage";
 import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
@@ -329,7 +328,6 @@ function App() {
 											path='/'
 											element={<HomePage isLoading={state.isLoading} />}
 										/>
-										<Route path='/about' element={<AboutPage />} />
 										<Route path='/work' element={<WorkPage />} />
 										<Route path='/contact' element={<ContactPage />} />
 									</Routes>

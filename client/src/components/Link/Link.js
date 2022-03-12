@@ -17,7 +17,7 @@ function Link(props) {
 			onClick={props.onClick}
 		>
 			{props.children}
-			{!props.noCircle && <LinkCircle isSelect={props.isSelect} />}
+			
 		</Box>
 	);
 }

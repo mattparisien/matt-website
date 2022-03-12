@@ -1,11 +1,7 @@
 import React from "react";
-import Section from "../Containers/Section";
 import Container from "../Containers/Container";
-import Button from "../Button/Button";
-import FooterNav from "../Nav/FooterNav";
-import Paragraph from "../Paragraph/Paragraph";
-import Line from "../Line/Line";
 import Form from "../Form/Form";
+import FooterNav from "../Nav/FooterNav";
 
 function ContactPage() {
 	const formFields = [

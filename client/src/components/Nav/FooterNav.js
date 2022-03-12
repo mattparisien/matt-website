@@ -4,9 +4,6 @@ import { DataContext } from "../../App/App";
 
 function FooterNav() {
 	const data = useContext(DataContext);
-	useEffect(() => {
-		console.log(data)
-	}, [data])
 
 	return (
 		<div
