@@ -68,7 +68,7 @@ function HomePage(props, ref) {
 				},
 			]);
 		}
-	}, [data]);
+	}, [data, featuredProjects]);
 
 	const overlay = {
 		height: "30vw",
