@@ -1,47 +1,60 @@
 @import "./breakpoints";
 
-:root {
-	//Spacing
-	--space-unit: 2rem;
-	--space-xxs: calc(0.25 * var(--space-unit)); // 4px
-	--space-xs: calc(0.5 * var(--space-unit)); // 8px
-	--space-sm: calc(0.75 * var(--space-unit)); // 12px
-	--space-md: calc(1.25 * var(--space-unit)); // 20px
-	--space-lg: calc(2 * var(--space-unit)); // 32px
-	--space-xl: calc(3.25 * var(--space-unit)); // 52px
+//Spacing
+$space-unit: 2rem;
+$space-xxs: calc(0.25 * 2rem); // 4px
+$space-xs: calc(0.5 * 2rem); // 8px
+$space-sm: calc(0.75 * 2rem); // 12px
+$space-md: calc(1.25 * 2rem); // 20px
+$space-lg: calc(2 * 2rem); // 32px
+$space-xl: calc(3.25 * 2rem); // 52px
+$space-xxl: calc(3 * 2rem);
+$space-xxxl: calc(7 * 2rem);
 
-	
-
-	@include media("<=tablet") {
-		--space-xxl: calc(3 * var(--space-unit));
-	}
-
-	@include media("<=phone") {
-		--space-xxl: calc(1* var(--space-unit));
-	}
-
-
-	@include media(">=tablet") {
-		--space-xxl: calc(5.25 * var(--space-unit)); // 84px
-	}
-	
-
-
-	
-
-
-	//Colors
-	$light: "#FFFFFF";
-	$dark: "#1E1E1E";
-	$dark2: "#23252B";
-	$lighterDark: "#111111";
-	$red: "#DF181F";
-	$green: "#C0FF0D";
-	$blue: "rgb(78, 140, 162)";
-	$yellow: "#faf281";
-	$pink: "#f1b9b8";
-	$orange: "rgb(231, 100, 53)";
-	$grey: "rgb(207, 207, 207)";
-	$purple: "#5b487c";
-	$gradient: "linear-gradient(#516dc1,#ce4469,#ce4469,#fb986c,#fb986c,#a99af4,#a99af4,#2fd8a8,#2fd8a8,#009b8e,#009b8e,#516dc1,#516dc1,#ce4469)";
+@include media("<=tablet") {
+	$space-xxl: calc(3 * 2rem);
 }
+
+@include media("<=phone") {
+	$space-xxl: calc(1 * 2rem);
+}
+
+@include media(">=tablet") {
+	$space-xxl: calc(5.25 * 2rem); // 84px
+}
+
+//Colors
+$light: #ffffff;
+$dark: #1e1e1e;
+$dark2: #2e2e2e;
+$lighterDark: #111111;
+$red: #df181f;
+$green: #c0ff0d;
+$blue: rgb(78, 140, 162);
+$yellow: #faf281;
+$pink: #f1b9b8;
+$orange: rgb(231, 100, 53);
+$grey: rgb(207, 207, 207);
+$purple: #5b487c;
+$gradient-primary: linear-gradient(
+	#516dc1,
+	#ce4469,
+	#ce4469,
+	#fb986c,
+	#fb986c,
+	#a99af4,
+	#a99af4,
+	#2fd8a8,
+	#2fd8a8,
+	#009b8e,
+	#009b8e,
+	#516dc1,
+	#516dc1,
+	#ce4469
+);
+$gradient-secondary: #785b75, #326461, #d4a263;
+
+//Transition
+$transition: 300ms ease;
+$translate-transition: opacity 0s cubic-bezier(0.35, 0.755, 0.42, 0.95),
+	transform 0.3s cubic-bezier(0.35, 0.755, 0.42, 0.95);

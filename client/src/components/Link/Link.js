@@ -1,7 +1,6 @@
 import { Box } from "@mui/material";
-import React from "react";
-import LinkCircle from "./LinkCircle";
 import classNames from "classnames";
+import React from "react";
 
 function Link(props) {
 	const classes = classNames("Link -relative", {
@@ -17,7 +16,7 @@ function Link(props) {
 			onClick={props.onClick}
 		>
 			{props.children}
-			{!props.noCircle && <LinkCircle isSelect={props.isSelect} />}
+			
 		</Box>
 	);
 }

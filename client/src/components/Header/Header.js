@@ -24,7 +24,7 @@ function Header(props, ref) {
 			1,
 			props.location.pathname.length
 		)}`]: props.location.pathname,
-		'floater-visible': floaterVisible
+		"floater-visible": floaterVisible,
 	});
 
 	const addToLinkRefs = el => {

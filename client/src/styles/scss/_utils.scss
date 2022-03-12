@@ -3,15 +3,31 @@
 //Utility classes
 
 .-padding-huge {
-	padding: var(--space-xxl) 0;
+	padding: $space-xxxl 0;
 }
 
 .-padding-top-huge {
-	padding-top: var(--space-xxl);
+	padding-top: $space-xxxl;
+}
+
+.-padding-bottom-huge {
+	padding-bottom: $space-xxxl;
+}
+
+.-ml-auto {
+	margin-left: auto;
+}
+
+.-mr-auto {
+	margin-right: auto;
 }
 
 .-flex {
 	display: flex;
+}
+
+.-flex-column {
+	flex-direction: column;
 }
 
 .-align-center {
@@ -23,11 +39,18 @@
 }
 
 .-ul-horizontal-spacing-md {
-
 	li {
 		margin-right: var(--space-md);
 	}
-	
+}
+
+.-split {
+	overflow: hidden;
+
+	div {
+		transform: translateY(100%);
+		opacity: 0;
+	}
 }
 
 .-align-end {
@@ -38,9 +61,28 @@
 	position: absolute;
 }
 
+.-top {
+	top: 0;
+}
+
+.-inline {
+	display: inline;
+}
+
+.-left {
+	left: 0;
+}
+
+.-right {
+	right: 0;
+}
+
+.-bottom {
+	bottom: 0;
+}
+
 .-relative {
 	position: relative;
-
 }
 
 .-justify-center {
@@ -54,24 +96,62 @@
 	width: 100%;
 }
 
+.-halfWidth {
+	width: 50%;
+}
+
 .-fullHeight {
-	height: 100vh;
+	min-height: 100vh;
+}
+
+.-height-auto {
+	height: auto !important;
+}
+
+.-gap2 {
+	gap: 2rem;
 }
 
 .-justify-between {
 	justify-content: space-between;
 }
 
+.-gradient-primary {
+	background: $gradient-primary;
+}
+
+.-gradient-secondary {
+	background: linear-gradient(to right, $gradient-secondary);
+}
+
 .-bg-light {
-	background-color: #ffffff;
+	background-color: $light;
+}
+
+.-bg-purple {
+	background-color: $purple;
+	color: $pink;
 }
 
 .-bg-pink {
-	background-color: #f1b9b8;
+	background-color: $pink;
+}
+
+.-bg-green {
+	background-color: $green;
 }
 
 .-bg-dark {
-	background-color: #1e1e1e;
+	background-color: $dark;
+	color: $light;
+}
+
+.-stroke-light {
+	stroke: $light !important;
+}
+
+.-fill-light {
+	fill: $light !important;
 }
 
 .-bg-yellow {
@@ -85,4 +165,56 @@
 .-ul-small,
 .-text-tiny {
 	font-size: 0.8rem;
+}
+
+.-indent {
+	text-indent: 30%;
+}
+
+.-block {
+	display: block;
+}
+
+.-text-big {
+	font-size: 2.2rem;
+
+
+	@include media("<=tablet") {
+		.c-star.-inline svg, .c-planet.-inline svg {
+			width: 2rem !important;
+			height: 2rem !important;
+		}
+	}
+
+	@include media(">=phoneL")   {
+		font-size: 3.7rem;
+	}
+
+	@include media(">=desktop") {
+		font-size: 5rem;
+	}
+
+}
+
+.-stretchY {
+	height: 100%;
+}
+
+.-stretchX {
+	width: 100%;
+}
+
+.-text-small {
+	font-size: 1.4rem;
+	line-height: 1.8rem !important;
+
+	@include media(">=tablet") {
+		font-size: 2.8rem;
+		line-height: 3rem !important;
+	}
+}
+
+//ITCSS Utilies
+.u-gsap-fill-animate {
+	opacity: 0;
 }

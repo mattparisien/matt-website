@@ -1,0 +1,13 @@
+.c-filter {
+	margin: $space-xxl 0;
+	flex-wrap: wrap;
+  gap: 2rem;
+  
+  @include media("<=laptop") {
+    gap: 1rem;
+  }
+}
+
+.c-filter_item {
+	height: auto;
+}

@@ -17,8 +17,8 @@ function DesktopNav(props, ref) {
 			href: "/work",
 		},
 		{
-			title: "About",
-			href: "/about",
+			title: "Contact",
+			href: "/contact",
 		},
 	];
 

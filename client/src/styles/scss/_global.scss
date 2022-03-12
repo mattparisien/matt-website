@@ -1,0 +1,40 @@
+* {
+	-webkit-font-smoothing: antialiased;
+	font-family: "Neue Mtl";
+	font-weight: lighter;
+	box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Neue Mtl";
+}
+
+.c-heading.-h2 {
+	font-size: 2rem;
+}
+
+body {
+	margin: 0;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	font-size: 18px;
+
+	@include media("<=tablet") {
+		font-size: 16px;
+	}
+
+	@include media("<=phone") {
+		font-size: 15px;
+	}
+}

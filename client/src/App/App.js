@@ -9,13 +9,15 @@ import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import Menu from "../components/Menu/Menu";
-import AboutPage from "../components/pages/AboutPage";
 import HomePage from "../components/pages/HomePage";
 import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
 import { device } from "../styles/breakpoints";
 import { GlobalStyle } from "../styles/global";
 import classNames from "classnames";
+import SplitText from "gsap/SplitText";
+import $ from "jquery";
+import ContactPage from "../components/pages/ContactPage";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -23,6 +25,7 @@ export const LoadingContext = createContext();
 function App() {
 	const location = useLocation();
 	const [play, setPlay] = useState(true);
+	const splitText = useRef(null);
 
 	const baseSpacing = {
 		desktopL: 2,
@@ -150,6 +153,16 @@ function App() {
 	});
 
 	const appClasses = classNames("App", { "menu-active": state.menuActive });
+
+	useEffect(() => {
+		if (!splitText.current) {
+			setTimeout(() => {
+				splitText.current = new SplitText($(".-split"), {
+					type: "lines",
+				});
+			}, 1000);
+		}
+	}, [splitText]);
 
 	useEffect(() => {
 		console.log("Designed & developed by Matt Parisien");
@@ -315,8 +328,8 @@ function App() {
 											path='/'
 											element={<HomePage isLoading={state.isLoading} />}
 										/>
-										<Route path='/about' element={<AboutPage />} />
 										<Route path='/work' element={<WorkPage />} />
+										<Route path='/contact' element={<ContactPage />} />
 									</Routes>
 								</ContentWrapper>
 								<Footer

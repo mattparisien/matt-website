@@ -1,7 +1,6 @@
-
-
 .menu-active header {
-	.top, .bottom {
+	.top,
+	.bottom {
 		background-color: white !important;
 	}
 
@@ -10,14 +9,13 @@
 	}
 }
 
-
-header.is-page-about,
-header.is-page-work {
+header.is-page-about {
 	.LinkCircle path {
 		stroke: black;
 	}
 
-	.top, .bottom {
+	.top,
+	.bottom {
 		background-color: black;
 	}
 

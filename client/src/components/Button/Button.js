@@ -1,16 +1,16 @@
+import classNames from "classnames";
 import React from "react";
-import styled from "styled-components";
-import Arrow from "../Vector/Arrow";
 
-const StyledBtn = styled.button`
-	background: transparent;
-	border: 0px;
-	font-family: "Neue Mtl";
-	font-size: ${({ fontSize }) => (fontSize ? fontSize : "1rem")};
-`;
+function Button({ children, href, target, selected, number, onClick }) {
+	const classes = classNames("c-button", { selected: selected });
 
-function Button(props) {
-	return <StyledBtn {...props}>{props.children}</StyledBtn>;
+	return (
+		<a className={classes} onClick={onClick} href={"/"}>
+			<span className='c-button_label'>
+				{children} <sup className='c-button_number'>{number}</sup>
+			</span>
+		</a>
+	);
 }
 
 export default Button;
