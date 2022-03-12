@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 import FooterNav from "../Nav/FooterNav";
 import Paragraph from "../Paragraph/Paragraph";
 import Line from "../Line/Line";
-import Form from "./components/Form/Form";
+import Form from "../Form/Form";
 
 function ContactPage() {
 	const formFields = [
@@ -23,33 +23,31 @@ function ContactPage() {
 		},
 		{
 			tagName: "input",
-			label: "I'm looking for",
-			placeholder: "Describe your projects",
-			name: "project",
-		},
-		{
-			tagName: "input",
 			label: "Please contact me at",
 			placeholder: "justine@example.com",
 			name: "email",
 		},
 		{
-			tagName: "input",
+			tagName: "textarea",
 			label: "I'm looking for",
-			placeholder: "Describe your projects",
-			name: "company",
+			placeholder: "Describe your project",
+			name: "project",
 		},
 	];
 
 	return (
-		<Container classes='-fullHeight -flex -flex-column'>
-			<Paragraph size='big'>
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae, totam?
-			</Paragraph>
-      <Form formFields={formFields}/>
-			<FooterNav />
-			<Line />
-		</Container>
+		<>
+			<Container classes='-fullHeight -flex -flex-column -padding-top-huge -bg-dark -justify-center'>
+				<Form formFields={formFields} classes={"-absolute -absolute-center"} />
+				<Container
+					classes={
+						"-absolute -bottom -left -height-auto -flex -align-end -stretchX"
+					}
+				>
+					<FooterNav />
+				</Container>
+			</Container>
+		</>
 	);
 }
 

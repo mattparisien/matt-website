@@ -6,6 +6,7 @@ import Layout from "../Containers/Layout";
 import Line from "../Divider/Line";
 import SocialList from "../Lists/SocialList";
 import Paragraph from "../Paragraph/Paragraph";
+import Star from "../Star/Star";
 
 
 const margin = 4;

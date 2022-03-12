@@ -104,6 +104,14 @@
 	min-height: 100vh;
 }
 
+.-height-auto {
+	height: auto !important;
+}
+
+.-gap2 {
+	gap: 2rem;
+}
+
 .-justify-between {
 	justify-content: space-between;
 }
@@ -117,7 +125,7 @@
 }
 
 .-bg-light {
-	background-color: #ffffff;
+	background-color: $light;
 }
 
 .-bg-purple {
@@ -126,7 +134,11 @@
 }
 
 .-bg-pink {
-	background-color: #f1b9b8;
+	background-color: $pink;
+}
+
+.-bg-green {
+	background-color: $green;
 }
 
 .-bg-dark {
@@ -160,7 +172,7 @@
 }
 
 .-text-big {
-	font-size: 2rem;
+	font-size: 2.2rem;
 
 
 	@include media("<=tablet") {
@@ -170,9 +182,14 @@
 		}
 	}
 
-	@include media(">=tablet") {
+	@include media(">=phoneL")   {
+		font-size: 3.7rem;
+	}
+
+	@include media(">=desktop") {
 		font-size: 5rem;
 	}
+
 }
 
 .-stretchY {

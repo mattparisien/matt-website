@@ -1,18 +1,13 @@
 import { useMediaQuery } from "@mui/material";
 import { Box, keyframes } from "@mui/system";
-import gsap from "gsap";
-import $ from "jquery";
 import React, {
 	forwardRef,
 	useContext,
 	useEffect,
 	useRef,
-	useState,
+	useState
 } from "react";
-import Marquee from "react-fast-marquee";
-import { useInView } from "react-intersection-observer";
 import { useTheme } from "styled-components";
-import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
@@ -22,11 +17,10 @@ import Container from "../Containers/Container";
 import Section from "../Containers/Section";
 import Line from "../Line/Line";
 import ProjectList from "../Lists/ProjectList";
-import Star from "../Star/Star";
-import Arrow from "../Vector/Arrow";
-import MtlLogo from "../Vector/MtlLogo";
 import Paragraph from "../Paragraph/Paragraph";
+import Star from "../Star/Star";
 import { Planet1, Planet2, Planet3 } from "../Vector/Planets";
+import Accent from "../Accent/Accent";
 
 const gradientAnim = keyframes`
 	0% {
@@ -115,12 +109,13 @@ function HomePage(props, ref) {
 				<Section classes='-padding-bottom-huge'>
 					<Paragraph size='big' indent>
 						Hey. I'm a full-stack software developer & graphic designer obsessed
-						with digital products and passionate about building responsive user
-						interfaces. Previously in commercial photography, I'm currently
-						exploring the intersection between technology, animation, design and
-						strategy as a way to deliver digital experiences. I recently
-						graduated from Lighthouse Labs, where I discovered my love for the
-						front-end.
+						with digital products and{" "}
+						<Accent>passionate</Accent> about building
+						responsive user interfaces. Previously in commercial photography,
+						I'm currently exploring the intersection between technology,
+						animation, design and strategy as a way to deliver digital
+						<Accent>experiences</Accent>. I recently graduated
+						from Lighthouse Labs, where I discovered my love for the front-end.
 					</Paragraph>
 					<Line color='dark' />
 				</Section>
@@ -134,7 +129,6 @@ function HomePage(props, ref) {
 				<Section>
 					<ProjectList projects={data.projects} photos={data.photos} />
 				</Section>
-			
 			</Container>
 		</>
 	);
