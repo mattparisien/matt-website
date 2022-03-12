@@ -1,11 +1,20 @@
 import React from "react";
 import Figure from "../Figure/Figure";
 import Filter from "../Filter/Filter";
+import { useState } from "react";
+import classNames from "classnames";
 
 function ProjectList({ projects, photos }) {
+	const [selected, setSelected] = useState("Software");
+
+	const classes = classNames(`c-project is-category-${selected.toLowerCase()}`)
+	
+
 	return (
-		<div className='c-project'>
+		<div className={classes}>
 			<Filter
+				selected={selected}
+				setSelected={setSelected}
 				categories={[
 					{
 						name: "Software",
@@ -18,34 +27,60 @@ function ProjectList({ projects, photos }) {
 				]}
 			/>
 			<div className='c-project_list'>
-				{projects &&
+				{selected === "Software" &&
+					projects &&
 					projects.map(project => {
 						return (
-							<div className='c-project_item' key={project.id}>
-								<div className='c-project_inner'>
-									<a href={project.Location} className='c-project_link'>
-										<Figure
-											img={{
-												src: project.Cover.image.url,
-												alt: project.Cover.image.alt,
-											}}
-											video={project.Cover.video && project.Cover.video.url}
-										/>
-
-										<div className='c-project_info'>
-											<div className='c-project_line'>
-												<div className='c-project_title'>{project.Title}</div>
-												<div className='c-project_org'>Lighthouse Labs</div>
-											</div>
-										</div>
-										<h2 className='c-project_category c-heading -h2'>
-											Software
-										</h2>
-									</a>
-								</div>
-							</div>
+							<ProjectItem
+								key={project.id}
+								title={project.Title}
+								videoUrl={project.Cover.video && project.Cover.video.url}
+								imageUrl={project.Cover.image && project.Cover.image.url}
+								imageAlt={project.Cover.image && project.Cover.image.alt}
+								projectLocation={project.Location}
+							/>
 						);
 					})}
+				{selected === "Photography" &&
+					photos &&
+					photos.map(photo => {
+						return (
+							<ProjectItem
+								key={photo.id}
+								title={photo.caption}
+								videoUrl={null}
+								imageUrl={photo.url}
+								imageAlt={photo.alternativeText}
+								projectLocation={null}
+							/>
+						);
+					})}
+			</div>
+		</div>
+	);
+}
+
+function ProjectItem({ title, videoUrl, imageUrl, imageAlt, projectLocation }) {
+	return (
+		<div className='c-project_item'>
+			<div className='c-project_inner'>
+				<a href={projectLocation} className='c-project_link'>
+					<Figure
+						img={{
+							src: imageUrl,
+							alt: imageAlt,
+						}}
+						video={videoUrl}
+					/>
+
+					<div className='c-project_info'>
+						<div className='c-project_line'>
+							<div className='c-project_title'>{title}</div>
+							<div className='c-project_org'>Lighthouse Labs</div>
+						</div>
+					</div>
+					<h2 className='c-project_category c-heading -h2'>Software</h2>
+				</a>
 			</div>
 		</div>
 	);

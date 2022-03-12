@@ -1,0 +1,9 @@
+@keyframes scaleY {
+  0% {
+    translate: scaleY(0)
+  }
+
+  100% {
+    transform: scaleY(1)
+  }
+}

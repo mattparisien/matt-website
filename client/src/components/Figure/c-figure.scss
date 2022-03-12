@@ -10,12 +10,17 @@
     width: 100%;
   }
 
+  &:hover .c-figure_img {
+    opacity: 0;
+  }
+
   &_img, &_video {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
+    transition: 300ms ease;
     
 
     img, video {

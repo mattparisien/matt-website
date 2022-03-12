@@ -109,12 +109,8 @@ function HomePage(props, ref) {
 					<Box sx={gradientInner}></Box>
 				</Box>
 			</Section>
-			
 
 			<Container classes={"-bg-light "}>
-				<Section>
-					<ProjectList projects={data.projects}/>
-				</Section>
 				<Section classes='-fullHeight'>
 					<ParagraphLayout
 						indent
@@ -128,6 +124,9 @@ function HomePage(props, ref) {
 						currently exploring the intersection between technology, design and
 						strategy.
 					</ParagraphLayout>
+				</Section>
+				<Section>
+					<ProjectList projects={data.projects} photos={data.photos} />
 				</Section>
 				<Section classes='-padding-huge'>
 					<Line color='dark' />

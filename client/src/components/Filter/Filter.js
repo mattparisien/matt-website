@@ -2,16 +2,15 @@ import React from "react";
 import Button from "../Button/Button";
 import { useState } from "react";
 
-function Filter({ categories }) {
-	const [selected, setSelected] = useState("Software");
-
+function Filter({ categories, selected, setSelected }) {
 	return (
-		<div className='c-filter -flex -align-center -justify-center'>
+		<ul className='c-filter -flex -align-center -justify-center'>
 			{categories &&
 				categories.map((category, i) => {
 					return (
-						<div className='c-filter_item'>
+						<li className='c-filter_item'>
 							<Button
+								target='_blank'
 								onClick={() => setSelected(category.name)}
 								selected={category.name === selected}
 								key={i}
@@ -19,10 +18,10 @@ function Filter({ categories }) {
 							>
 								{category.name}
 							</Button>
-						</div>
+						</li>
 					);
 				})}
-		</div>
+		</ul>
 	);
 }
 
