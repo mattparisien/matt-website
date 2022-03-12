@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useTheme } from "styled-components";
 
-function Star({ height, color, strokeWidth }) {
+function Star({ height, color, strokeWidth, inline }) {
 	const theme = useTheme();
 	const lineRefs = useRef([]);
 	lineRefs.current = [];
@@ -85,9 +85,10 @@ function Star({ height, color, strokeWidth }) {
 		}
 	}, [lineRefs, starRef, hasPlayed, inView]);
 	return (
-		<Box className='star-view-wrapper' ref={ref}>
+		<Box className={inline ? 'c-star -inline' : 'c-star'} ref={ref}>
 			<svg
 				id='svg-star'
+				
 				ref={starRef}
 				style={star}
 				xmlns='http://www.w3.org/2000/svg'

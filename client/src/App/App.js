@@ -18,6 +18,7 @@ import { GlobalStyle } from "../styles/global";
 import classNames from "classnames";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
+import ContactPage from "../components/pages/ContactPage";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -330,6 +331,7 @@ function App() {
 										/>
 										<Route path='/about' element={<AboutPage />} />
 										<Route path='/work' element={<WorkPage />} />
+										<Route path='/contact' element={<ContactPage />} />
 									</Routes>
 								</ContentWrapper>
 								<Footer

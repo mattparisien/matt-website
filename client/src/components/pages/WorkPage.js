@@ -8,6 +8,7 @@ import Section from "../Containers/Section";
 import Link from "../Link/Link";
 import Paragraph from "../Paragraph/Paragraph";
 import ProjectList from "../Lists/ProjectList";
+import Star from "../Star/Star";
 
 function WorkPage() {
 	const theme = useTheme();
@@ -18,13 +19,16 @@ function WorkPage() {
 
 	return (
 		<>
-			<Container classes='-bg-yellow'>
-				<Section classes='-fullHeight -flex -align-center -justify-center'>
+			<Container classes='-bg-dark'>
+				<Section classes='-fullHeight -flex -align-end -justify-center'>
 					<Paragraph indent size='big'>
-						I love my job. A lot. Previously im commercial photography, I now
-						design, develop and maintain full-stack applications for a living. I
-						also do beauty photography on the side, check it out below.{" "}
-						<span className='-absolute'></span>
+						I love what I do. A lot. Previously im commercial photography, I'm
+						currently designing, developing and maintaining full-stack
+						applications for various freelance clients. I also do beauty
+						photography on the side <Star color='light' height='50px' strokeWidth={"5px"} inline /> check it out below.
+						<span>
+							
+						</span>{" "}
 					</Paragraph>
 				</Section>
 			</Container>

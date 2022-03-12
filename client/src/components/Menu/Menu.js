@@ -18,6 +18,10 @@ function Menu(props) {
 			url: "/work",
 			title: "Projects",
 		},
+		{
+			url: "/contact",
+			title: "Let's talk",
+		},
 	];
 
 	gsap.registerPlugin(CSSRulePlugin);

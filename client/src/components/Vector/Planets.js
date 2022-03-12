@@ -15,7 +15,7 @@ export function Planet1() {
 			const tl = new gsap.timeline();
 			tl.to($(planet.current).find(".u-gsap-stroke-animate"), {
 				drawSVG: "100%",
-				
+
 				duration: 1,
 				ease: "circ.inOut",
 			}).to(
@@ -195,6 +195,61 @@ export function Planet3() {
 					d='M1061,486.67,941.51,596.09'
 					transform='translate(-924.05 -303.26)'
 					className='u-gsap-stroke-animate'
+				/>
+			</svg>
+		</div>
+	);
+}
+
+export function Planet4() {
+	const planet = useRef(null);
+	const { ref, inView } = useInView({ threshold: 0.9 });
+	gsap.registerPlugin(DrawSVGPlugin);
+
+	useEffect(() => {
+		if (planet && inView) {
+			console.log($(planet.current).find(".u-gsap-fill-animate"));
+			const tl = new gsap.timeline();
+			tl.to($(planet.current).find(".u-gsap-stroke-animate"), {
+				drawSVG: "100%",
+				duration: 1,
+				stagger: 0.1,
+				ease: "circ.inOut",
+			}).to(
+				$(planet.current).find(".u-gsap-fill-animate"),
+				{
+					opacity: 1,
+					ease: "expo.inOut",
+					duration: 1,
+				},
+				0.3
+			);
+		}
+	}, [planet, inView]);
+
+	return (
+		<div className='c-planet -absolute -bottom -right' ref={planet}>
+			<svg
+				className='c-planet_svg'
+				xmlns='http://www.w3.org/2000/svg'
+				viewBox='0 0 254.93 271.71'
+				ref={ref}
+				style={{ transform: "scaleX(-1)" }}
+			>
+				<path
+					d='M1776.41-612.75c7.71,2.24,9.29,20.11,3.54,39.91s-16.67,34-24.38,31.8-9.29-20.11-3.54-39.91S1768.7-615,1776.41-612.75Z'
+					transform='translate(-1528.98 613.48)'
+					className='u-gsap-stroke-animate -stroke-light'
+				/>
+				<path
+					d='M1577.07-362.27c-40.42-38.78-57.07-92.24-42.26-137.79,16.36-50.3,64.54-70.88,83.88-79.15,74-31.63,145.84-.55,161.21,6.55'
+					transform='translate(-1528.98 613.48)'
+					className='u-gsap-stroke-animate -stroke-light'
+				/>
+				<path
+					d='M1594.48-353.4a11.63,11.63,0,0,1-11.63,11.63,11.63,11.63,0,0,1-11.63-11.63A11.63,11.63,0,0,1,1582.85-365,11.63,11.63,0,0,1,1594.48-353.4Z'
+					transform='translate(-1528.98 613.48)'
+					className='u-gsap-stroke-animate -fill-light'
 				/>
 			</svg>
 		</div>

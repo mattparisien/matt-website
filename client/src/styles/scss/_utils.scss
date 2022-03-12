@@ -18,13 +18,16 @@
 	margin-left: auto;
 }
 
-
 .-mr-auto {
 	margin-right: auto;
 }
 
 .-flex {
 	display: flex;
+}
+
+.-flex-column {
+	flex-direction: column;
 }
 
 .-align-center {
@@ -58,6 +61,26 @@
 	position: absolute;
 }
 
+.-top {
+	top: 0;
+}
+
+.-inline {
+	display: inline;
+}
+
+.-left {
+	left: 0;
+}
+
+.-right {
+	right: 0;
+}
+
+.-bottom {
+	bottom: 0;
+}
+
 .-relative {
 	position: relative;
 }
@@ -85,11 +108,19 @@
 	justify-content: space-between;
 }
 
+.-gradient-primary {
+	background: $gradient-primary;
+}
+
+.-gradient-secondary {
+	background: linear-gradient(to right, $gradient-secondary);
+}
+
 .-bg-light {
 	background-color: #ffffff;
 }
 
-.-bg-purple{
+.-bg-purple {
 	background-color: $purple;
 	color: $pink;
 }
@@ -99,7 +130,16 @@
 }
 
 .-bg-dark {
-	background-color: #1e1e1e;
+	background-color: $dark;
+	color: $light;
+}
+
+.-stroke-light {
+	stroke: $light !important;
+}
+
+.-fill-light {
+	fill: $light !important;
 }
 
 .-bg-yellow {
@@ -122,9 +162,25 @@
 .-text-big {
 	font-size: 2rem;
 
+
+	@include media("<=tablet") {
+		.c-star.-inline svg, .c-planet.-inline svg {
+			width: 2rem !important;
+			height: 2rem !important;
+		}
+	}
+
 	@include media(">=tablet") {
 		font-size: 5rem;
 	}
+}
+
+.-stretchY {
+	height: 100%;
+}
+
+.-stretchX {
+	width: 100%;
 }
 
 .-text-small {
@@ -136,7 +192,6 @@
 		line-height: 3rem !important;
 	}
 }
-
 
 //ITCSS Utilies
 .u-gsap-fill-animate {
