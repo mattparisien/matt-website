@@ -1,0 +1,37 @@
+
+
+.menu-active header {
+	.top, .bottom {
+		background-color: white !important;
+	}
+
+	.header-logo {
+		color: white !important;
+	}
+}
+
+
+header.is-page-about,
+header.is-page-work {
+	.LinkCircle path {
+		stroke: black;
+	}
+
+	.top, .bottom {
+		background-color: black;
+	}
+
+	color: black;
+}
+
+.floater-visible {
+	color: white !important;
+
+	.LinkCircle path {
+		stroke: white !important;
+	}
+}
+
+.categories-bar .LinkCircle path {
+	stroke: black;
+}

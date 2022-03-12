@@ -12,16 +12,15 @@ import React, {
 import Marquee from "react-fast-marquee";
 import { useInView } from "react-intersection-observer";
 import { useTheme } from "styled-components";
-// Import Swiper styles
-import 'swiper/swiper-bundle.min.css'
-import 'swiper/swiper.min.css'
 import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import "swiper/swiper-bundle.min.css";
+import "swiper/swiper.min.css";
 import { DataContext } from "../../App/App";
 import { device, deviceSize } from "../../styles/breakpoints";
-import ContainerFluid from "../Containers/ContainerFluid";
-import Layout from "../Containers/Layout";
+import Container from "../Containers/Container";
+import Section from "../Containers/Section";
 import Line from "../Line/Line";
-import Link from "../Link/Link";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import Star from "../Star/Star";
 import Arrow from "../Vector/Arrow";
@@ -50,11 +49,6 @@ function HomePage(props, ref) {
 	const headingRef = useRef([]);
 	headingRef.current = [];
 
-	const baseSpacing = desktop ? 5 : 2;
-	const setVerticalSpacing = multiplier => {
-		return `${baseSpacing * multiplier}rem 0`;
-	};
-
 	useEffect(() => {
 		if (data && data.projects) {
 			setFeaturedProjects([
@@ -80,16 +74,6 @@ function HomePage(props, ref) {
 		}
 	}, [data]);
 
-	const innerHero = {
-		width: "100%",
-		height: "100%",
-		display: "flex",
-		alignItems: "end",
-		textAlign: "center",
-		flexDirection: "column",
-		justifyContent: "center",
-	};
-
 	const overlay = {
 		height: "30vw",
 		width: "30vw",
@@ -114,108 +98,62 @@ function HomePage(props, ref) {
 
 	return (
 		<>
-			<Layout bg={"pink"} color='light' height='100vh'>
-				<Box className='hero-inner' sx={innerHero}>
-					<Star
-						height='60vw'
-						strokeWidth={mobile ? "0.9vw" : "2px"}
-						color='dark'
-					/>
-					<Box className='gradient-overlay' sx={overlay}>
-						<Box sx={gradientInner}></Box>
-					</Box>
+			<Section classes={"Home -flex -justify-center -align-center -bg-pink"}>
+				<Star
+					height='60vw'
+					strokeWidth={mobile ? "0.9vw" : "2px"}
+					color='dark'
+				/>
+				<Box className='gradient-overlay' sx={overlay}>
+					<Box sx={gradientInner}></Box>
 				</Box>
-			</Layout>
+			</Section>
 
-			<Layout bg='light' height='auto' margin={setVerticalSpacing(2)}>
-				<ParagraphLayout indent indentHeading='about' variant={1}>
-					Hey. I'm a full-stack software developer & graphic designer obsessed
-					with digital products and passionate about building responsive user
-					interfaces. Having just graduated from Lighthouse Labs, I'm currently
-					exploring the intersection between technology, design and strategy.
-				</ParagraphLayout>
-			</Layout>
-			<Layout
-				bg='light'
-				height='auto'
-				overflow={"visible"}
-				margin={"0 0 20rem 0"}
-			>
-				<Line color='dark' />
-				<Box sx={{ paddingTop: "2rem" }}>
-					<ParagraphLayout indent indentHeading='Stack' variant={3}>
-						Over the past year I've developed a profiency in full-stack
-						development, expirementing in Javascript, CSS/SCSS & Styled
-						Components, React, NodeJS, Express, SQL & MongoDB.
+			<Container classes={"-bg-light "}>
+				<Section classes='-fullHeight'>
+					<ParagraphLayout
+						indent
+						indentHeading='about'
+						variant={1}
+						classes={"-align-start"}
+					>
+						Hey. I'm a full-stack software developer & graphic designer obsessed
+						with digital products and passionate about building responsive user
+						interfaces. Having just graduated from Lighthouse Labs, I'm
+						currently exploring the intersection between technology, design and
+						strategy.
 					</ParagraphLayout>
-				</Box>
-			</Layout>
-			<Layout bg='light' height='auto' margin={"0 0 5rem 0"}>
-				<Line color='dark' width='50%' />
+				</Section>
+				<Section classes='-padding-huge'>
+					<Line color='dark' />
 
-				<Box sx={{ paddingTop: "2rem" }}>
-					<ParagraphLayout indent indentHeading='Philosophy' variant={2}>
-						Good research leads to effective design and better tech stacks. I
-						believe that a team of people who love creating, learning and
-						growing together have the ability to transcend the workplace.
-					</ParagraphLayout>
-				</Box>
-			</Layout>
-
-			<Layout bg='light' fullWidth height='auto'>
-				
-				<Box sx={{ padding: setVerticalSpacing(2) }}>
-				<ContainerFluid><Line color="dark"/></ContainerFluid>
 					<MarqueeBlock
 						rails={[
 							"Work Hard Play Hard",
 							["Montreal Native", MtlLogo],
-							"Change the World",
+							"Never Play It Safe",
 						]}
 						theme={theme}
 					/>
-				</Box>
-			</Layout>
+				</Section>
+			</Container>
 
-			<Layout bg='dark' height='auto'>
-				<Box sx={{ padding: "15rem 0", height: "100%" }}>
-					<Box sx={{ position: "relative", height: "100%" }}>
-						<Box
-							sx={{
-								height: "100%",
-								display: "flex",
-								alignItems: "center",
-								justifyContent: "center",
-								gap: "2rem",
-							}}
-						>
-							<Slider
-								slides={featuredProjects}
-								mobileQuery={mobile}
-								desktopQuery={desktop}
-							/>
-						</Box>
-						<Box
-							sx={{
-								display: "flex",
-								alignItems: "end",
-								justifyContent: "end",
-								paddingTop: "5rem",
-							}}
-						>
-							<Link
-								href={"/work"}
-								style={{
-									fontSize: mobile ? "10vw" : "2rem",
-									fontFamily: "Neue Mtl",
-								}}
-							>
-								All Projects ↗︎
-							</Link>
-						</Box>
-					</Box>
-				</Box>
-			</Layout>
+			<Container classes={"-bg-dark"}>
+				<Slider
+					slides={featuredProjects}
+					mobileQuery={mobile}
+					desktopQuery={desktop}
+				/>
+
+				<Box
+					sx={{
+						display: "flex",
+						alignItems: "end",
+						justifyContent: "end",
+						paddingTop: "5rem",
+					}}
+				></Box>
+			</Container>
 		</>
 	);
 }
@@ -223,7 +161,6 @@ function HomePage(props, ref) {
 const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 	const [currentSlide, setCurrentSlide] = useState(1);
 
-	const theme = useTheme();
 	const video = useRef(null);
 
 	const handleSlideChange = e => {
@@ -234,18 +171,13 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 		}
 	};
 
-	const slideColors = ["orange", "yellow"];
-
 	return (
 		<Swiper
 			spaceBetween={50}
 			slidesPerView={1}
 			onSlideChange={handleSlideChange}
 			height='100%'
-			style={{
-				backgroundColor: theme.colors[slideColors[currentSlide - 1]],
-				transition: "400ms ease",
-			}}
+			style={{ transform: "scale(0.7)" }}
 		>
 			{slides &&
 				slides.map((slide, i) => {
@@ -285,7 +217,6 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 										sx={{
 											height: "100%",
 											width: "100%",
-											transform: "scale(0.7)",
 										}}
 									>
 										{slide.cover.image && !desktopQuery && (
@@ -350,7 +281,7 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 										<Box
 											component='span'
 											sx={{
-												fontSize: "0.8rem",
+												color: "white",
 												marginRight: "1rem",
 												display: desktopQuery ? "none" : "block",
 											}}
@@ -359,6 +290,7 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 												component='span'
 												sx={{
 													opacity: currentSlide === 1 ? 1 : 0.5,
+													color: "white",
 												}}
 											>
 												01
@@ -367,6 +299,7 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 												component='span'
 												sx={{
 													opacity: 0.5,
+													color: "white",
 												}}
 											>
 												/
@@ -397,7 +330,8 @@ const Slider = ({ slides, mobileQuery, desktopQuery }) => {
 											transform: "translateY(-100%)",
 											opacity: 0,
 											transition: "400ms ease",
-											fontSize: "0.8rem",
+
+											color: "white",
 										}}
 										className='cta'
 									>
@@ -449,8 +383,6 @@ const MarqueeBlock = ({ rails, theme }) => {
 				justifyContent: "space-between",
 			}}
 		>
-			<Line />
-
 			{rails &&
 				rails.map((rail, i) => {
 					return (

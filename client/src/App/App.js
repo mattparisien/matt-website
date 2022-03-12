@@ -15,13 +15,13 @@ import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
 import { device } from "../styles/breakpoints";
 import { GlobalStyle } from "../styles/global";
+import classNames from "classnames";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
 
 function App() {
 	const location = useLocation();
-
 	const [play, setPlay] = useState(true);
 
 	const baseSpacing = {
@@ -47,6 +47,21 @@ function App() {
 	};
 
 	const themes = {
+		space: [
+			"0.25rem",
+			"0.5rem",
+			"0.75rem",
+			"1rem",
+			"1.5rem",
+			"2rem",
+			"3rem",
+			"4rem",
+			"6rem",
+			"8rem",
+			"12rem",
+			"16rem",
+			"24rem",
+		],
 		colors: {
 			light: "#FFFFFF",
 			dark: "#1E1E1E",
@@ -133,6 +148,8 @@ function App() {
 		menuActive: false,
 		isTransitioning: true,
 	});
+
+	const appClasses = classNames("App", { "menu-active": state.menuActive });
 
 	useEffect(() => {
 		console.log("Designed & developed by Matt Parisien");
@@ -259,7 +276,7 @@ function App() {
 						watch={[location.pathname]}
 						containerRef={scrollRef}
 					>
-						<div className='App'>
+						<div className={appClasses}>
 							<Helmet>
 								<title>Matthew Parisien</title>
 								<meta
@@ -278,6 +295,7 @@ function App() {
 								ref={headerRef}
 								isMenuActive={state.menuActive}
 								toggleMenu={toggleMenu}
+								location={location}
 							/>
 							<Menu
 								isOpen={state.menuActive}

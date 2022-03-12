@@ -32,43 +32,12 @@ export const GlobalStyle = createGlobalStyle`
 -webkit-font-smoothing: antialiased;
 font-family: 'Neue Mtl';
 font-weight: lighter;
+box-sizing: border-box;
 
  }
 
 
- section {
-   transition: 300ms ease;
- }
 
- ul {
-   list-style-type: none;
-    
- }
-
- a {
-   text-decoration: none;
- }
-
-
-  body {
-    
-    margin: 0;
-  }
-
-  p, a:not(li a) {
-    font-family: 'Haas';
-  }
-
-
-
-
-
-  .App {
-    
-    
-    
-    transition: 500ms ease;
-  }
 
 
 

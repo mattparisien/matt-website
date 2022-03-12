@@ -1,31 +1,22 @@
+import { Box } from "@mui/material";
 import React from "react";
 import LinkCircle from "./LinkCircle";
-import { Box } from "@mui/material";
+import classNames from "classnames";
 
 function Link(props) {
-	const linkTextWrapper = {
-		position: "relative",
-
-		"&::after": {
-			position: "absolute",
-			top: -4,
-			right: -6,
-			content: props.superscript ? `'${props.superscript}'` : "''",
-			fontSize: "0.6rem",
-		},
-	};
+	const classes = classNames("Link -relative", {
+		[props.classes]: props.classes,
+	});
 
 	return (
 		<Box
 			component='a'
-			className={`Link ${props.className ? props.className : ""}`}
+			className={classes}
 			href={props.href}
 			target={props.target}
 			onClick={props.onClick}
 		>
-			<Box component='span' sx={linkTextWrapper}>
-				{props.children}{" "}
-			</Box>
+			{props.children}
 			{!props.noCircle && <LinkCircle isSelect={props.isSelect} />}
 		</Box>
 	);

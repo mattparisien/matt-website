@@ -4,32 +4,32 @@ import { device } from "../../../styles/breakpoints";
 const paragraphFontSizes = {
 	variant1: {
 		desktopL: {
-			fontSize: "4.4rem",
-			lineHeight: "4.4rem",
+			fontSize: "5.4rem",
+			lineHeight: "5.4rem",
 		},
 		desktop: {
-			fontSize: "4.4rem",
-			lineHeight: "4.4rem",
+			fontSize: "5.4rem",
+			lineHeight: "5.4rem",
 		},
 		laptopL: {
-			fontSize: "4rem",
-			lineHeight: "4.4rem",
+			fontSize: "4.5rem",
+			lineHeight: "4.543rem",
 		},
 		laptop: {
-			fontSize: "2.7rem",
-			lineHeight: "3rem",
+			fontSize: "4rem",
+			lineHeight: "4.1rem",
 		},
 		tablet: {
-			fontSize: "2rem",
-			lineHeight: "2.3rem",
+			fontSize: "3rem",
+			lineHeight: "3.2rem",
 		},
 		mobileL: {
-			fontSize: "1.3rem",
-			lineHeight: "1.6rem",
+			fontSize: "2.3rem",
+			lineHeight: "2.4rem",
 		},
 		mobileM: {
-			fontSize: "1.2rem",
-			lineHeight: "1.6rem",
+			fontSize: "1.8rem",
+			lineHeight: "1.9rem",
 		},
 		mobileS: {
 			fontSize: "1.5rem",

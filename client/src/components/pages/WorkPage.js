@@ -3,9 +3,9 @@ import React, { useContext, useState } from "react";
 import { useTheme } from "styled-components";
 import { DataContext } from "../../App/App";
 import { device } from "../../styles/breakpoints";
-import Layout from "../Containers/Layout";
-import Line from "../Divider/Line";
-import UnorderedList from "../Lists/UnorderedList";
+import Container from "../Containers/Container";
+import Section from "../Containers/Section";
+import Link from "../Link/Link";
 import ParagraphLayout from "../Paragraph/ParagraphLayout";
 
 function WorkPage() {
@@ -17,47 +17,51 @@ function WorkPage() {
 
 	return (
 		<>
-			<Layout bg='dark' height='45vh' offsetTop>
-				<ParagraphLayout indent indentHeading='work' variant={1}>
-					I design, develop and maintain full-stack applications for a living. I
-					also do beauty photography on the side, check it out below.
-				</ParagraphLayout>
-			</Layout>
-			<Layout bg='dark' height='auto'>
-				<Box className='categories-bar' sx={{ marginBottom: "4rem" }}>
-					<UnorderedList
-						height={3}
-						clickHandlers={{
-							software: () => setCategory("software"),
-							photography: () => setCategory("photography"),
-						}}
-						noTransition
-						negativeOffset='left'
-						listItems={[
-							{
-								title: "Software",
-								href: "",
-								isSelect: category === "software" ? true : false,
-								superscript: projects && projects.length,
-							},
-							{
-								title: "Photography",
-								href: "",
-								isSelect: category === "photography" ? true : false,
-								superscript: photos && photos.length,
-							},
-						]}
-					/>
-					<Line />
-					<Box className='grid-wrapper' sx={{ padding: "5rem 0" }}>
-						{category === "photography" ? (
-							<PhotographyGrid items={photos} tablet={tablet} theme={theme} />
-						) : (
-							<ProjectsGrid items={projects} tablet={tablet} theme={theme} />
-						)}
+			<Container classes='-bg-yellow'>
+				<Section classes='-fullHeight'>
+					<ParagraphLayout
+						indent
+						indentHeading='work'
+						variant={1}
+						classes='-align-center'
+					>
+						I love my job. A lot. Previously im commercial photography, I now
+						design, develop and maintain full-stack applications for a living. I
+						also do beauty photography on the side, check it out below.{" "}
+						<span className='-absolute'></span>
+					</ParagraphLayout>
+				</Section>
+			</Container>
+
+			<Container classes='-bg-light'>
+				<Section classes='-padding-huge'>
+					<Box
+						className='categories-bar -padding-small'
+						sx={{ marginBottom: "4rem" }}
+					>
+						<ul className='category-list -ul-horizontal -ul-horizontal-spacing-md'>
+							<li>
+								<Link isSelect={category === "software"} onClick={() => setCategory('software')}>
+									Software <sup>{projects && projects.length}</sup>
+								</Link>
+							</li>
+							<li>
+								<Link isSelect={category === "photography"} onClick={() => setCategory('photography')}>
+									Photography <sup>{photos && photos.length}</sup>
+								</Link>
+							</li>
+						</ul>
+
+						<Box className='grid-wrapper' sx={{ padding: "5rem 0" }}>
+							{category === "photography" ? (
+								<PhotographyGrid items={photos} tablet={tablet} theme={theme} />
+							) : (
+								<ProjectsGrid items={projects} tablet={tablet} theme={theme} />
+							)}
+						</Box>
 					</Box>
-				</Box>
-			</Layout>
+				</Section>
+			</Container>
 		</>
 	);
 }
@@ -163,7 +167,7 @@ const ProjectsGrid = ({ items, tablet, theme }) => {
 		bottom: 0,
 		color: theme.colors.light,
 		width: "50%",
-		fontSize: "1rem",
+
 		transform: "translateY(100%)",
 		opacity: 0,
 		transition: "400ms ease",
@@ -224,7 +228,11 @@ const ProjectsGrid = ({ items, tablet, theme }) => {
 										></video>
 									)}
 								</Box>
-								<Box className='info-bar-bottom' sx={infoBarBottom}>
+								<Box
+									
+									sx={infoBarBottom}
+									className='info-bar-bottom -text-tiny'
+								>
 									{project.PreviewText}
 								</Box>
 							</Box>

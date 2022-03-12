@@ -1,0 +1,88 @@
+@import "vars";
+@import "./breakpoints";
+//Utility classes
+
+.-padding-huge {
+	padding: var(--space-xxl) 0;
+}
+
+.-padding-top-huge {
+	padding-top: var(--space-xxl);
+}
+
+.-flex {
+	display: flex;
+}
+
+.-align-center {
+	align-items: center;
+}
+
+.-ul-horizontal {
+	display: flex;
+}
+
+.-ul-horizontal-spacing-md {
+
+	li {
+		margin-right: var(--space-md);
+	}
+	
+}
+
+.-align-end {
+	align-items: end;
+}
+
+.-absolute {
+	position: absolute;
+}
+
+.-relative {
+	position: relative;
+
+}
+
+.-justify-center {
+	justify-content: center;
+
+	h1 {
+		display: none;
+	}
+}
+.-fullWidth {
+	width: 100%;
+}
+
+.-fullHeight {
+	height: 100vh;
+}
+
+.-justify-between {
+	justify-content: space-between;
+}
+
+.-bg-light {
+	background-color: #ffffff;
+}
+
+.-bg-pink {
+	background-color: #f1b9b8;
+}
+
+.-bg-dark {
+	background-color: #1e1e1e;
+}
+
+.-bg-yellow {
+	background-color: #faf281;
+}
+
+.-bg-black {
+	background-color: black;
+}
+
+.-ul-small,
+.-text-tiny {
+	font-size: 0.8rem;
+}

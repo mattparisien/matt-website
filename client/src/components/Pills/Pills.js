@@ -10,11 +10,6 @@ const StyledPill = styled.div`
 	justify-content: center;
 	font-family: "Haas";
 	text-transform: uppercase;
-
-	${({ theme }) => theme.spacing(-0.4, ["padding-top"])};
-	${({ theme }) => theme.spacing(-0.4, ["padding-bottom"])};
-	${({ theme }) => theme.spacing(1, ["padding-left"])};
-	${({ theme }) => theme.spacing(1, ["padding-right"])};
 	margin: 0.4rem;
 	${({ theme }) => theme.typography.setSize(2)};
 	height: 50px;
@@ -37,8 +32,7 @@ const StyledPillGroup = styled.div`
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
-	${({ theme }) => theme.spacing(4, "margin-bottom")};
-	${({ theme }) => theme.spacing(4, "margin-top")};
+
 `;
 
 function Pill({ children, addToRefs, highlighted}) {

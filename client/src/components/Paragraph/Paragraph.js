@@ -43,7 +43,7 @@ function Paragraph(props) {
 	const paragraphClass = "Paragraph";
 	const ref = useRef();
 	const [inViewRef, inView, entry] = useInView({
-		threshold: 1,
+		threshold: 0.3,
 	});
 
 	const setRefs = useCallback(

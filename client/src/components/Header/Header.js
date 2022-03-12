@@ -1,14 +1,16 @@
 import { Box } from "@material-ui/core";
+import classNames from "classnames";
 import gsap from "gsap";
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
-import ContainerFluid from "../Containers/ContainerFluid";
+import Container from "../Containers/Container";
 import DesktopNav from "./Nav/DesktopNav";
 import MobileNav from "./Nav/MobileNav";
 import { StyledHeader } from "./styles/StyledHeader";
 
 function Header(props, ref) {
 	const scroll = useLocomotiveScroll();
+
 	const { headerOffset, isMenuActive } = props;
 	const [innerHeight] = useState(null);
 	const [isHeaderHidden] = useState(false);
@@ -17,6 +19,13 @@ function Header(props, ref) {
 	links.current = [];
 	const tl = useRef(gsap.timeline());
 	const [floaterVisible, setFloaterVisible] = useState(false);
+	const classes = classNames("Header", {
+		[`is-page-${props.location.pathname.slice(
+			1,
+			props.location.pathname.length
+		)}`]: props.location.pathname,
+		'floater-visible': floaterVisible
+	});
 
 	const addToLinkRefs = el => {
 		if (el && !links.current.includes(el)) {
@@ -73,16 +82,16 @@ function Header(props, ref) {
 			ref={ref}
 			height={innerHeight}
 			$hidden={isHeaderHidden}
-			className='Header'
+			className={classes}
 			floaterVisible={floaterVisible}
 		>
-			<ContainerFluid display='flex' width='100%'>
+			<Container classes={"-flex -align-center -justify-between"}>
 				<Box className='header-logo' ref={logo} sx={logoStyle}>
 					<span className='name'>Matt Parisien ─ Web developer</span>
 				</Box>
 				<DesktopNav addToLinkRefs={addToLinkRefs} />
 				<MobileNav toggleMenu={props.toggleMenu} isBurger={!isMenuActive} />
-			</ContainerFluid>
+			</Container>
 			<div className='header-floater'></div>
 		</StyledHeader>
 	);

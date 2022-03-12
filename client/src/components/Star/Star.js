@@ -22,10 +22,6 @@ function Star({ height, color, strokeWidth }) {
 		width: height,
 		maxWidth: "700px",
 		maxHeight: "700px",
-		position: "absolute",
-		top: "50%",
-		left: "50%",
-		transform: "translate(-50%, -50%)",
 		zIndex: 1,
 	};
 
