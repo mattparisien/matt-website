@@ -1,0 +1,29 @@
+.c-button {
+	font-size: 2.5rem;
+	line-height: 4rem;
+	border: 2px solid $dark;
+	border-radius: 50px;
+	padding: 0.1rem 1.1rem 0.15rem;
+	transition: $transition;
+
+	&_label {
+		position: relative;
+	}
+
+	&:hover {
+		background-color: $dark;
+		color: $light;
+	}
+}
+
+.c-button.selected {
+	background-color: $dark;
+	color: $light;
+}
+
+.c-button_number {
+	font-size: 30%;
+	top: -1.75em;
+	left: -.3rem;
+	vertical-align: baseline;
+}

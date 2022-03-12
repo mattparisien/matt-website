@@ -1,0 +1,36 @@
+@import "vars";
+@import "global";
+@import "utils";
+@import "footer";
+@import "header";
+@import "menu";
+@import "../../components/Lists/styles/c-project.scss";
+@import "../../components/Figure/c-figure.scss";
+@import "../../components/Filter/c-filter.scss";
+@import "../../components/Button/c-button.scss";
+
+a {
+	font-family: "Neue Mtl";
+}
+
+.Container {
+	padding: 0 $space-sm;
+	width: 100%;
+	height: 100%;
+}
+
+.Home {
+	height: 100vh;
+}
+
+.Section {
+	position: relative;
+}
+
+ul {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+}

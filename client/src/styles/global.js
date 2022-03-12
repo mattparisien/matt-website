@@ -65,13 +65,7 @@ box-sizing: border-box;
     font-family: 'Opposit';
   };
   
-  h1, h2 {
-    font-family: 'FK';
-  }
 
-  p {
-    font-family: 'Opposit';
-  }
 
   /*! locomotive-scroll v4.1.3 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
 html.has-scroll-smooth {

@@ -25,6 +25,7 @@ import ParagraphLayout from "../Paragraph/ParagraphLayout";
 import Star from "../Star/Star";
 import Arrow from "../Vector/Arrow";
 import MtlLogo from "../Vector/MtlLogo";
+import ProjectList from "../Lists/ProjectList";
 
 const gradientAnim = keyframes`
 	0% {
@@ -108,8 +109,12 @@ function HomePage(props, ref) {
 					<Box sx={gradientInner}></Box>
 				</Box>
 			</Section>
+			
 
 			<Container classes={"-bg-light "}>
+				<Section>
+					<ProjectList projects={data.projects}/>
+				</Section>
 				<Section classes='-fullHeight'>
 					<ParagraphLayout
 						indent
