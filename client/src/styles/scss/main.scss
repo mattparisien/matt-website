@@ -15,9 +15,7 @@
 @import "../../components/Vector/c-planet.scss";
 @import "../../components/pages/o-planets.scss";
 @import "../../components/Arrow/c-arrow.scss";
-@import "../../components/Colorband/o-color-band.scss";
 @import "../../components/Form/c-form.scss";
-
 
 a {
 	font-family: "Neue Mtl";
@@ -28,14 +26,12 @@ a {
 	width: 100%;
 	height: 100%;
 
-	.o-container_inner {	
+	.o-container_inner {
 		width: 100%;
 		height: 100%;
 		position: relative;
 	}
 }
-
-
 
 .Home {
 	height: 100vh;
@@ -43,7 +39,6 @@ a {
 
 .Section {
 	position: relative;
-	
 }
 
 ul {
