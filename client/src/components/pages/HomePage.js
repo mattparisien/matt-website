@@ -1,26 +1,16 @@
 import { useMediaQuery } from "@mui/material";
-import { Box, keyframes } from "@mui/system";
-import React, {
-	forwardRef,
-	useContext,
-	useEffect,
-	useRef,
-	useState
-} from "react";
+import { keyframes } from "@mui/system";
+import React, { forwardRef, useContext, useRef, useState } from "react";
 import { useTheme } from "styled-components";
 // Import Swiper styles
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { DataContext } from "../../App/App";
 import { deviceSize } from "../../styles/breakpoints";
-import Accent from "../Accent/Accent";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
-import Line from "../Line/Line";
-import ProjectList from "../Lists/ProjectList";
-import Paragraph from "../Paragraph/Paragraph";
-import Star from "../Star/Star";
-import { Planet1, Planet2, Planet3 } from "../Vector/Planets";
+import Grid from "../Grid/Grid";
+import Header from "../Header/Header";
 
 const gradientAnim = keyframes`
 	0% {
@@ -40,93 +30,14 @@ function HomePage(props, ref) {
 	marquees.current = [];
 	const lines = useRef([]);
 	lines.current = [];
-
-	const mobile = useMediaQuery(`(max-width: ${deviceSize.mobileL}px`);
 	const headingRef = useRef([]);
 	headingRef.current = [];
 
-	useEffect(() => {
-		if (data && data.projects) {
-			setFeaturedProjects([
-				{
-					id: data.projects[0].id,
-					title: data.projects[0].Title,
-					url: data.projects[0].Location,
-					description: data.projects[0].PreviewText,
-					cover: {
-						...data.projects[0].Cover,
-					},
-				},
-				{
-					id: data.projects[1].id,
-					title: data.projects[1].Title,
-					url: data.projects[1].Location,
-					description: data.projects[1].PreviewText,
-					cover: {
-						...data.projects[1].Cover,
-					},
-				},
-			]);
-		}
-	}, [data, featuredProjects]);
-
-	const overlay = {
-		height: "30vw",
-		width: "30vw",
-		position: "absolute",
-		top: "50%",
-		left: "50%",
-		transform: "translate(-50%, -50%)",
-		zIndex: 2,
-		overflow: "hidden",
-		borderRadius: "50%",
-		filter: "blur(5vw)",
-		opacity: 0.9,
-		mixBlendMode: "exclusion",
-	};
-
-	const gradientInner = {
-		width: "100%",
-		animation: `${gradientAnim} 60s linear infinite`,
-		background: theme.colors.gradient,
-		height: "300%",
-	};
-
 	return (
 		<>
-			<Section classes={"Home -flex -justify-center -align-center -bg-pink"}>
-				<Star
-					height='60vw'
-					strokeWidth={mobile ? "0.9vw" : "2px"}
-					color='dark'
-				/>
-				<Box className='gradient-overlay' sx={overlay}>
-					<Box sx={gradientInner}></Box>
-				</Box>
-			</Section>
-
-			<Container classes={"-bg-light "}>
-				<Section classes='-padding-bottom-huge'>
-					<Paragraph size='big' indent>
-						Hey. I'm a full-stack software developer & graphic designer obsessed
-						with digital products and <Accent>passionate</Accent> about building
-						responsive user interfaces. Previously in commercial photography,
-						I'm currently exploring the intersection between technology,
-						animation, design and strategy as a way to deliver digital
-						<Accent>experiences</Accent>. I recently graduated from Lighthouse
-						Labs, where I discovered my love for the front-end.
-					</Paragraph>
-					<Line color='dark' />
-				</Section>
+			<Container>
 				<Section>
-					<div className='o-planets'>
-						<Planet1 />
-						<Planet2 />
-						<Planet3 />
-					</div>
-				</Section>
-				<Section>
-					<ProjectList projects={data.projects} photos={data.photos} />
+					<Grid items={data.projects} />
 				</Section>
 			</Container>
 		</>

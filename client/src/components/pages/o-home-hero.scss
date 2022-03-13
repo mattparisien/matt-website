@@ -1,0 +1,17 @@
+.o-home-hero {
+	height: 40vh;
+	width: 100%;
+
+	.o-section {
+		height: 100%;
+		width: 100%;
+    position: relative;
+    overflow: hidden;
+	}
+}
+
+.o-home-hero_banner {
+	width: 100%;
+	display: flex;
+	align-items: flex-end;
+}

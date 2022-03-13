@@ -7,7 +7,7 @@ import { ThemeProvider } from "styled-components";
 import ScrollWrapper from "../components/Containers/ScrollWrapper";
 import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
 import Footer from "../components/Footer/Footer";
-import Header from "../components/Header/Header";
+
 import Menu from "../components/Menu/Menu";
 import HomePage from "../components/pages/HomePage";
 import WorkPage from "../components/pages/WorkPage";
@@ -18,9 +18,12 @@ import classNames from "classnames";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
 import ContactPage from "../components/pages/ContactPage";
+import CursorFollower from "../components/CursorFollower/CursorFollower";
+import Header from "../components/Header/Header";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
+export const ColorContext = createContext();
 
 function App() {
 	const location = useLocation();
@@ -274,22 +277,14 @@ function App() {
 		playTransition,
 	};
 
+	const [pageTheme, setPageTheme] = useState("regular");
+
 	return (
 		<DataContext.Provider value={state.data}>
 			<ThemeProvider theme={themes}>
 				<LoadingContext.Provider value={loadingControls}>
-					<LocomotiveScrollProvider
-						options={{
-							smooth: true,
-							smoothMobile: false,
-							getDirection: true,
-							initPosition: { x: 0, y: 0 },
-							reloadOnContextChange: true,
-						}}
-						watch={[location.pathname]}
-						containerRef={scrollRef}
-					>
-						<div className={appClasses}>
+					<ColorContext.Provider value={{ setPageTheme, pageTheme }}>
+						<div className={appClasses} data-theme={pageTheme}>
 							<Helmet>
 								<title>Matthew Parisien</title>
 								<meta
@@ -297,19 +292,15 @@ function App() {
 									content='Web Developer, Photographer & Graphic Designer'
 								/>
 							</Helmet>
-
+						<Header/>
 							<Loader
 								isActive={play}
 								setDone={() => {
 									setPlay(false);
 								}}
 							/>
-							<Header
-								ref={headerRef}
-								isMenuActive={state.menuActive}
-								toggleMenu={toggleMenu}
-								location={location}
-							/>
+
+								<CursorFollower/>
 							<Menu
 								isOpen={state.menuActive}
 								theme={themes}
@@ -340,7 +331,7 @@ function App() {
 								/>
 							</ScrollWrapper>
 						</div>
-					</LocomotiveScrollProvider>
+					</ColorContext.Provider>
 				</LoadingContext.Provider>
 			</ThemeProvider>
 		</DataContext.Provider>

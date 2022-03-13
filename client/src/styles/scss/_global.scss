@@ -5,13 +5,35 @@
 	box-sizing: border-box;
 }
 
-h1,
-h2,
+@font-face {
+	font-family: "Soehne";
+	src: url(../../fonts/Soehne.woff2);
+}
+
+@font-face {
+	font-family: "Vanguard";
+	src: url(../../fonts/Vanguard.otf);
+}
+
+
+h1, h2 {
+	
+	&, & div {
+		font-family: 'Vanguard';
+		text-transform: uppercase;
+	}
+	
+}
+
+
 h3,
 h4,
 h5,
 h6 {
-	font-family: "Neue Mtl";
+	&,
+	& div {
+		font-family: "Soehne";
+	}
 }
 
 .c-heading.-h2 {
@@ -27,14 +49,86 @@ ul {
 	padding: 0;
 }
 
-:root {
-	font-size: 18px;
+.line-wrapper {
+	overflow: hidden;
+}
 
-	@include media("<=tablet") {
-		font-size: 16px;
-	}
-
-	@include media("<=phone") {
+@media (max-width: 699px) {
+	html {
 		font-size: 15px;
 	}
+}
+@media (min-width: 700px) and (max-width: 1024px) {
+	html {
+		font-size: 13px;
+	}
+}
+@media (min-width: 1025px) and (max-width: 1199px) {
+	html {
+		font-size: 13px;
+	}
+}
+@media (min-width: 1200px) and (max-width: 1399px) {
+	html {
+		font-size: 14px;
+	}
+}
+@media (min-width: 1400px) and (max-width: 1599px) {
+	html {
+		font-size: 15px;
+	}
+}
+@media (min-width: 1600px) and (max-width: 1999px) {
+	html {
+		font-size: 17px;
+	}
+}
+@media (min-width: 2000px) and (max-width: 2399px) {
+	html {
+		font-size: 19px;
+	}
+}
+@media (min-width: 2400px) {
+	html {
+		font-size: 21px;
+	}
+}
+
+.App {
+	transition: background-color 400ms ease;
+}
+
+[data-theme="regular"] {
+	background-color: $light;
+	color: $dark;
+}
+
+[data-theme="strawberry"] {
+	background-color: $red;
+	color: $dark;
+}
+
+[data-theme="fancy"] {
+	background-color: $navy;
+	color: $light;
+}
+
+[data-theme="orangeCrush"] {
+	background-color: $orange;
+	color: $dark;
+}
+
+[data-theme="blue"] {
+	background-color: $blue;
+	color: $light;
+}
+
+[data-theme="sunny"] {
+	background-color: $yellow;
+	color: $dark;
+}
+
+[data-theme="dark"] {
+	background-color: $dark;
+	color: $light;
 }

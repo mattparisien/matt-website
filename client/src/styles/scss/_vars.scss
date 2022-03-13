@@ -25,16 +25,18 @@ $space-xxxl: calc(7 * 2rem);
 
 //Colors
 $light: #ffffff;
-$dark: #1e1e1e;
+$dark: #101010;
 $dark2: #2e2e2e;
 $lighterDark: #111111;
-$red: #df181f;
+$navy: #12233F;
+
+$red: #030303;
 $green: #c0ff0d;
-$blue: rgb(78, 140, 162);
-$yellow: #faf281;
+$blue: #0A4D98;
+$yellow: #edc835;
 $pink: #f1b9b8;
-$orange: rgb(231, 100, 53);
-$grey: rgb(207, 207, 207);
+$orange: #E94934;
+$grey: rgb(174, 174, 174);
 $purple: #5b487c;
 $gradient-primary: linear-gradient(
 	#516dc1,
@@ -55,6 +57,6 @@ $gradient-primary: linear-gradient(
 $gradient-secondary: #785b75, #326461, #d4a263;
 
 //Transition
-$transition: 300ms ease;
+$transition: 600ms ease;
 $translate-transition: opacity 0s cubic-bezier(0.35, 0.755, 0.42, 0.95),
 	transform 0.3s cubic-bezier(0.35, 0.755, 0.42, 0.95);
