@@ -92,7 +92,7 @@ function Footer(props) {
 						</div>
 					</h2>
 					<div
-						className='o-footer_spacer'
+						className='o-footer_btn-container'
 						ref={hoverArea}
 						onMouseEnter={() => setHovering(true)}
 						onMouseLeave={() => setHovering(false)}
