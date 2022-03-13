@@ -8,6 +8,8 @@
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
+
+
 		&:hover .c-grid_img {
 			transform: scale(1.1);
 		}
@@ -31,6 +33,13 @@
 			grid-column: 1/8;
 			height: 60vw;
 		}
+
+
+		@include media("<=tablet") {
+			grid-column: 1/13 !important;
+			height: 80vw !important;
+		}
+
 	}
 
 	&_img-wrapper {
@@ -51,6 +60,11 @@
 	}
 
 	&_info {
+
+		@include media("<=tablet") {
+			padding: 0.8rem 2rem;
+		}
+
 		width: 100%;
 
 		display: flex;

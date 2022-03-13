@@ -1,15 +1,11 @@
 
-.o-h2 {
-  margin: 0;
 
-
-}
 
 
 @media (max-width:699px) {
   .o-h2,
   h2 {
-      font-size: 8px;
+      font-size: 3rem;
       line-height: 1.11111
   }
 }
@@ -29,3 +25,16 @@
   }
   
 }
+
+
+.o-h2 {
+  margin: 0;
+
+  @include media("<=tablet") {
+		font-size: 10vw;
+		
+	}
+
+
+}
+

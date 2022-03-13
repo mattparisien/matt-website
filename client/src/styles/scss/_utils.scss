@@ -46,11 +46,6 @@
 
 .-split {
 	overflow: hidden;
-
-	div {
-		transform: translateY(100%);
-		opacity: 0;
-	}
 }
 
 .-align-end {
@@ -59,6 +54,11 @@
 
 .-absolute {
 	position: absolute;
+}
+
+
+.c-char {
+	transform: translateY(100%);
 }
 
 .-top {

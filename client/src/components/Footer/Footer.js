@@ -26,19 +26,6 @@ function Footer(props) {
 	const split = useRef(null);
 	const button = useRef(null);
 
-	useEffect(() => {
-		if (hovering && button.current && hoverArea.current) {
-			setTimeout(() => {
-				gsap.to(button.current, {
-					left: location.pageX,
-					top: location.pageY,
-					x: "-50%",
-					y: "-50%",
-					position: "fixed",
-				});
-			}, 100);
-		}
-	}, [hovering, location, button, hoverArea]);
 
 	useEffect(() => {
 		if (split.current && !isSplit) {
@@ -94,8 +81,8 @@ function Footer(props) {
 					<div
 						className='o-footer_btn-container'
 						ref={hoverArea}
-						onMouseEnter={() => setHovering(true)}
-						onMouseLeave={() => setHovering(false)}
+						
+						
 					>
 						<a
 							ref={button}

@@ -20,6 +20,7 @@ import $ from "jquery";
 import ContactPage from "../components/pages/ContactPage";
 import CursorFollower from "../components/CursorFollower/CursorFollower";
 import Header from "../components/Header/Header";
+import gsap from "gsap";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -143,6 +144,31 @@ function App() {
 			});
 		},
 	};
+
+	const [isSplit, setSplit] = useState(false);
+
+	useEffect(() => {
+		if (!isSplit) {
+			const splitText = new SplitText($(".o-h1.-split"), {
+				type: "chars",
+				charsClass: "c-char",
+			});
+
+			if (splitText.chars) {
+				const tl = gsap.timeline();
+
+				tl.to(splitText.chars, {
+					y: 0,
+					duration: 2,
+					ease: "expo.inOut",
+					delay: 0.2,
+					stagger: 0.02,
+					opacity: 1,
+					delay: 1,
+				});
+			}
+		}
+	}, [isSplit]);
 
 	const scrollRef = useRef(null);
 
@@ -292,7 +318,7 @@ function App() {
 									content='Web Developer, Photographer & Graphic Designer'
 								/>
 							</Helmet>
-						<Header/>
+							<Header />
 							<Loader
 								isActive={play}
 								setDone={() => {
@@ -300,7 +326,7 @@ function App() {
 								}}
 							/>
 
-								<CursorFollower/>
+							<CursorFollower />
 							<Menu
 								isOpen={state.menuActive}
 								theme={themes}

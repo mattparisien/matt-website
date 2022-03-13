@@ -38,6 +38,16 @@ h6 {
 	}
 }
 
+.o-h1.-split,
+.o-h2.-split,
+.o-h3.-split,
+.o-h4.-split {
+	> div {
+		overflow: hidden;
+	}
+}
+
+
 .c-heading.-h2 {
 	font-size: 2rem;
 }

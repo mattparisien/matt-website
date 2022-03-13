@@ -8,12 +8,12 @@ function Header() {
 			<Container>
 				<Section>
 					<div className='c-header_content'>
-						<h1 className='o-h1'>
+						<h1 className='o-h1 -split'>
 							Hello, I'm
 							<br></br>
 							Matt Parisien*
 						</h1>
-            <div className="-text-tiny -absolute -right -bottom">
+            <div className="-text-tiny">
               *Actually, I'm a website. But I was built by Matt Parisien.  
             </div>
 					</div>

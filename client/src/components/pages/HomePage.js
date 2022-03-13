@@ -35,7 +35,7 @@ function HomePage(props, ref) {
 
 	return (
 		<>
-			<Container>
+			<Container classes="-mobile-padding-none">
 				<Section>
 					<Grid items={data.projects} />
 				</Section>
