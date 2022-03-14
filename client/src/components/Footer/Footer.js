@@ -2,6 +2,8 @@ import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Container from "../Containers/Container";
+import Link from "../Link/Link";
+import CircleButton from "../Button/CircleButton";
 
 function Footer(props) {
 	const linkRefs = useRef([]);
@@ -47,14 +49,14 @@ function Footer(props) {
 						y: 0,
 						duration: 1,
 						ease: "expo.inOut",
-						delay: 0.2,
+						delay: 0.1,
 						stagger: 0.03,
 					})
 					.to(splitText.chars, {
 						y: "-100%",
 						duration: 1,
 						ease: "expo.inOut",
-						delay: 0.2,
+						delay: 0.1,
 						stagger: 0.03,
 					});
 			}
@@ -97,26 +99,25 @@ function Footer(props) {
 						</div>
 					</h2>
 
-					<a
+					<CircleButton
+						color='pink'
 						ref={button}
-						className='o-footer_btn'
-						href="mailto:hello@matthewparisien.com?subject=Let's talk"
-					>
-						Email me
-					</a>
+						text={"Email me"}
+						href={"mailto:hello@matthewparisien.com?Subject=Let's talk"}
+					/>
 				</div>
 			</Container>
 
 			<div className='o-footer_bottom'>
 				<Container classes='-flex -align-end -justify-between -stretchX'>
 					<h3 className='o-footer_email o-h3'>
-						<a
+						<Link
 							href="mailto:hello@matthewparisien.com?Subject=Let's talk"
 							target={"_blank"}
 							rel='noreferrer'
 						>
 							hello@matthewparisien.com
-						</a>
+						</Link>
 					</h3>
 
 					<div className='o-footer_credits -text-tiny'>

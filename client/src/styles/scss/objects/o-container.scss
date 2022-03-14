@@ -1,7 +1,7 @@
 .o-container {
 	margin: 0 auto;
 	max-width: 1920px;
-	padding: 0 4rem;
+	padding: 0 4.5rem;
 
 	@include media("<=phoneL") {
 		padding: 0 2rem;

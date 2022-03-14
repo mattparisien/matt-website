@@ -1,7 +1,6 @@
 import React from "react";
 import Container from "../Containers/Container";
 import Form from "../Form/Form";
-import FooterNav from "../Nav/FooterNav";
 
 function ContactPage() {
 	const formFields = [
@@ -40,7 +39,7 @@ function ContactPage() {
 						"-absolute -bottom -left -height-auto -flex -align-end -stretchX"
 					}
 				>
-					<FooterNav />
+					
 				</Container>
 			</Container>
 		</>

@@ -14,21 +14,23 @@
 	src: url(../../fonts/Vanguard.otf);
 }
 
+@font-face {
+	font-family: "Haas";
+	src: url(../../fonts/Haas.otf);
+}
 
-h1, h2 {
-	
-	&, & div {
-		font-family: 'Vanguard';
+h1,
+h2 {
+	&,
+	& div {
+		font-family: "Vanguard";
 		text-transform: uppercase;
 	}
-	
 }
 
 a {
-	font-family: 'Soehne';
+	font-family: "Soehne";
 }
-
-
 
 h3,
 h4,
@@ -48,7 +50,6 @@ h6 {
 		overflow: hidden;
 	}
 }
-
 
 .c-heading.-h2 {
 	font-size: 2rem;

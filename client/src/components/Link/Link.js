@@ -1,23 +1,46 @@
-import { Box } from "@mui/material";
 import classNames from "classnames";
-import React from "react";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { CursorContext, LoadingContext } from "../../App/App";
+
 
 function Link(props) {
-	const classes = classNames("Link -relative", {
+	const classes = classNames("c-link", {
 		[props.classes]: props.classes,
 	});
 
+	const navigate = useNavigate();
+	const { playTransition } = useContext(LoadingContext);
+
+	const handleNavigate = e => {
+		e.preventDefault();
+		playTransition();
+		setTimeout(() => {
+			navigate(props.href);
+		}, 1000);
+	};
+
+	const { setCursorState } = useContext(CursorContext);
+
+	const handleMouseEnter = () => {
+		setCursorState("link-hovering");
+	};
+
+	const handleMouseLeave = () => {
+		setCursorState("following");
+	};
+
 	return (
-		<Box
-			component='a'
+		<a
+			onMouseEnter={handleMouseEnter}
+			onMouseLeave={handleMouseLeave}
 			className={classes}
 			href={props.href}
 			target={props.target}
-			onClick={props.onClick}
+			onClick={props.onClick || (props.isRouterLink && handleNavigate)}
 		>
 			{props.children}
-			
-		</Box>
+		</a>
 	);
 }
 

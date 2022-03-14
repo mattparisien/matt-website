@@ -58,4 +58,7 @@ $gradient-secondary: #785b75, #326461, #d4a263;
 //Transition
 $transition: 600ms ease;
 $translate-transition: opacity 0s cubic-bezier(0.35, 0.755, 0.42, 0.95),
-	transform 0.3s cubic-bezier(0.35, 0.755, 0.42, 0.95);
+transform 0.3s cubic-bezier(0.35, 0.755, 0.42, 0.95);
+
+//Shadows
+$shadow: -2px 4px 27px 3px rgba(0,0,0,0.32);

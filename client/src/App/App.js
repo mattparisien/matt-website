@@ -9,15 +9,17 @@ import { Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import ScrollWrapper from "../components/Containers/ScrollWrapper";
 import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
+import CursorFollower from "../components/CursorFollower/CursorFollower";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import Menu from "../components/Menu/Menu";
-import ContactPage from "../components/pages/ContactPage";
+import Nav from "../components/Nav/Nav";
+import AboutPage from "../components/pages/AboutPage";
 import HomePage from "../components/pages/HomePage";
 import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
 import { GlobalStyle } from "../styles/global";
-import CursorFollower from "../components/CursorFollower/CursorFollower";
+import { useLocation } from "react-router-dom";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -63,10 +65,18 @@ function App() {
 	};
 
 	const [isSplit, setSplit] = useState(false);
+	const location = useLocation();
 
 	useEffect(() => {
+
+		window.scrollTo(0, 0);
+
 		if (!isSplit) {
 			const splitText = new SplitText($(".o-h1.-split"), {
+				type: "chars",
+				charsClass: "c-char",
+			});
+			const splitText2 = new SplitText($(".o-h2.-split"), {
 				type: "chars",
 				charsClass: "c-char",
 			});
@@ -85,8 +95,21 @@ function App() {
 					opacity: 1,
 				});
 			}
+
+			if (splitText2.chars) {
+				const tl = gsap.timeline();
+
+				tl.to(splitText2.chars, {
+					y: 0,
+					duration: 2,
+					ease: "expo.inOut",
+					delay: 1.4,
+					stagger: 0.02,
+					opacity: 1,
+				});
+			}
 		}
-	}, [isSplit]);
+	}, [isSplit, location]);
 
 	const scrollRef = useRef(null);
 
@@ -241,7 +264,8 @@ function App() {
 										content='Web Developer, Photographer & Graphic Designer'
 									/>
 								</Helmet>
-								<Header />
+								{location.pathname === "/" && <Header />}
+								<Nav />
 								<Loader
 									isActive={play}
 									setDone={() => {
@@ -249,7 +273,7 @@ function App() {
 									}}
 								/>
 
-								<CursorFollower cursorState={cursorState}/>
+								<CursorFollower cursorState={cursorState} />
 								<Menu
 									isOpen={state.menuActive}
 									theme={themes}
@@ -269,7 +293,7 @@ function App() {
 												element={<HomePage isLoading={state.isLoading} />}
 											/>
 											<Route path='/work' element={<WorkPage />} />
-											<Route path='/contact' element={<ContactPage />} />
+											<Route path='/about' element={<AboutPage />} />
 										</Routes>
 									</ContentWrapper>
 									<Footer

@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
-import { DataContext } from "../../App/App";
+import React from "react";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
-import ProjectList from "../Lists/ProjectList";
 import Paragraph from "../Paragraph/Paragraph";
 import Star from "../Star/Star";
 
+
 function WorkPage() {
-	const { projects, photos } = useContext(DataContext);
+	
 
 	return (
 		<>
@@ -24,11 +23,7 @@ function WorkPage() {
 					</Paragraph>
 				</Section>
 			</Container>
-			<Container classes='-bg-light'>
-				<Section>
-					<ProjectList projects={projects} photos={photos} />
-				</Section>
-			</Container>
+		
 		</>
 	);
 }

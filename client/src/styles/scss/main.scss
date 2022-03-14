@@ -11,25 +11,24 @@
 @import "objects/o-h2";
 @import "objects/o-h3";
 @import "objects/o-h1";
+@import "objects/o-text";
 @import "components/c-asteryx.scss";
 @import "../../components/Lists/styles/c-project.scss";
-@import "../../components/Figure/c-figure.scss";
 @import "../../components/Filter/c-filter.scss";
 @import "../../components/Button/c-button.scss";
 @import "../../components/Paragraph/c-paragraph.scss";
-@import "../../components/Line/c-line.scss";
 @import "../../components/Vector/c-planet.scss";
 @import "../../components/pages/o-planets.scss";
 @import "../../components/Arrow/c-arrow.scss";
 @import "../../components/Form/c-form.scss";
 @import "../../components/pages/o-home-hero.scss";
+@import "../../components/pages/o-about.scss";
 @import "../../components/Grid/c-grid.scss";
 @import "../../components/Footer/o-footer.scss";
 @import "../../components/CursorFollower/c-follower.scss";
 @import "../../components/Transition/o-loader.scss";
-
-
-
+@import "../../components/Nav/c-nav.scss";
+@import "../../components/Button/c-circle-button.scss";
 
 .Home {
 	height: 100vh;
