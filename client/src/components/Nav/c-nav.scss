@@ -53,6 +53,10 @@
 }
 
 .c-nav.is-active {
+
+	.c-nav_circle  {
+		transform: scale(0.9);
+	}
 	.c-nav_drawer {
 		transform: scaleX(1);
 		opacity: 1;
@@ -67,7 +71,6 @@
 	.c-nav_burger::after {
 		bottom: 50%;
 		transform: rotate(-45deg);
-	
 	}
 
 	.c-nav_burger::before {
@@ -120,6 +123,7 @@
 	width: 100%;
 	height: 100%;
 	border-radius: 50%;
-	transform: scale(0.9);
+	transform: scale(0);
 	z-index: -1;
+	transition: 200ms ease;
 }
