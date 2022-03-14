@@ -3,6 +3,7 @@ import $ from "jquery";
 import React, { useEffect, useRef } from "react";
 import useMouseMove from "../../helpers/hooks/useMouseMove";
 import gsap from "gsap";
+import gsapCore from "gsap/gsap-core";
 
 function CursorFollower({ cursorState }) {
 	const [location] = useMouseMove();
@@ -30,6 +31,18 @@ function CursorFollower({ cursorState }) {
 			positionRef.current.mouseY = mouseY - follower.current.clientHeight / 2;
 		}
 	}, [location, follower, cursorState]);
+
+	useEffect(() => {
+		cursorState === "hovering"
+			? gsap.to(follower.current, {
+					width: "80px",
+					height: "80px",
+			  })
+			: gsap.to(follower.current, {
+					width: "20px",
+					height: "20px",
+			  });
+	}, [cursorState]);
 
 	useEffect(() => {
 		const followMouse = () => {
