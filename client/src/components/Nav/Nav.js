@@ -23,15 +23,18 @@ function Nav() {
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 		>
-			<a href='#' className='c-nav_link' onClick={() => setActive(!active)}>
+			<Link href='#' classes='c-nav_link' onClick={() => setActive(!active)}>
 				<div className='c-nav_burger'></div>
 				<div className='c-nav_circle'></div>
-			</a>
+			</Link>
 			<div className='c-nav_drawer'>
 				<div className='c-nav_drawer__inner'>
-				<Link>Work</Link>
-				<Link>About</Link>
-					
+					<Link isRouterLink={true} href='/'>
+						Work
+					</Link>
+					<Link isRouterLink={true} href='/about'>
+						About
+					</Link>
 				</div>
 			</div>
 		</div>

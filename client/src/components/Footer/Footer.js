@@ -48,16 +48,17 @@ function Footer(props) {
 						y: 0,
 						duration: 1,
 						ease: "expo.inOut",
-						delay: 0.2,
+						delay: 0.1,
 						stagger: 0.03,
 					})
 					.to(splitText.chars, {
 						y: "-100%",
 						duration: 1,
 						ease: "expo.inOut",
-						delay: 0.2,
+						delay: 0.1,
 						stagger: 0.03,
-					});
+					})
+					
 			}
 		}
 	}, [split, isSplit, word]);

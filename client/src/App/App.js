@@ -19,6 +19,7 @@ import Loader from "../components/Transition/Loader";
 import { GlobalStyle } from "../styles/global";
 import CursorFollower from "../components/CursorFollower/CursorFollower";
 import Nav from "../components/Nav/Nav";
+import AboutPage from "../components/pages/AboutPage";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -71,6 +72,10 @@ function App() {
 				type: "chars",
 				charsClass: "c-char",
 			});
+			const splitText2 = new SplitText($(".o-h2.-split"), {
+				type: "chars",
+				charsClass: "c-char",
+			});
 
 			setSplit(true);
 
@@ -78,6 +83,19 @@ function App() {
 				const tl = gsap.timeline();
 
 				tl.to(splitText.chars, {
+					y: 0,
+					duration: 2,
+					ease: "expo.inOut",
+					delay: 1.4,
+					stagger: 0.02,
+					opacity: 1,
+				});
+			}
+
+			if (splitText2.chars) {
+				const tl = gsap.timeline();
+
+				tl.to(splitText2.chars, {
 					y: 0,
 					duration: 2,
 					ease: "expo.inOut",
@@ -271,7 +289,7 @@ function App() {
 												element={<HomePage isLoading={state.isLoading} />}
 											/>
 											<Route path='/work' element={<WorkPage />} />
-											<Route path='/contact' element={<ContactPage />} />
+											<Route path='/about' element={<AboutPage />} />
 										</Routes>
 									</ContentWrapper>
 									<Footer

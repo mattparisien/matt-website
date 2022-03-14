@@ -4,36 +4,47 @@ import $ from "jquery";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 
-export function Planet1() {
+export function Planet1({ isPlaying, isComplete }) {
 	const planet = useRef(null);
 	const { ref, inView } = useInView({ threshold: 0.9 });
 	gsap.registerPlugin(DrawSVGPlugin);
+	const tl = useRef(gsap.timeline());
 
 	useEffect(() => {
-		if (planet && inView) {
-			const tl = new gsap.timeline();
-			tl.to($(planet.current).find(".u-gsap-stroke-animate"), {
-				drawSVG: "100%",
-
-				duration: 0.5,
-				ease: "circ.inOut",
-			}).to(
-				$(planet.current).find(".u-gsap-fill-animate"),
-				{
-					opacity: 1,
-					ease: "expo.inOut",
-					duration: 0.5,
-				},
-				0.1
-			);
+		if (isComplete && planet.current) {
+			
+			tl.current.set($(planet.current).find(".u-gsap-stroke-animate"), {
+				clearProps: "all",
+			}).set($(planet.current).find(".u-gsap-fill-animate"), {
+				clearProps: "all",
+			});
 		}
-	}, [planet, inView]);
+
+		if (planet && inView && isPlaying) {
+			tl.current
+				.to($(planet.current).find(".u-gsap-stroke-animate"), {
+					drawSVG: "100%",
+
+					duration: 0.5,
+					ease: "circ.inOut",
+				})
+				.to(
+					$(planet.current).find(".u-gsap-fill-animate"),
+					{
+						opacity: 1,
+						ease: "expo.inOut",
+						duration: 0.5,
+					},
+					0.1
+				);
+		}
+	}, [planet, inView, isPlaying, isComplete]);
 
 	return (
 		<div className='c-planet' ref={planet}>
-			<div className='c-planet_label u-gsap-fill-animate'>
+			{/* <div className='c-planet_label u-gsap-fill-animate'>
 				Observe <sup>1</sup>{" "}
-			</div>
+			</div> */}
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				viewBox='0 0 306.4 306.4'
