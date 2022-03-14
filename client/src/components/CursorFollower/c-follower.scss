@@ -25,6 +25,11 @@
 		mix-blend-mode: difference;
 		background: $pink;
 	}
+	&.is-link-hovering {
+		mix-blend-mode: difference;
+		background: $light;
+		
+	}
 
 	> div {
 		height: 100%;

@@ -6,7 +6,7 @@
 	width: 4rem;
 	margin-right: 2rem;
 	margin-top: 2rem;
-	z-index: 999999;
+	z-index: 999;
 
 	&_link {
 		display: flex;
@@ -53,8 +53,7 @@
 }
 
 .c-nav.is-active {
-
-	.c-nav_circle  {
+	.c-nav_circle {
 		transform: scale(0.9);
 	}
 	.c-nav_drawer {

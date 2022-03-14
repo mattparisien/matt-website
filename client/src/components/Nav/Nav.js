@@ -2,6 +2,7 @@ import React from "react";
 import { useContext, useState } from "react";
 import { CursorContext } from "../../App/App";
 import classNames from "classnames";
+import Link from "../Link/Link";
 
 function Nav() {
 	const { setCursorState } = useContext(CursorContext);
@@ -28,8 +29,9 @@ function Nav() {
 			</a>
 			<div className='c-nav_drawer'>
 				<div className='c-nav_drawer__inner'>
-					<a>Work</a>
-					<a>About</a>
+				<Link>Work</Link>
+				<Link>About</Link>
+					
 				</div>
 			</div>
 		</div>

@@ -2,6 +2,7 @@ import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Container from "../Containers/Container";
+import Link from "../Link/Link";
 
 function Footer(props) {
 	const linkRefs = useRef([]);
@@ -97,26 +98,26 @@ function Footer(props) {
 						</div>
 					</h2>
 
-					<a
+					<Link
 						ref={button}
-						className='o-footer_btn'
+						classes='o-footer_btn'
 						href="mailto:hello@matthewparisien.com?subject=Let's talk"
 					>
 						Email me
-					</a>
+					</Link>
 				</div>
 			</Container>
 
 			<div className='o-footer_bottom'>
 				<Container classes='-flex -align-end -justify-between -stretchX'>
 					<h3 className='o-footer_email o-h3'>
-						<a
+						<Link
 							href="mailto:hello@matthewparisien.com?Subject=Let's talk"
 							target={"_blank"}
 							rel='noreferrer'
 						>
 							hello@matthewparisien.com
-						</a>
+						</Link>
 					</h3>
 
 					<div className='o-footer_credits -text-tiny'>
