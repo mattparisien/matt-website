@@ -30,6 +30,7 @@ function TextSwitch({ words }) {
 						ease: "expo.inOut",
 						delay: 0.1,
 						stagger: 0.03,
+            opacity: 1
 					})
 					.to(splitText.chars, {
 						y: "-100%",
@@ -37,6 +38,7 @@ function TextSwitch({ words }) {
 						ease: "expo.inOut",
 						delay: 0.1,
 						stagger: 0.03,
+            opacity: 1
 					});
 			}
 		}
