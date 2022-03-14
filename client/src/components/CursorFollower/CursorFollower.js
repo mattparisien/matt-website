@@ -32,12 +32,12 @@ function CursorFollower({ cursorState }) {
 	}, [location, follower, cursorState]);
 
 	useEffect(() => {
-		cursorState === "hovering" || cursorState === 'nav-hovering'
+		cursorState === "hovering" || cursorState === "nav-hovering"
 			? gsap.to(follower.current, {
 					width: "80px",
 					height: "80px",
 					y: "-50%",
-					x: "-50%"
+					x: "-50%",
 			  })
 			: gsap.to(follower.current, {
 					width: "20px",

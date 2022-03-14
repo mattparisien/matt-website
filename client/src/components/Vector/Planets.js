@@ -15,16 +15,16 @@ export function Planet1() {
 			tl.to($(planet.current).find(".u-gsap-stroke-animate"), {
 				drawSVG: "100%",
 
-				duration: 1,
+				duration: 0.5,
 				ease: "circ.inOut",
 			}).to(
 				$(planet.current).find(".u-gsap-fill-animate"),
 				{
 					opacity: 1,
 					ease: "expo.inOut",
-					duration: 1,
+					duration: 0.5,
 				},
-				0.3
+				0.1
 			);
 		}
 	}, [planet, inView]);
