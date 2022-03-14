@@ -264,7 +264,7 @@ function App() {
 										content='Web Developer, Photographer & Graphic Designer'
 									/>
 								</Helmet>
-								<Header />
+								{location.pathname === "/" && <Header />}
 								<Nav />
 								<Loader
 									isActive={play}

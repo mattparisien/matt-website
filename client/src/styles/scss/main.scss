@@ -11,6 +11,7 @@
 @import "objects/o-h2";
 @import "objects/o-h3";
 @import "objects/o-h1";
+@import "objects/o-text";
 @import "components/c-asteryx.scss";
 @import "../../components/Lists/styles/c-project.scss";
 @import "../../components/Filter/c-filter.scss";
@@ -21,11 +22,13 @@
 @import "../../components/Arrow/c-arrow.scss";
 @import "../../components/Form/c-form.scss";
 @import "../../components/pages/o-home-hero.scss";
+@import "../../components/pages/o-about.scss";
 @import "../../components/Grid/c-grid.scss";
 @import "../../components/Footer/o-footer.scss";
 @import "../../components/CursorFollower/c-follower.scss";
 @import "../../components/Transition/o-loader.scss";
 @import "../../components/Nav/c-nav.scss";
+@import "../../components/Button/c-circle-button.scss";
 
 .Home {
 	height: 100vh;

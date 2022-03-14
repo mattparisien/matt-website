@@ -3,6 +3,7 @@ import SplitText from "gsap/SplitText";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Container from "../Containers/Container";
 import Link from "../Link/Link";
+import CircleButton from "../Button/CircleButton";
 
 function Footer(props) {
 	const linkRefs = useRef([]);
@@ -57,8 +58,7 @@ function Footer(props) {
 						ease: "expo.inOut",
 						delay: 0.1,
 						stagger: 0.03,
-					})
-					
+					});
 			}
 		}
 	}, [split, isSplit, word]);
@@ -99,13 +99,12 @@ function Footer(props) {
 						</div>
 					</h2>
 
-					<Link
+					<CircleButton
+						color='pink'
 						ref={button}
-						classes='o-footer_btn'
-						href="mailto:hello@matthewparisien.com?subject=Let's talk"
-					>
-						Email me
-					</Link>
+						text={"Email me"}
+						href={"mailto:hello@matthewparisien.com?Subject=Let's talk"}
+					/>
 				</div>
 			</Container>
 
