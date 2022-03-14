@@ -1,14 +1,10 @@
 .c-header {
-	margin-bottom: 20rem;
+	padding: 6em 0;
 }
 
-.c-header .c-section {
-	height: 30vw;
 
-	@include media("<=tablet") {
-		height: 50vw;
-	}
-}
+
+
 
 .c-header_content {
 	width: 100%;

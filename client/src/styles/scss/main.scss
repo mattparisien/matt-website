@@ -11,6 +11,7 @@
 @import "objects/o-h2";
 @import "objects/o-h3";
 @import "objects/o-h1";
+@import "components/c-asteryx.scss";
 @import "../../components/Lists/styles/c-project.scss";
 @import "../../components/Figure/c-figure.scss";
 @import "../../components/Filter/c-filter.scss";
@@ -25,10 +26,10 @@
 @import "../../components/Grid/c-grid.scss";
 @import "../../components/Footer/o-footer.scss";
 @import "../../components/CursorFollower/c-follower.scss";
+@import "../../components/Transition/o-loader.scss";
 
-a {
-	font-family: "Neue Mtl";
-}
+
+
 
 .Home {
 	height: 100vh;

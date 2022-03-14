@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useTheme } from "styled-components";
 
+
 function Star({ height, color, strokeWidth, inline }) {
 	const theme = useTheme();
 	const lineRefs = useRef([]);
@@ -54,20 +55,16 @@ function Star({ height, color, strokeWidth, inline }) {
 				})
 					.to(item, {
 						width: "100%",
-						delay: 1.4,
-						duration: 0.8,
+
+						duration: 0.3,
 						scale: 1,
 						ease: "power3.out",
 					})
-					.to(
-						item,
-						{
-							rotation: "0deg",
-							ease: "expo.inOut",
-							duration: 3,
-						},
-						1
-					)
+					.to(item, {
+						rotation: "0deg",
+						ease: "expo.inOut",
+						duration: 3,
+					})
 					.to(item, {
 						rotation: `${rotation}deg`,
 						delay: delay,
@@ -85,10 +82,9 @@ function Star({ height, color, strokeWidth, inline }) {
 		}
 	}, [lineRefs, starRef, hasPlayed, inView]);
 	return (
-		<Box className={inline ? 'c-star -inline' : 'c-star'} ref={ref}>
+		<Box className={inline ? "c-star -inline" : "c-star"} ref={ref}>
 			<svg
 				id='svg-star'
-				
 				ref={starRef}
 				style={star}
 				xmlns='http://www.w3.org/2000/svg'

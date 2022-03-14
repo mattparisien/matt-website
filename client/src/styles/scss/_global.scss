@@ -1,6 +1,5 @@
 * {
 	-webkit-font-smoothing: antialiased;
-	font-family: "Neue Mtl";
 	font-weight: lighter;
 	box-sizing: border-box;
 }
@@ -25,6 +24,9 @@ h1, h2 {
 	
 }
 
+a {
+	font-family: 'Soehne';
+}
 
 
 
@@ -142,5 +144,5 @@ ul {
 
 [data-theme="dark"] {
 	background-color: $dark;
-	color: $light;
+	color: $light !important;
 }

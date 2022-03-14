@@ -9,6 +9,12 @@
 		flex-direction: column;
 		align-items: stretch;
 
+		&.is-in-view .c-grid_img-wrapper,
+		&.is-in-view .c-grid_title,
+		&.is-in-view .c-grid_description {
+			opacity: 1;
+			transform: translateY(0);
+		}
 
 		&:hover .c-grid_img {
 			transform: scale(1.1);
@@ -34,12 +40,10 @@
 			height: 60vw;
 		}
 
-
 		@include media("<=tablet") {
 			grid-column: 1/13 !important;
 			height: 80vw !important;
 		}
-
 	}
 
 	&_img-wrapper {
@@ -49,7 +53,9 @@
 		background-position: center;
 		transition: $transition ease;
 		overflow: hidden;
-		
+		opacity: 0;
+		transform: translateY(40%);
+		transition: $transition;
 
 		img {
 			width: 100%;
@@ -60,13 +66,12 @@
 	}
 
 	&_info {
-
 		@include media("<=tablet") {
 			padding: 0.8rem 2rem;
 		}
 
 		width: 100%;
-
+		overflow: hidden;
 		display: flex;
 		align-items: start;
 		justify-content: space-between;
@@ -79,11 +84,19 @@
 		font-size: 1.8rem;
 		margin: 0;
 		margin-bottom: 0.8rem;
+		transform: translateY(-20%);
+		opacity: 0;
+		transition: transition;
+		transition-delay: 500ms;
 	}
 
 	&_description {
-		opacity: 0.4rem;
+		opacity: 0.4;
 		margin: 0;
 		text-transform: uppercase;
+		transform: translateY(20%);
+		opacity: 0;
+		transition: transition;
+		transition-delay: 600ms;
 	}
 }

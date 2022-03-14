@@ -56,7 +56,7 @@ export function Planet1() {
 					className='u-gsap-stroke-animate'
 				/>
 				<path
-					className='-fill-blue u-gsap-fill-animate'
+					className='u-gsap-fill-animate'
 					d='M320.91,634.64a33.81,33.81,0,1,1-33.8-33.81A33.8,33.8,0,0,1,320.91,634.64Z'
 					transform='translate(-204.27 -362.54)'
 				/>
@@ -122,7 +122,7 @@ export function Planet3() {
 	gsap.registerPlugin(DrawSVGPlugin);
 
 	useEffect(() => {
-		if (planet && inView) {
+		if (planet) {
 			const tl = new gsap.timeline();
 			tl.to($(planet.current).find(".u-gsap-stroke-animate"), {
 				drawSVG: "100%",
@@ -139,7 +139,7 @@ export function Planet3() {
 				0.3
 			);
 		}
-	}, [planet, inView]);
+	}, [planet]);
 
 	return (
 		<div className='c-planet' ref={planet}>

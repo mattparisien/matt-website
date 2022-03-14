@@ -25,6 +25,7 @@ import gsap from "gsap";
 export const DataContext = createContext();
 export const LoadingContext = createContext();
 export const ColorContext = createContext();
+export const CursorContext = createContext();
 
 function App() {
 	const location = useLocation();
@@ -303,6 +304,8 @@ function App() {
 		playTransition,
 	};
 
+	const [cursorState, setCursorState] = useState('following')
+
 	const [pageTheme, setPageTheme] = useState("regular");
 
 	return (
@@ -310,53 +313,55 @@ function App() {
 			<ThemeProvider theme={themes}>
 				<LoadingContext.Provider value={loadingControls}>
 					<ColorContext.Provider value={{ setPageTheme, pageTheme }}>
-						<div className={appClasses} data-theme={pageTheme}>
-							<Helmet>
-								<title>Matthew Parisien</title>
-								<meta
-									name='description'
-									content='Web Developer, Photographer & Graphic Designer'
+						<CursorContext.Provider value={{cursorState, setCursorState}}>
+							<div className={appClasses} data-theme={pageTheme}>
+								<Helmet>
+									<title>Matthew Parisien</title>
+									<meta
+										name='description'
+										content='Web Developer, Photographer & Graphic Designer'
+									/>
+								</Helmet>
+								<Header />
+								<Loader
+									isActive={play}
+									setDone={() => {
+										setPlay(false);
+									}}
 								/>
-							</Helmet>
-							<Header />
-							<Loader
-								isActive={play}
-								setDone={() => {
-									setPlay(false);
-								}}
-							/>
 
-							<CursorFollower />
-							<Menu
-								isOpen={state.menuActive}
-								theme={themes}
-								data={{
-									contact: { ...state.data.contact },
-									socials: state.data.socials,
-								}}
-							/>
-
-							<ScrollWrapper ref={scrollRef}>
-								<ContentWrapper ref={contentWrapperRef}>
-									<GlobalStyle />
-
-									<Routes>
-										<Route
-											path='/'
-											element={<HomePage isLoading={state.isLoading} />}
-										/>
-										<Route path='/work' element={<WorkPage />} />
-										<Route path='/contact' element={<ContactPage />} />
-									</Routes>
-								</ContentWrapper>
-								<Footer
+								{/* <CursorFollower cursorState={cursorState}/> */}
+								<Menu
+									isOpen={state.menuActive}
+									theme={themes}
 									data={{
 										contact: { ...state.data.contact },
 										socials: state.data.socials,
 									}}
 								/>
-							</ScrollWrapper>
-						</div>
+
+								<ScrollWrapper ref={scrollRef}>
+									<ContentWrapper ref={contentWrapperRef}>
+										<GlobalStyle />
+
+										<Routes>
+											<Route
+												path='/'
+												element={<HomePage isLoading={state.isLoading} />}
+											/>
+											<Route path='/work' element={<WorkPage />} />
+											<Route path='/contact' element={<ContactPage />} />
+										</Routes>
+									</ContentWrapper>
+									<Footer
+										data={{
+											contact: { ...state.data.contact },
+											socials: state.data.socials,
+										}}
+									/>
+								</ScrollWrapper>
+							</div>
+						</CursorContext.Provider>
 					</ColorContext.Provider>
 				</LoadingContext.Provider>
 			</ThemeProvider>

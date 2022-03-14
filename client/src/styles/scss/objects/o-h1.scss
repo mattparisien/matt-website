@@ -1,9 +1,11 @@
 .o-h1 {
-  font-size: 11vw;
-  line-height: 11vw;
-  
-  color: black;
-  margin: 0;
+	font-size: 11vw;
+	line-height: 11vw;
+
+	margin: 0;
+
+	@include media("<=tablet") {
+		font-size: 16vw;
+		line-height: 16vw;
+	}
 }
-
-

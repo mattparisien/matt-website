@@ -16,6 +16,7 @@ function Footer(props) {
 		"talk development",
 		"meet on zoom",
 		"work together",
+		"write code",
 	];
 
 	const [location] = useMouseMove();
@@ -26,8 +27,8 @@ function Footer(props) {
 	const split = useRef(null);
 	const button = useRef(null);
 
-
 	useEffect(() => {
+		console.log(word);
 		if (split.current && !isSplit) {
 			const splitText = new SplitText(split.current, {
 				type: "chars",
@@ -62,7 +63,9 @@ function Footer(props) {
 			setWord(
 				prev =>
 					words[
-						words.indexOf(prev) === words.length ? 1 : words.indexOf(prev) + 1
+						words.indexOf(prev) === words.length - 1
+							? 1
+							: words.indexOf(prev) + 1
 					]
 			);
 		}, 3000);
@@ -78,26 +81,27 @@ function Footer(props) {
 							{word}
 						</div>
 					</h2>
-					<div
-						className='o-footer_btn-container'
-						ref={hoverArea}
-						
-						
-					>
+					<div className='o-footer_btn-container' ref={hoverArea}>
 						<a
 							ref={button}
 							className='o-footer_btn'
 							href="mailto:hello@matthewparisien.com?subject=Let's talk"
-						>
-							Get in touch
-						</a>
+						>Email me</a>
 					</div>
 				</div>
 			</Container>
 
 			<div className='o-footer_bottom'>
 				<Container classes='-flex -align-center -justify-between -stretchX'>
-					<h3 className='o-footer_email o-h3'>hello@matthewparisien.com</h3>
+					<h3 className='o-footer_email o-h3'>
+						<a
+							href="mailto:hello@matthewparisien.com?Subject=Let's talk"
+							target={"_blank"}
+							rel='noreferrer'
+						>
+							hello@matthewparisien.com
+						</a>
+					</h3>
 
 					<div className='o-footer_credits -text-tiny'>
 						WORDS + IMAGES + CODE ©2022 MATT PARISIEN

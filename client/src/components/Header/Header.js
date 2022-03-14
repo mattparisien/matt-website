@@ -9,13 +9,14 @@ function Header() {
 				<Section>
 					<div className='c-header_content'>
 						<h1 className='o-h1 -split'>
-							Hello, I'm
+							Hi, I'm
 							<br></br>
-							Matt Parisien*
+							Matt Parisien
 						</h1>
-            <div className="-text-tiny">
-              *Actually, I'm a website. But I was built by Matt Parisien.  
-            </div>
+						
+						<div className='-text-tiny'>
+							*Actually, I'm a website. But I was built by Matt Parisien.
+						</div>
 					</div>
 				</Section>
 			</Container>
