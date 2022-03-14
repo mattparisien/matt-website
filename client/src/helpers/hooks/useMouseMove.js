@@ -13,14 +13,10 @@ export default function useMouseMove(array) {
 			});
 		};
 
-		scroll &&
-			scroll.scroll &&
-			scroll.scroll.el.addEventListener("mousemove", e => handleMouseMove(e));
+		window.addEventListener("mousemove", e => handleMouseMove(e));
 
 		return () => {
-			scroll &&
-				scroll.scroll &&
-				scroll.scroll.el.removeEventListener("mousemove", handleMouseMove);
+			window.removeEventListener("mousemove", handleMouseMove);
 		};
 	}, [scroll]);
 

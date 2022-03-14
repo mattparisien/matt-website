@@ -46,19 +46,31 @@
 
 .-split {
 	overflow: hidden;
-
-	div {
-		transform: translateY(100%);
-		opacity: 0;
-	}
 }
 
 .-align-end {
-	align-items: end;
+	align-items: flex-end;
 }
 
 .-absolute {
 	position: absolute;
+}
+
+.-fade-up-load {
+	transform: translateY(40%);
+	opacity: 0;
+	transition: 400ms ease;
+	transition-delay: 1s;
+}
+
+.is-dom-loaded .-fade-up-load {
+	transform: translateY(0%);
+	opacity: 1;
+}
+
+
+.c-char {
+	transform: translateY(100%);
 }
 
 .-top {
@@ -88,9 +100,7 @@
 .-justify-center {
 	justify-content: center;
 
-	h1 {
-		display: none;
-	}
+	
 }
 .-fullWidth {
 	width: 100%;
@@ -164,11 +174,15 @@
 
 .-ul-small,
 .-text-tiny {
-	font-size: 0.8rem;
+	font-size: 0.6rem;
+	font-family: 'Roboto Mono', monospace;
+	text-transform: uppercase;
 }
 
 .-indent {
-	text-indent: 30%;
+	.line:nth-of-type(1) {
+		padding-left: 30%;
+	}
 }
 
 .-block {
@@ -216,5 +230,10 @@
 
 //ITCSS Utilies
 .u-gsap-fill-animate {
+	opacity: 0
+}
+
+.u-line-translate {
+	transform: translateY(100%);
 	opacity: 0;
 }

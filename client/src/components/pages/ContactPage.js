@@ -34,7 +34,7 @@ function ContactPage() {
 	return (
 		<>
 			<Container classes='-fullHeight -flex -flex-column -padding-top-huge -bg-dark -justify-center'>
-				<Form formFields={formFields} classes={"-absolute -absolute-center"} />
+				<Form formFields={formFields} />
 				<Container
 					classes={
 						"-absolute -bottom -left -height-auto -flex -align-end -stretchX"

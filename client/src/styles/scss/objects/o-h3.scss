@@ -1,0 +1,7 @@
+h3, .o-h3 {
+  font-size: 1.8rem;
+
+  @include media("<=tablet") {
+    font-size: 1.4rem !important;
+  }
+}

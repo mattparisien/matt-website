@@ -1,25 +1,14 @@
-import { Box, Container, useMediaQuery } from "@mui/material";
-import { keyframes } from "@mui/system";
+import { Box } from "@mui/material";
 import gsap from "gsap";
 import CSSPlugin from "gsap/CSSPlugin";
 import React, { useEffect, useRef } from "react";
-import { useTheme } from "styled-components";
-import Line from "../Line/Line";
+import { Planet1 } from "../Vector/Planets";
 
 gsap.registerPlugin(CSSPlugin);
 
-const wordAnim = keyframes`
-	0% {
-		transform: translateY(150%);
-		opacity: 0;
-	} 100% {
-		transform: translateY(0);
-		opacity: 1;
-	}
-`;
 
 function Loader({ isActive, setDone }) {
-	const matches = useMediaQuery("(max-width: 600px)", { noSsr: true });
+	
 
 	const content = useRef(null);
 	const containerRef = useRef(null);
@@ -32,22 +21,26 @@ function Loader({ isActive, setDone }) {
 			tl.set(containerRef.current, { display: "flex" })
 				.to(bg.current, {
 					scaleX: 1,
-					duration: 0.6,
-					ease: "power2.out",
+					duration: 1,
+					ease: "circ.inOut",
 				})
 				.to(
 					bg.current,
 					{
 						scaleY: 0.001,
-						duration: 0.6,
-						ease: "power2.out",
+						duration: 1,
+						ease: "circ.inOut",
+						transformOrigin: 'top'
 					},
-					1.2
+					1.6,
 				)
 				.to(
 					content.current,
 					{
 						opacity: 0,
+						onComplete: () => {
+							setDone();
+						}
 					},
 					1.3
 				)
@@ -55,7 +48,7 @@ function Loader({ isActive, setDone }) {
 					clearProps: "all",
 				});
 
-			setDone();
+			
 		}
 	}, [isActive, setDone]);
 
@@ -78,89 +71,13 @@ function Loader({ isActive, setDone }) {
 	// 	}
 	// }, [bg, content, containerRef, isActive, hasPlayed]);
 
-	const theme = useTheme();
-
-	const loaderStyle = {
-		top: 0,
-		left: 0,
-		position: "fixed",
-		height: "100vh",
-		width: "100vw",
-		color: theme.colors.light,
-		zIndex: 9999,
-		display: "none",
-		alignItems: "center",
-		justifyContent: "center",
-	};
-
-	const word = {
-		fontFamily: "Neue Mtl",
-		fontSize: matches ? "0.8rem" : "2rem",
-		width: "100%",
-		display: "block",
-		transform: "translateY(100%)",
-		opacity: 0,
-		animation: `${wordAnim} 400ms ease forwards`,
-		"&:nth-of-type(1)": {
-			animationDelay: "100ms",
-		},
-		"&:nth-of-type(2)": {
-			animationDelay: "200ms",
-		},
-	};
-
-	const loadSpacer = {
-		padding: "2rem 0",
-		margin: 0,
-		boxSizing: "border-box",
-		height: matches ? "10rem" : "20rem",
-		width: "100%",
-	};
-
-	const copyright = {
-		fontSize: "0.8rem",
-		position: "absolute",
-	};
-
-	const background = {
-		position: "absolute",
-		top: 0,
-		left: 0,
-		width: "100%",
-		height: "100%",
-		backgroundColor: "black",
-		zIndex: -1,
-		transformOrigin: "left top",
-		transform: "scaleX(0.001)",
-		animationDelay: "1s",
-	};
-
-	const container = {
-		animationDelay: "1s",
-	};
-
 	return (
-		<Box sx={loaderStyle} component='div' className='Loader' ref={containerRef}>
-			<Container sx={container} ref={content}>
-				<Line />
-				<Box sx={loadSpacer}>
-					<Box component='span' sx={word}>
-						Matthew Parisien{" "}
-						<Box component='span' sx={copyright}>
-							©
-						</Box>
-					</Box>
-
-					<Box component='span' sx={word}>
-						Software & Graphic Design
-					</Box>
-				</Box>
-				<Line />
-				<Box sx={loadSpacer}></Box>
-				<Line />
-			</Container>
-			<Box className='loader-background' sx={background} ref={bg}></Box>
-		</Box>
+		<div className='o-loader' ref={containerRef}>
+			<div className='o-loader_content' ref={content}>
+				<Planet1/>
+			</div>
+			<Box className='o-loader_background' ref={bg}></Box>
+		</div>
 	);
 }
 

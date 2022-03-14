@@ -1,53 +1,31 @@
 import axios from "axios";
+import classNames from "classnames";
+import gsap from "gsap";
+import SplitText from "gsap/SplitText";
+import $ from "jquery";
 import { createContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
-import { LocomotiveScrollProvider } from "react-locomotive-scroll";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import ScrollWrapper from "../components/Containers/ScrollWrapper";
 import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import Menu from "../components/Menu/Menu";
+import ContactPage from "../components/pages/ContactPage";
 import HomePage from "../components/pages/HomePage";
 import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
-import { device } from "../styles/breakpoints";
 import { GlobalStyle } from "../styles/global";
-import classNames from "classnames";
-import SplitText from "gsap/SplitText";
-import $ from "jquery";
-import ContactPage from "../components/pages/ContactPage";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
+export const ColorContext = createContext();
+export const CursorContext = createContext();
 
 function App() {
-	const location = useLocation();
 	const [play, setPlay] = useState(true);
 	const splitText = useRef(null);
-
-	const baseSpacing = {
-		desktopL: 2,
-		desktop: 1.5,
-		laptopL: 2,
-		laptop: 2,
-		tablet: 1,
-		mobileL: 1,
-		mobileM: 0.5,
-		mobileS: 0.4,
-	};
-
-	const baseFontSize = {
-		desktopL: 1.2,
-		desktop: 1.2,
-		laptopL: 1,
-		laptop: 1,
-		tablet: 0.8,
-		mobileL: 0.7,
-		mobileM: 0.7,
-		mobileS: 0.6,
-	};
 
 	const themes = {
 		space: [
@@ -81,65 +59,33 @@ function App() {
 			gradient:
 				"linear-gradient(#516dc1,#ce4469,#ce4469,#fb986c,#fb986c,#a99af4,#a99af4,#2fd8a8,#2fd8a8,#009b8e,#009b8e,#516dc1,#516dc1,#ce4469)",
 		},
-		typography: {
-			setSize: multiplier => {
-				return `
-					@media ${device.mobileS} {
-						
-						font-size: ${baseFontSize.mobileS * multiplier}rem;
-					}
-				
-					@media ${device.mobileL} {
-						
-						font-size: ${baseFontSize.mobileL * multiplier}rem;
-					}
-				
-					@media ${device.tablet} {
-						
-						font-size: ${baseFontSize.tablet * multiplier}rem;
-					}
-				
-					@media ${device.laptop} {
-						
-						font-size: 8rem;
-						font-size: ${baseFontSize.laptop * multiplier}rem;
-					}
-				
-					@media ${device.laptopL} {
-					
-						font-size: ${baseFontSize.laptopL * multiplier}rem;
-					}
-
-					@media ${device.desktop} {
-					
-						font-size: ${baseFontSize.desktop * multiplier}rem;
-					}
-
-					@media ${device.desktopL} {
-					
-						font-size: ${baseFontSize.desktopL * multiplier}rem;
-					}
-					`;
-			},
-		},
-		spacing: (multiplier, property) => {
-			return Object.entries(device).map(size => {
-				return `@media ${size[1]} {
-						${
-							Array.isArray(property)
-								? property.map(
-										prop => `${prop}: ${baseSpacing[size[0]] * multiplier}rem;`
-								  )
-								: `
-								${property}: ${baseSpacing[size[0]] * multiplier}rem;
-								`
-						};
-					}
-
-					`;
-			});
-		},
 	};
+
+	const [isSplit, setSplit] = useState(false);
+
+	useEffect(() => {
+		if (!isSplit) {
+			const splitText = new SplitText($(".o-h1.-split"), {
+				type: "chars",
+				charsClass: "c-char",
+			});
+
+			setSplit(true);
+
+			if (splitText.chars) {
+				const tl = gsap.timeline();
+
+				tl.to(splitText.chars, {
+					y: 0,
+					duration: 2,
+					ease: "expo.inOut",
+					delay: 1.4,
+					stagger: 0.02,
+					opacity: 1,
+				});
+			}
+		}
+	}, [isSplit]);
 
 	const scrollRef = useRef(null);
 
@@ -152,7 +98,10 @@ function App() {
 		isTransitioning: true,
 	});
 
-	const appClasses = classNames("App", { "menu-active": state.menuActive });
+	const appClasses = classNames("App", {
+		"menu-active": state.menuActive,
+		"is-dom-loaded": !play,
+	});
 
 	useEffect(() => {
 		if (!splitText.current) {
@@ -257,7 +206,6 @@ function App() {
 			.catch(err => console.log(err));
 	}, []);
 
-	const headerRef = useRef(null);
 	const contentWrapperRef = useRef(null);
 
 	const toggleMenu = () => {
@@ -274,73 +222,65 @@ function App() {
 		playTransition,
 	};
 
+	const [cursorState, setCursorState] = useState("following");
+
+	const [pageTheme, setPageTheme] = useState("regular");
+
 	return (
 		<DataContext.Provider value={state.data}>
 			<ThemeProvider theme={themes}>
 				<LoadingContext.Provider value={loadingControls}>
-					<LocomotiveScrollProvider
-						options={{
-							smooth: true,
-							smoothMobile: false,
-							getDirection: true,
-							initPosition: { x: 0, y: 0 },
-							reloadOnContextChange: true,
-						}}
-						watch={[location.pathname]}
-						containerRef={scrollRef}
-					>
-						<div className={appClasses}>
-							<Helmet>
-								<title>Matthew Parisien</title>
-								<meta
-									name='description'
-									content='Web Developer, Photographer & Graphic Designer'
+					<ColorContext.Provider value={{ setPageTheme, pageTheme }}>
+						<CursorContext.Provider value={{ cursorState, setCursorState }}>
+							<div className={appClasses} data-theme={pageTheme}>
+								<Helmet>
+									<title>Matthew Parisien</title>
+									<meta
+										name='description'
+										content='Web Developer, Photographer & Graphic Designer'
+									/>
+								</Helmet>
+								<Header />
+								<Loader
+									isActive={play}
+									setDone={() => {
+										setPlay(false);
+									}}
 								/>
-							</Helmet>
 
-							<Loader
-								isActive={play}
-								setDone={() => {
-									setPlay(false);
-								}}
-							/>
-							<Header
-								ref={headerRef}
-								isMenuActive={state.menuActive}
-								toggleMenu={toggleMenu}
-								location={location}
-							/>
-							<Menu
-								isOpen={state.menuActive}
-								theme={themes}
-								data={{
-									contact: { ...state.data.contact },
-									socials: state.data.socials,
-								}}
-							/>
-
-							<ScrollWrapper ref={scrollRef}>
-								<ContentWrapper ref={contentWrapperRef}>
-									<GlobalStyle />
-
-									<Routes>
-										<Route
-											path='/'
-											element={<HomePage isLoading={state.isLoading} />}
-										/>
-										<Route path='/work' element={<WorkPage />} />
-										<Route path='/contact' element={<ContactPage />} />
-									</Routes>
-								</ContentWrapper>
-								<Footer
+								{/* <CursorFollower cursorState={cursorState}/> */}
+								<Menu
+									isOpen={state.menuActive}
+									theme={themes}
 									data={{
 										contact: { ...state.data.contact },
 										socials: state.data.socials,
 									}}
 								/>
-							</ScrollWrapper>
-						</div>
-					</LocomotiveScrollProvider>
+
+								<ScrollWrapper ref={scrollRef}>
+									<ContentWrapper ref={contentWrapperRef}>
+										<GlobalStyle />
+
+										<Routes>
+											<Route
+												path='/'
+												element={<HomePage isLoading={state.isLoading} />}
+											/>
+											<Route path='/work' element={<WorkPage />} />
+											<Route path='/contact' element={<ContactPage />} />
+										</Routes>
+									</ContentWrapper>
+									<Footer
+										data={{
+											contact: { ...state.data.contact },
+											socials: state.data.socials,
+										}}
+									/>
+								</ScrollWrapper>
+							</div>
+						</CursorContext.Provider>
+					</ColorContext.Provider>
 				</LoadingContext.Provider>
 			</ThemeProvider>
 		</DataContext.Provider>
