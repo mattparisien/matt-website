@@ -1,11 +1,10 @@
-import React from "react";
-import { useContext, useRef, useCallback } from "react";
-import { ColorContext, CursorContext } from "../../App/App";
-import { useInView } from "react-intersection-observer";
 import classNames from "classnames";
+import React, { useCallback, useContext, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import { ColorContext, CursorContext } from "../../App/App";
 
 function Grid({ items }) {
-	const { setPageTheme, pageTheme } = useContext(ColorContext);
+	const { setPageTheme } = useContext(ColorContext);
 	const { setCursorState } = useContext(CursorContext);
 
 	const themes = [
@@ -41,7 +40,7 @@ function Grid({ items }) {
 							onMouseEnter={handleMouseEnter}
 							onMouseLeave={handleMouseLeave}
 							src={item.Cover.image.url}
-							alt={""}
+							alt={item.alt}
 							previewText={item.PreviewText}
 							title={item.Title}
 							url={item.Location}
@@ -79,7 +78,7 @@ function Item({ onMouseEnter, onMouseLeave, src, alt, previewText, title, url })
 			ref={setRefs}
 		>
 			<div className='c-grid_img-wrapper'>
-				<img src={src} alt='project-image' className='c-grid_img' />
+				<img src={src} alt={Math.random()} className='c-grid_img' />
 			</div>
 			<div className='c-grid_info'>
 				<h3 className='c-grid_title'>{title}</h3>

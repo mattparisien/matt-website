@@ -1,30 +1,23 @@
-import { useMediaQuery } from "@mui/material";
-import { keyframes } from "@mui/system";
-import React, { forwardRef, useContext, useRef, useState } from "react";
-import { useTheme } from "styled-components";
+import React, { forwardRef, useContext, useRef } from "react";
 // Import Swiper styles
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { DataContext } from "../../App/App";
-import { deviceSize } from "../../styles/breakpoints";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
 import Grid from "../Grid/Grid";
-import Header from "../Header/Header";
 
-const gradientAnim = keyframes`
-	0% {
-		transform: translateY(0)
-	}
-	100% {
-		transform: translateY(-100%)
-	}
-`;
+// const gradientAnim = keyframes`
+// 	0% {
+// 		transform: translateY(0)
+// 	}
+// 	100% {
+// 		transform: translateY(-100%)
+// 	}
+// `;
 
 function HomePage(props, ref) {
-	const [featuredProjects, setFeaturedProjects] = useState(null);
 	const data = useContext(DataContext);
-	const theme = useTheme();
 
 	const marquees = useRef([]);
 	marquees.current = [];
@@ -35,7 +28,7 @@ function HomePage(props, ref) {
 
 	return (
 		<>
-			<Container classes="-mobile-padding-none">
+			<Container classes='-mobile-padding-none'>
 				<Section>
 					<Grid items={data.projects} />
 				</Section>

@@ -14,7 +14,7 @@ function Header() {
 							Matt Parisien
 						</h1>
 						
-						<div className='-text-tiny'>
+						<div className='-text-tiny -fade-up-load'>
 							*Actually, I'm a website. But I was built by Matt Parisien.
 						</div>
 					</div>

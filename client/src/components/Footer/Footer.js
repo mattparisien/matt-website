@@ -2,8 +2,6 @@ import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import React, { useEffect, useRef, useState } from "react";
 import Container from "../Containers/Container";
-import useMouseMove from "../../helpers/hooks/useMouseMove";
-import $ from "jquery";
 
 function Footer(props) {
 	const linkRefs = useRef([]);
@@ -19,21 +17,22 @@ function Footer(props) {
 		"write code",
 	];
 
-	const [location] = useMouseMove();
+	// const [location] = useMouseMove();
 
 	const [word, setWord] = useState(words[0]);
 	const [isSplit, setIsSplit] = useState(false);
-	const [hovering, setHovering] = useState(false);
+	// const [hovering, setHovering] = useState(false);
 	const split = useRef(null);
 	const button = useRef(null);
 
 	useEffect(() => {
-		console.log(word);
 		if (split.current && !isSplit) {
 			const splitText = new SplitText(split.current, {
 				type: "chars",
 				charsClass: "c-char",
 			});
+
+			setIsSplit(true);
 
 			if (splitText.chars) {
 				const tl = gsap.timeline();
@@ -56,7 +55,7 @@ function Footer(props) {
 					});
 			}
 		}
-	}, [split.current, isSplit, word]);
+	}, [split, isSplit, word]);
 
 	useEffect(() => {
 		setInterval(() => {
@@ -86,7 +85,9 @@ function Footer(props) {
 							ref={button}
 							className='o-footer_btn'
 							href="mailto:hello@matthewparisien.com?subject=Let's talk"
-						>Email me</a>
+						>
+							Email me
+						</a>
 					</div>
 				</div>
 			</Container>

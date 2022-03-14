@@ -1,26 +1,14 @@
-import { Box, Container, useMediaQuery } from "@mui/material";
-import { keyframes } from "@mui/system";
+import { Box } from "@mui/material";
 import gsap from "gsap";
 import CSSPlugin from "gsap/CSSPlugin";
 import React, { useEffect, useRef } from "react";
-import { useTheme } from "styled-components";
-import Star from "../Star/Star";
-import {Planet1} from "../Vector/Planets";
+import { Planet1 } from "../Vector/Planets";
 
 gsap.registerPlugin(CSSPlugin);
 
-const wordAnim = keyframes`
-	0% {
-		transform: translateY(150%);
-		opacity: 0;
-	} 100% {
-		transform: translateY(0);
-		opacity: 1;
-	}
-`;
 
 function Loader({ isActive, setDone }) {
-	const matches = useMediaQuery("(max-width: 600px)", { noSsr: true });
+	
 
 	const content = useRef(null);
 	const containerRef = useRef(null);
@@ -44,12 +32,15 @@ function Loader({ isActive, setDone }) {
 						ease: "circ.inOut",
 						transformOrigin: 'top'
 					},
-					1.6
+					1.6,
 				)
 				.to(
 					content.current,
 					{
 						opacity: 0,
+						onComplete: () => {
+							setDone();
+						}
 					},
 					1.3
 				)
@@ -57,7 +48,7 @@ function Loader({ isActive, setDone }) {
 					clearProps: "all",
 				});
 
-			setDone();
+			
 		}
 	}, [isActive, setDone]);
 

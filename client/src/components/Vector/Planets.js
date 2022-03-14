@@ -1,7 +1,7 @@
-import { DrawSVGPlugin } from "gsap/all";
 import gsap from "gsap";
-import { useRef, useEffect } from "react";
+import { DrawSVGPlugin } from "gsap/all";
 import $ from "jquery";
+import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 
 export function Planet1() {

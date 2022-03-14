@@ -56,6 +56,18 @@
 	position: absolute;
 }
 
+.-fade-up-load {
+	transform: translateY(40%);
+	opacity: 0;
+	transition: 400ms ease;
+	transition-delay: 1s;
+}
+
+.is-dom-loaded .-fade-up-load {
+	transform: translateY(0%);
+	opacity: 1;
+}
+
 
 .c-char {
 	transform: translateY(100%);

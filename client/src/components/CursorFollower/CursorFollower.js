@@ -1,8 +1,7 @@
 import classNames from "classnames";
-import gsap from "gsap";
+import $ from "jquery";
 import React, { useEffect, useRef } from "react";
 import useMouseMove from "../../helpers/hooks/useMouseMove";
-import $ from "jquery";
 
 function CursorFollower({ cursorState }) {
 	const [location] = useMouseMove();
@@ -12,9 +11,6 @@ function CursorFollower({ cursorState }) {
 	});
 
 	useEffect(() => {
-		function lerp(start, end, t) {
-			return start * (1 - t) + end * t;
-		}
 
 		if (follower.current) {
 			if (cursorState === "hovering") {
@@ -34,7 +30,7 @@ function CursorFollower({ cursorState }) {
 				});
 			}, 200);
 		}
-	}, [location, follower]);
+	}, [location, follower, cursorState]);
 
 	return (
 		<div className={classes} ref={follower}>

@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
 import classNames from "classnames";
-import { SplitText } from "gsap/all";
-import { useRef, useState } from "react";
-import $ from "jquery";
 import gsap from "gsap";
+import { SplitText } from "gsap/all";
+import $ from "jquery";
+import React, { useEffect, useRef, useState } from "react";
 
 function Paragraph(props) {
 	const classes = classNames(`c-text -text-${props.size}`, {
@@ -12,7 +11,7 @@ function Paragraph(props) {
 	});
 
 	const p = useRef(null);
-	const splitText = useRef(null);
+	
 	const [lines, setLines] = useState(null);
 
 	useEffect(() => {
