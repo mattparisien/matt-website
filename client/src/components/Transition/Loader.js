@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import gsap from "gsap";
 import CSSPlugin from "gsap/CSSPlugin";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Planet1 } from "../Vector/Planets";
 
 gsap.registerPlugin(CSSPlugin);
@@ -13,10 +13,15 @@ function Loader({ isActive, setDone }) {
 	const content = useRef(null);
 	const containerRef = useRef(null);
 	const bg = useRef(null);
+	const [hasPlayed, setHasPlayed] = useState(false);
 
 	useEffect(() => {
-		if (isActive) {
+		if (isActive && !hasPlayed) {
+			setHasPlayed(true)
 			const tl = gsap.timeline();
+			
+
+			console.log('hello!')
 
 			tl.set(containerRef.current, { display: "flex" })
 				.to(bg.current, {
@@ -32,7 +37,7 @@ function Loader({ isActive, setDone }) {
 						ease: "circ.inOut",
 						transformOrigin: 'top'
 					},
-					1.6,
+					2,
 				)
 				.to(
 					content.current,

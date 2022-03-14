@@ -27,9 +27,10 @@ function Footer(props) {
 	// const [hovering, setHovering] = useState(false);
 	const split = useRef(null);
 	const button = useRef(null);
+	const container = useRef(null);
 
 	useEffect(() => {
-		if (split.current && !isSplit) {
+		if (split.current) {
 			const splitText = new SplitText(split.current, {
 				type: "chars",
 				charsClass: "c-char",
@@ -72,26 +73,48 @@ function Footer(props) {
 			);
 		}, 3000);
 	}, [words]);
+	
+
+	const callParallax = (event) => {
+		
+	}
+
+	const handleMouseEnter = (e) => {
+		
+	}
+
+	const handleMouseMove = (e) => {
+		
+	}
+
+	const handleMouseLeave = () => {
+
+	}
 
 	return (
 		<footer className='o-footer'>
 			<Container classes='-stretchX'>
-				<div className='o-footer_contact'>
+				<div
+					className='o-footer_contact'
+					ref={container}
+					onMouseEnter={handleMouseEnter}
+					onMouseLeave={handleMouseLeave}
+					onMouseMove={handleMouseMove}
+				>
 					<h2 className='o-footer_heading o-h2'>
 						Let's{" "}
 						<div ref={split} className='o-footer_text-switch'>
 							{word}
 						</div>
 					</h2>
-					<div className='o-footer_btn-container' ref={hoverArea}>
-						<a
-							ref={button}
-							className='o-footer_btn'
-							href="mailto:hello@matthewparisien.com?subject=Let's talk"
-						>
-							Email me
-						</a>
-					</div>
+
+					<a
+						ref={button}
+						className='o-footer_btn'
+						href="mailto:hello@matthewparisien.com?subject=Let's talk"
+					>
+						Email me
+					</a>
 				</div>
 			</Container>
 

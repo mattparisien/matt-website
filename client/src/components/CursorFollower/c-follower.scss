@@ -17,9 +17,9 @@
 	justify-content: center;
 	mix-blend-mode: multiply;
 
-	@include media("<=tablet") {
-		display: none;
-	}
+	// @include media("<=tablet") {
+	// 	display: none;
+	// }
 
 	&.is-hovering {
 		mix-blend-mode: difference;

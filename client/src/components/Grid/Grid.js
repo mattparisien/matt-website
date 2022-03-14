@@ -2,6 +2,8 @@ import classNames from "classnames";
 import React, { useCallback, useContext, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import { ColorContext, CursorContext } from "../../App/App";
+import { Parallax } from 'react-parallax';
+
 
 function Grid({ items }) {
 	const { setPageTheme } = useContext(ColorContext);
@@ -22,12 +24,12 @@ function Grid({ items }) {
 
 	const handleMouseEnter = () => {
 		setPageTheme(themes[getRandomIndex()]);
-		setCursorState('hovering')
+		setCursorState("hovering");
 	};
 
 	const handleMouseLeave = () => {
 		setPageTheme("regular");
-		setCursorState('following')
+		setCursorState("following");
 	};
 
 	return (
@@ -51,9 +53,17 @@ function Grid({ items }) {
 	);
 }
 
-function Item({ onMouseEnter, onMouseLeave, src, alt, previewText, title, url }) {
+function Item({
+	onMouseEnter,
+	onMouseLeave,
+	src,
+	alt,
+	previewText,
+	title,
+	url,
+}) {
 	const ref = useRef(null);
-	const [inViewRef, inView] = useInView({threshold: 0.5});
+	const [inViewRef, inView] = useInView({ threshold: 0.5 });
 
 	const setRefs = useCallback(
 		node => {
@@ -73,8 +83,8 @@ function Item({ onMouseEnter, onMouseLeave, src, alt, previewText, title, url })
 			onMouseEnter={onMouseEnter}
 			onMouseLeave={onMouseLeave}
 			href={url}
-			target="_blank"
-			rel="noreferrer"
+			target='_blank'
+			rel='noreferrer'
 			ref={setRefs}
 		>
 			<div className='c-grid_img-wrapper'>
