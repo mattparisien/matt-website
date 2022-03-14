@@ -1,11 +1,11 @@
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
-import React, { useEffect, useRef, useState, useMemo } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Container from "../Containers/Container";
 
 function Footer(props) {
 	const linkRefs = useRef([]);
-	const hoverArea = useRef(null);
+
 	linkRefs.current = [];
 
 	const words = useMemo(
@@ -73,23 +73,12 @@ function Footer(props) {
 			);
 		}, 3000);
 	}, [words]);
-	
 
-	const callParallax = (event) => {
-		
-	}
+	const handleMouseEnter = e => {};
 
-	const handleMouseEnter = (e) => {
-		
-	}
+	const handleMouseMove = e => {};
 
-	const handleMouseMove = (e) => {
-		
-	}
-
-	const handleMouseLeave = () => {
-
-	}
+	const handleMouseLeave = () => {};
 
 	return (
 		<footer className='o-footer'>
@@ -119,7 +108,7 @@ function Footer(props) {
 			</Container>
 
 			<div className='o-footer_bottom'>
-				<Container classes='-flex -align-center -justify-between -stretchX'>
+				<Container classes='-flex -align-end -justify-between -stretchX'>
 					<h3 className='o-footer_email o-h3'>
 						<a
 							href="mailto:hello@matthewparisien.com?Subject=Let's talk"

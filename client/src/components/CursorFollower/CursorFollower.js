@@ -1,9 +1,7 @@
 import classNames from "classnames";
-import $ from "jquery";
+import gsap from "gsap";
 import React, { useEffect, useRef } from "react";
 import useMouseMove from "../../helpers/hooks/useMouseMove";
-import gsap from "gsap";
-import gsapCore from "gsap/gsap-core";
 
 function CursorFollower({ cursorState }) {
 	const [location] = useMouseMove();

@@ -2,12 +2,12 @@ import classNames from "classnames";
 import React, { useCallback, useContext, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import { ColorContext, CursorContext } from "../../App/App";
-import { Parallax } from 'react-parallax';
-
+import { useMediaQuery } from "@mui/material";
 
 function Grid({ items }) {
 	const { setPageTheme } = useContext(ColorContext);
 	const { setCursorState } = useContext(CursorContext);
+	const tablet = useMediaQuery("(max-width: 768px)");
 
 	const themes = [
 		"strawberry",
@@ -23,13 +23,17 @@ function Grid({ items }) {
 	};
 
 	const handleMouseEnter = () => {
-		setPageTheme(themes[getRandomIndex()]);
-		setCursorState("hovering");
+		if (!tablet) {
+			setPageTheme(themes[getRandomIndex()]);
+			setCursorState("hovering");
+		}
 	};
 
 	const handleMouseLeave = () => {
-		setPageTheme("regular");
-		setCursorState("following");
+		if (!tablet) {
+			setPageTheme("regular");
+			setCursorState("following");
+		}
 	};
 
 	return (

@@ -3,21 +3,28 @@ import gsap from "gsap";
 import CSSPlugin from "gsap/CSSPlugin";
 import React, { useEffect, useRef, useState } from "react";
 import { Planet1 } from "../Vector/Planets";
+import classNames from 'classnames';
 
 gsap.registerPlugin(CSSPlugin);
 
 
 function Loader({ isActive, setDone }) {
 	
+	
 
 	const content = useRef(null);
 	const containerRef = useRef(null);
 	const bg = useRef(null);
 	const [hasPlayed, setHasPlayed] = useState(false);
+	const [isFirstVisit, setFirstVisit] = useState(true);
+
+
+	const classes = classNames('o-loader', { 'is-first-visit': isFirstVisit })
 
 	useEffect(() => {
 		if (isActive && !hasPlayed) {
 			setHasPlayed(true)
+			
 			const tl = gsap.timeline();
 			
 
@@ -45,6 +52,7 @@ function Loader({ isActive, setDone }) {
 						opacity: 0,
 						onComplete: () => {
 							setDone();
+							setFirstVisit(false)
 						}
 					},
 					1.3
@@ -55,29 +63,11 @@ function Loader({ isActive, setDone }) {
 
 			
 		}
-	}, [isActive, setDone]);
+	}, [isActive, setDone, hasPlayed]);
 
-	// 	if (content.current && bg.current && containerRef.current) {
-	// 		//Play on initial component load
-
-	// 		const container = containerRef.current;
-	// 		const background = bg.current;
-	// 		const items = content.current;
-
-	// 		//Play everytime isActive is true
-
-	// 		if (isActive && !hasPlayed) {
-	// 			transitionAnim(masterTimeline.current, container, background, items)
-	// 				.progress(0)
-	// 				.play();
-	// 		}
-
-	// 		//Prevent from playing again
-	// 	}
-	// }, [bg, content, containerRef, isActive, hasPlayed]);
 
 	return (
-		<div className='o-loader' ref={containerRef}>
+		<div className={classes} ref={containerRef}>
 			<div className='o-loader_content' ref={content}>
 				<Planet1/>
 			</div>

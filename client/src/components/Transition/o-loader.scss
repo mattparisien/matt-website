@@ -44,3 +44,9 @@
 		transform-origin: left;
 	}
 }
+
+.o-loader.is-first-visit {
+	.o-loader_background {
+		transform: none;
+	}
+}
