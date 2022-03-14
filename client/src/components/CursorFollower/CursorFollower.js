@@ -8,6 +8,7 @@ function CursorFollower({ cursorState }) {
 	const follower = useRef(null);
 	const classes = classNames("c-follower", {
 		"is-hovering": cursorState === "hovering",
+		"is-nav-hovering": cursorState === "nav-hovering",
 	});
 
 	const positionRef = useRef({
@@ -31,10 +32,12 @@ function CursorFollower({ cursorState }) {
 	}, [location, follower, cursorState]);
 
 	useEffect(() => {
-		cursorState === "hovering"
+		cursorState === "hovering" || cursorState === 'nav-hovering'
 			? gsap.to(follower.current, {
 					width: "80px",
 					height: "80px",
+					y: "-50%",
+					x: "-50%"
 			  })
 			: gsap.to(follower.current, {
 					width: "20px",

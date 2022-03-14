@@ -5,7 +5,6 @@ import { CSSRulePlugin } from "gsap/all";
 import React, { useEffect, useRef } from "react";
 import { device } from "../../styles/breakpoints";
 import Container from "../Containers/Container";
-import FooterNav from "../Nav/FooterNav";
 import TransitionTrigger from "../Transition/TransitionTrigger";
 
 function Menu(props) {
@@ -176,7 +175,7 @@ function Menu(props) {
 							className='contact-info-wrapper'
 							ref={infoWrapperRef}
 						>
-							<FooterNav />
+							
 							{/* <Box sx={{ marginRight: "30%" }}>
 							<Box
 								component='ul'

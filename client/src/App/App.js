@@ -18,6 +18,7 @@ import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
 import { GlobalStyle } from "../styles/global";
 import CursorFollower from "../components/CursorFollower/CursorFollower";
+import Nav from "../components/Nav/Nav";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -242,6 +243,7 @@ function App() {
 									/>
 								</Helmet>
 								<Header />
+								<Nav />
 								<Loader
 									isActive={play}
 									setDone={() => {
@@ -249,7 +251,7 @@ function App() {
 									}}
 								/>
 
-								<CursorFollower cursorState={cursorState}/>
+								<CursorFollower cursorState={cursorState} />
 								<Menu
 									isOpen={state.menuActive}
 									theme={themes}
