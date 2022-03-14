@@ -44,6 +44,7 @@ function Grid({ items }) {
 							alt={""}
 							previewText={item.PreviewText}
 							title={item.Title}
+							url={item.Location}
 						/>
 					);
 				})}
@@ -51,7 +52,7 @@ function Grid({ items }) {
 	);
 }
 
-function Item({ onMouseEnter, onMouseLeave, src, alt, previewText, title }) {
+function Item({ onMouseEnter, onMouseLeave, src, alt, previewText, title, url }) {
 	const ref = useRef(null);
 	const [inViewRef, inView] = useInView({threshold: 0.5});
 
@@ -72,6 +73,9 @@ function Item({ onMouseEnter, onMouseLeave, src, alt, previewText, title }) {
 			className={itemClasses}
 			onMouseEnter={onMouseEnter}
 			onMouseLeave={onMouseLeave}
+			href={url}
+			target="_blank"
+			rel="noreferrer"
 			ref={setRefs}
 		>
 			<div className='c-grid_img-wrapper'>
