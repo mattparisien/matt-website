@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import Container from "../Containers/Container";
 
 function Footer(props) {
@@ -8,14 +8,17 @@ function Footer(props) {
 	const hoverArea = useRef(null);
 	linkRefs.current = [];
 
-	const words = [
-		"do lunch",
-		"collaborate",
-		"talk development",
-		"meet on zoom",
-		"work together",
-		"write code",
-	];
+	const words = useMemo(
+		() => [
+			"do lunch",
+			"collaborate",
+			"talk development",
+			"meet on zoom",
+			"work together",
+			"write code",
+		],
+		[]
+	);
 
 	// const [location] = useMouseMove();
 
@@ -68,7 +71,7 @@ function Footer(props) {
 					]
 			);
 		}, 3000);
-	}, []);
+	}, [words]);
 
 	return (
 		<footer className='o-footer'>

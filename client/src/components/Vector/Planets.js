@@ -118,7 +118,7 @@ export function Planet2() {
 
 export function Planet3() {
 	const planet = useRef(null);
-	const { ref, inView } = useInView({ threshold: 0.9 });
+	const { ref } = useInView({ threshold: 0.9 });
 	gsap.registerPlugin(DrawSVGPlugin);
 
 	useEffect(() => {
