@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
+import React, { useEffect, useRef, useState } from "react";
 
 function TextSwitch({ words }) {
 	gsap.registerPlugin(SplitText);
@@ -55,7 +55,7 @@ function TextSwitch({ words }) {
 					]
 			);
 		}, 3000);
-	}, []);
+	}, [words]);
 	return <h2 className="o-h2 -text-switch" ref={split}>{word}</h2>;
 }
 

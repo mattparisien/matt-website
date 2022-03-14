@@ -1,12 +1,11 @@
 import classNames from "classnames";
 import gsap from "gsap";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import useMouseMove from "../../helpers/hooks/useMouseMove";
-import $ from "jquery";
 
 function CursorFollower({ cursorState }) {
 	const [location] = useMouseMove();
-	const [isVisible, setVisible] = useState(true);
+	
 	const follower = useRef(null);
 	const classes = classNames("c-follower", {
 		"is-hovering": cursorState === "hovering",

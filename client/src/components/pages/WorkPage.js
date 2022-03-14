@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
-import { DataContext } from "../../App/App";
+import React from "react";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
-
 import Paragraph from "../Paragraph/Paragraph";
 import Star from "../Star/Star";
 
+
 function WorkPage() {
-	const { projects, photos } = useContext(DataContext);
+	
 
 	return (
 		<>
