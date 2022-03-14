@@ -9,17 +9,17 @@ import { Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import ScrollWrapper from "../components/Containers/ScrollWrapper";
 import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
+import CursorFollower from "../components/CursorFollower/CursorFollower";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import Menu from "../components/Menu/Menu";
-import ContactPage from "../components/pages/ContactPage";
+import Nav from "../components/Nav/Nav";
+import AboutPage from "../components/pages/AboutPage";
 import HomePage from "../components/pages/HomePage";
 import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
 import { GlobalStyle } from "../styles/global";
-import CursorFollower from "../components/CursorFollower/CursorFollower";
-import Nav from "../components/Nav/Nav";
-import AboutPage from "../components/pages/AboutPage";
+import { useLocation } from "react-router-dom";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -65,8 +65,12 @@ function App() {
 	};
 
 	const [isSplit, setSplit] = useState(false);
+	const location = useLocation();
 
 	useEffect(() => {
+
+		window.scrollTo(0, 0);
+
 		if (!isSplit) {
 			const splitText = new SplitText($(".o-h1.-split"), {
 				type: "chars",
@@ -105,7 +109,7 @@ function App() {
 				});
 			}
 		}
-	}, [isSplit]);
+	}, [isSplit, location]);
 
 	const scrollRef = useRef(null);
 
