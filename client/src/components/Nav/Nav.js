@@ -37,7 +37,7 @@ function Nav() {
 						Work
 					</Link>
 					<Link isRouterLink={true} href='/about' onClick={(e) => {
-						console.log('hello!')
+						
 						e.preventDefault();
 						setActive(!active);
 					}}>
