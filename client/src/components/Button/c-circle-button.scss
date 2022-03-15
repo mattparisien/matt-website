@@ -11,6 +11,7 @@
 	justify-content: center;
 	font-family: "Roboto Mono";
 	text-transform: uppercase;
+	margin: 2rem 0;
 
 	@include media("<=tablet") {
 		width: 8rem;

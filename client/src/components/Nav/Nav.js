@@ -29,10 +29,18 @@ function Nav() {
 			</Link>
 			<div className='c-nav_drawer'>
 				<div className='c-nav_drawer__inner'>
-					<Link isRouterLink={true} href='/'>
+					<Link isRouterLink={true} href='/' onClick={(e) => 
+						{
+							e.preventDefault();
+							setActive(!active)
+						}}>
 						Work
 					</Link>
-					<Link isRouterLink={true} href='/about'>
+					<Link isRouterLink={true} href='/about' onClick={(e) => {
+						console.log('hello!')
+						e.preventDefault();
+						setActive(!active);
+					}}>
 						About
 					</Link>
 				</div>

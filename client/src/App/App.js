@@ -5,7 +5,7 @@ import SplitText from "gsap/SplitText";
 import $ from "jquery";
 import { createContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import ScrollWrapper from "../components/Containers/ScrollWrapper";
 import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
@@ -19,7 +19,6 @@ import HomePage from "../components/pages/HomePage";
 import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
 import { GlobalStyle } from "../styles/global";
-import { useLocation } from "react-router-dom";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -68,18 +67,22 @@ function App() {
 	const location = useLocation();
 
 	useEffect(() => {
-
 		window.scrollTo(0, 0);
 
 		if (!isSplit) {
 			const splitText = new SplitText($(".o-h1.-split"), {
-				type: "chars",
+				type: "chars, words",
 				charsClass: "c-char",
+				linesClass: "c-word",
 			});
 			const splitText2 = new SplitText($(".o-h2.-split"), {
 				type: "chars",
 				charsClass: "c-char",
 			});
+
+			setTimeout(() => {
+				splitText2.revert().split();
+			}, 200);
 
 			setSplit(true);
 
@@ -265,6 +268,7 @@ function App() {
 									/>
 								</Helmet>
 								{location.pathname === "/" && <Header />}
+
 								<Nav />
 								<Loader
 									isActive={play}
@@ -293,7 +297,10 @@ function App() {
 												element={<HomePage isLoading={state.isLoading} />}
 											/>
 											<Route path='/work' element={<WorkPage />} />
-											<Route path='/about' element={<AboutPage photos={state.data.photos}/>} />
+											<Route
+												path='/about'
+												element={<AboutPage photos={state.data.photos} />}
+											/>
 										</Routes>
 									</ContentWrapper>
 									<Footer
