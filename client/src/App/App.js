@@ -65,9 +65,6 @@ function App() {
 
 	const [isSplit, setSplit] = useState(false);
 	const location = useLocation();
-	const wordTl = useRef(
-		gsap.timeline({ repeat: -1, yoyo: true, repeatDelay: 0 })
-	);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -99,8 +96,7 @@ function App() {
 					delay: 1.4,
 					stagger: 0.02,
 					opacity: 1,
-				})
-				
+				});
 			}
 
 			if (splitText2.chars) {
@@ -113,7 +109,6 @@ function App() {
 					delay: 1.4,
 					stagger: 0.02,
 					opacity: 1,
-					
 				});
 			}
 		}
@@ -273,7 +268,7 @@ function App() {
 									/>
 								</Helmet>
 								{location.pathname === "/" && <Header />}
-								
+
 								<Nav />
 								<Loader
 									isActive={play}
