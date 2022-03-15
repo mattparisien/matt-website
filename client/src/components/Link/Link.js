@@ -19,7 +19,7 @@ function Link(props) {
 
 		setTimeout(() => {
 			navigate(props.href);
-		}, 1000);
+		}, 1400);
 	};
 
 	const { setCursorState } = useContext(CursorContext);

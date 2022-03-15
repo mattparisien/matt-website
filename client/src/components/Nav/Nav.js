@@ -7,7 +7,7 @@ import Link from "../Link/Link";
 function Nav() {
 	const { setCursorState } = useContext(CursorContext);
 	const [active, setActive] = useState(false);
-	const classes = classNames("c-nav", { "is-active": active });
+	const classes = classNames("c-nav -fade-up-load -delay-2", { "is-active": active });
 
 	const handleMouseEnter = () => {
 		setCursorState("nav-hovering");
@@ -23,7 +23,7 @@ function Nav() {
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 		>
-			<Link href='#' classes='c-nav_link' onClick={() => setActive(!active)}>
+			<Link classes='c-nav_link' onClick={() => setActive(!active)}>
 				<div className='c-nav_burger'></div>
 				<div className='c-nav_circle'></div>
 			</Link>

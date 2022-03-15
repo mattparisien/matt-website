@@ -13,12 +13,12 @@ function Header() {
 					<div className='c-header_content'>
 						
 						<h1 className='o-h1 -split'>
-							Hi, I am
+							Hi, I'm
 							<br></br>
-							Matt Parisien
+							Matthew
 						</h1>
 
-						<div className='-text-tiny -fade-up-load'>
+						<div className='-text-tiny -fade-up-load -delay-3'>
 							*Actually, I'm a website. But I was built by Matt Parisien.
 						</div>
 					</div>

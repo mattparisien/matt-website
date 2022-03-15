@@ -27,8 +27,7 @@ export const CursorContext = createContext();
 
 function App() {
 	const [play, setPlay] = useState(true);
-	const splitText = useRef(null);
-
+	
 	const themes = {
 		space: [
 			"0.25rem",
@@ -93,7 +92,7 @@ function App() {
 					y: 0,
 					duration: 2,
 					ease: "expo.inOut",
-					delay: 1.4,
+					delay: 0.5,
 					stagger: 0.02,
 					opacity: 1,
 				});
@@ -114,6 +113,7 @@ function App() {
 		}
 	}, [isSplit, location]);
 
+
 	const scrollRef = useRef(null);
 
 	const [state, setState] = useState({
@@ -122,23 +122,27 @@ function App() {
 		footerHeight: null,
 		isFooterIntersecting: false,
 		menuActive: false,
-		isTransitioning: true,
+		isTransitioning: false,
 	});
+
+	const setTransitioning = () => {
+		setState(prev => ({...prev, isTransitioning: true}))
+	}
+
+
+	useEffect(() => {
+		//resplit whenever there's a location change
+		setSplit(false)
+		setState(prev => ({...prev, isTransitioning: false}))
+	}, [location])
 
 	const appClasses = classNames("App", {
 		"menu-active": state.menuActive,
 		"is-dom-loaded": !play,
+		"is-old-page": state.isTransitioning
 	});
 
-	useEffect(() => {
-		if (!splitText.current) {
-			setTimeout(() => {
-				splitText.current = new SplitText($(".-split"), {
-					type: "lines",
-				});
-			}, 1000);
-		}
-	}, [splitText]);
+
 
 	useEffect(() => {
 		console.log("Designed & developed by Matt Parisien");
@@ -247,6 +251,7 @@ function App() {
 		menuActive: state.menuActive,
 		toggleMenu,
 		playTransition,
+		setTransitioning
 	};
 
 	const [cursorState, setCursorState] = useState("following");
@@ -273,6 +278,7 @@ function App() {
 								<Loader
 									isActive={play}
 									setDone={() => {
+										console.log('oh yaaa')
 										setPlay(false);
 									}}
 								/>

@@ -53,6 +53,21 @@
 		background-position: center;
 		transition: $transition ease;
 		overflow: hidden;
+		position: relative;
+
+		&::after {
+			position: absolute;
+			top: 0;
+			left: 0;
+			content: "";
+			background-color: $light;
+			width: 100%;
+			height: 100%;
+			transition: $transition-expo;
+			
+
+			transform-origin: bottom;
+		}
 		// opacity: 0;
 		// transform: translateY(40%);
 		// transition: $transition;
@@ -66,6 +81,9 @@
 	}
 
 	&_info {
+		opacity: 0;
+		transition: $transition;
+
 		@include media("<=tablet") {
 			padding: 0.8rem 2rem;
 		}

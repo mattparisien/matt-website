@@ -8,6 +8,10 @@
 	margin-right: 0.2rem;
 	z-index: 999;
 
+	@include media("<=tablet") {
+    margin-right: 2rem;
+  }
+
 	&_link {
 		display: flex;
 		align-items: center;

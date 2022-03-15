@@ -2,7 +2,6 @@
 	padding-top: 10rem;
 }
 
-
 .o-about .o-about_content {
 	display: flex;
 
@@ -14,8 +13,7 @@
 		height: 30vw;
 
 		border-radius: 50%;
-		
-		
+
 		mix-blend-mode: exclusion;
 		overflow: hidden;
 
@@ -62,9 +60,24 @@
 .o-about_image {
 	width: 40%;
 	position: relative;
+	
+
+	&::after {
+		transform-origin: bottom;
+		position: absolute;
+		top: 0;
+		left: 0;
+		content: "";
+		background-color: $light;
+		width: 100%;
+		height: 100%;
+		transition: $transition-expo;
+		z-index: 999;
+	}
+	
 
 	&:hover img {
-		filter: blur(0px)
+		filter: blur(0px);
 	}
 
 	&:hover .c-planet {
@@ -75,16 +88,16 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		filter: blur(20px);
 		transition: 500ms ease;
 	}
 
 	.c-planet {
 		position: absolute;
+		display: none;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		 
+
 		path:last-child {
 			fill: $dark !important;
 		}

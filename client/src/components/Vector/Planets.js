@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 
 export function Planet1({ isPlaying, isComplete }) {
 	const planet = useRef(null);
-	const { ref, inView } = useInView({ threshold: 0.9 });
+	const { ref } = useInView({ threshold: 0.9 });
 	gsap.registerPlugin(DrawSVGPlugin);
 	const tl = useRef(gsap.timeline());
 
@@ -20,13 +20,12 @@ export function Planet1({ isPlaying, isComplete }) {
 			});
 		}
 
-		if (planet && inView && isPlaying) {
+		if (planet && isPlaying) {
 			tl.current
 				.to($(planet.current).find(".u-gsap-stroke-animate"), {
 					drawSVG: "100%",
-
-					duration: 0.5,
-					ease: "circ.inOut",
+					duration: 1,
+					ease: "power3.out",
 				})
 				.to(
 					$(planet.current).find(".u-gsap-fill-animate"),
@@ -38,7 +37,7 @@ export function Planet1({ isPlaying, isComplete }) {
 					0.1
 				);
 		}
-	}, [planet, inView, isPlaying, isComplete]);
+	}, [planet, isPlaying, isComplete]);
 
 	return (
 		<div className='c-planet' ref={planet}>

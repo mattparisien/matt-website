@@ -57,6 +57,7 @@ $gradient-secondary: #785b75, #326461, #d4a263;
 
 //Transition
 $transition: 600ms ease;
+$transition-expo: all 1.8s cubic-bezier(1, 0, 0, 1);
 $translate-transition: opacity 0s cubic-bezier(0.35, 0.755, 0.42, 0.95),
 transform 0.3s cubic-bezier(0.35, 0.755, 0.42, 0.95);
 
