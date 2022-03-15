@@ -293,7 +293,7 @@ function App() {
 												element={<HomePage isLoading={state.isLoading} />}
 											/>
 											<Route path='/work' element={<WorkPage />} />
-											<Route path='/about' element={<AboutPage />} />
+											<Route path='/about' element={<AboutPage photos={state.data.photos}/>} />
 										</Routes>
 									</ContentWrapper>
 									<Footer
