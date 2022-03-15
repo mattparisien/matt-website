@@ -1,44 +1,42 @@
-import React from "react";
-import Container from "../Containers/Container";
-import TextSwitch from "../TextSwitch/TextSwitch";
-import Section from "../Containers/Section";
+import React, { useMemo } from "react";
 import CircleButton from "../Button/CircleButton";
+import Container from "../Containers/Container";
+import Section from "../Containers/Section";
+import TextSwitch from "../TextSwitch/TextSwitch";
+import { Planet4 } from "../Vector/Planets";
 
-function AboutPage() {
-	const words = [
+function AboutPage({ photos }) {
+	const words = useMemo(() => [
 		"developer",
 		"designer",
 		"bagel lover",
 		"dancer",
 		"montrealer",
-	];
+	], []);
 
 	return (
 		<Container classes='o-about'>
 			<Section>
 				<div className='o-about_content'>
-					<div
-						className='o-about_image'
-						style={{
-							backgroundImage: `url(https://images.pexels.com/photos/10153603/pexels-photo-10153603.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500)`,
-						}}
-					></div>
+					<div className='o-about_image' style={{}}>
+						<img src={photos && photos.slice(0, 1)[0].url} alt='self' />
+						<Planet4/>
+					</div>
 					<div className='o-about_text'>
-						<div className='-text-tiny'>MATT PARISIEN — EST 1997</div>
+						<div className='-text-tiny'>MATT PARISIEN — EST. 1997</div>
 						<TextSwitch words={words} />
 						<h3 className='o-h3'>
-							A developer who thinks “multi-disciplinary” is a buzzword and
-							wonders why we write bios in third-person.
+							A developer who wants to use his skills and knowledge to make
+							other people's jobs easier and more productive.
 						</h3>
 						<p className='o-text'>
-							Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima
-							architecto placeat labore, asperiores earum ea? Dolorem veniam
-							quod tenetur.
+							I'm a full stack web developer and graphic designer with great
+							analytical skills and the ability to manage the dynamic of a
+							rapidly changing environment.
 						</p>
 						<p className='o-text'>
-							Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima
-							architecto placeat labore, asperiores earum ea? Dolorem veniam
-							quod tenetur.
+							Skilled in writing clean, reusable code with a responsive, mobile
+							friendly approach. I love throwing around ideas with a team!
 						</p>
 						<p className='o-text'>
 							If you have any exciting projects to talk about, or just want to

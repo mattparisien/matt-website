@@ -2,20 +2,53 @@
 	padding-top: 10rem;
 }
 
+
 .o-about .o-about_content {
 	display: flex;
+
+	.o-about_gradient {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 30vw;
+		height: 30vw;
+
+		border-radius: 50%;
+		
+		
+		mix-blend-mode: exclusion;
+		overflow: hidden;
+
+		> div {
+			height: 500%;
+			width: 100%;
+			background: $gradient-primary;
+			animation: gradientAnim 50s linear;
+		}
+	}
 
 	@include media("<=tablet") {
 		flex-direction: column;
 
+		.c-planet {
+			display: none;
+		}
+
 		.o-about_image {
-			height: 38vw;
+			height: 70vw;
+			img {
+				filter: none;
+			}
+		}
+
+		.-text-tiny {
+			margin: 1rem 0;
 		}
 
 		.o-about_image,
 		.o-about_text {
 			width: 100%;
-      padding: 0;
+			padding: 0;
 		}
 	}
 
@@ -28,10 +61,38 @@
 
 .o-about_image {
 	width: 40%;
+	position: relative;
+
+	&:hover img {
+		filter: blur(0px)
+	}
+
+	&:hover .c-planet {
+		opacity: 0;
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: blur(20px);
+		transition: 500ms ease;
+	}
+
+	.c-planet {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		 
+		path:last-child {
+			fill: $dark !important;
+		}
+	}
 }
 
 .o-about_text {
-	padding-left: 2rem;
+	padding-left: 4rem;
 	width: 60%;
 }
 
