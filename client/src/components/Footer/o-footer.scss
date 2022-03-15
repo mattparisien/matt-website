@@ -27,7 +27,7 @@
 	position: relative;
 	width: 100%;
 
-	h2 {
+	h4 {
 		margin-bottom: 2rem;
 	}
 }
@@ -41,7 +41,7 @@
 	margin-bottom: 2rem;
 	max-width: 1900px;
 
-	.o-h3 {
+	.o-h4 {
 		margin: 0;
 	}
 
@@ -50,13 +50,14 @@
 			flex-direction: column;
 			align-items: flex-start;
 		}
+
+		.o-h4 {
+			margin: 1.5rem 0;
+			font-size: 1.1rem;
+		}
 	}
 }
 
-.o-footer_btn-container {
-	position: relative;
-	height: 15vw;
-	width: 20%;
-}
+
 
 

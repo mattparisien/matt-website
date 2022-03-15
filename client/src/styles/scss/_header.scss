@@ -1,5 +1,5 @@
 .c-header {
-	padding: 6em 0;
+	padding: 9em 0;
 }
 
 .c-header_content {
@@ -8,6 +8,8 @@
 	display: flex;
 	align-items: flex-end;
 	justify-content: space-between;
+
+
 
 	@include media("<=tablet") {
 		flex-direction: column;

@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CursorContext, LoadingContext } from "../../App/App";
 
-
 function Link(props) {
 	const classes = classNames("c-link", {
 		[props.classes]: props.classes,
@@ -13,8 +12,11 @@ function Link(props) {
 	const { playTransition } = useContext(LoadingContext);
 
 	const handleNavigate = e => {
+		props.onClick(e);
 		e.preventDefault();
+
 		playTransition();
+
 		setTimeout(() => {
 			navigate(props.href);
 		}, 1000);
@@ -35,9 +37,9 @@ function Link(props) {
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 			className={classes}
-			href={props.href}
+			href={!props.isRouterLink && props.href}
 			target={props.target}
-			onClick={props.onClick || (props.isRouterLink && handleNavigate)}
+			onClick={!props.isRouterLink ? props.onClick : handleNavigate}
 		>
 			{props.children}
 		</a>

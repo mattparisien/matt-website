@@ -59,7 +59,7 @@ function Loader({ isActive, setDone }) {
 	return (
 		<div className={classes} ref={containerRef}>
 			<div className='o-loader_content' ref={content}>
-				<Planet1 isPlaying={isActive} isComplete={!isActive}/>
+				{isActive && <Planet1 isPlaying={isActive} isComplete={!isActive}/>}
 			</div>
 			<Box className='o-loader_background' ref={bg}></Box>
 		</div>
