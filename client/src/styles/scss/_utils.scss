@@ -264,3 +264,12 @@
 	transform: translateY(100%);
 	opacity: 0;
 }
+
+.is-paused .o-loader_background {
+	-webkit-animation-play-state:paused;
+	-moz-animation-play-state:paused;
+	-o-animation-play-state:paused; 
+	animation-play-state:paused !important;
+	
+}
+
