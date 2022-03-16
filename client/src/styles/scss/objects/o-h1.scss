@@ -1,12 +1,12 @@
 .o-h1 {
 	font-size: 15vw;
 	letter-spacing: -0.2vw;
-	line-height: 13vw;
+	line-height: 12vw;
 
 	margin: 0;
 
 	@include media("<=tablet") {
 		font-size: 16vw;
-		line-height: 15vw;
+		line-height: 14vw;
 	}
 }

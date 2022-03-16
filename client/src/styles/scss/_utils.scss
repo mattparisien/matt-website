@@ -1,4 +1,4 @@
-@import "vars";
+
 @import "./breakpoints";
 //Utility classes
 
@@ -24,6 +24,18 @@
 
 .-flex {
 	display: flex;
+}
+
+.-desktop {
+	@include media("<=tablet") {
+		display: none;
+	}
+}
+
+.-mobile {
+	@include media(">=tablet") {
+		display: none;
+	}
 }
 
 .-flex-column {
@@ -95,8 +107,9 @@
 	overflow: hidden;
 }
 
-.c-char {
+.c-char, .loader-char {
 	transform: translateY(100%);
+	opacity: 0;
 	
 }
 

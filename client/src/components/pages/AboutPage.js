@@ -18,13 +18,14 @@ function AboutPage({ photos }) {
 		<Container classes='o-about'>
 			<Section>
 				<div className='o-about_content'>
+				<TextSwitch words={words} classes="-mobile" variant="h1"/>
 					<div className='o-about_image' style={{}}>
 						<img src={photos && photos.slice(0, 1)[0].url} alt='self' />
 						<Planet4/>
 					</div>
 					<div className='o-about_text '>
 						<div className='-text-tiny -fade-up-load -delay-1'>MATT PARISIEN — EST. 1997</div>
-						<TextSwitch words={words} />
+						<TextSwitch words={words} classes="-desktop" variant="h2"/>
 						<h3 className='o-h3 -fade-up-load -delay-3'>
 							A developer who wants to use his skills and knowledge to make
 							other people's jobs easier and more productive.

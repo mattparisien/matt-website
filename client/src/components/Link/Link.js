@@ -1,9 +1,10 @@
 import classNames from "classnames";
-import React, { useContext } from "react";
+import React, { forwardRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CursorContext, LoadingContext } from "../../App/App";
+import variables from "../../styles/scss/_vars.module.scss";
 
-function Link(props) {
+function Link(props, ref) {
 	const classes = classNames("c-link", {
 		[props.classes]: props.classes,
 	});
@@ -19,7 +20,7 @@ function Link(props) {
 
 		setTimeout(() => {
 			navigate(props.href);
-		}, 1400);
+		}, variables.loaderDuration.replace(".", "").concat("00"));
 	};
 
 	const { setCursorState } = useContext(CursorContext);
@@ -40,10 +41,11 @@ function Link(props) {
 			href={!props.isRouterLink && props.href}
 			target={props.target}
 			onClick={!props.isRouterLink ? props.onClick : handleNavigate}
+			ref={ref}
 		>
 			{props.children}
 		</a>
 	);
 }
 
-export default Link;
+export default forwardRef(Link);

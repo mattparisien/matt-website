@@ -42,6 +42,16 @@ h6 {
 	}
 }
 
+.o-h1,
+.o-h2,
+.o-h3,
+.o-h4,
+.o-h5,
+.o-h6 {
+	opacity: 0;
+	transition: $transition;
+}
+
 .o-h1.-split,
 .o-h2.-split,
 .o-h3.-split,

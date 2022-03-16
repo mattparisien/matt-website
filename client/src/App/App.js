@@ -3,13 +3,12 @@ import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import { createContext, useEffect, useRef, useState, useCallback } from "react";
+import { createContext, useCallback, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import ScrollWrapper from "../components/Containers/ScrollWrapper";
 import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
-import CursorFollower from "../components/CursorFollower/CursorFollower";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import Menu from "../components/Menu/Menu";
@@ -64,12 +63,13 @@ function App() {
 	};
 
 	const [isSplit, setSplit] = useState(false);
+	const split = useRef(null);
 	const location = useLocation();
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
 
-		if (!isSplit) {
+		if (!isSplit && !split.current) {
 			const splitText = new SplitText($(".o-h1.-split"), {
 				type: "chars, words",
 				charsClass: "c-char",
@@ -80,9 +80,13 @@ function App() {
 				charsClass: "c-char",
 			});
 
-			setTimeout(() => {
-				splitText2.revert().split();
-			}, 200);
+			split.current = [
+				splitText,
+				splitText2
+			]
+
+
+			console.log('in hereee!')
 
 			setSplit(true);
 
@@ -111,6 +115,10 @@ function App() {
 					opacity: 1,
 				});
 			}
+		} else if (!isSplit) {
+			split.current.forEach(split => {
+				split.revert().split();
+			})
 		}
 	}, [isSplit, location]);
 
@@ -132,6 +140,7 @@ function App() {
 	useEffect(() => {
 		//resplit whenever there's a location change
 		setSplit(false);
+		
 		setState(prev => ({ ...prev, isTransitioning: false }));
 	}, [location]);
 
@@ -281,7 +290,7 @@ function App() {
 									setDone={togglePlay}
 								/>
 
-								<CursorFollower cursorState={cursorState} />
+								{/* <CursorFollower cursorState={cursorState} /> */}
 								<Menu
 									isOpen={state.menuActive}
 									theme={themes}

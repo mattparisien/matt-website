@@ -5,7 +5,11 @@
 	width: 100vw;
 	height: 100vh;
 	// display: none;
-	z-index: 99999;
+	z-index: 999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 9999;
 
 	&_background {
 		background-color: $blue;
@@ -21,7 +25,15 @@
 		animation: introCard $transition-expo forwards;
 	}
 
+	&_text {
+		color: $light;
+		z-index: 99;
 
+		.o-h2 {
+			opacity: 1;
+			overflow: hidden;
+		}
+	}
 
 	.c-planet {
 		position: absolute;

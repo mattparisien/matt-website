@@ -110,17 +110,18 @@ function Footer(props) {
 
 			<div className='o-footer_bottom'>
 				<Container classes='-flex -align-end -justify-between -stretchX'>
-					<h4 className='o-footer_email o-h4'>
+					<h4 className='o-footer_email o-h4 -fade-up-load'>
 						<Link
 							href="mailto:hello@matthewparisien.com?Subject=Let's talk"
 							target={"_blank"}
 							rel='noreferrer'
+							
 						>
 							hello@matthewparisien.com
 						</Link>
 					</h4>
 
-					<div className='o-footer_credits -text-tiny'>
+					<div className='o-footer_credits -text-tiny -fade-up-load'>
 						WORDS + IMAGES + CODE ©2022 MATT PARISIEN
 					</div>
 				</Container>

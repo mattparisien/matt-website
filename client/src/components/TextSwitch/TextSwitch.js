@@ -1,12 +1,14 @@
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import React, { useEffect, useRef, useState } from "react";
+import classNames from "classnames";
 
-function TextSwitch({ words }) {
+function TextSwitch({ words, classes, variant }) {
 	gsap.registerPlugin(SplitText);
 
 	const [word, setWord] = useState(words[0]);
 	const [isSplit, setIsSplit] = useState(false);
+	const textClasses = classNames(`o-${variant} -text-switch`, {[classes]: classes});
 
 	const split = useRef(null);
 
@@ -56,7 +58,7 @@ function TextSwitch({ words }) {
 			);
 		}, 3000);
 	}, [words]);
-	return <h2 className="o-h2 -text-switch" ref={split}>{word}</h2>;
+	return <h2 className={textClasses} ref={split}>{word}</h2>;
 }
 
 export default TextSwitch;
