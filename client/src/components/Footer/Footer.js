@@ -4,6 +4,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import Container from "../Containers/Container";
 import Link from "../Link/Link";
 import CircleButton from "../Button/CircleButton";
+import TextSwitch from "../TextSwitch/TextSwitch";
 
 function Footer(props) {
 	const linkRefs = useRef([]);
@@ -92,12 +93,7 @@ function Footer(props) {
 					onMouseLeave={handleMouseLeave}
 					onMouseMove={handleMouseMove}
 				>
-					<h2 className='o-footer_heading o-h2'>
-						Let's{" "}
-						<div ref={split} className='o-footer_text-switch'>
-							{word}
-						</div>
-					</h2>
+					<h2 className="o-h2">Let's</h2><TextSwitch classes='o-footer_text-switch' variant='h2' words={words}/>
 
 					<CircleButton
 						color='pink'
@@ -115,7 +111,6 @@ function Footer(props) {
 							href="mailto:hello@matthewparisien.com?Subject=Let's talk"
 							target={"_blank"}
 							rel='noreferrer'
-							
 						>
 							hello@matthewparisien.com
 						</Link>

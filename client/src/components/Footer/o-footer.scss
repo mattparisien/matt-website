@@ -9,18 +9,8 @@
 	}
 }
 
-.o-footer_heading {
-	overflow: hidden;
-}
-
 .o-footer_text-switch {
-	display: inline;
 	overflow: hidden;
-	opacity: 0;
-
-	@include media("<=tablet") {
-		display: block;
-	}
 }
 
 .o-footer_contact {
@@ -57,7 +47,3 @@
 		}
 	}
 }
-
-
-
-
