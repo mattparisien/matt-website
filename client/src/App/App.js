@@ -19,7 +19,6 @@ import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
 import { GlobalStyle } from "../styles/global";
 
-
 export const DataContext = createContext();
 export const LoadingContext = createContext();
 export const ColorContext = createContext();
@@ -80,13 +79,9 @@ function App() {
 				charsClass: "c-char",
 			});
 
-			split.current = [
-				splitText,
-				splitText2
-			]
+			split.current = [splitText, splitText2];
 
-
-			console.log('in hereee!')
+			console.log("in hereee!");
 
 			setSplit(true);
 
@@ -118,7 +113,7 @@ function App() {
 		} else if (!isSplit) {
 			split.current.forEach(split => {
 				split.revert().split();
-			})
+			});
 		}
 	}, [isSplit, location]);
 
@@ -140,7 +135,7 @@ function App() {
 	useEffect(() => {
 		//resplit whenever there's a location change
 		setSplit(false);
-		
+
 		setState(prev => ({ ...prev, isTransitioning: false }));
 	}, [location]);
 
@@ -261,8 +256,8 @@ function App() {
 	};
 
 	const togglePlay = useCallback(() => {
-		setPlay(false)
-	}, [])
+		setPlay(false);
+	}, []);
 
 	const [cursorState, setCursorState] = useState("following");
 
@@ -285,10 +280,7 @@ function App() {
 								{location.pathname === "/" && <Header />}
 
 								<Nav />
-								<Loader
-									isActive={play}
-									setDone={togglePlay}
-								/>
+								<Loader isActive={play} setDone={togglePlay} />
 
 								{/* <CursorFollower cursorState={cursorState} /> */}
 								<Menu
