@@ -46,14 +46,16 @@ function Loader({ isActive, setDone }) {
 						ease: "expo.inOut",
 						duration: 1.3,
 						onComplete: () => {
-							setDone();
-						},
+							setDone()
+						}
 					},
 					2.3
 				)
 				.set(bgRef.current, { clearProps: "all" });
 		}
 	}, [isActive, firstVisit, setDone]);
+
+
 
 	return (
 		<div
