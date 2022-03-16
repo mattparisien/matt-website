@@ -3,7 +3,7 @@ import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useRef, useState, useCallback } from "react";
 import { Helmet } from "react-helmet";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
@@ -20,6 +20,7 @@ import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
 import { GlobalStyle } from "../styles/global";
 
+
 export const DataContext = createContext();
 export const LoadingContext = createContext();
 export const ColorContext = createContext();
@@ -27,7 +28,7 @@ export const CursorContext = createContext();
 
 function App() {
 	const [play, setPlay] = useState(true);
-	
+
 	const themes = {
 		space: [
 			"0.25rem",
@@ -113,7 +114,6 @@ function App() {
 		}
 	}, [isSplit, location]);
 
-
 	const scrollRef = useRef(null);
 
 	const [state, setState] = useState({
@@ -126,23 +126,20 @@ function App() {
 	});
 
 	const setTransitioning = () => {
-		setState(prev => ({...prev, isTransitioning: true}))
-	}
-
+		setState(prev => ({ ...prev, isTransitioning: true }));
+	};
 
 	useEffect(() => {
 		//resplit whenever there's a location change
-		setSplit(false)
-		setState(prev => ({...prev, isTransitioning: false}))
-	}, [location])
+		setSplit(false);
+		setState(prev => ({ ...prev, isTransitioning: false }));
+	}, [location]);
 
 	const appClasses = classNames("App", {
 		"menu-active": state.menuActive,
 		"is-dom-loaded": !play,
-		"is-old-page": state.isTransitioning
+		"is-old-page": state.isTransitioning,
 	});
-
-
 
 	useEffect(() => {
 		console.log("Designed & developed by Matt Parisien");
@@ -251,8 +248,12 @@ function App() {
 		menuActive: state.menuActive,
 		toggleMenu,
 		playTransition,
-		setTransitioning
+		setTransitioning,
 	};
+
+	const togglePlay = useCallback(() => {
+		setPlay(false)
+	}, [])
 
 	const [cursorState, setCursorState] = useState("following");
 
@@ -277,10 +278,7 @@ function App() {
 								<Nav />
 								<Loader
 									isActive={play}
-									setDone={() => {
-										console.log('oh yaaa')
-										setPlay(false);
-									}}
+									setDone={togglePlay}
 								/>
 
 								<CursorFollower cursorState={cursorState} />

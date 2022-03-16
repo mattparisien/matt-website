@@ -11,13 +11,11 @@ function Loader({ isActive, setDone }) {
 	const bgRef = useRef(null);
 	const [firstVisit, setFirstVisit] = useState(true);
 	const animation = useRef(gsap.timeline());
-	const [paused, setPaused] = useState(false);
-	const morph = useRef(null);
+
 	const classes = classNames("o-loader", {
 		"is-playing": isActive,
 		"is-first-visit": firstVisit,
 		"is-transition": !firstVisit,
-		"is-paused": paused,
 	});
 
 	useEffect(() => {
@@ -25,7 +23,7 @@ function Loader({ isActive, setDone }) {
 			setDone();
 			setFirstVisit(false);
 		});
-	}, []);
+	}, [setDone]);
 
 	gsap.registerPlugin(MorphSVGPlugin);
 
@@ -55,7 +53,7 @@ function Loader({ isActive, setDone }) {
 				)
 				.set(bgRef.current, { clearProps: "all" });
 		}
-	}, [isActive, firstVisit]);
+	}, [isActive, firstVisit, setDone]);
 
 	return (
 		<div
