@@ -271,11 +271,20 @@ function App() {
 						<CursorContext.Provider value={{ cursorState, setCursorState }}>
 							<div className={appClasses} data-theme={pageTheme}>
 								<Helmet>
-									<title>Matthew Parisien</title>
+									<title>Matthew Parisien — Software Developer</title>
 									<meta
 										name='description'
-										content='Web Developer, Photographer & Graphic Designer'
+										content='I am a full-stack web developer aiming to simplify the lives of other people through software'
 									/>
+									<meta
+										content='Matthew Parisien — Software Developer'
+										property='og:title'
+									/>
+									<meta
+										content='I am a full-stack web developer aiming to simplify the lives of other people through software'
+										property='og:description'
+									/>
+									<meta property='og:type' content='website' />
 								</Helmet>
 								{location.pathname === "/" && <Header />}
 
