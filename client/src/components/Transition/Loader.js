@@ -10,9 +10,7 @@ import SplitText from "gsap/SplitText";
 gsap.registerPlugin(CSSPlugin, SplitText);
 
 function Loader({ isActive, setDone }) {
-	useEffect(() => {
-		console.log(variables);
-	});
+
 	const containerRef = useRef(null);
 	const bgRef = useRef(null);
 	const [firstVisit, setFirstVisit] = useState(true);

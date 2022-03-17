@@ -81,8 +81,6 @@ function App() {
 
 			split.current = [splitText, splitText2];
 
-			console.log("in hereee!");
-
 			setSplit(true);
 
 			if (splitText.chars) {
