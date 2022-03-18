@@ -1,8 +1,9 @@
+import { useMediaQuery } from "@mui/material";
 import classNames from "classnames";
-import React, { useCallback, useContext, useRef } from "react";
+import React, { useCallback, useContext, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { ColorContext, CursorContext } from "../../App/App";
-import { useMediaQuery } from "@mui/material";
+import SpinnerCard from "../Spinner/SpinnerCard";
 
 function Grid({ items }) {
 	const { setPageTheme } = useContext(ColorContext);
@@ -68,6 +69,7 @@ function Item({
 }) {
 	const ref = useRef(null);
 	const [inViewRef, inView] = useInView({ threshold: 0.5 });
+	const [loaded, setLoaded] = useState(false);
 
 	const setRefs = useCallback(
 		node => {
@@ -91,8 +93,14 @@ function Item({
 			rel='noreferrer'
 			ref={setRefs}
 		>
+			{!loaded && <SpinnerCard />}
 			<div className='c-grid_img-wrapper'>
-				<img src={src} alt={Math.random()} className='c-grid_img' />
+				<img
+					src={src}
+					alt={Math.random()}
+					className='c-grid_img'
+					onLoad={() => setLoaded(true)}
+				/>
 			</div>
 			<div className='c-grid_info'>
 				<h3 className='c-grid_title'>{title}</h3>
