@@ -18,10 +18,10 @@ function AboutPage({ photos }) {
 			<Section>
 				<div className='o-about_content'>
 					<TextSwitch words={words} classes='-mobile' variant='h1' />
-					<div className='o-about_image' style={{}}>
+					<div className='o-about_image'>
 						{!loaded && <SpinnerCard />}
 						<img
-							src={photos && photos.slice(0, 1)[0].url}
+							src={photos && photos.slice(photos.length - 1, photos.length)[0].url}
 							alt='self'
 							onLoad={() => setLoaded(true)}
 						/>

@@ -1,4 +1,10 @@
-import React, { forwardRef, useContext, useRef } from "react";
+import React, {
+	forwardRef,
+	useContext,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 // Import Swiper styles
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
@@ -6,6 +12,7 @@ import { DataContext } from "../../App/App";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
 import Grid from "../Grid/Grid";
+import Filter from "../Filter/Filter";
 
 // const gradientAnim = keyframes`
 // 	0% {
@@ -18,7 +25,7 @@ import Grid from "../Grid/Grid";
 
 function HomePage(props, ref) {
 	const data = useContext(DataContext);
-
+	const [selected, setSelected] = useState("software");
 	const marquees = useRef([]);
 	marquees.current = [];
 	const lines = useRef([]);
@@ -26,11 +33,38 @@ function HomePage(props, ref) {
 	const headingRef = useRef([]);
 	headingRef.current = [];
 
+	const filterCategories = [
+		{
+			name: "software",
+		},
+		{
+			name: "photography",
+		},
+	];
+
+	useEffect(() => {
+		console.log(data);
+	}, [data]);
+
 	return (
 		<>
 			<Container classes='-mobile-padding-none'>
 				<Section>
-					<Grid items={data.projects} />
+					<Filter
+						categories={filterCategories}
+						selected={selected}
+						setSelected={setSelected}
+					/>
+					<Grid
+						items={
+							data.photos &&
+							data.projects && {
+								software: data.projects,
+								photography: data.photos,
+							}
+						}
+						category={selected}
+					/>
 				</Section>
 			</Container>
 		</>

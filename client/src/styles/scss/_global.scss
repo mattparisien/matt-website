@@ -131,11 +131,29 @@ ul {
 [data-theme="strawberry"] {
 	background-color: $red;
 	color: $light;
+
+	.c-filter_item button.is-active {
+		color: $dark;
+		background-color: $light;
+	}
+
+	.c-filter_item button {
+		border: 1px solid $light !important;
+	}
 }
 
 [data-theme="fancy"] {
 	background-color: $navy;
 	color: $light;
+
+	.c-filter_item button.is-active {
+		color: $dark;
+		background-color: $light;
+	}
+
+	.c-filter_item button {
+		border: 1px solid $light !important;
+	}
 }
 
 [data-theme="orangeCrush"] {
@@ -146,6 +164,15 @@ ul {
 [data-theme="blue"] {
 	background-color: $blue;
 	color: $light;
+
+	.c-filter_item button.is-active {
+		color: $dark;
+		background-color: $light;
+	}
+
+	.c-filter_item button {
+		border: 1px solid $light !important;
+	}
 }
 
 [data-theme="sunny"] {
@@ -156,4 +183,13 @@ ul {
 [data-theme="dark"] {
 	background-color: $dark;
 	color: $light !important;
+
+	.c-filter_item button.is-active {
+		color: $dark;
+		background-color: $light;
+	}
+
+	.c-filter_item button {
+		border: 1px solid $light !important;
+	}
 }

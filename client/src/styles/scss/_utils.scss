@@ -1,4 +1,3 @@
-
 @import "./breakpoints";
 //Utility classes
 
@@ -35,6 +34,12 @@
 .-mobile {
 	@include media(">=tablet") {
 		display: none;
+	}
+}
+
+.-padding-desktop-none {
+	@include media(">=tablet") {
+		padding: 0 !important;
 	}
 }
 
@@ -107,10 +112,10 @@
 	overflow: hidden;
 }
 
-.c-char, .loader-char {
+.c-char,
+.loader-char {
 	transform: translateY(100%);
 	opacity: 0;
-	
 }
 
 .-top {
@@ -139,8 +144,6 @@
 
 .-justify-center {
 	justify-content: center;
-
-	
 }
 .-fullWidth {
 	width: 100%;
@@ -215,7 +218,7 @@
 .-ul-small,
 .-text-tiny {
 	font-size: 0.6rem;
-	font-family: 'Roboto Mono', monospace;
+	font-family: "Roboto Mono", monospace;
 	text-transform: uppercase;
 }
 
@@ -232,22 +235,21 @@
 .-text-big {
 	font-size: 2.2rem;
 
-
 	@include media("<=tablet") {
-		.c-star.-inline svg, .c-planet.-inline svg {
+		.c-star.-inline svg,
+		.c-planet.-inline svg {
 			width: 2rem !important;
 			height: 2rem !important;
 		}
 	}
 
-	@include media(">=phoneL")   {
+	@include media(">=phoneL") {
 		font-size: 3.7rem;
 	}
 
 	@include media(">=desktop") {
 		font-size: 5rem;
 	}
-
 }
 
 .-stretchY {
@@ -270,7 +272,7 @@
 
 //ITCSS Utilies
 .u-gsap-fill-animate {
-	opacity: 0
+	opacity: 0;
 }
 
 .u-line-translate {
@@ -279,10 +281,8 @@
 }
 
 .is-paused .o-loader_background {
-	-webkit-animation-play-state:paused;
-	-moz-animation-play-state:paused;
-	-o-animation-play-state:paused; 
-	animation-play-state:paused !important;
-	
+	-webkit-animation-play-state: paused;
+	-moz-animation-play-state: paused;
+	-o-animation-play-state: paused;
+	animation-play-state: paused !important;
 }
-

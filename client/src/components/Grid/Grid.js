@@ -1,14 +1,45 @@
 import { useMediaQuery } from "@mui/material";
 import classNames from "classnames";
-import React, { useCallback, useContext, useRef, useState } from "react";
+import React, {
+	useCallback,
+	useContext,
+	useRef,
+	useState,
+	useEffect,
+} from "react";
 import { useInView } from "react-intersection-observer";
 import { ColorContext, CursorContext } from "../../App/App";
 import SpinnerCard from "../Spinner/SpinnerCard";
 
-function Grid({ items }) {
+function Grid({ items, category }) {
 	const { setPageTheme } = useContext(ColorContext);
 	const { setCursorState } = useContext(CursorContext);
 	const tablet = useMediaQuery("(max-width: 768px)");
+	const [oldGrid, setOldGrid] = useState(null);
+	const [newGrid, setNewGrid] = useState(category);
+	const [currentGrid, setCurrentGrid] = useState(null);
+	const isFirstRender = useRef(true);
+
+	useEffect(() => {
+		if (!isFirstRender.current) {
+			setNewGrid(null);
+			setOldGrid(category);
+
+			setTimeout(() => {
+				setCurrentGrid(category);
+				setOldGrid(null);
+				setNewGrid(category);
+			}, 1200);
+		}
+
+		isFirstRender.current = false;
+		// setCurrentGrid(prev => category !== prev && null);
+	}, [category]);
+
+	const classes = classNames(`c-grid c-grid_${currentGrid}`, {
+		"is-old": oldGrid,
+		"is-new": newGrid,
+	});
 
 	const themes = [
 		"strawberry",
@@ -24,33 +55,34 @@ function Grid({ items }) {
 	};
 
 	const handleMouseEnter = () => {
-		if (!tablet) {
+		if (!tablet && category === 'software') {
 			setPageTheme(themes[getRandomIndex()]);
 			setCursorState("hovering");
 		}
 	};
 
 	const handleMouseLeave = () => {
-		if (!tablet) {
+		if (!tablet && category === 'software') {
 			setPageTheme("regular");
 			setCursorState("following");
 		}
 	};
 
 	return (
-		<div className='c-grid'>
+		<div className={classes}>
 			{items &&
-				items.map((item, i) => {
+				items[currentGrid || "software"].map((item, i) => {
+					console.log(item);
 					return (
 						<Item
 							key={i}
 							onMouseEnter={handleMouseEnter}
 							onMouseLeave={handleMouseLeave}
-							src={item.Cover.image.url}
-							alt={item.alt}
-							previewText={item.PreviewText}
-							title={item.Title}
-							url={item.Location}
+							src={item.url || item.Cover.image.url}
+							alt={item.alt || item.alternativeText}
+							previewText={item.PreviewText || null}
+							title={item.Title || null}
+							url={item.Location || null}
 						/>
 					);
 				})}
