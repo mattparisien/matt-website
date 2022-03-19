@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from "../Containers/Container";
 
 function Filter({ categories, selected, setSelected }) {
