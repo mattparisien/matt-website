@@ -193,7 +193,7 @@
 
 .-bg-dark {
 	background-color: $dark;
-	color: $light;
+	color: $light !important;
 }
 
 .-stroke-light {

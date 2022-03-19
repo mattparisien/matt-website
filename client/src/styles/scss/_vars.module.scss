@@ -29,12 +29,12 @@ $dark: #101010;
 $dark2: #2e2e2e;
 $lighterDark: #111111;
 $navy: #12233F;
-$red: #030303;
+$red: #e63030;
 $green: #c0ff0d;
 $blue: #0A4D98;
 $yellow: #edc835;
 $pink: #f1b9b8;
-$orange: #E94934;
+$orange: #e44e2d;
 $grey: rgb(174, 174, 174);
 $purple: #5b487c;
 $gradient-primary: linear-gradient(
@@ -60,7 +60,7 @@ $loader-duration: 1.2;
 $loader-delay: 0.8;
 
 //Transition
-$transition: 600ms ease;
+$transition: transform 600ms ease, opacity 600ms ease;
 $transition-expo: 1.2s cubic-bezier(1, 0, 0, 1);
 $translate-transition: opacity 0s cubic-bezier(0.35, 0.755, 0.42, 0.95),
 transform 0.3s cubic-bezier(0.35, 0.755, 0.42, 0.95);

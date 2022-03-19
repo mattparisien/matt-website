@@ -1,9 +1,9 @@
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import CircleButton from "../Button/CircleButton";
 import Container from "../Containers/Container";
 import Link from "../Link/Link";
-import CircleButton from "../Button/CircleButton";
 import TextSwitch from "../TextSwitch/TextSwitch";
 
 function Footer(props) {

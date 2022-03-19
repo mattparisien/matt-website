@@ -40,7 +40,7 @@ function TextSwitch({ words, classes, variant }) {
 						ease: "expo.inOut",
 						delay: 0.1,
 						stagger: 0.03,
-            opacity: 1
+            opacity: 0
 					});
 			}
 		}
@@ -56,9 +56,10 @@ function TextSwitch({ words, classes, variant }) {
 							: words.indexOf(prev) + 1
 					]
 			);
+			setIsSplit(false)
 		}, 3000);
 	}, [words]);
-	return <h2 className={textClasses} ref={split}>{word}</h2>;
+	return <h2 className={textClasses} ref={split} style={{opacity: !isSplit ? 0 : 1}}>{word}</h2>;
 }
 
 export default TextSwitch;
