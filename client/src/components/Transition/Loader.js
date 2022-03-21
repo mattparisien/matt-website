@@ -26,68 +26,68 @@ function Loader({ isActive, setDone }) {
 	const [isSplit, setSplit] = useState(false);
 	const split = useRef(null);
 
-	useEffect(() => {
-		if (!isSplit && !split.current) {
-			const splitText = new SplitText(heading.current, {
-				type: "chars",
-				charsClass: "loader-char",
-			});
-			setSplit(true);
-			split.current = splitText;
-		}
-	}, [isSplit]);
+	// useEffect(() => {
+	// 	if (!isSplit && !split.current) {
+	// 		const splitText = new SplitText(heading.current, {
+	// 			type: "chars",
+	// 			charsClass: "loader-char",
+	// 		});
+	// 		setSplit(true);
+	// 		split.current = splitText;
+	// 	}
+	// }, [isSplit]);
 
-	useEffect(() => {
-		bgRef.current.addEventListener("animationend", () => {
-			setDone();
-			setFirstVisit(false);
-		});
-	}, [setDone]);
+	// useEffect(() => {
+	// 	bgRef.current.addEventListener("animationend", () => {
+	// 		setDone();
+	// 		setFirstVisit(false);
+	// 	});
+	// }, [setDone]);
 
 	gsap.registerPlugin(MorphSVGPlugin);
 
-	useEffect(() => {
-		if (isActive && !firstVisit) {
-			animation.current.set(bgRef.current, { scaleY: "0.0001" });
+	// useEffect(() => {
+	// 	if (isActive && !firstVisit) {
+	// 		animation.current.set(bgRef.current, { scaleY: "0.0001" });
 
-			animation.current.progress(0).play();
-			animation.current
-				.to(bgRef.current, {
-					delay: variables.loaderDelay,
-					scaleY: 1,
-					ease: "expo.inOut",
-					duration: variables.loaderDuration,
-				})
-				.to($(heading.current).find(".loader-char"), {
-					y: 0,
-					duration: 1,
-					opacity: 1,
-					ease: "expo.inOut",
-					stagger: 0.03,
-				}, 1.1)
-				.to($(heading.current).find(".loader-char"), {
-					y: '-100%',
-					duration: 1,
-					opacity: 0,
-					ease: "expo.inOut",
-					stagger: 0.03,
-				})
-				.to(
-					bgRef.current,
-					{
-						scaleY: 0.0001,
-						delay: variables.loaderDelay,
-						ease: "expo.inOut",
-						duration: variables.loaderDuration,
-						onComplete: () => {
-							setDone();
-						},
-					},
-					1.8
-				)
-				.set(bgRef.current, { clearProps: "all" });
-		}
-	}, [isActive, firstVisit, setDone]);
+	// 		animation.current.progress(0).play();
+	// 		animation.current
+	// 			.to(bgRef.current, {
+	// 				delay: variables.loaderDelay,
+	// 				scaleY: 1,
+	// 				ease: "expo.inOut",
+	// 				duration: variables.loaderDuration,
+	// 			})
+	// 			.to($(heading.current).find(".loader-char"), {
+	// 				y: 0,
+	// 				duration: 1,
+	// 				opacity: 1,
+	// 				ease: "expo.inOut",
+	// 				stagger: 0.03,
+	// 			}, 1.1)
+	// 			.to($(heading.current).find(".loader-char"), {
+	// 				y: '-100%',
+	// 				duration: 1,
+	// 				opacity: 0,
+	// 				ease: "expo.inOut",
+	// 				stagger: 0.03,
+	// 			})
+	// 			.to(
+	// 				bgRef.current,
+	// 				{
+	// 					scaleY: 0.0001,
+	// 					delay: variables.loaderDelay,
+	// 					ease: "expo.inOut",
+	// 					duration: variables.loaderDuration,
+	// 					onComplete: () => {
+	// 						setDone();
+	// 					},
+	// 				},
+	// 				1.8
+	// 			)
+	// 			.set(bgRef.current, { clearProps: "all" });
+	// 	}
+	// }, [isActive, firstVisit, setDone]);
 
 	return (
 		<div

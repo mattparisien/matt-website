@@ -8,8 +8,9 @@ import React, {
 	useEffect,
 } from "react";
 import { useInView } from "react-intersection-observer";
-import { ColorContext, CursorContext } from "../../App/App";
+import { ColorContext, CursorContext, LoadingContext } from "../../App/App";
 import SpinnerCard from "../Spinner/SpinnerCard";
+import Link from "../Link/Link";
 
 function Grid({ items, category }) {
 	const { setPageTheme } = useContext(ColorContext);
@@ -55,14 +56,14 @@ function Grid({ items, category }) {
 	};
 
 	const handleMouseEnter = () => {
-		if (!tablet && category === 'software') {
+		if (!tablet && category === "software") {
 			setPageTheme(themes[getRandomIndex()]);
 			setCursorState("hovering");
 		}
 	};
 
 	const handleMouseLeave = () => {
-		if (!tablet && category === 'software') {
+		if (!tablet && category === "software") {
 			setPageTheme("regular");
 			setCursorState("following");
 		}
@@ -72,7 +73,6 @@ function Grid({ items, category }) {
 		<div className={classes}>
 			{items &&
 				items[currentGrid || "software"].map((item, i) => {
-					console.log(item);
 					return (
 						<Item
 							key={i}
@@ -82,7 +82,7 @@ function Grid({ items, category }) {
 							alt={item.alt || item.alternativeText}
 							previewText={item.PreviewText || null}
 							title={item.Title || null}
-							url={item.Location || null}
+							href={`/work/${item.id}`}
 						/>
 					);
 				})}
@@ -97,11 +97,12 @@ function Item({
 	alt,
 	previewText,
 	title,
-	url,
+	href,
 }) {
 	const ref = useRef(null);
 	const [inViewRef, inView] = useInView({ threshold: 0.5 });
 	const [loaded, setLoaded] = useState(false);
+	const { isLoading, toggleLoading } = useContext(LoadingContext);
 
 	const setRefs = useCallback(
 		node => {
@@ -115,12 +116,18 @@ function Item({
 
 	const itemClasses = classNames("c-grid_item", { "is-in-view": inView });
 
+	const handleLoad = () => {
+		isLoading && toggleLoading();
+		setLoaded(true);
+	};
+
 	return (
-		<a
-			className={itemClasses}
+		<Link
+			isRouterLink
+			classes={itemClasses}
 			onMouseEnter={onMouseEnter}
 			onMouseLeave={onMouseLeave}
-			href={url}
+			href={href}
 			target='_blank'
 			rel='noreferrer'
 			ref={setRefs}
@@ -131,14 +138,14 @@ function Item({
 					src={src}
 					alt={Math.random()}
 					className='c-grid_img'
-					onLoad={() => setLoaded(true)}
+					onLoad={handleLoad}
 				/>
 			</div>
 			<div className='c-grid_info'>
 				<h3 className='c-grid_title'>{title}</h3>
 				<p className='c-grid_description -text-tiny'>{previewText}</p>
 			</div>
-		</a>
+		</Link>
 	);
 }
 

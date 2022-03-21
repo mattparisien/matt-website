@@ -10,13 +10,14 @@ function Link(props, ref) {
 	});
 
 	const navigate = useNavigate();
-	const { playTransition } = useContext(LoadingContext);
+	const { toggleLoading } = useContext(LoadingContext);
 
 	const handleNavigate = e => {
-		props.onClick(e);
+		console.log(props.href)
+		props.onClick && props.onClick(e);
 		e.preventDefault();
 
-		playTransition();
+		toggleLoading();
 
 		setTimeout(() => {
 			navigate(props.href);

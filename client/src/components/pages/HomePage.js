@@ -42,31 +42,32 @@ function HomePage(props, ref) {
 		},
 	];
 
-	useEffect(() => {
-		console.log(data);
-	}, [data]);
-
 	return (
 		<>
-			<Container classes='-mobile-padding-none'>
-				<Section>
-					<Filter
-						categories={filterCategories}
-						selected={selected}
-						setSelected={setSelected}
-					/>
-					<Grid
-						items={
-							data.photos &&
-							data.projects && {
-								software: data.projects,
-								photography: data.photos,
+			<div className='o-page o-page_home'>
+				<Container classes='-mobile-padding-none'>
+					<Section classes="o-hero" data-scroll-section>
+						<h1 className="o-h1 -split -huge">matthew</h1>
+					</Section>
+					<Section data-scroll-section>
+						<Filter
+							categories={filterCategories}
+							selected={selected}
+							setSelected={setSelected}
+						/>
+						<Grid
+							items={
+								data.photos &&
+								data.projects && {
+									software: data.projects,
+									photography: data.photos,
+								}
 							}
-						}
-						category={selected}
-					/>
-				</Section>
-			</Container>
+							category={selected}
+						/>
+					</Section>
+				</Container>
+			</div>
 		</>
 	);
 }

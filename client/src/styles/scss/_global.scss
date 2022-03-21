@@ -6,7 +6,7 @@
 
 @font-face {
 	font-family: "Soehne";
-	src: url(../../fonts/Soehne.woff2);
+	src: url(../../fonts/NeueMtl.otf);
 }
 
 @font-face {
@@ -19,11 +19,25 @@
 	src: url(../../fonts/Haas.otf);
 }
 
+.App {
+	cursor: wait;
+	transition: 500ms ease;
+}
+
+main {
+	opacity: 0;
+	transition: 400ms ease;
+}
+
+.is-dom-loaded main {
+	opacity: 1;
+}
+
 h1,
 h2 {
 	&,
 	& div {
-		font-family: "Vanguard";
+		font-family: "Neue Mtl";
 		text-transform: uppercase;
 	}
 }
@@ -121,75 +135,4 @@ ul {
 
 .App {
 	transition: background-color 400ms ease;
-}
-
-[data-theme="regular"] {
-	background-color: $light;
-	color: $dark;
-}
-
-[data-theme="strawberry"] {
-	background-color: $red;
-	color: $light;
-
-	.c-filter_item button.is-active {
-		color: $dark;
-		background-color: $light;
-	}
-
-	.c-filter_item button {
-		border: 1px solid $light !important;
-	}
-}
-
-[data-theme="fancy"] {
-	background-color: $navy;
-	color: $light;
-
-	.c-filter_item button.is-active {
-		color: $dark;
-		background-color: $light;
-	}
-
-	.c-filter_item button {
-		border: 1px solid $light !important;
-	}
-}
-
-[data-theme="orangeCrush"] {
-	background-color: $orange;
-	color: $dark;
-}
-
-[data-theme="blue"] {
-	background-color: $blue;
-	color: $light;
-
-	.c-filter_item button.is-active {
-		color: $dark;
-		background-color: $light;
-	}
-
-	.c-filter_item button {
-		border: 1px solid $light !important;
-	}
-}
-
-[data-theme="sunny"] {
-	background-color: $yellow;
-	color: $dark;
-}
-
-[data-theme="dark"] {
-	background-color: $dark;
-	color: $light !important;
-
-	.c-filter_item button.is-active {
-		color: $dark;
-		background-color: $light;
-	}
-
-	.c-filter_item button {
-		border: 1px solid $light !important;
-	}
 }

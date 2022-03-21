@@ -1,17 +1,9 @@
-.o-home-hero {
-	height: 20vh;
-	width: 100%;
-
-	.o-section {
-		height: 100%;
-		width: 100%;
-    position: relative;
-    overflow: hidden;
+.o-page_home {
+	.o-hero {
+		.o-h1 {
+			font-size: 18vw;
+			line-height: 17vw;
+			text-align: center;
+		}
 	}
-}
-
-.o-home-hero_banner {
-	width: 100%;
-	display: flex;
-	align-items: flex-end;
 }

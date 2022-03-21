@@ -1,0 +1,61 @@
+.c-eyes {
+	width: 40vw;
+	margin: 0 auto;
+	
+	
+
+	&_inner {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&_eye-wrapper {
+		height: 20vw;
+		width: 18vw;
+		position: relative;
+
+		.c-eyes_eye {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 50%;
+			transform: translateX(-50%) rotate(30deg);
+			width: 60%;
+			background-color: $light;
+			border-radius: 50%;
+			overflow: hidden;
+			
+			
+
+			&_revealer {
+				position: absolute; 
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				transform-origin: top;
+				transition: 400ms ease;
+			}
+			
+
+			.c-eyes_eye_inner {
+				
+				width: 100%;
+				height: 100%;
+			}
+
+			.c-eyes_iris {
+				height: 50%;
+				width: 100%;
+				background-color: $dark;
+				// transform: scale(1);
+				border-radius: 50%;
+        position: absolute;
+				top: 0;
+				left: 0;
+			}
+		}
+	}
+}

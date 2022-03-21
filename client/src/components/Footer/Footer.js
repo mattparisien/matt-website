@@ -1,15 +1,18 @@
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import CircleButton from "../Button/CircleButton";
+import { useInView } from "react-intersection-observer";
 import Container from "../Containers/Container";
+import Eyes from "../Eyes/Eyes";
 import Link from "../Link/Link";
-import TextSwitch from "../TextSwitch/TextSwitch";
+import $ from "jquery";
 
 function Footer(props) {
 	const linkRefs = useRef([]);
 
 	linkRefs.current = [];
+
+	const [ref, inView, entry] = useInView({ threshold: 0.4 });
 
 	const words = useMemo(
 		() => [
@@ -27,10 +30,22 @@ function Footer(props) {
 
 	const [word, setWord] = useState(words[0]);
 	const [isSplit, setIsSplit] = useState(false);
-	// const [hovering, setHovering] = useState(false);
+
 	const split = useRef(null);
-	const button = useRef(null);
-	const container = useRef(null);
+
+	useEffect(() => {
+		if (inView) {
+			console.log($(ref.current));
+			gsap.to($("footer").find(".c-char"), {
+				y: 0,
+				duration: 1,
+				ease: "expo.inOut",
+
+				stagger: 0.02,
+				opacity: 1,
+			});
+		}
+	}, [inView]);
 
 	useEffect(() => {
 		if (split.current) {
@@ -84,40 +99,50 @@ function Footer(props) {
 	const handleMouseLeave = () => {};
 
 	return (
-		<footer className='o-footer'>
-			<Container classes='-stretchX'>
-				<div
-					className='o-footer_contact'
-					ref={container}
-					onMouseEnter={handleMouseEnter}
-					onMouseLeave={handleMouseLeave}
-					onMouseMove={handleMouseMove}
-				>
-					<h2 className="o-h2">Let's</h2><TextSwitch classes='o-footer_text-switch' variant='h2' words={words}/>
-
-					<CircleButton
-						color='pink'
-						ref={button}
-						text={"Email me"}
-						href={"mailto:hello@matthewparisien.com?Subject=Let's talk"}
-					/>
+		<footer className={`o-footer`} data-scroll-section>
+			<Container classes='-stretchX -relative'>
+				<div className={`c-oval -accent`} ref={ref}></div>
+				<div className='-stretchX -absolute -absolute-center'>
+					<Eyes />
+					<h1 className='o-h1 -split -huge'>CONTACT ME</h1>
 				</div>
 			</Container>
 
 			<div className='o-footer_bottom'>
 				<Container classes='-flex -align-end -justify-between -stretchX'>
-					<h4 className='o-footer_email o-h4 -fade-up-load'>
-						<Link
-							href="mailto:hello@matthewparisien.com?Subject=Let's talk"
-							target={"_blank"}
-							rel='noreferrer'
-						>
-							hello@matthewparisien.com
-						</Link>
-					</h4>
-
-					<div className='o-footer_credits -text-tiny -fade-up-load'>
-						WORDS + IMAGES + CODE ©2022 MATT PARISIEN
+					<div className='footer-list'>
+						<div>
+							<ul>
+								<li>All Right Reserved</li>
+								<li>2020 © Matthew Parisien</li>
+							</ul>
+						</div>
+						<div>
+							<ul>
+								<li>Follow me on</li>
+								<li>
+									<Link
+										href='https://www.instagram.com/matt.parisien/'
+										target='_blank'
+									>
+										Instagram
+									</Link>
+								</li>
+								<li>
+									<Link
+										href='https://www.linkedin.com/in/matthew-parisien-365572130/'
+										target='_blank'
+									>
+										LinkedIn
+									</Link>
+								</li>
+								<li>
+									<Link href='https://github.com/mattparisien' target='_blank'>
+										GitHub
+									</Link>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</Container>
 			</div>

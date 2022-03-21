@@ -1,11 +1,6 @@
 .c-nav {
-	position: fixed;
-	top: 0;
-	right: 0;
 	height: 4rem;
 	width: 4rem;
-	margin-top: 1rem;
-	margin-right: 0.2rem;
 	z-index: 999;
 
 	@include media("<=tablet") {
@@ -134,7 +129,7 @@
 		padding-right: 3rem;
 
 		a {
-			font-family: "Roboto Mono";
+			font-family: "Soehne";
 			text-transform: uppercase;
 			transform: translateX(100%);
 			opacity: 0;
@@ -154,4 +149,35 @@
 	// transform: scale(0);
 	z-index: -1;
 	transition: 200ms ease;
+}
+
+.c-nav.-desktop {
+	width: auto;
+	height: 100%;
+
+	ul {
+		display: flex;
+		align-items: center;
+		height:100%;
+		font-size: 1.2rem;
+		color: $grey;
+
+
+		li {
+
+			transition: 400ms ease;
+
+			&:hover {
+				color: $dark;
+			}
+		}
+
+		li:not(:last-child) {
+			margin-right: 2.2rem;
+		}
+		
+		li.is-active {
+			color: $dark;
+		}
+	}
 }

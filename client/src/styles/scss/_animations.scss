@@ -57,3 +57,17 @@
 	}
 }
 
+@keyframes eyeAnim {
+	0% {
+		transform: none;
+	}
+
+	50% {
+		transform: translateY(10%);
+	}
+
+	100% {
+		transform: translateY(50%);		
+	}
+}
+

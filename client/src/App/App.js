@@ -18,6 +18,8 @@ import HomePage from "../components/pages/HomePage";
 import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
 import { GlobalStyle } from "../styles/global";
+import SingleProjectPage from "../components/pages/SingleProjectPage";
+import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -25,7 +27,7 @@ export const ColorContext = createContext();
 export const CursorContext = createContext();
 
 function App() {
-	const [play, setPlay] = useState(true);
+	const [loading, setLoading] = useState(true);
 
 	const themes = {
 		space: [
@@ -86,7 +88,7 @@ function App() {
 			if (splitText.chars) {
 				const tl = gsap.timeline();
 
-				tl.to(splitText.chars, {
+				tl.to($("main").find(".c-char"), {
 					y: 0,
 					duration: 2,
 					ease: "expo.inOut",
@@ -139,7 +141,7 @@ function App() {
 
 	const appClasses = classNames("App", {
 		"menu-active": state.menuActive,
-		"is-dom-loaded": !play,
+		"is-dom-loaded": !loading,
 		"is-old-page": state.isTransitioning,
 	});
 
@@ -242,20 +244,18 @@ function App() {
 		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
 	};
 
-	const playTransition = () => {
-		setPlay(true);
+	const toggleLoading = () => {
+		setLoading(!loading)
 	};
 
 	const loadingControls = {
 		menuActive: state.menuActive,
 		toggleMenu,
-		playTransition,
-		setTransitioning,
+		isLoading: loading,
+		toggleLoading,
+		
 	};
 
-	const togglePlay = useCallback(() => {
-		setPlay(false);
-	}, []);
 
 	const [cursorState, setCursorState] = useState("following");
 
@@ -267,62 +267,92 @@ function App() {
 				<LoadingContext.Provider value={loadingControls}>
 					<ColorContext.Provider value={{ setPageTheme, pageTheme }}>
 						<CursorContext.Provider value={{ cursorState, setCursorState }}>
-							<div className={appClasses} data-theme={pageTheme}>
-								<Helmet>
-									<title>Matthew Parisien — Software Developer</title>
-									<meta
-										name='description'
-										content='I am a full-stack web developer aiming to simplify the lives of other people through software'
-									/>
-									<meta
-										content='Matthew Parisien — Software Developer'
-										property='og:title'
-									/>
-									<meta
-										content='I am a full-stack web developer aiming to simplify the lives of other people through software'
-										property='og:description'
-									/>
-									<meta property='og:type' content='website' />
-								</Helmet>
-								{location.pathname === "/" && <Header />}
+							<LocomotiveScrollProvider
+								onLocationChange={scroll =>
+									scroll.scrollTo(0, { duration: 0, disableLerp: true })
+								}
+								options={{
+									initPosition: {
+										x: 0,
+										y: 0,
+									},
 
-								<Nav />
-								<Loader isActive={play} setDone={togglePlay} />
+									smooth: true,
+									getDirection: true,
+								}}
+								containerRef={scrollRef}
+							>
+								<div className={appClasses} data-theme={pageTheme}>
+									<Helmet>
+										<title>Matthew Parisien — Software Developer</title>
+										<meta
+											name='description'
+											content='I am a full-stack web developer aiming to simplify the lives of other people through software'
+										/>
+										<meta
+											content='Matthew Parisien — Software Developer'
+											property='og:title'
+										/>
+										<meta
+											content='I am a full-stack web developer aiming to simplify the lives of other people through software'
+											property='og:description'
+										/>
+										<meta property='og:type' content='website' />
+									</Helmet>
+									<Header />
 
-								{/* <CursorFollower cursorState={cursorState} /> */}
-								<Menu
-									isOpen={state.menuActive}
-									theme={themes}
-									data={{
-										contact: { ...state.data.contact },
-										socials: state.data.socials,
-									}}
-								/>
+									{/* <Loader isActive={play} setDone={togglePlay} /> */}
 
-								<ScrollWrapper ref={scrollRef}>
-									<ContentWrapper ref={contentWrapperRef}>
-										<GlobalStyle />
-
-										<Routes>
-											<Route
-												path='/'
-												element={<HomePage isLoading={state.isLoading} />}
-											/>
-											<Route path='/work' element={<WorkPage />} />
-											<Route
-												path='/about'
-												element={<AboutPage photos={state.data.photos} />}
-											/>
-										</Routes>
-									</ContentWrapper>
-									<Footer
+									{/* <CursorFollower cursorState={cursorState} /> */}
+									<Menu
+										isOpen={state.menuActive}
+										theme={themes}
 										data={{
 											contact: { ...state.data.contact },
 											socials: state.data.socials,
 										}}
 									/>
-								</ScrollWrapper>
-							</div>
+
+									<ScrollWrapper ref={scrollRef}>
+										<ContentWrapper ref={contentWrapperRef}>
+											<GlobalStyle />
+
+											<Routes>
+												<Route
+													path='/'
+													element={<HomePage isLoading={state.isLoading} />}
+												/>
+												<Route path='/work' element={<WorkPage />} />
+												<Route
+													path='/about'
+													element={
+														<AboutPage
+															photos={state.data.photos}
+															setPageTheme={setPageTheme}
+															toggleLoading={toggleLoading}
+														/>
+													}
+												/>
+												<Route
+													path='/work/:id'
+													element={
+														<SingleProjectPage
+															location={location}
+															setPageTheme={setPageTheme}
+														/>
+													}
+												/>
+											</Routes>
+										</ContentWrapper>
+										<Footer
+											data={{
+												contact: { ...state.data.contact },
+												socials: state.data.socials,
+											}}
+										/>
+									</ScrollWrapper>
+								</div>
+							</LocomotiveScrollProvider>
 						</CursorContext.Provider>
 					</ColorContext.Provider>
 				</LoadingContext.Provider>

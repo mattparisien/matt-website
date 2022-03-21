@@ -5,6 +5,10 @@
 	padding: $space-xxxl 0;
 }
 
+.-padding-lg {
+	padding: $space-lg 0;
+}
+
 .-padding-top-huge {
 	padding-top: $space-xxxl;
 }
@@ -73,6 +77,12 @@
 	position: absolute;
 }
 
+.-absolute-center {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 .-fade-up-load {
 	transform: translateY(40%);
 	opacity: 0;
@@ -101,6 +111,10 @@
 
 .-delay-6 {
 	transition-delay: 400ms;
+}
+
+.is-dom-loaded {
+	cursor: default;
 }
 
 .is-dom-loaded .-fade-up-load {
@@ -199,6 +213,11 @@
 	color: $light !important;
 }
 
+.-bg-orange {
+	background-color: $orange;
+	color: $light !important;
+}
+
 .-stroke-light {
 	stroke: $light !important;
 }
@@ -217,15 +236,19 @@
 
 .-ul-small,
 .-text-tiny {
-	font-size: 0.6rem;
-	font-family: "Roboto Mono", monospace;
+	font-size: 0.7rem;
+	font-family: "Soehne";
 	text-transform: uppercase;
 }
 
+.-huge {
+	font-size: 15vw;
+	line-height: 19vw;
+	text-align: center;
+}
+
 .-indent {
-	.line:nth-of-type(1) {
-		padding-left: 30%;
-	}
+	text-indent: 20%;
 }
 
 .-block {

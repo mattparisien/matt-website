@@ -1,12 +1,7 @@
 .c-logo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 2rem 1rem;
-  font-size: 1.5rem;
+	font-size: 1.5rem;
 
-
-  @include media("<=tablet") {
-    margin: 2rem;
-  }
+	@include media("<=tablet") {
+		margin: 2rem;
+	}
 }
