@@ -1,0 +1,26 @@
+.o-split-section {
+  display: flex;
+
+  &_left,
+  &_right {
+    width: 50%;
+    height: 60vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &_right {
+    background-color: $dark;
+  }
+
+  &_left {
+    background-color: $deepGreen;
+  }
+
+  &_image {
+    height: 70%;
+    width: 60%;
+  }
+}

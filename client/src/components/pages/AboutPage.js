@@ -4,8 +4,7 @@ import Section from "../Containers/Section";
 import SpinnerCard from "../Spinner/SpinnerCard";
 import Revealer from "../Revealer/Revealer";
 
-
-function AboutPage({ photos, setPageTheme, toggleLoading}) {
+function AboutPage({ photos, setPageTheme, toggleLoading }) {
 	const [loaded, setLoaded] = useState(false);
 	const words = useMemo(
 		() => ["developer", "designer", "bagel lover", "dancer", "montrealer"],
@@ -15,20 +14,15 @@ function AboutPage({ photos, setPageTheme, toggleLoading}) {
 	useEffect(() => {
 		setPageTheme("fancy");
 		setTimeout(() => {
-				toggleLoading()
+			toggleLoading();
 		}, 500);
-		
-
-		return () => {
-			setPageTheme("regular");
-		};
 	}, []);
 
 	return (
 		<div className='o-page o-page_about'>
 			<Container>
 				<Section classes='o-about_bio' data-scroll-section>
-					<h3 className='o-h3 -indent'>
+					<h3 className='o-h3'>
 						{" "}
 						Hi. My name is Matt. I am a Montreal-based full-stack developer in
 						love with with digital products and passionate about crafting great
@@ -47,7 +41,7 @@ function AboutPage({ photos, setPageTheme, toggleLoading}) {
 							alt='self'
 							onLoad={() => setLoaded(true)}
 						/>
-						<Revealer/>
+						<Revealer />
 						{/* <Eyes /> */}
 					</div>
 					<p className='o-text'>

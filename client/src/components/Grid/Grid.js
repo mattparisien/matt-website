@@ -1,16 +1,18 @@
 import { useMediaQuery } from "@mui/material";
 import classNames from "classnames";
+import gsapCore from "gsap/gsap-core";
 import React, {
 	useCallback,
 	useContext,
+	useEffect,
 	useRef,
 	useState,
-	useEffect,
 } from "react";
 import { useInView } from "react-intersection-observer";
 import { ColorContext, CursorContext, LoadingContext } from "../../App/App";
-import SpinnerCard from "../Spinner/SpinnerCard";
 import Link from "../Link/Link";
+import SpinnerCard from "../Spinner/SpinnerCard";
+import gsap from "gsap";
 
 function Grid({ items, category }) {
 	const { setPageTheme } = useContext(ColorContext);
@@ -99,53 +101,53 @@ function Item({
 	title,
 	href,
 }) {
-	const ref = useRef(null);
-	const [inViewRef, inView] = useInView({ threshold: 0.5 });
+	
+	// const [ref, inView, entry] = useInView();
 	const [loaded, setLoaded] = useState(false);
 	const { isLoading, toggleLoading } = useContext(LoadingContext);
 
-	const setRefs = useCallback(
-		node => {
-			// Ref's from useRef needs to have the node assigned to `current`
-			ref.current = node;
-			// Callback refs, like the one from `useInView`, is a function that takes the node as an argument
-			inViewRef(node);
-		},
-		[inViewRef]
-	);
-
-	const itemClasses = classNames("c-grid_item", { "is-in-view": inView });
+	const itemClasses = classNames("c-grid_item");
 
 	const handleLoad = () => {
 		isLoading && toggleLoading();
 		setLoaded(true);
 	};
 
+	// useEffect(() => {
+	// 	inView && gsap.to(entry.target, {
+	// 		y: 0,
+	// 		opacity: 1,
+	// 		ease: 'power4.out',
+	// 		duration: 1.3
+	// 	})
+	// }, [inView, entry])
+
 	return (
-		<Link
-			isRouterLink
-			classes={itemClasses}
-			onMouseEnter={onMouseEnter}
-			onMouseLeave={onMouseLeave}
-			href={href}
-			target='_blank'
-			rel='noreferrer'
-			ref={setRefs}
-		>
-			{!loaded && <SpinnerCard />}
-			<div className='c-grid_img-wrapper'>
-				<img
-					src={src}
-					alt={Math.random()}
-					className='c-grid_img'
-					onLoad={handleLoad}
-				/>
-			</div>
-			<div className='c-grid_info'>
-				<h3 className='c-grid_title'>{title}</h3>
-				<p className='c-grid_description -text-tiny'>{previewText}</p>
-			</div>
-		</Link>
+		<div className={itemClasses}>
+			<Link
+				isRouterLink
+				onMouseEnter={onMouseEnter}
+				onMouseLeave={onMouseLeave}
+				href={href}
+				target='_blank'
+				rel='noreferrer'
+				
+			>
+				{!loaded && <SpinnerCard />}
+				<div className='c-grid_img-wrapper'>
+					<img
+						src={src}
+						alt={Math.random()}
+						className='c-grid_img'
+						onLoad={handleLoad}
+					/>
+				</div>
+				<div className='c-grid_info'>
+					<h3 className='c-grid_title'>{title}</h3>
+					<p className='c-grid_description -text-tiny'>{previewText}</p>
+				</div>
+			</Link>
+		</div>
 	);
 }
 

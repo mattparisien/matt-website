@@ -1,9 +1,124 @@
 .o-page_home {
+	.o-about {
+		display: flex;
+
+		&_left,
+		&_right {
+			width: 50%;
+			height: 60vw;
+
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		&_right {
+			background-color: $dark;
+		}
+
+		&_left {
+			background-color: $deepGreen;
+		}
+
+		&_image {
+			height: 70%;
+			width: 60%;
+		}
+	}
+
+	.o-work {
+		&_list {
+			width: 100%;
+
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			
+
+			li:not(:last-child) {
+				margin-bottom: 3vw;
+			}
+		}
+	}
+
+	.c-section {
+		width: 100%;
+	}
+
+	.o-container {
+		width: 100%;
+	}
 	.o-hero {
+		position: absolute;
+		top: 0;
+		left: 0;
+		&_cta {
+			.line {
+				&::before {
+					content: "";
+					height: 100px;
+					width: 1px;
+					content: "";
+					background-color: $dark;
+				}
+			}
+
+			position: absolute;
+			bottom: 10%;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
 		.o-h1 {
-			font-size: 18vw;
-			line-height: 17vw;
+			position: relative;
+			overflow: visible;
+			width: 100%;
 			text-align: center;
+
+			span {
+				display: block;
+			}
+
+			span:not(:first-child) {
+				position: absolute;
+				width: 100%;
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				opacity: 0;
+			}
+
+			@include media(">=tablet") {
+				font-size: 25vw;
+				line-height: 20vw;
+				text-align: center;
+			}
+			font-size: 30vw;
+			line-height: 30vw;
+		}
+	}
+}
+
+.o-sticky {
+	height: 100vh !important;
+	&_inner {
+		position: relative;
+	}
+
+	.o-intro {
+		z-index: -1;
+	}
+
+	.o-blob {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+
+		#blobTitle {
+			transform: translateY(20%);
 		}
 	}
 }

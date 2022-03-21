@@ -28,6 +28,7 @@ export const CursorContext = createContext();
 
 function App() {
 	const [loading, setLoading] = useState(true);
+	const [pageTheme, setPageTheme] = useState("party");
 
 	const themes = {
 		space: [
@@ -66,6 +67,28 @@ function App() {
 	const [isSplit, setSplit] = useState(false);
 	const split = useRef(null);
 	const location = useLocation();
+	const [hasRendered, setRendered] = useState(false);
+
+	useEffect(() => {
+		setPageTheme("party");
+
+		if (!hasRendered && location.pathname === "/") {
+			console.log("should not be here");
+
+			const items = $("[data-theme-trigger]");
+			console.log(items);
+
+			const handleScroll = () => {
+				if (window.scrollY > 1800) {
+					setPageTheme('purple')
+				} else {
+					setPageTheme('party')	
+				}
+			};
+
+			window.addEventListener("scroll", handleScroll);
+		}
+	}, [hasRendered]);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -92,7 +115,7 @@ function App() {
 					y: 0,
 					duration: 2,
 					ease: "expo.inOut",
-					delay: 0.5,
+
 					stagger: 0.02,
 					opacity: 1,
 				});
@@ -105,7 +128,7 @@ function App() {
 					y: 0,
 					duration: 2,
 					ease: "expo.inOut",
-					delay: 1.4,
+
 					stagger: 0.02,
 					opacity: 1,
 				});
@@ -141,7 +164,7 @@ function App() {
 
 	const appClasses = classNames("App", {
 		"menu-active": state.menuActive,
-		"is-dom-loaded": !loading,
+		"is-dom-loaded": loading,
 		"is-old-page": state.isTransitioning,
 	});
 
@@ -245,7 +268,7 @@ function App() {
 	};
 
 	const toggleLoading = () => {
-		setLoading(!loading)
+		setLoading(!loading);
 	};
 
 	const loadingControls = {
@@ -253,13 +276,9 @@ function App() {
 		toggleMenu,
 		isLoading: loading,
 		toggleLoading,
-		
 	};
 
-
 	const [cursorState, setCursorState] = useState("following");
-
-	const [pageTheme, setPageTheme] = useState("regular");
 
 	return (
 		<DataContext.Provider value={state.data}>
@@ -267,7 +286,7 @@ function App() {
 				<LoadingContext.Provider value={loadingControls}>
 					<ColorContext.Provider value={{ setPageTheme, pageTheme }}>
 						<CursorContext.Provider value={{ cursorState, setCursorState }}>
-							<LocomotiveScrollProvider
+							{/* <LocomotiveScrollProvider
 								onLocationChange={scroll =>
 									scroll.scrollTo(0, { duration: 0, disableLerp: true })
 								}
@@ -280,79 +299,80 @@ function App() {
 									smooth: true,
 									getDirection: true,
 								}}
+								watch={[location.pathname]}
 								containerRef={scrollRef}
-							>
-								<div className={appClasses} data-theme={pageTheme}>
-									<Helmet>
-										<title>Matthew Parisien — Software Developer</title>
-										<meta
-											name='description'
-											content='I am a full-stack web developer aiming to simplify the lives of other people through software'
-										/>
-										<meta
-											content='Matthew Parisien — Software Developer'
-											property='og:title'
-										/>
-										<meta
-											content='I am a full-stack web developer aiming to simplify the lives of other people through software'
-											property='og:description'
-										/>
-										<meta property='og:type' content='website' />
-									</Helmet>
-									<Header />
+							> */}
+							<div className={appClasses} data-theme={pageTheme}>
+								<Helmet>
+									<title>Matthew Parisien — Software Developer</title>
+									<meta
+										name='description'
+										content='I am a full-stack web developer aiming to simplify the lives of other people through software'
+									/>
+									<meta
+										content='Matthew Parisien — Software Developer'
+										property='og:title'
+									/>
+									<meta
+										content='I am a full-stack web developer aiming to simplify the lives of other people through software'
+										property='og:description'
+									/>
+									<meta property='og:type' content='website' />
+								</Helmet>
+								<Header />
 
-									{/* <Loader isActive={play} setDone={togglePlay} /> */}
+								{/* <Loader isActive={play} setDone={togglePlay} /> */}
 
-									{/* <CursorFollower cursorState={cursorState} /> */}
-									<Menu
-										isOpen={state.menuActive}
-										theme={themes}
+								{/* <CursorFollower cursorState={cursorState} /> */}
+								<Menu
+									isOpen={state.menuActive}
+									theme={themes}
+									data={{
+										contact: { ...state.data.contact },
+										socials: state.data.socials,
+									}}
+								/>
+
+								<ScrollWrapper ref={scrollRef}>
+									<ContentWrapper ref={contentWrapperRef}>
+										<GlobalStyle />
+
+										<Routes>
+											<Route
+												path='/'
+												element={<HomePage isLoading={state.isLoading} />}
+											/>
+											<Route path='/work' element={<WorkPage />} />
+											<Route
+												path='/about'
+												element={
+													<AboutPage
+														photos={state.data.photos}
+														setPageTheme={setPageTheme}
+														toggleLoading={toggleLoading}
+													/>
+												}
+											/>
+											<Route
+												path='/work/:id'
+												element={
+													<SingleProjectPage
+														location={location}
+														setPageTheme={setPageTheme}
+													/>
+												}
+											/>
+										</Routes>
+									</ContentWrapper>
+									<Footer
 										data={{
 											contact: { ...state.data.contact },
 											socials: state.data.socials,
 										}}
 									/>
-
-									<ScrollWrapper ref={scrollRef}>
-										<ContentWrapper ref={contentWrapperRef}>
-											<GlobalStyle />
-
-											<Routes>
-												<Route
-													path='/'
-													element={<HomePage isLoading={state.isLoading} />}
-												/>
-												<Route path='/work' element={<WorkPage />} />
-												<Route
-													path='/about'
-													element={
-														<AboutPage
-															photos={state.data.photos}
-															setPageTheme={setPageTheme}
-															toggleLoading={toggleLoading}
-														/>
-													}
-												/>
-												<Route
-													path='/work/:id'
-													element={
-														<SingleProjectPage
-															location={location}
-															setPageTheme={setPageTheme}
-														/>
-													}
-												/>
-											</Routes>
-										</ContentWrapper>
-										<Footer
-											data={{
-												contact: { ...state.data.contact },
-												socials: state.data.socials,
-											}}
-										/>
-									</ScrollWrapper>
-								</div>
-							</LocomotiveScrollProvider>
+								</ScrollWrapper>
+							</div>
+							{/* </LocomotiveScrollProvider> */}
 						</CursorContext.Provider>
 					</ColorContext.Provider>
 				</LoadingContext.Provider>

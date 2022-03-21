@@ -29,6 +29,10 @@
 	display: flex;
 }
 
+.-row-reverse {
+	flex-direction: row-reverse;
+}
+
 .-desktop {
 	@include media("<=tablet") {
 		display: none;
@@ -124,6 +128,10 @@
 
 .-text-switch {
 	overflow: hidden;
+}
+
+.-no-offset {
+	padding-top: 0 !important;
 }
 
 .c-char,
@@ -236,15 +244,23 @@
 
 .-ul-small,
 .-text-tiny {
-	font-size: 0.7rem;
+	font-size: 1rem;
 	font-family: "Soehne";
-	text-transform: uppercase;
+	
+}
+
+.-text-orange {
+	color: $orange;
 }
 
 .-huge {
 	font-size: 15vw;
 	line-height: 19vw;
 	text-align: center;
+}
+
+.-width-50 {
+	width: 50%;
 }
 
 .-indent {

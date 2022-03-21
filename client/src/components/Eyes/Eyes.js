@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import useMouseMove from "../../helpers/hooks/useMouseMove";
+import gsap from "gsap";
 
 function Eyes() {
 	const containerLeft = useRef(null);
@@ -10,11 +11,9 @@ function Eyes() {
 			<div className='c-eyes_inner -relative'>
 				<div className='c-eyes_eye-wrapper' ref={containerLeft}>
 					<Eye />
-					
 				</div>
 				<div className='c-eyes_eye-wrapper' ref={containerLeft}>
 					<Eye />
-					
 				</div>
 			</div>
 		</div>
@@ -24,37 +23,45 @@ function Eyes() {
 const Eye = ({ eyeLocation }) => {
 	const [location] = useMouseMove();
 	const iris = useRef(null);
-	const [eyePos, setEyePos] = useState({
-		left: 0,
-		top: 0,
-	});
+	const tl = useRef(gsap.timeline());
 
 	useEffect(() => {
 		if (location && iris.current) {
 			// const container = $(iris.current).parents()[2];
 			// const containerOffsetLeft = $(container).offset().left;
 			// const containerOffsetTop = $(container).offset().top;
-
-			setEyePos({
-				x: 20,
-				y: 20,
-			});
+			tl.current
+				.to(iris.current, {
+					y: "100%",
+					duration: 2,
+					ease: "power3.out",
+				})
+				.to(iris.current, {
+					y: "0",
+					duration: 2,
+					ease: "power3.out",
+				})
+				.to(iris.current, {
+					y: "50%",
+					x: "-50%",
+					duration: 2,
+					ease: "power3.out",
+				})
+				.to(iris.current, {
+					y: "0",
+					x: "0",
+					duration: 2,
+					ease: "power3.out",
+				});
 		}
 	}, [location]);
 
-
-
 	return (
 		<div className='c-eyes_eye'>
-			
 			<div className='c-eyes_eye_inner'>
-				<div
-					className='c-eyes_iris'
-					ref={iris}
-					
-				></div>
+				<div className='c-eyes_iris' ref={iris}></div>
 			</div>
-			<div className="c-eyes_eye_revealer -accent"></div>
+			<div className='c-eyes_eye_revealer -accent'></div>
 		</div>
 	);
 };

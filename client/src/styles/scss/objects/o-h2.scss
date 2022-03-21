@@ -1,27 +1,10 @@
 
 
-
-
-@media (min-width:700px) and (max-width:1599px) {
-  .o-h2,
-  h2 {
-      font-size: 8rem;
-      line-height: 7rem;
-  }
-}
-@media (min-width:1600px) {
-  .o-h2,
-  h2 {
-      font-size: 8rem;
-      line-height: 7rem;
-      
-  }
-  
-}
-
-
 .o-h2 {
   margin: 0;
+  font-family: Soehne;
+  text-transform: capitalize;
+  font-size: 10vw;
 
   @include media("<=tablet") {
 		font-size: 10vw;

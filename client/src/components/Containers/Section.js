@@ -10,7 +10,8 @@ function Section(props) {
 		<>
 			<section
 				className={classes}
-				data-scroll-section={props["data-scroll-section"]}
+				data-theme-trigger={props["data-theme-trigger"]}
+				data-theme={props["data-theme"]}
 			>
 				{props.children}
 			</section>

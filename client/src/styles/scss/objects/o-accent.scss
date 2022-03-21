@@ -35,17 +35,7 @@
 	.c-revealer {
 		transform: scaleY(0.0001);
 	}
-	
-	.c-grid.is-new {
-		.c-grid_img-wrapper::after {
-			transform: scaleY(0.0001);
-		}
-	
-		.c-grid_info {
-			opacity: 1;
-			transition-delay: 600ms;
-		}
-	}
+
 
 	.o-h1,
 	.o-h2,

@@ -3,10 +3,6 @@
 	width: 4rem;
 	z-index: 999;
 
-	@include media("<=tablet") {
-    margin-right: 2rem;
-  }
-
 	&_link {
 		display: flex;
 		align-items: center;
@@ -160,16 +156,15 @@
 		align-items: center;
 		height:100%;
 		font-size: 1.2rem;
-		color: $grey;
+		
+		
 
 
 		li {
-
+			opacity: 0.5;
 			transition: 400ms ease;
 
-			&:hover {
-				color: $dark;
-			}
+			
 		}
 
 		li:not(:last-child) {
@@ -177,7 +172,8 @@
 		}
 		
 		li.is-active {
-			color: $dark;
+			opacity: 1;
+			
 		}
 	}
 }

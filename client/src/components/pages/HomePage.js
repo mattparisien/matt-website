@@ -1,3 +1,7 @@
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import MorphSVGPlugin from "gsap/src/MorphSVGPlugin";
+import $ from "jquery";
 import React, {
 	forwardRef,
 	useContext,
@@ -11,8 +15,8 @@ import "swiper/swiper.min.css";
 import { DataContext } from "../../App/App";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
-import Grid from "../Grid/Grid";
-import Filter from "../Filter/Filter";
+import Link from "../Link/Link";
+import SplitSection from "../Layouts/SplitSection";
 
 // const gradientAnim = keyframes`
 // 	0% {
@@ -24,6 +28,7 @@ import Filter from "../Filter/Filter";
 // `;
 
 function HomePage(props, ref) {
+	gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin);
 	const data = useContext(DataContext);
 	const [selected, setSelected] = useState("software");
 	const marquees = useRef([]);
@@ -33,6 +38,10 @@ function HomePage(props, ref) {
 	const headingRef = useRef([]);
 	headingRef.current = [];
 
+	console.log(data.photos);
+
+	const sticky = useRef(null);
+
 	const filterCategories = [
 		{
 			name: "software",
@@ -41,32 +50,226 @@ function HomePage(props, ref) {
 			name: "photography",
 		},
 	];
+	const words = ["ask", "for", "good", "stories"];
+	const [word, setWord] = useState(words[0]);
+	const path = useRef(null);
+	const titleTl = useRef(null);
+	const [hasPlayed, setPlayed] = useState(false);
+	const blobTl = useRef(gsap.timeline({ paused: true }));
+	const fade = useRef(gsap.timeline({ paused: true }));
+	const inner = useRef(null);
+
+	useEffect(() => {
+		if (sticky.current) {
+			gsap.set(path.current, {
+				scale: 0.00001,
+				transformOrigin: "center",
+			});
+
+			// blobTl.current = gsap.timeline({
+			// 	scrollTrigger: {
+			// 		trigger: sticky.current,
+			// 		start: "top top",
+			// 		end: "+=1600",
+			// 		scrub: !0,
+			// 		pin: true,
+			// 	},
+			// });
+
+			titleTl.current = gsap.timeline({
+				scrollTrigger: {
+					trigger: sticky.current,
+					start: "top top",
+
+					scrub: !0,
+					pin: true,
+				},
+			});
+
+			// fade.current.to(inner.current, {
+			// 	opacity: 0,
+			// });
+
+			titleTl.current
+				.to(
+					$(".o-hero_title span:first-of-type"),
+					{
+						scale: 1.1,
+					},
+					0
+				)
+				.to(
+					$(".o-hero_title span:first-of-type"),
+					{
+						opacity: 0,
+					},
+					0
+				)
+				.to($(".o-hero_title span:nth-of-type(2)"), {
+					opacity: 1,
+					scale: 1.1,
+				})
+				.to($(".o-hero_title span:nth-of-type(2)"), {
+					opacity: 0,
+				})
+				.to($(".o-hero_title span:nth-of-type(3)"), {
+					opacity: 1,
+					scale: 1.1,
+				})
+				.to($(".o-hero_title span:nth-of-type(3)"), {
+					opacity: 0,
+				})
+				.to($(".o-hero_title span:nth-of-type(4)"), {
+					opacity: 1,
+					scale: 1.1,
+				})
+				.to($(".o-hero"), {
+					x: "-100%",
+				});
+
+			// blobTl.current.to(
+			// 	path.current,
+			// 	{
+			// 		scale: 5,
+
+			// 		transformOrigin: "center",
+			// 	},
+			// 	10
+			// );
+
+			// titleTl.current = gsap.timeline({
+			// 	scrollTrigger: {
+			// 		trigger: sticky.current,
+			// 		start: "top top",
+			// 		end: "+=3000",
+			// 		pin: true,
+			// 		scrub: 2,
+			// 		onUpdate: self => {
+			// 			if (self.progress > 0.2 && self.progress < 0.4) {
+			// 				setWord("for");
+			// 			} else if (self.progress > 0.4 && self.progress < 0.6) {
+			// 				setWord("good");
+			// 			} else if (self.progress > 0.6 && !hasPlayed) {
+			// 				setWord("stories");
+			// 				setPlayed(true);
+			// 			}
+			// 		},
+			// 	},
+			// });
+		}
+	}, [path.current, hasPlayed]);
 
 	return (
 		<>
-			<div className='o-page o-page_home'>
-				<Container classes='-mobile-padding-none'>
-					<Section classes="o-hero" data-scroll-section>
-						<h1 className="o-h1 -split -huge">matthew</h1>
+			<div className='o-page o-page_home -no-offset'>
+				<div className='o-sticky' ref={sticky}>
+					<div className='o-sticky_inner' ref={inner}>
+						<Section classes='o-intro -fullHeight' data-theme='regular'>
+							<Container>
+								<div className='o-text -big -padding-lg'>
+									Communication begins with a story. This is why I believe web
+									development is storytelling. Good stories engage and create
+									immersive experiences for their listeners. Good stories are
+									touching, they exist, they progress.
+								</div>
+
+								<svg
+									className='o-blob'
+									width='100%'
+									height='100%'
+									viewBox='0 0 2000 3000'
+									preserveAspectRatio='none'
+								>
+									{" "}
+									<defs>
+										{" "}
+										<clipPath
+											id='maskTitle'
+											clipPathUnits='objectBoundingBox'
+											transform='scale(0.0005, 0.00033333333333333)'
+										>
+											{" "}
+											<path
+												id='blobTitle'
+												fill='#fff'
+												d='M186.25 355.2 C426.32 670.51 94.18 982.49 354.17 1137.24 614.16 1291.98 786.18 1016.62 1125.3 954.2 1464.42 891.77 1714.68 1134.51 1772.55 854.72 1830.42 574.92 1467.33 143.84 1070.57 53.08 673.81 -37.66 -53.8 39.9 186.25 355.2 '
+												ref={path}
+											></path>{" "}
+										</clipPath>{" "}
+									</defs>{" "}
+								</svg>
+							</Container>
+						</Section>
+						<Section
+							classes='o-hero -fullHeight -flex -align-center -justify-center -bg-pink'
+							data-scroll-section
+						>
+							<Container>
+								<h1 className='o-h1 o-hero_title -split -huge'>
+									<span>ask</span>
+									<span>for</span>
+									<span>good</span>
+									<span>stories</span>
+								</h1>
+								<div className='o-hero_cta'>
+									<div className='line'></div>{" "}
+									<div className='o-text'>Scroll</div>
+								</div>
+							</Container>
+						</Section>
+					</div>
+				</div>
+				<div>
+					<Section classes='-fullHeight -flex -align-center -justify-center'>
+						<Container>
+							<h1 className='o-h1'>About me</h1>
+						</Container>
 					</Section>
-					<Section data-scroll-section>
-						<Filter
-							categories={filterCategories}
-							selected={selected}
-							setSelected={setSelected}
-						/>
-						<Grid
-							items={
-								data.photos &&
-								data.projects && {
-									software: data.projects,
-									photography: data.photos,
-								}
-							}
-							category={selected}
-						/>
-					</Section>
-				</Container>
+				</div>
+				<SplitSection
+					dataThemeRight='sky'
+					dataThemeLeft='dark'
+					imageSrc={
+						data.photos &&
+						data.photos.slice(data.photos.length - 1, data.photos.length)[0].url
+					}
+					text='	I am a Montreal-based full-stack developer in love with digital
+					products and passionate about crafting great user experiences.
+					My work is entirely driven by a passion for what I do, and a
+					love for people. I believe a team who loves creating, learning
+					and growing together have the ability to transcend the
+					workplace.'
+				/>
+
+				<SplitSection
+					dataThemeRight='regular'
+					reversed={true}
+					dataThemeLeft='regular'
+					imageSrc={
+						data.photos &&
+						data.photos.slice(data.photos.length - 1, data.photos.length)[0].url
+					}
+					text={
+						<ul className='o-work_list'>
+							{data.projects &&
+								data.projects.map(project => {
+									return (
+										<li key={project.id}>
+											<Link
+												href={project.Location}
+												target='_blank'
+												classes='o-text -medium'
+											>
+												{project.Title}
+											</Link>
+										</li>
+									);
+								})}
+						</ul>
+					}
+				/>
+
+				<Section></Section>
 			</div>
 		</>
 	);

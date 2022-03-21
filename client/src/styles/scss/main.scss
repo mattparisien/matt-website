@@ -35,6 +35,7 @@
 @import "../../components/Spinner/c-spinner-card.scss";
 @import "../../components/Eyes/eyes.scss";
 @import "../../components/Revealer/c-revealer.scss";
+@import "../../components/Layouts/o-split-section.scss";
 
 .Home {
 	height: 100vh;
@@ -78,9 +79,42 @@ a {
 	}
 }
 
+
+
 [data-theme="orangeCrush"] {
 	background-color: $orange;
 	color: $dark;
+}
+
+[data-theme="icon"] {
+	background-color: $light;
+	color: $green;
+}
+
+[data-theme="sky"] {
+	background-color: $skyBlue;
+	color: $dark;
+}
+
+
+[data-theme="party"] {
+	background-color: $pink;
+	color: $orange;
+
+	.-accent {
+		color: $light;
+		background-color: $beige;
+	}
+}
+
+[data-theme="power"] {
+	background-color: $pink;
+	color: $blue;
+
+	.-accent {
+		color: $light;
+		background-color: $beige;
+	}
 }
 
 [data-theme="blue"] {
@@ -95,6 +129,11 @@ a {
 	.c-filter_item button {
 		border: 1px solid $light !important;
 	}
+}
+
+[data-theme="purple"] {
+	background-color: $purple;
+	color: $pink;
 }
 
 [data-theme="sunny"] {
@@ -113,5 +152,11 @@ a {
 
 	.c-filter_item button {
 		border: 1px solid $light !important;
+	}
+}
+
+[data-scroll-sticky="headingIntro"] {
+	.o-sticky-heading {
+		transform: translateX(200%);
 	}
 }

@@ -4,14 +4,18 @@
 	flex-direction: column;
 	justify-content: space-between;
 
-
+	.o-h1 {
+		@include media(">=laptop") {
+			font-size: 10rem;
+		}
+	}
 
 	.c-eyes {
 		opacity: 0;
 		transition-delay: 500ms;
 	}
 
-	&[data-scroll-section-inview] {
+	&.is-inview {
 		.c-oval {
 			transform: scale(1) rotateX(0);
 			transition-delay: 200ms;
@@ -34,8 +38,11 @@
 
 	.c-oval {
 		height: 50vw;
+		max-height: 750px;
 		border-radius: 50%;
 		width: 100%;
+		max-width: 1800px;
+		margin: 0 auto;
 		transform: scale(0) rotateX(70deg);
 		transition: $transition-expo;
 	}
@@ -73,6 +80,15 @@
 
 		> div:first-child {
 			margin-right: 2rem;
+		}
+
+		@include media("<=tablet") {
+			flex-direction: column;
+
+			> div {
+				margin-right: 0 !important;
+				
+			}
 		}
 
 		ul {

@@ -29,7 +29,7 @@ function DesktopNav() {
 							key={index}
 							className={link.path === location.pathname && "is-active"}
 						>
-							<Link href={link.path} isRouterLink>
+							<Link href={link.path} isRouterLink classes="-fade-up-load -delay-2">
 								{link.name}
 							</Link>
 						</li>

@@ -6,7 +6,7 @@
 
 @font-face {
 	font-family: "Soehne";
-	src: url(../../fonts/NeueMtl.otf);
+	src: url(../../fonts/Molde.otf);
 }
 
 @font-face {
@@ -17,6 +17,11 @@
 @font-face {
 	font-family: "Haas";
 	src: url(../../fonts/Haas.otf);
+}
+
+@font-face {
+	font-family: "FK";
+	src: url(../../fonts/FKScreamer.otf);
 }
 
 .App {
@@ -37,7 +42,7 @@ h1,
 h2 {
 	&,
 	& div {
-		font-family: "Neue Mtl";
+		
 		text-transform: uppercase;
 	}
 }

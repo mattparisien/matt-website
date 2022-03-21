@@ -7,7 +7,7 @@ import Link from "../Link/Link";
 function Nav() {
 	const { setCursorState } = useContext(CursorContext);
 	const [active, setActive] = useState(false);
-	const classes = classNames("c-nav -fade-up-load -delay-2", { "is-active": active });
+	const classes = classNames("c-nav -fade-up-load -delay-2 -mobile", { "is-active": active });
 
 	const handleMouseEnter = () => {
 		setCursorState("nav-hovering");
@@ -29,7 +29,7 @@ function Nav() {
 			</Link>
 			<div className='c-nav_drawer'>
 				<div className='c-nav_drawer__inner'>
-					<Link isRouterLink={true} href='/' onClick={(e) => 
+					<Link isRouterLink={true} classes="-fade-up-load -delay-2" href='/' onClick={(e) => 
 						{
 							e.preventDefault();
 							setActive(!active)

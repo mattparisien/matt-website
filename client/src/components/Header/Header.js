@@ -11,6 +11,7 @@ function Header() {
 			<Container classes={"-stretchX -stretchY"}>
 				<Logo />
 				<DesktopNav />
+				<Nav/>
 			</Container>
 		</header>
 	);

@@ -92,14 +92,8 @@ function Footer(props) {
 		}, 3000);
 	}, [words]);
 
-	const handleMouseEnter = e => {};
-
-	const handleMouseMove = e => {};
-
-	const handleMouseLeave = () => {};
-
 	return (
-		<footer className={`o-footer`} data-scroll-section>
+		<footer className={`o-footer ${inView && "is-inview"}`} data-scroll-section>
 			<Container classes='-stretchX -relative'>
 				<div className={`c-oval -accent`} ref={ref}></div>
 				<div className='-stretchX -absolute -absolute-center'>
