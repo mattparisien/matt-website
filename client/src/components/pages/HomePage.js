@@ -9,8 +9,8 @@ import "swiper/swiper.min.css";
 import { DataContext } from "../../App/App";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
-import Values from "./Values";
 import Work from "./Work";
+
 
 // const gradientAnim = keyframes`
 // 	0% {
@@ -188,7 +188,7 @@ function HomePage(props, ref) {
 				</div>
 				<Work projects={data.projects && data.projects} />
 
-				<Values photos={data.valuePhotos && data.valuePhotos} />
+				{/* <Values photos={data.valuePhotos && data.valuePhotos} /> */}
 
 				{/* <SplitSection
 					dataThemeRight='sky'
