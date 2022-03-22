@@ -40,7 +40,6 @@ function HomePage(props, ref) {
 
 	//Declare hero animation timelines
 	const heroTitleTl = useRef(null);
-	const morphTl = useRef(null);
 
 	useEffect(() => {
 		//If there's a scroll trigger ref, set timelines with trigger
@@ -55,7 +54,6 @@ function HomePage(props, ref) {
 					invalidateOnResize: true,
 				},
 			});
-
 		}
 
 		//If all refs are rendered, call heroAnim
@@ -93,7 +91,7 @@ function HomePage(props, ref) {
 
 				{
 					scale: 5,
-					duration: 10
+					duration: 10,
 				}
 			)
 			.to(path.current, {
