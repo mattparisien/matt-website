@@ -68,18 +68,15 @@ function App() {
 	const [isSplit, setSplit] = useState(false);
 	const split = useRef(null);
 	const location = useLocation();
-	
+
 	const [headerColor, setHeaderColor] = useState("orange");
 
 	useEffect(() => {
 		if (location.pathname === "/") {
-			
-
 			const handleScroll = () => {
 				if (window.scrollY > 720 && window.scrollY < 2000) {
 					setHeaderColor("green");
 				} else if (window.scrollY > 2000 && window.scrollY < 3600) {
-					console.log("in here!");
 					setHeaderColor("dark");
 				} else if (window.scrollY > 3600) {
 					setHeaderColor("pink");
@@ -173,13 +170,10 @@ function App() {
 	const initialRender = useRef(true);
 
 	const toggleLoading = useCallback(() => {
-		setLoading(!loading)
-	}, [loading])
-	
+		setLoading(!loading);
+	}, [loading]);
 
 	useEffect(() => {
-		console.log(isResized);
-
 		if (isResized) {
 			toggleLoading();
 		} else if (!isResized && !initialRender.current) {
@@ -300,7 +294,6 @@ function App() {
 	const toggleMenu = () => {
 		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
 	};
-
 
 	const loadingControls = {
 		menuActive: state.menuActive,

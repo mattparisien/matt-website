@@ -27,7 +27,6 @@ function WaveSection({ classes, children, dataTheme, waveTop, waveBottom }) {
 					start: "top top",
 					scrub: !0,
 					invalidateOnResize: true,
-
 				},
 			});
 
