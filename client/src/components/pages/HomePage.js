@@ -9,8 +9,8 @@ import "swiper/swiper.min.css";
 import { DataContext } from "../../App/App";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
-import Values from "./Values";
 import Work from "./Work";
+
 
 // const gradientAnim = keyframes`
 // 	0% {
@@ -38,128 +38,18 @@ function HomePage(props, ref) {
 
 	const inner = useRef(null);
 
-	// 	if (sticky.current) {
-	// 		gsap.set(path.current, {
-	// 			scale: 0.00001,
-	// 			transformOrigin: "center",
-	// 		});
-
-	// 		// blobTl.current = gsap.timeline({
-	// 		// 	scrollTrigger: {
-	// 		// 		trigger: sticky.current,
-	// 		// 		start: "top top",
-	// 		// 		end: "+=1600",
-	// 		// 		scrub: !0,
-	// 		// 		pin: true,
-	// 		// 	},
-	// 		// });
-
-	// 		titleTl.current = gsap.timeline({
-	// 			scrollTrigger: {
-	// 				trigger: sticky.current,
-	// 				start: "top top",
-
-	// 				scrub: !0,
-	// 				pin: true,
-	// 			},
-	// 		});
-
-	// 		// fade.current.to(inner.current, {
-	// 		// 	opacity: 0,
-	// 		// });
-
-	// 		titleTl.current
-	// 			.to(
-	// 				$(".o-hero_title span:first-of-type"),
-	// 				{
-	// 					scale: 1.1,
-	// 				},
-	// 				0
-	// 			)
-	// 			.to(
-	// 				$(".o-hero_title span:first-of-type"),
-	// 				{
-	// 					opacity: 0,
-	// 				},
-	// 				0
-	// 			)
-	// 			.to($(".o-hero_title span:nth-of-type(2)"), {
-	// 				opacity: 1,
-	// 				scale: 1.1,
-	// 			})
-	// 			.to($(".o-hero_title span:nth-of-type(2)"), {
-	// 				opacity: 0,
-	// 			})
-	// 			.to($(".o-hero_title span:nth-of-type(3)"), {
-	// 				opacity: 1,
-	// 				scale: 1.1,
-	// 			})
-	// 			.to($(".o-hero_title span:nth-of-type(3)"), {
-	// 				opacity: 0,
-	// 			})
-	// 			.to($(".o-hero_title span:nth-of-type(4)"), {
-	// 				opacity: 1,
-	// 				scale: 1.1,
-	// 			})
-	// 			.to($(".o-hero"), {
-	// 				x: "-100%",
-	// 			});
-
-	// 		// blobTl.current.to(
-	// 		// 	path.current,
-	// 		// 	{
-	// 		// 		scale: 5,
-
-	// 		// 		transformOrigin: "center",
-	// 		// 	},
-	// 		// 	10
-	// 		// );
-
-	// 		// titleTl.current = gsap.timeline({
-	// 		// 	scrollTrigger: {
-	// 		// 		trigger: sticky.current,
-	// 		// 		start: "top top",
-	// 		// 		end: "+=3000",
-	// 		// 		pin: true,
-	// 		// 		scrub: 2,
-	// 		// 		onUpdate: self => {
-	// 		// 			if (self.progress > 0.2 && self.progress < 0.4) {
-	// 		// 				setWord("for");
-	// 		// 			} else if (self.progress > 0.4 && self.progress < 0.6) {
-	// 		// 				setWord("good");
-	// 		// 			} else if (self.progress > 0.6 && !hasPlayed) {
-	// 		// 				setWord("stories");
-	// 		// 				setPlayed(true);
-	// 		// 			}
-	// 		// 		},
-	// 		// 	},
-	// 		// });
-	// 	}
-	// }, [path.current, hasPlayed]);
-
 	//Declare hero animation timelines
 	const heroTitleTl = useRef(null);
-	const scrollTl = useRef(null);
 
 	useEffect(() => {
 		//If there's a scroll trigger ref, set timelines with trigger
 		if (sticky.current) {
-			// scrollTl.current = gsap.timeline({
-			// 	scrollTrigger: {
-			// 		trigger: sticky.current,
-			// 		start: "top top",
-
-			// 		scrub: 1,
-			// 		pin: true,
-			// 	},
-			// });
 			heroTitleTl.current = gsap.timeline({
 				scrollTrigger: {
 					trigger: sticky.current,
 					start: "top top",
 					end: "+=2000",
-
-					scrub: !0,
+					scrub: 1,
 					pin: true,
 					invalidateOnResize: true,
 				},
@@ -202,10 +92,12 @@ function HomePage(props, ref) {
 				{
 					scale: 5,
 					duration: 10,
-					morphSVG:
-						"M49,2.6C49,27.4,24.5,54.8,3.4,54.8C-17.7,54.8,-35.3,27.4,-35.3,2.6C-35.3,-22.1,-17.7,-44.2,3.4,-44.2C24.5,-44.2,49,-22.1,49,2.6Z",
 				}
 			)
+			.to(path.current, {
+				morphSVG:
+					"M49,2.6C49,27.4,24.5,54.8,3.4,54.8C-17.7,54.8,-35.3,27.4,-35.3,2.6C-35.3,-22.1,-17.7,-44.2,3.4,-44.2C24.5,-44.2,49,-22.1,49,2.6Z",
+			})
 			.to(path.current, {
 				morphSVG:
 					"M34,-64.5C41.4,-54.6,42.8,-40.1,48.4,-28.6C53.9,-17,63.6,-8.5,63.8,0.1C63.9,8.7,54.5,17.4,49.3,29.4C44,41.5,42.9,57,35.4,68.1C27.9,79.1,14,85.7,3.4,79.8C-7.1,73.9,-14.2,55.4,-23.9,45.6C-33.6,35.8,-45.8,34.7,-57.3,28.5C-68.7,22.4,-79.4,11.2,-81.6,-1.3C-83.8,-13.7,-77.6,-27.4,-66.5,-34.3C-55.5,-41.2,-39.7,-41.3,-27.8,-48.5C-15.9,-55.8,-7.9,-70.3,2.7,-74.9C13.3,-79.6,26.6,-74.4,34,-64.5Z",
@@ -236,7 +128,7 @@ function HomePage(props, ref) {
 		// 		morphSVG:
 		// 			"M34,-64.5C41.4,-54.6,42.8,-40.1,48.4,-28.6C53.9,-17,63.6,-8.5,63.8,0.1C63.9,8.7,54.5,17.4,49.3,29.4C44,41.5,42.9,57,35.4,68.1C27.9,79.1,14,85.7,3.4,79.8C-7.1,73.9,-14.2,55.4,-23.9,45.6C-33.6,35.8,-45.8,34.7,-57.3,28.5C-68.7,22.4,-79.4,11.2,-81.6,-1.3C-83.8,-13.7,-77.6,-27.4,-66.5,-34.3C-55.5,-41.2,-39.7,-41.3,-27.8,-48.5C-15.9,-55.8,-7.9,-70.3,2.7,-74.9C13.3,-79.6,26.6,-74.4,34,-64.5Z",
 		// 	});
-	}, [heroTitleTl, scrollTl]);
+	}, [heroTitleTl]);
 
 	return (
 		<>
@@ -296,7 +188,7 @@ function HomePage(props, ref) {
 				</div>
 				<Work projects={data.projects && data.projects} />
 
-				<Values photos={data.valuePhotos && data.valuePhotos} />
+				{/* <Values photos={data.valuePhotos && data.valuePhotos} /> */}
 
 				{/* <SplitSection
 					dataThemeRight='sky'
