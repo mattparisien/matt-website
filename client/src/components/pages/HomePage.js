@@ -158,7 +158,7 @@ function HomePage(props, ref) {
 					trigger: sticky.current,
 					start: "top top",
 					end: "+=2000",
-					markers: true,
+
 					scrub: !0,
 					pin: true,
 					invalidateOnResize: true,
@@ -253,7 +253,8 @@ function HomePage(props, ref) {
 								</div>
 								<div className='o-text -big -padding-lg'>
 									My love for storytelling is entirely driven by passion and a
-									love for people. I believe that great teamwork has the ability to transcend the workplace.
+									love for people. I believe that great teamwork has the ability
+									to transcend the workplace.
 								</div>
 							</Container>
 						</Section>
