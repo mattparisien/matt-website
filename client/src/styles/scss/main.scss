@@ -73,18 +73,18 @@ a {
 
 [data-theme="regular"] {
 	color: $pink;
-	background-color: #3A8696;
-	$accent: $green;
+	background-color: $light;
+	color: green;
 
-	.-accent {
-		color: $dark;
-		background-color: $accent;
-	}
 }
 
 
 .-fill-blue {
 	fill: #3A8696;
+}
+
+.-fill-light {
+	fill: $light;
 }
 
 

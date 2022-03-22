@@ -19,6 +19,10 @@
 		color: $dark;
 	}
 
+	&[data-color="green"] {
+		color: green;
+	}
+
 	.o-container {
 		display: flex;
 		align-items: center;

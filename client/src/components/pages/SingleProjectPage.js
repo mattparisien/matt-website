@@ -1,17 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { shuffleColors } from "../../helpers/shuffleColors";
+import { DataContext } from "../../App/App";
+import { themes } from "../../helpers/dataThemes";
+import { shuffleThemes } from "../../helpers/shuffleThemes";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
-import { DataContext } from "../../App/App";
-import Arrow from "../Vector/Arrow";
 import Link from "../Link/Link";
-import { shuffleThemes } from "../../helpers/shuffleThemes";
-import { themes } from "../../helpers/dataThemes";
+import Arrow from "../Vector/Arrow";
 
 function SingleProjectPage({
 	location,
-	transitioning,
-	toggleTransitioning,
+	
+	
 	setPageTheme,
 }) {
 	const data = useContext(DataContext);
@@ -43,18 +42,18 @@ function SingleProjectPage({
 
 		if (data && data.projects && param && !info) {
 			// setInfo(data.posts.filter(x => x.id === param));
-			const match = data.projects.filter(x => x.id == param);
+			const match = data.projects.filter(x => x.id === param);
 			const nextPost = data.projects.filter(
 				x =>
-					x.id ==
-					(parseInt(param) - 1 == 0
+					x.id ===
+					(parseInt(param) - 1 === 0
 						? data.projects.length
 						: parseInt(param) - 1)
 			);
 
 			setInfo({ ...match, nextPost: nextPost });
 		}
-	}, [data, location, param]);
+	}, [data, location, param, info, setPageTheme]);
 
 	return (
 		<div className='o-page o-single-project'>

@@ -33,5 +33,5 @@ export default function useResize() {
 		}
 	}, [isResized])
 
-	return [windowWidth, windowHeight, isResized];
+	return {windowWidth, windowHeight, isResized};
 }

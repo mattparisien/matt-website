@@ -6,7 +6,15 @@
 
 @font-face {
 	font-family: "Soehne";
-	src: url(../../fonts/NeueMontreal-Regular.otf);
+	src: url(../../fonts/HellixTRIAL-Regular.otf);
+	font-weight: 200;
+}
+
+
+@font-face {
+	font-family: "Soehne Medium";
+	src: url(../../fonts/HellixTRIAL-Medium.otf);
+	font-weight: 500;
 }
 
 @font-face {
@@ -84,6 +92,7 @@ h6 {
 
 body {
 	margin: 0;
+	overflow-x: hidden;
 }
 
 ul {

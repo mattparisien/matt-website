@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
-import WaveSection from "../Layouts/WaveSection";
+import React from "react";
 import Marquee from "react-fast-marquee";
-import useMouseMove from "../../helpers/hooks/useMouseMove";
-import gsap from "gsap";
-import $ from "jquery";
+import WaveSection from "../Layouts/WaveSection";
 
 function Values({ photos }) {
-	const [hoverWord, setHoverWord] = useState(null);
+	// const [hoverWord, setHoverWord] = useState(null);
 
 	const words = [
 		"ice cream",
@@ -20,15 +17,15 @@ function Values({ photos }) {
 		"code",
 	];
 
-	const [location] = useMouseMove();
-	const [prev, setPrev] = useState({
-		pageX: 0,
-		pageY: 0
-	})
+	// const [location] = useMouseMove();
+	// const [prev, setPrev] = useState({
+	// 	pageX: 0,
+	// 	pageY: 0
+	// })
 
-	const handleMouseEnter = word => {
-		setHoverWord(word);
-	};
+	// const handleMouseEnter = word => {
+	// 	setHoverWord(word);
+	// };
 
 // useEffect(() => {
 
@@ -58,7 +55,7 @@ function Values({ photos }) {
 							<div
 								className='marquee-item o-text -big -fk'
 								key={i}
-								onMouseEnter={() => handleMouseEnter(word)}
+								// onMouseEnter={() => handleMouseEnter(word)}
 							>
 								{word}
 							</div>

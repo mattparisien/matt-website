@@ -1,26 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
+import useMouseMove from "../../helpers/hooks/useMouseMove";
 import WaveSection from "../Layouts/WaveSection";
 import Link from "../Link/Link";
-import useMouseMove from "../../helpers/hooks/useMouseMove";
 
 function Work({ projects }) {
-	const [currentImage, setCurrentImage] = useState(null);
-	const [isInView, setInView] = useState(null);
+	// const [currentImage, setCurrentImage] = useState(null);
+	// const [isInView, setInView] = useState(null);
 
-	const handleMouseEnter = imageUrl => {
-		setInView(true);
-		setCurrentImage(imageUrl);
-	};
-	const handleMouseLeave = () => {
-		setInView(false);
-	};
+	// const handleMouseEnter = imageUrl => {
+	// 	setInView(true);
+	// 	setCurrentImage(imageUrl);
+	// };
+	// const handleMouseLeave = () => {
+	// 	setInView(false);
+	// };
 
 	const [location] = useMouseMove();
 
 	return (
 		<WaveSection
-			classes='o-work -fullHeight -padding-lg'
-			waveTop='blue'
+			classes='o-work '
+			waveTop='light'
 			waveBottom='purple'
 			dataTheme='banana'
 		>
@@ -31,8 +31,8 @@ function Work({ projects }) {
 							<li
 								key={project.id}
 								className='o-h2'
-								onMouseEnter={() => handleMouseEnter(project.Cover.image.url)}
-								onMouseLeave={handleMouseLeave}
+								// onMouseEnter={() => handleMouseEnter(project.Cover.image.url)}
+								// onMouseLeave={handleMouseLeave}
 							>
 								<Link href={project.Location} target='_blank'>
 									<span>{project.Title}</span>
@@ -45,8 +45,8 @@ function Work({ projects }) {
 			<div
 				className='o-work_image -absolute -absolute-center'
 				style={{
-					backgroundImage: `url(${currentImage})`,
-					opacity: isInView ? 1 : 0,
+					// backgroundImage: `url(${currentImage})`,
+					opacity: 0 ,
 					left: location.pageX,
 					top: location.pageY,
 					transform: "translate(-50%, -50%)",

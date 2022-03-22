@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Container from "../Containers/Container";
 import Form from "../Form/Form";
 
 function ContactPage({ toggleLoading, isLoading }) {
-	useEffect(() => {
-		toggleLoading()
-	}, []);
+
 
 	const formFields = [
 		{

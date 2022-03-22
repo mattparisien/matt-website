@@ -1,5 +1,4 @@
 import React from "react";
-import Section from "../Containers/Section";
 import Container from "../Containers/Container";
 
 function SplitSection({

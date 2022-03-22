@@ -2,12 +2,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import MorphSVGPlugin from "gsap/src/MorphSVGPlugin";
 import $ from "jquery";
-import React, {
-	forwardRef,
-	useContext,
-	useEffect,
-	useRef
-} from "react";
+import React, { forwardRef, useContext, useEffect, useRef } from "react";
 // Import Swiper styles
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
@@ -43,7 +38,6 @@ function HomePage(props, ref) {
 
 	const inner = useRef(null);
 
-	// useEffect(() => {
 	// 	if (sticky.current) {
 	// 		gsap.set(path.current, {
 	// 			scale: 0.00001,
@@ -163,6 +157,7 @@ function HomePage(props, ref) {
 				scrollTrigger: {
 					trigger: sticky.current,
 					start: "top top",
+					end: "+=2000",
 					markers: true,
 					scrub: !0,
 					pin: true,
@@ -206,13 +201,11 @@ function HomePage(props, ref) {
 
 				{
 					scale: 5,
+					duration: 10,
+					morphSVG:
+						"M49,2.6C49,27.4,24.5,54.8,3.4,54.8C-17.7,54.8,-35.3,27.4,-35.3,2.6C-35.3,-22.1,-17.7,-44.2,3.4,-44.2C24.5,-44.2,49,-22.1,49,2.6Z",
 				}
 			)
-			.to(path.current, {
-				duration: 0.5,
-				morphSVG:
-					"M49,2.6C49,27.4,24.5,54.8,3.4,54.8C-17.7,54.8,-35.3,27.4,-35.3,2.6C-35.3,-22.1,-17.7,-44.2,3.4,-44.2C24.5,-44.2,49,-22.1,49,2.6Z",
-			})
 			.to(path.current, {
 				morphSVG:
 					"M34,-64.5C41.4,-54.6,42.8,-40.1,48.4,-28.6C53.9,-17,63.6,-8.5,63.8,0.1C63.9,8.7,54.5,17.4,49.3,29.4C44,41.5,42.9,57,35.4,68.1C27.9,79.1,14,85.7,3.4,79.8C-7.1,73.9,-14.2,55.4,-23.9,45.6C-33.6,35.8,-45.8,34.7,-57.3,28.5C-68.7,22.4,-79.4,11.2,-81.6,-1.3C-83.8,-13.7,-77.6,-27.4,-66.5,-34.3C-55.5,-41.2,-39.7,-41.3,-27.8,-48.5C-15.9,-55.8,-7.9,-70.3,2.7,-74.9C13.3,-79.6,26.6,-74.4,34,-64.5Z",
@@ -252,11 +245,15 @@ function HomePage(props, ref) {
 					<div className='o-sticky_inner' ref={inner}>
 						<Section classes='o-intro -fullHeight' data-theme='regular'>
 							<Container>
-								<div className='o-text -big -padding-huge'>
+								<div className='o-text -big -padding-lg'>
 									Communication begins with a story. This is why I believe web
 									development is storytelling. Good stories engage and create
-									immersive experiences for their listeners. Good stories are
-									touching, they exist, they progress, and create memories.
+									immersive experiences for their listeners. They exist, they
+									progress, and create memories.
+								</div>
+								<div className='o-text -big -padding-lg'>
+									My love for storytelling is entirely driven by passion and a
+									love for people. I believe that great teamwork has the ability to transcend the workplace.
 								</div>
 							</Container>
 						</Section>

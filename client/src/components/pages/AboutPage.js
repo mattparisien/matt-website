@@ -1,22 +1,16 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
-import SpinnerCard from "../Spinner/SpinnerCard";
 import Revealer from "../Revealer/Revealer";
+import SpinnerCard from "../Spinner/SpinnerCard";
 
-function AboutPage({ photos, setPageTheme, toggleLoading }) {
+function AboutPage({ photos }) {
 	const [loaded, setLoaded] = useState(false);
-	const words = useMemo(
-		() => ["developer", "designer", "bagel lover", "dancer", "montrealer"],
-		[]
-	);
+	// const words = useMemo(
+	// 	() => ["developer", "designer", "bagel lover", "dancer", "montrealer"],
+	// 	[]
+	// );
 
-	useEffect(() => {
-		setPageTheme("fancy");
-		setTimeout(() => {
-			toggleLoading();
-		}, 500);
-	}, []);
 
 	return (
 		<div className='o-page o-page_about'>

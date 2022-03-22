@@ -4,6 +4,9 @@
 	z-index: 999;
 
 	&_link {
+		border: 0px;
+		background: transparent;
+
 		display: flex;
 		align-items: center;
 		justify-content: space-evenly;
@@ -157,16 +160,22 @@
 		font-size: 1.2rem;
 
 		li {
-			opacity: 0.5;
 			transition: 400ms ease;
+
+			&:hover {
+				opacity: 0.4;
+			}
+
+			button {
+				border: 0px;
+				background: transparent;
+				font-family: Soehne;
+				font-size: 1.5rem;
+			}
 		}
 
 		li:not(:last-child) {
 			margin-right: 2.2rem;
-		}
-
-		li.is-active {
-			opacity: 1;
 		}
 	}
 }

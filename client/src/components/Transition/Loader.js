@@ -1,11 +1,8 @@
 import classNames from "classnames";
 import gsap from "gsap";
 import CSSPlugin from "gsap/CSSPlugin";
-import MorphSVGPlugin from "gsap/MorphSVGPlugin";
-import React, { useEffect, useRef, useState } from "react";
-import variables from "../../styles/scss/_vars.module.scss";
-import $ from "jquery";
 import SplitText from "gsap/SplitText";
+import React from "react";
 
 gsap.registerPlugin(CSSPlugin, SplitText);
 

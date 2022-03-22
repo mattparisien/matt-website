@@ -3,7 +3,7 @@ import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useCallback, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
@@ -29,7 +29,7 @@ export const CursorContext = createContext();
 function App() {
 	const [loading, setLoading] = useState(true);
 	const [pageTheme, setPageTheme] = useState("party");
-	const [windowWidth, windowHeight, isResized] = useResize();
+	const { isResized } = useResize();
 
 	const themes = {
 		space: [
@@ -68,17 +68,17 @@ function App() {
 	const [isSplit, setSplit] = useState(false);
 	const split = useRef(null);
 	const location = useLocation();
-	const [hasRendered, setRendered] = useState(false);
+	
 	const [headerColor, setHeaderColor] = useState("orange");
 
 	useEffect(() => {
-		if (!hasRendered && location.pathname === "/") {
-			const items = $("[data-theme-trigger]");
+		if (location.pathname === "/") {
+			
 
 			const handleScroll = () => {
-				if (window.scrollY > 720 && window.scrollY < 2092) {
-					setHeaderColor("pink");
-				} else if (window.scrollY > 2092 && window.scrollY < 3600) {
+				if (window.scrollY > 720 && window.scrollY < 2000) {
+					setHeaderColor("green");
+				} else if (window.scrollY > 2000 && window.scrollY < 3600) {
 					console.log("in here!");
 					setHeaderColor("dark");
 				} else if (window.scrollY > 3600) {
@@ -90,7 +90,7 @@ function App() {
 
 			window.addEventListener("scroll", handleScroll);
 		}
-	}, [hasRendered]);
+	}, [location.pathname]);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -153,9 +153,9 @@ function App() {
 		isTransitioning: false,
 	});
 
-	const setTransitioning = () => {
-		setState(prev => ({ ...prev, isTransitioning: true }));
-	};
+	// const setTransitioning = () => {
+	// 	setState(prev => ({ ...prev, isTransitioning: true }));
+	// };
 
 	useEffect(() => {
 		//resplit whenever there's a location change
@@ -172,6 +172,11 @@ function App() {
 
 	const initialRender = useRef(true);
 
+	const toggleLoading = useCallback(() => {
+		setLoading(!loading)
+	}, [loading])
+	
+
 	useEffect(() => {
 		console.log(isResized);
 
@@ -184,7 +189,7 @@ function App() {
 		if (initialRender.current) {
 			initialRender.current = false;
 		}
-	}, [isResized]);
+	}, [isResized, toggleLoading]);
 
 	useEffect(() => {
 		console.log("Designed & developed by Matt Parisien");
@@ -296,9 +301,6 @@ function App() {
 		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
 	};
 
-	const toggleLoading = () => {
-		setLoading(!loading);
-	};
 
 	const loadingControls = {
 		menuActive: state.menuActive,
@@ -394,7 +396,12 @@ function App() {
 											/>
 											<Route
 												path='/contact'
-												element={<ContactPage toggleLoading={toggleLoading} isLoading={loading} />}
+												element={
+													<ContactPage
+														toggleLoading={toggleLoading}
+														isLoading={loading}
+													/>
+												}
 											/>
 										</Routes>
 									</ContentWrapper>

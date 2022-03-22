@@ -1,18 +1,18 @@
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
+import $ from "jquery";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import Container from "../Containers/Container";
 import Eyes from "../Eyes/Eyes";
 import Link from "../Link/Link";
-import $ from "jquery";
 
 function Footer(props) {
 	const linkRefs = useRef([]);
 
 	linkRefs.current = [];
 
-	const [ref, inView, entry] = useInView({ threshold: 0.4 });
+	const [ref, inView] = useInView({ threshold: 0.4 });
 
 	const words = useMemo(
 		() => [
@@ -45,7 +45,7 @@ function Footer(props) {
 				opacity: 1,
 			});
 		}
-	}, [inView]);
+	}, [inView, ref]);
 
 	useEffect(() => {
 		if (split.current) {

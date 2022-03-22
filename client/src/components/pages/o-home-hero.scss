@@ -88,7 +88,7 @@
 }
 
 .o-sticky {
-	height: 100vh !important;
+	min-height: 100vh !important;
 	&_inner {
 		position: relative;
 	}

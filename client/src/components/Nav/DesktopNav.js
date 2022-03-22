@@ -1,8 +1,11 @@
+import gsap from "gsap";
+import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
 import React from "react";
-import Link from "../Link/Link";
 import { useLocation } from "react-router-dom";
 
 function DesktopNav() {
+	gsap.registerPlugin(ScrollToPlugin);
+
 	const location = useLocation();
 
 	const links = [
@@ -20,6 +23,22 @@ function DesktopNav() {
 		},
 	];
 
+	const handleClick = (e, linkName) => {
+		if (linkName.toLowerCase() === "contact") {
+			gsap.to(window, {
+				duration: 3,
+
+				scrollTo: document.body.scrollHeight,
+			});
+		} else {
+			gsap.to(window, {
+				duration: 1,
+
+				scrollTo: ".o-work",
+			});
+		}
+	};
+
 	return (
 		<nav className='c-nav -desktop'>
 			<ul>
@@ -29,9 +48,7 @@ function DesktopNav() {
 							key={index}
 							className={link.path === location.pathname && "is-active"}
 						>
-							<Link href={link.path} isRouterLink classes="-fade-up-load -delay-2">
-								{link.name}
-							</Link>
+							<button onClick={e => handleClick(e, link.name)}>{link.name}</button>
 						</li>
 					);
 				})}

@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import useMouseMove from "../../helpers/hooks/useMouseMove";
 import gsap from "gsap";
+import React, { useEffect, useRef } from "react";
+import useMouseMove from "../../helpers/hooks/useMouseMove";
 
 function Eyes() {
 	const containerLeft = useRef(null);
-	const containerRight = useRef(null);
+	// 
+	
 
 	return (
 		<div className='c-eyes'>

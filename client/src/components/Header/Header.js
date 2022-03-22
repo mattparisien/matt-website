@@ -1,9 +1,8 @@
 import React from "react";
 import Container from "../Containers/Container";
-import Section from "../Containers/Section";
 import Logo from "../Logo/Logo";
-import Nav from "../Nav/Nav";
 import DesktopNav from "../Nav/DesktopNav";
+import Nav from "../Nav/Nav";
 
 function Header({color}) {
 	return (

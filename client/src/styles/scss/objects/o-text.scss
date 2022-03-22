@@ -1,11 +1,12 @@
 .o-text {
-  font-family: 'Soehne';
+  font-family: 'Soehne Medium';
   font-size: 1.1rem;
   line-height: 1.8rem;
 
   &.-medium {
     font-size: 3rem;
     line-height: 3rem;
+    font-weight: 500;
   }
   
   &.-big {
