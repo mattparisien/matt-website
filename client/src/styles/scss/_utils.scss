@@ -5,6 +5,10 @@
 	padding: $space-xxxl 0;
 }
 
+.-padding-lg {
+	padding: $space-lg 0;
+}
+
 .-padding-top-huge {
 	padding-top: $space-xxxl;
 }
@@ -23,6 +27,10 @@
 
 .-flex {
 	display: flex;
+}
+
+.-row-reverse {
+	flex-direction: row-reverse;
 }
 
 .-desktop {
@@ -73,6 +81,12 @@
 	position: absolute;
 }
 
+.-absolute-center {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 .-fade-up-load {
 	transform: translateY(40%);
 	opacity: 0;
@@ -103,6 +117,10 @@
 	transition-delay: 400ms;
 }
 
+.is-dom-loaded {
+	cursor: default;
+}
+
 .is-dom-loaded .-fade-up-load {
 	transform: translateY(0%);
 	opacity: 1;
@@ -110,6 +128,10 @@
 
 .-text-switch {
 	overflow: hidden;
+}
+
+.-no-offset {
+	padding-top: 0 !important;
 }
 
 .c-char,
@@ -199,12 +221,25 @@
 	color: $light !important;
 }
 
+.-bg-orange {
+	background-color: $orange;
+	color: $light !important;
+}
+
 .-stroke-light {
 	stroke: $light !important;
 }
 
 .-fill-light {
 	fill: $light !important;
+}
+
+.-fill-yellow {
+	fill: $yellow !important;
+}
+
+.-fill-purple {
+	fill: $purple !important;
 }
 
 .-bg-yellow {
@@ -217,15 +252,32 @@
 
 .-ul-small,
 .-text-tiny {
-	font-size: 0.6rem;
-	font-family: "Roboto Mono", monospace;
+	font-size: 1rem;
+	font-family: "Soehne";
+	
+}
+
+.-fk {
+	font-family: 'FK' !important;
 	text-transform: uppercase;
 }
 
+.-text-orange {
+	color: $orange;
+}
+
+.-huge {
+	font-size: 15vw;
+	line-height: 19vw;
+	text-align: center;
+}
+
+.-width-50 {
+	width: 50%;
+}
+
 .-indent {
-	.line:nth-of-type(1) {
-		padding-left: 30%;
-	}
+	text-indent: 20%;
 }
 
 .-block {

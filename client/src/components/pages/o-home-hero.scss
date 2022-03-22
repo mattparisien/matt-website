@@ -1,17 +1,118 @@
-.o-home-hero {
-	height: 20vh;
-	width: 100%;
+.o-page_home {
+	.o-about {
+		display: flex;
 
-	.o-section {
-		height: 100%;
+		&_left,
+		&_right {
+			width: 50%;
+			height: 60vw;
+
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		&_right {
+			background-color: $dark;
+		}
+
+		&_left {
+			background-color: $deepGreen;
+		}
+
+		&_image {
+			height: 70%;
+			width: 60%;
+		}
+	}
+
+	
+
+	.c-section {
 		width: 100%;
-    position: relative;
-    overflow: hidden;
+	}
+
+	.o-container {
+		width: 100%;
+	}
+	.o-hero {
+		position: absolute;
+
+		top: 0;
+		left: 0;
+		&_cta {
+			.line {
+				&::before {
+					content: "";
+					height: 100px;
+					width: 1px;
+					content: "";
+					background-color: $dark;
+				}
+			}
+
+			position: absolute;
+			bottom: 10%;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		.o-h1 {
+			position: relative;
+			overflow: visible;
+			width: 100%;
+			text-align: center;
+
+			span {
+				display: block;
+			}
+
+			span:not(:first-child) {
+				position: absolute;
+				width: 100%;
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				opacity: 0;
+			}
+
+			@include media(">=tablet") {
+				font-size: 25vw;
+				line-height: 20vw;
+				text-align: center;
+			}
+			font-size: 30vw;
+			line-height: 30vw;
+		}
 	}
 }
 
-.o-home-hero_banner {
-	width: 100%;
-	display: flex;
-	align-items: flex-end;
+.o-sticky {
+	min-height: 100vh !important;
+	&_inner {
+		position: relative;
+	}
+
+	.o-intro {
+		clip-path: url(#c-blob_clip);
+		z-index: 99;
+	}
+
+	.c-blob {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+
+		path {
+			transform-origin: center;
+			transform: scale(0.004);
+		}
+
+		clipPath {
+			transform: scale(0.004);
+			transform-origin: center;
+		}
+	}
 }

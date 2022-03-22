@@ -1,25 +1,23 @@
-//Shuffles theme colors
+import variables from "../styles/scss/_vars.module.scss";
 
-function shuffleColors(theme) {
-	let randomColor;
+export const shuffleColors = () => {
+	const getKeyByValue = (object, value) => {
+		return Object.keys(object).find(key => object[key] === value);
+	};
+
 	const colors = [];
-	
-	//Push only colors that aren't b&w & check if array includes
-	for (let key in theme.colors) {
-		if (
-			key !== "light" &&
-			key !== "dark" &&
-			!colors.includes(theme.colors[key])
-		) {
-			colors.push(theme.colors[key]);
+
+	for (const item in variables) {
+		if (item.startsWith("color")) {
+			colors.push(variables[item]);
 		}
 	}
 
-	const randomColorIndex = Math.ceil(Math.random() * colors.length);
-
-	randomColor = colors[randomColorIndex];
-
-	return randomColor;
-}
-
-export default shuffleColors;
+	const randomIndex = Math.ceil(Math.random() * colors.length - 1);
+	const randomColorHex = colors[randomIndex];
+	const randomColorName = getKeyByValue(variables, randomColorHex).replace(
+		"colors-",
+		""
+	);
+	return randomColorName;
+};

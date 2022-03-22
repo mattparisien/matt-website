@@ -1,23 +1,17 @@
 .c-nav {
-	position: fixed;
-	top: 0;
-	right: 0;
 	height: 4rem;
 	width: 4rem;
-	margin-top: 1rem;
-	margin-right: 0.2rem;
 	z-index: 999;
 
-	@include media("<=tablet") {
-    margin-right: 2rem;
-  }
-
 	&_link {
+		border: 0px;
+		background: transparent;
+
 		display: flex;
 		align-items: center;
 		justify-content: space-evenly;
 		flex-direction: column;
-		transition: 600ms ease;
+
 		position: relative;
 		height: 100%;
 		width: 100%;
@@ -43,7 +37,6 @@
 			height: 2px;
 			background-color: $dark;
 			transform-origin: center;
-			transition: 200ms ease;
 		}
 
 		&::before {
@@ -134,7 +127,7 @@
 		padding-right: 3rem;
 
 		a {
-			font-family: "Roboto Mono";
+			font-family: "Soehne";
 			text-transform: uppercase;
 			transform: translateX(100%);
 			opacity: 0;
@@ -154,4 +147,35 @@
 	// transform: scale(0);
 	z-index: -1;
 	transition: 200ms ease;
+}
+
+.c-nav.-desktop {
+	width: auto;
+	height: 100%;
+
+	ul {
+		display: flex;
+		align-items: center;
+		height: 100%;
+		font-size: 1.2rem;
+
+		li {
+			transition: 400ms ease;
+
+			&:hover {
+				opacity: 0.4;
+			}
+
+			button {
+				border: 0px;
+				background: transparent;
+				font-family: Soehne;
+				font-size: 1.5rem;
+			}
+		}
+
+		li:not(:last-child) {
+			margin-right: 2.2rem;
+		}
+	}
 }

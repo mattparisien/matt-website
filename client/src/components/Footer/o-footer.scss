@@ -1,11 +1,53 @@
 .o-footer {
-	height: 80vh;
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+
+	.o-h2 {
+		color: $dark;
+		@include media(">=laptop") {
+			font-size: 10rem;
+		}
+	}
+
+	.c-eyes {
+		opacity: 0;
+		transition-delay: 500ms;
+	}
+
+	&.is-inview {
+		.c-oval {
+			transform: scale(1) rotateX(0);
+			transition-delay: 200ms;
+		}
+
+		.c-eyes {
+			opacity: 1;
+			transition-delay: 1s;
+
+			&_eye_revealer {
+				transition-delay: 1s;
+				transform: scaleY(0.001);
+			}
+		}
+	}
 
 	@include media("<=tablet") {
 		height: 120vw;
+	}
+
+	.c-oval {
+		height: 50vw;
+		max-height: 750px;
+		border-radius: 50%;
+		width: 100%;
+		max-width: 1800px;
+		margin: 0 auto;
+		transform: scale(0) rotateX(70deg);
+		transition: $transition-expo;
 	}
 }
 
@@ -27,9 +69,46 @@
 	display: flex;
 	align-items: flex-end;
 	justify-content: space-between;
-	margin-top: auto;
+	position: absolute;
+	bottom: 0;
+	
+
 	margin-bottom: 2rem;
 	max-width: 1900px;
+
+	.footer-list {
+		font-family: "Neue Mtl";
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-transform: uppercase;
+
+		> div:first-child {
+			margin-right: 2rem;
+		}
+
+		@include media("<=tablet") {
+			flex-direction: column;
+
+			> div {
+				margin-right: 0 !important;
+			}
+		}
+
+		ul {
+			display: flex;
+			align-items: flex-end;
+
+			li:first-child {
+				font-size: 0.8rem;
+			}
+
+			li:not(:last-child) {
+				margin-right: 1rem;
+			}
+		}
+	}
 
 	.o-h4 {
 		margin: 0;

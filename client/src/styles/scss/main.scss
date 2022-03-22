@@ -12,6 +12,8 @@
 @import "objects/o-h3";
 @import "objects/o-h1";
 @import "objects/o-text";
+@import "objects/o-single-project";
+@import "objects/o-page";
 @import "components/c-asteryx.scss";
 @import "../../components/Lists/styles/c-project.scss";
 @import "../../components/Filter/c-filter.scss";
@@ -22,6 +24,8 @@
 @import "../../components/Arrow/c-arrow.scss";
 @import "../../components/Form/c-form.scss";
 @import "../../components/pages/o-home-hero.scss";
+@import "../../components/pages/o-home_work.scss";
+@import "../../components/pages/o-home_values.scss";
 @import "../../components/pages/o-about.scss";
 @import "../../components/Grid/c-grid.scss";
 @import "../../components/Footer/o-footer.scss";
@@ -31,6 +35,10 @@
 @import "../../components/Button/c-circle-button.scss";
 @import "../../components/Logo/c-logo.scss";
 @import "../../components/Spinner/c-spinner-card.scss";
+@import "../../components/Eyes/eyes.scss";
+@import "../../components/Revealer/c-revealer.scss";
+@import "../../components/Layouts/o-split-section.scss";
+@import "../../components/Layouts/o-wave-section.scss";
 
 .Home {
 	height: 100vh;
@@ -46,4 +54,122 @@ ul {
 
 a {
 	text-decoration: none;
+}
+
+[data-theme="fancy"] {
+	color: $dark;
+	background-color: $beige;
+	$accent: $yellow;
+	
+	.-bg-current {
+		background-color: $beige;
+	}
+
+	.-accent {
+		color: $dark;
+		background-color: $accent;
+	}
+}
+
+[data-theme="regular"] {
+	color: $pink;
+	background-color: $light;
+	color: green;
+
+}
+
+
+.-fill-blue {
+	fill: #3A8696;
+}
+
+.-fill-light {
+	fill: $light;
+}
+
+
+
+[data-theme="orangeCrush"] {
+	background-color: $orange;
+	color: $pink;
+}
+
+[data-theme="banana"] {
+	background-color: $yellow;
+	color: $dark;
+}
+
+[data-theme="icon"] {
+	background-color: $light;
+	color: $green;
+}
+
+[data-theme="sky"] {
+	background-color: $skyBlue;
+	color: $dark;
+}
+
+
+[data-theme="party"] {
+	background-color: $pink;
+	color: $orange;
+
+	.-accent {
+		color: $light;
+		background-color: $beige;
+	}
+}
+
+[data-theme="power"] {
+	background-color: $pink;
+	color: $blue;
+
+	.-accent {
+		color: $light;
+		background-color: $beige;
+	}
+}
+
+[data-theme="blue"] {
+	background-color: $blue;
+	color: $light;
+
+	.c-filter_item button.is-active {
+		color: $dark;
+		background-color: $light;
+	}
+
+	.c-filter_item button {
+		border: 1px solid $light !important;
+	}
+}
+
+[data-theme="purple"] {
+	background-color: $purple;
+	color: $pink;
+}
+
+[data-theme="sunny"] {
+	background-color: $yellow;
+	color: $dark;
+}
+
+[data-theme="dark"] {
+	background-color: $dark;
+	color: $light !important;
+
+	.c-filter_item button.is-active {
+		color: $dark;
+		background-color: $light;
+	}
+
+	.c-filter_item button {
+		border: 1px solid $light !important;
+	}
+}
+
+[data-scroll-sticky="headingIntro"] {
+	.o-sticky-heading {
+		transform: translateX(200%);
+	}
 }

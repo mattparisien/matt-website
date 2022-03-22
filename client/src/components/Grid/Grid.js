@@ -1,15 +1,18 @@
 import { useMediaQuery } from "@mui/material";
 import classNames from "classnames";
+import gsapCore from "gsap/gsap-core";
 import React, {
 	useCallback,
 	useContext,
+	useEffect,
 	useRef,
 	useState,
-	useEffect,
 } from "react";
 import { useInView } from "react-intersection-observer";
-import { ColorContext, CursorContext } from "../../App/App";
+import { ColorContext, CursorContext, LoadingContext } from "../../App/App";
+import Link from "../Link/Link";
 import SpinnerCard from "../Spinner/SpinnerCard";
+import gsap from "gsap";
 
 function Grid({ items, category }) {
 	const { setPageTheme } = useContext(ColorContext);
@@ -55,14 +58,14 @@ function Grid({ items, category }) {
 	};
 
 	const handleMouseEnter = () => {
-		if (!tablet && category === 'software') {
+		if (!tablet && category === "software") {
 			setPageTheme(themes[getRandomIndex()]);
 			setCursorState("hovering");
 		}
 	};
 
 	const handleMouseLeave = () => {
-		if (!tablet && category === 'software') {
+		if (!tablet && category === "software") {
 			setPageTheme("regular");
 			setCursorState("following");
 		}
@@ -72,7 +75,6 @@ function Grid({ items, category }) {
 		<div className={classes}>
 			{items &&
 				items[currentGrid || "software"].map((item, i) => {
-					console.log(item);
 					return (
 						<Item
 							key={i}
@@ -82,7 +84,7 @@ function Grid({ items, category }) {
 							alt={item.alt || item.alternativeText}
 							previewText={item.PreviewText || null}
 							title={item.Title || null}
-							url={item.Location || null}
+							href={`/work/${item.id}`}
 						/>
 					);
 				})}
@@ -97,48 +99,55 @@ function Item({
 	alt,
 	previewText,
 	title,
-	url,
+	href,
 }) {
-	const ref = useRef(null);
-	const [inViewRef, inView] = useInView({ threshold: 0.5 });
+	
+	// const [ref, inView, entry] = useInView();
 	const [loaded, setLoaded] = useState(false);
+	const { isLoading, toggleLoading } = useContext(LoadingContext);
 
-	const setRefs = useCallback(
-		node => {
-			// Ref's from useRef needs to have the node assigned to `current`
-			ref.current = node;
-			// Callback refs, like the one from `useInView`, is a function that takes the node as an argument
-			inViewRef(node);
-		},
-		[inViewRef]
-	);
+	const itemClasses = classNames("c-grid_item");
 
-	const itemClasses = classNames("c-grid_item", { "is-in-view": inView });
+	const handleLoad = () => {
+		isLoading && toggleLoading();
+		setLoaded(true);
+	};
+
+	// useEffect(() => {
+	// 	inView && gsap.to(entry.target, {
+	// 		y: 0,
+	// 		opacity: 1,
+	// 		ease: 'power4.out',
+	// 		duration: 1.3
+	// 	})
+	// }, [inView, entry])
 
 	return (
-		<a
-			className={itemClasses}
-			onMouseEnter={onMouseEnter}
-			onMouseLeave={onMouseLeave}
-			href={url}
-			target='_blank'
-			rel='noreferrer'
-			ref={setRefs}
-		>
-			{!loaded && <SpinnerCard />}
-			<div className='c-grid_img-wrapper'>
-				<img
-					src={src}
-					alt={Math.random()}
-					className='c-grid_img'
-					onLoad={() => setLoaded(true)}
-				/>
-			</div>
-			<div className='c-grid_info'>
-				<h3 className='c-grid_title'>{title}</h3>
-				<p className='c-grid_description -text-tiny'>{previewText}</p>
-			</div>
-		</a>
+		<div className={itemClasses}>
+			<Link
+				isRouterLink
+				onMouseEnter={onMouseEnter}
+				onMouseLeave={onMouseLeave}
+				href={href}
+				target='_blank'
+				rel='noreferrer'
+				
+			>
+				{!loaded && <SpinnerCard />}
+				<div className='c-grid_img-wrapper'>
+					<img
+						src={src}
+						alt={Math.random()}
+						className='c-grid_img'
+						onLoad={handleLoad}
+					/>
+				</div>
+				<div className='c-grid_info'>
+					<h3 className='c-grid_title'>{title}</h3>
+					<p className='c-grid_description -text-tiny'>{previewText}</p>
+				</div>
+			</Link>
+		</div>
 	);
 }
 

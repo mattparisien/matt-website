@@ -2,11 +2,19 @@ import React from "react";
 import classNames from "classnames";
 
 function Section(props) {
-	const classes = classNames("Section c-section", { [props.classes]: props.classes });
+	const classes = classNames("Section c-section", {
+		[props.classes]: props.classes,
+	});
 
 	return (
 		<>
-			<section className={classes}>{props.children}</section>
+			<section
+				className={classes}
+				data-theme-trigger={props["data-theme-trigger"]}
+				data-theme={props["data-theme"]}
+			>
+				{props.children}
+			</section>
 		</>
 	);
 }

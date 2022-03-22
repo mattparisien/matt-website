@@ -5,7 +5,7 @@ function Logo() {
   return (
     <div className="c-logo -fade-up-load -delay-1">
      <Link isRouterLink={true} href="/">
-      Matt
+      Matt Parisien
     </Link>  
     </div>
    

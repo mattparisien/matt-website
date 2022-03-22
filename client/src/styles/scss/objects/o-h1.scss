@@ -1,12 +1,16 @@
 .o-h1 {
-	font-size: 15vw;
-	letter-spacing: -0.2vw;
-	line-height: 12vw;
+	
+	font-family: 'FK';
 
 	margin: 0;
 
-	@include media("<=tablet") {
-		font-size: 16vw;
-		line-height: 14vw;
+	@include media(">=tablet") {
+		font-size: 25vw;
+		line-height: 20vw;
+		text-align: center;
 	}
+	font-size: 30vw;
+	line-height: 30vw;
+
+
 }

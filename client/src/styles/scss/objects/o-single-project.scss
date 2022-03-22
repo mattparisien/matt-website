@@ -1,0 +1,177 @@
+.o-single-project {
+	.o-hero {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		position: relative;
+
+		.o-h2 {
+			position: absolute;
+		}
+
+		&_image-wrapper {
+			overflow: hidden;
+			width: 40vw;
+			height: 50vw;
+			margin-left: auto;
+			max-width: 600px;
+			max-height: 700px;
+
+			img {
+				height: 100%;
+				width: 100%;
+				object-fit: cover;
+			}
+		}
+	}
+
+	.o-hero-2 {
+		height: 100vh;
+
+
+
+	}
+
+	.o-hero_title-banner {
+		position: relative;
+		height: 60%;
+
+		h1 {
+			position: sticky;
+			z-index: 2;
+			text-align: center;
+		}
+	}
+
+	.o-container:nth-child(2) {
+		position: relative;
+	
+	}
+
+	.o-hero_image-wrapper-2 {
+		z-index: 99;
+		position: sticky;
+		width: 40%;
+		height: 45vw;
+		position: absolute;
+		z-index: 0;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%);
+		
+	}
+
+	.o-info {
+		&_overview {
+			&_inner {
+				position: relative;
+				display: flex;
+
+				justify-content: space-between;
+				align-items: flex-start;
+
+				.o-info_overview_intro {
+					width: 70%;
+					padding-right: 7rem;
+				}
+
+				.o-info_overview_index {
+					width: 30%;
+					display: grid;
+					grid-template-columns: repeat(6, 1fr);
+
+					> div {
+						flex-grow: 1;
+						grid-column: span 3;
+					}
+				}
+
+				@include media("<=tablet") {
+					flex-direction: column;
+
+					.o-info_overview_intro {
+						padding-right: 0;
+					}
+
+					.o-info_overview_intro {
+						width: 100%;
+					}
+
+					.o-info_overview_index {
+						width: 50%;
+						margin-top: 2rem;
+					}
+				}
+			}
+		}
+
+		&_line {
+			width: 8%;
+			border-top: 2px solid $dark;
+		}
+	}
+
+	.o-next_title {
+		font-size: 3rem;
+		position: relative;
+		font-family: "Soehne";
+
+		&::after {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 1px;
+			background-color: $light;
+			content: "";
+			transform-origin: left;
+			transform: scaleX(0);
+			transition: $transition;
+		}
+	}
+
+	.c-link {
+		padding: 0 4rem;
+		height: 40vh;
+		display: block;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		&:hover .c-arrow_svg:first-child {
+			animation: arrowOut 600ms ease forwards;
+		}
+		&:hover .c-arrow_svg:nth-child(2) {
+			animation: arrowIn 600ms ease forwards;
+			animation-delay: 300ms;
+		}
+		&:hover .o-next_title::after {
+			transform: scaleX(1);
+		}
+	}
+
+	.c-arrow {
+		width: 10rem;
+		height: 100%;
+	}
+
+	.o-additional-media .c-grid_item:hover {
+		img {
+			transform: none;
+		}
+	}
+}
+
+.o-hero_image-wrapper-2,
+s,
+.o-info_image-wrapper {
+	overflow: hidden;
+	width: 100%;
+	height: 60vw;
+
+	img {
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+	}
+}

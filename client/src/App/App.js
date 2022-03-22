@@ -12,11 +12,13 @@ import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import Menu from "../components/Menu/Menu";
-import Nav from "../components/Nav/Nav";
 import AboutPage from "../components/pages/AboutPage";
+import ContactPage from "../components/pages/ContactPage";
 import HomePage from "../components/pages/HomePage";
+import SingleProjectPage from "../components/pages/SingleProjectPage";
 import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
+import useResize from "../helpers/hooks/useResize";
 import { GlobalStyle } from "../styles/global";
 
 export const DataContext = createContext();
@@ -25,7 +27,9 @@ export const ColorContext = createContext();
 export const CursorContext = createContext();
 
 function App() {
-	const [play, setPlay] = useState(true);
+	const [loading, setLoading] = useState(true);
+	const [pageTheme, setPageTheme] = useState("party");
+	const { isResized } = useResize();
 
 	const themes = {
 		space: [
@@ -64,6 +68,29 @@ function App() {
 	const [isSplit, setSplit] = useState(false);
 	const split = useRef(null);
 	const location = useLocation();
+	
+	const [headerColor, setHeaderColor] = useState("orange");
+
+	useEffect(() => {
+		if (location.pathname === "/") {
+			
+
+			const handleScroll = () => {
+				if (window.scrollY > 720 && window.scrollY < 2000) {
+					setHeaderColor("green");
+				} else if (window.scrollY > 2000 && window.scrollY < 3600) {
+					console.log("in here!");
+					setHeaderColor("dark");
+				} else if (window.scrollY > 3600) {
+					setHeaderColor("pink");
+				} else {
+					setHeaderColor("orange");
+				}
+			};
+
+			window.addEventListener("scroll", handleScroll);
+		}
+	}, [location.pathname]);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -86,11 +113,11 @@ function App() {
 			if (splitText.chars) {
 				const tl = gsap.timeline();
 
-				tl.to(splitText.chars, {
+				tl.to($("main").find(".c-char"), {
 					y: 0,
 					duration: 2,
 					ease: "expo.inOut",
-					delay: 0.5,
+
 					stagger: 0.02,
 					opacity: 1,
 				});
@@ -103,7 +130,7 @@ function App() {
 					y: 0,
 					duration: 2,
 					ease: "expo.inOut",
-					delay: 1.4,
+
 					stagger: 0.02,
 					opacity: 1,
 				});
@@ -126,9 +153,9 @@ function App() {
 		isTransitioning: false,
 	});
 
-	const setTransitioning = () => {
-		setState(prev => ({ ...prev, isTransitioning: true }));
-	};
+	// const setTransitioning = () => {
+	// 	setState(prev => ({ ...prev, isTransitioning: true }));
+	// };
 
 	useEffect(() => {
 		//resplit whenever there's a location change
@@ -139,9 +166,30 @@ function App() {
 
 	const appClasses = classNames("App", {
 		"menu-active": state.menuActive,
-		"is-dom-loaded": !play,
+		"is-dom-loaded": loading,
 		"is-old-page": state.isTransitioning,
 	});
+
+	const initialRender = useRef(true);
+
+	const toggleLoading = useCallback(() => {
+		setLoading(!loading)
+	}, [loading])
+	
+
+	useEffect(() => {
+		console.log(isResized);
+
+		if (isResized) {
+			toggleLoading();
+		} else if (!isResized && !initialRender.current) {
+			toggleLoading();
+		}
+
+		if (initialRender.current) {
+			initialRender.current = false;
+		}
+	}, [isResized, toggleLoading]);
 
 	useEffect(() => {
 		console.log("Designed & developed by Matt Parisien");
@@ -156,6 +204,8 @@ function App() {
 			`${basePath}/contact`,
 			`${basePath}/socials`,
 			`${basePath}/photos?populate=*`,
+			`${basePath}/photos?populate=*`,
+			`${basePath}/value-image?populate=*`,
 		];
 
 		const promiseArray = [...urls].map(fetchURL);
@@ -222,6 +272,14 @@ function App() {
 					};
 				});
 
+				const valuePhotos = data[5].data.data.attributes.Image.data.map(x => {
+					return {
+						id: x.id,
+						name: x.attributes.name.replace(x.attributes.ext, ""),
+						src: x.attributes.url,
+					};
+				});
+
 				setState(prev => ({
 					...prev,
 					data: {
@@ -230,6 +288,7 @@ function App() {
 						contact: contactInfo,
 						socials: socials,
 						photos: photos,
+						valuePhotos: valuePhotos,
 					},
 				}));
 			})
@@ -242,24 +301,15 @@ function App() {
 		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
 	};
 
-	const playTransition = () => {
-		setPlay(true);
-	};
 
 	const loadingControls = {
 		menuActive: state.menuActive,
 		toggleMenu,
-		playTransition,
-		setTransitioning,
+		isLoading: loading,
+		toggleLoading,
 	};
 
-	const togglePlay = useCallback(() => {
-		setPlay(false);
-	}, []);
-
 	const [cursorState, setCursorState] = useState("following");
-
-	const [pageTheme, setPageTheme] = useState("regular");
 
 	return (
 		<DataContext.Provider value={state.data}>
@@ -267,6 +317,22 @@ function App() {
 				<LoadingContext.Provider value={loadingControls}>
 					<ColorContext.Provider value={{ setPageTheme, pageTheme }}>
 						<CursorContext.Provider value={{ cursorState, setCursorState }}>
+							{/* <LocomotiveScrollProvider
+								onLocationChange={scroll =>
+									scroll.scrollTo(0, { duration: 0, disableLerp: true })
+								}
+								options={{
+									initPosition: {
+										x: 0,
+										y: 0,
+									},
+
+									smooth: true,
+									getDirection: true,
+								}}
+								watch={[location.pathname]}
+								containerRef={scrollRef}
+							> */}
 							<div className={appClasses} data-theme={pageTheme}>
 								<Helmet>
 									<title>Matthew Parisien — Software Developer</title>
@@ -284,10 +350,10 @@ function App() {
 									/>
 									<meta property='og:type' content='website' />
 								</Helmet>
-								{location.pathname === "/" && <Header />}
+								<Loader />
+								<Header color={headerColor} />
 
-								<Nav />
-								<Loader isActive={play} setDone={togglePlay} />
+								{/* <Loader isActive={play} setDone={togglePlay} /> */}
 
 								{/* <CursorFollower cursorState={cursorState} /> */}
 								<Menu
@@ -311,7 +377,31 @@ function App() {
 											<Route path='/work' element={<WorkPage />} />
 											<Route
 												path='/about'
-												element={<AboutPage photos={state.data.photos} />}
+												element={
+													<AboutPage
+														photos={state.data.photos}
+														setPageTheme={setPageTheme}
+														toggleLoading={toggleLoading}
+													/>
+												}
+											/>
+											<Route
+												path='/work/:id'
+												element={
+													<SingleProjectPage
+														location={location}
+														setPageTheme={setPageTheme}
+													/>
+												}
+											/>
+											<Route
+												path='/contact'
+												element={
+													<ContactPage
+														toggleLoading={toggleLoading}
+														isLoading={loading}
+													/>
+												}
 											/>
 										</Routes>
 									</ContentWrapper>
@@ -323,6 +413,7 @@ function App() {
 									/>
 								</ScrollWrapper>
 							</div>
+							{/* </LocomotiveScrollProvider> */}
 						</CursorContext.Provider>
 					</ColorContext.Provider>
 				</LoadingContext.Provider>

@@ -1,7 +1,21 @@
 .o-text {
-  font-family: 'Haas';
+  font-family: 'Soehne Medium';
   font-size: 1.1rem;
   line-height: 1.8rem;
+
+  &.-medium {
+    font-size: 3rem;
+    line-height: 3rem;
+    font-weight: 500;
+  }
   
-  
+  &.-big {
+    font-size: 5.2rem;
+    line-height: 5.6rem;
+
+    @include media("<=tablet") {
+      font-size: 3rem;
+      line-height: 3rem;
+    }
+  }
 }

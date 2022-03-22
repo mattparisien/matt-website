@@ -17,12 +17,13 @@
 	button {
 		background: transparent;
 		border: 0px;
-		font-size: 1.2rem;
+		font-size: 2.2rem;
+		
 		font-family: Soehne;
 		border: 1px solid $dark;
 		border-radius: 50px;
 		padding: 0.4rem 0.8rem;
-		text-transform: capitalize;
+		text-transform: uppercase;
 
 		&:hover {
 			background-color: $dark;
