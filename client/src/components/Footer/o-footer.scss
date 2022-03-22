@@ -1,10 +1,13 @@
 .o-footer {
-	height: 80vh;
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: center;
+	align-items: center;
+	position: relative;
 
-	.o-h1 {
+	.o-h2 {
+		color: $dark;
 		@include media(">=laptop") {
 			font-size: 10rem;
 		}
@@ -66,7 +69,10 @@
 	display: flex;
 	align-items: flex-end;
 	justify-content: space-between;
-	margin-top: auto;
+	position: absolute;
+	bottom: 0;
+	
+
 	margin-bottom: 2rem;
 	max-width: 1900px;
 
@@ -87,7 +93,6 @@
 
 			> div {
 				margin-right: 0 !important;
-				
 			}
 		}
 

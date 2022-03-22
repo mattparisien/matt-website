@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "../Containers/Container";
 import Form from "../Form/Form";
 
-function ContactPage() {
+function ContactPage({ toggleLoading, isLoading }) {
+	useEffect(() => {
+		toggleLoading()
+	}, []);
+
 	const formFields = [
 		{
 			tagName: "input",
@@ -32,16 +36,16 @@ function ContactPage() {
 
 	return (
 		<>
-			<Container classes='-fullHeight -flex -flex-column -padding-top-huge -bg-dark -justify-center'>
-				<Form formFields={formFields} />
-				<Container
-					classes={
-						"-absolute -bottom -left -height-auto -flex -align-end -stretchX"
-					}
-				>
-					
+			<div className='o-page o-page_contact' data-theme="fancy">
+				<Container classes='-fullHeight -flex -flex-column -padding-top-huge  -justify-center'>
+					<Form formFields={formFields} />
+					<Container
+						classes={
+							"-absolute -bottom -left -height-auto -flex -align-end -stretchX"
+						}
+					></Container>
 				</Container>
-			</Container>
+			</div>
 		</>
 	);
 }

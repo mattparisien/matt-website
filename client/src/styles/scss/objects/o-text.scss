@@ -9,8 +9,8 @@
   }
   
   &.-big {
-    font-size: 5rem;
-    line-height: 6rem;
+    font-size: 5.2rem;
+    line-height: 5.6rem;
 
     @include media("<=tablet") {
       font-size: 3rem;

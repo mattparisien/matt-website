@@ -93,12 +93,12 @@ function Footer(props) {
 	}, [words]);
 
 	return (
-		<footer className={`o-footer ${inView && "is-inview"}`} data-scroll-section>
+		<footer className={`o-footer ${inView && "is-inview"}`} data-scroll-section data-theme="purple">
 			<Container classes='-stretchX -relative'>
 				<div className={`c-oval -accent`} ref={ref}></div>
 				<div className='-stretchX -absolute -absolute-center'>
 					<Eyes />
-					<h1 className='o-h1 -split -huge'>CONTACT ME</h1>
+					<h2 className='o-h2 -split -huge'>CONTACT ME</h2>
 				</div>
 			</Container>
 

@@ -234,6 +234,14 @@
 	fill: $light !important;
 }
 
+.-fill-yellow {
+	fill: $yellow !important;
+}
+
+.-fill-purple {
+	fill: $purple !important;
+}
+
 .-bg-yellow {
 	background-color: #faf281;
 }
@@ -247,6 +255,11 @@
 	font-size: 1rem;
 	font-family: "Soehne";
 	
+}
+
+.-fk {
+	font-family: 'FK' !important;
+	text-transform: uppercase;
 }
 
 .-text-orange {

@@ -26,21 +26,7 @@
 		}
 	}
 
-	.o-work {
-		&_list {
-			width: 100%;
-
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			
-
-			li:not(:last-child) {
-				margin-bottom: 3vw;
-			}
-		}
-	}
+	
 
 	.c-section {
 		width: 100%;
@@ -51,6 +37,7 @@
 	}
 	.o-hero {
 		position: absolute;
+
 		top: 0;
 		left: 0;
 		&_cta {
@@ -107,18 +94,25 @@
 	}
 
 	.o-intro {
-		z-index: -1;
+		clip-path: url(#c-blob_clip);
+		z-index: 99;
 	}
 
-	.o-blob {
+	.c-blob {
 		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
 
-		#blobTitle {
-			transform: translateY(20%);
+		path {
+			transform-origin: center;
+			transform: scale(0.004);
+		}
+
+		clipPath {
+			transform: scale(0.004);
+			transform-origin: center;
 		}
 	}
 }

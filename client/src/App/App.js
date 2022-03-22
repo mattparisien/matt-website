@@ -3,7 +3,7 @@ import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import { createContext, useCallback, useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
@@ -12,14 +12,14 @@ import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import Menu from "../components/Menu/Menu";
-import Nav from "../components/Nav/Nav";
 import AboutPage from "../components/pages/AboutPage";
+import ContactPage from "../components/pages/ContactPage";
 import HomePage from "../components/pages/HomePage";
+import SingleProjectPage from "../components/pages/SingleProjectPage";
 import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
+import useResize from "../helpers/hooks/useResize";
 import { GlobalStyle } from "../styles/global";
-import SingleProjectPage from "../components/pages/SingleProjectPage";
-import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -29,6 +29,7 @@ export const CursorContext = createContext();
 function App() {
 	const [loading, setLoading] = useState(true);
 	const [pageTheme, setPageTheme] = useState("party");
+	const [windowWidth, windowHeight, isResized] = useResize();
 
 	const themes = {
 		space: [
@@ -68,21 +69,22 @@ function App() {
 	const split = useRef(null);
 	const location = useLocation();
 	const [hasRendered, setRendered] = useState(false);
+	const [headerColor, setHeaderColor] = useState("orange");
 
 	useEffect(() => {
-		setPageTheme("party");
-
 		if (!hasRendered && location.pathname === "/") {
-			console.log("should not be here");
-
 			const items = $("[data-theme-trigger]");
-			console.log(items);
 
 			const handleScroll = () => {
-				if (window.scrollY > 1800) {
-					setPageTheme('purple')
+				if (window.scrollY > 720 && window.scrollY < 2092) {
+					setHeaderColor("pink");
+				} else if (window.scrollY > 2092 && window.scrollY < 3600) {
+					console.log("in here!");
+					setHeaderColor("dark");
+				} else if (window.scrollY > 3600) {
+					setHeaderColor("pink");
 				} else {
-					setPageTheme('party')	
+					setHeaderColor("orange");
 				}
 			};
 
@@ -168,6 +170,22 @@ function App() {
 		"is-old-page": state.isTransitioning,
 	});
 
+	const initialRender = useRef(true);
+
+	useEffect(() => {
+		console.log(isResized);
+
+		if (isResized) {
+			toggleLoading();
+		} else if (!isResized && !initialRender.current) {
+			toggleLoading();
+		}
+
+		if (initialRender.current) {
+			initialRender.current = false;
+		}
+	}, [isResized]);
+
 	useEffect(() => {
 		console.log("Designed & developed by Matt Parisien");
 
@@ -181,6 +199,8 @@ function App() {
 			`${basePath}/contact`,
 			`${basePath}/socials`,
 			`${basePath}/photos?populate=*`,
+			`${basePath}/photos?populate=*`,
+			`${basePath}/value-image?populate=*`,
 		];
 
 		const promiseArray = [...urls].map(fetchURL);
@@ -247,6 +267,14 @@ function App() {
 					};
 				});
 
+				const valuePhotos = data[5].data.data.attributes.Image.data.map(x => {
+					return {
+						id: x.id,
+						name: x.attributes.name.replace(x.attributes.ext, ""),
+						src: x.attributes.url,
+					};
+				});
+
 				setState(prev => ({
 					...prev,
 					data: {
@@ -255,6 +283,7 @@ function App() {
 						contact: contactInfo,
 						socials: socials,
 						photos: photos,
+						valuePhotos: valuePhotos,
 					},
 				}));
 			})
@@ -319,7 +348,8 @@ function App() {
 									/>
 									<meta property='og:type' content='website' />
 								</Helmet>
-								<Header />
+								<Loader />
+								<Header color={headerColor} />
 
 								{/* <Loader isActive={play} setDone={togglePlay} /> */}
 
@@ -361,6 +391,10 @@ function App() {
 														setPageTheme={setPageTheme}
 													/>
 												}
+											/>
+											<Route
+												path='/contact'
+												element={<ContactPage toggleLoading={toggleLoading} isLoading={loading} />}
 											/>
 										</Routes>
 									</ContentWrapper>

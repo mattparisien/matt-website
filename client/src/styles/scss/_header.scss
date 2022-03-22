@@ -5,6 +5,20 @@
 	width: 100vw;
 	height: $headerHeight;
 	z-index: 999;
+
+
+	&[data-color="orange"] {
+		color: $orange;
+	}
+
+	&[data-color="pink"] {
+		color: $pink;
+	}
+
+	&[data-color="dark"] {
+		color: $dark;
+	}
+
 	.o-container {
 		display: flex;
 		align-items: center;

@@ -1,0 +1,46 @@
+.o-wave-section {
+	position: relative;
+
+	&_wave {
+		position: absolute;
+		width: 100%;
+		height: 8vw;
+
+		&_inner {
+			width: 100%;
+			height: 100%;
+			position: relative;
+
+			.c-wave {
+				position: absolute;
+				left: -10%;
+				width: 150%;
+				height: 100%;
+				overflow: hidden;
+
+				path {
+					height: 100%;
+					display: block;
+				}
+			}
+		}
+
+		&_bottom {
+			bottom: 0;
+
+			.c-wave {
+				bottom: 0;
+				left: 0;
+			}
+		}
+
+		&_top {
+			
+			top: 0;
+
+			.c-wave {
+				transform: rotate(180deg);
+			}
+		}
+	}
+}

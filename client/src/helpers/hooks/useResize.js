@@ -23,5 +23,15 @@ export default function useResize() {
 			setResized(false);
 		};
 	}, []);
+
+
+	useEffect(() => {
+		if (isResized) {
+			setTimeout(() => {
+				setResized(false)
+			}, 800);
+		}
+	}, [isResized])
+
 	return [windowWidth, windowHeight, isResized];
 }

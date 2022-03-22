@@ -6,8 +6,7 @@ import React, {
 	forwardRef,
 	useContext,
 	useEffect,
-	useRef,
-	useState,
+	useRef
 } from "react";
 // Import Swiper styles
 import "swiper/swiper-bundle.min.css";
@@ -15,8 +14,8 @@ import "swiper/swiper.min.css";
 import { DataContext } from "../../App/App";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
-import Link from "../Link/Link";
-import SplitSection from "../Layouts/SplitSection";
+import Values from "./Values";
+import Work from "./Work";
 
 // const gradientAnim = keyframes`
 // 	0% {
@@ -30,7 +29,7 @@ import SplitSection from "../Layouts/SplitSection";
 function HomePage(props, ref) {
 	gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin);
 	const data = useContext(DataContext);
-	const [selected, setSelected] = useState("software");
+
 	const marquees = useRef([]);
 	marquees.current = [];
 	const lines = useRef([]);
@@ -38,126 +37,213 @@ function HomePage(props, ref) {
 	const headingRef = useRef([]);
 	headingRef.current = [];
 
-	console.log(data.photos);
-
 	const sticky = useRef(null);
 
-	const filterCategories = [
-		{
-			name: "software",
-		},
-		{
-			name: "photography",
-		},
-	];
-	const words = ["ask", "for", "good", "stories"];
-	const [word, setWord] = useState(words[0]);
 	const path = useRef(null);
-	const titleTl = useRef(null);
-	const [hasPlayed, setPlayed] = useState(false);
-	const blobTl = useRef(gsap.timeline({ paused: true }));
-	const fade = useRef(gsap.timeline({ paused: true }));
+
 	const inner = useRef(null);
 
-	useEffect(() => {
-		if (sticky.current) {
-			gsap.set(path.current, {
-				scale: 0.00001,
-				transformOrigin: "center",
-			});
+	// useEffect(() => {
+	// 	if (sticky.current) {
+	// 		gsap.set(path.current, {
+	// 			scale: 0.00001,
+	// 			transformOrigin: "center",
+	// 		});
 
-			// blobTl.current = gsap.timeline({
+	// 		// blobTl.current = gsap.timeline({
+	// 		// 	scrollTrigger: {
+	// 		// 		trigger: sticky.current,
+	// 		// 		start: "top top",
+	// 		// 		end: "+=1600",
+	// 		// 		scrub: !0,
+	// 		// 		pin: true,
+	// 		// 	},
+	// 		// });
+
+	// 		titleTl.current = gsap.timeline({
+	// 			scrollTrigger: {
+	// 				trigger: sticky.current,
+	// 				start: "top top",
+
+	// 				scrub: !0,
+	// 				pin: true,
+	// 			},
+	// 		});
+
+	// 		// fade.current.to(inner.current, {
+	// 		// 	opacity: 0,
+	// 		// });
+
+	// 		titleTl.current
+	// 			.to(
+	// 				$(".o-hero_title span:first-of-type"),
+	// 				{
+	// 					scale: 1.1,
+	// 				},
+	// 				0
+	// 			)
+	// 			.to(
+	// 				$(".o-hero_title span:first-of-type"),
+	// 				{
+	// 					opacity: 0,
+	// 				},
+	// 				0
+	// 			)
+	// 			.to($(".o-hero_title span:nth-of-type(2)"), {
+	// 				opacity: 1,
+	// 				scale: 1.1,
+	// 			})
+	// 			.to($(".o-hero_title span:nth-of-type(2)"), {
+	// 				opacity: 0,
+	// 			})
+	// 			.to($(".o-hero_title span:nth-of-type(3)"), {
+	// 				opacity: 1,
+	// 				scale: 1.1,
+	// 			})
+	// 			.to($(".o-hero_title span:nth-of-type(3)"), {
+	// 				opacity: 0,
+	// 			})
+	// 			.to($(".o-hero_title span:nth-of-type(4)"), {
+	// 				opacity: 1,
+	// 				scale: 1.1,
+	// 			})
+	// 			.to($(".o-hero"), {
+	// 				x: "-100%",
+	// 			});
+
+	// 		// blobTl.current.to(
+	// 		// 	path.current,
+	// 		// 	{
+	// 		// 		scale: 5,
+
+	// 		// 		transformOrigin: "center",
+	// 		// 	},
+	// 		// 	10
+	// 		// );
+
+	// 		// titleTl.current = gsap.timeline({
+	// 		// 	scrollTrigger: {
+	// 		// 		trigger: sticky.current,
+	// 		// 		start: "top top",
+	// 		// 		end: "+=3000",
+	// 		// 		pin: true,
+	// 		// 		scrub: 2,
+	// 		// 		onUpdate: self => {
+	// 		// 			if (self.progress > 0.2 && self.progress < 0.4) {
+	// 		// 				setWord("for");
+	// 		// 			} else if (self.progress > 0.4 && self.progress < 0.6) {
+	// 		// 				setWord("good");
+	// 		// 			} else if (self.progress > 0.6 && !hasPlayed) {
+	// 		// 				setWord("stories");
+	// 		// 				setPlayed(true);
+	// 		// 			}
+	// 		// 		},
+	// 		// 	},
+	// 		// });
+	// 	}
+	// }, [path.current, hasPlayed]);
+
+	//Declare hero animation timelines
+	const heroTitleTl = useRef(null);
+	const scrollTl = useRef(null);
+
+	useEffect(() => {
+		//If there's a scroll trigger ref, set timelines with trigger
+		if (sticky.current) {
+			// scrollTl.current = gsap.timeline({
 			// 	scrollTrigger: {
 			// 		trigger: sticky.current,
 			// 		start: "top top",
-			// 		end: "+=1600",
-			// 		scrub: !0,
+
+			// 		scrub: 1,
 			// 		pin: true,
 			// 	},
 			// });
-
-			titleTl.current = gsap.timeline({
+			heroTitleTl.current = gsap.timeline({
 				scrollTrigger: {
 					trigger: sticky.current,
 					start: "top top",
-
+					markers: true,
 					scrub: !0,
 					pin: true,
+					invalidateOnResize: true,
 				},
 			});
-
-			// fade.current.to(inner.current, {
-			// 	opacity: 0,
-			// });
-
-			titleTl.current
-				.to(
-					$(".o-hero_title span:first-of-type"),
-					{
-						scale: 1.1,
-					},
-					0
-				)
-				.to(
-					$(".o-hero_title span:first-of-type"),
-					{
-						opacity: 0,
-					},
-					0
-				)
-				.to($(".o-hero_title span:nth-of-type(2)"), {
-					opacity: 1,
-					scale: 1.1,
-				})
-				.to($(".o-hero_title span:nth-of-type(2)"), {
-					opacity: 0,
-				})
-				.to($(".o-hero_title span:nth-of-type(3)"), {
-					opacity: 1,
-					scale: 1.1,
-				})
-				.to($(".o-hero_title span:nth-of-type(3)"), {
-					opacity: 0,
-				})
-				.to($(".o-hero_title span:nth-of-type(4)"), {
-					opacity: 1,
-					scale: 1.1,
-				})
-				.to($(".o-hero"), {
-					x: "-100%",
-				});
-
-			// blobTl.current.to(
-			// 	path.current,
-			// 	{
-			// 		scale: 5,
-
-			// 		transformOrigin: "center",
-			// 	},
-			// 	10
-			// );
-
-			// titleTl.current = gsap.timeline({
-			// 	scrollTrigger: {
-			// 		trigger: sticky.current,
-			// 		start: "top top",
-			// 		end: "+=3000",
-			// 		pin: true,
-			// 		scrub: 2,
-			// 		onUpdate: self => {
-			// 			if (self.progress > 0.2 && self.progress < 0.4) {
-			// 				setWord("for");
-			// 			} else if (self.progress > 0.4 && self.progress < 0.6) {
-			// 				setWord("good");
-			// 			} else if (self.progress > 0.6 && !hasPlayed) {
-			// 				setWord("stories");
-			// 				setPlayed(true);
-			// 			}
-			// 		},
-			// 	},
-			// });
 		}
-	}, [path.current, hasPlayed]);
+
+		//If all refs are rendered, call heroAnim
+
+		// const timelines = [heroTitle.current, scrollTl.current];
+
+		heroTitleTl.current
+			.set(path.current, { scale: 0.0001 })
+			.to($(".o-hero_title span:first-of-type"), {
+				scale: 1.25,
+				opacity: 0,
+			})
+			.to($(".o-hero_title span:nth-of-type(2)"), {
+				scale: 1.25,
+				opacity: 1,
+			})
+			.to($(".o-hero_title span:nth-of-type(2)"), {
+				scale: 1.25,
+				opacity: 0,
+			})
+			.to($(".o-hero_title span:nth-of-type(3)"), {
+				scale: 1.25,
+				opacity: 1,
+			})
+			.to($(".o-hero_title span:nth-of-type(3)"), {
+				scale: 1.25,
+				opacity: 0,
+			})
+			.to($(".o-hero_title span:nth-of-type(4)"), {
+				scale: 1.25,
+				opacity: 1,
+			})
+			.to(
+				path.current,
+
+				{
+					scale: 5,
+				}
+			)
+			.to(path.current, {
+				duration: 0.5,
+				morphSVG:
+					"M49,2.6C49,27.4,24.5,54.8,3.4,54.8C-17.7,54.8,-35.3,27.4,-35.3,2.6C-35.3,-22.1,-17.7,-44.2,3.4,-44.2C24.5,-44.2,49,-22.1,49,2.6Z",
+			})
+			.to(path.current, {
+				morphSVG:
+					"M34,-64.5C41.4,-54.6,42.8,-40.1,48.4,-28.6C53.9,-17,63.6,-8.5,63.8,0.1C63.9,8.7,54.5,17.4,49.3,29.4C44,41.5,42.9,57,35.4,68.1C27.9,79.1,14,85.7,3.4,79.8C-7.1,73.9,-14.2,55.4,-23.9,45.6C-33.6,35.8,-45.8,34.7,-57.3,28.5C-68.7,22.4,-79.4,11.2,-81.6,-1.3C-83.8,-13.7,-77.6,-27.4,-66.5,-34.3C-55.5,-41.2,-39.7,-41.3,-27.8,-48.5C-15.9,-55.8,-7.9,-70.3,2.7,-74.9C13.3,-79.6,26.6,-74.4,34,-64.5Z",
+			});
+
+		// heroAnim(words.current, blob.current, timelines);
+		// scrollTl.current
+		// 	.set(path.current, { scale: 0.0001 })
+
+		// 	.to(
+		// 		path.current,
+
+		// 		{
+		// 			scale: 5,
+		// 		}
+		// 	)
+		// 	.to(
+		// 		path.current,
+		// 		{
+		// 			duration: 0.5,
+		// 			morphSVG:
+		// 				"M49,2.6C49,27.4,24.5,54.8,3.4,54.8C-17.7,54.8,-35.3,27.4,-35.3,2.6C-35.3,-22.1,-17.7,-44.2,3.4,-44.2C24.5,-44.2,49,-22.1,49,2.6Z",
+		// 		},
+
+		// 		10
+		// 	)
+		// 	.to(path.current, {
+		// 		morphSVG:
+		// 			"M34,-64.5C41.4,-54.6,42.8,-40.1,48.4,-28.6C53.9,-17,63.6,-8.5,63.8,0.1C63.9,8.7,54.5,17.4,49.3,29.4C44,41.5,42.9,57,35.4,68.1C27.9,79.1,14,85.7,3.4,79.8C-7.1,73.9,-14.2,55.4,-23.9,45.6C-33.6,35.8,-45.8,34.7,-57.3,28.5C-68.7,22.4,-79.4,11.2,-81.6,-1.3C-83.8,-13.7,-77.6,-27.4,-66.5,-34.3C-55.5,-41.2,-39.7,-41.3,-27.8,-48.5C-15.9,-55.8,-7.9,-70.3,2.7,-74.9C13.3,-79.6,26.6,-74.4,34,-64.5Z",
+		// 	});
+	}, [heroTitleTl, scrollTl]);
 
 	return (
 		<>
@@ -166,38 +252,12 @@ function HomePage(props, ref) {
 					<div className='o-sticky_inner' ref={inner}>
 						<Section classes='o-intro -fullHeight' data-theme='regular'>
 							<Container>
-								<div className='o-text -big -padding-lg'>
+								<div className='o-text -big -padding-huge'>
 									Communication begins with a story. This is why I believe web
 									development is storytelling. Good stories engage and create
 									immersive experiences for their listeners. Good stories are
-									touching, they exist, they progress.
+									touching, they exist, they progress, and create memories.
 								</div>
-
-								<svg
-									className='o-blob'
-									width='100%'
-									height='100%'
-									viewBox='0 0 2000 3000'
-									preserveAspectRatio='none'
-								>
-									{" "}
-									<defs>
-										{" "}
-										<clipPath
-											id='maskTitle'
-											clipPathUnits='objectBoundingBox'
-											transform='scale(0.0005, 0.00033333333333333)'
-										>
-											{" "}
-											<path
-												id='blobTitle'
-												fill='#fff'
-												d='M186.25 355.2 C426.32 670.51 94.18 982.49 354.17 1137.24 614.16 1291.98 786.18 1016.62 1125.3 954.2 1464.42 891.77 1714.68 1134.51 1772.55 854.72 1830.42 574.92 1467.33 143.84 1070.57 53.08 673.81 -37.66 -53.8 39.9 186.25 355.2 '
-												ref={path}
-											></path>{" "}
-										</clipPath>{" "}
-									</defs>{" "}
-								</svg>
 							</Container>
 						</Section>
 						<Section
@@ -217,16 +277,30 @@ function HomePage(props, ref) {
 								</div>
 							</Container>
 						</Section>
+						<svg
+							viewBox='0 0 200 200'
+							xmlns='http://www.w3.org/2000/svg'
+							className='c-blob'
+						>
+							<defs>
+								<clipPath clipPathUnits='objectBoundingBox' id='c-blob_clip'>
+									<path
+										ref={path}
+										class='c-blob_path'
+										fill='#FF0066'
+										d='M34.8,-55.3C47.5,-45.9,62,-40.4,72.5,-29.5C83,-18.7,89.5,-2.4,84.8,10.3C80,23,63.9,32.2,51.9,43.6C39.9,54.9,32,68.4,21,71.6C10.1,74.8,-3.9,67.7,-19.4,64.1C-35,60.4,-52.1,60.2,-65.3,52.4C-78.5,44.7,-87.8,29.3,-88.1,13.9C-88.3,-1.5,-79.5,-16.9,-71.1,-31.3C-62.7,-45.7,-54.7,-59.2,-42.9,-69C-31.1,-78.8,-15.6,-85,-2.3,-81.5C11,-78,22,-64.7,34.8,-55.3Z'
+										transform='translate(100 100)'
+									/>
+								</clipPath>
+							</defs>
+						</svg>
 					</div>
 				</div>
-				<div>
-					<Section classes='-fullHeight -flex -align-center -justify-center'>
-						<Container>
-							<h1 className='o-h1'>About me</h1>
-						</Container>
-					</Section>
-				</div>
-				<SplitSection
+				<Work projects={data.projects && data.projects} />
+
+				<Values photos={data.valuePhotos && data.valuePhotos} />
+
+				{/* <SplitSection
 					dataThemeRight='sky'
 					dataThemeLeft='dark'
 					imageSrc={
@@ -267,9 +341,9 @@ function HomePage(props, ref) {
 								})}
 						</ul>
 					}
-				/>
+				/> */}
 
-				<Section></Section>
+				{/* <Section></Section> */}
 			</div>
 		</>
 	);

@@ -10,10 +10,10 @@ function DesktopNav() {
 			name: "Work",
 			path: "/",
 		},
-		{
-			name: "About",
-			path: "/about",
-		},
+		// {
+		// 	name: "About",
+		// 	path: "/about",
+		// },
 		{
 			name: "Contact",
 			path: "contact",

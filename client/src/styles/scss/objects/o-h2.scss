@@ -2,15 +2,24 @@
 
 .o-h2 {
   margin: 0;
-  font-family: Soehne;
-  text-transform: capitalize;
+  
+  text-transform: uppercase;
   font-size: 10vw;
+
+  &, & * {
+    font-family: 'FK';
+  }
 
   @include media("<=tablet") {
 		font-size: 10vw;
     line-height: 9vw;
 		
 	}
+
+  @include media(">=desktop") {
+    font-size: 9rem;
+    line-height: 9rem;
+  }
 
 
 }

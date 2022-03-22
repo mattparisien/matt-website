@@ -24,6 +24,8 @@
 @import "../../components/Arrow/c-arrow.scss";
 @import "../../components/Form/c-form.scss";
 @import "../../components/pages/o-home-hero.scss";
+@import "../../components/pages/o-home_work.scss";
+@import "../../components/pages/o-home_values.scss";
 @import "../../components/pages/o-about.scss";
 @import "../../components/Grid/c-grid.scss";
 @import "../../components/Footer/o-footer.scss";
@@ -36,6 +38,7 @@
 @import "../../components/Eyes/eyes.scss";
 @import "../../components/Revealer/c-revealer.scss";
 @import "../../components/Layouts/o-split-section.scss";
+@import "../../components/Layouts/o-wave-section.scss";
 
 .Home {
 	height: 100vh;
@@ -69,8 +72,8 @@ a {
 }
 
 [data-theme="regular"] {
-	color: $dark;
-	background-color: $light;
+	color: $pink;
+	background-color: #3A8696;
 	$accent: $green;
 
 	.-accent {
@@ -80,9 +83,19 @@ a {
 }
 
 
+.-fill-blue {
+	fill: #3A8696;
+}
+
+
 
 [data-theme="orangeCrush"] {
 	background-color: $orange;
+	color: $pink;
+}
+
+[data-theme="banana"] {
+	background-color: $yellow;
 	color: $dark;
 }
 

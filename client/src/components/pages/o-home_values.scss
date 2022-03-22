@@ -1,0 +1,42 @@
+.o-values {
+
+  .o-images {
+    img {
+      max-width: 300px;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      transform-origin: center;
+    }
+  }
+
+
+  height: 70vw;
+
+  .c-marquee {
+    width: 100%;
+
+    &:not(:last-child) {
+      margin-bottom: 2.4rem;
+    }
+
+    .marquee-item {
+      margin-right: 4rem;
+      position: relative;
+  
+      &::after {
+        position: absolute;
+        top: 0;
+        right: -2rem;
+        border-radius: 50%;
+        content: '';
+        height: 6px;
+        width: 6px;;
+        background-color: $pink;
+        top: 50%;
+        
+      }
+    }
+  }
+
+  
+}

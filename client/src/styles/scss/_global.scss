@@ -6,7 +6,7 @@
 
 @font-face {
 	font-family: "Soehne";
-	src: url(../../fonts/Molde.otf);
+	src: url(../../fonts/NeueMontreal-Regular.otf);
 }
 
 @font-face {
@@ -25,7 +25,6 @@
 }
 
 .App {
-	cursor: wait;
 	transition: 500ms ease;
 }
 
@@ -42,7 +41,6 @@ h1,
 h2 {
 	&,
 	& div {
-		
 		text-transform: uppercase;
 	}
 }
