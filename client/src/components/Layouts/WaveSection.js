@@ -3,8 +3,18 @@ import React, { useEffect, useRef } from "react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import gsap from "gsap";
 
-function WaveSection({ classes, children, dataTheme, waveTop, waveBottom }) {
-	const waveClasses = classNames("o-wave-section", { [classes]: classes });
+function WaveSection({
+	classes,
+	children,
+	dataTheme,
+	waveTop,
+	waveBottom,
+	offsetPrev,
+}) {
+	const waveClasses = classNames("o-wave-section", {
+		[classes]: classes,
+		"-offset-prev": offsetPrev,
+	});
 	const waves = useRef([]);
 	waves.current = [];
 	const tl = useRef(null);
@@ -63,7 +73,7 @@ function WaveSection({ classes, children, dataTheme, waveTop, waveBottom }) {
 		>
 			<div className='o-wave-section_wave o-wave-section_wave_top'>
 				<div className='o-wave-section_wave_inner'>
-					<Wave color={waveTop} addToRefs={addToRefs} />
+					{/* <Wave color={waveTop} addToRefs={addToRefs} /> */}
 				</div>
 			</div>
 			{children}

@@ -4,16 +4,12 @@
 	box-sizing: border-box;
 }
 
-@font-face {
-	font-family: "Soehne";
-	src: url(../../fonts/HellixTRIAL-Regular.otf);
-	font-weight: 200;
-}
+
 
 
 @font-face {
-	font-family: "Soehne Medium";
-	src: url(../../fonts/HellixTRIAL-Medium.otf);
+	font-family: "Riposte";
+	src: url(../../fonts/GTFRiposteTRIAL-Regular.otf);
 	font-weight: 500;
 }
 
@@ -54,7 +50,7 @@ h2 {
 }
 
 a {
-	font-family: "Soehne";
+	font-family: 'Riposte';
 }
 
 h3,
@@ -63,7 +59,7 @@ h5,
 h6 {
 	&,
 	& div {
-		font-family: "Soehne";
+		font-family: 'Riposte';
 	}
 }
 

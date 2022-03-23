@@ -35,7 +35,7 @@ function Footer(props) {
 
 	useEffect(() => {
 		if (inView) {
-			console.log($(ref.current));
+			
 			gsap.to($("footer").find(".c-char"), {
 				y: 0,
 				duration: 1,

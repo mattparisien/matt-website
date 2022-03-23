@@ -173,17 +173,17 @@ function App() {
 		setLoading(!loading);
 	}, [loading]);
 
-	useEffect(() => {
-		if (isResized) {
-			toggleLoading();
-		} else if (!isResized && !initialRender.current) {
-			toggleLoading();
-		}
+	// useEffect(() => {
+	// 	if (isResized) {
+	// 		toggleLoading();
+	// 	} else if (!isResized && !initialRender.current) {
+	// 		toggleLoading();
+	// 	}
 
-		if (initialRender.current) {
-			initialRender.current = false;
-		}
-	}, [isResized, toggleLoading]);
+	// 	if (initialRender.current) {
+	// 		initialRender.current = false;
+	// 	}
+	// }, [isResized, toggleLoading]);
 
 	useEffect(() => {
 		console.log("Designed & developed by Matt Parisien");

@@ -9,8 +9,11 @@ import "swiper/swiper.min.css";
 import { DataContext } from "../../App/App";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
+import SplitTextSection from "../Layouts/SplitTextSection";
+import useResize from "../../helpers/hooks/useResize";
+import HeadingSection from "../Layouts/HeadingSection";
+import StickySection from "../Layouts/StickySection";
 import Work from "./Work";
-
 
 // const gradientAnim = keyframes`
 // 	0% {
@@ -25,30 +28,56 @@ function HomePage(props, ref) {
 	gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin);
 	const data = useContext(DataContext);
 
+	const { windowWidth } = useResize();
 	const marquees = useRef([]);
 	marquees.current = [];
 	const lines = useRef([]);
 	lines.current = [];
 	const headingRef = useRef([]);
 	headingRef.current = [];
+	const image = useRef(null);
 
 	const sticky = useRef(null);
+
+	const grow = useRef(null);
 
 	const path = useRef(null);
 
 	const inner = useRef(null);
+	const stickyBio = useRef(null);
 
 	//Declare hero animation timelines
 	const heroTitleTl = useRef(null);
 
 	useEffect(() => {
+		ScrollTrigger.refresh();
+	}, [windowWidth]);
+
+	useEffect(() => {
+		setTimeout(() => {
+			ScrollTrigger.refresh();
+		}, 500);
+
+		if (stickyBio.current) {
+			let tl = gsap.timeline({
+				scrollTrigger: {
+					trigger: stickyBio.current,
+					start: "top top",
+					pinSpacing: false,
+					scrub: 1,
+					pin: true,
+					invalidateOnResize: true,
+				},
+			});
+		}
+
 		//If there's a scroll trigger ref, set timelines with trigger
 		if (sticky.current) {
 			heroTitleTl.current = gsap.timeline({
 				scrollTrigger: {
 					trigger: sticky.current,
 					start: "top top",
-					end: "+=2000",
+					pinSpacing: false,
 					scrub: 1,
 					pin: true,
 					invalidateOnResize: true,
@@ -130,26 +159,20 @@ function HomePage(props, ref) {
 		// 	});
 	}, [heroTitleTl]);
 
+	const fantasticRefs = useRef([]);
+	fantasticRefs.current = [];
+
+	const addToRefs = el => {
+		if (el && !fantasticRefs.current.includes(el)) {
+			fantasticRefs.current.push(el);
+		}
+	};
+
 	return (
 		<>
 			<div className='o-page o-page_home -no-offset'>
 				<div className='o-sticky' ref={sticky}>
 					<div className='o-sticky_inner' ref={inner}>
-						<Section classes='o-intro -fullHeight' data-theme='regular'>
-							<Container>
-								<div className='o-text -big -padding-lg'>
-									Communication begins with a story. This is why I believe web
-									development is storytelling. Good stories engage and create
-									immersive experiences for their listeners. They exist, they
-									progress, and create memories.
-								</div>
-								<div className='o-text -big -padding-lg'>
-									My love for storytelling is entirely driven by passion and a
-									love for people. I believe that great teamwork has the ability
-									to transcend the workplace.
-								</div>
-							</Container>
-						</Section>
 						<Section
 							classes='o-hero -fullHeight -flex -align-center -justify-center -bg-pink'
 							data-scroll-section
@@ -167,73 +190,86 @@ function HomePage(props, ref) {
 								</div>
 							</Container>
 						</Section>
-						<svg
-							viewBox='0 0 200 200'
-							xmlns='http://www.w3.org/2000/svg'
-							className='c-blob'
-						>
-							<defs>
-								<clipPath clipPathUnits='objectBoundingBox' id='c-blob_clip'>
-									<path
-										ref={path}
-										class='c-blob_path'
-										fill='#FF0066'
-										d='M34.8,-55.3C47.5,-45.9,62,-40.4,72.5,-29.5C83,-18.7,89.5,-2.4,84.8,10.3C80,23,63.9,32.2,51.9,43.6C39.9,54.9,32,68.4,21,71.6C10.1,74.8,-3.9,67.7,-19.4,64.1C-35,60.4,-52.1,60.2,-65.3,52.4C-78.5,44.7,-87.8,29.3,-88.1,13.9C-88.3,-1.5,-79.5,-16.9,-71.1,-31.3C-62.7,-45.7,-54.7,-59.2,-42.9,-69C-31.1,-78.8,-15.6,-85,-2.3,-81.5C11,-78,22,-64.7,34.8,-55.3Z'
-										transform='translate(100 100)'
-									/>
-								</clipPath>
-							</defs>
-						</svg>
 					</div>
 				</div>
-				<Work projects={data.projects && data.projects} />
+				<Section classes='o-intro  -offset-prev' data-theme='dark'>
+					<Container>
+						<div className='o-text -big -padding-top-lg'>
+							I am a Montreal-based full-stack developer in love with digital
+							products and passionate about crafting great user experiences. My
+							work is entirely driven by a passion for what I do, and a love for
+							people who share the desire to improve the lives of others by
+							combining creativity and technology.
+						</div>
+						<div className='o-text -big -padding-lg' ref={grow}>
+							I believe a team who love creating,{" "}
+							<span className='accent'>learn</span>ing and growing together have
+							the ability to transcend the workplace. Communication begins with
+							a story. This is why I believe web development is storytelling.
+							Good stories engage and <span className='accent'>create</span>{" "}
+							immersive
+							<span className='accent'>experiences</span> for their listeners.
+							They exist, they progress, and create memories.
+						</div>
+					</Container>
+				</Section>
+				{/* <Section classes='o-intro -fullHeight' data-theme='dark'>
+					<Container>
+						<div className='o-text -big -padding-lg'>
+							I believe a team who love creating, learning and growing together
+							have the ability to transcend the workplace. Communication begins
+							with a story. This is why I believe web development is
+							storytelling. Good stories engage and create immersive experiences
+							for their listeners. They exist, they progress, and create
+							memories.
+						</div>
+					</Container>
+				</Section> */}
+				<StickySection
+					animation={{ x: 0, duration: 1 }}
+					els={fantasticRefs.current}
+					dataTheme='superstar'
+					start={"bottom bottom"}
+					classes="-flex -align-center -justify-center -stretchY"
+				>
+					<div
+						className='o-text -huge -padding-lg -flex -flex-column -align-center -justify-start -stretchY'
+						ref={grow}
+					>
+						<div ref={addToRefs} style={{ transform: "translateX(-100vw)" }}>
+							Make
+						</div>
+						<div ref={addToRefs} style={{ transform: "translateX(100vw)" }}>
+							Fantastic
+						</div>
+						<div ref={addToRefs} style={{ transform: "translateX(-100vw)" }}>
+							Things
+						</div>
+					</div>
+				</StickySection>
 
+				<Work projects={data.projects} />
+				{/* <Work projects={data.projects && data.projects} /> */}
 				{/* <Values photos={data.valuePhotos && data.valuePhotos} /> */}
-
-				{/* <SplitSection
-					dataThemeRight='sky'
-					dataThemeLeft='dark'
-					imageSrc={
-						data.photos &&
-						data.photos.slice(data.photos.length - 1, data.photos.length)[0].url
-					}
-					text='	I am a Montreal-based full-stack developer in love with digital
+				{/* <div className='c-sticky -offset-prev' ref={stickyBio}>
+					<SplitTextSection
+						dataThemeRight='regular'
+						dataThemeLeft='banana'
+						textLeft={"Who am I?"}
+						ref={image}
+						imageSrc={
+							data.photos &&
+							data.photos.slice(data.photos.length - 1, data.photos.length)[0]
+								.url
+						}
+						textRight={`I am a Montreal-based full-stack developer in love with digital
 					products and passionate about crafting great user experiences.
 					My work is entirely driven by a passion for what I do, and a
-					love for people. I believe a team who loves creating, learning
+					love for people who share the desire to improve the lives of others by combining creativity and technology. I believe a team who loves creating, learning
 					and growing together have the ability to transcend the
-					workplace.'
-				/>
-
-				<SplitSection
-					dataThemeRight='regular'
-					reversed={true}
-					dataThemeLeft='regular'
-					imageSrc={
-						data.photos &&
-						data.photos.slice(data.photos.length - 1, data.photos.length)[0].url
-					}
-					text={
-						<ul className='o-work_list'>
-							{data.projects &&
-								data.projects.map(project => {
-									return (
-										<li key={project.id}>
-											<Link
-												href={project.Location}
-												target='_blank'
-												classes='o-text -medium'
-											>
-												{project.Title}
-											</Link>
-										</li>
-									);
-								})}
-						</ul>
-					}
-				/> */}
-
-				{/* <Section></Section> */}
+					workplace.`}
+					/>
+				</div> */}
 			</div>
 		</>
 	);

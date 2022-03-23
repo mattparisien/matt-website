@@ -39,6 +39,7 @@
 @import "../../components/Revealer/c-revealer.scss";
 @import "../../components/Layouts/o-split-section.scss";
 @import "../../components/Layouts/o-wave-section.scss";
+@import "../../components/Layouts/o-heading-section.scss";
 
 .Home {
 	height: 100vh;
@@ -72,9 +73,9 @@ a {
 }
 
 [data-theme="regular"] {
-	color: $pink;
+	color: $dark;
 	background-color: $light;
-	color: green;
+	
 
 }
 
@@ -107,6 +108,11 @@ a {
 [data-theme="sky"] {
 	background-color: $skyBlue;
 	color: $dark;
+}
+
+[data-theme="superstar"] {
+	background-color: $deepGreen;
+	color: $hotPink;
 }
 
 

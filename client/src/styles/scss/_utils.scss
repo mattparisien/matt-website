@@ -9,6 +9,10 @@
 	padding: $space-lg 0;
 }
 
+.-padding-top-lg {
+	padding: $space-lg 0 0 0;
+}
+
 .-padding-top-huge {
 	padding-top: $space-xxxl;
 }
@@ -27,6 +31,14 @@
 
 .-flex {
 	display: flex;
+}
+
+.-offset-prev {
+	margin-top: 100vh;
+}
+
+.-offset-next {
+	margin-bottom: 100vh;
 }
 
 .-row-reverse {
@@ -253,7 +265,7 @@
 .-ul-small,
 .-text-tiny {
 	font-size: 1rem;
-	font-family: "Soehne";
+	font-family: 'Riposte';
 	
 }
 
@@ -267,8 +279,8 @@
 }
 
 .-huge {
-	font-size: 15vw;
-	line-height: 19vw;
+	font-size: 15vw !important;
+	line-height: 15vw !important;
 	text-align: center;
 }
 

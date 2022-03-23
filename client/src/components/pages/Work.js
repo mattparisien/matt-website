@@ -22,7 +22,8 @@ function Work({ projects }) {
 			classes='o-work '
 			waveTop='light'
 			waveBottom='purple'
-			dataTheme='banana'
+			dataTheme='fancy'
+			offsetPrev={true}
 		>
 			<ul className='o-work_list -padding-huge'>
 				{projects &&
