@@ -12,6 +12,7 @@ import Container from "../Containers/Container";
 import Section from "../Containers/Section";
 import StickySection from "../Layouts/StickySection";
 import Work from "./Work";
+import Values from "./Values";
 
 // const gradientAnim = keyframes`
 // 	0% {
@@ -229,7 +230,7 @@ function HomePage(props, ref) {
 				</StickySection>
 
 				<Work projects={data.projects} />
-				{/* <Work projects={data.projects && data.projects} /> */}
+				<Values/>
 				{/* <Values photos={data.valuePhotos && data.valuePhotos} /> */}
 				{/* <div className='c-sticky -offset-prev' ref={stickyBio}>
 					<SplitTextSection

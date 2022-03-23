@@ -110,6 +110,16 @@ a {
 	}
 }
 
+[data-theme="coolGirl"] {
+	background-color: $pink;
+	color: $purple;
+	fill: $purple;
+
+	*::before, *::after {
+		background-color: $purple;
+	}
+}
+
 [data-theme="banana"] {
 	background-color: $yellow;
 	color: $dark;

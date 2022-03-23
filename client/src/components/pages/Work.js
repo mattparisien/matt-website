@@ -18,8 +18,8 @@ function Work({ projects }) {
 
 	return (
 		<Section
-			classes='o-work -offset-prev -relative'
-			data-theme='fancy'
+			classes='o-work -offset-prev -relative -padding-lg'
+			data-theme='banana'
 			ref={trigger}
 		>
 			<Wave
