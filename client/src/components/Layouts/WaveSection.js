@@ -1,10 +1,19 @@
 import classNames from "classnames";
-import React, { useEffect, useRef } from "react";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import React, { useEffect, useRef } from "react";
 
-function WaveSection({ classes, children, dataTheme, waveTop, waveBottom }) {
-	const waveClasses = classNames("o-wave-section", { [classes]: classes });
+function WaveSection({
+	classes,
+	children,
+	dataTheme,
+
+	offsetPrev,
+}) {
+	const waveClasses = classNames("o-wave-section", {
+		[classes]: classes,
+		"-offset-prev": offsetPrev,
+	});
 	const waves = useRef([]);
 	waves.current = [];
 	const tl = useRef(null);
@@ -49,11 +58,11 @@ function WaveSection({ classes, children, dataTheme, waveTop, waveBottom }) {
 		}
 	}, [waves, trigger]);
 
-	const addToRefs = el => {
-		if (el && !waves.current.includes(el)) {
-			waves.current.push(el);
-		}
-	};
+	// const addToRefs = el => {
+	// 	if (el && !waves.current.includes(el)) {
+	// 		waves.current.push(el);
+	// 	}
+	// };
 
 	return (
 		<section
@@ -63,7 +72,7 @@ function WaveSection({ classes, children, dataTheme, waveTop, waveBottom }) {
 		>
 			<div className='o-wave-section_wave o-wave-section_wave_top'>
 				<div className='o-wave-section_wave_inner'>
-					<Wave color={waveTop} addToRefs={addToRefs} />
+					{/* <Wave color={waveTop} addToRefs={addToRefs} /> */}
 				</div>
 			</div>
 			{children}
@@ -71,21 +80,21 @@ function WaveSection({ classes, children, dataTheme, waveTop, waveBottom }) {
 	);
 }
 
-function Wave({ color, addToRefs }) {
-	return (
-		<svg
-			xmlns='http://www.w3.org/2000/svg'
-			viewBox='0 0 1440 320'
-			preserveAspectRatio='none'
-			className={`c-wave`}
-		>
-			<path
-				ref={addToRefs}
-				className={`-fill-${color}`}
-				d='M0,256L60,266.7C120,277,240,299,360,288C480,277,600,235,720,224C840,213,960,235,1080,256C1200,277,1320,299,1380,309.3L1440,320L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z'
-			></path>
-		</svg>
-	);
-}
+// function Wave({ color, addToRefs }) {
+// 	return (
+// 		<svg
+// 			xmlns='http://www.w3.org/2000/svg'
+// 			viewBox='0 0 1440 320'
+// 			preserveAspectRatio='none'
+// 			className={`c-wave`}
+// 		>
+// 			<path
+// 				ref={addToRefs}
+// 				className={`-fill-${color}`}
+// 				d='M0,256L60,266.7C120,277,240,299,360,288C480,277,600,235,720,224C840,213,960,235,1080,256C1200,277,1320,299,1380,309.3L1440,320L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z'
+// 			></path>
+// 		</svg>
+// 	);
+// }
 
 export default WaveSection;

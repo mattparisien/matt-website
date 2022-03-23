@@ -1,26 +1,47 @@
 .o-split-section {
-  display: flex;
+	display: flex;
+  height: 100vh;
 
-  &_left,
-  &_right {
-    width: 50%;
-    height: 60vw;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 
-  &_right {
-    background-color: $dark;
-  }
+	&_left,
+	&_right {
+		width: 50%;
+		
 
-  &_left {
-    background-color: $deepGreen;
-  }
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 
-  &_image {
-    height: 70%;
-    width: 60%;
-  }
+	&_text {
+		.o-split-section_left,
+		.o-split-section_right {
+			align-items: flex-start;
+		}
+	}
+
+	&_right {
+		background-color: $dark;
+	}
+
+	&_left {
+		background-color: $deepGreen;
+	}
+
+	&_image {
+		height: 70%;
+		width: 60%;
+	}
+
+  @include media("<=tablet") {
+		flex-direction: column;
+    
+
+		&_left,
+		&_right {
+			width: 100%;
+      height: 100%;
+		}
+	}
 }
