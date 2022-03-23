@@ -9,6 +9,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import ScrollWrapper from "../components/Containers/ScrollWrapper";
 import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
+import Cursor from "../components/Cursor/Cursor";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import Menu from "../components/Menu/Menu";
@@ -69,6 +70,7 @@ function App() {
 	const location = useLocation();
 
 	const [headerColor, setHeaderColor] = useState("orange");
+	const [hovering, setHovering] = useState(false);
 
 	useEffect(() => {
 		const handleIntersection = entries => {
@@ -80,7 +82,7 @@ function App() {
 		};
 
 		const observer = new IntersectionObserver(handleIntersection, {
-			rootMargin: '-50px 0px -60%'
+			rootMargin: "-50px 0px -60%",
 		});
 
 		$("[data-theme]").each((i, el) => {
@@ -165,8 +167,6 @@ function App() {
 		"is-dom-loaded": loading,
 		"is-old-page": state.isTransitioning,
 	});
-
-	
 
 	const toggleLoading = useCallback(() => {
 		setLoading(!loading);
@@ -301,14 +301,12 @@ function App() {
 		toggleLoading,
 	};
 
-	const [cursorState, setCursorState] = useState("following");
-
 	return (
 		<DataContext.Provider value={state.data}>
 			<ThemeProvider theme={themes}>
 				<LoadingContext.Provider value={loadingControls}>
 					<ColorContext.Provider value={{ setPageTheme, pageTheme }}>
-						<CursorContext.Provider value={{ cursorState, setCursorState }}>
+						<CursorContext.Provider value={{ hovering, setHovering }}>
 							{/* <LocomotiveScrollProvider
 								onLocationChange={scroll =>
 									scroll.scrollTo(0, { duration: 0, disableLerp: true })
@@ -325,7 +323,7 @@ function App() {
 								watch={[location.pathname]}
 								containerRef={scrollRef}
 							> */}
-							<div className={appClasses} >
+							<div className={appClasses}>
 								<Helmet>
 									<title>Matthew Parisien — Software Developer</title>
 									<meta
@@ -342,7 +340,7 @@ function App() {
 									/>
 									<meta property='og:type' content='website' />
 								</Helmet>
-								<Loader />
+
 								<Header color={headerColor} />
 
 								{/* <Loader isActive={play} setDone={togglePlay} /> */}
@@ -405,6 +403,8 @@ function App() {
 									/>
 								</ScrollWrapper>
 							</div>
+							<Cursor isHovering={hovering} setHovering={setHovering} />
+							<Loader />
 							{/* </LocomotiveScrollProvider> */}
 						</CursorContext.Provider>
 					</ColorContext.Provider>
