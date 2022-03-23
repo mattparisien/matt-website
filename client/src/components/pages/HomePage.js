@@ -207,11 +207,11 @@ function HomePage(props, ref) {
 					</Container>
 				</Section> */}
 				<StickySection
-					animation={{ x: 0, duration: 1 }}
 					els={fantasticRefs.current}
 					dataTheme='superstar'
 					start={"bottom bottom"}
 					classes='-flex -align-center -justify-center -stretchY'
+					animation={{ x: 0, duration: 2 }}
 				>
 					<div
 						className='o-text -huge -padding-lg -flex -flex-column -align-center -justify-start -stretchY'
@@ -230,7 +230,7 @@ function HomePage(props, ref) {
 				</StickySection>
 
 				<Work projects={data.projects} />
-				<Values/>
+				<Values />
 				{/* <Values photos={data.valuePhotos && data.valuePhotos} /> */}
 				{/* <div className='c-sticky -offset-prev' ref={stickyBio}>
 					<SplitTextSection
