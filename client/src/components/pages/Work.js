@@ -1,31 +1,48 @@
-import React from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/src/ScrollTrigger";
+import React, { useEffect, useRef } from "react";
 import useMouseMove from "../../helpers/hooks/useMouseMove";
-import WaveSection from "../Layouts/WaveSection";
+import Section from "../Containers/Section";
 import Link from "../Link/Link";
 
 function Work({ projects }) {
-	// const [currentImage, setCurrentImage] = useState(null);
-	// const [isInView, setInView] = useState(null);
-
-	// const handleMouseEnter = imageUrl => {
-	// 	setInView(true);
-	// 	setCurrentImage(imageUrl);
-	// };
-	// const handleMouseLeave = () => {
-	// 	setInView(false);
-	// };
+	gsap.registerPlugin(ScrollTrigger);
 
 	const [location] = useMouseMove();
+	const trigger = useRef(null);
+	const list = useRef(null);
+
+	useEffect(() => {
+		if (trigger.current && list.current) {
+			let proxy = { skew: 0 };
+
+			let skewSetter = gsap.quickSetter(".o-work_list", "skewY", "deg"); // fast
+			let clamp = gsap.utils.clamp(-20, 20); // don't let the skew go beyond 20 degrees.
+
+			ScrollTrigger.create({
+				trigger: trigger.current,
+				onUpdate: self => {
+					let skew = clamp(self.getVelocity() / -300);
+					if (Math.abs(skew) > Math.abs(proxy.skew)) {
+						proxy.skew = skew;
+						gsap.to(proxy, {
+							skew: 0,
+							duration: 0.8,
+							ease: "power3",
+							overwrite: true,
+							onUpdate: () => {
+								skewSetter(proxy.skew);
+							},
+						});
+					}
+				},
+			});
+		}
+	}, [trigger, list]);
 
 	return (
-		<WaveSection
-			classes='o-work '
-			waveTop='light'
-			waveBottom='purple'
-			dataTheme='fancy'
-			offsetPrev={true}
-		>
-			<ul className='o-work_list -padding-huge'>
+		<Section classes='o-work -offset-prev' data-theme='fancy' ref={trigger}>
+			<ul className='o-work_list -padding-huge' ref={list}>
 				{projects &&
 					projects.slice(0, 4).map(project => {
 						return (
@@ -47,7 +64,7 @@ function Work({ projects }) {
 				className='o-work_image -absolute -absolute-center'
 				style={{
 					// backgroundImage: `url(${currentImage})`,
-					opacity: 0 ,
+					opacity: 0,
 					left: location.pageX,
 					top: location.pageY,
 					transform: "translate(-50%, -50%)",
@@ -56,7 +73,7 @@ function Work({ projects }) {
 					backgroundPosition: "center",
 				}}
 			></div>
-		</WaveSection>
+		</Section>
 	);
 }
 
