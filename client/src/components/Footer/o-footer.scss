@@ -7,7 +7,7 @@
 	position: relative;
 
 	.o-h2 {
-		color: $dark;
+		color: $purple;
 		@include media(">=laptop") {
 			font-size: 10rem;
 		}

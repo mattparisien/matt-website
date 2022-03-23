@@ -56,7 +56,6 @@ function HomePage(props, ref) {
 			ScrollTrigger.refresh();
 		}, 500);
 
-
 		//If there's a scroll trigger ref, set timelines with trigger
 		if (sticky.current) {
 			heroTitleTl.current = gsap.timeline({
@@ -161,7 +160,7 @@ function HomePage(props, ref) {
 					<div className='o-sticky_inner' ref={inner}>
 						<Section
 							classes='o-hero -fullHeight -flex -align-center -justify-center'
-							data-theme="party"
+							data-theme='party'
 						>
 							<Container>
 								<h1 className='o-h1 o-hero_title -split -huge'>
@@ -182,20 +181,15 @@ function HomePage(props, ref) {
 					<Container>
 						<div className='o-text -big -padding-top-lg'>
 							I am a Montreal-based full-stack developer in love with digital
-							products and passionate about crafting great user experiences. My
-							work is entirely driven by a passion for what I do, and a love for
-							people who share the desire to improve the lives of others by
-							combining creativity and technology.
+							products and passionate about crafting great user experiences
+							through storytelling. My work is always driven by a passion for
+							what I do, and a love for people.
 						</div>
 						<div className='o-text -big -padding-lg' ref={grow}>
-							I believe a team who love creating,{" "}
-							<span className='accent'>learn</span>ing and growing together have
-							the ability to transcend the workplace. Communication begins with
-							a story. This is why I believe web development is storytelling.
-							Good stories engage and <span className='accent'>create</span>{" "}
-							immersive
-							<span className='accent'>experiences</span> for their listeners.
-							They exist, they progress, and create memories.
+							I believe a team who loves creating, learning and growing together
+							have the ability to transcend the workplace. Good communication
+							creates good stories that engage, progress, and create memorable
+							experiences.
 						</div>
 					</Container>
 				</Section>
@@ -216,7 +210,7 @@ function HomePage(props, ref) {
 					els={fantasticRefs.current}
 					dataTheme='superstar'
 					start={"bottom bottom"}
-					classes="-flex -align-center -justify-center -stretchY"
+					classes='-flex -align-center -justify-center -stretchY'
 				>
 					<div
 						className='o-text -huge -padding-lg -flex -flex-column -align-center -justify-start -stretchY'
