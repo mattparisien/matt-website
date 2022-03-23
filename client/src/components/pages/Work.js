@@ -59,6 +59,11 @@ function Work({ projects }) {
 				}}
 			></div> */}
 			{/* <div className='o-work_image'></div> */}
+			<Wave
+				location={"bottom"}
+				color='orange'
+				trigger={trigger.current && trigger.current}
+			/>
 		</Section>
 	);
 }

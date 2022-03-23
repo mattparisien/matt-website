@@ -10,6 +10,7 @@
 	}
 
 	&.is-bottom {
-		bottom: 4px;
+		bottom: -5px;
+		transform: rotate(0deg)scaleX(1.2);
 	}
 }
