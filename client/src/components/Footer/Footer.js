@@ -4,9 +4,8 @@ import $ from "jquery";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import Container from "../Containers/Container";
-import Eyes from "../Eyes/Eyes";
-import Link from "../Link/Link";
 import Section from "../Containers/Section";
+import Link from "../Link/Link";
 
 function Footer(props) {
 	const linkRefs = useRef([]);
@@ -110,7 +109,7 @@ function Footer(props) {
 						<div className='footer-list'>
 							<div>
 								<ul>
-									<li>All Right Reserved</li>
+									<li>All Rights Reserved</li>
 									<li>2020 © Matthew Parisien</li>
 								</ul>
 							</div>
