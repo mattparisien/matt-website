@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from "react";
-import ScrollTrigger from "gsap/src/ScrollTrigger";
-import gsap from "gsap";
-import Container from "../Containers/Container";
-import useResize from "../../helpers/hooks/useResize";
 import classNames from "classnames";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/src/ScrollTrigger";
+import React, { useEffect, useRef } from "react";
+import useResize from "../../helpers/hooks/useResize";
+import Container from "../Containers/Container";
 
 function StickySection({
 	children,
@@ -44,7 +44,7 @@ function StickySection({
 		if (els && animation) {
 			tl.current.to(els, animation);
 		}
-	}, [trigger, tl, els, animation]);
+	}, [trigger, tl, els, animation, scrub, start]);
 
 	return (
 		<div

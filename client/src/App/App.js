@@ -18,7 +18,6 @@ import HomePage from "../components/pages/HomePage";
 import SingleProjectPage from "../components/pages/SingleProjectPage";
 import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
-import useResize from "../helpers/hooks/useResize";
 import { GlobalStyle } from "../styles/global";
 
 export const DataContext = createContext();
@@ -29,7 +28,7 @@ export const CursorContext = createContext();
 function App() {
 	const [loading, setLoading] = useState(true);
 	const [pageTheme, setPageTheme] = useState("party");
-	const { isResized } = useResize();
+	// const { isResized } = useResize();
 
 	const themes = {
 		space: [
@@ -72,22 +71,22 @@ function App() {
 	const [headerColor, setHeaderColor] = useState("orange");
 
 	useEffect(() => {
-		if (location.pathname === "/") {
-			const handleScroll = () => {
-				if (window.scrollY > 720 && window.scrollY < 2000) {
-					setHeaderColor("green");
-				} else if (window.scrollY > 2000 && window.scrollY < 3600) {
-					setHeaderColor("dark");
-				} else if (window.scrollY > 3600) {
-					setHeaderColor("pink");
-				} else {
-					setHeaderColor("orange");
+		const handleIntersection = entries => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					setHeaderColor($(entry.target).attr("data-theme"));
 				}
-			};
+			});
+		};
 
-			window.addEventListener("scroll", handleScroll);
-		}
-	}, [location.pathname]);
+		const observer = new IntersectionObserver(handleIntersection, {
+			rootMargin: '-50px 0px -60%'
+		});
+
+		$("[data-theme]").each((i, el) => {
+			observer.observe(el);
+		});
+	}, []);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -167,7 +166,7 @@ function App() {
 		"is-old-page": state.isTransitioning,
 	});
 
-	const initialRender = useRef(true);
+	
 
 	const toggleLoading = useCallback(() => {
 		setLoading(!loading);
@@ -326,7 +325,7 @@ function App() {
 								watch={[location.pathname]}
 								containerRef={scrollRef}
 							> */}
-							<div className={appClasses} data-theme={pageTheme}>
+							<div className={appClasses} >
 								<Helmet>
 									<title>Matthew Parisien — Software Developer</title>
 									<meta

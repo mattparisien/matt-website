@@ -7,11 +7,9 @@ import React, { forwardRef, useContext, useEffect, useRef } from "react";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { DataContext } from "../../App/App";
+import useResize from "../../helpers/hooks/useResize";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
-import SplitTextSection from "../Layouts/SplitTextSection";
-import useResize from "../../helpers/hooks/useResize";
-import HeadingSection from "../Layouts/HeadingSection";
 import StickySection from "../Layouts/StickySection";
 import Work from "./Work";
 
@@ -35,7 +33,7 @@ function HomePage(props, ref) {
 	lines.current = [];
 	const headingRef = useRef([]);
 	headingRef.current = [];
-	const image = useRef(null);
+	// const image = useRef(null);
 
 	const sticky = useRef(null);
 
@@ -44,7 +42,7 @@ function HomePage(props, ref) {
 	const path = useRef(null);
 
 	const inner = useRef(null);
-	const stickyBio = useRef(null);
+	// const stickyBio = useRef(null);
 
 	//Declare hero animation timelines
 	const heroTitleTl = useRef(null);
@@ -58,18 +56,6 @@ function HomePage(props, ref) {
 			ScrollTrigger.refresh();
 		}, 500);
 
-		if (stickyBio.current) {
-			let tl = gsap.timeline({
-				scrollTrigger: {
-					trigger: stickyBio.current,
-					start: "top top",
-					pinSpacing: false,
-					scrub: 1,
-					pin: true,
-					invalidateOnResize: true,
-				},
-			});
-		}
 
 		//If there's a scroll trigger ref, set timelines with trigger
 		if (sticky.current) {
@@ -174,8 +160,8 @@ function HomePage(props, ref) {
 				<div className='o-sticky' ref={sticky}>
 					<div className='o-sticky_inner' ref={inner}>
 						<Section
-							classes='o-hero -fullHeight -flex -align-center -justify-center -bg-pink'
-							data-scroll-section
+							classes='o-hero -fullHeight -flex -align-center -justify-center'
+							data-theme="party"
 						>
 							<Container>
 								<h1 className='o-h1 o-hero_title -split -huge'>

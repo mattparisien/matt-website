@@ -4,13 +4,13 @@ import Logo from "../Logo/Logo";
 import DesktopNav from "../Nav/DesktopNav";
 import Nav from "../Nav/Nav";
 
-function Header({color}) {
+function Header({ color }) {
 	return (
-		<header className='c-header' data-color={color}>
+		<header className='c-header' data-theme={color}>
 			<Container classes={"-stretchX -stretchY"}>
 				<Logo />
 				<DesktopNav />
-				<Nav/>
+				<Nav />
 			</Container>
 		</header>
 	);

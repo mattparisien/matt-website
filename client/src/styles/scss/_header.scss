@@ -5,23 +5,9 @@
 	width: 100vw;
 	height: $headerHeight;
 	z-index: 999;
+	background: transparent !important;
 
 
-	&[data-color="orange"] {
-		color: $orange;
-	}
-
-	&[data-color="pink"] {
-		color: $pink;
-	}
-
-	&[data-color="dark"] {
-		color: $dark;
-	}
-
-	&[data-color="green"] {
-		color: green;
-	}
 
 	.o-container {
 		display: flex;
