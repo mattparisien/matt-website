@@ -4,12 +4,15 @@
   align-items: center;
   justify-content: center;
 
+ 
+
   &_image {
     width: 30vw;
     height: 40vw;
     background-color: red;
     z-index: 0;
     transition: opacity 600ms ease;
+    position: absolute;
 
     img {
       object-fit: cover;

@@ -1,47 +1,32 @@
 import gsap from "gsap";
+import MorphSVGPlugin from "gsap/MorphSVGPlugin";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
-import React, { useEffect, useRef } from "react";
-import useMouseMove from "../../helpers/hooks/useMouseMove";
+import React, { useRef } from "react";
 import Section from "../Containers/Section";
 import Link from "../Link/Link";
+import Wave from "../Wave/Wave";
 
 function Work({ projects }) {
-	gsap.registerPlugin(ScrollTrigger);
+	gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin);
 
-	const [location] = useMouseMove();
+	// const [location] = useMouseMove();
+	// const wave = useRef(null);
 	const trigger = useRef(null);
 	const list = useRef(null);
+	// const waveTl = useRef(gsap.timeline());
 
-	useEffect(() => {
-		if (trigger.current && list.current) {
-			let proxy = { skew: 0 };
-
-			let skewSetter = gsap.quickSetter(".o-work_list", "skewY", "deg"); // fast
-			let clamp = gsap.utils.clamp(-20, 20); // don't let the skew go beyond 20 degrees.
-
-			ScrollTrigger.create({
-				trigger: trigger.current,
-				onUpdate: self => {
-					let skew = clamp(self.getVelocity() / -300);
-					if (Math.abs(skew) > Math.abs(proxy.skew)) {
-						proxy.skew = skew;
-						gsap.to(proxy, {
-							skew: 0,
-							duration: 0.8,
-							ease: "power3",
-							overwrite: true,
-							onUpdate: () => {
-								skewSetter(proxy.skew);
-							},
-						});
-					}
-				},
-			});
-		}
-	}, [trigger, list]);
 
 	return (
-		<Section classes='o-work -offset-prev' data-theme='fancy' ref={trigger}>
+		<Section
+			classes='o-work -offset-prev -relative'
+			data-theme='fancy'
+			ref={trigger}
+		>
+			<Wave
+				location={"top"}
+				color='deepGreen'
+				trigger={trigger.current && trigger.current}
+			/>
 			<ul className='o-work_list -padding-huge' ref={list}>
 				{projects &&
 					projects.slice(0, 4).map(project => {
@@ -60,7 +45,7 @@ function Work({ projects }) {
 						);
 					})}
 			</ul>
-			<div
+			{/* <div
 				className='o-work_image -absolute -absolute-center'
 				style={{
 					// backgroundImage: `url(${currentImage})`,
@@ -72,7 +57,8 @@ function Work({ projects }) {
 					backgroundSize: "cover",
 					backgroundPosition: "center",
 				}}
-			></div>
+			></div> */}
+			{/* <div className='o-work_image'></div> */}
 		</Section>
 	);
 }

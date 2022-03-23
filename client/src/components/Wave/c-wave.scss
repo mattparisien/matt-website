@@ -1,0 +1,15 @@
+.c-wave {
+	width: 100%;
+	position: absolute;
+	left: 0;
+	transform: rotate(180deg);
+
+	&.is-top {
+		top: -5px;
+		transform: rotate(180deg);
+	}
+
+	&.is-bottom {
+		bottom: 4px;
+	}
+}

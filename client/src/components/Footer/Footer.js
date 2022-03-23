@@ -97,6 +97,7 @@ function Footer(props) {
 			data-scroll-section
 			data-theme='purple'
 		>
+			
 			<Container classes='-stretchX -relative'>
 				<a href="mailto:hello@matthewparisien.com?subject=Let's talk.">
 					<div className={`c-oval -accent`} ref={ref}></div>

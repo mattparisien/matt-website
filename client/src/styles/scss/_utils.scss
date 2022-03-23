@@ -246,6 +246,10 @@
 	fill: $light !important;
 }
 
+.-fill-deepGreen {
+	fill: $deepGreen !important;
+}
+
 .-fill-yellow {
 	fill: $yellow !important;
 }
@@ -277,15 +281,7 @@
 	color: $orange;
 }
 
-.-huge {
-	font-size: 30vw;
-	line-height: 15vw;
-	text-align: center;
 
-	@include media(">=tablet") {
-		font-size: 20rem;
-	}
-}
 
 .-width-50 {
 	width: 50%;
