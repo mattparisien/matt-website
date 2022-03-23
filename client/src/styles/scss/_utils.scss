@@ -265,12 +265,11 @@
 .-ul-small,
 .-text-tiny {
 	font-size: 1rem;
-	font-family: 'Riposte';
-	
+	font-family: "Riposte";
 }
 
 .-fk {
-	font-family: 'FK' !important;
+	font-family: "FK" !important;
 	text-transform: uppercase;
 }
 
@@ -279,9 +278,13 @@
 }
 
 .-huge {
-	font-size: 15vw !important;
-	line-height: 15vw !important;
+	font-size: 30vw;
+	line-height: 15vw;
 	text-align: center;
+
+	@include media(">=tablet") {
+		font-size: 20rem;
+	}
 }
 
 .-width-50 {

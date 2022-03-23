@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { CursorContext, LoadingContext } from "../../App/App";
 import variables from "../../styles/scss/_vars.module.scss";
 
+
 function Link(props, ref) {
 	const classes = classNames("c-link", {
 		[props.classes]: props.classes,
@@ -11,6 +12,7 @@ function Link(props, ref) {
 
 	const navigate = useNavigate();
 	const { toggleLoading } = useContext(LoadingContext);
+	const { hovering, setHovering } = useContext(CursorContext);
 
 	const handleNavigate = e => {
 		
@@ -24,14 +26,14 @@ function Link(props, ref) {
 		}, variables.loaderDuration.replace(".", "").concat("00"));
 	};
 
-	const { setCursorState } = useContext(CursorContext);
+	
 
 	const handleMouseEnter = () => {
-		setCursorState("link-hovering");
+		setHovering(!hovering)
 	};
 
 	const handleMouseLeave = () => {
-		setCursorState("following");
+		setHovering(!hovering)
 	};
 
 	return (

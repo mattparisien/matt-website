@@ -2,6 +2,7 @@ import gsap from "gsap";
 import ScrollToPlugin from "gsap/dist/ScrollToPlugin";
 import React from "react";
 import { useLocation } from "react-router-dom";
+import Link from "../Link/Link";
 
 function DesktopNav() {
 	gsap.registerPlugin(ScrollToPlugin);
@@ -48,7 +49,7 @@ function DesktopNav() {
 							key={index}
 							className={link.path === location.pathname && "is-active"}
 						>
-							<button onClick={e => handleClick(e, link.name)}>{link.name}</button>
+							<Link onClick={e => handleClick(e, link.name)}>{link.name}</Link>
 						</li>
 					);
 				})}

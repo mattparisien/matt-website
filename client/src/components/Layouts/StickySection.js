@@ -36,6 +36,7 @@ function StickySection({
 					scrub: scrub ? scrub : !0,
 					pin: true,
 					pinSpacing: false,
+					pinSpacer: false,
 					invalidateOnRefresh: true,
 				},
 			});

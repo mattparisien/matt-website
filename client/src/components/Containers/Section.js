@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 
 function Section(props) {
-	const classes = classNames("Section c-section", {
+	const classes = classNames("c-section", {
 		[props.classes]: props.classes,
 	});
 
