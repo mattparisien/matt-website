@@ -35,7 +35,6 @@ function Footer(props) {
 
 	useEffect(() => {
 		if (inView) {
-			
 			gsap.to($("footer").find(".c-char"), {
 				y: 0,
 				duration: 1,
@@ -93,13 +92,19 @@ function Footer(props) {
 	}, [words]);
 
 	return (
-		<footer className={`o-footer ${inView && "is-inview"}`} data-scroll-section data-theme="purple">
+		<footer
+			className={`o-footer ${inView && "is-inview"}`}
+			data-scroll-section
+			data-theme='purple'
+		>
 			<Container classes='-stretchX -relative'>
-				<div className={`c-oval -accent`} ref={ref}></div>
-				<div className='-stretchX -absolute -absolute-center'>
-					<Eyes />
-					<h2 className='o-h2 -split -huge'>CONTACT ME</h2>
-				</div>
+				<a href="mailto:hello@matthewparisien.com?subject=Let's talk.">
+					<div className={`c-oval -accent`} ref={ref}></div>
+					<div className='-stretchX -absolute -absolute-center'>
+						<Eyes />
+						<h2 className='o-h2 -split -huge'>CONTACT ME</h2>
+					</div>
+				</a>
 			</Container>
 
 			<div className='o-footer_bottom'>

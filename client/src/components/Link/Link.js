@@ -13,7 +13,7 @@ function Link(props, ref) {
 	const { toggleLoading } = useContext(LoadingContext);
 
 	const handleNavigate = e => {
-		console.log(props.href)
+		
 		props.onClick && props.onClick(e);
 		e.preventDefault();
 
