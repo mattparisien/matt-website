@@ -41,6 +41,7 @@
 @import "../../components/Layouts/o-wave-section.scss";
 @import "../../components/Layouts/o-heading-section.scss";
 @import "../../components/Cursor/c-cursor.scss";
+@import "../../components/Wave/c-wave.scss";
 
 .Home {
 	height: 100vh;
@@ -87,6 +88,10 @@ a {
 
 .-fill-blue {
 	fill: #3A8696;
+}
+
+.-fill-beige {
+	fill: $beige;
 }
 
 .-fill-light {
