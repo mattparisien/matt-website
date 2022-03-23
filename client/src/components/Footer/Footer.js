@@ -6,6 +6,7 @@ import { useInView } from "react-intersection-observer";
 import Container from "../Containers/Container";
 import Eyes from "../Eyes/Eyes";
 import Link from "../Link/Link";
+import Section from "../Containers/Section";
 
 function Footer(props) {
 	const linkRefs = useRef([]);
@@ -94,58 +95,58 @@ function Footer(props) {
 	return (
 		<footer
 			className={`o-footer ${inView && "is-inview"}`}
-			data-scroll-section
-			data-theme='purple'
+			data-theme='coolGirl'
 		>
-			
-			<Container classes='-stretchX -relative'>
-				<a href="mailto:hello@matthewparisien.com?subject=Let's talk.">
-					<div className={`c-oval -accent`} ref={ref}></div>
-					<div className='-stretchX -absolute -absolute-center'>
-						<Eyes />
-						<h2 className='o-h2 -split -huge'>CONTACT ME</h2>
-					</div>
-				</a>
-			</Container>
-
-			<div className='o-footer_bottom'>
-				<Container classes='-flex -align-end -justify-between -stretchX'>
-					<div className='footer-list'>
-						<div>
-							<ul>
-								<li>All Right Reserved</li>
-								<li>2020 © Matthew Parisien</li>
-							</ul>
-						</div>
-						<div>
-							<ul>
-								<li>Follow me on</li>
-								<li>
-									<Link
-										href='https://www.instagram.com/matt.parisien/'
-										target='_blank'
-									>
-										Instagram
-									</Link>
-								</li>
-								<li>
-									<Link
-										href='https://www.linkedin.com/in/matthew-parisien-365572130/'
-										target='_blank'
-									>
-										LinkedIn
-									</Link>
-								</li>
-								<li>
-									<Link href='https://github.com/mattparisien' target='_blank'>
-										GitHub
-									</Link>
-								</li>
-							</ul>
-						</div>
-					</div>
+			<Section classes='-padding-lg -stretchX -stretchY'>
+				<Container classes='-stretchX -relative -padding-lg'>
+					<h2 className='o-h2'>Let's talk!</h2>
+					<Link classes="o-footer_email" href="mailto:hello@matthewparisien.com?subject=Let's talk">
+						matthewparisien4@gmail.com
+					</Link>
 				</Container>
-			</div>
+
+				<div className='o-footer_bottom'>
+					<Container classes='-flex -align-end -justify-between -stretchX'>
+						<div className='footer-list'>
+							<div>
+								<ul>
+									<li>All Right Reserved</li>
+									<li>2020 © Matthew Parisien</li>
+								</ul>
+							</div>
+							<div>
+								<ul>
+									<li>Follow me on</li>
+									<li>
+										<Link
+											href='https://www.instagram.com/matt.parisien/'
+											target='_blank'
+										>
+											Instagram
+										</Link>
+									</li>
+									<li>
+										<Link
+											href='https://www.linkedin.com/in/matthew-parisien-365572130/'
+											target='_blank'
+										>
+											LinkedIn
+										</Link>
+									</li>
+									<li>
+										<Link
+											href='https://github.com/mattparisien'
+											target='_blank'
+										>
+											GitHub
+										</Link>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</Container>
+				</div>
+			</Section>
 		</footer>
 	);
 }

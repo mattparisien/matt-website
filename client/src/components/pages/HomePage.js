@@ -230,8 +230,8 @@ function HomePage(props, ref) {
 				</StickySection>
 
 				<Work projects={data.projects} />
-				
-				<Values photos={data.valuePhotos && data.valuePhotos} />
+				<Values/>
+				{/* <Values photos={data.valuePhotos && data.valuePhotos} /> */}
 				{/* <div className='c-sticky -offset-prev' ref={stickyBio}>
 					<SplitTextSection
 						dataThemeRight='regular'

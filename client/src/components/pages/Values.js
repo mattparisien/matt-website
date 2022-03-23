@@ -1,6 +1,7 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
 import WaveSection from "../Layouts/WaveSection";
+import Container from "../Containers/Container";
 
 function Values({ photos }) {
 	// const [hoverWord, setHoverWord] = useState(null);
@@ -15,6 +16,8 @@ function Values({ photos }) {
 		"photography",
 		"running",
 		"code",
+		"hard work",
+		"mental health"
 	];
 
 	// const [location] = useMouseMove();
@@ -27,20 +30,19 @@ function Values({ photos }) {
 	// 	setHoverWord(word);
 	// };
 
-// useEffect(() => {
+	// useEffect(() => {
 
+	// 	function lerp(min, max, value) {
+	// 		return (max - min) * value + min
+	// 	}
 
-// 	function lerp(min, max, value) {
-// 		return (max - min) * value + min
-// 	}
+	// 	$("[data-word='gaming']").css({
+	// 		opacity: 1,
+	// 		left: lerp(0, location.pageX, 0.3),
+	// 		top: lerp(0, location.pageY, 0.3)
+	// 	})
 
-// 	$("[data-word='gaming']").css({
-// 		opacity: 1,
-// 		left: lerp(0, location.pageX, 0.3),
-// 		top: lerp(0, location.pageY, 0.3)
-// 	})
-
-// })
+	// })
 
 	return (
 		<WaveSection
@@ -48,6 +50,11 @@ function Values({ photos }) {
 			classes='o-values -flex -align-center -justify-center -flex-column'
 			dataTheme='orangeCrush'
 		>
+			<Container classes="-absolute -left -top">
+				<div className="-relative -stretchX -stretchY">
+				<h3 className='o-text -big'>I care about</h3>
+				</div>
+			</Container>
 			<div className='c-marquee'>
 				<Marquee gradient={false}>
 					{words.map((word, i) => {
