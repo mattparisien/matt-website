@@ -6,14 +6,20 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	border: 2px solid $light;
-	border-radius: 50%;
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
 
-	&.is-hover-cursor {
-		border: none;
+	&_outline {
+		position: absolute;
+		top: 0;
+		left: 0;
+		border-radius: 50%;
+		height: 100%;
+		width: 100%;
+		border: 2px solid $light;
+		transition: 400ms ease;
 	}
 
 	&_point {
@@ -21,5 +27,12 @@
 		width: 9px;
 		border-radius: 50%;
 		background-color: $light;
+	}
+
+	&.is-hover-cursor {
+		.c-cursor_outline {
+			opacity: 0;
+			transform: scale(0.001);
+		}
 	}
 }
