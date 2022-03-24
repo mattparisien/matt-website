@@ -46,7 +46,7 @@ function Loader({ toggleLoading }) {
 										duration: 1,
 										onComplete: () => {
 											gsap.set(container.current, { display: "none" });
-											setDone(true);
+											!done && setDone(true);
 										},
 									});
 							},
@@ -56,7 +56,7 @@ function Loader({ toggleLoading }) {
 				});
 			}
 		}, 200);
-	}, [lines, toggleLoading]);
+	}, [lines, done]);
 
 	return (
 		<div className={classes} data-theme='party' ref={container}>
