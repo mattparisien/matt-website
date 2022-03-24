@@ -27,7 +27,7 @@ export const ColorContext = createContext();
 export const CursorContext = createContext();
 
 function App() {
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 	const [pageTheme, setPageTheme] = useState("party");
 	// const { isResized } = useResize();
 
