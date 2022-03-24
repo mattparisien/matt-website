@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import React, { forwardRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { CursorContext, LoadingContext } from "../../App/App";
+import { CursorContext } from "../../App/App";
 import variables from "../../styles/scss/_vars.module.scss";
 
 
@@ -11,7 +11,7 @@ function Link(props, ref) {
 	});
 
 	const navigate = useNavigate();
-	const { toggleLoading } = useContext(LoadingContext);
+	// const { toggleLoading } = useContext(LoadingContext);
 	const { hovering, setHovering } = useContext(CursorContext);
 
 	const handleNavigate = e => {
@@ -19,7 +19,7 @@ function Link(props, ref) {
 		props.onClick && props.onClick(e);
 		e.preventDefault();
 
-		toggleLoading();
+		// toggleLoading();
 
 		setTimeout(() => {
 			navigate(props.href);

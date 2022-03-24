@@ -39,8 +39,11 @@
 	transition: 500ms ease;
 }
 
+.is-loading {
+	overflow: hidden;
+}
+
 main {
-	opacity: 0;
 	transition: 400ms ease;
 }
 
@@ -68,16 +71,6 @@ h6 {
 	& div {
 		font-family: "Riposte";
 	}
-}
-
-.o-h1,
-.o-h2,
-.o-h3,
-.o-h4,
-.o-h5,
-.o-h6 {
-	opacity: 0;
-	transition: $transition;
 }
 
 .o-h1.-split,

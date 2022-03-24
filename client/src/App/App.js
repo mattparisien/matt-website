@@ -99,9 +99,17 @@ function App() {
 				charsClass: "c-char",
 				linesClass: "c-word",
 			});
+
 			const splitText2 = new SplitText($(".o-h2.-split"), {
 				type: "chars",
 				charsClass: "c-char",
+			});
+
+			//Loader split text
+			new SplitText($(".-split-chars"), {
+				type: "chars, words",
+				charsClass: "o-loader_text_char",
+				wordsClass: "o-loader_text_word",
 			});
 
 			split.current = [splitText, splitText2];
@@ -140,6 +148,12 @@ function App() {
 		}
 	}, [isSplit, location]);
 
+	useEffect(() => {
+		loading
+			? document.body.classList.add("is-loading")
+			: document.body.classList.remove("is-loading");
+	}, [loading]);
+
 	const scrollRef = useRef(null);
 
 	const [state, setState] = useState({
@@ -164,7 +178,6 @@ function App() {
 
 	const appClasses = classNames("App", {
 		"menu-active": state.menuActive,
-		"is-dom-loaded": loading,
 		"is-old-page": state.isTransitioning,
 	});
 
@@ -399,12 +412,19 @@ function App() {
 										data={{
 											contact: { ...state.data.contact },
 											socials: state.data.socials,
+											personalPhoto: {
+												...(state.data.photos &&
+													state.data.photos.slice(
+														state.data.photos.length - 1,
+														state.data.photos.length
+													)),
+											},
 										}}
 									/>
 								</ScrollWrapper>
 							</div>
 							<Cursor isHovering={hovering} setHovering={setHovering} />
-							<Loader />
+							<Loader toggleLoading={toggleLoading} />
 							{/* </LocomotiveScrollProvider> */}
 						</CursorContext.Provider>
 					</ColorContext.Provider>

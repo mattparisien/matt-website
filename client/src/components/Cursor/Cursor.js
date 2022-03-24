@@ -21,6 +21,7 @@ function Cursor({isHovering}) {
 				pointerEvents: "none"
 			}}
 		>
+			<div className="c-cursor_outline"></div>
 			<div className='c-cursor_point'></div>
 		</div>
 	);
