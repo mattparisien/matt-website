@@ -13,9 +13,7 @@ function Loader({ toggleLoading }) {
 	const container = useRef(null);
 	const [done, setDone] = useState(false);
 
-	useEffect(() => {
-		done && toggleLoading();
-	}, [done, toggleLoading]);
+
 
 	useEffect(() => {
 		let delay = 0;
