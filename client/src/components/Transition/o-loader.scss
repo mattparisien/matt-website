@@ -10,7 +10,33 @@
 	justify-content: center;
 	z-index: 9999;
 	transition: 300ms ease;
-	display: none;
+	background-color: $pink;
+
+	&_text {
+		width: 100%;
+		&_word {
+			margin-right: 0.8rem;
+		}
+	}
+
+	&_text_line {
+		// opacity: 0;
+		width: 100%;
+		white-space: nowrap;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+
+	
+
+	
+	}
+	
+
+	&_text_char {
+		opacity: 0;
+	}
 
 	&.is-active {
 		display: block;
