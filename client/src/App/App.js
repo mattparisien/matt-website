@@ -105,7 +105,6 @@ function App() {
 				charsClass: "c-char",
 			});
 
-
 			//Loader split text
 			new SplitText($(".-split-chars"), {
 				type: "chars, words",
@@ -413,6 +412,13 @@ function App() {
 										data={{
 											contact: { ...state.data.contact },
 											socials: state.data.socials,
+											personalPhoto: {
+												...(state.data.photos &&
+													state.data.photos.slice(
+														state.data.photos.length - 1,
+														state.data.photos.length
+													)),
+											},
 										}}
 									/>
 								</ScrollWrapper>

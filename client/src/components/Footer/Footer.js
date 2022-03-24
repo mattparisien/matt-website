@@ -7,7 +7,7 @@ import Container from "../Containers/Container";
 import Section from "../Containers/Section";
 import Link from "../Link/Link";
 
-function Footer(props) {
+function Footer({ data }) {
 	const linkRefs = useRef([]);
 
 	linkRefs.current = [];
@@ -98,10 +98,23 @@ function Footer(props) {
 		>
 			<Section classes='-padding-lg -stretchX -stretchY'>
 				<Container classes='-stretchX -relative -padding-lg'>
-					<h2 className='o-h2'>Let's talk!</h2>
-					<Link classes="o-footer_email" href="mailto:hello@matthewparisien.com?subject=Let's talk">
-						matthewparisien4@gmail.com
-					</Link>
+					<div className='inner'>
+						<h2 className='o-h2'>Let's talk!</h2>
+						<Link
+							classes='o-footer_email'
+							href="mailto:hello@matthewparisien.com?subject=Let's talk"
+						>
+							matthewparisien4@gmail.com
+						</Link>
+						<div
+							className='o-footer_image'
+							style={{
+								backgroundImage: `url(${
+									data.personalPhoto[0] && data.personalPhoto[0].url
+								})`,
+							}}
+						></div>
+					</div>
 				</Container>
 
 				<div className='o-footer_bottom'>

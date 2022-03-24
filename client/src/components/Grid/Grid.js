@@ -108,10 +108,10 @@ function Item({
 
 	const itemClasses = classNames("c-grid_item");
 
-	const handleLoad = () => {
-		isLoading && toggleLoading();
-		setLoaded(true);
-	};
+	// const handleLoad = () => {
+	// 	isLoading && toggleLoading();
+	// 	setLoaded(true);
+	// };
 
 	// useEffect(() => {
 	// 	inView && gsap.to(entry.target, {
