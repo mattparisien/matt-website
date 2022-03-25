@@ -5,18 +5,18 @@ import { CursorContext } from "../../App/App";
 import Link from "../Link/Link";
 
 function Nav() {
-	const { setCursorState } = useContext(CursorContext);
+	const { setHovering } = useContext(CursorContext);
 	const [active, setActive] = useState(false);
 	const classes = classNames("c-nav -mobile", {
 		"is-active": active,
 	});
 
 	const handleMouseEnter = () => {
-		setCursorState("nav-hovering");
+		setHovering("nav-hovering");
 	};
 
 	const handleMouseLeave = () => {
-		setCursorState("following");
+		setHovering("following");
 	};
 
 	const handleClick = (e, linkName) => {

@@ -41,7 +41,7 @@ function Link(props, ref) {
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 			className={classes}
-			href={!props.isRouterLink && props.href}
+			href={props.href}
 			target={props.target}
 			onClick={!props.isRouterLink ? props.onClick : handleNavigate}
 			ref={ref}

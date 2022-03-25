@@ -14,10 +14,6 @@ function DesktopNav() {
 			name: "Work",
 			path: "/",
 		},
-		// {
-		// 	name: "About",
-		// 	path: "/about",
-		// },
 		{
 			name: "Contact",
 			path: "contact",
@@ -41,13 +37,13 @@ function DesktopNav() {
 	};
 
 	return (
-		<nav className='c-nav -desktop'>
+		<nav className={'c-nav -desktop'}>
 			<ul>
 				{links.map((link, index) => {
 					return (
 						<li
 							key={index}
-							className={link.path === location.pathname && "is-active"}
+							className={link.path === location.pathname ? "is-active" : ''}
 						>
 							<Link onClick={e => handleClick(e, link.name)}>{link.name}</Link>
 						</li>
