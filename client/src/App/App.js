@@ -159,7 +159,6 @@ function App() {
 		headerHeight: null,
 		footerHeight: null,
 		isFooterIntersecting: false,
-
 		isTransitioning: false,
 	});
 
