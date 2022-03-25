@@ -7,7 +7,7 @@ import Link from "../Link/Link";
 function Nav() {
 	const { setCursorState } = useContext(CursorContext);
 	const [active, setActive] = useState(false);
-	const classes = classNames("c-nav -fade-up-load -delay-2 -mobile", {
+	const classes = classNames("c-nav -mobile", {
 		"is-active": active,
 	});
 

@@ -12,7 +12,6 @@ import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
 import Cursor from "../components/Cursor/Cursor";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
-import Menu from "../components/Menu/Menu";
 import AboutPage from "../components/pages/AboutPage";
 import ContactPage from "../components/pages/ContactPage";
 import HomePage from "../components/pages/HomePage";
@@ -20,6 +19,8 @@ import SingleProjectPage from "../components/pages/SingleProjectPage";
 import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
 import { GlobalStyle } from "../styles/global";
+import { detectDevice } from "../helpers/detectDevice";
+import { useMemo } from "react";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -71,6 +72,8 @@ function App() {
 
 	const [headerColor, setHeaderColor] = useState("orange");
 	const [hovering, setHovering] = useState(false);
+
+	const device = useMemo(() => detectDevice(), []);
 
 	useEffect(() => {
 		const handleIntersection = entries => {
@@ -161,7 +164,7 @@ function App() {
 		headerHeight: null,
 		footerHeight: null,
 		isFooterIntersecting: false,
-		menuActive: false,
+
 		isTransitioning: false,
 	});
 
@@ -177,8 +180,8 @@ function App() {
 	}, [location]);
 
 	const appClasses = classNames("App", {
-		"menu-active": state.menuActive,
 		"is-old-page": state.isTransitioning,
+		[device]: device,
 	});
 
 	const toggleLoading = useCallback(() => {
@@ -303,13 +306,7 @@ function App() {
 
 	const contentWrapperRef = useRef(null);
 
-	const toggleMenu = () => {
-		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
-	};
-
 	const loadingControls = {
-		menuActive: state.menuActive,
-		toggleMenu,
 		isLoading: loading,
 		toggleLoading,
 	};
@@ -359,14 +356,6 @@ function App() {
 								{/* <Loader isActive={play} setDone={togglePlay} /> */}
 
 								{/* <CursorFollower cursorState={cursorState} /> */}
-								<Menu
-									isOpen={state.menuActive}
-									theme={themes}
-									data={{
-										contact: { ...state.data.contact },
-										socials: state.data.socials,
-									}}
-								/>
 
 								<ScrollWrapper ref={scrollRef}>
 									<ContentWrapper ref={contentWrapperRef}>
@@ -422,9 +411,10 @@ function App() {
 										}}
 									/>
 								</ScrollWrapper>
+								<Cursor isHovering={hovering} setHovering={setHovering} />
+								<Loader toggleLoading={toggleLoading} />
 							</div>
-							<Cursor isHovering={hovering} setHovering={setHovering} />
-							<Loader toggleLoading={toggleLoading} />
+
 							{/* </LocomotiveScrollProvider> */}
 						</CursorContext.Provider>
 					</ColorContext.Provider>

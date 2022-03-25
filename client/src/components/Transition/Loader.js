@@ -3,7 +3,7 @@ import gsap from "gsap";
 import CSSPlugin from "gsap/CSSPlugin";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 gsap.registerPlugin(CSSPlugin, SplitText);
 
@@ -11,9 +11,6 @@ function Loader({ toggleLoading }) {
 	const classes = classNames("o-loader");
 	const lines = useRef(null);
 	const container = useRef(null);
-	const [done, setDone] = useState(false);
-
-
 
 	useEffect(() => {
 		let delay = 0;
@@ -44,10 +41,11 @@ function Loader({ toggleLoading }) {
 										opacity: 0,
 										delay: 1,
 										duration: 1,
-										onComplete: () => {
-											gsap.set(container.current, { display: "none" });
-											!done && setDone(true);
-										},
+										onComplete: () =>
+											gsap.set(container.current, {
+												display: "none",
+												delay: 1,
+											}),
 									});
 							},
 						});
@@ -56,7 +54,7 @@ function Loader({ toggleLoading }) {
 				});
 			}
 		}, 200);
-	}, [lines, done]);
+	}, [lines]);
 
 	return (
 		<div className={classes} data-theme='party' ref={container}>

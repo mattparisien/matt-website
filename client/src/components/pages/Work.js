@@ -5,6 +5,7 @@ import React, { useRef } from "react";
 import Section from "../Containers/Section";
 import Link from "../Link/Link";
 import Wave from "../Wave/Wave";
+import Container from "../Containers/Container";
 
 function Work({ projects }) {
 	gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin);
@@ -15,37 +16,39 @@ function Work({ projects }) {
 	const list = useRef(null);
 	// const waveTl = useRef(gsap.timeline());
 
-
 	return (
 		<Section
 			classes='o-work -offset-prev -relative -padding-lg'
 			data-theme='banana'
 			ref={trigger}
 		>
-			<Wave
-				location={"top"}
-				color='deepGreen'
-				trigger={trigger.current && trigger.current}
-			/>
-			<ul className='o-work_list -padding-huge' ref={list}>
-				{projects &&
-					projects.slice(0, 4).map(project => {
-						return (
-							<li
-								key={project.id}
-								className='o-h2'
-								// onMouseEnter={() => handleMouseEnter(project.Cover.image.url)}
-								// onMouseLeave={handleMouseLeave}
-							>
-								<Link href={project.Location} target='_blank'>
-									<span>{project.Title}</span>
-									<span className='o-text -block '>{project.PreviewText}</span>
-								</Link>
-							</li>
-						);
-					})}
-			</ul>
-			{/* <div
+			<Container>
+				<Wave
+					location={"top"}
+					color='deepGreen'
+					trigger={trigger.current && trigger.current}
+				/>
+				<ul className='o-work_list -padding-huge' ref={list}>
+					{projects &&
+						projects.slice(0, 4).map(project => {
+							return (
+								<li
+									key={project.id}
+									className='o-h2'
+									// onMouseEnter={() => handleMouseEnter(project.Cover.image.url)}
+									// onMouseLeave={handleMouseLeave}
+								>
+									<Link href={project.Location} target='_blank'>
+										<span>{project.Title}</span>
+										<span className='o-text -block '>
+											{project.PreviewText}
+										</span>
+									</Link>
+								</li>
+							);
+						})}
+				</ul>
+				{/* <div
 				className='o-work_image -absolute -absolute-center'
 				style={{
 					// backgroundImage: `url(${currentImage})`,
@@ -58,12 +61,13 @@ function Work({ projects }) {
 					backgroundPosition: "center",
 				}}
 			></div> */}
-			{/* <div className='o-work_image'></div> */}
-			<Wave
-				location={"bottom"}
-				color='orange'
-				trigger={trigger.current && trigger.current}
-			/>
+				{/* <div className='o-work_image'></div> */}
+				{/* <Wave
+					location={"bottom"}
+					color='orange'
+					trigger={trigger.current && trigger.current}
+				/> */}
+			</Container>
 		</Section>
 	);
 }
