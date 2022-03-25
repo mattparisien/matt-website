@@ -3,7 +3,7 @@ import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import { createContext, useCallback, useEffect, useRef, useState } from "react";
+import { createContext, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
@@ -12,15 +12,10 @@ import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
 import Cursor from "../components/Cursor/Cursor";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
-import AboutPage from "../components/pages/AboutPage";
-import ContactPage from "../components/pages/ContactPage";
 import HomePage from "../components/pages/HomePage";
-import SingleProjectPage from "../components/pages/SingleProjectPage";
-import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
-import { GlobalStyle } from "../styles/global";
 import { detectDevice } from "../helpers/detectDevice";
-import { useMemo } from "react";
+import { GlobalStyle } from "../styles/global";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -366,8 +361,8 @@ function App() {
 												path='/'
 												element={<HomePage isLoading={state.isLoading} />}
 											/>
-											<Route path='/work' element={<WorkPage />} />
-											<Route
+											{/* <Route path='/work' element={<WorkPage />} /> */}
+											{/* <Route
 												path='/about'
 												element={
 													<AboutPage
@@ -376,8 +371,8 @@ function App() {
 														toggleLoading={toggleLoading}
 													/>
 												}
-											/>
-											<Route
+											/> */}
+											{/* <Route
 												path='/work/:id'
 												element={
 													<SingleProjectPage
@@ -385,8 +380,8 @@ function App() {
 														setPageTheme={setPageTheme}
 													/>
 												}
-											/>
-											<Route
+											/> */}
+											{/* <Route
 												path='/contact'
 												element={
 													<ContactPage
@@ -394,7 +389,7 @@ function App() {
 														isLoading={loading}
 													/>
 												}
-											/>
+											/> */}
 										</Routes>
 									</ContentWrapper>
 									<Footer
