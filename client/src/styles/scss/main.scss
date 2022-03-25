@@ -64,10 +64,11 @@ a {
 	background-color: $beige;
 	$accent: $yellow;
 
-	*::before, *::after {
+	*::before,
+	*::after {
 		background-color: $dark;
 	}
-	
+
 	.-bg-current {
 		background-color: $beige;
 	}
@@ -81,13 +82,10 @@ a {
 [data-theme="regular"] {
 	color: $dark;
 	background-color: $light;
-	
-
 }
 
-
 .-fill-blue {
-	fill: #3A8696;
+	fill: #3a8696;
 }
 
 .-fill-beige {
@@ -102,14 +100,13 @@ a {
 	fill: $orange;
 }
 
-
-
 [data-theme="orangeCrush"] {
 	background-color: $orange;
 	color: $pink;
 	fill: $pink;
 
-	*::before, *::after {
+	*::before,
+	*::after {
 		background-color: $pink;
 	}
 }
@@ -119,7 +116,8 @@ a {
 	color: $purple;
 	fill: $purple;
 
-	*::before, *::after {
+	*::before,
+	*::after {
 		background-color: $purple;
 	}
 }
@@ -129,7 +127,8 @@ a {
 	color: $dark;
 	fill: $dark;
 
-	*::before, *::after {
+	*::before,
+	*::after {
 		background-color: $dark;
 	}
 }
@@ -139,28 +138,29 @@ a {
 	color: $green;
 	fill: $green;
 
-	*::before, *::after {
+	*::before,
+	*::after {
 		background-color: $green;
 	}
 }
-
 
 [data-theme="superstar"] {
 	background-color: $deepGreen;
 	color: $hotPink;
 	fill: $hotPink;
 
-	*::before, *::after {
+	*::before,
+	*::after {
 		background-color: $hotPink;
 	}
 }
-
 
 [data-theme="party"] {
 	background-color: $pink;
 	color: $orange;
 
-	*::before, *::after {
+	*::before,
+	*::after {
 		background-color: $orange;
 	}
 
@@ -179,7 +179,8 @@ a {
 		background-color: $beige;
 	}
 
-	*::before, *::after {
+	*::before,
+	*::after {
 		background-color: $blue;
 	}
 }
@@ -187,8 +188,9 @@ a {
 [data-theme="blue"] {
 	background-color: $blue;
 	color: $light;
-	
-	*::before, *::after {
+
+	*::before,
+	*::after {
 		background-color: $light;
 	}
 	.c-filter_item button.is-active {
@@ -206,7 +208,8 @@ a {
 	color: $pink;
 	fill: $pink;
 
-	*::before, *::after {
+	*::before,
+	*::after {
 		background-color: $pink;
 	}
 }
@@ -215,8 +218,9 @@ a {
 	background-color: $yellow;
 	color: $dark;
 	fill: $dark;
-	
-	*::before, *::after {
+
+	*::before,
+	*::after {
 		background-color: $dark;
 	}
 }
@@ -226,7 +230,8 @@ a {
 	color: $light !important;
 	fill: $light;
 
-	*::before, *::after {
+	*::before,
+	*::after {
 		background-color: $light;
 	}
 

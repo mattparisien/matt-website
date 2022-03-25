@@ -3,23 +3,24 @@
 		font-size: 20vw;
 		line-height: 18vw;
 		text-align: center;
-
-
 	}
 
 	font-family: "Riposte";
 	font-size: 1.1rem;
-	line-height: 1.8rem;
+	line-height: 1.1rem;
+	margin: 1rem 0;
 
 	&.-medium {
 		font-size: 3rem;
 		line-height: 3rem;
 		font-weight: 500;
+		margin: 0;
 	}
 
 	&.-big {
 		font-size: 5.2rem;
 		line-height: 5.6rem;
+		margin: 0;
 
 		@include media("<=tablet") {
 			font-size: 2.3rem;

@@ -1,13 +1,13 @@
-import React from "react";
-import { useContext, useState } from "react";
-import { CursorContext } from "../../App/App";
 import classNames from "classnames";
+import gsap from "gsap";
+import React, { useContext, useState } from "react";
+import { CursorContext } from "../../App/App";
 import Link from "../Link/Link";
 
 function Nav() {
 	const { setCursorState } = useContext(CursorContext);
 	const [active, setActive] = useState(false);
-	const classes = classNames("c-nav -fade-up-load -delay-2 -mobile", {
+	const classes = classNames("c-nav -mobile", {
 		"is-active": active,
 	});
 
@@ -17,6 +17,22 @@ function Nav() {
 
 	const handleMouseLeave = () => {
 		setCursorState("following");
+	};
+
+	const handleClick = (e, linkName) => {
+
+		setActive(!active)
+		if (linkName.toLowerCase() === "contact") {
+			gsap.to(window, {
+				duration: 3,
+				scrollTo: document.body.scrollHeight,
+			});
+		} else {
+			gsap.to(window, {
+				duration: 1,
+				scrollTo: ".o-work",
+			});
+		}
 	};
 
 	return (
@@ -31,25 +47,18 @@ function Nav() {
 			<div className='c-nav_drawer'>
 				<div className='c-nav_drawer__inner'>
 					<Link
-						isRouterLink={true}
-						classes='-fade-up-load -delay-2'
-						href='/'
 						onClick={e => {
-							e.preventDefault();
-							setActive(!active);
+							handleClick(e, "work");
 						}}
 					>
 						Work
 					</Link>
 					<Link
-						isRouterLink={true}
-						href='/about'
 						onClick={e => {
-							e.preventDefault();
-							setActive(!active);
+							handleClick(e, "contact");
 						}}
 					>
-						About
+						Contact
 					</Link>
 				</div>
 			</div>

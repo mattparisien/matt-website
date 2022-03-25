@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
@@ -14,21 +14,6 @@ function Footer({ data }) {
 
 	const [ref, inView] = useInView({ threshold: 0.4 });
 
-	const words = useMemo(
-		() => [
-			"do lunch",
-			"collaborate",
-			"talk development",
-			"meet on zoom",
-			"work together",
-			"write code",
-		],
-		[]
-	);
-
-	// const [location] = useMouseMove();
-
-	const [word, setWord] = useState(words[0]);
 	const [isSplit, setIsSplit] = useState(false);
 
 	const split = useRef(null);
@@ -76,20 +61,7 @@ function Footer({ data }) {
 					});
 			}
 		}
-	}, [split, isSplit, word]);
-
-	useEffect(() => {
-		setInterval(() => {
-			setWord(
-				prev =>
-					words[
-						words.indexOf(prev) === words.length - 1
-							? 1
-							: words.indexOf(prev) + 1
-					]
-			);
-		}, 3000);
-	}, [words]);
+	}, [split, isSplit]);
 
 	return (
 		<footer

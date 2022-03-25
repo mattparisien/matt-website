@@ -2,6 +2,9 @@
 	-webkit-font-smoothing: antialiased;
 	font-weight: lighter;
 	box-sizing: border-box;
+}
+
+.is-desktop * {
 	cursor: none;
 }
 
@@ -37,6 +40,7 @@
 
 .App {
 	transition: 500ms ease;
+	overflow-x: hidden;
 }
 
 .is-loading {

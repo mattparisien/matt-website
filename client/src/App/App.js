@@ -3,7 +3,7 @@ import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import { createContext, useCallback, useEffect, useRef, useState } from "react";
+import { createContext, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
@@ -12,13 +12,9 @@ import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
 import Cursor from "../components/Cursor/Cursor";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
-import Menu from "../components/Menu/Menu";
-import AboutPage from "../components/pages/AboutPage";
-import ContactPage from "../components/pages/ContactPage";
 import HomePage from "../components/pages/HomePage";
-import SingleProjectPage from "../components/pages/SingleProjectPage";
-import WorkPage from "../components/pages/WorkPage";
 import Loader from "../components/Transition/Loader";
+import { detectDevice } from "../helpers/detectDevice";
 import { GlobalStyle } from "../styles/global";
 
 export const DataContext = createContext();
@@ -71,6 +67,8 @@ function App() {
 
 	const [headerColor, setHeaderColor] = useState("orange");
 	const [hovering, setHovering] = useState(false);
+
+	const device = useMemo(() => detectDevice(), []);
 
 	useEffect(() => {
 		const handleIntersection = entries => {
@@ -161,7 +159,7 @@ function App() {
 		headerHeight: null,
 		footerHeight: null,
 		isFooterIntersecting: false,
-		menuActive: false,
+
 		isTransitioning: false,
 	});
 
@@ -177,8 +175,8 @@ function App() {
 	}, [location]);
 
 	const appClasses = classNames("App", {
-		"menu-active": state.menuActive,
 		"is-old-page": state.isTransitioning,
+		[device]: device,
 	});
 
 	const toggleLoading = useCallback(() => {
@@ -303,13 +301,7 @@ function App() {
 
 	const contentWrapperRef = useRef(null);
 
-	const toggleMenu = () => {
-		setState(prev => ({ ...prev, menuActive: !state.menuActive }));
-	};
-
 	const loadingControls = {
-		menuActive: state.menuActive,
-		toggleMenu,
 		isLoading: loading,
 		toggleLoading,
 	};
@@ -359,14 +351,6 @@ function App() {
 								{/* <Loader isActive={play} setDone={togglePlay} /> */}
 
 								{/* <CursorFollower cursorState={cursorState} /> */}
-								<Menu
-									isOpen={state.menuActive}
-									theme={themes}
-									data={{
-										contact: { ...state.data.contact },
-										socials: state.data.socials,
-									}}
-								/>
 
 								<ScrollWrapper ref={scrollRef}>
 									<ContentWrapper ref={contentWrapperRef}>
@@ -377,8 +361,8 @@ function App() {
 												path='/'
 												element={<HomePage isLoading={state.isLoading} />}
 											/>
-											<Route path='/work' element={<WorkPage />} />
-											<Route
+											{/* <Route path='/work' element={<WorkPage />} /> */}
+											{/* <Route
 												path='/about'
 												element={
 													<AboutPage
@@ -387,8 +371,8 @@ function App() {
 														toggleLoading={toggleLoading}
 													/>
 												}
-											/>
-											<Route
+											/> */}
+											{/* <Route
 												path='/work/:id'
 												element={
 													<SingleProjectPage
@@ -396,8 +380,8 @@ function App() {
 														setPageTheme={setPageTheme}
 													/>
 												}
-											/>
-											<Route
+											/> */}
+											{/* <Route
 												path='/contact'
 												element={
 													<ContactPage
@@ -405,7 +389,7 @@ function App() {
 														isLoading={loading}
 													/>
 												}
-											/>
+											/> */}
 										</Routes>
 									</ContentWrapper>
 									<Footer
@@ -422,9 +406,10 @@ function App() {
 										}}
 									/>
 								</ScrollWrapper>
+								<Cursor isHovering={hovering} setHovering={setHovering} />
+								<Loader toggleLoading={toggleLoading} />
 							</div>
-							<Cursor isHovering={hovering} setHovering={setHovering} />
-							<Loader toggleLoading={toggleLoading} />
+
 							{/* </LocomotiveScrollProvider> */}
 						</CursorContext.Provider>
 					</ColorContext.Provider>

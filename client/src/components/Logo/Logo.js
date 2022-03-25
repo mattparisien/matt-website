@@ -3,7 +3,7 @@ import Link from '../Link/Link'
 
 function Logo() {
   return (
-    <div className="c-logo -fade-up-load -delay-1">
+    <div className="c-logo">
      <Link isRouterLink={true} href="/">
       Matt Parisien
     </Link>  
