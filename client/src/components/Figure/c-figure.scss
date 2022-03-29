@@ -1,0 +1,61 @@
+
+
+.c-figure {
+	position: relative;
+	
+	margin: 0;
+
+	&_inner {
+		overflow: hidden;
+	}
+
+
+	// img {
+	// 	opacity: 0;
+	// }
+
+	// &.-figure-zoom {
+	// 	img {
+			
+	// 		animation: zoomIn $transition-zoom forwards;
+	// 	}
+	// }
+
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&_frame {
+		position: absolute;
+		top: 0;
+		left: -0.6vw;
+		width: 100%;
+		height: 100%;
+		transform: scale(1.2);
+		transform-origin: center;
+		z-index: 99;
+
+		@include media("<=phoneL") {
+			transform: scale(1.1);
+		}
+
+		svg {
+			transform-origin: center;
+			height: 100%;
+			width: 100%;
+		}
+	}
+}
+
+@keyframes zoomIn {
+	0% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(1.2);
+		opacity: 1;
+	}
+}

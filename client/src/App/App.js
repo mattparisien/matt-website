@@ -406,7 +406,7 @@ function App() {
 									/>
 								</ScrollWrapper>
 								<Cursor isHovering={hovering} setHovering={setHovering} />
-								<Loader toggleLoading={toggleLoading} />
+								{/* <Loader toggleLoading={toggleLoading} /> */}
 							</div>
 
 							{/* </LocomotiveScrollProvider> */}

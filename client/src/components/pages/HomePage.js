@@ -12,6 +12,8 @@ import Container from "../Containers/Container";
 import Section from "../Containers/Section";
 import StickySection from "../Layouts/StickySection";
 import Work from "./Work";
+import Slider from "../Slider/Slider";
+import Grid from "../Grid/Grid";
 
 function HomePage(props, ref) {
 	gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin);
@@ -201,6 +203,12 @@ function HomePage(props, ref) {
 				</StickySection>
 
 				<Work projects={data.projects} />
+				<Section data-theme='party' classes='o-photo -padding-huge'>
+					<Container>
+						<Grid items={data.photos} />
+					</Container>
+					{/* <Slider items={data.photos}/> */}
+				</Section>
 				{/* <Values /> */}
 			</div>
 		</>
