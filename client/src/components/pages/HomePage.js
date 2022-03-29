@@ -167,6 +167,7 @@ function HomePage(props, ref) {
 							through storytelling. My work is always driven by a passion for
 							what I do, and a love for people.
 						</div>
+
 						<div className='o-text -big -padding-lg' ref={grow}>
 							I believe a team who loves creating, learning and growing together
 							have the ability to transcend the workplace. Good communication
