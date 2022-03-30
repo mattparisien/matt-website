@@ -145,8 +145,32 @@
 	padding-top: 0 !important;
 }
 
-.c-char,
+.-fadeUpChildren {
+	> * {
+		transform: translateY(100%);
+		opacity: 0;
+	}
+}
+
+.-text-center {
+	text-align: center;
+}
+
+.-fadeUpChars {
+	.c-char {
+		transform: translateY(100%);
+		opacity: 0;
+	}
+}
+
+.o-h2.c-char,
+.o-h1.c-char,
 .loader-char {
+	transform: translateY(100%);
+	opacity: 0;
+}
+
+.o-text .c-line {
 	transform: translateY(100%);
 	opacity: 0;
 }

@@ -101,59 +101,79 @@ function App() {
 		window.scrollTo(0, 0);
 
 		if (!isSplit && !split.current) {
-			const splitText = new SplitText($(".o-h1.-split"), {
-				type: "chars, words",
+			const splitText = new SplitText($(".o-h1.-split, .o-h2.-split, .o-text.-split"), {
+				type: "lines, chars, words",
 				charsClass: "c-char",
-				linesClass: "c-word",
+				linesClass: "c-line",
 			});
 
-			const splitText2 = new SplitText($(".o-h2.-split"), {
-				type: "chars",
-				charsClass: "c-char",
-			});
+			// const splitText2 = new SplitText($(".o-h2.-split"), {
+			// 	type: "chars",
+			// 	charsClass: "c-char",
+			// });
 
-			//Loader split text
-			new SplitText($(".-split-chars"), {
-				type: "chars, words",
-				charsClass: "o-loader_text_char",
-				wordsClass: "o-loader_text_word",
-			});
+			split.current = splitText;
 
-			split.current = [splitText, splitText2];
+			setTimeout(() => {
+				split.current = split.current.revert().split();
+			}, 200);
 
 			setSplit(true);
-
-			if (splitText.chars) {
-				const tl = gsap.timeline();
-
-				tl.to($("main").find(".c-char"), {
-					y: 0,
-					duration: 2,
-					ease: "expo.inOut",
-
-					stagger: 0.02,
-					opacity: 1,
-				});
-			}
-
-			if (splitText2.chars) {
-				const tl = gsap.timeline();
-
-				tl.to(splitText2.chars, {
-					y: 0,
-					duration: 2,
-					ease: "expo.inOut",
-
-					stagger: 0.02,
-					opacity: 1,
-				});
-			}
 		} else if (!isSplit) {
 			split.current.forEach(split => {
 				split.revert().split();
 			});
 		}
 	}, [isSplit, location]);
+
+	useEffect(() => {
+		const fadeUp = (items, target, observer) => {
+			console.log(items);
+
+			gsap.to(items, {
+				stagger: 0.1,
+				duration: 1,
+				ease: "power3.out",
+				y: 0,
+				opacity: 1,
+				onComplete: () => observer.unobserve(target),
+			});
+		};
+
+		if (split.current) {
+			const handleIntersection = entries => {
+				entries.forEach(entry => {
+					if (
+						entry.isIntersecting &&
+						entry.target.classList.contains("-split")
+					) {
+						const lines = $(entry.target).find(".c-line");
+						const chars = $(entry.target).find(".c-char");
+
+						const items = [lines, chars];
+
+						fadeUp(items, entry.target, observer);
+					} else if (
+						entry.isIntersecting &&
+						entry.target.classList.contains("-fadeUpChildren")
+					) {
+						const children = $(entry.target).children();
+						fadeUp(children, entry.target, observer);
+					}
+				});
+			};
+
+			const observer = new IntersectionObserver(handleIntersection, {
+				threshold: 0.2,
+			});
+
+			$(".o-text.-split, .-fadeUpChildren, .-fadeUpChars, .o-h2.-split").each(
+				(i, el) => {
+					observer.observe(el);
+				}
+			);
+		}
+	}, [split.current]);
 
 	useEffect(() => {
 		loading

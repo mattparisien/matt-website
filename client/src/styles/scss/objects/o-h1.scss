@@ -4,10 +4,14 @@
 	margin: 0;
 
 	font-size: 30vw;
-	line-height: 15vw;
+	line-height: 28vw;
+
+
+
 	text-align: center;
 
 	@include media(">=tablet") {
 		font-size: 20rem;
+		line-height: 20rem;
 	}
 }

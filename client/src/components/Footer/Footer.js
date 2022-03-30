@@ -70,8 +70,8 @@ function Footer({ data }) {
 		>
 			<Section classes='-padding-lg -stretchX -stretchY'>
 				<Container classes='-stretchX -relative -padding-lg'>
-					<div className='inner'>
-						<h2 className='o-h2'>Let's talk!</h2>
+					<div className='inner -fadeUpChildren'>
+						<h2 className='o-h2 -split -fadeUpChars'>Let's talk!</h2>
 						<Link
 							classes='o-footer_email'
 							href="mailto:hello@matthewparisien.com?subject=Let's talk"
@@ -93,13 +93,13 @@ function Footer({ data }) {
 					<Container classes='-flex -align-end -justify-between -stretchX'>
 						<div className='footer-list'>
 							<div>
-								<ul>
+								<ul className="-fadeUpChildren">
 									<li>All Rights Reserved</li>
 									<li>2020 © Matthew Parisien</li>
 								</ul>
 							</div>
 							<div>
-								<ul>
+								<ul className="-fadeUpChildren">
 									<li>Follow me on</li>
 									<li>
 										<Link

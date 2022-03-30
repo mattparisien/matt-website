@@ -47,7 +47,7 @@ function Slider({ items }) {
 					scale: 0.9,
 					ease: "power3.out",
 					duration: 1,
-					onUpdate: () => console.log('is playing!')
+					onUpdate: () => console.log("is playing!"),
 				}),
 			onRelease: () =>
 				gsap.to(slider.current, { scale: 1, ease: "power3.out", duration: 1 }),
@@ -71,7 +71,7 @@ function Slider({ items }) {
 	return (
 		<div className='o-slider -relative' ref={container}>
 			<div
-				className='o-slider_inner'
+				className='o-slider_inner -fadeUpChildren'
 				ref={slider}
 				// onMouseEnter={handleMouseEnter}
 				// onMouseLeave={handleMouseLeave}
@@ -104,7 +104,7 @@ function SliderItem({ title, subtitle, src, alt, itemId, addToRefs }) {
 				<Figure src={src} noFrame />
 			</div>
 			<div className='o-slider_item_info'>
-				<h3 className='o-slider_item_title -underline-label -relative '>
+				<h3 className='o-slider_item_title -underline-label -relative'>
 					<div className='label'>{title}</div>
 				</h3>
 				{/* <p className='o-slider_item_description -text-tiny'>{subtitle}</p> */}

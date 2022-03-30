@@ -9,6 +9,7 @@ import Container from "../Containers/Container";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import $ from "jquery";
 
+
 function Work({ projects }) {
 	gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin);
 
@@ -26,9 +27,6 @@ function Work({ projects }) {
 			scroll.scroll.on("scroll", () => {
 				return ScrollTrigger.update;
 			});
-
-
-			
 
 			ScrollTrigger.scrollerProxy(".ScrollWrapper", {
 				scrollTop(value) {
@@ -56,7 +54,7 @@ function Work({ projects }) {
 
 				onUpdate: self => {
 					let skew = clamp(self.getVelocity() / -300);
-					// only do something if the skew is MORE severe. Remember, we're always tweening back to 0, so if the user slows their scrolling quickly, it's more natural to just let the tween handle that smoothly rather than jumping to the smaller skew.
+
 					if (Math.abs(skew) > Math.abs(proxy.skew)) {
 						proxy.skew = skew;
 						gsap.to(proxy, {
@@ -74,7 +72,7 @@ function Work({ projects }) {
 
 	return (
 		<Section
-			classes='o-work -offset-prev -relative -padding-lg'
+			classes='o-work -relative -padding-lg'
 			data-theme='banana'
 			ref={trigger}
 		>
@@ -99,6 +97,7 @@ function Work({ projects }) {
 							);
 						})}
 				</ul>
+				<Link classes="-text-center -block">For a complete collection of my work, please get in touch</Link>
 				{/* <div
 				className='o-work_image -absolute -absolute-center'
 				style={{

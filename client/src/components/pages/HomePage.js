@@ -13,7 +13,7 @@ import Section from "../Containers/Section";
 import StickySection from "../Layouts/StickySection";
 import Work from "./Work";
 import Slider from "../Slider/Slider";
-import Grid from "../Grid/Grid";
+import Link from "../Link/Link";
 
 function HomePage(props, ref) {
 	gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin);
@@ -131,6 +131,21 @@ function HomePage(props, ref) {
 	// 	// 	});
 	// }, [heroTitleTl]);
 
+	useEffect(() => {
+
+		setTimeout(() => {
+			gsap.to($('.o-hero_title').find(".c-char"), {
+				y: 0,
+				opacity: 1,
+				duration: 1,
+				ease: 'power3.out',
+				stagger: 0.05
+			})		
+		}, 250);
+	
+
+	}, [])
+
 	const addToRefs = el => {
 		if (el && !fantasticRefs.current.includes(el)) {
 			fantasticRefs.current.push(el);
@@ -147,14 +162,11 @@ function HomePage(props, ref) {
 					data-theme='party'
 				>
 					<Container>
-						<h1 className='o-h1 o-hero_title -split -huge'>
-							<span>ask</span>
-							<span>for</span>
-							<span>good</span>
-							<span>stories</span>
+						<h1 className='o-h1 o-hero_title -split -huge -fadeUpChars'>
+							hi, I'm matt
 						</h1>
-						<div className='o-hero_cta'>
-							<div className='line'></div> <div className='o-text'>Scroll</div>
+						<div className='o-hero_cta o-text'>
+							Scroll
 						</div>
 					</Container>
 				</Section>
@@ -162,14 +174,14 @@ function HomePage(props, ref) {
 				{/* </div> */}
 				<Section classes='o-intro' data-theme='dark'>
 					<Container>
-						<div className='o-text -big -padding-top-lg'>
+						<div className='o-text -big -padding-top-lg -split'>
 							I am a Montreal-based full-stack developer in love with digital
 							products and passionate about crafting great user experiences
 							through storytelling. My work is always driven by a passion for
 							what I do, and a love for people.
 						</div>
 
-						<div className='o-text -big -padding-lg' ref={grow}>
+						<div className='o-text -big -padding-lg -split' ref={grow}>
 							I believe a team who loves creating, learning and growing together
 							have the ability to transcend the workplace. Good communication
 							creates good stories that engage, progress, and create memorable
@@ -178,25 +190,12 @@ function HomePage(props, ref) {
 					</Container>
 				</Section>
 
-				<Section>
-					<div
-						className='o-text -huge -padding-lg -flex -flex-column -align-center -justify-start -stretchY'
-						ref={grow}
-					>
-						<div ref={addToRefs} style={{ transform: "translateX(-100vw)" }}>
-							Make
-						</div>
-						<div ref={addToRefs} style={{ transform: "translateX(100vw)" }}>
-							Fantastic
-						</div>
-						<div ref={addToRefs} style={{ transform: "translateX(-100vw)" }}>
-							Things
-						</div>
-					</div>
-				</Section>
+			
 
 				<Work projects={data.projects} />
+				
 				<Section data-theme='party' classes='o-photo -padding-huge'>
+				<h2 className="o-h2 -split -padding-lg -fadeUpChars">Photography</h2>
 					{/* <Container>
 						<Grid items={data.photos} />
 					</Container> */}
