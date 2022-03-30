@@ -46,7 +46,7 @@ function Values({ photos }) {
 
 	return (
 		<WaveSection
-			waveTop='yellow'
+			
 			classes='o-values -flex -align-center -justify-center -flex-column'
 			dataTheme='orangeCrush'
 		>

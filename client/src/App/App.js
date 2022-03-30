@@ -3,7 +3,14 @@ import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import { createContext, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+	createContext,
+	useCallback,
+	useEffect,
+	useMemo,
+	useRef,
+	useState,
+} from "react";
 import { Helmet } from "react-helmet";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
@@ -16,6 +23,8 @@ import HomePage from "../components/pages/HomePage";
 import Loader from "../components/Transition/Loader";
 import { detectDevice } from "../helpers/detectDevice";
 import { GlobalStyle } from "../styles/global";
+import Canvas from "../components/CursorFollower/Canvas";
+import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -311,7 +320,7 @@ function App() {
 				<LoadingContext.Provider value={loadingControls}>
 					<ColorContext.Provider value={{ setPageTheme, pageTheme }}>
 						<CursorContext.Provider value={{ hovering, setHovering }}>
-							{/* <LocomotiveScrollProvider
+							<LocomotiveScrollProvider
 								onLocationChange={scroll =>
 									scroll.scrollTo(0, { duration: 0, disableLerp: true })
 								}
@@ -326,42 +335,43 @@ function App() {
 								}}
 								watch={[location.pathname]}
 								containerRef={scrollRef}
-							> */}
-							<div className={appClasses}>
-								<Helmet>
-									<title>Matthew Parisien — Software Developer</title>
-									<meta
-										name='description'
-										content='I am a full-stack web developer aiming to simplify the lives of other people through software'
-									/>
-									<meta
-										content='Matthew Parisien — Software Developer'
-										property='og:title'
-									/>
-									<meta
-										content='I am a full-stack web developer aiming to simplify the lives of other people through software'
-										property='og:description'
-									/>
-									<meta property='og:type' content='website' />
-								</Helmet>
+							>
+								<div className={appClasses}>
+									<Helmet>
+										<title>Matthew Parisien — Software Developer</title>
+										<meta
+											name='description'
+											content='I am a full-stack web developer aiming to simplify the lives of other people through software'
+										/>
+										<meta
+											content='Matthew Parisien — Software Developer'
+											property='og:title'
+										/>
+										<meta
+											content='I am a full-stack web developer aiming to simplify the lives of other people through software'
+											property='og:description'
+										/>
+										<meta property='og:type' content='website' />
+									</Helmet>
 
-								<Header color={headerColor} />
+									<Header color={headerColor} />
+									<Canvas />
 
-								{/* <Loader isActive={play} setDone={togglePlay} /> */}
+									{/* <Loader isActive={play} setDone={togglePlay} /> */}
 
-								{/* <CursorFollower cursorState={cursorState} /> */}
+									{/* <CursorFollower cursorState={cursorState} /> */}
 
-								<ScrollWrapper ref={scrollRef}>
-									<ContentWrapper ref={contentWrapperRef}>
-										<GlobalStyle />
+									<ScrollWrapper ref={scrollRef}>
+										<ContentWrapper ref={contentWrapperRef}>
+											<GlobalStyle />
 
-										<Routes>
-											<Route
-												path='/'
-												element={<HomePage isLoading={state.isLoading} />}
-											/>
-											{/* <Route path='/work' element={<WorkPage />} /> */}
-											{/* <Route
+											<Routes>
+												<Route
+													path='/'
+													element={<HomePage isLoading={state.isLoading} />}
+												/>
+												{/* <Route path='/work' element={<WorkPage />} /> */}
+												{/* <Route
 												path='/about'
 												element={
 													<AboutPage
@@ -371,7 +381,7 @@ function App() {
 													/>
 												}
 											/> */}
-											{/* <Route
+												{/* <Route
 												path='/work/:id'
 												element={
 													<SingleProjectPage
@@ -380,7 +390,7 @@ function App() {
 													/>
 												}
 											/> */}
-											{/* <Route
+												{/* <Route
 												path='/contact'
 												element={
 													<ContactPage
@@ -389,27 +399,26 @@ function App() {
 													/>
 												}
 											/> */}
-										</Routes>
-									</ContentWrapper>
-									<Footer
-										data={{
-											contact: { ...state.data.contact },
-											socials: state.data.socials,
-											personalPhoto: {
-												...(state.data.photos &&
-													state.data.photos.slice(
-														state.data.photos.length - 1,
-														state.data.photos.length
-													)),
-											},
-										}}
-									/>
-								</ScrollWrapper>
-								<Cursor isHovering={hovering} setHovering={setHovering} />
-								{/* <Loader toggleLoading={toggleLoading} /> */}
-							</div>
-
-							{/* </LocomotiveScrollProvider> */}
+											</Routes>
+										</ContentWrapper>
+										<Footer
+											data={{
+												contact: { ...state.data.contact },
+												socials: state.data.socials,
+												personalPhoto: {
+													...(state.data.photos &&
+														state.data.photos.slice(
+															state.data.photos.length - 1,
+															state.data.photos.length
+														)),
+												},
+											}}
+										/>
+									</ScrollWrapper>
+									<Cursor isHovering={hovering} setHovering={setHovering} />
+									{/* <Loader toggleLoading={toggleLoading} /> */}
+								</div>
+							</LocomotiveScrollProvider>
 						</CursorContext.Provider>
 					</ColorContext.Provider>
 				</LoadingContext.Provider>
