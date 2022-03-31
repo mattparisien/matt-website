@@ -8,7 +8,7 @@ import Wave from "../Wave/Wave";
 import Container from "../Containers/Container";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import $ from "jquery";
-
+import WavyImage from "../Three/WavyImage";
 
 function Work({ projects }) {
 	gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin);
@@ -97,27 +97,16 @@ function Work({ projects }) {
 							);
 						})}
 				</ul>
-				<Link classes="-text-center -block">For a complete collection of my work, please get in touch</Link>
-				{/* <div
-				className='o-work_image -absolute -absolute-center'
-				style={{
-					// backgroundImage: `url(${currentImage})`,
-					opacity: 0,
-					left: location.pageX,
-					top: location.pageY,
-					transform: "translate(-50%, -50%)",
-					transformOrigin: "center",
-					backgroundSize: "cover",
-					backgroundPosition: "center",
-				}}
-			></div> */}
-				{/* <div className='o-work_image'></div> */}
-				{/* <Wave
-					location={"bottom"}
-					color='orange'
-					trigger={trigger.current && trigger.current}
-				/> */}
+				<Link classes='-text-center -block'>
+					For a complete collection of my work, please get in touch
+				</Link>
 			</Container>
+			<WavyImage
+				container={trigger.current && trigger.current}
+				imageSrc={
+					"https://images.pexels.com/photos/8140643/pexels-photo-8140643.png?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+				}
+			/>
 		</Section>
 	);
 }
