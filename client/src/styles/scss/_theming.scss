@@ -1,0 +1,59 @@
+@import "vars.module.scss";
+
+//Get map keys fn
+@function map-keys($map) {
+	$keys: ();
+
+	@each $key, $_ in $map {
+		$keys: append($keys, $key);
+	}
+	@return $keys;
+}
+
+$themes: (
+	"party": (
+		"background": $pink,
+		"color": $orange,
+	),
+	"blue": (
+		"background": $blue,
+		"color": $light,
+	),
+	"power": (
+		"background": $pink,
+		"color": $blue,
+	),
+	"superstar": (
+		"background": $deepGreen,
+		"color": $hotPink,
+	),
+	"icon": (
+		"background": $light,
+		"color": $green,
+	),
+	"banana": (
+		"background": $yellow,
+		"color": $dark,
+	),
+	"coolGirl": (
+		"background": $pink,
+		"color": $purple,
+	),
+	"orangeCrush": (
+		"background": $orange,
+		"color": $pink,
+	),
+);
+
+$themeNames: map-keys($themes);
+
+@each $key, $value in $themes {
+	[data-theme="#{$key}"] {
+		color: map-get($value, "color");
+		background-color: map-get($value, "background");
+	}
+}
+
+:export {
+	themeNames: $themeNames
+}

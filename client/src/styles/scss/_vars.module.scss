@@ -24,33 +24,6 @@ $space-xxxl: calc(7 * 2rem);
 	$space-xxl: calc(5.25 * 2rem); // 84px
 }
 
-$themes: (
-	"party": (
-		"background": "h",
-		"color": "h",
-	),
-	"blue": (
-		"background": "",
-		"color": "",
-	),
-	"power": (
-		"purple": "",
-		"color": "",
-	),
-	"sunny": (
-		"purple": "",
-		"color": "",
-	),
-	"superstar": (
-		"purple": "",
-		"color": "",
-	),
-	"icon": (
-		"purple": "",
-		"color": "",
-	),
-);
-
 //Colors
 $light: #f5f3ed;
 $dark: #262626;

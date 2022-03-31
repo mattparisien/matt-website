@@ -1,6 +1,7 @@
 @import "vars.module.scss";
 @import "global";
 @import "utils";
+@import "theming";
 @import "footer";
 @import "header";
 @import "menu";
@@ -104,150 +105,7 @@ a {
 	fill: $orange;
 }
 
-[data-theme="orangeCrush"] {
-	background-color: $orange;
-	color: $pink;
-	fill: $pink;
 
-	*::before,
-	*::after {
-		background-color: $pink;
-	}
-}
-
-[data-theme="coolGirl"] {
-	background-color: $pink;
-	color: $purple;
-	fill: $purple;
-
-	*::before,
-	*::after {
-		background-color: $purple;
-	}
-}
-
-[data-theme="banana"] {
-	background-color: $yellow;
-	color: $dark;
-	fill: $dark;
-
-	*::before,
-	*::after {
-		background-color: $dark;
-	}
-}
-
-[data-theme="icon"] {
-	background-color: $light;
-	color: $green;
-	fill: $green;
-
-	*::before,
-	*::after {
-		background-color: $green;
-	}
-}
-
-[data-theme="superstar"] {
-	background-color: $deepGreen;
-	color: $hotPink;
-	fill: $hotPink;
-
-	*::before,
-	*::after {
-		background-color: $hotPink;
-	}
-}
-
-[data-theme="party"] {
-	background-color: $pink;
-	color: $orange;
-
-	*::before,
-	*::after {
-		background-color: $orange;
-	}
-
-	.-accent {
-		color: $light;
-		background-color: $beige;
-	}
-}
-
-[data-theme="power"] {
-	background-color: $pink;
-	color: $blue;
-
-	.-accent {
-		color: $light;
-		background-color: $beige;
-	}
-
-	*::before,
-	*::after {
-		background-color: $blue;
-	}
-}
-
-[data-theme="blue"] {
-	background-color: $blue;
-	color: $light;
-
-	*::before,
-	*::after {
-		background-color: $light;
-	}
-	.c-filter_item button.is-active {
-		color: $dark;
-		background-color: $light;
-	}
-
-	.c-filter_item button {
-		border: 1px solid $light !important;
-	}
-}
-
-[data-theme="purple"] {
-	background-color: $purple;
-	color: $pink;
-	fill: $pink;
-
-	*::before,
-	*::after {
-		background-color: $pink;
-	}
-}
-
-[data-theme="sunny"] {
-	background-color: $yellow;
-	color: $dark;
-	fill: $dark;
-
-	*::before,
-	*::after {
-		background-color: $dark;
-	}
-}
-
-[data-theme="dark"] {
-	background-color: $dark;
-	color: $light !important;
-	fill: $light;
-
-	*::before,
-	*::after {
-		background-color: $light;
-	}
-
-	.c-filter_item button.is-active {
-		color: $dark;
-		background-color: $light;
-	}
-
-	.c-filter_item button {
-		border: 1px solid $light !important;
-	}
-}
 
 [data-scroll-sticky="headingIntro"] {
 	.o-sticky-heading {

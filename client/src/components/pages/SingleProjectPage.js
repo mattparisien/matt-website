@@ -1,4 +1,4 @@
-import gsap from "gsap";
+import gsap, { shuffle } from "gsap";
 import $ from "jquery";
 import React, {
 	useContext,
@@ -15,10 +15,10 @@ import Zoom from "react-reveal/Zoom";
 import { DataContext } from "../../App/App";
 import { shuffleColors } from "../../helpers/shuffleColors";
 import Container from "../Containers/Container";
-
 import Section from "../Containers/Section";
 import Figure from "../Figure/Figure";
 import Next from "./Next";
+import variables from "../../styles/scss/_theming.scss";
 
 function SingleProjectPage({ location }) {
 	const data = useContext(DataContext);
@@ -32,7 +32,23 @@ function SingleProjectPage({ location }) {
 	// const scroll = useLocomotiveScroll();
 	const mobile = window.matchMedia("(max-width: 820px)");
 
-	// const accentColor = useMemo(() => shuffleColors(), []);
+	const currentTheme = useMemo(() => {
+		const convertListToJsArray = list => {
+			const array = [];
+
+			list.split('"').forEach(item => {
+				item.length > 1 && array.push(item);
+			});
+			return array;
+		};
+
+		const shuffle = array => {
+			return array[Math.floor(Math.random() * array.length)];
+		};
+
+		const items = convertListToJsArray(variables.themeNames);
+		return shuffle(items);
+	}, []);
 
 	// useLayoutEffect(() => {
 	// 	const desktopTimeline = () => {
@@ -72,8 +88,6 @@ function SingleProjectPage({ location }) {
 	// }, []);
 
 	useEffect(() => {
-		
-
 		//Find query param
 		if (!param) {
 			let param = "";
@@ -112,10 +126,6 @@ function SingleProjectPage({ location }) {
 		}
 	}, [data, location, param]);
 
-	useEffect(() => {
-		console.log("infoooo...", info);
-	}, [info]);
-
 	return (
 		<>
 			{/* <Helmet>
@@ -124,9 +134,9 @@ function SingleProjectPage({ location }) {
 				</title>
 				<meta name='description' content='Helmet application' />
 			</Helmet> */}
-			<div className='o-page o-single-project' data-theme="party">
-				<Section data-theme='party' classes='o-hero'>
-					<Container classes="-stretchY">
+			<div className='o-page o-single-project' data-theme={currentTheme}>
+				<Section classes='o-hero'>
+					<Container classes='-stretchY'>
 						<div className='o-container_inner'>
 							<div className='o-hero_text u-desktop-js-anim' ref={textWrapper}>
 								<h4
@@ -203,7 +213,7 @@ function SingleProjectPage({ location }) {
 						</Container>
 					</Section>
 				)}
-				<Section classes='o-details -padding-lg' data-theme='light'>
+				<Section classes='o-details -padding-lg' >
 					<Container>
 						<div className='o-details_left'>
 							Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi,
