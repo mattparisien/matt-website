@@ -1,4 +1,8 @@
 .o-single-project {
+
+	&[data-theme] {
+		transition: 400ms ease;
+	}
   
 	.c-figure {
 		width: 100%;

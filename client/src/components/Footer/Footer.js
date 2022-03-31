@@ -75,6 +75,7 @@ function Footer({ data }) {
 						<Link
 							classes='o-footer_email -split -fadeUpChars'
 							href="mailto:hello@matthewparisien.com?subject=Let's talk"
+							hoverEffect={"chars"}
 						>
 							matthewparisien4@gmail.com
 						</Link>
@@ -93,16 +94,18 @@ function Footer({ data }) {
 					<Container classes='-flex -align-end -justify-between -stretchX'>
 						<div className='footer-list'>
 							<div>
-								<ul className="-fadeUpChildren">
+								<ul className='-fadeUpChildren'>
 									<li>All Rights Reserved</li>
 									<li>2020 © Matthew Parisien</li>
 								</ul>
 							</div>
 							<div>
-								<ul className="-fadeUpChildren">
+								<ul className='-fadeUpChildren'>
 									<li>Follow me on</li>
 									<li>
 										<Link
+											hoverEffect={"chars"}
+											split
 											href='https://www.instagram.com/matt.parisien/'
 											target='_blank'
 										>
@@ -111,6 +114,8 @@ function Footer({ data }) {
 									</li>
 									<li>
 										<Link
+											hoverEffect={"chars"}
+											split
 											href='https://www.linkedin.com/in/matthew-parisien-365572130/'
 											target='_blank'
 										>
@@ -119,6 +124,8 @@ function Footer({ data }) {
 									</li>
 									<li>
 										<Link
+											hoverEffect={"chars"}
+											split
 											href='https://github.com/mattparisien'
 											target='_blank'
 										>

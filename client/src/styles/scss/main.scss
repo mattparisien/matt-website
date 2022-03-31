@@ -64,31 +64,6 @@ a {
 	text-decoration: none;
 }
 
-[data-theme="fancy"] {
-	color: $dark;
-	background-color: $beige;
-	$accent: $yellow;
-
-	*::before,
-	*::after {
-		background-color: $dark;
-	}
-
-	.-bg-current {
-		background-color: $beige;
-	}
-
-	.-accent {
-		color: $dark;
-		background-color: $accent;
-	}
-}
-
-[data-theme="regular"] {
-	color: $dark;
-	background-color: $light;
-}
-
 .-fill-blue {
 	fill: #3a8696;
 }
@@ -104,8 +79,6 @@ a {
 .-fill-orange {
 	fill: $orange;
 }
-
-
 
 [data-scroll-sticky="headingIntro"] {
 	.o-sticky-heading {

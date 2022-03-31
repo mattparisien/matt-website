@@ -10,6 +10,10 @@
 
 .c-link {
 	cursor: none;
+
+	&_label {
+		overflow: hidden;
+	}
 }
 
 @font-face {

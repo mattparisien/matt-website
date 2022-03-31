@@ -20,7 +20,7 @@ import Figure from "../Figure/Figure";
 import Next from "./Next";
 import variables from "../../styles/scss/_theming.scss";
 import useScrollContext from "../../helpers/hooks/useScrollContext";
-import useEnhancedEffect from "@mui/material/utils/useEnhancedEffect";
+
 
 function SingleProjectPage({ location }) {
 	const data = useContext(DataContext);
@@ -132,10 +132,18 @@ function SingleProjectPage({ location }) {
 	}, [data, location, param]);
 
 	useEffect(() => {
-		if (scrollContext && scrollContext.name === "locomotive") {
-			const breakpoint = 840;
+		const breakpoint = 840;
 
-			scrollContext.scroller.on("scroll", e => {
+		if (scrollContext && scrollContext.name === "locomotive") {
+			scrollListener.current = scrollContext.scroller.on("scroll", e => {
+				if (e.delta.y > breakpoint) {
+					setCurrentTheme("light");
+				} else if (e.delta.y < breakpoint) {
+					setCurrentTheme(pageTheme);
+				}
+			});
+		} else {
+			scrollListener.current = window.addEventListener("scroll", e => {
 				if (e.delta.y > breakpoint) {
 					setCurrentTheme("light");
 				} else if (e.delta.y < breakpoint) {

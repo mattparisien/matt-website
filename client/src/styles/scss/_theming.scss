@@ -11,6 +11,10 @@
 }
 
 $themes: (
+	"light": (
+		"background": $light,
+		"color": $dark,
+	),
 	"party": (
 		"background": $pink,
 		"color": $orange,

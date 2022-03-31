@@ -21,11 +21,12 @@ import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import HomePage from "../components/pages/HomePage";
 import Loader from "../components/Transition/Loader";
-import { detectDevice } from "../helpers/detectDevice";
+
 import { GlobalStyle } from "../styles/global";
 import Canvas from "../components/CursorFollower/Canvas";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import SingleProjectPage from "../components/pages/SingleProjectPage";
+import useDevice from "../helpers/hooks/useDevice";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -74,11 +75,9 @@ function App() {
 	const [isSplit, setSplit] = useState(false);
 	const split = useRef(null);
 	const location = useLocation();
-
+	const device = useDevice();
 	const [headerColor, setHeaderColor] = useState("orange");
 	const [hovering, setHovering] = useState(false);
-
-	const device = useMemo(() => detectDevice(), []);
 
 	useEffect(() => {
 		const handleIntersection = entries => {
@@ -123,7 +122,7 @@ function App() {
 			}, 200);
 
 			setSplit(true);
-		} 
+		}
 	}, [isSplit, location]);
 
 	useEffect(() => {
@@ -139,6 +138,8 @@ function App() {
 		};
 
 		if (split.current) {
+			//Listen for js mouseenter events
+
 			const handleIntersection = entries => {
 				entries.forEach(entry => {
 					if (
@@ -166,7 +167,7 @@ function App() {
 			});
 
 			$(
-				".o-text.-split, .-fadeUpChildren, .-fadeUpChars, .o-h2.-split, a.-split"
+				".o-text.-split, .-fadeUpChildren, .-fadeUpChars, .o-h2.-split, .c-link.-split"
 			).each((i, el) => {
 				observer.observe(el);
 			});
@@ -373,7 +374,7 @@ function App() {
 									</Helmet>
 
 									<Header color={headerColor} />
-									<Canvas />
+									{device && device === "desktop" && <Canvas />}
 
 									{/* <Loader isActive={play} setDone={togglePlay} /> */}
 
@@ -400,14 +401,14 @@ function App() {
 												}
 											/> */}
 												<Route
-												path='/projects/:id'
-												element={
-													<SingleProjectPage
-														location={location}
-														setPageTheme={setPageTheme}
-													/>
-												}
-											/>
+													path='/projects/:id'
+													element={
+														<SingleProjectPage
+															location={location}
+															setPageTheme={setPageTheme}
+														/>
+													}
+												/>
 												{/* <Route
 												path='/contact'
 												element={
