@@ -47,7 +47,7 @@ function Slider({ items }) {
 					scale: 0.9,
 					ease: "power3.out",
 					duration: 1,
-					onUpdate: () => console.log("is playing!"),
+					
 				}),
 			onRelease: () =>
 				gsap.to(slider.current, { scale: 1, ease: "power3.out", duration: 1 }),

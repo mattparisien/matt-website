@@ -73,7 +73,7 @@ function Footer({ data }) {
 					<div className='inner -fadeUpChildren'>
 						<h2 className='o-h2 -split -fadeUpChars'>Let's talk!</h2>
 						<Link
-							classes='o-footer_email'
+							classes='o-footer_email -split -fadeUpChars'
 							href="mailto:hello@matthewparisien.com?subject=Let's talk"
 						>
 							matthewparisien4@gmail.com

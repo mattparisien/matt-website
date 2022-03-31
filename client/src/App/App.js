@@ -101,11 +101,14 @@ function App() {
 		window.scrollTo(0, 0);
 
 		if (!isSplit && !split.current) {
-			const splitText = new SplitText($(".o-h1.-split, .o-h2.-split, .o-text.-split"), {
-				type: "lines, chars, words",
-				charsClass: "c-char",
-				linesClass: "c-line",
-			});
+			const splitText = new SplitText(
+				$(".o-h1.-split, .o-h2.-split, .o-text.-split, a.-split"),
+				{
+					type: "lines, chars, words",
+					charsClass: "c-char",
+					linesClass: "c-line",
+				}
+			);
 
 			// const splitText2 = new SplitText($(".o-h2.-split"), {
 			// 	type: "chars",
@@ -119,19 +122,13 @@ function App() {
 			}, 200);
 
 			setSplit(true);
-		} else if (!isSplit) {
-			split.current.forEach(split => {
-				split.revert().split();
-			});
-		}
+		} 
 	}, [isSplit, location]);
 
 	useEffect(() => {
 		const fadeUp = (items, target, observer) => {
-			console.log(items);
-
 			gsap.to(items, {
-				stagger: 0.1,
+				stagger: 0.06,
 				duration: 1,
 				ease: "power3.out",
 				y: 0,
@@ -167,11 +164,11 @@ function App() {
 				threshold: 0.2,
 			});
 
-			$(".o-text.-split, .-fadeUpChildren, .-fadeUpChars, .o-h2.-split").each(
-				(i, el) => {
-					observer.observe(el);
-				}
-			);
+			$(
+				".o-text.-split, .-fadeUpChildren, .-fadeUpChars, .o-h2.-split, a.-split"
+			).each((i, el) => {
+				observer.observe(el);
+			});
 		}
 	}, [split.current]);
 
@@ -191,9 +188,9 @@ function App() {
 		isTransitioning: false,
 	});
 
-	// const setTransitioning = () => {
-	// 	setState(prev => ({ ...prev, isTransitioning: true }));
-	// };
+	const setTransitioning = () => {
+		setState(prev => ({ ...prev, isTransitioning: true }));
+	};
 
 	useEffect(() => {
 		//resplit whenever there's a location change
@@ -331,7 +328,7 @@ function App() {
 
 	const loadingControls = {
 		isLoading: loading,
-		toggleLoading,
+		setTransitioning,
 	};
 
 	return (

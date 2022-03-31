@@ -3,15 +3,17 @@ import React, { forwardRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CursorContext } from "../../App/App";
 import variables from "../../styles/scss/_vars.module.scss";
+import { LoadingContext } from "../../App/App";
 
 
 function Link(props, ref) {
 	const classes = classNames("c-link", {
 		[props.classes]: props.classes,
+		'-split': props.split
 	});
 
 	const navigate = useNavigate();
-	// const { toggleLoading } = useContext(LoadingContext);
+	const { setTransitioning } = useContext(LoadingContext);
 	const { hovering, setHovering } = useContext(CursorContext);
 
 	const handleNavigate = e => {
@@ -19,7 +21,7 @@ function Link(props, ref) {
 		props.onClick && props.onClick(e);
 		e.preventDefault();
 
-		// toggleLoading();
+		setTransitioning()
 
 		setTimeout(() => {
 			navigate(props.href);

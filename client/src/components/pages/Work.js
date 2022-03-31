@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import MorphSVGPlugin from "gsap/MorphSVGPlugin";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Section from "../Containers/Section";
 import Link from "../Link/Link";
 import Wave from "../Wave/Wave";
@@ -18,9 +18,19 @@ function Work({ projects }) {
 	const trigger = useRef(null);
 	const list = useRef(null);
 	const scroll = useLocomotiveScroll();
+	const [listImages, setListImages] = useState(null);
 	// const waveTl = useRef(gsap.timeline());
 
 	useEffect(() => {
+		//Set feature images
+		if (!listImages && projects) {
+			let images = [];
+			for (let project in projects) {
+				images.push(projects[project].Cover.image.url);
+			}
+			setListImages(images);
+		}
+
 		if (scroll && scroll.scroll) {
 			const skewEl = $(".skewElem");
 
@@ -68,7 +78,7 @@ function Work({ projects }) {
 				},
 			});
 		}
-	}, [scroll]);
+	}, [scroll, projects]);
 
 	return (
 		<Section
@@ -83,12 +93,17 @@ function Work({ projects }) {
 							return (
 								<li
 									key={project.id}
-									className='o-h2 o-work_list_item'
+									className='o-work_list_item'
 									// onMouseEnter={() => handleMouseEnter(project.Cover.image.url)}
 									// onMouseLeave={handleMouseLeave}
 								>
-									<Link href={project.Location} target='_blank'>
-										<span>{project.Title}</span>
+									<Link
+										isRouterLink
+										href={`/projects/${project.id}`}
+										target='_blank'
+										
+									>
+										<h2 className='o-h2 -split'>{project.Title}</h2>
 										<span className='o-text -block '>
 											{project.PreviewText}
 										</span>
@@ -101,12 +116,10 @@ function Work({ projects }) {
 					For a complete collection of my work, please get in touch
 				</Link>
 			</Container>
-			<WavyImage
+			{/* <WavyImage
 				container={trigger.current && trigger.current}
-				imageSrc={
-					"https://images.pexels.com/photos/8140643/pexels-photo-8140643.png?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-				}
-			/>
+				images={listImages}
+			/> */}
 		</Section>
 	);
 }
