@@ -7,6 +7,7 @@ import { LoadingContext } from "../../App/App";
 import gsap from "gsap";
 import $ from "jquery";
 import useDevice from "../../helpers/hooks/useDevice";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 function Link(props, ref) {
 	const classes = classNames("c-link", {
@@ -14,6 +15,7 @@ function Link(props, ref) {
 		"-split": props.split,
 		"js-hoverChars": props.hoverEffect === "chars",
 	});
+	const scroll = useLocomotiveScroll();
 
 	const device = useDevice();
 	const hoverTl = useRef(gsap.timeline());

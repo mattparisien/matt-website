@@ -6,14 +6,13 @@ import Arrow from "../Vector/Arrow";
 import Fade from "react-reveal/Fade";
 import Marquee from "react-fast-marquee";
 
-
 function Next({ color, nextPost }) {
 	const container = useRef(null);
 
 	return (
 		<>
 			<Fade>
-				<Section classes='o-next' data-theme={color} ref={container}>
+				<Section classes='o-next -padding-top-huge' data-theme={color} ref={container}>
 					{/* <FlowyImage
 						container={container.current}
 						imageSrc={nextPost && nextPost.media.featureImage.url}
@@ -26,23 +25,31 @@ function Next({ color, nextPost }) {
 						<div className='c-link_inner'>
 							<Container classes='-relative -flex -align-center -justify-between'>
 								<Fade bottom>
-									<h2 className='o-h1 -padding-bottom-huge'>Next</h2>
+									<h2 className='o-h2'>Up next</h2>
 								</Fade>
-								<Arrow color='light' />
+								<svg
+									className='c-arrow_svg'
+									viewBox='0 0 84 22'
+									fill='none'
+									xmlns='http://www.w3.org/2000/svg'
+								>
+									<path d='M0 11H83M83 11L72.5 0.5M83 11L72.5 21.5'></path>
+									<path d='M0 11H83M83 11L72.5 0.5M83 11L72.5 21.5'></path>
+								</svg>
 							</Container>
 							<Fade bottom>
 								<Marquee gradient={false} direction={"right"}>
-									<div className='o-h1 marquee-item'>
-										{nextPost && nextPost.title}
+									<div className='o-h2 marquee-item'>
+										{nextPost && nextPost.Title}
 									</div>
-									<div className='o-h1 marquee-item'>
-										{nextPost && nextPost.subtitle}
+									<div className='o-h2 marquee-item'>
+										{nextPost && nextPost.Subtitle}
 									</div>
-									<div className='o-h1 marquee-item'>
-										{nextPost && nextPost.title}
+									<div className='o-h2 marquee-item'>
+										{nextPost && nextPost.Title}
 									</div>
-									<div className='o-h1 marquee-item'>
-										{nextPost && nextPost.subtitle}
+									<div className='o-h2 marquee-item'>
+										{nextPost && nextPost.Subtitle}
 									</div>
 								</Marquee>
 							</Fade>

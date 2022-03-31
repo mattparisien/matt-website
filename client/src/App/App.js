@@ -420,7 +420,7 @@ function App() {
 											/> */}
 											</Routes>
 										</ContentWrapper>
-										<Footer
+										{<Footer
 											data={{
 												contact: { ...state.data.contact },
 												socials: state.data.socials,
@@ -432,7 +432,7 @@ function App() {
 														)),
 												},
 											}}
-										/>
+										/>}
 									</ScrollWrapper>
 									<Cursor isHovering={hovering} setHovering={setHovering} />
 									{/* <Loader toggleLoading={toggleLoading} /> */}

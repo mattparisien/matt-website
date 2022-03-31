@@ -1,26 +1,15 @@
-import gsap, { shuffle } from "gsap";
-import $ from "jquery";
-import React, {
-	useContext,
-	useEffect,
-	useLayoutEffect,
-	useMemo,
-	useRef,
-	useState,
-} from "react";
-import { Helmet } from "react-helmet-async";
+import gsap from "gsap";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Fade from "react-reveal/Fade";
-import Zoom from "react-reveal/Zoom";
 import { DataContext } from "../../App/App";
-import { shuffleColors } from "../../helpers/shuffleColors";
+import useScrollContext from "../../helpers/hooks/useScrollContext";
+import variables from "../../styles/scss/_theming.scss";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
 import Figure from "../Figure/Figure";
 import Next from "./Next";
-import variables from "../../styles/scss/_theming.scss";
-import useScrollContext from "../../helpers/hooks/useScrollContext";
-
+import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 function SingleProjectPage({ location }) {
 	const data = useContext(DataContext);
@@ -34,6 +23,7 @@ function SingleProjectPage({ location }) {
 	const scrollContext = useScrollContext();
 	const mobile = window.matchMedia("(max-width: 820px)");
 	const scrollListener = useRef(null);
+	const scroll = useLocomotiveScroll();
 
 	const pageTheme = useMemo(() => {
 		const convertListToJsArray = list => {
@@ -51,7 +41,7 @@ function SingleProjectPage({ location }) {
 
 		const items = convertListToJsArray(variables.themeNames);
 		return shuffle(items);
-	}, [hasColorChanged]);
+	}, [location]);
 
 	const [currentTheme, setCurrentTheme] = useState(pageTheme);
 
@@ -94,28 +84,25 @@ function SingleProjectPage({ location }) {
 
 	useEffect(() => {
 		//Find query param
-		if (!param) {
-			let param = "";
-			let counter = 0;
-			for (let i = 0; i < location.pathname.length; i++) {
-				if (location.pathname[i] === "/") {
-					counter += 1;
 
-					if (counter > 1) {
-						param = location.pathname.slice(i + 1, location.pathname.length);
-					}
+		let param = "";
+		let counter = 0;
+		for (let i = 0; i < location.pathname.length; i++) {
+			if (location.pathname[i] === "/") {
+				counter += 1;
+
+				if (counter > 1) {
+					param = location.pathname.slice(i + 1, location.pathname.length);
 				}
 			}
-			console.log(param);
-			setParam(param);
 		}
 
-		if (data && data.projects && param && !info) {
-			console.log("hello");
+		setParam(param);
 
+		if (data && data.projects && param) {
+			console.log("this should only run once");
 			// setInfo(data.posts.filter(x => x.id === param));
 			const currentPost = data.projects.filter(x => x.id == param);
-			console.log(currentPost);
 
 			const nextPostIndex =
 				data.projects.indexOf(
@@ -130,6 +117,11 @@ function SingleProjectPage({ location }) {
 			setInfo({ ...currentPost, nextPost: nextPost });
 		}
 	}, [data, location, param]);
+
+	useEffect(() => {
+		scroll && scroll.scroll && scroll.scroll.scrollTo(0, 0);
+		window.scrollTo(0, 0);
+	}, [location]);
 
 	useEffect(() => {
 		const breakpoint = 840;
@@ -166,21 +158,10 @@ function SingleProjectPage({ location }) {
 					<Container classes='-stretchY'>
 						<div className='o-container_inner'>
 							<div className='o-hero_text u-desktop-js-anim' ref={textWrapper}>
-								<h4
-									className='o-h4 -riposte'
-									// style={{ color: accentColor[0] }}
-								>
-									{info && info[0].Subtitle}
-								</h4>
-								<h2
-									className='o-h2 -split -fadeUpChars'
-									// style={{ color: accentColor[0] }}
-								>
+								<h4 className='o-h4 -riposte'>{info && info[0].Subtitle}</h4>
+								<h2 className='o-h2 -split -fadeUpChars'>
 									{info && info[0].Title}
 								</h2>
-
-								{/* <h3 className='o-h3'>{info && info[0].subtitle}</h3> */}
-								{/* </Fade> */}
 							</div>
 
 							<div className='o-hero_image' ref={heroImage}>
@@ -224,18 +205,13 @@ function SingleProjectPage({ location }) {
 						</div>
 					</Container>
 				</Section>
-				{info && info[0].AdditionalMedia.data && (
-					<Section data-theme='light' classes='o-feature -padding-bottom-lg'>
+				{info && info[0].Demo.data && (
+					<Section classes='o-feature -padding-bottom-lg'>
 						<Container>
 							<div className='o-feature_item'>
-								<Figure
-									noFrame
-									src={
-										info &&
-										info[0].AdditionalMedia &&
-										info[0].AdditionalMedia.attributes.url
-									}
-								/>
+								<video loop autoPlay muted playsInLine>
+									<source src={info[0].Demo.data.attributes.url}></source>
+								</video>
 							</div>
 						</Container>
 					</Section>
