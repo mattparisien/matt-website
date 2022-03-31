@@ -19,6 +19,7 @@ import Section from "../Containers/Section";
 import Figure from "../Figure/Figure";
 import Next from "./Next";
 import variables from "../../styles/scss/_theming.scss";
+import useScrollContext from "../../helpers/hooks/useScrollContext";
 
 function SingleProjectPage({ location }) {
 	const data = useContext(DataContext);
