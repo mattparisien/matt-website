@@ -1,29 +1,79 @@
-import React, { useContext, useEffect, useState } from "react";
+import gsap from "gsap";
+import $ from "jquery";
+import React, {
+	useContext,
+	useEffect,
+	useLayoutEffect,
+	useMemo,
+	useRef,
+	useState,
+} from "react";
+import { Helmet } from "react-helmet-async";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import Fade from "react-reveal/Fade";
+import Zoom from "react-reveal/Zoom";
 import { DataContext } from "../../App/App";
-import { themes } from "../../helpers/dataThemes";
-import { shuffleThemes } from "../../helpers/shuffleThemes";
+import { shuffleColors } from "../../helpers/shuffleColors";
 import Container from "../Containers/Container";
-import Section from "../Containers/Section";
-import Link from "../Link/Link";
-import Arrow from "../Vector/Arrow";
 
-function SingleProjectPage({
-	location,
-	
-	
-	setPageTheme,
-}) {
+import Section from "../Containers/Section";
+import Figure from "../Figure/Figure";
+import Next from "./Next";
+
+function SingleProjectPage({ location }) {
 	const data = useContext(DataContext);
 
 	const [param, setParam] = useState(null);
 	const [info, setInfo] = useState(null);
+	const textWrapper = useRef(null);
+	const heroImage = useRef(null);
+	const revealer = useRef(null);
+	const tl = useRef(gsap.timeline());
+	// const scroll = useLocomotiveScroll();
+	const mobile = window.matchMedia("(max-width: 820px)");
 
-	// useEffect(() => {
-	// 	setThemeColor(shuffleColors());
+	// const accentColor = useMemo(() => shuffleColors(), []);
+
+	// useLayoutEffect(() => {
+	// 	const desktopTimeline = () => {
+	// 		const lines = $(textWrapper.current).find(".c-line");
+	// 		tl.current
+
+	// 			.set(revealer.current, { transition: "none" })
+	// 			.set(textWrapper.current, { opacity: 1 })
+
+	// 			// .to(lines, {
+	// 			// 	y: 0,
+	// 			// 	opacity: 1,
+	// 			// 	ease: "power3.out",
+	// 			// 	duration: 1,
+	// 			// 	stagger: 0.1,
+	// 			// })
+	// 			.to(
+	// 				textWrapper.current,
+	// 				{
+	// 					bottom: 0,
+	// 					top: "50%",
+	// 					y: "-50%",
+	// 					duration: 3,
+	// 					ease: "expo.inOut",
+	// 				},
+	// 				0.4
+	// 			);
+
+	// 		return tl.current;
+	// 	};
+
+	// 	setTimeout(() => {
+	// 		if (!mobile.matches) {
+	// 			desktopTimeline();
+	// 		}
+	// 	}, 400);
 	// }, []);
 
 	useEffect(() => {
-		setPageTheme(shuffleThemes(themes));
+		
+
 		//Find query param
 		if (!param) {
 			let param = "";
@@ -37,174 +87,181 @@ function SingleProjectPage({
 					}
 				}
 			}
+			console.log(param);
 			setParam(param);
 		}
 
 		if (data && data.projects && param && !info) {
-			// setInfo(data.posts.filter(x => x.id === param));
-			const match = data.projects.filter(x => x.id === param);
-			const nextPost = data.projects.filter(
-				x =>
-					x.id ===
-					(parseInt(param) - 1 === 0
-						? data.projects.length
-						: parseInt(param) - 1)
-			);
+			console.log("hello");
 
-			setInfo({ ...match, nextPost: nextPost });
+			// setInfo(data.posts.filter(x => x.id === param));
+			const currentPost = data.projects.filter(x => x.id == param);
+			console.log(currentPost);
+
+			const nextPostIndex =
+				data.projects.indexOf(
+					data.projects.find(x => x.id === currentPost[0].id)
+				) + 1;
+
+			const nextPost =
+				data.projects[
+					nextPostIndex === data.projects.length ? 0 : nextPostIndex
+				];
+
+			setInfo({ ...currentPost, nextPost: nextPost });
 		}
-	}, [data, location, param, info, setPageTheme]);
+	}, [data, location, param]);
+
+	useEffect(() => {
+		console.log("infoooo...", info);
+	}, [info]);
 
 	return (
-		<div className='o-page o-single-project'>
-			<Container>
-				<Section classes={`o-hero-2 -padding-huge -relative`}>
-					<div className='o-hero_title-banner'>
-						<h1 className='o-h1 -bold -split'>{info && info[0].Title}</h1>
-						<div className='o-hero_image-wrapper-2'>
-							<img
-								src={info && info[0].Cover.image.url}
-								alt={info && info[0].Cover.image.altText}
-							/>
-						</div>
-					</div>
-					<div className="o-hero_continue">
-						<h3 className="o-h3">Front end development</h3>
-					</div>
-				</Section>
-			</Container>
+		<>
+			{/* <Helmet>
+				<title>
+					{`${info && info[0].title} - ${info && info[0].subtitle}`}{" "}
+				</title>
+				<meta name='description' content='Helmet application' />
+			</Helmet> */}
+			<div className='o-page o-single-project' data-theme="party">
+				<Section data-theme='party' classes='o-hero'>
+					<Container classes="-stretchY">
+						<div className='o-container_inner'>
+							<div className='o-hero_text u-desktop-js-anim' ref={textWrapper}>
+								<h4
+									className='o-h4 -riposte'
+									// style={{ color: accentColor[0] }}
+								>
+									{info && info[0].Subtitle}
+								</h4>
+								<h2
+									className='o-h2 -split -fadeUpChars'
+									// style={{ color: accentColor[0] }}
+								>
+									{info && info[0].Title}
+								</h2>
 
-			<Container classes='o-spacer '></Container>
-			<Container classes='o-info '>
-				<Section classes='o-info_overview -padding-lg'>
-					<div className='o-info_overview_inner'>
-						<div className='o-info_overview_intro'>
-							<div className='o-info_line'></div>
-							<h3 className='o-h3 -bold'>Overview</h3>
-							<p className='o-text'>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
-								quasi sit quia eligendi molestiae repellendus reiciendis
-								delectus debitis, id itaque voluptas incidunt adipisci sequi est
-								impedit rem!
-							</p>
-							<p className='o-text'>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
-								quasi sit quia eligendi molestiae repellendus reiciendis
-								delectus debitis, id itaque voluptas incidunt adipisci sequi est
-								impedit rem!
-							</p>
+								{/* <h3 className='o-h3'>{info && info[0].subtitle}</h3> */}
+								{/* </Fade> */}
+							</div>
+
+							<div className='o-hero_image' ref={heroImage}>
+								<Figure
+									noReveal
+									effectDelay={5000}
+									src={info && info[0].Cover.image.url}
+									alt={"hwe"}
+								/>
+							</div>
+
+							{/* 				
+					<div className='o-hero_image-wrapper-2'>
+						<img
+							src={info && info[0].media.featureImage.url}
+							alt={info && info[0].media.featureImage.altText}
+						/>
+					</div> */}
 						</div>
-						<div className='o-info_overview_index'>
-							<div>
-								<h3 className='o-h3'>Services</h3>
-								<ul>
-									<li className='o-text'>Naming</li>
-									<li className='o-text'>Naming</li>
-									<li className='o-text'>Naming</li>
-									<li className='o-text'>Naming</li>
-								</ul>
+					</Container>
+				</Section>
+
+				<Section classes='o-overview -padding-lg'>
+					<Container>
+						<Fade bottom>
+							<div className='o-overview_left'>
+								<ReactMarkdown
+									className='o-h3 -bold'
+									children={info && info[0].PreviewText}
+								/>
 							</div>
-							<div>
-								<h3 className='o-h3'>Personality</h3>
-								<ul>
-									<li className='o-text'>Naming</li>
-									<li className='o-text'>Naming</li>
-									<li className='o-text'>Naming</li>
-									<li className='o-text'>Naming</li>
-								</ul>
-							</div>
-							<div>
-								<h3 className='o-h3'>Typefaces</h3>
-								<ul>
-									<li className='o-text'>Naming</li>
-									<li className='o-text'>Naming</li>
-									<li className='o-text'>Naming</li>
-									<li className='o-text'>Naming</li>
-								</ul>
-							</div>
-							<div>
-								<h3 className='o-h3'>Completed</h3>
-								<p className='o-text'>Spring 2021</p>
-							</div>
+						</Fade>
+
+						<div className='o-overview_right'>
+							<Fade bottom>
+								<ReactMarkdown
+									className='o-text -body'
+									children={info && info[0].Overview}
+								/>
+							</Fade>
 						</div>
-					</div>
+					</Container>
 				</Section>
 				{info && info[0].AdditionalMedia.data && (
-					<Section classes='o-info_media -padding-lg'>
-						<div className='o-info_image-wrapper'>
-							<img
-								src={
-									info &&
-									info[0].AdditionalMedia.data &&
-									info[0].AdditionalMedia.attributes.url
-								}
-								alt={
-									info &&
-									info[0].AdditionalMedia.data &&
-									info[0].AdditionalMedia.attributes.alternativeText
-								}
-							/>
-						</div>
+					<Section data-theme='light' classes='o-feature -padding-bottom-lg'>
+						<Container>
+							<div className='o-feature_item'>
+								<Figure
+									noFrame
+									src={
+										info &&
+										info[0].AdditionalMedia &&
+										info[0].AdditionalMedia.attributes.url
+									}
+								/>
+							</div>
+						</Container>
 					</Section>
 				)}
-			</Container>
-			<Container>
-				<Section classes='o-info_about -padding-lg'>
-					<div>
-						<h4 className='o-h4 -bold'>About the Artist</h4>
-						<p className='o-text'>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-							labore delectus error at vero! Molestias ullam distinctio dolore
-							fuga laudantium ducimus nam, alias et explicabo facilis illo sed!
-							Consequatur facilis, quis eos dolorum aliquam mollitia nemo
-							perspiciatis, asperiores, illum commodi in.
-						</p>
-					</div>
-					<div>
-						<h4 className='o-h4 -bold'>About the the Company</h4>
-						<p className='o-text'>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-							labore delectus error at vero! Molestias ullam distinctio dolore
-							fuga laudantium ducimus nam, alias et explicabo facilis illo sed!
-							Consequatur facilis, quis eos dolorum aliquam mollitia nemo
-							perspiciatis, asperiores, illum commodi in.
-						</p>
-					</div>
+				<Section classes='o-details -padding-lg' data-theme='light'>
+					<Container>
+						<div className='o-details_left'>
+							Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi,
+							in?
+						</div>
+						<div className='o-details_right'>
+							<div className='about'>
+								<Fade bottom>
+									<ReactMarkdown
+										className='o-h3'
+										children={"About the Company"}
+									/>
+								</Fade>
+								<Fade bottom>
+									<p className='o-text -body'>
+										Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+										Molestiae perspiciatis sint quidem. Suscipit commodi,
+										quaerat enim dolorem fugiat quo at blanditiis neque incidunt
+										vel ut repellat labore quis eos non nulla qui obcaecati?
+										Quibusdam quaerat et itaque! Soluta nobis asperiores,
+										blanditiis ducimus adipisci ex exercitationem vero tenetur
+										nostrum tempora deserunt?
+									</p>
+								</Fade>
+							</div>
+							<div className='work'>
+								{/* <Fade bottom cascade> */}
+								<Fade bottom>
+									<ReactMarkdown className='o-h3' children={"Our Work"} />
+								</Fade>
+								<Fade bottom>
+									<p className='o-text -body'>
+										Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+										Molestiae perspiciatis sint quidem. Suscipit commodi,
+										quaerat enim dolorem fugiat quo at blanditiis neque incidunt
+										vel ut repellat labore quis eos non nulla qui obcaecati?
+										Quibusdam quaerat et itaque! Soluta nobis asperiores,
+										blanditiis ducimus adipisci ex exercitationem vero tenetur
+										nostrum tempora deserunt?
+									</p>
+								</Fade>
+								{/* </Fade> */}
+							</div>
+						</div>
+					</Container>
 				</Section>
-			</Container>
-			<Container classes='o-additional-media -bg-light'>
-				<Section classes='-padding-lg'>
-					<div className='c-grid'>
-						{info &&
-							info[0].AdditionalMedia.data &&
-							info[0].AdditionalMedia.map(image => {
-								return (
-									<div className='c-grid_item'>
-										<div className='c-grid_img-wrapper'>
-											<img
-												src={image.attributes.url}
-												alt={Math.random()}
-												className='c-grid_img'
-											/>
-										</div>
-									</div>
-								);
-							})}
-					</div>
-				</Section>
-			</Container>
 
-			<Link
-				classes={`o-next -stretchX -stretchY -padding-lg`}
-				isRouterLink
-				href={info && info.nextPost && `/projects/${info.nextPost[0].id}`}
-			>
-				<Arrow />
-				<div className='o-next_title'>
-					{info && info.nextPost && info.nextPost[0].title}
-				</div>
-			</Link>
-		</div>
+				{/* {info && info[0].media.additional && (
+					<Section classes='o-additionalMedia -padding-lg' data-theme='light'>
+						<ContainerFluid>
+							<ProjectGrid variant='media' items={info[0].media.additional} />
+						</ContainerFluid>
+					</Section>
+				)} */}
+
+				<Next nextPost={info && info.nextPost} />
+			</div>
+		</>
 	);
 }
 

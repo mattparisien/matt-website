@@ -89,7 +89,7 @@ function Work({ projects }) {
 			<Container>
 				<ul className='o-work_list -padding-huge skewElem' ref={list}>
 					{projects &&
-						projects.slice(0, 4).map(project => {
+						projects.slice(0, 5).map(project => {
 							return (
 								<li
 									key={project.id}

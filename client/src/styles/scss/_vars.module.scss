@@ -1,4 +1,5 @@
 @import "./breakpoints";
+@use "sass:map";
 
 //Spacing
 $space-unit: 2rem;
@@ -23,8 +24,34 @@ $space-xxxl: calc(7 * 2rem);
 	$space-xxl: calc(5.25 * 2rem); // 84px
 }
 
-//Colors
+$themes: (
+	"party": (
+		"background": "h",
+		"color": "h",
+	),
+	"blue": (
+		"background": "",
+		"color": "",
+	),
+	"power": (
+		"purple": "",
+		"color": "",
+	),
+	"sunny": (
+		"purple": "",
+		"color": "",
+	),
+	"superstar": (
+		"purple": "",
+		"color": "",
+	),
+	"icon": (
+		"purple": "",
+		"color": "",
+	),
+);
 
+//Colors
 $light: #f5f3ed;
 $dark: #262626;
 $dark2: #2e2e2e;
@@ -32,9 +59,9 @@ $lighterDark: #111111;
 $beige: #dbc7a0;
 $navy: #12233f;
 $red: #e63030;
-$hotPink: #FB8EC4;
+$hotPink: #fb8ec4;
 $green: #546136;
-$deepGreen: #286D42;
+$deepGreen: #286d42;
 $blue: #0a4d98;
 $skyBlue: #a0b4cb;
 $yellow: #ffcb4f;

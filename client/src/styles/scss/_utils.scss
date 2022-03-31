@@ -25,6 +25,11 @@
 	margin-left: auto;
 }
 
+.-riposte {
+	font-family: 'Riposte';
+	text-transform: none;
+}
+
 .-mr-auto {
 	margin-right: auto;
 }
@@ -43,6 +48,12 @@
 
 .-row-reverse {
 	flex-direction: row-reverse;
+}
+
+.-bold {
+	&, & * {
+		font-family: 'Riposte Bold' !important;
+	}
 }
 
 .-desktop {

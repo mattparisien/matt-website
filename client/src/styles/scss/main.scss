@@ -12,7 +12,7 @@
 @import "objects/o-h3";
 @import "objects/o-h1";
 @import "objects/o-text";
-@import "objects/o-single-project";
+// @import "objects/o-single-project";
 @import "objects/o-page";
 @import "components/c-asteryx.scss";
 @import "../../components/Lists/styles/c-project.scss";
@@ -45,6 +45,7 @@
 @import "../../components/Slider/o-slider.scss";
 @import "../../components/Figure/c-figure.scss";
 @import "../../components/CursorFollower/o-canvas.scss";
+@import "../../components/pages/o-single-project.scss";
 
 .Home {
 	height: 100vh;

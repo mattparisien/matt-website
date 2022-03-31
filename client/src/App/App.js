@@ -25,6 +25,7 @@ import { detectDevice } from "../helpers/detectDevice";
 import { GlobalStyle } from "../styles/global";
 import Canvas from "../components/CursorFollower/Canvas";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
+import SingleProjectPage from "../components/pages/SingleProjectPage";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -398,15 +399,15 @@ function App() {
 													/>
 												}
 											/> */}
-												{/* <Route
-												path='/work/:id'
+												<Route
+												path='/projects/:id'
 												element={
 													<SingleProjectPage
 														location={location}
 														setPageTheme={setPageTheme}
 													/>
 												}
-											/> */}
+											/>
 												{/* <Route
 												path='/contact'
 												element={
