@@ -20,20 +20,22 @@ import Figure from "../Figure/Figure";
 import Next from "./Next";
 import variables from "../../styles/scss/_theming.scss";
 import useScrollContext from "../../helpers/hooks/useScrollContext";
+import useEnhancedEffect from "@mui/material/utils/useEnhancedEffect";
 
 function SingleProjectPage({ location }) {
 	const data = useContext(DataContext);
-
 	const [param, setParam] = useState(null);
+	const [hasColorChanged, setColorChanged] = useState(false);
 	const [info, setInfo] = useState(null);
 	const textWrapper = useRef(null);
 	const heroImage = useRef(null);
 	const revealer = useRef(null);
 	const tl = useRef(gsap.timeline());
-	// const scroll = useLocomotiveScroll();
+	const scrollContext = useScrollContext();
 	const mobile = window.matchMedia("(max-width: 820px)");
+	const scrollListener = useRef(null);
 
-	const currentTheme = useMemo(() => {
+	const pageTheme = useMemo(() => {
 		const convertListToJsArray = list => {
 			const array = [];
 
@@ -49,7 +51,9 @@ function SingleProjectPage({ location }) {
 
 		const items = convertListToJsArray(variables.themeNames);
 		return shuffle(items);
-	}, []);
+	}, [hasColorChanged]);
+
+	const [currentTheme, setCurrentTheme] = useState(pageTheme);
 
 	// useLayoutEffect(() => {
 	// 	const desktopTimeline = () => {
@@ -126,6 +130,20 @@ function SingleProjectPage({ location }) {
 			setInfo({ ...currentPost, nextPost: nextPost });
 		}
 	}, [data, location, param]);
+
+	useEffect(() => {
+		if (scrollContext && scrollContext.name === "locomotive") {
+			const breakpoint = 840;
+
+			scrollContext.scroller.on("scroll", e => {
+				if (e.delta.y > breakpoint) {
+					setCurrentTheme("light");
+				} else if (e.delta.y < breakpoint) {
+					setCurrentTheme(pageTheme);
+				}
+			});
+		}
+	}, [scrollContext]);
 
 	return (
 		<>
@@ -214,7 +232,7 @@ function SingleProjectPage({ location }) {
 						</Container>
 					</Section>
 				)}
-				<Section classes='o-details -padding-lg' >
+				<Section classes='o-details -padding-lg'>
 					<Container>
 						<div className='o-details_left'>
 							Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi,

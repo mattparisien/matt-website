@@ -8,9 +8,15 @@ function useScrollContext() {
 
 	useEffect(() => {
 		if (scroll.isReady) {
-			setScrollContext("locomotive");
+			setScrollContext({
+				name: 'locomotive',
+				scroller: scroll.scroll
+			})
 		} else {
-			setScrollContext("window");
+			setScrollContext({
+				name: 'window',
+				scroller: window
+			})
 		}
 	}, [scroll]);
 
