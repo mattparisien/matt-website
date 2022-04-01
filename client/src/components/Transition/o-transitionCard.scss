@@ -3,13 +3,28 @@
 	width: 100vw;
 	height: 100vh;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+justify-content: center;
 
 	z-index: 9999;
 
-	&_text {
+	&_content {
 		color: $yellow;
+		height: 50vw;
+		max-height: 500px;
+		width: 70vw;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	
+	.line {
+		width: 100%;
+		height: 1px;
+		background-color: $light;
+		transform-origin: center;
+		transform: scaleX(0);
 	}
 
 	&_bg {
@@ -18,8 +33,9 @@
 		left: 0;
 		top: 0;
 		width: 100%;
-		background-color: $deepGreen;
+		background-color: $dark;
 		z-index: -1;
+		transform-origin: top;
 	
 	}
 }
