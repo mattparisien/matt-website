@@ -3,31 +3,25 @@ import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import {
-	createContext,
-	useCallback,
-	useEffect,
-	useMemo,
-	useRef,
-	useState,
-} from "react";
+import { createContext, useCallback, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
+import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import ScrollWrapper from "../components/Containers/ScrollWrapper";
 import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
 import Cursor from "../components/Cursor/Cursor";
+import Canvas from "../components/CursorFollower/Canvas";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
+import AboutPage from "../components/pages/AboutPage";
 import HomePage from "../components/pages/HomePage";
-import Loader from "../components/Transition/Loader";
-import TransitionCard from "../components/Transition/TransitionCard";
-
-import { GlobalStyle } from "../styles/global";
-import Canvas from "../components/CursorFollower/Canvas";
-import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import SingleProjectPage from "../components/pages/SingleProjectPage";
+import TransitionCard from "../components/Transition/TransitionCard";
 import useDevice from "../helpers/hooks/useDevice";
+import { GlobalStyle } from "../styles/global";
+import useResize from "../helpers/hooks/useResize";
+import CSSRulePlugin from "gsap/dist/CSSRulePlugin";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -35,10 +29,11 @@ export const ColorContext = createContext();
 export const CursorContext = createContext();
 
 function App() {
+	gsap.registerPlugin(CSSRulePlugin);
 	const [loading, setLoading] = useState(false);
 	const [pageTheme, setPageTheme] = useState("party");
 	// const { isResized } = useResize();
-
+	const { windowWidth } = useResize();
 	const themes = {
 		space: [
 			"0.25rem",
@@ -74,6 +69,7 @@ function App() {
 	};
 
 	const [isSplit, setSplit] = useState(false);
+	const app = useRef(null);
 	const split = useRef(null);
 	const location = useLocation();
 	const device = useDevice();
@@ -98,10 +94,12 @@ function App() {
 		});
 	}, []);
 
+	const timeline = useRef(gsap.timeline());
+
 	useEffect(() => {
 		window.scrollTo(0, 0);
 
-		if (!isSplit && !split.current) {
+		if (!split.current) {
 			setTimeout(() => {
 				const splitText = new SplitText($(".-split"), {
 					type: "lines, chars, words",
@@ -110,17 +108,47 @@ function App() {
 				});
 				split.current = splitText;
 				setSplit(true);
-				setTimeout(() => {
-					split.current = split.current.revert().split();
-				}, 200);
 			}, 300);
 
 			// const splitText2 = new SplitText($(".o-h2.-split"), {
 			// 	type: "chars",
 			// 	charsClass: "c-char",
 			// });
+		} else {
+			split.current = split.current.revert().split();
 		}
 	}, [isSplit, location]);
+
+	useEffect(() => {
+		const rule = CSSRulePlugin.getRule(".App:after");
+		timeline.current
+			.to(rule, {
+				cssRule: {
+					scale: 1,
+
+					delay: 3,
+				},
+				delay: 0.5,
+				duration: 0.4,
+				ease: "power3.out",
+			})
+			.set($(".o-page"), {
+				display: "block",
+			})
+			.set(rule, {
+				cssRule: {
+					display: " none",
+				},
+			})
+			.to(".o-hero .c-waveCard", {
+				translateY: "-50%",
+
+				opacity: 1,
+				ease: "power3.out",
+				duration: 1,
+				delay: 0.5,
+			});
+	}, []);
 
 	useEffect(() => {
 		loading
@@ -202,13 +230,6 @@ function App() {
 	const setTransitioning = () => {
 		setState(prev => ({ ...prev, isTransitioning: true }));
 	};
-
-	useEffect(() => {
-		//resplit whenever there's a location change
-		setSplit(false);
-
-		setState(prev => ({ ...prev, isTransitioning: false }));
-	}, [location]);
 
 	const appClasses = classNames("App", {
 		"is-old-page": state.isTransitioning,
@@ -364,7 +385,7 @@ function App() {
 								watch={[location.pathname]}
 								containerRef={scrollRef}
 							>
-								<div className={appClasses}>
+								<div className={appClasses} ref={app}>
 									<Helmet>
 										<title>Matthew Parisien — Software Developer</title>
 										<meta
@@ -384,7 +405,7 @@ function App() {
 
 									<Header color={headerColor} />
 									{device && device === "desktop" && <Canvas />}
-									<TransitionCard/>
+									{/* <TransitionCard /> */}
 
 									{/* <Loader isActive={play} setDone={togglePlay} /> */}
 
@@ -397,7 +418,18 @@ function App() {
 											<Routes>
 												<Route
 													path='/'
-													element={<HomePage isLoading={state.isLoading} />}
+													element={
+														<HomePage
+															isLoading={state.isLoading}
+															imageUrl={
+																state.data.photos &&
+																state.data.photos.slice(
+																	state.data.photos.length - 1,
+																	state.data.photos.length
+																)
+															}
+														/>
+													}
 												/>
 												{/* <Route path='/work' element={<WorkPage />} /> */}
 												{/* <Route
@@ -419,6 +451,7 @@ function App() {
 														/>
 													}
 												/>
+												<Route path='/about' element={<AboutPage />} />
 												{/* <Route
 												path='/contact'
 												element={

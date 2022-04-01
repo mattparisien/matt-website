@@ -48,6 +48,12 @@
 @import "../../components/CursorFollower/o-canvas.scss";
 @import "../../components/pages/o-single-project.scss";
 @import "../../components/Transition/o-transitionCard.scss";
+@import "../../components/Three/o-blobCanvas.scss";
+
+
+* {
+	cursor: none;
+}
 
 .Home {
 	height: 100vh;

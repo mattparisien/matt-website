@@ -10,13 +10,15 @@ function TransitionCard({ isActive }) {
 	const content = useRef(null);
 
 	useEffect(() => {
-		tl.current
-			.to($(container.current).find(".line"), {
-				scaleX: 1,
-				duration: 0.6,
-				ease: "power3",
-				stagger: 0.1,
-			})
+
+		setTimeout(() => {
+			tl.current
+			// .to($(container.current).find(".line"), {
+			// 	scaleX: 1,
+			// 	duration: 0.6,
+			// 	ease: "power3",
+			// 	stagger: 0.1,
+			// })
 			.to(background.current, {
 				scaleY: 0,
 				duration: 1,
@@ -29,7 +31,9 @@ function TransitionCard({ isActive }) {
 				},
 				0.9
 			)
-			.set(container.current, { display: "none" });
+			.set(container.current, { display: "none" });		
+		}, 300);
+	
 	}, []);
 
 	return (

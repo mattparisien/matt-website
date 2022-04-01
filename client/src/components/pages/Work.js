@@ -81,11 +81,7 @@ function Work({ projects }) {
 	}, [scroll, projects]);
 
 	return (
-		<Section
-			classes='o-work -relative -padding-lg'
-			data-theme='banana'
-			ref={trigger}
-		>
+		<Section classes='o-work -relative -padding-lg' ref={trigger}>
 			<Container>
 				<ul className='o-work_list -padding-huge skewElem' ref={list}>
 					{projects &&

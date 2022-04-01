@@ -7,9 +7,10 @@
   text-transform: uppercase;
   font-size: 10vw;
 
-  &, & * {
-    font-family: 'FK';
-  }
+  // &, & * {
+  //   font-family: 'FK';
+  // }
+
 
   @include media("<=tablet") {
 		font-size: 10vw;
