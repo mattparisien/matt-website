@@ -26,7 +26,7 @@
 }
 
 .-riposte {
-	font-family: 'Riposte';
+	font-family: "Riposte";
 	text-transform: none;
 }
 
@@ -51,8 +51,9 @@
 }
 
 .-bold {
-	&, & * {
-		font-family: 'Riposte Bold' !important;
+	&,
+	& * {
+		font-family: "Riposte Bold" !important;
 	}
 }
 
@@ -159,6 +160,20 @@
 .-fadeUpChildren {
 	> * {
 		transform: translateY(100%);
+		opacity: 0;
+	}
+}
+
+.is-old-page {
+	h1,
+	h2,
+	h3,
+	h3,
+	p,
+	img,
+	.o-container,
+	a {
+		transition: $transition-expo;
 		opacity: 0;
 	}
 }
@@ -314,8 +329,6 @@
 .-text-orange {
 	color: $orange;
 }
-
-
 
 .-width-50 {
 	width: 50%;

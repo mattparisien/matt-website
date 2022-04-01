@@ -31,7 +31,7 @@ function Link(props, ref) {
 
 		setTimeout(() => {
 			navigate(props.href);
-		}, variables.loaderDuration.replace(".", "").concat("00"));
+		}, 2000);
 	};
 
 	const handleMouseEnter = e => {

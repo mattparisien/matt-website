@@ -101,7 +101,6 @@ function Work({ projects }) {
 										isRouterLink
 										href={`/projects/${project.id}`}
 										target='_blank'
-										
 									>
 										<h2 className='o-h2 -split'>{project.Title}</h2>
 										<span className='o-text -block '>

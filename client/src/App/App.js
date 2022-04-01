@@ -21,6 +21,7 @@ import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import HomePage from "../components/pages/HomePage";
 import Loader from "../components/Transition/Loader";
+import TransitionCard from "../components/Transition/TransitionCard";
 
 import { GlobalStyle } from "../styles/global";
 import Canvas from "../components/CursorFollower/Canvas";
@@ -101,29 +102,41 @@ function App() {
 		window.scrollTo(0, 0);
 
 		if (!isSplit && !split.current) {
-			const splitText = new SplitText(
-				$(".o-h1.-split, .o-h2.-split, .o-text.-split, a.-split"),
-				{
+			setTimeout(() => {
+				const splitText = new SplitText($(".-split"), {
 					type: "lines, chars, words",
 					charsClass: "c-char",
 					linesClass: "c-line",
-				}
-			);
+				});
+				split.current = splitText;
+				setSplit(true);
+				setTimeout(() => {
+					split.current = split.current.revert().split();
+				}, 200);
+			}, 300);
 
 			// const splitText2 = new SplitText($(".o-h2.-split"), {
 			// 	type: "chars",
 			// 	charsClass: "c-char",
 			// });
-
-			split.current = splitText;
-
-			setTimeout(() => {
-				split.current = split.current.revert().split();
-			}, 200);
-
-			setSplit(true);
 		}
 	}, [isSplit, location]);
+
+	useEffect(() => {
+		loading
+			? document.body.classList.add("is-loading")
+			: document.body.classList.remove("is-loading");
+	}, [loading]);
+
+	const scrollRef = useRef(null);
+
+	const [state, setState] = useState({
+		data: {},
+		headerHeight: null,
+		footerHeight: null,
+		isFooterIntersecting: false,
+		isTransitioning: false,
+	});
 
 	useEffect(() => {
 		const fadeUp = (items, target, observer) => {
@@ -134,6 +147,16 @@ function App() {
 				y: 0,
 				opacity: 1,
 				onComplete: () => observer.unobserve(target),
+			});
+		};
+
+		const fadeOut = (items, target, observer) => {
+			gsap.to(items, {
+				stagger: 0.06,
+				duration: 2,
+				ease: "expo.inOut",
+				y: "-100%",
+				opacity: 0,
 			});
 		};
 
@@ -157,6 +180,7 @@ function App() {
 						entry.target.classList.contains("-fadeUpChildren")
 					) {
 						const children = $(entry.target).children();
+
 						fadeUp(children, entry.target, observer);
 					}
 				});
@@ -169,26 +193,11 @@ function App() {
 			$(
 				".o-text.-split, .-fadeUpChildren, .-fadeUpChars, .o-h2.-split, .c-link.-split"
 			).each((i, el) => {
+				console.log(el);
 				observer.observe(el);
 			});
 		}
 	}, [split.current]);
-
-	useEffect(() => {
-		loading
-			? document.body.classList.add("is-loading")
-			: document.body.classList.remove("is-loading");
-	}, [loading]);
-
-	const scrollRef = useRef(null);
-
-	const [state, setState] = useState({
-		data: {},
-		headerHeight: null,
-		footerHeight: null,
-		isFooterIntersecting: false,
-		isTransitioning: false,
-	});
 
 	const setTransitioning = () => {
 		setState(prev => ({ ...prev, isTransitioning: true }));
@@ -375,6 +384,7 @@ function App() {
 
 									<Header color={headerColor} />
 									{device && device === "desktop" && <Canvas />}
+									<TransitionCard/>
 
 									{/* <Loader isActive={play} setDone={togglePlay} /> */}
 
@@ -420,19 +430,21 @@ function App() {
 											/> */}
 											</Routes>
 										</ContentWrapper>
-										{<Footer
-											data={{
-												contact: { ...state.data.contact },
-												socials: state.data.socials,
-												personalPhoto: {
-													...(state.data.photos &&
-														state.data.photos.slice(
-															state.data.photos.length - 1,
-															state.data.photos.length
-														)),
-												},
-											}}
-										/>}
+										{
+											<Footer
+												data={{
+													contact: { ...state.data.contact },
+													socials: state.data.socials,
+													personalPhoto: {
+														...(state.data.photos &&
+															state.data.photos.slice(
+																state.data.photos.length - 1,
+																state.data.photos.length
+															)),
+													},
+												}}
+											/>
+										}
 									</ScrollWrapper>
 									<Cursor isHovering={hovering} setHovering={setHovering} />
 									{/* <Loader toggleLoading={toggleLoading} /> */}

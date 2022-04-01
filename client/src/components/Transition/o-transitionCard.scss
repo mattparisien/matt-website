@@ -1,0 +1,25 @@
+.o-transitionCard {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	z-index: 9999;
+
+	&_text {
+		color: $yellow;
+	}
+
+	&_bg {
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		background-color: $deepGreen;
+		z-index: -1;
+	
+	}
+}
