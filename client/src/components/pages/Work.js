@@ -2,13 +2,10 @@ import gsap from "gsap";
 import MorphSVGPlugin from "gsap/MorphSVGPlugin";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
 import React, { useEffect, useRef, useState } from "react";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
+import Container from "../Containers/Container";
 import Section from "../Containers/Section";
 import Link from "../Link/Link";
-import Wave from "../Wave/Wave";
-import Container from "../Containers/Container";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
-import $ from "jquery";
-import WavyImage from "../Three/WavyImage";
 
 function Work({ projects }) {
 	gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin);
@@ -32,7 +29,7 @@ function Work({ projects }) {
 		}
 
 		if (scroll && scroll.scroll) {
-			const skewEl = $(".skewElem");
+			
 
 			scroll.scroll.on("scroll", () => {
 				return ScrollTrigger.update;
@@ -78,7 +75,7 @@ function Work({ projects }) {
 				},
 			});
 		}
-	}, [scroll, projects]);
+	}, [scroll, projects, listImages]);
 
 	return (
 		<Section

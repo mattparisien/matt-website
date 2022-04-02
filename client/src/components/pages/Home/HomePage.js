@@ -1,25 +1,19 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import CSSRulePlugin from "gsap/src/CSSRulePlugin";
 import MorphSVGPlugin from "gsap/src/MorphSVGPlugin";
-import $ from "jquery";
-import React, { forwardRef, useContext, useEffect, useRef } from "react";
+import React, { forwardRef, useContext, useRef } from "react";
 // Import Swiper styles
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { DataContext } from "../../../App/App";
-import useResize from "../../../helpers/hooks/useResize";
 import Container from "../../Containers/Container";
 import Section from "../../Containers/Section";
-import StickySection from "../../Layouts/StickySection";
-import Work from "../Work";
-import Slider from "../../Slider/Slider";
-import Link from "../../Link/Link";
 import { Icon } from "../../Vector/Icons";
-import CSSRulePlugin from "gsap/src/CSSRulePlugin";
+import FeaturedProjects from "./Components/FeaturedProjects";
+import Gallery from "./Components/Gallery";
 import Hero from "./Components/Hero";
 import PreFooter from "./Components/PreFooter";
-import Gallery from "./Components/Gallery";
-import FeaturedProjects from "./Components/FeaturedProjects";
 
 function HomePage(props, ref) {
 	gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin, CSSRulePlugin);
@@ -27,7 +21,7 @@ function HomePage(props, ref) {
 
 	console.log(data)
 
-	const { windowWidth } = useResize();
+	// const { windowWidth } = useResize();
 	const marquees = useRef([]);
 	marquees.current = [];
 	const lines = useRef([]);
@@ -35,10 +29,10 @@ function HomePage(props, ref) {
 	const headingRef = useRef([]);
 	headingRef.current = [];
 
-	const sticky = useRef(null);
-	const grow = useRef(null);
-	const path = useRef(null);
-	const inner = useRef(null);
+	// const sticky = useRef(null);
+	// const grow = useRef(null);
+	// const path = useRef(null);
+	// const inner = useRef(null);
 
 	const fantasticRefs = useRef([]);
 	fantasticRefs.current = [];

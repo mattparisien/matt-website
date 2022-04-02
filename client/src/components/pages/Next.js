@@ -1,10 +1,9 @@
 import React, { useRef } from "react";
+import Marquee from "react-fast-marquee";
+import Fade from "react-reveal/Fade";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
 import Link from "../Link/Link";
-import Arrow from "../Vector/Arrow";
-import Fade from "react-reveal/Fade";
-import Marquee from "react-fast-marquee";
 
 function Next({ color, nextPost }) {
 	const container = useRef(null);

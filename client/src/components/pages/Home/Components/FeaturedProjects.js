@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import Section from "../../../Containers/Section";
-import Container from "../../../Containers/Container";
 import { ColorContext } from "../../../../App/App";
-import { Color } from "three";
+import Container from "../../../Containers/Container";
+import Section from "../../../Containers/Section";
 
 function FeaturedProjects({ items }) {
 	const { setCurrentTheme } = useContext(ColorContext);

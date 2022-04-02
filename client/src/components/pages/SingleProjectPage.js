@@ -1,5 +1,5 @@
-import gsap from "gsap";
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Fade from "react-reveal/Fade";
 import { DataContext } from "../../App/App";
@@ -9,19 +9,17 @@ import Container from "../Containers/Container";
 import Section from "../Containers/Section";
 import Figure from "../Figure/Figure";
 import Next from "./Next";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 function SingleProjectPage({ location }) {
 	const data = useContext(DataContext);
 	const [param, setParam] = useState(null);
-	const [hasColorChanged, setColorChanged] = useState(false);
+
 	const [info, setInfo] = useState(null);
 	const textWrapper = useRef(null);
 	const heroImage = useRef(null);
-	const revealer = useRef(null);
-	const tl = useRef(gsap.timeline());
+
 	const scrollContext = useScrollContext();
-	const mobile = window.matchMedia("(max-width: 820px)");
+
 	const scrollListener = useRef(null);
 	const scroll = useLocomotiveScroll();
 
@@ -41,7 +39,7 @@ function SingleProjectPage({ location }) {
 
 		const items = convertListToJsArray(variables.themeNames);
 		return shuffle(items);
-	}, [location]);
+	}, []);
 
 	const [currentTheme, setCurrentTheme] = useState(pageTheme);
 
@@ -102,7 +100,7 @@ function SingleProjectPage({ location }) {
 		if (data && data.projects && param) {
 			console.log("this should only run once");
 			// setInfo(data.posts.filter(x => x.id === param));
-			const currentPost = data.projects.filter(x => x.id == param);
+			const currentPost = data.projects.filter(x => x.id === param);
 
 			const nextPostIndex =
 				data.projects.indexOf(
@@ -121,7 +119,7 @@ function SingleProjectPage({ location }) {
 	useEffect(() => {
 		scroll && scroll.scroll && scroll.scroll.scrollTo(0, 0);
 		window.scrollTo(0, 0);
-	}, [location]);
+	}, [location, scroll]);
 
 	useEffect(() => {
 		const breakpoint = 840;
@@ -143,7 +141,7 @@ function SingleProjectPage({ location }) {
 				}
 			});
 		}
-	}, [scrollContext]);
+	}, [scrollContext, pageTheme]);
 
 	return (
 		<>

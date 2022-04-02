@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import Draggable from "gsap/Draggable";
+import InertiaPlugin from "gsap/InertiaPlugin";
 import VelocityTracker from "gsap/utils/VelocityTracker";
 import $ from "jquery";
 import React, { useContext, useEffect, useRef } from "react";
@@ -7,7 +8,6 @@ import { CursorContext } from "../../App/App";
 import useResize from "../../helpers/hooks/useResize";
 import Figure from "../Figure/Figure";
 import Link from "../Link/Link";
-import InertiaPlugin from "gsap/InertiaPlugin";
 
 function Slider({ items }) {
 	gsap.registerPlugin(Draggable, VelocityTracker, InertiaPlugin);
@@ -16,7 +16,7 @@ function Slider({ items }) {
 	const slider = useRef(null);
 	const itemRefs = useRef([]);
 	itemRefs.current = [];
-	const { changeCursor } = useContext(CursorContext);
+	// const { changeCursor } = useContext(CursorContext);
 	const { windowWidth } = useResize();
 
 	useEffect(() => {

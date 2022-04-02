@@ -1,6 +1,5 @@
 import React from "react";
 import Container from "../Containers/Container";
-import Logo from "../Logo/Logo";
 import DesktopNav from "../Nav/DesktopNav";
 import Nav from "../Nav/Nav";
 

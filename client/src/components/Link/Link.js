@@ -1,13 +1,11 @@
 import classNames from "classnames";
-import React, { forwardRef, useContext, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { CursorContext } from "../../App/App";
-import variables from "../../styles/scss/_vars.module.scss";
-import { LoadingContext } from "../../App/App";
 import gsap from "gsap";
 import $ from "jquery";
+import React, { forwardRef, useContext } from "react";
+
+import { useNavigate } from "react-router-dom";
+import { CursorContext, LoadingContext } from "../../App/App";
 import useDevice from "../../helpers/hooks/useDevice";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 function Link(props, ref) {
 	const classes = classNames("c-link", {
@@ -15,10 +13,10 @@ function Link(props, ref) {
 		"-split": props.split,
 		"js-hoverChars": props.hoverEffect === "chars",
 	});
-	const scroll = useLocomotiveScroll();
+	
 
 	const device = useDevice();
-	const hoverTl = useRef(gsap.timeline());
+
 	const navigate = useNavigate();
 	const { setTransitioning } = useContext(LoadingContext);
 	const { hovering, setHovering } = useContext(CursorContext);

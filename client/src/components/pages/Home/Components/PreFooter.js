@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
-import Section from "../../../Containers/Section";
-import Container from "../../../Containers/Container";
 import gsap from "gsap";
 import $ from "jquery";
+import React, { useEffect, useRef } from "react";
+import Container from "../../../Containers/Container";
+import Section from "../../../Containers/Section";
 
 function PreFooter() {
 	const tl = useRef(gsap.timeline());
@@ -62,7 +62,7 @@ function PreFooter() {
 				2
 			)
 			.timeScale(2);
-	}, [line1.current, line2.current, line3.current]);
+	}, [ line2Words]);
 
 	return (
 		<Section classes='o-preFooter'>

@@ -1,13 +1,12 @@
-import React, { useEffect, useRef } from "react";
-import Section from "../../../Containers/Section";
-import Container from "../../../Containers/Container";
-import { Icon } from "../../../Vector/Icons";
 import gsap from "gsap";
-import CSSRulePlugin from "gsap/src/CSSRulePlugin";
-import $, { Tween } from "jquery";
-import Link from "../../../Link/Link";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import CSSRulePlugin from "gsap/src/CSSRulePlugin";
+import $ from "jquery";
+import React, { useEffect, useRef } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
+import Container from "../../../Containers/Container";
+import Section from "../../../Containers/Section";
+import { Icon } from "../../../Vector/Icons";
 
 function Hero({ featuredItems }) {
 	gsap.registerPlugin(CSSRulePlugin, ScrollTrigger);
@@ -128,7 +127,7 @@ function Hero({ featuredItems }) {
 					</div> */}
 					<div className='o-hero_self'>
 						<Icon variant="eyes"/>
-						<img src='https://res.cloudinary.com/dzoe0rah1/image/upload/v1647526928/me_b_and_w_5cecd7ce41.jpg'></img>
+						<img src='https://res.cloudinary.com/dzoe0rah1/image/upload/v1647526928/me_b_and_w_5cecd7ce41.jpg' alt={Math.random()}></img>
 					</div>
 
 					<h1 className='o-h1 o-hero_title -split '>IDEAS</h1>
@@ -141,18 +140,18 @@ function Hero({ featuredItems }) {
 	);
 }
 
-function Card({ title, src, alt, path }) {
-	return (
-		<Link classes='o-hero_featuredWork_card' href={path} isRouterLink>
-			<div className='image'>
-				<img src={src}></img>
-			</div>
-			<div className='cta'>
-				<Icon variant='arrow' disableAnimation/>
-				<div className='-text-tiny'>View project</div>
-			</div>
-		</Link>
-	);
-}
+// function Card({ title, src, alt, path }) {
+// 	return (
+// 		<Link classes='o-hero_featuredWork_card' href={path} isRouterLink>
+// 			<div className='image'>
+// 				<img src={src} alt={Math.random()}></img>
+// 			</div>
+// 			<div className='cta'>
+// 				<Icon variant='arrow' disableAnimation/>
+// 				<div className='-text-tiny'>View project</div>
+// 			</div>
+// 		</Link>
+// 	);
+// }
 
 export default Hero;

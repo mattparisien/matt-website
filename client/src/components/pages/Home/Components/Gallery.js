@@ -1,9 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import $ from "jquery";
-import Section from "../../../Containers/Section";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
 import divideArray from "../../../../helpers/divideArray";
 import Container from "../../../Containers/Container";
+import Section from "../../../Containers/Section";
 
 function Gallery({ images }) {
 	const sticky = useRef(null);
@@ -65,7 +63,7 @@ function Gallery({ images }) {
 		if (galleryItems.current) {
 			smoothScroll();
 		}
-	}, [galleryItems.current]);
+	}, []);
 
 	return (
 		<Section classes='o-gallery -padding-huge' ref={scrollable}>

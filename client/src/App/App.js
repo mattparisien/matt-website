@@ -3,31 +3,21 @@ import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import {
-	createContext,
-	useCallback,
-	useEffect,
-	useMemo,
-	useRef,
-	useState,
-} from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
+import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import ScrollWrapper from "../components/Containers/ScrollWrapper";
 import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
 import Cursor from "../components/Cursor/Cursor";
+import Canvas from "../components/CursorFollower/Canvas";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import HomePage from "../components/pages/Home/HomePage";
-import Loader from "../components/Transition/Loader";
-import TransitionCard from "../components/Transition/TransitionCard";
-
-import { GlobalStyle } from "../styles/global";
-import Canvas from "../components/CursorFollower/Canvas";
-import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import SingleProjectPage from "../components/pages/SingleProjectPage";
 import useDevice from "../helpers/hooks/useDevice";
+import { GlobalStyle } from "../styles/global";
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -35,7 +25,7 @@ export const ColorContext = createContext();
 export const CursorContext = createContext();
 
 function App() {
-	const [loading, setLoading] = useState(false);
+	
 	const [pageTheme, setPageTheme] = useState("party");
 	// const { isResized } = useResize();
 
@@ -77,7 +67,7 @@ function App() {
 	const split = useRef(null);
 	const location = useLocation();
 	const device = useDevice();
-	const [headerColor, setHeaderColor] = useState("orange");
+
 	const [currentTheme, setCurrentTheme] = useState("dark");
 	const [hovering, setHovering] = useState(false);
 
@@ -125,11 +115,7 @@ function App() {
 		}
 	}, [isSplit, location]);
 
-	useEffect(() => {
-		loading
-			? document.body.classList.add("is-loading")
-			: document.body.classList.remove("is-loading");
-	}, [loading]);
+
 
 	const scrollRef = useRef(null);
 
@@ -153,15 +139,15 @@ function App() {
 			});
 		};
 
-		const fadeOut = (items, target, observer) => {
-			gsap.to(items, {
-				stagger: 0.06,
-				duration: 2,
-				ease: "expo.inOut",
-				y: "-100%",
-				opacity: 0,
-			});
-		};
+		// const fadeOut = (items, target, observer) => {
+		// 	gsap.to(items, {
+		// 		stagger: 0.06,
+		// 		duration: 2,
+		// 		ease: "expo.inOut",
+		// 		y: "-100%",
+		// 		opacity: 0,
+		// 	});
+		// };
 
 		if (split.current) {
 			//Listen for js mouseenter events
@@ -200,7 +186,7 @@ function App() {
 				observer.observe(el);
 			});
 		}
-	}, [split.current]);
+	}, []);
 
 	const setTransitioning = () => {
 		setState(prev => ({ ...prev, isTransitioning: true }));
@@ -218,9 +204,6 @@ function App() {
 		[device]: device,
 	});
 
-	const toggleLoading = useCallback(() => {
-		setLoading(!loading);
-	}, [loading]);
 
 	// useEffect(() => {
 	// 	if (isResized) {
@@ -341,7 +324,7 @@ function App() {
 	const contentWrapperRef = useRef(null);
 
 	const loadingControls = {
-		isLoading: loading,
+		
 		setTransitioning,
 	};
 
@@ -385,7 +368,7 @@ function App() {
 										<meta property='og:type' content='website' />
 									</Helmet>
 
-									<Header color={headerColor} />
+									<Header pageTheme={pageTheme} />
 									{device && device === "desktop" && <Canvas />}
 									{/* <TransitionCard/> */}
 
