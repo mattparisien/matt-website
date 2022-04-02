@@ -57,6 +57,7 @@ $themeNames: map-keys($themes);
 
 @each $key, $value in $themes {
 	[data-theme="#{$key}"] {
+		
 		color: map-get($value, "color");
 		background-color: map-get($value, "background");
 	}

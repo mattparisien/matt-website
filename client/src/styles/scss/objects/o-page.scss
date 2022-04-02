@@ -1,4 +1,10 @@
 .o-page {
-  padding-top: $headerHeight;
-  transition: 400ms ease;
+	padding-top: $headerHeight;
+	transition: 400ms ease;
+  
+}
+
+.ScrollWrapper {
+  z-index: 99;
+  position: sticky;
 }

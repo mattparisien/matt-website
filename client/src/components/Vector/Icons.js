@@ -1,30 +1,18 @@
-import { Box } from "@mui/system";
 import gsap from "gsap";
-import React, { useEffect, useRef, useState } from "react";
-import { useInView } from "react-intersection-observer";
-import { useTheme } from "styled-components";
 import $ from "jquery";
+import React, { useEffect, useRef, useState } from "react";
+import { useTheme } from "styled-components";
 
 function Star({ height, color, strokeWidth, inline, margin }) {
 	const theme = useTheme();
 	const lineRefs = useRef([]);
 	lineRefs.current = [];
 	const starRef = useRef(null);
-	const [ref, inView] = useInView();
 
 	const addToLineRefs = el => {
 		if (el && !lineRefs.current.includes(el)) {
 			lineRefs.current.push(el);
 		}
-	};
-
-	const star = {
-		height: height,
-		width: height,
-		margin: margin,
-		maxWidth: "700px",
-		maxHeight: "700px",
-		zIndex: 1,
 	};
 
 	const line = {
@@ -39,7 +27,6 @@ function Star({ height, color, strokeWidth, inline, margin }) {
 
 	useEffect(() => {
 		if (lineRefs.current && !hasPlayed) {
-			console.log("hrse!");
 			setHasPlayed(true);
 
 			let delay = 0;
@@ -47,7 +34,7 @@ function Star({ height, color, strokeWidth, inline, margin }) {
 
 			//Individual line tls
 			lineRefs.current.reverse().forEach((item, index) => {
-				let tl = gsap.timeline();
+				let tl = gsap.timeline({ repeat: -1, repeatDelay: 0 });
 
 				tl.set(item, {
 					rotation: `${rotation}deg`,
@@ -65,12 +52,12 @@ function Star({ height, color, strokeWidth, inline, margin }) {
 					.to(item, {
 						rotation: "0deg",
 						ease: "expo.inOut",
-						duration: 3,
+						duration: 0.3,
 					})
 					.to(item, {
 						rotation: `${rotation}deg`,
 						delay: delay,
-						duration: 25,
+						duration: 3,
 						transformOrigin: "center",
 						ease: "expo.inOut",
 						repeat: -1,
@@ -84,88 +71,102 @@ function Star({ height, color, strokeWidth, inline, margin }) {
 		}
 	}, [lineRefs, starRef, hasPlayed]);
 	return (
-		<Box className={inline ? "c-star -inline" : "c-star"} ref={ref}>
-			<svg
-				id='c-icon_svg c-icon_svg_star'
-				ref={starRef}
-				style={star}
-				xmlns='http://www.w3.org/2000/svg'
-				viewBox='0 0 398.89 407.59'
-			>
-				<path
-					className='cls-1'
-					d='M223.11,539.31,388.89,167'
-					transform='translate(-106.56 -149.34)'
-					style={line}
-					ref={addToLineRefs}
-				/>
-				<path
-					className='cls-1'
-					d='M149.89,484.13l312.22-262'
-					transform='translate(-106.56 -149.34)'
-					style={line}
-					ref={addToLineRefs}
-				/>
-				<path
-					className='cls-1'
-					d='M108.26,402.44l395.48-98.6'
-					transform='translate(-106.56 -149.34)'
-					style={line}
-					ref={addToLineRefs}
-				/>
-				<path
-					className='cls-1'
-					d='M106.66,310.77l398.68,84.74'
-					transform='translate(-106.56 -149.34)'
-					style={line}
-					ref={addToLineRefs}
-				/>
-				<path
-					className='cls-1'
-					d='M145.41,227.67,466.59,478.61'
-					transform='translate(-106.56 -149.34)'
-					style={line}
-					ref={addToLineRefs}
-				/>
-				<path
-					className='cls-1'
-					d='M216.66,170,395.34,536.31'
-					transform='translate(-106.56 -149.34)'
-					style={line}
-					ref={addToLineRefs}
-				/>
-				<path
-					className='cls-1'
-					d='M306,149.34V556.93'
-					transform='translate(-106.56 -149.34)'
-					style={line}
-					ref={addToLineRefs}
-				/>
-			</svg>
-		</Box>
+		<svg
+			className='c-icon_svg c-icon_svg_star'
+			ref={starRef}
+			xmlns='http://www.w3.org/2000/svg'
+			viewBox='0 0 398.89 407.59'
+		>
+			<path
+				className='cls-1'
+				d='M223.11,539.31,388.89,167'
+				transform='translate(-106.56 -149.34)'
+				ref={addToLineRefs}
+			/>
+			<path
+				className='cls-1'
+				d='M149.89,484.13l312.22-262'
+				transform='translate(-106.56 -149.34)'
+				ref={addToLineRefs}
+			/>
+			<path
+				className='cls-1'
+				d='M108.26,402.44l395.48-98.6'
+				transform='translate(-106.56 -149.34)'
+				ref={addToLineRefs}
+			/>
+			<path
+				className='cls-1'
+				d='M106.66,310.77l398.68,84.74'
+				transform='translate(-106.56 -149.34)'
+				ref={addToLineRefs}
+			/>
+			<path
+				className='cls-1'
+				d='M145.41,227.67,466.59,478.61'
+				transform='translate(-106.56 -149.34)'
+				style={line}
+				ref={addToLineRefs}
+			/>
+			<path
+				className='cls-1'
+				d='M216.66,170,395.34,536.31'
+				transform='translate(-106.56 -149.34)'
+				style={line}
+				ref={addToLineRefs}
+			/>
+			<path
+				className='cls-1'
+				d='M306,149.34V556.93'
+				transform='translate(-106.56 -149.34)'
+				style={line}
+				ref={addToLineRefs}
+			/>
+		</svg>
 	);
 }
 
-function Eyes() {
+function Eyes({ disableAnimation }) {
 	const ref = useRef(null);
-	const tl = useRef(gsap.timeline({ repeat: -1, yoyo: true }));
+	const tl = useRef(
+		gsap.timeline({
+			repeat: -1,
+			repeatDelay: 0,
+		})
+	);
 
 	useEffect(() => {
-		const pupils = $(ref.current).find(".c-icon_eyes--pupil");
+		const pupils = $(ref.current).find(".c-icon_svg_eyes--pupil");
+		console.log(pupils);
 
-		tl.current
-			.to(pupils, {
-				y: "-4vw",
-				x: "-3vw",
-				duration: 1,
-				ease: "power3.out",
-				delay: 5,
-			})
-			.to(pupils, {
-				y: "4vw",
-				x: "3vw",
-				ease: "power3.out",
-			});
+		if (!disableAnimation) {
+			tl.current
+				.to(pupils, {
+					y: "-25px",
+					x: "10px",
+					duration: 1.5,
+					ease: "power3.out",
+					delay: 5,
+				})
+				.to(pupils, {
+					y: "25px",
+					x: "25px",
+					duration: 1.4,
+					ease: "power3.out",
+				})
+				.to(pupils, {
+					y: "-2px",
+					x: "40px",
+					duration: 1.4,
+					ease: "power3.out",
+				})
+				.to(pupils, {
+					y: "-40px",
+					x: "-40px",
+					duration: 1.4,
+					ease: "power3.out",
+				});
+		}
 	}, []);
 
 	return (
@@ -217,11 +218,15 @@ function Arrow() {
 				duration: 1,
 				ease: "power.in",
 			})
-			.to(arrow2.current, {
-				x: "0",
-				duration: 1,
-				ease: "power3.out",
-			}, 0.4);
+			.to(
+				arrow2.current,
+				{
+					x: "0",
+					duration: 1,
+					ease: "power3.out",
+				},
+				0.4
+			);
 	}, []);
 
 	return (
@@ -253,9 +258,11 @@ function Arrow() {
 export function Icon(props) {
 	return (
 		<span className='c-icon -inline'>
-			{props.variant === "star" && <Star {...props} />}
-			{props.variant === "eyes" && <Eyes {...props} />}
-			{props.variant === "arrow" && <Arrow {...props} />}
+			<span className='c-icon_inner -stretchX -stretchY'>
+				{props.variant === "star" && <Star {...props} />}
+				{props.variant === "eyes" && <Eyes {...props} />}
+				{props.variant === "arrow" && <Arrow {...props} />}
+			</span>
 		</span>
 	);
 }

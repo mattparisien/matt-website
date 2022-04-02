@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { useEffect, useRef } from "react";
 import { useTheme } from "styled-components";
 
+
 export default function Arrow(props) {
 	const theme = useTheme();
 	const arrows = useRef([]);

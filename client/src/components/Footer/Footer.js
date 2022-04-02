@@ -66,7 +66,7 @@ function Footer({ data }) {
 	return (
 		<footer
 			className={`o-footer ${inView && "is-inview"}`}
-			data-theme='coolGirl'
+			data-theme='light'
 		>
 			<Section classes='-padding-lg -stretchX -stretchY'>
 				<Container classes='-stretchX -relative -padding-lg'>

@@ -17,10 +17,15 @@ import Link from "../../Link/Link";
 import { Icon } from "../../Vector/Icons";
 import CSSRulePlugin from "gsap/src/CSSRulePlugin";
 import Hero from "./Components/Hero";
+import PreFooter from "./Components/PreFooter";
+import Gallery from "./Components/Gallery";
+import FeaturedProjects from "./Components/FeaturedProjects";
 
 function HomePage(props, ref) {
 	gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin, CSSRulePlugin);
 	const data = useContext(DataContext);
+
+	console.log(data)
 
 	const { windowWidth } = useResize();
 	const marquees = useRef([]);
@@ -38,39 +43,30 @@ function HomePage(props, ref) {
 	const fantasticRefs = useRef([]);
 	fantasticRefs.current = [];
 
-	const addToRefs = el => {
-		if (el && !fantasticRefs.current.includes(el)) {
-			fantasticRefs.current.push(el);
-		}
-	};
-
-	console.log(data.projects);
 
 	return (
 		<>
 			<div
 				className='o-page o-page_home -no-offset'
-				data-theme={props.currentTheme}
+				
 			>
 				{/* <div className='o-sticky' ref={sticky}> */}
 
 				<Hero
 					featuredItems={
-						data &&
-						data.projects &&
-						data.projects.slice(0, 2)
+						data && data.projects && data.projects.reverse().slice(0, 2)
 					}
 				/>
 				{/* </div> */}
 				<Section
-					classes='o-intro'
-					data-theme-trigger='light'
-					data-theme-triggerRatio='0.8'
+					classes='o-intro -padding-lg'
+					
+					// data-theme-trigger='light'
+					// data-theme-triggerRatio='0.8'
 				>
-					<Container>
-						<div className='o-text  -padding-top-lg -split'>
-							I am a Montreal-based full-stack developer in love with digital
-							products{" "}
+					<Container classes="-flex -align-end">
+						<div className='o-text  -padding-top-lg'>
+							I am a Montreal-based{" "}
 							<Icon
 								variant='star'
 								color='light'
@@ -78,32 +74,29 @@ function HomePage(props, ref) {
 								height={"2.3vw"}
 								strokeWidth={"2px"}
 								margin={"0"}
-							/>
-							and passionate about crafting great user experiences{" "}
-							<Icon variant='eyes' /> through storytelling. My work is always
-							driven by a passion for what I do,
+							/>{" "}
+							developer & photographer in love with digital products and
+							passionate about crafting great user experiences through
+							storytelling. <Icon variant='eyes' /> My background is in
+							commercial photography and graphic design, which I both still
+							freelance with. My work is always driven by a passion for what I
+							do,
 							<Icon variant='arrow' /> and a love for people.
-						</div>
-
-						<div className='o-text -padding-lg -split' ref={grow}>
-							I believe a team who loves creating, learning and growing together
-							have the ability to transcend the workplace. Good communication
-							creates good stories that engage, progress, and create memorable
-							experiences.
 						</div>
 					</Container>
 				</Section>
+				<FeaturedProjects items={data && data.projects && data.projects.slice(0, 2)}/>
 
-				<Work projects={data.projects} />
+				{/* <Work projects={data.projects} /> */}
 
-				<Section classes='o-photo -padding-huge'>
+				{/* <Section classes='o-photo -padding-huge'>
 					<h2 className='o-h2 -split -padding-lg -fadeUpChars'>Photography</h2>
-					{/* <Container>
-						<Grid items={data.photos} />
-					</Container> */}
+			
 					<Slider items={data.photos} />
-				</Section>
+				</Section> */}
 				{/* <Values /> */}
+				<Gallery images={data.photos && data.photos}/>
+				<PreFooter/>
 			</div>
 		</>
 	);

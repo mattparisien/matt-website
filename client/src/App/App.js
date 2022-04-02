@@ -29,7 +29,6 @@ import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import SingleProjectPage from "../components/pages/SingleProjectPage";
 import useDevice from "../helpers/hooks/useDevice";
 
-
 export const DataContext = createContext();
 export const LoadingContext = createContext();
 export const ColorContext = createContext();
@@ -93,7 +92,7 @@ function App() {
 		};
 
 		const observer = new IntersectionObserver(handleIntersection, {
-			threshold: 0.6,
+			threshold: 1,
 		});
 
 		$("[data-theme-trigger]").each((i, el) => {
@@ -110,6 +109,7 @@ function App() {
 					type: "lines, chars, words",
 					charsClass: "c-char",
 					linesClass: "c-line",
+					wordsClass: "c-word",
 				});
 				split.current = splitText;
 				setSplit(true);
@@ -349,7 +349,7 @@ function App() {
 		<DataContext.Provider value={state.data}>
 			<ThemeProvider theme={themes}>
 				<LoadingContext.Provider value={loadingControls}>
-					<ColorContext.Provider value={{ setPageTheme, pageTheme }}>
+					<ColorContext.Provider value={{ currentTheme, setCurrentTheme }}>
 						<CursorContext.Provider value={{ hovering, setHovering }}>
 							<LocomotiveScrollProvider
 								onLocationChange={scroll =>
@@ -367,7 +367,7 @@ function App() {
 								watch={[location.pathname]}
 								containerRef={scrollRef}
 							>
-								<div className={appClasses}>
+								<div className={appClasses} data-theme={currentTheme}>
 									<Helmet>
 										<title>Matthew Parisien — Software Developer</title>
 										<meta
@@ -438,22 +438,22 @@ function App() {
 											/> */}
 											</Routes>
 										</ContentWrapper>
-										{
-											<Footer
-												data={{
-													contact: { ...state.data.contact },
-													socials: state.data.socials,
-													personalPhoto: {
-														...(state.data.photos &&
-															state.data.photos.slice(
-																state.data.photos.length - 1,
-																state.data.photos.length
-															)),
-													},
-												}}
-											/>
-										}
 									</ScrollWrapper>
+									{
+										<Footer
+											data={{
+												contact: { ...state.data.contact },
+												socials: state.data.socials,
+												personalPhoto: {
+													...(state.data.photos &&
+														state.data.photos.slice(
+															state.data.photos.length - 1,
+															state.data.photos.length
+														)),
+												},
+											}}
+										/>
+									}
 									<Cursor isHovering={hovering} setHovering={setHovering} />
 									{/* <Loader toggleLoading={toggleLoading} /> */}
 								</div>

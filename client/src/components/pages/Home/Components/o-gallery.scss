@@ -1,0 +1,26 @@
+.o-gallery {
+
+
+  &_section {
+    display: flex;
+    justify-content: space-evenly;
+    height: 80vw;
+
+    .o-container {
+      width: 100%;
+    }
+  }  
+
+  &_image {
+    width: 25vw;
+    
+    height: 35vw;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+}

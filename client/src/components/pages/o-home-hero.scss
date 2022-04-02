@@ -1,4 +1,167 @@
+.o-preFooter {
+	.o-text {
+		width: 50%;
+		margin-left: auto;
+		font-family: "Haas";
+		font-size: 5vw;
+		line-height: 5vw;
+	}
+
+	.c-line {
+		display: flex !important;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+
 .o-page_home {
+	.o-featuredProjects {
+		height: 60vw;
+
+		.o-container {
+			width: 100%;
+			height: 100%;
+
+			
+		}
+
+		&_card {
+			width: 50%;
+			height: 100%;
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			&:nth-child(2) .card-contentSwitch-container {
+				opacity: 0;
+			}
+
+			&:nth-child(2):hover .card-contentSwitch-container {
+				opacity: 1;
+			}
+
+			&_title {
+				z-index: 99;
+				position: absolute;
+				top: 0;
+				left: 0;
+				font-size: 1.4rem;
+				font-family: "Haas";
+				padding: $space-md $space-md 0 $space-md;
+				text-transform: uppercase;
+				color: $dark !important;
+
+				.inner::after {
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					width: 100%;
+					height: 2px;
+					content: "";
+					background-color: $dark !important;
+					transform-origin: left;
+					transition: $transition-expo;
+					transform: scaleX(0);
+				}
+			}
+
+			&:hover .inner::after {
+				transform: scaleX(1);
+			}
+
+			&_previewText {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				z-index: 999;
+				font-family: "Haas";
+				width: 50%;
+				padding: $space-md;
+				text-indent: 20%;
+				text-transform: uppercase;
+			}
+
+			&:hover .background img {
+				transform: scale(0.98);
+			}
+
+			&:hover .card-contentSwitch-container img {
+				opacity: 0;
+			}
+
+			&:hover .card-contentSwitch-container {
+				transform: scale(1.04);
+			}
+
+			&:first-child {
+				margin-right: 1vw;
+			}
+
+			.card-contentSwitch-container {
+				width: 90%;
+				height: 49%;
+
+				z-index: 1;
+				position: relative;
+				transition: $transition-zoom;
+
+				img,
+				video {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					object-position: center;
+					transition: 300ms ease;
+				}
+				img {
+					z-index: 99;
+				}
+			}
+
+			.background {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+
+				img {
+					height: 100%;
+					width: 100%;
+					object-fit: cover;
+					object-position: center;
+					transition: $transition-zoom;
+					transform: scale(1.1);
+				}
+			}
+		}
+
+
+		@include media("<=tablet") {
+
+			height: 210vw;
+
+			&_card {
+				width: 100%;
+
+				&:nth-child(1) {
+					margin-bottom: 2rem;
+				}
+			}
+
+			.o-container {
+				flex-direction: column !important;
+			}
+			
+		}
+
+	}
+
 	.o-about {
 		display: flex;
 
@@ -30,33 +193,58 @@
 		width: 100%;
 	}
 
-	.o-container {
-		height: calc(100vh - #{$headerHeight});
-		width: 100%;
-	}
 	.o-hero {
 		box-sizing: border-box;
 		position: relative;
 		padding-top: $headerHeight;
 
+		.o-container {
+			height: calc(100vh - #{$headerHeight});
+			width: 100%;
+		}
+
+		&_self {
+			width: 30%;
+			height: 40vw;
+			overflow: hidden;
+			position: relative;
+
+			.c-icon {
+				position: absolute;
+				top: 10vw;
+				width: 20vw;
+
+				svg {
+					height: 100% !important;
+				}
+
+				ellipse {
+					fill: $dark;
+					stroke: none;
+				}
+			}
+
+			img {
+				height: 100%;
+				width: 100%;
+				object-fit: cover;
+				object-position: center;
+			}
+		}
+
 		&_featuredWork {
 			height: 30vw;
-
-	
 
 			&_card {
 				height: 100%;
 				width: 50%;
 				overflow: hidden;
 
-
-
-			&:hover .-text-tiny, &:hover .c-icon {
-				transform: none !important;
-				opacity: 1 !important;
-			}
-
-	
+				&:hover .-text-tiny,
+				&:hover .c-icon {
+					transform: none !important;
+					opacity: 1 !important;
+				}
 
 				&::after {
 					position: absolute;
@@ -72,16 +260,15 @@
 				.image {
 					width: 100%;
 					height: 90%;
-					
+
 					transform-origin: center;
 
-
-				&:first-child {
-					background-color: $blue;
-				}
-				&:nth-child(2) {
-					background-color: $light;
-				}
+					&:first-child {
+						background-color: $blue;
+					}
+					&:nth-child(2) {
+						background-color: $dark !important;
+					}
 
 					img {
 						transform: scale(0.8);
@@ -95,10 +282,9 @@
 					display: flex;
 					width: 100%;
 					height: 10%;
-					
+
 					align-items: center;
 					justify-content: space-between;
-
 
 					.c-icon {
 						transform: translateX(-100%);
@@ -119,8 +305,6 @@
 			}
 
 			@include media("<=tablet") {
-
-
 				height: 100vw;
 				flex-direction: column;
 

@@ -64,6 +64,11 @@
 
 main {
 	transition: 400ms ease;
+	
+}
+
+.ScrollWrapper {
+	padding-bottom: 80vw;
 }
 
 .is-dom-loaded main {

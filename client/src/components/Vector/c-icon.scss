@@ -1,18 +1,34 @@
 .c-icon {
 
 
-	display: inline;
+	display: inline-block;
 	position: relative;
 	overflow: hidden;
+
+	&_inner {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+
+		
+	.c-icon_svg_star {
+		path {
+			stroke-width: 6px !important;
+		stroke: currentColor;
+		}
+	}
 	
 
 	&_svg {
 		stroke-width: 4px;
 		height: 2.5vw !important;
+	
 		
 
 		&_arrow {
-			stroke: $light;
+			stroke: currentColor;
 			stroke-width: 1px;
 			width: 5vw;
 
@@ -29,12 +45,13 @@
 			height: 100%;
 
 			&--eye {
-				stroke: $light;
-				stroke-width: 4px;
+				stroke: currentColor;
+				stroke-width: 5px;
+				fill: none;
 			}
 
 			&--pupil {
-				fill: $light;
+				fill: currentColor;
 			}
 		}
 	}

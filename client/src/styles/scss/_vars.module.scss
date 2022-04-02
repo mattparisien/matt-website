@@ -35,7 +35,7 @@ $red: #e63030;
 $hotPink: #fb8ec4;
 $green: #546136;
 $deepGreen: #286d42;
-$blue: #0a4d98;
+$blue: #BBCCC7;
 $skyBlue: #a0b4cb;
 $yellow: #ffcb4f;
 $pink: #f1b9b8;
@@ -71,6 +71,8 @@ $headerHeight: 60px;
 //Transition
 $transition: transform 600ms ease, opacity 600ms ease;
 $transition-expo: 1.2s cubic-bezier(1, 0, 0, 1);
+$transition-zoom: 4s cubic-bezier(0.075, 0.82, 0.165, 1);
+
 $translate-transition: opacity 0s cubic-bezier(0.35, 0.755, 0.42, 0.95),
 	transform 0.3s cubic-bezier(0.35, 0.755, 0.42, 0.95);
 
