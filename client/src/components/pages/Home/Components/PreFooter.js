@@ -9,60 +9,42 @@ function PreFooter() {
 	const line1 = useRef(null);
 	const line2 = useRef(null);
 	const line3 = useRef(null);
+	const line1Words = $(line1.current).find(".c-word");
 	const line2Words = $(line2.current).find(".c-word");
-  
 
 	const duration = 2;
 
 	useEffect(() => {
-		tl.current
-			.to(
-				line2Words[1],
-				{
-					x: "-8vw",
-					duration: duration,
-					ease: "power3.out",
-				},
-				0
-			)
-			.to(
-				line2Words[2],
-				{
-					x: "-16vw",
-					duration: duration,
-					ease: "power3.out",
-				},
-				0.5
-			)
-			.to(
-				line2Words[2],
-				{
-					x: 0,
-					duration: duration,
-					ease: "power3.out",
-				},
-				1
-			)
-			.to(
-				line2Words[1],
-				{
-					x: "7vw",
-					duration: duration,
-					ease: "power3.out",
-				},
-				1.5
-			)
-			.to(
-				line2Words[0],
-				{
-					x: "15vw",
-					duration: duration,
-					ease: "power3.out",
-				},
-				2
-			)
-			.timeScale(2);
-	}, [ line2Words]);
+		setTimeout(() => {
+			gsap.timeline()
+		
+				.to(line1Words[1], {
+					x: "6vw",
+					duration: 3,
+					ease: "expo.inOut",
+				})
+				.to(line1Words[1], {
+					x: "-5vw",
+					duration: 2,
+					ease: "expo.inOut",
+				})
+				.to(line1Words[2], {
+					x: "-10vw",
+					duration: 3,
+					ease: "expo.inOut",
+				}, 3)
+				.to(line1Words[2], {
+					x: "0",
+					duration: 3,
+					ease: "expo.inOut",
+				}, 6)
+				.to(line1Words[1], {
+					x: "8vw",
+					duration: 3,
+					ease: "expo.inOut",
+				}, 6.9);
+		}, 200);
+	}, [line2Words, line1Words.current]);
 
 	return (
 		<Section classes='o-preFooter -padding-top-huge'>

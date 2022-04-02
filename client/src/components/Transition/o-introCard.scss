@@ -1,0 +1,23 @@
+.o-introCard {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: $dark;
+  z-index: 999;
+
+  &_mediaWrapper {
+    width: 20vw;
+    height: 20vw;
+    background-color: $red;
+    position: relative;
+
+    img {
+      width:100% ;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}

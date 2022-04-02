@@ -28,6 +28,8 @@ import Canvas from "../components/CursorFollower/Canvas";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import SingleProjectPage from "../components/pages/SingleProjectPage";
 import useDevice from "../helpers/hooks/useDevice";
+import IntroCard from "../components/Transition/IntroCard";
+
 
 
 export const DataContext = createContext();
@@ -388,6 +390,7 @@ function App() {
 
 									<Header color={headerColor} />
 									{device && device === "desktop" && <Canvas />}
+									{/* <IntroCard images={state.data && state.data.photos}/> */}
 									{/* <TransitionCard/> */}
 
 									{/* <Loader isActive={play} setDone={togglePlay} /> */}

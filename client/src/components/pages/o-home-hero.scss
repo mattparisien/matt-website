@@ -2,7 +2,7 @@
 	.o-text {
 		width: 50%;
 		margin-left: auto;
-		font-family: "Riposte Light";
+		font-family: "Haas";
 		font-size: 4vw;
 		line-height: 4vw;
 	}
@@ -35,6 +35,14 @@
 
 			&:nth-child(2) .card-contentSwitch-container {
 				opacity: 0;
+			}
+
+			&:nth-child(1)  .o-featuredProjects_card_title {
+				color: $light !important;
+
+				& ::after {
+					background-color: $light !important;
+				}
 			}
 
 			&:nth-child(2):hover .card-contentSwitch-container {
