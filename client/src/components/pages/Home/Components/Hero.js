@@ -17,42 +17,14 @@ function Hero({ featuredItems }) {
 	const scroll = useLocomotiveScroll();
 
 	useEffect(() => {
-		if (scroll && scroll.scroll) {
-			ScrollTrigger.scrollerProxy(".ScrollWrapper", {
-				scrollTop(value) {
-					return arguments.length
-						? scroll.scroll.scrollTo(value, 0, 0)
-						: scroll.scroll.scroll.instance.scroll.y;
-				},
-				getBoundingClientRect() {
-					return {
-						top: 0,
-						left: 0,
-						width: window.innerWidth,
-						height: window.innerHeight,
-					};
-				},
-			});
-		}
 
-		const scrollTween = gsap.to($(".o-hero_logo .c-char"), {
-			opacity: 0,
-		});
-
-		scrollTl.current = ScrollTrigger.create({
-			trigger: trigger.current,
-			scroller: ".ScrollWrapper",
-			start: "top top",
-			scrub: true,
-			animation: scrollTween,
-		});
 
 		//Intro animation
 		setTimeout(() => {
 			const rule = CSSRulePlugin.getRule(
 				".o-page_home .o-hero_featuredWork_card:after"
 			);
-			console.log(rule);
+
 			const title = $(".o-hero_title");
 			const chars = title.find(".c-char");
 			const logo = $(".o-hero_logo");
@@ -125,10 +97,10 @@ function Hero({ featuredItems }) {
 								/>
 							))}
 					</div> */}
-					<div className='o-hero_self'>
+					{/* <div className='o-hero_self'>
 						<Icon variant="eyes"/>
 						<img src='https://res.cloudinary.com/dzoe0rah1/image/upload/v1647526928/me_b_and_w_5cecd7ce41.jpg' alt={Math.random()}></img>
-					</div>
+					</div> */}
 
 					<h1 className='o-h1 o-hero_title -split '>IDEAS</h1>
 					<h2 className='o-h2 o-hero_logo -split -absolute -bottom -left'>

@@ -19,7 +19,7 @@ function HomePage(props, ref) {
 	gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin, CSSRulePlugin);
 	const data = useContext(DataContext);
 
-	console.log(data)
+	console.log(data);
 
 	// const { windowWidth } = useResize();
 	const marquees = useRef([]);
@@ -37,13 +37,13 @@ function HomePage(props, ref) {
 	const fantasticRefs = useRef([]);
 	fantasticRefs.current = [];
 
+	const filterFeaturedProjects = array => {
+		return array.filter(x => x.Featured);
+	};
 
 	return (
 		<>
-			<div
-				className='o-page o-page_home -no-offset'
-				
-			>
+			<div className='o-page o-page_home -no-offset'>
 				{/* <div className='o-sticky' ref={sticky}> */}
 
 				<Hero
@@ -54,11 +54,11 @@ function HomePage(props, ref) {
 				{/* </div> */}
 				<Section
 					classes='o-intro -padding-lg'
-					
+
 					// data-theme-trigger='light'
 					// data-theme-triggerRatio='0.8'
 				>
-					<Container classes="-flex -align-end">
+					<Container classes='-flex -align-end'>
 						<div className='o-text  -padding-top-lg'>
 							I am a Montreal-based{" "}
 							<Icon
@@ -79,7 +79,13 @@ function HomePage(props, ref) {
 						</div>
 					</Container>
 				</Section>
-				<FeaturedProjects items={data && data.projects && data.projects.slice(0, 2)}/>
+				<FeaturedProjects
+					items={
+						data &&
+						data.projects &&
+						filterFeaturedProjects(data.projects).slice(0, 2)
+					}
+				/>
 
 				{/* <Work projects={data.projects} /> */}
 
@@ -89,8 +95,8 @@ function HomePage(props, ref) {
 					<Slider items={data.photos} />
 				</Section> */}
 				{/* <Values /> */}
-				<Gallery images={data.photos && data.photos}/>
-				<PreFooter/>
+				{/* <Gallery images={data.photos && data.photos}/> */}
+				<PreFooter />
 			</div>
 		</>
 	);

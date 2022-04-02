@@ -6,6 +6,9 @@ import Section from "../../../Containers/Section";
 function FeaturedProjects({ items }) {
 	const { setCurrentTheme } = useContext(ColorContext);
 
+
+console.log(items)
+
 	const handleMouseEnter = color => {
 		setCurrentTheme(color);
 	};
@@ -14,7 +17,6 @@ function FeaturedProjects({ items }) {
 		setCurrentTheme(color);
 	};
 
-	console.log(items);
 
 	return (
 		<Section classes='o-featuredProjects'>

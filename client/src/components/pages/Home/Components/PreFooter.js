@@ -65,10 +65,10 @@ function PreFooter() {
 	}, [ line2Words]);
 
 	return (
-		<Section classes='o-preFooter'>
-			<Container classes=' -flex -align-end'>
+		<Section classes='o-preFooter -padding-top-huge'>
+			<Container classes=' -flex -align-end '>
 				<p className='o-text'>
-					<div className='o-line o-line_1 -split' ref={line1}>
+					<div className='o-line o-line_1 -split -padding-top-huge' ref={line1}>
 						— YOUR WEBSITE
 					</div>
 					<div className='o-line o-line_2 -split' ref={line2}>

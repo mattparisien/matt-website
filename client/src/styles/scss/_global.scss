@@ -24,7 +24,7 @@
 
 @font-face {
 	font-family: "Druk";
-	src: url(../../fonts/Druk-Cond.ttf);
+	src: url(../../fonts/Kobe.woff);
 	font-weight: 500;
 }
 
@@ -37,7 +37,6 @@
 	font-family: "Riposte Light";
 	src: url(../../fonts/GTFRiposteTRIAL-Thin.otf);
 }
-
 
 @font-face {
 	font-family: "Haas";
@@ -64,11 +63,6 @@
 
 main {
 	transition: 400ms ease;
-	
-}
-
-.ScrollWrapper {
-	padding-bottom: 80vw;
 }
 
 .is-dom-loaded main {

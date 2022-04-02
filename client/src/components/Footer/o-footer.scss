@@ -4,10 +4,8 @@
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
-
-	
+	z-index: 99;
 	width: 100%;
-	z-index: 0;
 
 	.o-container:first-child {
 		height: 100%;
@@ -20,14 +18,17 @@
 	}
 
 	.inner .o-footer_image {
-		width: 20vw;
-		height: 25vw;
+		width: 30vw;
+		height: 38vw;
 		background-position: center;
 		background-size: cover;
 		position: absolute;
 		right: 0;
 		top: 0;
-		
+
+		img {
+			display: none
+		}
 	}
 
 	@include media("<=tablet") {
@@ -39,8 +40,9 @@
 	}
 
 	&_email {
-		font-size: 2.6rem;
-		font-family: 'Riposte Light';
+		font-size: 6.4vw;
+		letter-spacing: -2px;
+		font-family: "Riposte Light";
 		position: relative;
 		display: inline-block;
 		margin: 1.5rem 0;
@@ -55,20 +57,17 @@
 			left: 0;
 			width: 100%;
 			height: 1px;
-			
-			content: '';
+
+			content: "";
 		}
 	}
-	
 
-	h2, & h2 .c-char {
-		font-family: 'Riposte';
+	h2,
+	& h2 .c-char {
+		font-family: "Riposte";
 		text-transform: none;
 		text-align: left;
-		
 	}
-
-
 
 	.c-eyes {
 		opacity: 0;
@@ -92,7 +91,6 @@
 		}
 	}
 
-
 	.c-oval {
 		height: 50vw;
 		max-height: 750px;
@@ -102,7 +100,7 @@
 		margin: 0 auto;
 		transform: scale(0) rotateX(70deg);
 		transition: $transition-expo;
-		background-color: $pink
+		background-color: $pink;
 	}
 }
 

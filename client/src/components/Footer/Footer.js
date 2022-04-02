@@ -66,19 +66,11 @@ function Footer({ data }) {
 	return (
 		<footer
 			className={`o-footer ${inView && "is-inview"}`}
-			data-theme='light'
+			// data-theme='light'
 		>
-			<Section classes='-padding-lg -stretchX -stretchY'>
+			<Section classes='-padding-lg -stretchX -stretchY' data-theme='blue'>
 				<Container classes='-stretchX -relative -padding-lg'>
 					<div className='inner -fadeUpChildren'>
-						<h2 className='o-h2 -split -fadeUpChars'>Let's talk!</h2>
-						<Link
-							classes='o-footer_email -split -fadeUpChars'
-							href="mailto:hello@matthewparisien.com?subject=Let's talk"
-							hoverEffect={"chars"}
-						>
-							matthewparisien4@gmail.com
-						</Link>
 						<div
 							className='o-footer_image'
 							style={{
@@ -91,50 +83,14 @@ function Footer({ data }) {
 				</Container>
 
 				<div className='o-footer_bottom'>
-					<Container classes='-flex -align-end -justify-between -stretchX'>
-						<div className='footer-list'>
-							<div>
-								<ul className='-fadeUpChildren'>
-									<li>All Rights Reserved</li>
-									<li>2020 © Matthew Parisien</li>
-								</ul>
-							</div>
-							<div>
-								<ul className='-fadeUpChildren'>
-									<li>Follow me on</li>
-									<li>
-										<Link
-											hoverEffect={"chars"}
-											split
-											href='https://www.instagram.com/matt.parisien/'
-											target='_blank'
-										>
-											Instagram
-										</Link>
-									</li>
-									<li>
-										<Link
-											hoverEffect={"chars"}
-											split
-											href='https://www.linkedin.com/in/matthew-parisien-365572130/'
-											target='_blank'
-										>
-											LinkedIn
-										</Link>
-									</li>
-									<li>
-										<Link
-											hoverEffect={"chars"}
-											split
-											href='https://github.com/mattparisien'
-											target='_blank'
-										>
-											GitHub
-										</Link>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<Container classes='-flex -align-end -justify-center -stretchX'>
+						<Link
+							classes='o-footer_email -split -fadeUpChars'
+							href="mailto:hello@matthewparisien.com?subject=Let's talk"
+							hoverEffect={"chars"}
+						>
+							matthewparisien4@gmail.com
+						</Link>
 					</Container>
 				</div>
 			</Section>
