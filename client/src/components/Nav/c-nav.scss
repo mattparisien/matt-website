@@ -151,17 +151,25 @@
 }
 
 .c-nav.-desktop {
-	width: auto;
+	width: 100%;
+	
 	height: 100%;
 
 	ul {
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
+		width: 100%;
 		height: 100%;
 		font-size: 1.2rem;
+		width: 100%;
 
 		li {
 			transition: 400ms ease;
+			
+			a {
+				font-family: 'Haas';
+			}
 
 			&:hover {
 				opacity: 0.4;
@@ -170,7 +178,7 @@
 			button {
 				border: 0px;
 				background: transparent;
-				font-family: "Riposte";
+				
 				font-size: 1.5rem;
 			}
 		}

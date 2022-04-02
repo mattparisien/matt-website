@@ -83,7 +83,7 @@ function Link(props, ref) {
 			onClick={!props.isRouterLink ? props.onClick : handleNavigate}
 			ref={ref}
 		>
-			<span className='c-link_label'>{props.children}</span>
+			{props.children}
 		</a>
 	);
 }

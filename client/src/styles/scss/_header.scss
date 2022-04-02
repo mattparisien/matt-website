@@ -1,11 +1,17 @@
 .c-header {
 	position: fixed;
+	
 	top: 0;
 	left: 0;
 	width: 100vw;
 	height: $headerHeight;
 	z-index: 999;
 	background: transparent !important;
+
+	a {
+		transform: translateY(-100%);
+		opacity: 0;
+	}
 
 
 

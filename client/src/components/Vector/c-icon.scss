@@ -1,0 +1,41 @@
+.c-icon {
+
+
+	display: inline;
+	position: relative;
+	overflow: hidden;
+	
+
+	&_svg {
+		stroke-width: 4px;
+		height: 2.5vw !important;
+		
+
+		&_arrow {
+			stroke: $light;
+			stroke-width: 1px;
+			width: 5vw;
+
+			&:nth-of-type(2) {
+				position: absolute;
+				top: 0;
+				left: 0;
+				transform: translateX(-100%);
+				
+			}
+		}
+
+		&_eyes {
+			height: 100%;
+
+			&--eye {
+				stroke: $light;
+				stroke-width: 4px;
+			}
+
+			&--pupil {
+				fill: $light;
+			}
+		}
+	}
+}

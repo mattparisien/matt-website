@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 import { device } from "./breakpoints";
-import NeueMtl from "../fonts/NeueMtl.otf";
+
 
 export const renderResponsiveSizes = object => {
 	return Object.entries(object).map(size => {
@@ -40,10 +40,7 @@ box-sizing: border-box;
 
 
 
-  @font-face {
-    font-family: 'Neue Mtl';
-    src: url(${NeueMtl}) format('woff');
-  }
+
 
   
 

@@ -19,7 +19,7 @@ import ContentWrapper from "../components/ContentWrapper/ContentWrapper";
 import Cursor from "../components/Cursor/Cursor";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
-import HomePage from "../components/pages/HomePage";
+import HomePage from "../components/pages/Home/HomePage";
 import Loader from "../components/Transition/Loader";
 import TransitionCard from "../components/Transition/TransitionCard";
 
@@ -28,6 +28,7 @@ import Canvas from "../components/CursorFollower/Canvas";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import SingleProjectPage from "../components/pages/SingleProjectPage";
 import useDevice from "../helpers/hooks/useDevice";
+
 
 export const DataContext = createContext();
 export const LoadingContext = createContext();
@@ -78,22 +79,24 @@ function App() {
 	const location = useLocation();
 	const device = useDevice();
 	const [headerColor, setHeaderColor] = useState("orange");
+	const [currentTheme, setCurrentTheme] = useState("dark");
 	const [hovering, setHovering] = useState(false);
 
 	useEffect(() => {
 		const handleIntersection = entries => {
 			entries.forEach(entry => {
 				if (entry.isIntersecting) {
-					setHeaderColor($(entry.target).attr("data-theme"));
+					setCurrentTheme($(entry.target).attr("data-theme-trigger"));
+					// setHeaderColor($(entry.target).attr("data-theme"));
 				}
 			});
 		};
 
 		const observer = new IntersectionObserver(handleIntersection, {
-			rootMargin: "-50px 0px -60%",
+			threshold: 0.6,
 		});
 
-		$("[data-theme]").each((i, el) => {
+		$("[data-theme-trigger]").each((i, el) => {
 			observer.observe(el);
 		});
 	}, []);
@@ -384,7 +387,7 @@ function App() {
 
 									<Header color={headerColor} />
 									{device && device === "desktop" && <Canvas />}
-									<TransitionCard/>
+									{/* <TransitionCard/> */}
 
 									{/* <Loader isActive={play} setDone={togglePlay} /> */}
 
@@ -397,7 +400,12 @@ function App() {
 											<Routes>
 												<Route
 													path='/'
-													element={<HomePage isLoading={state.isLoading} />}
+													element={
+														<HomePage
+															isLoading={state.isLoading}
+															currentTheme={currentTheme}
+														/>
+													}
 												/>
 												{/* <Route path='/work' element={<WorkPage />} /> */}
 												{/* <Route

@@ -18,7 +18,13 @@
 
 @font-face {
 	font-family: "Riposte";
-	src: url(../../fonts/GTFRiposteTRIAL-Regular.otf);
+	src: url(../../fonts/timesnow.otf);
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "Druk";
+	src: url(../../fonts/Druk-Cond.ttf);
 	font-weight: 500;
 }
 
@@ -32,14 +38,15 @@
 	src: url(../../fonts/GTFRiposteTRIAL-Thin.otf);
 }
 
-@font-face {
-	font-family: "Vanguard";
-	src: url(../../fonts/Vanguard.otf);
-}
 
 @font-face {
 	font-family: "Haas";
 	src: url(../../fonts/Haas.otf);
+}
+
+@font-face {
+	font-family: "Cardinal";
+	src: url(../../fonts/cardinalfruit-regular-TRIAL.otf);
 }
 
 @font-face {

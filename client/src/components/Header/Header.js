@@ -8,7 +8,7 @@ function Header({ color }) {
 	return (
 		<header className='c-header' data-theme={color}>
 			<Container classes={"-stretchX -stretchY"}>
-				<Logo />
+				{/* <Logo /> */}
 				<DesktopNav />
 				<Nav />
 			</Container>
