@@ -1,0 +1,47 @@
+.c-mousePosContainer {
+	width: 20rem;
+	height: 20rem;
+	background-color: blue;
+	position: absolute;
+	z-index: 9999;
+	transform: translate(-50%, -50%);
+}
+
+.o-featuredProjects {
+	ul {
+		width: 100%;
+		li {
+			padding: 4.3rem 5.4rem;
+			width: 100%;
+			border-bottom: 1px solid lighten($grey, 30%);
+
+			&:hover a {
+				color: lighten($grey, 30%);
+			}
+
+			&:hover .title {
+				transform: translateX(-4%);
+			}
+			&:hover a {
+				color: lighten($grey, 30%);
+			}
+
+			&:nth-child(odd) {
+				border-top: 1px solid lighten($grey, 30%);
+			}
+
+			a {
+				font-family: "Haas";
+				display: block;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				transition: color 400ms ease;
+			}
+			.title {
+				font-size: 5rem;
+        transition: transform 400ms ease;
+			}
+		}
+	}
+}

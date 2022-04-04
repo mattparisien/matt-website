@@ -27,12 +27,12 @@ function Canvas() {
 
 		function moveBall() {
 			ctx.clearRect(0, 0, width, height);
-			ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
+			ctx.stroke()
 			ballX = lerp(ballX, x, 0.1);
 			ballY = lerp(ballY, y, 0.1);
 			ctx.beginPath();
-			ctx.arc(ballX, ballY, 50, 0, 2 * Math.PI);
-			ctx.fill();
+			ctx.arc(ballX, ballY, 15, 0, 2 * Math.PI);
+			
 
 			requestAnimationFrame(moveBall);
 		}

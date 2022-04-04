@@ -1,11 +1,12 @@
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import { useInView } from "react-intersection-observer";
 import Container from "../Containers/Container";
 import Section from "../Containers/Section";
 import Link from "../Link/Link";
+import Button from "../Button/Button";
 
 function Footer({ data }) {
 	const linkRefs = useRef([]);
@@ -17,6 +18,10 @@ function Footer({ data }) {
 	const [isSplit, setIsSplit] = useState(false);
 
 	const split = useRef(null);
+
+	const timeZone = useMemo(() => {
+		return new Date().toLocaleTimeString() + ' EST'
+	})
 
 	useEffect(() => {
 		if (inView) {
@@ -68,32 +73,55 @@ function Footer({ data }) {
 			className={`o-footer ${inView && "is-inview"}`}
 			// data-theme='light'
 		>
-			<Section classes='-padding-lg -stretchX -stretchY' data-theme='blue'>
-				<Container classes='-stretchX -relative -padding-lg'>
-					<div className='inner -fadeUpChildren'>
-						<div
-							className='o-footer_image'
-							style={{
-								backgroundImage: `url(${
-									data.personalPhoto[0] && data.personalPhoto[0].url
-								})`,
-							}}
-						></div>
+			<Container classes='o-footer_cta'>
+				<div className='inner -relative'>
+					<div className='lines -relative'>
+						<div>Let's work</div>
+						<div className='o-footer_self'>
+							<img
+								src={
+									"https://images.pexels.com/photos/11482689/pexels-photo-11482689.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+								}
+								alt=''
+							/>
+							<br></br>
+						</div>
+						together
 					</div>
-				</Container>
-
-				<div className='o-footer_bottom'>
-					<Container classes='-flex -align-end -justify-center -stretchX'>
-						<Link
-							classes='o-footer_email -split -fadeUpChars'
-							href="mailto:hello@matthewparisien.com?subject=Let's talk"
-							hoverEffect={"chars"}
-						>
-							matthewparisien4@gmail.com
-						</Link>
-					</Container>
 				</div>
-			</Section>
+			</Container>
+			<Container classes="o-footer_buttons">
+				<Button href={"mailto:hello@matthewparisien.com"}>hello@matthewparisien.com</Button>
+				<Button href={"tel:+15144671771"}>+1 514 467 1771</Button>
+			</Container>
+			<div className="o-footer_bottom -flex -align-end -justify-between -stretchX">
+				<div className="left">
+					<div className="version">
+						<div className="title">Version</div>
+						<div>2022 © Edition</div>
+					</div>
+					<div className="time">
+					<div className="title">local time</div>
+					<div>{timeZone}</div>
+					</div>
+				</div>
+				<div className="right">
+					<div className="socials">
+						<div className="title">Socials</div>
+						<ul className="-flex">
+							<li>
+								<a href="Instagram">Instagram</a>
+							</li>
+							<li>
+								<a href="Github">Github</a>
+							</li>
+							<li>
+								<a href="LinkedIn">LinkedIn</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 		</footer>
 	);
 }

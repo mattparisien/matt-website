@@ -164,18 +164,12 @@
 	}
 }
 
+.App {
+	transition: 400ms ease;
+}
+
 .is-old-page {
-	h1,
-	h2,
-	h3,
-	h3,
-	p,
-	img,
-	.o-container,
-	a {
-		transition: $transition-expo;
-		opacity: 0;
-	}
+	opacity: 0;
 }
 
 .-text-center {

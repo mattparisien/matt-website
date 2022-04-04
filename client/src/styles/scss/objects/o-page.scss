@@ -1,6 +1,10 @@
 .o-page {
-	padding-top: $headerHeight;
-	transition: 400ms ease;
+	
+	
+
+  &.o-page_home {
+    padding-top: 0 !important;
+  }
   
 }
 

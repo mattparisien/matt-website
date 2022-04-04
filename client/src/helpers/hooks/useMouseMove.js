@@ -7,6 +7,7 @@ export default function useMouseMove(array) {
 
 	useEffect(() => {
 		const handleMouseMove = (e, index) => {
+			
 			setLocation({
 				pageX: e.clientX,
 				pageY: e.clientY,

@@ -2,128 +2,48 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import CSSRulePlugin from "gsap/src/CSSRulePlugin";
 import $ from "jquery";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import Container from "../../../Containers/Container";
 import Section from "../../../Containers/Section";
 import { Icon } from "../../../Vector/Icons";
+import Marquee from "../../../Marquee/Marquee";
 
 function Hero({ featuredItems }) {
 	gsap.registerPlugin(CSSRulePlugin, ScrollTrigger);
 
-	const heroTitleTl = useRef(gsap.timeline());
-	const scrollTl = useRef(null);
-	const trigger = useRef(null);
-	const scroll = useLocomotiveScroll();
-
-	useEffect(() => {
-
-
-		//Intro animation
-		setTimeout(() => {
-			const rule = CSSRulePlugin.getRule(
-				".o-page_home .o-hero_featuredWork_card:after"
-			);
-
-			const title = $(".o-hero_title");
-			const chars = title.find(".c-char");
-			const logo = $(".o-hero_logo");
-			const logoChars = logo.find(".c-char");
-			const headerLinks = $("header").find("a");
-			gsap.set(title, { opacity: 1 });
-			gsap.set(logo, { opacity: 1 });
-			heroTitleTl.current
-				.to(chars, {
-					y: 0,
-					opacity: 1,
-					stagger: -0.07,
-					ease: "power3.out",
-					rotate: 0,
-					duration: 0.8,
-				})
-				.to(chars, {
-					y: "-100%",
-					stagger: -0.07,
-				})
-				.to(headerLinks, {
-					y: 0,
-					opacity: 1,
-					stagger: 0.1,
-					ease: "power.out",
-					duration: 0.6,
-				})
-				.to(
-					logoChars,
-					{
-						y: 0,
-						opacity: 1,
-						duration: 0.8,
-
-						stagger: 0.04,
-						ease: "power3.out",
-					},
-					1.2
-				)
-				.to(
-					rule,
-					{
-						cssRule: {
-							scaleY: 0,
-						},
-						duration: 2,
-						stagger: 0.2,
-						ease: "power3.out",
-					},
-					1.3
-				)
-				.set(title, { display: "none" })
-				.set(logo, { overflow: "visible" });
-		}, 1000);
-	}, [scroll]);
+	
 
 	return (
-		<Section
-			classes='o-hero  -flex -align-center -justify-center'
-			ref={trigger}
-		>
-			<Container classes='-stretchY '>
-				<div className='inner -relative -stretchY -flex -align-center -justify-center'>
-					{/* <div className='o-hero_featuredWork -flex -absolute -top -left -stretchX'>
-						{featuredItems &&
-							featuredItems.map(item => (
-								<Card
-									path={`/projects/${item.id}`}
-									src={item.Cover.image.url}
-								/>
-							))}
-					</div> */}
-					{/* <div className='o-hero_self'>
-						<Icon variant="eyes"/>
-						<img src='https://res.cloudinary.com/dzoe0rah1/image/upload/v1647526928/me_b_and_w_5cecd7ce41.jpg' alt={Math.random()}></img>
-					</div> */}
-
-					<h1 className='o-h1 o-hero_title -split '>IDEAS</h1>
-					<h2 className='o-h2 o-hero_logo -split -absolute -bottom -left'>
-						Matt Parisien
-					</h2>
+		<>
+			<Section
+				classes='o-hero  -flex -align-start -justify-center'
+				data-theme='light'
+			>
+				<div className='inner -relative'>
+					<div className='o-hero_content'>
+						<div className='bar-center'>
+							<div className='inner -relative -stretchX -stretchY -flex -align-center -justify-between -row-reverse'>
+								<div className='o-text'>
+									<div className='role'>
+										<div>Freelance</div>
+										<div>Developer & Designer</div>
+									</div>
+								</div>
+								<div className='location'>
+									<div className="location_text">Located in Montreal, Canada</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div className='o-hero_image'>
+						<img src='https://res.cloudinary.com/dzoe0rah1/image/upload/v1647526928/me_b_and_w_5cecd7ce41.jpg'></img>
+					</div>
+					<Marquee text={'Matt Parisien'}/>
 				</div>
-			</Container>
-		</Section>
+			</Section>
+		</>
 	);
 }
-
-// function Card({ title, src, alt, path }) {
-// 	return (
-// 		<Link classes='o-hero_featuredWork_card' href={path} isRouterLink>
-// 			<div className='image'>
-// 				<img src={src} alt={Math.random()}></img>
-// 			</div>
-// 			<div className='cta'>
-// 				<Icon variant='arrow' disableAnimation/>
-// 				<div className='-text-tiny'>View project</div>
-// 			</div>
-// 		</Link>
-// 	);
-// }
 
 export default Hero;

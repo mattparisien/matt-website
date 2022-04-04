@@ -19,6 +19,8 @@ function Slider({ items }) {
 	// const { changeCursor } = useContext(CursorContext);
 	const { windowWidth } = useResize();
 
+	console.log(items)
+
 	useEffect(() => {
 		//Set up slider proxy
 		const items = itemRefs.current;

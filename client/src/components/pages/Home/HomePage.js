@@ -2,7 +2,8 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import CSSRulePlugin from "gsap/src/CSSRulePlugin";
 import MorphSVGPlugin from "gsap/src/MorphSVGPlugin";
-import React, { forwardRef, useContext, useRef } from "react";
+import React, { forwardRef, useContext, useRef, useState } from "react";
+import Slider from "../../Slider/Slider";
 // Import Swiper styles
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
@@ -14,12 +15,11 @@ import FeaturedProjects from "./Components/FeaturedProjects";
 import Gallery from "./Components/Gallery";
 import Hero from "./Components/Hero";
 import PreFooter from "./Components/PreFooter";
+import IntroCard from "../../Transition/IntroCard";
 
 function HomePage(props, ref) {
 	gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin, CSSRulePlugin);
 	const data = useContext(DataContext);
-
-	console.log(data);
 
 	// const { windowWidth } = useResize();
 	const marquees = useRef([]);
@@ -54,6 +54,7 @@ function HomePage(props, ref) {
 				{/* </div> */}
 				<Section
 					classes='o-intro -padding-lg'
+					data-theme='light'
 
 					// data-theme-trigger='light'
 					// data-theme-triggerRatio='0.8'
@@ -79,13 +80,7 @@ function HomePage(props, ref) {
 						</div>
 					</Container>
 				</Section>
-				<FeaturedProjects
-					items={
-						data &&
-						data.projects &&
-						filterFeaturedProjects(data.projects).slice(0, 2)
-					}
-				/>
+				<FeaturedProjects items={data && data.projects} />
 
 				{/* <Work projects={data.projects} /> */}
 
@@ -96,7 +91,6 @@ function HomePage(props, ref) {
 				</Section> */}
 				{/* <Values /> */}
 				{/* <Gallery images={data.photos && data.photos}/> */}
-				<PreFooter />
 			</div>
 		</>
 	);

@@ -41,7 +41,7 @@ function SingleProjectPage({ location }) {
 		return shuffle(items);
 	}, []);
 
-	const [currentTheme, setCurrentTheme] = useState(pageTheme);
+	const [currentTheme, setCurrentTheme] = useState("power");
 
 	// useLayoutEffect(() => {
 	// 	const desktopTimeline = () => {
@@ -98,21 +98,23 @@ function SingleProjectPage({ location }) {
 		setParam(param);
 
 		if (data && data.projects && param) {
-			console.log("this should only run once");
+			console.log(data.projects);
+
 			// setInfo(data.posts.filter(x => x.id === param));
-			const currentPost = data.projects.filter(x => x.id === param);
+			const currentPost = data.projects.filter(x => x.id == param);
+			console.log(data.projects, param);
 
-			const nextPostIndex =
-				data.projects.indexOf(
-					data.projects.find(x => x.id === currentPost[0].id)
-				) + 1;
+			// const nextPostIndex =
+			// 	data.projects.indexOf(
+			// 		data.projects.find(x => x.id === currentPost[0].id)
+			// 	) + 1;
 
-			const nextPost =
-				data.projects[
-					nextPostIndex === data.projects.length ? 0 : nextPostIndex
-				];
+			// const nextPost =
+			// 	data.projects[
+			// 		nextPostIndex === data.projects.length ? 0 : nextPostIndex
+			// 	];
 
-			setInfo({ ...currentPost, nextPost: nextPost });
+			setInfo({ ...currentPost });
 		}
 	}, [data, location, param]);
 
@@ -121,27 +123,27 @@ function SingleProjectPage({ location }) {
 		window.scrollTo(0, 0);
 	}, [location, scroll]);
 
-	useEffect(() => {
-		const breakpoint = 840;
+	// useEffect(() => {
+	// 	const breakpoint = 840;
 
-		if (scrollContext && scrollContext.name === "locomotive") {
-			scrollListener.current = scrollContext.scroller.on("scroll", e => {
-				if (e.delta.y > breakpoint) {
-					setCurrentTheme("light");
-				} else if (e.delta.y < breakpoint) {
-					setCurrentTheme(pageTheme);
-				}
-			});
-		} else {
-			scrollListener.current = window.addEventListener("scroll", e => {
-				if (e.delta.y > breakpoint) {
-					setCurrentTheme("light");
-				} else if (e.delta.y < breakpoint) {
-					setCurrentTheme(pageTheme);
-				}
-			});
-		}
-	}, [scrollContext, pageTheme]);
+	// 	if (scrollContext && scrollContext.name === "locomotive") {
+	// 		scrollListener.current = scrollContext.scroller.on("scroll", e => {
+	// 			if (e.delta.y > breakpoint) {
+	// 				setCurrentTheme("light");
+	// 			} else if (e.delta.y < breakpoint) {
+	// 				setCurrentTheme(pageTheme);
+	// 			}
+	// 		});
+	// 	} else {
+	// 		scrollListener.current = window.addEventListener("scroll", e => {
+	// 			if (e.delta.y > breakpoint) {
+	// 				setCurrentTheme("light");
+	// 			} else if (e.delta.y < breakpoint) {
+	// 				setCurrentTheme(pageTheme);
+	// 			}
+	// 		});
+	// 	}
+	// }, [scrollContext, pageTheme]);
 
 	return (
 		<>
@@ -151,46 +153,13 @@ function SingleProjectPage({ location }) {
 				</title>
 				<meta name='description' content='Helmet application' />
 			</Helmet> */}
-			<div className='o-page o-single-project' data-theme={currentTheme}>
-				<Section classes='o-hero'>
-					<Container classes='-stretchY'>
-						<div className='o-container_inner'>
-							<div className='o-hero_text u-desktop-js-anim' ref={textWrapper}>
-								<h4 className='o-h4 -riposte'>{info && info[0].Subtitle}</h4>
-								<h2 className='o-h2 -split -fadeUpChars'>
-									{info && info[0].Title}
-								</h2>
-							</div>
-
-							<div className='o-hero_image' ref={heroImage}>
-								<Figure
-									noReveal
-									effectDelay={5000}
-									src={info && info[0].Cover.image.url}
-									alt={"hwe"}
-								/>
-							</div>
-
-							{/* 				
-					<div className='o-hero_image-wrapper-2'>
-						<img
-							src={info && info[0].media.featureImage.url}
-							alt={info && info[0].media.featureImage.altText}
-						/>
-					</div> */}
-						</div>
-					</Container>
-				</Section>
-
-				<Section classes='o-overview -padding-lg'>
-					<Container>
+			<div className='o-page o-single-project' data-theme={"light"}>
+				<Section classes='o-overview -padding-lg -fullHeight -flex'>
+					<Container classes="-flex -align-end">
 						<Fade bottom>
-							<div className='o-overview_left'>
-								<ReactMarkdown
-									className='o-h3 -bold'
-									children={info && info[0].PreviewText}
-								/>
-							</div>
+							<h3 className='o-h3 -split -fadeUpLines'>
+								{info && info[0].PreviewText}
+							</h3>
 						</Fade>
 
 						<div className='o-overview_right'>
@@ -270,7 +239,7 @@ function SingleProjectPage({ location }) {
 					</Section>
 				)} */}
 
-				<Next nextPost={info && info.nextPost} />
+				{/* <Next nextPost={info && info.nextPost} /> */}
 			</div>
 		</>
 	);

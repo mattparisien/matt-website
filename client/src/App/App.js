@@ -364,7 +364,8 @@ function App() {
 										y: 0,
 									},
 
-									smooth: true,
+									smooth: true,	
+									getSpeed: true,
 									getDirection: true,
 								}}
 								watch={[location.pathname]}
@@ -390,7 +391,7 @@ function App() {
 
 									<Header color={headerColor} />
 									{device && device === "desktop" && <Canvas />}
-									{/* <IntroCard images={state.data && state.data.photos}/> */}
+									<IntroCard />
 									{/* <TransitionCard/> */}
 
 									{/* <Loader isActive={play} setDone={togglePlay} /> */}
@@ -398,9 +399,12 @@ function App() {
 									{/* <CursorFollower cursorState={cursorState} /> */}
 
 									<ScrollWrapper ref={scrollRef}>
+									<div className="c-mousePosContainer">
+												s
+											</div>
 										<ContentWrapper ref={contentWrapperRef}>
 											<GlobalStyle />
-
+											
 											<Routes>
 												<Route
 													path='/'
