@@ -55,6 +55,9 @@
 
 .App {
 	transition: 500ms ease;
+	background-color: $dark;
+	-moz-osx-font-smoothing: grayscale; /*(For Firefox)*/
+-webkit-font-smoothing: antialiased; /*(For Chrome and Safari)*/
 }
 
 .is-loading {

@@ -26,8 +26,9 @@
 }
 
 .-riposte {
-	font-family: "Riposte";
-	text-transform: none;
+	font-family: "Haas" !important;
+	text-transform: none !important;
+	font-weight: lighter;
 }
 
 .-mr-auto {
@@ -328,9 +329,6 @@
 	width: 50%;
 }
 
-.-indent {
-	text-indent: 20%;
-}
 
 .-block {
 	display: block;

@@ -80,7 +80,7 @@ function Footer({ data }) {
 						<div className='o-footer_self'>
 							<img
 								src={
-									"https://images.pexels.com/photos/11482689/pexels-photo-11482689.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+									"https://res.cloudinary.com/dzoe0rah1/image/upload/v1647526928/me_b_and_w_5cecd7ce41.jpg"
 								}
 								alt=''
 							/>

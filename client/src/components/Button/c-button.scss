@@ -5,7 +5,7 @@
 	border: 1px solid $light;
 	padding: $space-sm calc(#{$space-sm} + 1rem);
 	border-radius: 50px;
-	transition: $transition;
+
 	overflow: hidden;
 
 	.button-circle {
@@ -18,14 +18,11 @@
 		left: 50%;
 		transform: translate(-50%, 20%);
 		transition: $transition;
-		
-		
 	}
 
 	&:hover .button-circle {
 		transform: translate(-50%, -50%);
 	}
-
 
 	&:hover {
 		background-color: $dark;

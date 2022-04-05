@@ -16,6 +16,7 @@ import Gallery from "./Components/Gallery";
 import Hero from "./Components/Hero";
 import PreFooter from "./Components/PreFooter";
 import IntroCard from "../../Transition/IntroCard";
+import Button from "../../Button/Button";
 
 function HomePage(props, ref) {
 	gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin, CSSRulePlugin);
@@ -59,7 +60,7 @@ function HomePage(props, ref) {
 					// data-theme-trigger='light'
 					// data-theme-triggerRatio='0.8'
 				>
-					<Container classes='-flex -align-end'>
+					<Container classes='-flex -flex-column -align-end'>
 						<div className='o-text  -padding-top-lg'>
 							I am a Montreal-based{" "}
 							<Icon
@@ -78,6 +79,7 @@ function HomePage(props, ref) {
 							do,
 							<Icon variant='arrow' /> and a love for people.
 						</div>
+						<Button>move me!</Button>
 					</Container>
 				</Section>
 				<FeaturedProjects items={data && data.projects} />

@@ -261,6 +261,80 @@
 			}
 		}
 
+		.hero-scene {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 999;
+		}
+
+
+		.c-waveCard {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 40vw;
+			height: 50vw;
+			background-color: $blue;
+			transform: translateY(100%);
+			opacity: 0;
+		}
+
+		.marquee-container {
+			margin-top: 4rem;
+			font-size: 12vw;
+
+			font-weight: lighter;
+		}
+
+		.cta {
+			position: absolute;
+			font-family: 'Riposte';
+			bottom: 4vw;
+			left: 50%;
+			transform: translateX(-50%);
+			z-index: 99;
+			
+			&::before {
+				content: '';
+				top: -6vw;
+				left: 50%;
+				height: 4rem;
+				width: 1px;
+				position: absolute;
+				background-color: $light;
+			}
+		}
+
+		.marquee-word {
+				padding-right: 10vw;
+				position: relative;
+
+				.c-char {
+					transform: translateY(100%);
+					opacity: 0;
+				}
+
+				&::after {
+					position: absolute;
+					right: 4vw;
+					top: 50%;
+					width: 1rem;
+					height: 1rem;
+					border-radius: 50%;
+					background-color: $light;
+					content: '';
+				}
+		}
+
+		.o-container {
+			z-index: 1;
+			position: sticky;
+		}
+
 		&_cta {
 			.line {
 				&::before {
