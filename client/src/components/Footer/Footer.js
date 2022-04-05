@@ -20,8 +20,8 @@ function Footer({ data }) {
 	const split = useRef(null);
 
 	const timeZone = useMemo(() => {
-		return new Date().toLocaleTimeString() + ' EST'
-	})
+		return new Date().toLocaleTimeString() + " EST";
+	});
 
 	useEffect(() => {
 		if (inView) {
@@ -75,7 +75,7 @@ function Footer({ data }) {
 		>
 			<Container classes='o-footer_cta'>
 				<div className='inner -relative'>
-					<div className='lines -relative'>
+					<h2 className='lines -relative'>
 						<div>Let's work</div>
 						<div className='o-footer_self'>
 							<img
@@ -87,36 +87,38 @@ function Footer({ data }) {
 							<br></br>
 						</div>
 						together
-					</div>
+					</h2>
 				</div>
 			</Container>
-			<Container classes="o-footer_buttons">
-				<Button href={"mailto:hello@matthewparisien.com"}>hello@matthewparisien.com</Button>
+			{/* <Container classes='o-footer_buttons'>
+				<Button href={"mailto:hello@matthewparisien.com"}>
+					hello@matthewparisien.com
+				</Button>
 				<Button href={"tel:+15144671771"}>+1 514 467 1771</Button>
-			</Container>
-			<div className="o-footer_bottom -flex -align-end -justify-between -stretchX">
-				<div className="left">
-					<div className="version">
-						<div className="title">Version</div>
+			</Container> */}
+			<div className='o-footer_bottom -flex -align-end -justify-between -stretchX'>
+				<div className='left'>
+					<div className='version'>
+						<div className='title'>Version</div>
 						<div>2022 © Edition</div>
 					</div>
-					<div className="time">
-					<div className="title">local time</div>
-					<div>{timeZone}</div>
+					<div className='time'>
+						<div className='title'>local time</div>
+						<div>{timeZone}</div>
 					</div>
 				</div>
-				<div className="right">
-					<div className="socials">
-						<div className="title">Socials</div>
-						<ul className="-flex">
+				<div className='right'>
+					<div className='socials'>
+						<div className='title'>Socials</div>
+						<ul className='-flex'>
 							<li>
-								<a href="Instagram">Instagram</a>
+								<a href='Instagram'>Instagram</a>
 							</li>
 							<li>
-								<a href="Github">Github</a>
+								<a href='Github'>Github</a>
 							</li>
 							<li>
-								<a href="LinkedIn">LinkedIn</a>
+								<a href='LinkedIn'>LinkedIn</a>
 							</li>
 						</ul>
 					</div>

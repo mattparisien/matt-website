@@ -26,7 +26,7 @@
 }
 
 .-riposte {
-	font-family: "Haas" !important;
+	
 	text-transform: none !important;
 	font-weight: lighter;
 }
@@ -51,12 +51,7 @@
 	flex-direction: row-reverse;
 }
 
-.-bold {
-	&,
-	& * {
-		font-family: "Riposte Bold" !important;
-	}
-}
+
 
 .-desktop {
 	@include media("<=tablet") {
@@ -313,11 +308,11 @@
 .-ul-small,
 .-text-tiny {
 	font-size: 0.9rem;
-	font-family: "Haas";
+	
 }
 
 .-fk {
-	font-family: "FK" !important;
+	
 	text-transform: uppercase;
 }
 

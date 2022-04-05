@@ -1,0 +1,31 @@
+* {
+  font-family: 'Haas';
+}
+
+
+$baseFontSize: 16px;
+$factor: 1.618;
+
+p, button, a {
+  font-size: $baseFontSize;
+}
+
+h4 {
+  font-size: $baseFontSize * $factor;
+  line-height: $factor;
+}
+
+h3, p.-large {
+  font-size: $baseFontSize * ($factor * 2);
+  line-height: $factor;
+}
+
+h2 {
+  font-size: $baseFontSize * ($factor * 3);
+  line-height: $factor;
+}
+
+h1 {
+  font-size: $baseFontSize * ($factor * 4);
+  line-height: $factor;
+}

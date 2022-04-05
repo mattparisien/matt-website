@@ -61,7 +61,7 @@ function HomePage(props, ref) {
 					// data-theme-triggerRatio='0.8'
 				>
 					<Container classes='-flex -flex-column -align-end'>
-						<div className='o-text  -padding-top-lg'>
+						<p className='-large -padding-top-lg'>
 							I am a Montreal-based{" "}
 							<Icon
 								variant='star'
@@ -78,7 +78,7 @@ function HomePage(props, ref) {
 							freelance with. My work is always driven by a passion for what I
 							do,
 							<Icon variant='arrow' /> and a love for people.
-						</div>
+						</p>
 						<Button>move me!</Button>
 					</Container>
 				</Section>

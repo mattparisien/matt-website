@@ -12,8 +12,8 @@
 		height: 4rem;
 		.inner {
 			display: flex;
-		align-items: center;
-		justify-content: center;
+			align-items: center;
+			justify-content: center;
 		}
 
 		.button-text {
@@ -50,7 +50,6 @@
 
 		padding-top: $space-xxxl;
 
-		font-family: "Haas";
 		font-size: 5rem;
 
 		.inner {
@@ -72,7 +71,7 @@
 		left: 0;
 		height: 10rem;
 		padding: 2rem;
-		font-family: "Haas";
+		
 
 		.title {
 			text-transform: uppercase;
@@ -91,9 +90,8 @@
 		}
 
 		.right {
-
 			ul li a {
-				font-family: "Haas";
+				
 				color: $light;
 			}
 

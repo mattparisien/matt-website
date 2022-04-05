@@ -44,10 +44,6 @@ box-sizing: border-box;
 
   
 
-  body {
-    font-family: 'FK';
-    
-  }
 
 
 
@@ -57,10 +53,7 @@ box-sizing: border-box;
     color: inherit;
   };
 
-  button {
-    font-family: 'Opposit';
-  };
-  
+
 
 
   /*! locomotive-scroll v4.1.3 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */

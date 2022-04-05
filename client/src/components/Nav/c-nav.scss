@@ -137,7 +137,7 @@
 		padding-right: 3rem;
 
 		a {
-			font-family: "Riposte";
+			
 
 			transform: translateX(100%);
 			opacity: 0;
@@ -167,9 +167,7 @@
 		li {
 			transition: 400ms ease;
 			
-			a {
-				font-family: 'Haas';
-			}
+
 
 			&:hover {
 				opacity: 0.4;

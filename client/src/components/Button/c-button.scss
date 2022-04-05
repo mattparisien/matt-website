@@ -1,11 +1,7 @@
 .c-button {
-	font-size: 1rem;
-	line-height: 4rem;
-	font-family: "Haas";
 	border: 1px solid $light;
 	padding: $space-sm calc(#{$space-sm} + 1rem);
 	border-radius: 50px;
-
 	overflow: hidden;
 
 	.button-circle {

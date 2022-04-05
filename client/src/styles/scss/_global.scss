@@ -17,47 +17,15 @@
 }
 
 @font-face {
-	font-family: "Riposte";
-	src: url(../../fonts/timesnow.otf);
-	font-weight: 500;
-}
-
-@font-face {
-	font-family: "Druk";
-	src: url(../../fonts/Kobe.woff);
-	font-weight: 500;
-}
-
-@font-face {
-	font-family: "Riposte Bold";
-	src: url(../../fonts/GTFRiposteTRIAL-Medium.otf);
-}
-
-@font-face {
-	font-family: "Riposte Light";
-	src: url(../../fonts/GTFRiposteTRIAL-Thin.otf);
-}
-
-@font-face {
 	font-family: "Haas";
 	src: url(../../fonts/Haas.otf);
-}
-
-@font-face {
-	font-family: "Cardinal";
-	src: url(../../fonts/cardinalfruit-regular-TRIAL.otf);
-}
-
-@font-face {
-	font-family: "FK";
-	src: url(../../fonts/FKScreamer.otf);
 }
 
 .App {
 	transition: 500ms ease;
 	background-color: $dark;
 	-moz-osx-font-smoothing: grayscale; /*(For Firefox)*/
--webkit-font-smoothing: antialiased; /*(For Chrome and Safari)*/
+	-webkit-font-smoothing: antialiased; /*(For Chrome and Safari)*/
 }
 
 .is-loading {
@@ -72,27 +40,6 @@ main {
 	opacity: 1;
 }
 
-h1,
-h2 {
-	&,
-	& div {
-		text-transform: uppercase;
-	}
-}
-
-a {
-	font-family: "Riposte";
-}
-
-h3,
-h4,
-h5,
-h6 {
-	&,
-	& div {
-		font-family: "Riposte";
-	}
-}
 
 .o-h1.-split,
 .o-h2.-split,

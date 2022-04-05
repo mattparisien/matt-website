@@ -420,9 +420,9 @@ function App() {
 									{/* <Loader isActive={play} setDone={togglePlay} /> */}
 
 									{/* <CursorFollower cursorState={cursorState} /> */}
-
+									
 									<ScrollWrapper ref={scrollRef}>
-										<div className='c-mousePosContainer'>s</div>
+									{/* <div className='c-mousePosContainer'>s</div>	 */}
 										<ContentWrapper ref={contentWrapperRef}>
 											<GlobalStyle />
 

@@ -3,12 +3,10 @@ import gsap from "gsap";
 import $ from "jquery";
 
 function IntroCard() {
-
-
 	const words = useRef([
-		"",
-		"· Hola!",
 		"· Hello",
+		"· Hola!",
+
 		"· Bonjour",
 		"· Ciao",
 		"· Hallo",
@@ -16,10 +14,15 @@ function IntroCard() {
 		"שלום ·",
 		"· สวัสดี",
 		"· Aloha",
+		"· Olá",
+		"· Sveiki",
+		"· Xin Chào",
 	]);
 	const card = useRef(null);
+	const title = useRef(null);
+	const [isReady, setReady] = useState(false);
 	const [word, setWord] = useState(words.current[0]);
-	const interval = useRef(300);
+	const interval = useRef(150);
 	const tl = useRef(gsap.timeline());
 
 	const changeWords = useCallback(() => {
@@ -27,36 +30,49 @@ function IntroCard() {
 	}, [word]);
 
 	useEffect(() => {
-		setTimeout(() => {
-			words.current.indexOf(word) < words.current.length - 1
-				? changeWords()
-				: tl.current
-						.to(card.current, {
-							y: "-100%",
-							duration: 1,
-							ease: "expo.inOut",
-						})
-						.to(
-							$(card.current).find("span"),
-							{
-								opacity: 0,
-							},
-							0
-						)
-						.to(
-							$(".o-page_home"),
-							{
-								y: 0,
+		if (isReady) {
+			setTimeout(() => {
+				words.current.indexOf(word) < words.current.length - 1
+					? changeWords()
+					: tl.current
+							.to(card.current, {
+								y: "-100%",
 								duration: 1,
-								ease: 'expo.inOut'
-							},
-							0
-						);
-		}, interval.current);
-	}, [word]);
+								ease: "expo.inOut",
+							})
+							.to(
+								$(card.current).find("span"),
+								{
+									opacity: 0,
+								},
+								0
+							)
+							.to(
+								$(".o-page_home"),
+								{
+									y: 0,
+									duration: 1,
+									ease: "expo.inOut",
+								},
+								0
+							);
+			}, interval.current);
+		}
+	}, [word, isReady]);
+
+	useEffect(() => {
+		gsap.to(title.current, {
+			opacity: 1,
+			duration: 1,
+			onComplete: () => setReady(true),
+		});
+	}, []);
+
 	return (
 		<div className='o-introCard' ref={card}>
-			<span>{word}</span>
+			<h3 style={{ opacity: 0 }} ref={title}>
+				{word}
+			</h3>
 		</div>
 	);
 }

@@ -8,7 +8,7 @@ const StyledPill = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-family: "Haas";
+	
 	text-transform: uppercase;
 	margin: 0.4rem;
 	${({ theme }) => theme.typography.setSize(2)};

@@ -25,10 +25,10 @@ function Hero({ featuredItems }) {
 						<div className='bar-center'>
 							<div className='inner -relative -stretchX -stretchY -flex -align-center -justify-between -row-reverse'>
 								<div className='o-text'>
-									<div className='role'>
+									<h3 className='role'>
 										<div>Freelance</div>
 										<div>Developer & Designer</div>
-									</div>
+									</h3>
 								</div>
 								<div className='location'>
 									<div className="location_text">Located in Montreal, Canada</div>

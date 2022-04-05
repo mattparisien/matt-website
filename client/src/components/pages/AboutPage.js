@@ -16,14 +16,14 @@ function AboutPage({ photos }) {
 		<div className='o-page o-page_about'>
 			<Container>
 				<Section classes='o-about_bio' data-scroll-section>
-					<h3 className='o-h3'>
+					<p>
 						{" "}
 						Hi. My name is Matt. I am a Montreal-based full-stack developer in
 						love with with digital products and passionate about crafting great
 						user experiences. I'm also a former commercial photographer and
 						still dabble in graphic design on my free time. Let's talk about our
 						dogs and work hard together.
-					</h3>
+					</p>
 				</Section>
 				<Section classes='o-about_extendedBio -padding-lg' data-scroll-section>
 					<div className='o-about_image' data-scroll data-scroll-speed={2}>
